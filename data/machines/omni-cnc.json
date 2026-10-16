@@ -1,0 +1,2402 @@
+{
+ "maker": "Omni CNC",
+ "website": "https://www.omni-cnc.com",
+ "machines": [
+  {
+   "id": "omni-cnc-e-series-1325",
+   "maker": "Omni CNC",
+   "model": "OMNI1325E",
+   "variant": "E Series",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW water-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20 / ER25 / ER32",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 3 kW air-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER20 / ER25 / ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "DSP handheld controller",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/4x8-entry-level-cnc-router/",
+    "https://www.omni-cnc.com/product/5x10-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   },
+   "notes": "Entry-level series. Z 200 mm standard ('or others'). Stepper or servo drive. Spindle temperature monitor on water-cooled spindle. Max rapid published as a range, 15-40 m/min, depending on drive (stepper or servo)."
+  },
+  {
+   "id": "omni-cnc-e-series-1530",
+   "maker": "Omni CNC",
+   "model": "OMNI1530E",
+   "variant": "E Series",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW water-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20 / ER25 / ER32",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 3 kW air-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER20 / ER25 / ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "DSP handheld controller",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/4x8-entry-level-cnc-router/",
+    "https://www.omni-cnc.com/product/5x10-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   },
+   "notes": "Entry-level series. Z 200 mm standard ('or others'). Stepper or servo drive. Spindle temperature monitor on water-cooled spindle. Max rapid published as a range, 15-40 m/min, depending on drive (stepper or servo)."
+  },
+  {
+   "id": "omni-cnc-e-series-2030",
+   "maker": "Omni CNC",
+   "model": "OMNI2030E",
+   "variant": "E Series",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW water-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20 / ER25 / ER32",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 3 kW air-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER20 / ER25 / ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "DSP handheld controller",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/4x8-entry-level-cnc-router/",
+    "https://www.omni-cnc.com/product/5x10-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   },
+   "notes": "Entry-level series. Z 200 mm standard ('or others'). Stepper or servo drive. Spindle temperature monitor on water-cooled spindle. Max rapid published as a range, 15-40 m/min, depending on drive (stepper or servo)."
+  },
+  {
+   "id": "omni-cnc-mh-series-1325",
+   "maker": "Omni CNC",
+   "model": "OMNI1325MH",
+   "variant": "MH Series (multi-head)",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW water-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20 / ER25 / ER32",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 3 kW air-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER20 / ER25 / ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "DSP handheld controller",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": null,
+    "notes": "2 to 8 pneumatic heads (synchronized type up to 12); custom spindle count"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/multi-head-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   },
+   "notes": "Multi-head router: pneumatic tool-change type (one tool path per head) or synchronized multi-spindle type. Max rapid published as a range, 15-40 m/min, depending on drive (stepper or servo)."
+  },
+  {
+   "id": "omni-cnc-mh-series-1530",
+   "maker": "Omni CNC",
+   "model": "OMNI1530MH",
+   "variant": "MH Series (multi-head)",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW water-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20 / ER25 / ER32",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 3 kW air-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER20 / ER25 / ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "DSP handheld controller",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": null,
+    "notes": "2 to 8 pneumatic heads (synchronized type up to 12); custom spindle count"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/multi-head-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   },
+   "notes": "Multi-head router: pneumatic tool-change type (one tool path per head) or synchronized multi-spindle type. Max rapid published as a range, 15-40 m/min, depending on drive (stepper or servo)."
+  },
+  {
+   "id": "omni-cnc-mh-series-2030",
+   "maker": "Omni CNC",
+   "model": "OMNI2030MH",
+   "variant": "MH Series (multi-head)",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW water-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20 / ER25 / ER32",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 3 kW air-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER20 / ER25 / ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "DSP handheld controller",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": null,
+    "notes": "2 to 8 pneumatic heads (synchronized type up to 12); custom spindle count"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/multi-head-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   },
+   "notes": "Multi-head router: pneumatic tool-change type (one tool path per head) or synchronized multi-spindle type. Max rapid published as a range, 15-40 m/min, depending on drive (stepper or servo)."
+  },
+  {
+   "id": "omni-cnc-pro-series-1325",
+   "maker": "Omni CNC",
+   "model": "OMNI1325Pro",
+   "variant": "Pro Series ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "BT30/ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1772,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 45000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "BT30/ISO30, 8 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/industrial-atc-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "rapid_ipm": "converted from m/min",
+    "tool_change.kind": "magazine shape not published"
+   },
+   "notes": "Sizes 'or others', Z 200 mm 'or more'."
+  },
+  {
+   "id": "omni-cnc-pro-series-1530",
+   "maker": "Omni CNC",
+   "model": "OMNI1530Pro",
+   "variant": "Pro Series ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "BT30/ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1772,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 45000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "BT30/ISO30, 8 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/industrial-atc-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "rapid_ipm": "converted from m/min",
+    "tool_change.kind": "magazine shape not published"
+   },
+   "notes": "Sizes 'or others', Z 200 mm 'or more'."
+  },
+  {
+   "id": "omni-cnc-pro-series-2030",
+   "maker": "Omni CNC",
+   "model": "OMNI2030Pro",
+   "variant": "Pro Series ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "BT30/ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1772,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 45000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "BT30/ISO30, 8 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/industrial-atc-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "rapid_ipm": "converted from m/min",
+    "tool_change.kind": "magazine shape not published"
+   },
+   "notes": "Sizes 'or others', Z 200 mm 'or more'."
+  },
+  {
+   "id": "omni-cnc-autoloader-1325",
+   "maker": "Omni CNC",
+   "model": "OMNI1325 Autoloader",
+   "variant": "AutoLoader",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "BT30/ISO30, ER32 (max 20 mm)",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1772,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 45000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "BT30/ISO30, 8/12/24 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/cabinet-door-casegoods-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "rapid_ipm": "converted from m/min",
+    "tool_change.kind": "magazine shape not published"
+   },
+   "notes": "Cabinet/casegoods nesting line with auto loading. Positioning accuracy 0.02 mm. HISOON nesting software."
+  },
+  {
+   "id": "omni-cnc-autoloader-1530",
+   "maker": "Omni CNC",
+   "model": "OMNI1530 Autoloader",
+   "variant": "AutoLoader",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "BT30/ISO30, ER32 (max 20 mm)",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1772,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 45000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "BT30/ISO30, 8/12/24 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/cabinet-door-casegoods-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "rapid_ipm": "converted from m/min",
+    "tool_change.kind": "magazine shape not published"
+   },
+   "notes": "Cabinet/casegoods nesting line with auto loading. Positioning accuracy 0.02 mm. HISOON nesting software."
+  },
+  {
+   "id": "omni-cnc-autoloader-2030",
+   "maker": "Omni CNC",
+   "model": "OMNI2030 Autoloader",
+   "variant": "AutoLoader",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "BT30/ISO30, ER32 (max 20 mm)",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1772,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 45000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "BT30/ISO30, 8/12/24 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/cabinet-door-casegoods-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "rapid_ipm": "converted from m/min",
+    "tool_change.kind": "magazine shape not published"
+   },
+   "notes": "Cabinet/casegoods nesting line with auto loading. Positioning accuracy 0.02 mm. HISOON nesting software."
+  },
+  {
+   "id": "omni-cnc-4-axis-gantry-1325",
+   "maker": "Omni CNC",
+   "model": "4 Axis CNC Router",
+   "variant": "gantry moving 1325",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/4-axis-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "ISO30 holder implies ATC; magazine not published"
+   },
+   "notes": "4-axis with C axis +-135 deg swing head. Max rapid published as a range, 15-40 m/min, depending on drive (stepper or servo)."
+  },
+  {
+   "id": "omni-cnc-4-axis-gantry-1530",
+   "maker": "Omni CNC",
+   "model": "4 Axis CNC Router",
+   "variant": "gantry moving 1530",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/4-axis-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "ISO30 holder implies ATC; magazine not published"
+   },
+   "notes": "4-axis with C axis +-135 deg swing head. Max rapid published as a range, 15-40 m/min, depending on drive (stepper or servo)."
+  },
+  {
+   "id": "omni-cnc-4-axis-gantry-2030",
+   "maker": "Omni CNC",
+   "model": "4 Axis CNC Router",
+   "variant": "gantry moving 2030",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/4-axis-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "ISO30 holder implies ATC; magazine not published"
+   },
+   "notes": "4-axis with C axis +-135 deg swing head. Max rapid published as a range, 15-40 m/min, depending on drive (stepper or servo)."
+  },
+  {
+   "id": "omni-cnc-4-axis-table-moving-1618",
+   "maker": "Omni CNC",
+   "model": "4 Axis CNC Router",
+   "variant": "table moving 1600x1800",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 62.99,
+    "y": 70.87,
+    "z": 39.37
+   },
+   "work_area_mm": {
+    "x": 1600,
+    "y": 1800,
+    "z": 1000
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ISO30 or ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/4-axis-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   },
+   "notes": "Table-moving 4-axis, C axis +-135 deg. Z 1000 mm 'or others'. Max rapid published as a range, 15-40 m/min, depending on drive (stepper or servo)."
+  },
+  {
+   "id": "omni-cnc-4-axis-table-moving-1325",
+   "maker": "Omni CNC",
+   "model": "4 Axis CNC Router",
+   "variant": "table moving 1300x2500",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 39.37
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 1000
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ISO30 or ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/4-axis-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   },
+   "notes": "Table-moving 4-axis, C axis +-135 deg. Z 1000 mm 'or others'. Max rapid published as a range, 15-40 m/min, depending on drive (stepper or servo)."
+  },
+  {
+   "id": "omni-cnc-4th-axis-1325",
+   "maker": "Omni CNC",
+   "model": "4th Rotary Axis CNC Router",
+   "variant": "1325",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW water-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20 / ER25 / ER32",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 3 kW air-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER20 / ER25 / ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "DSP handheld controller",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/4th-rotary-axis-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   },
+   "notes": "Flat-bed router with 4th rotary device, 70-500 mm diameter. Max rapid published as a range, 15-40 m/min, depending on drive (stepper or servo)."
+  },
+  {
+   "id": "omni-cnc-4th-axis-1530",
+   "maker": "Omni CNC",
+   "model": "4th Rotary Axis CNC Router",
+   "variant": "1530",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW water-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20 / ER25 / ER32",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 3 kW air-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER20 / ER25 / ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "DSP handheld controller",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/4th-rotary-axis-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   },
+   "notes": "Flat-bed router with 4th rotary device, 70-500 mm diameter. Max rapid published as a range, 15-40 m/min, depending on drive (stepper or servo)."
+  },
+  {
+   "id": "omni-cnc-4th-axis-2030",
+   "maker": "Omni CNC",
+   "model": "4th Rotary Axis CNC Router",
+   "variant": "2030",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW water-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20 / ER25 / ER32",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 3 kW air-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER20 / ER25 / ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "DSP handheld controller",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/4th-rotary-axis-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   },
+   "notes": "Flat-bed router with 4th rotary device, 70-500 mm diameter. Max rapid published as a range, 15-40 m/min, depending on drive (stepper or servo)."
+  },
+  {
+   "id": "omni-cnc-4-axis-linkage-1325",
+   "maker": "Omni CNC",
+   "model": "4 Axis Linkage CNC Router",
+   "variant": "1325",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW water-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20 / ER25 / ER32",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 3 kW air-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER20 / ER25 / ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "DSP handheld controller",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/4-axis-linkage-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   },
+   "notes": "Simultaneous (linkage) 4th axis, rotary device 70-200 mm. Max rapid published as a range, 15-40 m/min, depending on drive (stepper or servo)."
+  },
+  {
+   "id": "omni-cnc-4-axis-linkage-1530",
+   "maker": "Omni CNC",
+   "model": "4 Axis Linkage CNC Router",
+   "variant": "1530",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW water-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20 / ER25 / ER32",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 3 kW air-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER20 / ER25 / ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "DSP handheld controller",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/4-axis-linkage-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   },
+   "notes": "Simultaneous (linkage) 4th axis, rotary device 70-200 mm. Max rapid published as a range, 15-40 m/min, depending on drive (stepper or servo)."
+  },
+  {
+   "id": "omni-cnc-4-axis-linkage-2030",
+   "maker": "Omni CNC",
+   "model": "4 Axis Linkage CNC Router",
+   "variant": "2030",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW water-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20 / ER25 / ER32",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 3 kW air-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER20 / ER25 / ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "DSP handheld controller",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/4-axis-linkage-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   },
+   "notes": "Simultaneous (linkage) 4th axis, rotary device 70-200 mm. Max rapid published as a range, 15-40 m/min, depending on drive (stepper or servo)."
+  },
+  {
+   "id": "omni-cnc-5-axis-48-gantry",
+   "maker": "Omni CNC",
+   "model": "5 Axis CNC Router",
+   "variant": "48 gantry moving",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48.03,
+    "y": 96.06,
+    "z": 37.4
+   },
+   "work_area_mm": {
+    "x": 1220,
+    "y": 2440,
+    "z": 950
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 10 kW liquid-cooled spindle",
+     "power_kw": 10,
+     "power_hp": 13.4,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Hiteco 30 kW spindle (option)",
+     "power_kw": 30,
+     "power_hp": 40.2,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Osai",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Siemens",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "HSK63F"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/5-axis-cnc-router-for-sale/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "A +-135 deg, C +-213 deg. Cast steel frame, Yaskawa servos. Spec table also says 'table moving' (copied from the table-moving model)."
+  },
+  {
+   "id": "omni-cnc-5-axis-48-table-moving",
+   "maker": "Omni CNC",
+   "model": "5 Axis CNC Router",
+   "variant": "48 table moving",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48.03,
+    "y": 96.06,
+    "z": 37.4
+   },
+   "work_area_mm": {
+    "x": 1220,
+    "y": 2440,
+    "z": 950
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 10 kW liquid-cooled spindle",
+     "power_kw": 10,
+     "power_hp": 13.4,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Osai",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Siemens",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "HSK63F"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/5axis-table-moving-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "A +-135 deg, C +-213 deg. Cast steel frame, Yaskawa servos."
+  },
+  {
+   "id": "omni-cnc-1013xl",
+   "maker": "Omni CNC",
+   "model": "1013XL",
+   "variant": "5 axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 118.11,
+    "y": 157.48,
+    "z": 47.24
+   },
+   "work_area_mm": {
+    "x": 3000,
+    "y": 4000,
+    "z": 1200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco 18 kW spindle",
+     "power_kw": 18,
+     "power_hp": 24.1,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "HSK63F",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Siemens",
+     "gcarve_post": "siemens-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "HSK63F"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omni-cnc.com/product/1013xl/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "10 x 13 x 4 ft table-moving 5-axis, A +-135 deg, C +-213 deg, cast steel frame, 30 kW total power."
+  }
+ ]
+}

@@ -1,0 +1,1008 @@
+{
+ "maker": "Inventables (incl. Cyclone Bits sold by Inventables)",
+ "source_summary": "inventables.com Shopify product pages (titles, option values, Specifications blocks). Bits without published flute count or cutting diameter skipped (most V-bits).",
+ "retrieved": "2026-10-08",
+ "bits": [
+  {
+   "id": "inventables-30240-02",
+   "maker": "Inventables",
+   "part_number": "30240-02",
+   "name": "Carbide Tip Ballnose 2 Flute - 1/8 in Cutting x 1/8 in Shank",
+   "family": "ball-nose",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "flutes": 2,
+   "helix": "up",
+   "gcarve_tool": {
+    "name": "Inventables 30240-02 Carbide Tip Ballnose 2 Flute - 1/8 in Cutting x 1/8 in Sh...",
+    "kind": "BallNose",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/carbide-tip-ballnose-2-flute-1-8-in-cutting-x-1-8-in-shank"
+   ]
+  },
+  {
+   "id": "inventables-30851-01",
+   "maker": "Inventables",
+   "part_number": "30851-01",
+   "name": "Carbide Tip Upcut 2 Flute Ballnose - 1/8 in Cutting x 1/8 in Shank",
+   "family": "ball-nose",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 0.5,
+   "flutes": 2,
+   "helix": "up",
+   "gcarve_tool": {
+    "name": "Inventables 30851-01 Carbide Tip Upcut 2 Flute Ballnose - 1/8 in Cutting x 1/8...",
+    "kind": "BallNose",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/carbide-tip-upcut-2-flute-ballnose-1-8-in-cutting-x-1-8-in-shank"
+   ],
+   "notes": "Listing cross-references part 52-244B."
+  },
+  {
+   "id": "inventables-30852-01",
+   "maker": "Inventables",
+   "part_number": "30852-01",
+   "name": "Carbide Tip Upcut 2 Flute Ballnose - 1/8 in Cutting x 1/4 in Shank",
+   "family": "ball-nose",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "flutes": 2,
+   "helix": "up",
+   "gcarve_tool": {
+    "name": "Inventables 30852-01 Carbide Tip Upcut 2 Flute Ballnose - 1/8 in Cutting x 1/4...",
+    "kind": "BallNose",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/carbide-tip-upcut-2-flute-ballnose-1-8-in-cutting-x-1-4-in-shank"
+   ],
+   "notes": "Listing cross-references part 52-240B."
+  },
+  {
+   "id": "inventables-30853-01",
+   "maker": "Inventables",
+   "part_number": "30853-01",
+   "name": "Carbide Tip Upcut 2 Flute Ballnose - 1/4 in Cutting x 1/4 in Shank",
+   "family": "ball-nose",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.875,
+   "flutes": 2,
+   "helix": "up",
+   "gcarve_tool": {
+    "name": "Inventables 30853-01 Carbide Tip Upcut 2 Flute Ballnose - 1/4 in Cutting x 1/4...",
+    "kind": "BallNose",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/carbide-tip-upcut-2-flute-ballnose-1-4-in-cutting-x-1-4-in-shank"
+   ]
+  },
+  {
+   "id": "inventables-30668-01",
+   "maker": "Inventables",
+   "part_number": "30668-01",
+   "name": "Carbide Tip Compression 2 Flute - 1/8 in Cutting x 1/8 in Shank",
+   "family": "compression",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 0.4,
+   "flutes": 2,
+   "helix": "compression",
+   "gcarve_tool": {
+    "name": "Inventables 30668-01 Carbide Tip Compression 2 Flute - 1/8 in Cutting x 1/8 in...",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/carbide-tip-compression-2-flute-1-8-in-cutting-x-1-8-in-shank"
+   ]
+  },
+  {
+   "id": "cyclone-cat-4",
+   "maker": "Cyclone Bits",
+   "part_number": "CAT-4",
+   "name": "1/4\" Compression End Mill",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "coating": "Nano Blue",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.5,
+   "oal": 2.75,
+   "flutes": 2,
+   "helix": "compression",
+   "rpm": [
+    16000,
+    18000
+   ],
+   "gcarve_tool": {
+    "name": "Cyclone Bits CAT-4 1/4\" Compression End Mill",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/1-4-cnc-compression-end-mill-1-4-shank"
+   ],
+   "notes": "Sold by Inventables (vendor Cyclone Bits). Maker starting feed 120-180 IPM (not per material, so no chip_load)."
+  },
+  {
+   "id": "cyclone-dc-2512",
+   "maker": "Cyclone Bits",
+   "part_number": "DC-2512",
+   "name": "1/8\" Down-Cut End Mill",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "coating": "Nano Blue",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.87,
+   "oal": 2.36,
+   "flutes": 2,
+   "helix": "down",
+   "rpm": [
+    18000,
+    24000
+   ],
+   "materials": [
+    "hardwood",
+    "mdf",
+    "plastics",
+    "plywood",
+    "softwood",
+    "veneer"
+   ],
+   "gcarve_tool": {
+    "name": "Cyclone Bits DC-2512 1/8\" Down-Cut End Mill",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/1-8-cnc-down-cut-end-mill-1-4-shank"
+   ],
+   "notes": "Sold by Inventables (vendor Cyclone Bits). Maker starting feed 80-150 IPM (not per material, so no chip_load)."
+  },
+  {
+   "id": "inventables-30909-01",
+   "maker": "Inventables",
+   "part_number": "30909-01",
+   "name": "Carbide Tip Downcut 2 Flute - 1/8 in Cutting x 1/4 in Shank",
+   "family": "end-mill-down",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "flutes": 2,
+   "helix": "down",
+   "gcarve_tool": {
+    "name": "Inventables 30909-01 Carbide Tip Downcut 2 Flute - 1/8 in Cutting x 1/4 in Shank",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/carbide-tip-downcut-2-flute-1-8-in-cutting-x-1-4-in-shank"
+   ]
+  },
+  {
+   "id": "inventables-30915-01",
+   "maker": "Inventables",
+   "part_number": "30915-01",
+   "name": "Solid Carbide Downcut 2 Flute - 1/8 Cutting x 1/4 Shank",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "coating": "Spektra (nACo)",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "flutes": 2,
+   "helix": "down",
+   "gcarve_tool": {
+    "name": "Inventables 30915-01 Solid Carbide Downcut 2 Flute - 1/8 Cutting x 1/4 Shank",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/carbide-tip-downcut-2-flute-1-8-cutting-x-1-4-shank"
+   ]
+  },
+  {
+   "id": "inventables-30910-02",
+   "maker": "Inventables",
+   "part_number": "30910-02",
+   "name": "Carbide Tip Downcut 2 Flute - 3/16 in Cutting x 1/4 in Shank",
+   "family": "end-mill-down",
+   "units": "in",
+   "diameter": 0.1875,
+   "shank": 0.25,
+   "oal": 2.5,
+   "flutes": 2,
+   "helix": "down",
+   "gcarve_tool": {
+    "name": "Inventables 30910-02 Carbide Tip Downcut 2 Flute - 3/16 in Cutting x 1/4 in Sh...",
+    "kind": "EndMill",
+    "diameter": 0.1875,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/carbide-tip-downcut-2-flute-3-16-in-cutting-x-1-4-in-shank"
+   ]
+  },
+  {
+   "id": "cyclone-dc-2525",
+   "maker": "Cyclone Bits",
+   "part_number": "DC-2525",
+   "name": "1/4\" Down-Cut End Mill",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "coating": "Nano Blue",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.5,
+   "oal": 2.75,
+   "flutes": 2,
+   "helix": "down",
+   "rpm": [
+    16000,
+    20000
+   ],
+   "materials": [
+    "hardwood",
+    "laminate",
+    "mdf",
+    "plywood",
+    "softwood",
+    "veneer"
+   ],
+   "gcarve_tool": {
+    "name": "Cyclone Bits DC-2525 1/4\" Down-Cut End Mill",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/1-4-cnc-down-cut-end-mill-1-4-shank"
+   ],
+   "notes": "Sold by Inventables (vendor Cyclone Bits). Maker starting feed 120-200 IPM (not per material, so no chip_load)."
+  },
+  {
+   "id": "inventables-30911-01",
+   "maker": "Inventables",
+   "part_number": "30911-01",
+   "name": "Carbide Tip Downcut 2 Flute - 1/4 in Cutting x 1/4 in Shank",
+   "family": "end-mill-down",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.875,
+   "flutes": 2,
+   "helix": "down",
+   "gcarve_tool": {
+    "name": "Inventables 30911-01 Carbide Tip Downcut 2 Flute - 1/4 in Cutting x 1/4 in Shank",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/carbide-tip-downcut-2-flute-1-4-in-cutting-x-1-4-in-shank"
+   ],
+   "notes": "Listing cross-references part 57-280."
+  },
+  {
+   "id": "inventables-82038418259324",
+   "maker": "Inventables",
+   "part_number": "82038418259324",
+   "name": "Solid Carbide Downcut 2 Flute - 1/4 in Cutting x 1/4 in Shank",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "helix": "down",
+   "gcarve_tool": {
+    "name": "Inventables 82038418259324 Solid Carbide Downcut 2 Flute - 1/4 in Cutting x 1/4 in S...",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/carbide-tip-downcut-2-flute-1-4-in-cutting-x-1-4-in-shank-1"
+   ]
+  },
+  {
+   "id": "inventables-26015-01",
+   "maker": "Inventables",
+   "part_number": "26015-01",
+   "name": "Carbide Tip Upcut 2 Flute - 1/16 in Cutting x 1/8 in Shank",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.0625,
+   "shank": 0.125,
+   "cut_length": 0.25,
+   "flutes": 2,
+   "helix": "up",
+   "gcarve_tool": {
+    "name": "Inventables 26015-01 Carbide Tip Upcut 2 Flute - 1/16 in Cutting x 1/8 in Shank",
+    "kind": "EndMill",
+    "diameter": 0.0625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/carbide-tip-upcut-2-flute-1-16-in-cutting-x-1-8-in-shank"
+   ]
+  },
+  {
+   "id": "inventables-30947-01",
+   "maker": "Inventables",
+   "part_number": "30947-01",
+   "name": "Solid Carbide Upcut 2 Flute - 1/16 in Cutting x 1/4 in Shank",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.0625,
+   "shank": 0.25,
+   "cut_length": 0.25,
+   "flutes": 2,
+   "helix": "up",
+   "gcarve_tool": {
+    "name": "Inventables 30947-01 Solid Carbide Upcut 2 Flute - 1/16 in Cutting x 1/4 in Sh...",
+    "kind": "EndMill",
+    "diameter": 0.0625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/solid-carbide-upcut-2-flute-1-16-in-cutting-x-1-4-in-shank"
+   ],
+   "notes": "Listing cross-references part W04029."
+  },
+  {
+   "id": "cyclone-uc-2512",
+   "maker": "Cyclone Bits",
+   "part_number": "UC-2512",
+   "name": "1/8\" Up-Cut End Mill",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "coating": "Nano Blue",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.87,
+   "oal": 2.36,
+   "flutes": 2,
+   "helix": "up",
+   "rpm": [
+    18000,
+    24000
+   ],
+   "materials": [
+    "aluminum",
+    "hardwood",
+    "mdf",
+    "plastics",
+    "softwood"
+   ],
+   "gcarve_tool": {
+    "name": "Cyclone Bits UC-2512 1/8\" Up-Cut End Mill",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/1-8-cnc-up-cut-end-mill-1-4-shank"
+   ],
+   "notes": "Sold by Inventables (vendor Cyclone Bits). Maker starting feed 100-180 IPM (not per material, so no chip_load)."
+  },
+  {
+   "id": "inventables-30238-02",
+   "maker": "Inventables",
+   "part_number": "30238-02",
+   "name": "Carbide Tip Upcut Single Flute - 1/8 in Cutting x 1/8 in Shank",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "flutes": 1,
+   "helix": "up",
+   "gcarve_tool": {
+    "name": "Inventables 30238-02 Carbide Tip Upcut Single Flute - 1/8 in Cutting x 1/8 in ...",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.inventables.com/products/carbide-tip-upcut-single-flute-1-8-in-cutting-x-1-8-in-shank"
+   ]
+  },
+  {
+   "id": "inventables-30669-01",
+   "maker": "Inventables",
+   "part_number": "30669-01",
+   "name": "Carbide Tip Upcut 3 Flute - 1/8 in Cutting x 1/8 in Shank",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 0.3,
+   "flutes": 3,
+   "helix": "up",
+   "gcarve_tool": {
+    "name": "Inventables 30669-01 Carbide Tip Upcut 3 Flute - 1/8 in Cutting x 1/8 in Shank",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.inventables.com/products/carbide-tip-upcut-3-flute-1-8-in-cutting-x-1-8-in-shank"
+   ]
+  },
+  {
+   "id": "inventables-30670-01",
+   "maker": "Inventables",
+   "part_number": "30670-01",
+   "name": "Carbide Tip Upcut 4 Flute - 1/8 in Cutting x 1/8 in Shank",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 0.3,
+   "flutes": 4,
+   "helix": "up",
+   "gcarve_tool": {
+    "name": "Inventables 30670-01 Carbide Tip Upcut 4 Flute - 1/8 in Cutting x 1/8 in Shank",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 4
+   },
+   "sources": [
+    "https://www.inventables.com/products/carbide-tip-upcut-4-flute-1-8-in-cutting-x-1-8-in-shank"
+   ]
+  },
+  {
+   "id": "inventables-30907-01",
+   "maker": "Inventables",
+   "part_number": "30907-01",
+   "name": "Carbide Tip Upcut 2 Flute - 1/8 in Cutting x 1/4 in Shank",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "flutes": 2,
+   "helix": "up",
+   "gcarve_tool": {
+    "name": "Inventables 30907-01 Carbide Tip Upcut 2 Flute - 1/8 in Cutting x 1/4 in Shank",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/carbide-tip-upcut-2-flute-1-8-in-cutting-x-1-4-in-shank-1"
+   ],
+   "notes": "Listing cross-references part 52-240."
+  },
+  {
+   "id": "inventables-61529022017702",
+   "maker": "Inventables",
+   "part_number": "61529022017702",
+   "name": "Carbide Tip Upcut 2 Flute - 3/16 in Cutting x 1/4 in Shank",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.1875,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "helix": "up",
+   "gcarve_tool": {
+    "name": "Inventables 61529022017702 Carbide Tip Upcut 2 Flute - 3/16 in Cutting x 1/4 in Shank",
+    "kind": "EndMill",
+    "diameter": 0.1875,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/carbide-tip-upcut-2-flute-3-16-in-cutting-x-1-4-in-shank"
+   ]
+  },
+  {
+   "id": "cyclone-cat-5",
+   "maker": "Cyclone Bits",
+   "part_number": "CAT-5",
+   "name": "1/4\" Roughing End Mill",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "coating": "Nano Blue",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.5,
+   "oal": 2.75,
+   "flutes": 3,
+   "helix": "up",
+   "rpm": [
+    14000,
+    18000
+   ],
+   "materials": [
+    "hardwood",
+    "mdf",
+    "plastics",
+    "plywood",
+    "softwood"
+   ],
+   "gcarve_tool": {
+    "name": "Cyclone Bits CAT-5 1/4\" Roughing End Mill",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.inventables.com/products/1-4-cnc-roughing-end-mill-1-4-shank"
+   ],
+   "notes": "Sold by Inventables (vendor Cyclone Bits). Maker starting feed 180-280 IPM (not per material, so no chip_load)."
+  },
+  {
+   "id": "cyclone-uc-2525",
+   "maker": "Cyclone Bits",
+   "part_number": "UC-2525",
+   "name": "1/4\" Up-Cut End Mill",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "coating": "Nano Blue",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.5,
+   "oal": 2.75,
+   "flutes": 2,
+   "helix": "up",
+   "rpm": [
+    16000,
+    22000
+   ],
+   "materials": [
+    "aluminum",
+    "hardwood",
+    "mdf",
+    "plastics",
+    "softwood"
+   ],
+   "gcarve_tool": {
+    "name": "Cyclone Bits UC-2525 1/4\" Up-Cut End Mill",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/1-4-cnc-up-cut-end-mill-1-4-shank"
+   ],
+   "notes": "Sold by Inventables (vendor Cyclone Bits). Maker starting feed 150-250 IPM (not per material, so no chip_load)."
+  },
+  {
+   "id": "inventables-26004-01",
+   "maker": "Inventables",
+   "part_number": "26004-01",
+   "name": "HSS Upcut Single Flute - 1/4 in Cutting x 1/4 in Shank",
+   "family": "end-mill-up",
+   "tool_material": "HSS",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.625,
+   "flutes": 1,
+   "helix": "up",
+   "gcarve_tool": {
+    "name": "Inventables 26004-01 HSS Upcut Single Flute - 1/4 in Cutting x 1/4 in Shank",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.inventables.com/products/hss-upcut-single-flute-1-4-in-cutting-x-1-4-in-shank"
+   ],
+   "notes": "Listing cross-references part 40-005."
+  },
+  {
+   "id": "inventables-26010-01",
+   "maker": "Inventables",
+   "part_number": "26010-01",
+   "name": "Carbide Tip Upcut 2 Flute - 1/4 in Cutting x 1/4 in Shank",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 2.25,
+   "flutes": 2,
+   "helix": "up",
+   "gcarve_tool": {
+    "name": "Inventables 26010-01 Carbide Tip Upcut 2 Flute - 1/4 in Cutting x 1/4 in Shank",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/carbide-tip-upcut-2-flute-1-4-in-cutting-x-1-4-in-shank"
+   ],
+   "notes": "Listing cross-references part 52-564."
+  },
+  {
+   "id": "cyclone-of-2512",
+   "maker": "Cyclone Bits",
+   "part_number": "OF-2512",
+   "name": "1/8\" O-Flute End Mill",
+   "family": "o-flute",
+   "tool_material": "solid carbide",
+   "coating": "Nano Blue",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.79,
+   "oal": 2.36,
+   "flutes": 1,
+   "helix": "o-flute",
+   "rpm": [
+    18000,
+    24000
+   ],
+   "gcarve_tool": {
+    "name": "Cyclone Bits OF-2512 1/8\" O-Flute End Mill",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.inventables.com/products/1-8-cnc-o-flute-end-mill-1-4-shank"
+   ],
+   "notes": "Sold by Inventables (vendor Cyclone Bits). Maker starting feed 80-180 IPM (not per material, so no chip_load)."
+  },
+  {
+   "id": "cyclone-of-2525",
+   "maker": "Cyclone Bits",
+   "part_number": "OF-2525",
+   "name": "1/4\" O-Flute End Mill",
+   "family": "o-flute",
+   "tool_material": "solid carbide",
+   "coating": "Nano Blue",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.79,
+   "oal": 2.36,
+   "flutes": 1,
+   "helix": "o-flute",
+   "rpm": [
+    16000,
+    22000
+   ],
+   "gcarve_tool": {
+    "name": "Cyclone Bits OF-2525 1/4\" O-Flute End Mill",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.inventables.com/products/1-4-cnc-o-flute-end-mill-1-4-shank"
+   ],
+   "notes": "Sold by Inventables (vendor Cyclone Bits). Maker starting feed 180-350 IPM (not per material, so no chip_load)."
+  },
+  {
+   "id": "inventables-30237-02",
+   "maker": "Inventables",
+   "part_number": "30237-02",
+   "name": "Carbide Tip Straight 2 Flute - 1/8 in Cutting x 1/8 in Shank",
+   "family": "straight",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "flutes": 2,
+   "helix": "straight",
+   "gcarve_tool": {
+    "name": "Inventables 30237-02 Carbide Tip Straight 2 Flute - 1/8 in Cutting x 1/8 in Sh...",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/carbide-tip-straight-2-flute-1-8-in-cutting-x-1-8-in-shank"
+   ],
+   "notes": "Listing states chip load .003 in (no material given)."
+  },
+  {
+   "id": "inventables-26003-01",
+   "maker": "Inventables",
+   "part_number": "26003-01",
+   "name": "Carbide Tipped Straight Plunge Single Flute High Production 1/4 Dia x 1 Inch x 1/4 Shank",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 1,
+   "helix": "straight",
+   "gcarve_tool": {
+    "name": "Inventables 26003-01 Carbide Tipped Straight Plunge Single Flute High Producti...",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.inventables.com/products/hss-straight-single-flute-1-4-in-cutting-x-1-4-in-shank"
+   ],
+   "notes": "Listing cross-references part 11-07."
+  },
+  {
+   "id": "inventables-26005-01",
+   "maker": "Inventables",
+   "part_number": "26005-01",
+   "name": "Solid Carbide Straight Single Flute - 1/4 in Cutting x 1/4 in Shank",
+   "family": "straight",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 1,
+   "helix": "straight",
+   "gcarve_tool": {
+    "name": "Inventables 26005-01 Solid Carbide Straight Single Flute - 1/4 in Cutting x 1/...",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.inventables.com/products/hss-straight-2-flute-1-4-in-cutting-x-1-4-in-shank"
+   ],
+   "notes": "Listing cross-references part 11-02."
+  },
+  {
+   "id": "inventables-26014-01",
+   "maker": "Inventables",
+   "part_number": "26014-01",
+   "name": "Carbide Tip Straight 3 Flute - 1/4 in Cutting x 1/4 in Shank",
+   "family": "straight",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 3,
+   "helix": "straight",
+   "gcarve_tool": {
+    "name": "Inventables 26014-01 Carbide Tip Straight 3 Flute - 1/4 in Cutting x 1/4 in Sh...",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.inventables.com/products/carbide-tip-straight-3-flute-1-4-in-cutting-x-1-4-in-shank"
+   ],
+   "notes": "Listing cross-references part 53-080."
+  },
+  {
+   "id": "inventables-26001-01",
+   "maker": "Inventables",
+   "part_number": "26001-01",
+   "name": "Carbide Tip Straight 2 Flute - 1/2 in Cutting x 1/4 in Shank",
+   "family": "straight",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "helix": "straight",
+   "gcarve_tool": {
+    "name": "Inventables 26001-01 Carbide Tip Straight 2 Flute - 1/2 in Cutting x 1/4 in Sh...",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/carbide-tip-straight-2-flute-1-2-in-cutting-x-1-4-in-shank"
+   ],
+   "notes": "Listing cross-references part 48-014."
+  },
+  {
+   "id": "cyclone-tbn-2503",
+   "maker": "Cyclone Bits",
+   "part_number": "TBN-2503",
+   "name": "1/32\" Tapered Ball Nose Bit",
+   "family": "tapered-ball",
+   "tool_material": "solid carbide",
+   "coating": "Nano Blue",
+   "units": "in",
+   "diameter": 0.03125,
+   "shank": 0.25,
+   "cut_length": 1.77,
+   "oal": 3.15,
+   "flutes": 2,
+   "tip_diameter": 0.03125,
+   "rpm": [
+    18000,
+    24000
+   ],
+   "materials": [
+    "foam",
+    "hardwood",
+    "mdf",
+    "modeling board",
+    "plastics",
+    "softwood"
+   ],
+   "gcarve_tool": {
+    "name": "Cyclone Bits TBN-2503 1/32\" Tapered Ball Nose Bit",
+    "kind": "BallNose",
+    "diameter": 0.03125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/1-32-cnc-tapered-ball-nose-bit-1-4-shank"
+   ],
+   "notes": "Sold by Inventables (vendor Cyclone Bits). Maker starting feed 40-100 IPM (not per material, so no chip_load)."
+  },
+  {
+   "id": "inventables-30923-01",
+   "maker": "Inventables",
+   "part_number": "30923-01",
+   "name": "TiAlN Tip 2 Flute Tapered Ballnose - 1 mm Cutting x 1/4 in Shank",
+   "family": "tapered-ball",
+   "tool_material": "solid carbide",
+   "coating": "TiAlN",
+   "units": "mm",
+   "diameter": 1.0,
+   "shank": 6.35,
+   "flutes": 2,
+   "tip_diameter": 1.0,
+   "gcarve_tool": {
+    "name": "Inventables 30923-01 TiAlN Tip 2 Flute Tapered Ballnose - 1 mm Cutting x 1/4 i...",
+    "kind": "BallNose",
+    "diameter": 0.03937,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/tialn-tip-2-flute-tapered-ballnose-1-mm-cutting-x-1-4-in-shank"
+   ],
+   "notes": "Title gives 1 mm / 1.5 mm cutting (tip) size; taper angle and lengths not published. Shank 1/4 in = 6.35 mm."
+  },
+  {
+   "id": "inventables-30924-01",
+   "maker": "Inventables",
+   "part_number": "30924-01",
+   "name": "TiAlN Tip 2 Flute Tapered Ballnose - 1.5 mm Cutting x 1/4 in Shank",
+   "family": "tapered-ball",
+   "tool_material": "solid carbide",
+   "coating": "TiAlN",
+   "units": "mm",
+   "diameter": 1.5,
+   "shank": 6.35,
+   "flutes": 2,
+   "tip_diameter": 1.5,
+   "gcarve_tool": {
+    "name": "Inventables 30924-01 TiAlN Tip 2 Flute Tapered Ballnose - 1.5 mm Cutting x 1/4...",
+    "kind": "BallNose",
+    "diameter": 0.05906,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/tialn-tip-2-flute-tapered-ballnose-1-5-mm-cutting-x-1-4-in-shank"
+   ],
+   "notes": "Title gives 1 mm / 1.5 mm cutting (tip) size; taper angle and lengths not published. Shank 1/4 in = 6.35 mm."
+  },
+  {
+   "id": "cyclone-tbn-2506",
+   "maker": "Cyclone Bits",
+   "part_number": "TBN-2506",
+   "name": "1/16\" Tapered Ball Nose Bit",
+   "family": "tapered-ball",
+   "tool_material": "solid carbide",
+   "coating": "Nano Blue",
+   "units": "in",
+   "diameter": 0.0625,
+   "shank": 0.25,
+   "cut_length": 1.77,
+   "oal": 3.15,
+   "flutes": 2,
+   "tip_diameter": 0.0625,
+   "rpm": [
+    20000,
+    24000
+   ],
+   "materials": [
+    "hardwood",
+    "mdf",
+    "plastics",
+    "softwood"
+   ],
+   "gcarve_tool": {
+    "name": "Cyclone Bits TBN-2506 1/16\" Tapered Ball Nose Bit",
+    "kind": "BallNose",
+    "diameter": 0.0625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/1-16-cnc-tapered-ball-nose-bit-1-4-shank"
+   ],
+   "notes": "Sold by Inventables (vendor Cyclone Bits). Maker starting feed 50-120 IPM (not per material, so no chip_load)."
+  },
+  {
+   "id": "cyclone-tbn-2512",
+   "maker": "Cyclone Bits",
+   "part_number": "TBN-2512",
+   "name": "1/8\" Tapered Ball Nose Bit",
+   "family": "tapered-ball",
+   "tool_material": "solid carbide",
+   "coating": "Nano Blue",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 1.77,
+   "oal": 3.15,
+   "flutes": 2,
+   "tip_diameter": 0.125,
+   "rpm": [
+    18000,
+    24000
+   ],
+   "materials": [
+    "hardwood",
+    "mdf",
+    "plastics",
+    "softwood"
+   ],
+   "gcarve_tool": {
+    "name": "Cyclone Bits TBN-2512 1/8\" Tapered Ball Nose Bit",
+    "kind": "BallNose",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.inventables.com/products/1-8-cnc-tapered-ball-nose-bit-1-4-shank"
+   ],
+   "notes": "Sold by Inventables (vendor Cyclone Bits). Maker starting feed 80-150 IPM (not per material, so no chip_load)."
+  },
+  {
+   "id": "inventables-30916-01",
+   "maker": "Inventables",
+   "part_number": "30916-01",
+   "name": "Solid Carbide V-Bit 60 Degree 3 Flute - 1/4 in Cutting x 1/4 in Shank",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "coating": "Spektra (nACo)",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "flutes": 3,
+   "gcarve_tool": {
+    "name": "Inventables 30916-01 Solid Carbide V-Bit 60 Degree 3 Flute - 1/4 in Cutting x ...",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.inventables.com/products/carbide-tip-v-bit-60-degree-3-flute-1-4-in-cutting-x-1-4-in-shank"
+   ]
+  }
+ ]
+}

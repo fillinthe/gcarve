@@ -1,0 +1,2756 @@
+{
+ "maker": "Anderson Group",
+ "website": "https://www.anderson.com.tw",
+ "machines": [
+  {
+   "id": "anderson-stratos-sup-nest",
+   "maker": "Anderson Group",
+   "model": "Stratos",
+   "variant": "SUP/NEST",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 133.86,
+    "y": 85.83,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 3400,
+    "y": 2180,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSK 63 spindle 12 or 18 HP",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK-63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1969,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": 50000,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i (ANDI-FANUC)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "Ride-along tool changer 8/10/12 positions"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.andersonamerica.com/stratos-series",
+    "https://www.anderson.com.tw/en-us/product/39",
+    "https://www.anderson.com.tw/media/8122019151844rel2hr01768.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Moving-gantry 3-axis nesting router, table 3100x1600 mm. Rapid X/Y/Z 50/50/20 m/min (rapid xy = slower axis). Spindle 12 or 18 HP, HSK 63, 24,000 rpm; 5+5 or 10+7 boring block; ride-along tool changer 8/10/12. Taiwan brochure lists Stratos SUP/Pro/Pro XL with ANDI-FANUC control."
+  },
+  {
+   "id": "anderson-stratos-pro",
+   "maker": "Anderson Group",
+   "model": "Stratos",
+   "variant": "Pro",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 153.54,
+    "y": 85.83,
+    "z": 13.78
+   },
+   "work_area_mm": {
+    "x": 3900,
+    "y": 2180,
+    "z": 350
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSK 63 spindle 18 HP",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK-63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3937,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 100000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i (ANDI-FANUC)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "Ride-along tool changer 10/12 positions"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.andersonamerica.com/stratos-series",
+    "https://www.anderson.com.tw/en-us/product/39",
+    "https://www.anderson.com.tw/media/8122019151844rel2hr01768.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Moving-gantry 3-axis nesting router, table 3700x1600 mm. Rapid X/Y/Z 100/100/30 m/min (rapid xy = slower axis). Spindle 18 HP, HSK 63, 24,000 rpm; 5+5 or 10+7 boring block; ride-along tool changer 10/12. Taiwan brochure lists Stratos SUP/Pro/Pro XL with ANDI-FANUC control."
+  },
+  {
+   "id": "anderson-stratos-pro-24",
+   "maker": "Anderson Group",
+   "model": "Stratos",
+   "variant": "Pro 24",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 311.02,
+    "y": 85.83,
+    "z": 13.78
+   },
+   "work_area_mm": {
+    "x": 7900,
+    "y": 2180,
+    "z": 350
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSK 63 spindle 18 HP",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK-63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3937,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 100000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i (ANDI-FANUC)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "Ride-along tool changer 10/12 positions"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.andersonamerica.com/stratos-series",
+    "https://www.anderson.com.tw/en-us/product/39",
+    "https://www.anderson.com.tw/media/8122019151844rel2hr01768.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Moving-gantry 3-axis nesting router, table 7700x1600 mm. Rapid X/Y/Z 100/100/30 m/min (rapid xy = slower axis). Spindle 18 HP, HSK 63, 24,000 rpm; 5+5 or 10+7 boring block; ride-along tool changer 10/12. Taiwan brochure lists Stratos SUP/Pro/Pro XL with ANDI-FANUC control."
+  },
+  {
+   "id": "anderson-stratos-pro-xl",
+   "maker": "Anderson Group",
+   "model": "Stratos",
+   "variant": "Pro XL",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 153.54,
+    "y": 85.83,
+    "z": 13.78
+   },
+   "work_area_mm": {
+    "x": 3900,
+    "y": 2180,
+    "z": 350
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSK 63 spindle 18 HP",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK-63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i (ANDI-FANUC)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "Ride-along tool changer 10/12 positions"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.andersonamerica.com/stratos-series",
+    "https://www.anderson.com.tw/en-us/product/39",
+    "https://www.anderson.com.tw/media/8122019151844rel2hr01768.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Moving-gantry 3-axis nesting router, table 3700x2100 mm. Rapid X/Y/Z 80/60/30 m/min (rapid xy = slower axis). Spindle 18 HP, HSK 63, 24,000 rpm; 5+5 or 10+7 boring block; ride-along tool changer 10/12. Taiwan brochure lists Stratos SUP/Pro/Pro XL with ANDI-FANUC control."
+  },
+  {
+   "id": "anderson-selexx-eco-48",
+   "maker": "Anderson Group",
+   "model": "Selexx",
+   "variant": "Eco 48",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 102.36,
+    "y": 62.99,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 2600,
+    "y": 1600,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "7.5 kW (10 hp) HSK63F air-cooled spindle",
+     "power_kw": 7.5,
+     "power_hp": 10,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "HSK-63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1575,
+    "z": 787
+   },
+   "max_feed_mm_min": {
+    "xy": 40000,
+    "z": 20000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i (ANDI-FANUC)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "8-tool ride-along changer (brochure)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.anderson.com.tw/en-us/product/33",
+    "https://www.anderson.com.tw/media/8122019151844rel2hr01768.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Entry nesting router. Table 2500x1300 mm, Z stroke 250 mm. Feed X/Y/Z 40/40/20 m/min. The Taiwan web table swaps the X/Y stroke labels for some sizes; values here are long axis = X, cross-checked against the 2019 brochure and table size. 7.5 kW HSK63F air-cooled spindle 1,000-24,000 rpm, 5x5 drill block. Controller ANDI-FANUC."
+  },
+  {
+   "id": "anderson-selexx-2513",
+   "maker": "Anderson Group",
+   "model": "Selexx",
+   "variant": "2513 / Selexx Plus 48",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 103.54,
+    "y": 67.72,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 2630,
+    "y": 1720,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "7.5 kW (10 hp) HSK63F air-cooled spindle",
+     "power_kw": 7.5,
+     "power_hp": 10,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "HSK-63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1969,
+    "z": 787
+   },
+   "max_feed_mm_min": {
+    "xy": 50000,
+    "z": 20000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i (ANDI-FANUC)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "8-tool ride-along changer (brochure)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.anderson.com.tw/en-us/product/33",
+    "https://www.anderson.com.tw/media/8122019151844rel2hr01768.pdf",
+    "https://www.andersonamerica.com/selexx-series"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Nesting router. Table 2500x1250 mm, Z stroke 250 mm. Feed X 50 (80 in the 2019 brochure), Y 80 (50 in the brochure), Z 20 m/min per the maker's table (rapid xy here = 50). US Selexx Plus: rapid X/Y/Z 80/60/20 m/min, 12/18 HP 22,000 rpm spindle, 8/10 tool ride-along changer. The Taiwan web table swaps the X/Y stroke labels for some sizes; values here are long axis = X, cross-checked against the 2019 brochure and table size. 7.5 kW HSK63F air-cooled spindle 1,000-24,000 rpm, 5x5 drill block. Controller ANDI-FANUC."
+  },
+  {
+   "id": "anderson-selexx-2517",
+   "maker": "Anderson Group",
+   "model": "Selexx",
+   "variant": "2517",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 103.54,
+    "y": 67.72,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 2630,
+    "y": 1720,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "7.5 kW (10 hp) HSK63F air-cooled spindle",
+     "power_kw": 7.5,
+     "power_hp": 10,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "HSK-63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1969,
+    "z": 787
+   },
+   "max_feed_mm_min": {
+    "xy": 50000,
+    "z": 20000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i (ANDI-FANUC)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "8-tool ride-along changer (brochure)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.anderson.com.tw/en-us/product/33",
+    "https://www.anderson.com.tw/media/8122019151844rel2hr01768.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Nesting router. Table 1300x2500 mm, Z stroke 250 mm. Feed X 50 (80 in the 2019 brochure), Y 80 (50 in the brochure), Z 20 m/min per the maker's table (rapid xy here = 50). US Selexx Plus: rapid X/Y/Z 80/60/20 m/min, 12/18 HP 22,000 rpm spindle, 8/10 tool ride-along changer. The Taiwan web table swaps the X/Y stroke labels for some sizes; values here are long axis = X, cross-checked against the 2019 brochure and table size. 7.5 kW HSK63F air-cooled spindle 1,000-24,000 rpm, 5x5 drill block. Controller ANDI-FANUC."
+  },
+  {
+   "id": "anderson-selexx-2519",
+   "maker": "Anderson Group",
+   "model": "Selexx",
+   "variant": "2519",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 103.54,
+    "y": 88.39,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 2630,
+    "y": 2245,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "7.5 kW (10 hp) HSK63F air-cooled spindle",
+     "power_kw": 7.5,
+     "power_hp": 10,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "HSK-63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1969,
+    "z": 787
+   },
+   "max_feed_mm_min": {
+    "xy": 50000,
+    "z": 20000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i (ANDI-FANUC)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "8-tool ride-along changer (brochure)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.anderson.com.tw/en-us/product/33",
+    "https://www.anderson.com.tw/media/8122019151844rel2hr01768.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Nesting router. Table 1900x2500 mm, Z stroke 250 mm. Feed X 50 (80 in the 2019 brochure), Y 80 (50 in the brochure), Z 20 m/min per the maker's table (rapid xy here = 50). US Selexx Plus: rapid X/Y/Z 80/60/20 m/min, 12/18 HP 22,000 rpm spindle, 8/10 tool ride-along changer. The Taiwan web table swaps the X/Y stroke labels for some sizes; values here are long axis = X, cross-checked against the 2019 brochure and table size. 7.5 kW HSK63F air-cooled spindle 1,000-24,000 rpm, 5x5 drill block. Controller ANDI-FANUC."
+  },
+  {
+   "id": "anderson-selexx-3118",
+   "maker": "Anderson Group",
+   "model": "Selexx",
+   "variant": "3118 / Selexx Plus 510",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 125.2,
+    "y": 72.24,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 3180,
+    "y": 1835,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "7.5 kW (10 hp) HSK63F air-cooled spindle",
+     "power_kw": 7.5,
+     "power_hp": 10,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "HSK-63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1969,
+    "z": 787
+   },
+   "max_feed_mm_min": {
+    "xy": 50000,
+    "z": 20000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i (ANDI-FANUC)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "8-tool ride-along changer (brochure)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.anderson.com.tw/en-us/product/33",
+    "https://www.anderson.com.tw/media/8122019151844rel2hr01768.pdf",
+    "https://www.andersonamerica.com/selexx-series"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Nesting router. Table 3100x1550 mm, Z stroke 250 mm. Feed X 50 (80 in the 2019 brochure), Y 80 (50 in the brochure), Z 20 m/min per the maker's table (rapid xy here = 50). US Selexx Plus: rapid X/Y/Z 80/60/20 m/min, 12/18 HP 22,000 rpm spindle, 8/10 tool ride-along changer. The Taiwan web table swaps the X/Y stroke labels for some sizes; values here are long axis = X, cross-checked against the 2019 brochure and table size. 7.5 kW HSK63F air-cooled spindle 1,000-24,000 rpm, 5x5 drill block. Controller ANDI-FANUC."
+  },
+  {
+   "id": "anderson-selexx-3713",
+   "maker": "Anderson Group",
+   "model": "Selexx",
+   "variant": "3713",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 153.54,
+    "y": 90.55,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 3900,
+    "y": 2300,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "7.5 kW (10 hp) HSK63F air-cooled spindle",
+     "power_kw": 7.5,
+     "power_hp": 10,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "HSK-63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1969,
+    "z": 787
+   },
+   "max_feed_mm_min": {
+    "xy": 50000,
+    "z": 20000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i (ANDI-FANUC)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "8-tool ride-along changer (brochure)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.anderson.com.tw/en-us/product/33",
+    "https://www.anderson.com.tw/media/8122019151844rel2hr01768.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Nesting router. Table 3700x1300 mm, Z stroke 250 mm. Feed X 50 (80 in the 2019 brochure), Y 80 (50 in the brochure), Z 20 m/min per the maker's table (rapid xy here = 50). US Selexx Plus: rapid X/Y/Z 80/60/20 m/min, 12/18 HP 22,000 rpm spindle, 8/10 tool ride-along changer. The Taiwan web table swaps the X/Y stroke labels for some sizes; values here are long axis = X, cross-checked against the 2019 brochure and table size. 7.5 kW HSK63F air-cooled spindle 1,000-24,000 rpm, 5x5 drill block. Controller ANDI-FANUC."
+  },
+  {
+   "id": "anderson-selexx-3718",
+   "maker": "Anderson Group",
+   "model": "Selexx",
+   "variant": "3718 / Selexx Plus 512",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 152.76,
+    "y": 72.24,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 3880,
+    "y": 1835,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "7.5 kW (10 hp) HSK63F air-cooled spindle",
+     "power_kw": 7.5,
+     "power_hp": 10,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "HSK-63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1969,
+    "z": 787
+   },
+   "max_feed_mm_min": {
+    "xy": 50000,
+    "z": 20000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i (ANDI-FANUC)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "8-tool ride-along changer (brochure)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.anderson.com.tw/en-us/product/33",
+    "https://www.anderson.com.tw/media/8122019151844rel2hr01768.pdf",
+    "https://www.andersonamerica.com/selexx-series"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Nesting router. Table 3750x1550 mm, Z stroke 250 mm. Feed X 50 (80 in the 2019 brochure), Y 80 (50 in the brochure), Z 20 m/min per the maker's table (rapid xy here = 50). US Selexx Plus: rapid X/Y/Z 80/60/20 m/min, 12/18 HP 22,000 rpm spindle, 8/10 tool ride-along changer. The Taiwan web table swaps the X/Y stroke labels for some sizes; values here are long axis = X, cross-checked against the 2019 brochure and table size. 7.5 kW HSK63F air-cooled spindle 1,000-24,000 rpm, 5x5 drill block. Controller ANDI-FANUC."
+  },
+  {
+   "id": "anderson-selexx-3719",
+   "maker": "Anderson Group",
+   "model": "Selexx",
+   "variant": "3719",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 150.79,
+    "y": 88.39,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 3830,
+    "y": 2245,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "7.5 kW (10 hp) HSK63F air-cooled spindle",
+     "power_kw": 7.5,
+     "power_hp": 10,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "HSK-63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1969,
+    "z": 787
+   },
+   "max_feed_mm_min": {
+    "xy": 50000,
+    "z": 20000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i (ANDI-FANUC)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "8-tool ride-along changer (brochure)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.anderson.com.tw/en-us/product/33",
+    "https://www.anderson.com.tw/media/8122019151844rel2hr01768.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Nesting router. Table 3700x1900 mm, Z stroke 250 mm. Feed X 50 (80 in the 2019 brochure), Y 80 (50 in the brochure), Z 20 m/min per the maker's table (rapid xy here = 50). US Selexx Plus: rapid X/Y/Z 80/60/20 m/min, 12/18 HP 22,000 rpm spindle, 8/10 tool ride-along changer. The Taiwan web table swaps the X/Y stroke labels for some sizes; values here are long axis = X, cross-checked against the 2019 brochure and table size. 7.5 kW HSK63F air-cooled spindle 1,000-24,000 rpm, 5x5 drill block. Controller ANDI-FANUC."
+  },
+  {
+   "id": "anderson-exxact-plus",
+   "maker": "Anderson Group",
+   "model": "Exxact Plus",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 173.23,
+    "y": 69.88,
+    "z": 13.78
+   },
+   "work_area_mm": {
+    "x": 4400,
+    "y": 1775,
+    "z": 350
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSK-63F spindle 18/24 HP",
+     "power_kw": 17.9,
+     "power_hp": 24,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK-63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i (ANDI-FANUC)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "10/12 positions"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch-off device"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.andersonamerica.com/exxact-series",
+    "https://www.anderson.com.tw/en-us/product/30",
+    "https://www.anderson.com.tw/media/12182023163229tzm99nz1826.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Fixed-bridge moving-table 3-axis router, table 3700x1600 mm. Rapid X/Y 80, Z 30 m/min (TW brochure Z 20). 18/24 HP HSK-63F spindle 24,000 rpm (TW: 7.5/11 kW 1,000-22,000 rpm), 10/12 ride-along tool changer, 5+5 or 10+7 boring block."
+  },
+  {
+   "id": "anderson-exxact-plus-duo",
+   "maker": "Anderson Group",
+   "model": "Exxact Plus Duo",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 173.23,
+    "y": null,
+    "z": 13.78
+   },
+   "work_area_mm": {
+    "x": 4400,
+    "y": null,
+    "z": 350
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSK-63F spindle 18/24 HP",
+     "power_kw": 17.9,
+     "power_hp": 24,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK-63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i (ANDI-FANUC)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "10/12 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.andersonamerica.com/exxact-duo-series",
+    "https://www.anderson.com.tw/en-us/product/30"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Twin-table version of the Exxact (2 x 1840x1600 mm tables), X stroke 4400 mm, Y stroke not published. Rapid X/Y 80, Z 20 m/min."
+  },
+  {
+   "id": "anderson-exxcel",
+   "maker": "Anderson Group",
+   "model": "Exxcel",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 175.2,
+    "y": 70.87,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 4450,
+    "y": 1800,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "11 kW HSK 63F air-cooled spindle",
+     "power_kw": 11,
+     "power_hp": 14.8,
+     "rpm_min": 1000,
+     "rpm_max": 22000,
+     "collet": "HSK-63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3937,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 100000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i (ANDI-FANUC)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 32,
+    "notes": "10/16-position carousel or RanRob up to 32"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch-off device"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.anderson.com.tw/en-us/product/31",
+    "https://www.anderson.com.tw/media/1221202314341459t0cfi1310.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Moving-table 3-axis router with linear-motor drives, table 3700x1600 mm (Exxcel duo: 2 x 1840x1600 mm, same strokes). Rapid X/Y 100, Z 30 m/min. 11 kW HSK 63F air-cooled spindle 1,000-22,000 rpm, tool changer up to 32 (carousel or RanRob). Weight 11,000 kg (duo 14,000 kg). Drive: linear motors."
+  },
+  {
+   "id": "anderson-andimaxx-1625tc",
+   "maker": "Anderson Group",
+   "model": "Andimaxx",
+   "variant": "1625TC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 64.96,
+    "y": 99.41,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 1650,
+    "y": 2525,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSK-63F spindle 7.5/11 kW",
+     "power_kw": 11,
+     "power_hp": 14.8,
+     "rpm_min": 1000,
+     "rpm_max": 22000,
+     "collet": "HSK-63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2362,
+    "z": 472
+   },
+   "max_feed_mm_min": {
+    "xy": 60000,
+    "z": 12000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i (ANDI-FANUC)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 10,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch-off device"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.anderson.com.tw/en-us/product/28",
+    "https://www.anderson.com.tw/media/121320231559189e2ag6h1367.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Fixed-bridge moving-table router for flat panels, aluminium plate and composites. Table 1600x2500 mm, max feed X/Y 60, Z 12 m/min. HSK-63F spindle 7.5/11 kW 1,000-22,000 rpm, 10-tool carousel. TC+D / TC2 variants add a boring unit or a second spindle."
+  },
+  {
+   "id": "anderson-genesis-evo-49",
+   "maker": "Anderson Group",
+   "model": "Genesis EVO",
+   "variant": "49",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 114.17,
+    "y": 66.93,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2900,
+    "y": 1700,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSK-63F spindle 7.5/11 kW",
+     "power_kw": 11,
+     "power_hp": 14.8,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "HSK-63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 3150,
+    "z": 1181
+   },
+   "max_feed_mm_min": {
+    "xy": 80000,
+    "z": 30000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec (ANDI-SYNTEC)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.anderson.com.tw/en-us/product/48",
+    "https://www.anderson.com.tw/media/8122019151844rel2hr01768.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Nesting router, table 2700x1300 mm. Max feed X/Y 80, Z 30 m/min. 7.5/11 kW HSK-63F spindle 1,000-24,000 rpm, 1.5 kW drill block 4,800 rpm. 8 tools. Syntec control."
+  },
+  {
+   "id": "anderson-genesis-evo-510",
+   "maker": "Anderson Group",
+   "model": "Genesis EVO",
+   "variant": "510",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 129.92,
+    "y": 78.74,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 3300,
+    "y": 2000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSK-63F spindle 7.5/11 kW",
+     "power_kw": 11,
+     "power_hp": 14.8,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "HSK-63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 3150,
+    "z": 1181
+   },
+   "max_feed_mm_min": {
+    "xy": 80000,
+    "z": 30000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec (ANDI-SYNTEC)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.anderson.com.tw/en-us/product/48",
+    "https://www.anderson.com.tw/media/8122019151844rel2hr01768.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Nesting router, table 3100x1600 mm. Max feed X/Y 80, Z 30 m/min. 7.5/11 kW HSK-63F spindle 1,000-24,000 rpm, 1.5 kW drill block 4,800 rpm. 8 tools (8/12). Syntec control."
+  },
+  {
+   "id": "anderson-genesis-evo-612",
+   "maker": "Anderson Group",
+   "model": "Genesis EVO",
+   "variant": "612",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 153.54,
+    "y": 90.55,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 3900,
+    "y": 2300,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSK-63F spindle 7.5/11 kW",
+     "power_kw": 11,
+     "power_hp": 14.8,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "HSK-63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 3150,
+    "z": 1181
+   },
+   "max_feed_mm_min": {
+    "xy": 80000,
+    "z": 30000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec (ANDI-SYNTEC)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.anderson.com.tw/en-us/product/48",
+    "https://www.anderson.com.tw/media/8122019151844rel2hr01768.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Nesting router, table 3700x1900 mm. Max feed X/Y 80, Z 30 m/min. 7.5/11 kW HSK-63F spindle 1,000-24,000 rpm, 1.5 kW drill block 4,800 rpm. 12 tools. Syntec control."
+  },
+  {
+   "id": "anderson-gs-612",
+   "maker": "Anderson Group",
+   "model": "GS",
+   "variant": "612",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 153.54,
+    "y": 87.99,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 3900,
+    "y": 2235,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "11 kW HSK-63F spindle",
+     "power_kw": 11,
+     "power_hp": 14.8,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "HSK-63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 4724,
+    "z": 1181
+   },
+   "max_feed_mm_min": {
+    "xy": 120000,
+    "z": 30000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec (ANDI-SYNTEC)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 20,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.anderson.com.tw/media/8122019151844rel2hr01768.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "High-speed nesting router (2019 brochure), table 3700x1900 mm. Max feed X/Y 120, Z 30 m/min. 11 kW HSK-63F spindle 1,000-24,000 rpm, 10x7 drill block 2.2 kW, 20 tools. Syntec control."
+  },
+  {
+   "id": "anderson-spectra-48",
+   "maker": "Anderson Group",
+   "model": "Spectra",
+   "variant": "48",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 98.43,
+    "y": 62.99,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2500,
+    "y": 1600,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "10 HP SK-30 air-cooled spindle",
+     "power_kw": 7.46,
+     "power_hp": 10,
+     "rpm_min": 1000,
+     "rpm_max": 18000,
+     "collet": "SK-30 (HSK-63F in 2019 brochure)",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec (ANDI-SYNTEC)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 6,
+    "notes": "Automatic stationary tool changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch-off device"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.anderson.com.tw/en-us/product/51",
+    "https://www.anderson.com.tw/media/8122019151844rel2hr01768.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Economy nesting router, table 2650x1300 mm. Strokes from the 2019 brochure (the web table lists 3700x1600 for the 510). Rack and pinion X/Y, ball screw Z, rapid X/Y 60, Z 20 m/min. 10 HP SK-30/HSK-63F air-cooled spindle 1,000-18,000 rpm, 6-position stationary tool changer, 5x5 boring, pusher, touch-off device. Syntec control."
+  },
+  {
+   "id": "anderson-spectra-510",
+   "maker": "Anderson Group",
+   "model": "Spectra",
+   "variant": "510",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.05,
+    "y": 74.8,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 3100,
+    "y": 1900,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "10 HP SK-30 air-cooled spindle",
+     "power_kw": 7.46,
+     "power_hp": 10,
+     "rpm_min": 1000,
+     "rpm_max": 18000,
+     "collet": "SK-30 (HSK-63F in 2019 brochure)",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec (ANDI-SYNTEC)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "Automatic stationary tool changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch-off device"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.anderson.com.tw/en-us/product/51",
+    "https://www.anderson.com.tw/media/8122019151844rel2hr01768.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Economy nesting router, table 3100x1600 mm. Strokes from the 2019 brochure (the web table lists 3700x1600 for the 510). Rack and pinion X/Y, ball screw Z, rapid X/Y 60, Z 20 m/min. 10 HP SK-30/HSK-63F air-cooled spindle 1,000-18,000 rpm, 8-position stationary tool changer, 5x5 boring, pusher, touch-off device. Syntec control."
+  },
+  {
+   "id": "anderson-spectra-612",
+   "maker": "Anderson Group",
+   "model": "Spectra",
+   "variant": "612",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 145.67,
+    "y": 86.61,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 3700,
+    "y": 2200,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "10 HP SK-30 air-cooled spindle",
+     "power_kw": 7.46,
+     "power_hp": 10,
+     "rpm_min": 1000,
+     "rpm_max": 18000,
+     "collet": "SK-30 (HSK-63F in 2019 brochure)",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec (ANDI-SYNTEC)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "Automatic stationary tool changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch-off device"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.anderson.com.tw/en-us/product/51",
+    "https://www.anderson.com.tw/media/8122019151844rel2hr01768.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Economy nesting router, table 3700x1900 mm. Strokes from the 2019 brochure (the web table lists 3700x1600 for the 510). Rack and pinion X/Y, ball screw Z, rapid X/Y 60, Z 20 m/min. 10 HP SK-30/HSK-63F air-cooled spindle 1,000-18,000 rpm, 8-position stationary tool changer, 5x5 boring, pusher, touch-off device. Syntec control."
+  },
+  {
+   "id": "anderson-spectrum-m48",
+   "maker": "Anderson Group",
+   "model": "Spectrum-M",
+   "variant": "M48",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 101.57,
+    "y": 62.4,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2580,
+    "y": 1585,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSK-63F spindle",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 22000,
+     "collet": "HSK-63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": 472
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": 12000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i (ANDI-FANUC)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 6,
+    "notes": "Rack-style tool changer"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.andersonamerica.com/spectrum-m-series"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Anderson America economy nesting router, table 2500x1300 mm. Helical rack and pinion X/Y, ball screw Z; rapid X/Y 60, Z 12 m/min, max rapid traverse 85 m/min. 12 HP HSK-63F spindle 22,000 rpm, 6-tool rack changer, boring block 6 inline or 5+5. FANUC 0i."
+  },
+  {
+   "id": "anderson-spectrum-m510",
+   "maker": "Anderson Group",
+   "model": "Spectrum-M",
+   "variant": "M510",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 125.2,
+    "y": 72.24,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 3180,
+    "y": 1835,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSK-63F spindle",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 22000,
+     "collet": "HSK-63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": 472
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": 12000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i (ANDI-FANUC)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "Rack-style tool changer"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.andersonamerica.com/spectrum-m-series"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Anderson America economy nesting router, table 3100x1600 mm. Helical rack and pinion X/Y, ball screw Z; rapid X/Y 60, Z 12 m/min, max rapid traverse 85 m/min. 12 HP HSK-63F spindle 22,000 rpm, 8-tool rack changer, boring block 6 inline or 5+5. FANUC 0i."
+  },
+  {
+   "id": "anderson-spectrum-m512",
+   "maker": "Anderson Group",
+   "model": "Spectrum-M",
+   "variant": "M512",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 152.76,
+    "y": 72.24,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 3880,
+    "y": 1835,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSK-63F spindle",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 22000,
+     "collet": "HSK-63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": 472
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": 12000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i (ANDI-FANUC)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "Rack-style tool changer"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.andersonamerica.com/spectrum-m-series"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Anderson America economy nesting router, table 3700x1600 mm. Helical rack and pinion X/Y, ball screw Z; rapid X/Y 60, Z 12 m/min, max rapid traverse 85 m/min. 12 HP HSK-63F spindle 22,000 rpm, 8-tool rack changer, boring block 6 inline or 5+5. FANUC 0i."
+  },
+  {
+   "id": "anderson-ptp-3013",
+   "maker": "Anderson Group",
+   "model": "PTP",
+   "variant": "3013",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 131.5,
+    "y": 55.91,
+    "z": 5.91
+   },
+   "work_area_mm": {
+    "x": 3340,
+    "y": 1420,
+    "z": 150
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "8 kW ISO 30 spindle",
+     "power_kw": 8,
+     "power_hp": 10.7,
+     "rpm_min": 1000,
+     "rpm_max": 18000,
+     "collet": "ISO30",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec (ANDI-SYNTEC)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "pods",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.anderson.com.tw/en-us/product/40"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Point-to-point (pods and rails) routing/drilling centre, table 3000x1300x60 mm. Rack and pinion X/Y, ball screw Z; speed X-Y-Z 80-60-20 m/min. 23-spindle boring head, 120 mm saw, 8-position stationary tool changer. Syntec control."
+  },
+  {
+   "id": "anderson-ptp-3214",
+   "maker": "Anderson Group",
+   "model": "PTP",
+   "variant": "3214",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 138.78,
+    "y": 61.81,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 3525,
+    "y": 1570,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 kW HSK-63F spindle",
+     "power_kw": 12,
+     "power_hp": 16.1,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "HSK-63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec (ANDI-SYNTEC)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "pods",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.anderson.com.tw/en-us/product/40"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Point-to-point (pods and rails) routing/drilling centre, table 3200x1450x200 mm. Rack and pinion X/Y, ball screw Z; speed X-Y-Z 80-60-20 m/min. 23-spindle boring head, 120 mm saw, 8-position stationary tool changer. Syntec control."
+  },
+  {
+   "id": "anderson-ptp-2813",
+   "maker": "Anderson Group",
+   "model": "PTP",
+   "variant": "2813 (US)",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 125.98,
+    "y": 55.12,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 3200,
+    "y": 1400,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSK-63F air-cooled spindle",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 21000,
+     "collet": "HSK-63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i + PC front end",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "8/10/12/16 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "pods",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.andersonamerica.com/ptp-series"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "work_area_mm": "X/Y = table size (strokes not published)"
+   },
+   "notes": "Anderson America PTP: working table 3200x1400 mm (table size, strokes not published), Z stroke 250 mm, helical rack and pinion X/Y, ball screw Z, rapid X/Y 80/60, Z 20 m/min. 12 HP air-cooled HSK-63F spindle 21,000 rpm (18 HP option), 8/10/12/16 tool changer, 6 rails with pods. FANUC 0i + PC front end."
+  },
+  {
+   "id": "anderson-akut",
+   "maker": "Anderson Group",
+   "model": "Akut",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 108.27,
+    "y": 62.99,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2750,
+    "y": 1600,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "8.1 kW HSK32E water-cooled spindle",
+     "power_kw": 8.1,
+     "power_hp": 10.8,
+     "rpm_min": 1000,
+     "rpm_max": 40000,
+     "collet": "HSK-32E",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1969,
+    "z": 394
+   },
+   "rapid_mm_min": {
+    "xy": 50000,
+    "z": 10000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec (ANDI-SYNTEC)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.anderson.com.tw/en-us/product/37"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Multi-tool cutting system for sign/graphics: router + oscillating knife + kiss cut + creasing wheel + i-Cut CCD camera. Table 2500x1300 mm. Speed X/Y 50, Z 10 m/min. 8.1 kW HSK32E water-cooled spindle 1,000-40,000 rpm, 8-position ATC, tool max 13 mm. ANDI-SYNTEC PC-based controller."
+  },
+  {
+   "id": "anderson-axxiom-1616-ip",
+   "maker": "Anderson Group",
+   "model": "Axxiom",
+   "variant": "1616 IP",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 86.61,
+    "y": 86.61,
+    "z": 39.37
+   },
+   "work_area_mm": {
+    "x": 2200,
+    "y": 2200,
+    "z": 1000
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP HSK-63 spindle",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 22000,
+     "collet": "HSK-63",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 31i or FANUC 0i",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "8/10/12/16 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.andersonamerica.com/axxiom-series",
+    "https://www.anderson.com.tw/en-us/product/44"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "5-axis moving-table machining centre for plastics, aluminium, composites. Table 1600x1600 mm. Rapid X/Y 60, Z 20 m/min, max 85 m/min. 18 HP HSK-63 spindle 22,000 rpm, 8/10/12/16 tool changer. FANUC 31i or 0i."
+  },
+  {
+   "id": "anderson-axxiom-1631-ip",
+   "maker": "Anderson Group",
+   "model": "Axxiom",
+   "variant": "1631 IP",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 86.61,
+    "y": 145.67,
+    "z": 39.37
+   },
+   "work_area_mm": {
+    "x": 2200,
+    "y": 3700,
+    "z": 1000
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP HSK-63 spindle",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 22000,
+     "collet": "HSK-63",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 31i or FANUC 0i",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "8/10/12/16 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.andersonamerica.com/axxiom-series",
+    "https://www.anderson.com.tw/en-us/product/44"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "5-axis moving-table machining centre for plastics, aluminium, composites. Table 1600x3100 mm. Rapid X/Y 60, Z 20 m/min, max 85 m/min. 18 HP HSK-63 spindle 22,000 rpm, 8/10/12/16 tool changer. FANUC 31i or 0i."
+  },
+  {
+   "id": "anderson-axxiom-1616-ip-pt",
+   "maker": "Anderson Group",
+   "model": "Axxiom",
+   "variant": "1616 IP PT",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 150.0,
+    "y": 86.61,
+    "z": 39.37
+   },
+   "work_area_mm": {
+    "x": 3810,
+    "y": 2200,
+    "z": 1000
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP HSK-63 spindle",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 22000,
+     "collet": "HSK-63",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 31i or FANUC 0i",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "8/10/12/16 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.andersonamerica.com/axxiom-series",
+    "https://www.anderson.com.tw/en-us/product/44"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "5-axis moving-table machining centre for plastics, aluminium, composites. Table 2 x 1600x1600 (twin tables) mm. Rapid X/Y 60, Z 20 m/min, max 85 m/min. 18 HP HSK-63 spindle 22,000 rpm, 8/10/12/16 tool changer. FANUC 31i or 0i."
+  }
+ ]
+}

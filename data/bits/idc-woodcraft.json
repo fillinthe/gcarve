@@ -1,0 +1,2625 @@
+{
+ "maker": "IDC Woodcraft",
+ "source_summary": "IDC Woodcraft published tool library (Carbide Create CSV from idcwoodcraft.com/pages/database-downloads; dimensions, flutes, angles, preset feeds as presets) + Shopify product titles. Presets are for softwood on a desktop machine.",
+ "retrieved": "2026-10-08",
+ "bits": [
+  {
+   "id": "idc-woodcraft-bn-18",
+   "maker": "IDC Woodcraft",
+   "part_number": "BN-18",
+   "name": "1/8\" Ball Nose",
+   "family": "ball-nose",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 0.5,
+   "flutes": 2,
+   "tip_radius": 0.0625,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 22000,
+     "feed": 60.0,
+     "plunge": 15.0,
+     "stepdown": 0.05,
+     "chip_load": 0.00136,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft BN-18 Ball Nose 1/8 in",
+    "kind": "BallNose",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-8-ball-nose-endmill-bit-for-3d-carving-1-8-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-qb-18",
+   "maker": "IDC Woodcraft",
+   "part_number": "QB-18",
+   "name": "1/8\" Ball Nose, 1/4\" Shank",
+   "family": "ball-nose",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "flutes": 2,
+   "tip_radius": 0.0625,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 17000,
+     "feed": 50.0,
+     "plunge": 15.0,
+     "stepdown": 0.05,
+     "chip_load": 0.00147,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft QB-18 Ball Nose 1/8 in",
+    "kind": "BallNose",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/QB-18",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-8675309-bb",
+   "maker": "IDC Woodcraft",
+   "part_number": "8675309-BB",
+   "name": "Big B Jenny Ballnose",
+   "family": "ball-nose",
+   "coating": "ZrCN (zirconium carbonitride)",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.125,
+   "flutes": 2,
+   "tip_radius": 0.125,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 17000,
+     "feed": 100.0,
+     "plunge": 55.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00294,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft 8675309-BB Ball Nose 1/4 in",
+    "kind": "BallNose",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/the-big-b-jenny",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-bd-14",
+   "maker": "IDC Woodcraft",
+   "part_number": "BD-14",
+   "name": "1/4\" Downcut Ballnose",
+   "family": "ball-nose",
+   "units": "in",
+   "diameter": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "tip_radius": 0.125,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 15000,
+     "feed": 70.0,
+     "plunge": 40.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00233,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft BD-14 Ball Nose 1/4 in",
+    "kind": "BallNose",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/BD-14",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-bn-14",
+   "maker": "IDC Woodcraft",
+   "part_number": "BN-14",
+   "name": "1/4\" Ball Nose",
+   "family": "ball-nose",
+   "coating": "ZrCN (zirconium carbonitride)",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.4,
+   "flutes": 2,
+   "tip_radius": 0.125,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 19000,
+     "feed": 70.0,
+     "plunge": 30.0,
+     "stepdown": 0.12,
+     "chip_load": 0.00184,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft BN-14 Ball Nose 1/4 in",
+    "kind": "BallNose",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-4-ball-nose-endmill-bit-for-cnc-routers-1-4-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-bn-12",
+   "maker": "IDC Woodcraft",
+   "part_number": "BN-12",
+   "name": "1/2\" Ball Nose, 1/4\" Shank",
+   "family": "ball-nose",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.25,
+   "cut_length": 0.4,
+   "flutes": 2,
+   "tip_radius": 0.25,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 16000,
+     "feed": 60.0,
+     "plunge": 20.0,
+     "stepdown": 0.21,
+     "chip_load": 0.00187,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft BN-12 Ball Nose 1/2 in",
+    "kind": "BallNose",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-2-ball-nose-cnc-router-bit-cutting-board-juice-groove-bit-1-4-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-bn-34",
+   "maker": "IDC Woodcraft",
+   "part_number": "BN-34",
+   "name": "3/4\" Ball Nose, 1/4\" Shank",
+   "family": "ball-nose",
+   "units": "in",
+   "diameter": 0.75,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "tip_radius": 0.375,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 16000,
+     "feed": 60.0,
+     "plunge": 15.0,
+     "stepdown": 0.375,
+     "chip_load": 0.00187,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft BN-34 Ball Nose 3/4 in",
+    "kind": "BallNose",
+    "diameter": 0.75,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/3-4-ball-nose-cnc-router-bit-cutting-board-juice-groove-bit-1-4-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-bn-10",
+   "maker": "IDC Woodcraft",
+   "part_number": "BN-10",
+   "name": "1\" Ball Nose, 1/4\" Shank",
+   "family": "ball-nose",
+   "units": "in",
+   "diameter": 1.0,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "tip_radius": 0.5,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 14000,
+     "feed": 75.0,
+     "plunge": 20.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00268,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft BN-10 Ball Nose 1 in",
+    "kind": "BallNose",
+    "diameter": 1.0,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/big-balls-1-ball-nose-rounding-bit-1-2-radius-1-4-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-8675309-bc",
+   "maker": "IDC Woodcraft",
+   "part_number": "8675309-BC",
+   "name": "1/4\" Bowl-Cut Jenny",
+   "family": "bowl",
+   "coating": "ZrCN (zirconium carbonitride)",
+   "units": "in",
+   "diameter": 0.5,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "corner_radius": 0.1875,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 17000,
+     "feed": 120.0,
+     "plunge": 60.0,
+     "stepdown": 0.1,
+     "chip_load": 0.00353,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft 8675309-BC Bowl 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/bowl-cut-jenny",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-bw-10",
+   "maker": "IDC Woodcraft",
+   "part_number": "BW-10",
+   "name": "1\" Bowl Bit, 1/4\" Shank",
+   "family": "bowl",
+   "units": "in",
+   "diameter": 1.0,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "corner_radius": 0.375,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 14000,
+     "feed": 80.0,
+     "plunge": 15.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00286,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft BW-10 Bowl 1 in",
+    "kind": "EndMill",
+    "diameter": 1.0,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-bowl-bit-for-cnc-routers-1-4-shank-the-serious-bit",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-8675309-mj",
+   "maker": "IDC Woodcraft",
+   "part_number": "8675309-MJ",
+   "name": "1/8\" Mini Jenny Compression",
+   "family": "compression",
+   "coating": "ZrCN (zirconium carbonitride)",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "helix": "compression",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 19000,
+     "feed": 100.0,
+     "plunge": 75.0,
+     "stepdown": 0.05,
+     "chip_load": 0.00263,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft 8675309-MJ Compression 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-8-mini-jenny-compression-bit",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-cm-18",
+   "maker": "IDC Woodcraft",
+   "part_number": "CM-18",
+   "name": "1/8\" Compression",
+   "family": "compression",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 0.875,
+   "flutes": 2,
+   "helix": "compression",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 16000,
+     "feed": 50.0,
+     "plunge": 35.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00156,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft CM-18 Compression 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-8-compression-bit-for-cnc-routers-1-8-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-cm-316",
+   "maker": "IDC Woodcraft",
+   "part_number": "CM-316",
+   "name": "3/16\" Compression",
+   "family": "compression",
+   "units": "in",
+   "diameter": 0.1875,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "helix": "compression",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 17000,
+     "feed": 70.0,
+     "plunge": 40.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00206,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft CM-316 Compression 3/16 in",
+    "kind": "EndMill",
+    "diameter": 0.1875,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/3-16-compression-bit-for-cnc-routers-1-4-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-8675309-j",
+   "maker": "IDC Woodcraft",
+   "part_number": "8675309-J",
+   "name": "1/4\" The Jenny Compression",
+   "family": "compression",
+   "coating": "ZrCN (zirconium carbonitride)",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "helix": "compression",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 12000,
+     "feed": 160.0,
+     "plunge": 75.0,
+     "stepdown": 0.1,
+     "chip_load": 0.00667,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft 8675309-J Compression 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-4-jenny-compression-bit",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-cm-14",
+   "maker": "IDC Woodcraft",
+   "part_number": "CM-14",
+   "name": "1/4\" Compression",
+   "family": "compression",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "helix": "compression",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 16000,
+     "feed": 80.0,
+     "plunge": 80.0,
+     "stepdown": 0.25,
+     "chip_load": 0.0025,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft CM-14 Compression 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-4-compression-bit-for-cnc-routers-1-4-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-cm-38",
+   "maker": "IDC Woodcraft",
+   "part_number": "CM-38",
+   "name": "3/8\" Compression",
+   "family": "compression",
+   "coating": "ZrCN (zirconium carbonitride)",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.375,
+   "cut_length": 1.5,
+   "flutes": 2,
+   "helix": "compression",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 17000,
+     "feed": 140.0,
+     "plunge": 80.0,
+     "stepdown": 0.375,
+     "chip_load": 0.00412,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft CM-38 Compression 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/3-8-compression-bit-for-cnc-routers-3-8-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-cm-12",
+   "maker": "IDC Woodcraft",
+   "part_number": "CM-12",
+   "name": "1/2\" Compression",
+   "family": "compression",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.5,
+   "flutes": 2,
+   "helix": "compression",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 18000,
+     "feed": 250.0,
+     "plunge": 75.0,
+     "stepdown": 0.5,
+     "chip_load": 0.00694,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft CM-12 Compression 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-2-compression-bit-for-cnc-routers-1-2-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-dr-18",
+   "maker": "IDC Woodcraft",
+   "part_number": "DR-18",
+   "name": "1/8\" Lightning Drill",
+   "family": "drill",
+   "units": "in",
+   "diameter": 0.125,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "IDC Woodcraft DR-18 Drill 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.idcwoodcraft.com/product/extreme-performance-1-8-drill-bits-for-cnc-routers/",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-dr-14",
+   "maker": "IDC Woodcraft",
+   "part_number": "DR-14",
+   "name": "1/4\" Lightning Drill",
+   "family": "drill",
+   "units": "in",
+   "diameter": 0.25,
+   "cut_length": 0.9,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "IDC Woodcraft DR-14 Drill 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.idcwoodcraft.com/product/high-performance-1-4-driil-bit-carbide-for-cnc-routers-lightning-series-1-4-shank/",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-dc-132",
+   "maker": "IDC Woodcraft",
+   "part_number": "DC-132",
+   "name": "1/32\" Downcut",
+   "family": "end-mill-down",
+   "units": "in",
+   "diameter": 0.03125,
+   "shank": 0.125,
+   "cut_length": 0.1875,
+   "flutes": 2,
+   "helix": "down",
+   "gcarve_tool": {
+    "name": "IDC Woodcraft DC-132 Down Spiral 1/32 in",
+    "kind": "EndMill",
+    "diameter": 0.03125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/high-detail-1-32-down-cut-endmill-bit-for-cnc-routers-1-8-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ],
+   "notes": "IDC preset 10 ipm at 27000 rpm (softwood, desktop) = 0.00019 in/tooth, below the validator floor so not stored as a preset."
+  },
+  {
+   "id": "idc-woodcraft-dc-116",
+   "maker": "IDC Woodcraft",
+   "part_number": "DC-116",
+   "name": "1/16\" Downcut",
+   "family": "end-mill-down",
+   "units": "in",
+   "diameter": 0.0625,
+   "shank": 0.125,
+   "cut_length": 0.25,
+   "flutes": 2,
+   "helix": "down",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 27000,
+     "feed": 20.0,
+     "plunge": 10.0,
+     "stepdown": 0.032,
+     "chip_load": 0.00037,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft DC-116 Down Spiral 1/16 in",
+    "kind": "EndMill",
+    "diameter": 0.0625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-16-down-cut-endmill-bit-for-cnc-routers-for-fine-detail-carving-1-8-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-qd-116",
+   "maker": "IDC Woodcraft",
+   "part_number": "QD-116",
+   "name": "1/16\" Downcut, 1/4\" Shank",
+   "family": "end-mill-down",
+   "units": "in",
+   "diameter": 0.0625,
+   "shank": 0.25,
+   "cut_length": 0.25,
+   "flutes": 2,
+   "helix": "down",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 27000,
+     "feed": 20.0,
+     "plunge": 10.0,
+     "stepdown": 0.025,
+     "chip_load": 0.00037,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft QD-116 Down Spiral 1/16 in",
+    "kind": "EndMill",
+    "diameter": 0.0625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/QD-116",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-8675309-125dj",
+   "maker": "IDC Woodcraft",
+   "part_number": "8675309-125DJ",
+   "name": "1/8\" Downtown Jenny Downshear",
+   "family": "end-mill-down",
+   "coating": "ZrCN (zirconium carbonitride)",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "helix": "down",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 15000,
+     "feed": 85.0,
+     "plunge": 55.0,
+     "stepdown": 0.0625,
+     "chip_load": 0.00283,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft 8675309-125DJ Down Spiral 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-8-downtown-jenny",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-8675309-slim",
+   "maker": "IDC Woodcraft",
+   "part_number": "8675309-SLIM",
+   "name": "1/8\" Slim Jen Down Shear",
+   "family": "end-mill-down",
+   "coating": "ZrCN (zirconium carbonitride)",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.812,
+   "flutes": 2,
+   "helix": "down",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 15000,
+     "feed": 85.0,
+     "plunge": 55.0,
+     "stepdown": 0.05,
+     "chip_load": 0.00283,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft 8675309-SLIM Down Spiral 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/the-slim-jen",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-dc-18",
+   "maker": "IDC Woodcraft",
+   "part_number": "DC-18",
+   "name": "1/8\" Downcut",
+   "family": "end-mill-down",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "helix": "down",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 22000,
+     "feed": 50.0,
+     "plunge": 15.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00114,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft DC-18 Down Spiral 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-8-down-cut-endmill-bit-for-cnc-routers-1-8-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-qd-18",
+   "maker": "IDC Woodcraft",
+   "part_number": "QD-18",
+   "name": "1/8\" Downcut, 1/4\" Shank",
+   "family": "end-mill-down",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.625,
+   "flutes": 2,
+   "helix": "down",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 22000,
+     "feed": 50.0,
+     "plunge": 15.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00114,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft QD-18 Down Spiral 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-8-down-cut-endmill-bit-for-cnc-routers-1-4-shank-copy",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-xd-18",
+   "maker": "IDC Woodcraft",
+   "part_number": "XD-18",
+   "name": "Extended 1/8\" Downcut",
+   "family": "end-mill-down",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "helix": "down",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 14000,
+     "feed": 30.0,
+     "plunge": 15.0,
+     "stepdown": 0.05,
+     "chip_load": 0.00107,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft XD-18 Down Spiral 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/long-1-8-router-bit-endmill-for-cnc-routers-1-8-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-dc-316",
+   "maker": "IDC Woodcraft",
+   "part_number": "DC-316",
+   "name": "3/16\" Downcut",
+   "family": "end-mill-down",
+   "units": "in",
+   "diameter": 0.1875,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "helix": "down",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 19000,
+     "feed": 30.0,
+     "plunge": 30.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00079,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft DC-316 Down Spiral 3/16 in",
+    "kind": "EndMill",
+    "diameter": 0.1875,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/3-16-down-cutting-endmill-bit-for-cnc-routers-1-4-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-8675309-250dj",
+   "maker": "IDC Woodcraft",
+   "part_number": "8675309-250DJ",
+   "name": "1/4\" Downtown Jenny Downshear",
+   "family": "end-mill-down",
+   "coating": "ZrCN (zirconium carbonitride)",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.125,
+   "flutes": 2,
+   "helix": "down",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 15000,
+     "feed": 100.0,
+     "plunge": 60.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00333,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft 8675309-250DJ Down Spiral 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-4-downtown-jenny",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-8675309-ojd",
+   "maker": "IDC Woodcraft",
+   "part_number": "8675309-OJD",
+   "name": "1/4\" Oh, Jenny Downcut",
+   "family": "end-mill-down",
+   "coating": "ZrCN (zirconium carbonitride)",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.812,
+   "flutes": 2,
+   "helix": "down",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 18000,
+     "feed": 100.0,
+     "plunge": 60.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00278,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft 8675309-OJD Down Spiral 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/the-oh-jenny-down-cut",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-dc-14",
+   "maker": "IDC Woodcraft",
+   "part_number": "DC-14",
+   "name": "1/4\" Downcut",
+   "family": "end-mill-down",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "helix": "down",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 19000,
+     "feed": 70.0,
+     "plunge": 30.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00184,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft DC-14 Down Spiral 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-4-down-cutting-bit-endmill-for-cnc-routers-1-4-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-xd-14",
+   "maker": "IDC Woodcraft",
+   "part_number": "XD-14",
+   "name": "Long 1/4\" Downcut",
+   "family": "end-mill-down",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.75,
+   "flutes": 2,
+   "helix": "down",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 14000,
+     "feed": 40.0,
+     "plunge": 15.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00143,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft XD-14 Down Spiral 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/long-1-4-router-bit-for-cnc-trim-routers-1-4-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-dc-12",
+   "maker": "IDC Woodcraft",
+   "part_number": "DC-12",
+   "name": "1/2\" Downcut",
+   "family": "end-mill-down",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.5,
+   "flutes": 2,
+   "helix": "down",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 18000,
+     "feed": 200.0,
+     "plunge": 70.0,
+     "stepdown": 0.5,
+     "chip_load": 0.00556,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft DC-12 Down Spiral 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-2-down-cutting-bit-endmill-for-cnc-routers-1-2-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-he-18-1",
+   "maker": "IDC Woodcraft",
+   "part_number": "HE-18-1",
+   "name": "THE BADGER\" 1/8\" Roughing Upcut",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 0.625,
+   "flutes": 3,
+   "helix": "up",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 19000,
+     "feed": 130.0,
+     "plunge": 80.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00228,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft HE-18-1 Up Spiral 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 3
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/the-badger-1-8-super-speed-roughing-cnc-router-bit-1-8-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-uc-18",
+   "maker": "IDC Woodcraft",
+   "part_number": "UC-18",
+   "name": "1/8\" Upcut",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.125,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "helix": "up",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 22000,
+     "feed": 50.0,
+     "plunge": 25.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00114,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft UC-18 Up Spiral 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-8-up-cut-endmill-bit-drilling-capable-for-cnc-routers-set-of-2",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-8675309-erj",
+   "maker": "IDC Woodcraft",
+   "part_number": "8675309-ERJ",
+   "name": "1/4\" Uptown Jenny Extended Reach Upcut",
+   "family": "end-mill-up",
+   "coating": "ZrCN (zirconium carbonitride)",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.5,
+   "flutes": 2,
+   "helix": "up",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 13000,
+     "feed": 80.0,
+     "plunge": 50.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00308,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft 8675309-ERJ Up Spiral 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-4-uptown-jenny-extended-reach",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-8675309-oj",
+   "maker": "IDC Woodcraft",
+   "part_number": "8675309-OJ",
+   "name": "1/4\" Oh, Jenny Upcut",
+   "family": "end-mill-up",
+   "coating": "ZrCN (zirconium carbonitride)",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.812,
+   "flutes": 2,
+   "helix": "up",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 15000,
+     "feed": 100.0,
+     "plunge": 60.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00333,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft 8675309-OJ Up Spiral 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/the-oh-jenny-up-cut",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-8675309-uj",
+   "maker": "IDC Woodcraft",
+   "part_number": "8675309-UJ",
+   "name": "1/4\" Uptown Jenny Downshear",
+   "family": "end-mill-up",
+   "coating": "ZrCN (zirconium carbonitride)",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.125,
+   "flutes": 2,
+   "helix": "up",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 12500,
+     "feed": 100.0,
+     "plunge": 50.0,
+     "stepdown": 0.125,
+     "chip_load": 0.004,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft 8675309-UJ Up Spiral 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-4-uptown-jenny",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ],
+   "notes": "Tool library names it \"Downshear\"; the product title says up-cut (title used)."
+  },
+  {
+   "id": "idc-woodcraft-he-14-1",
+   "maker": "IDC Woodcraft",
+   "part_number": "HE-14-1",
+   "name": "THE BEAST\" 1/4\" Roughing Upcut",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.25,
+   "cut_length": 1.0,
+   "flutes": 3,
+   "helix": "up",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 22000,
+     "feed": 100.0,
+     "plunge": 80.0,
+     "stepdown": 0.75,
+     "chip_load": 0.00152,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft HE-14-1 Up Spiral 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 3
+   },
+   "sources": [
+    "https://idcwoodcraft.com/BEAST",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-he-14-2",
+   "maker": "IDC Woodcraft",
+   "part_number": "HE-14-2",
+   "name": "THE HOG\" 1/4\" Roughing Upcut",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.5,
+   "flutes": 3,
+   "helix": "up",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 19000,
+     "feed": 80.0,
+     "plunge": 80.0,
+     "stepdown": 0.25,
+     "chip_load": 0.0014,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft HE-14-2 Up Spiral 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 3
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/the-hog-long-1-4-roughing-endmill-bit-for-cnc-routers-1-4-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-uc-14",
+   "maker": "IDC Woodcraft",
+   "part_number": "UC-14",
+   "name": "1/4\" Upcut",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "helix": "up",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 19000,
+     "feed": 80.0,
+     "plunge": 40.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00211,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft UC-14 Up Spiral 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/high-performance-1-4-up-cut-endmill-for-cnc-routers-1-4-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-he-38-1",
+   "maker": "IDC Woodcraft",
+   "part_number": "HE-38-1",
+   "name": "THE SLAYER\" 3/8\" Roughing Upcut",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.375,
+   "cut_length": 1.5,
+   "flutes": 3,
+   "helix": "up",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 18000,
+     "feed": 250.0,
+     "plunge": 150.0,
+     "stepdown": 0.5,
+     "chip_load": 0.00463,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft HE-38-1 Up Spiral 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 3
+   },
+   "sources": [
+    "https://idcwoodcraft.com/HE-38-1",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-he-38-2",
+   "maker": "IDC Woodcraft",
+   "part_number": "HE-38-2",
+   "name": "THE DEEP SLAYER\" 3/8\" Roughing Upcut",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.375,
+   "cut_length": 2.25,
+   "flutes": 3,
+   "helix": "up",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 18000,
+     "feed": 250.0,
+     "plunge": 150.0,
+     "stepdown": 0.5,
+     "chip_load": 0.00463,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft HE-38-2 Up Spiral 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 3
+   },
+   "sources": [
+    "https://idcwoodcraft.com/HE-38-2",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-he-12-1",
+   "maker": "IDC Woodcraft",
+   "part_number": "HE-12-1",
+   "name": "THE \"RIPPER\" 1/2\" Hogging Upcut",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.5,
+   "cut_length": 1.5,
+   "flutes": 3,
+   "helix": "up",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 18000,
+     "feed": 300.0,
+     "plunge": 200.0,
+     "stepdown": 0.5,
+     "chip_load": 0.00556,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft HE-12-1 Up Spiral 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 3
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/HE-12-1",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-he-12-2",
+   "maker": "IDC Woodcraft",
+   "part_number": "HE-12-2",
+   "name": "THE \"DEEP RIPPER\" 1/2\" Hogging Upcut",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.5,
+   "cut_length": 2.75,
+   "flutes": 3,
+   "helix": "up",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 18000,
+     "feed": 300.0,
+     "plunge": 200.0,
+     "stepdown": 0.5,
+     "chip_load": 0.00556,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft HE-12-2 Up Spiral 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 3
+   },
+   "sources": [
+    "https://idcwoodcraft.com/HE-12-2",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-uc-12",
+   "maker": "IDC Woodcraft",
+   "part_number": "UC-12",
+   "name": "1/2\" Upcut",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.5,
+   "cut_length": 1.5,
+   "flutes": 2,
+   "helix": "up",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 18000,
+     "feed": 250.0,
+     "plunge": 175.0,
+     "stepdown": 0.5,
+     "chip_load": 0.00694,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft UC-12 Up Spiral 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/UC-12/",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-kh-38",
+   "maker": "IDC Woodcraft",
+   "part_number": "KH-38",
+   "name": "3/8\" Keyhole T-Slot Cutter",
+   "family": "keyhole",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.25,
+   "cut_length": 0.2,
+   "flutes": 2,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 21000,
+     "feed": 30.0,
+     "plunge": 20.0,
+     "stepdown": 0.375,
+     "chip_load": 0.00071,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft KH-38 Keyhole 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/3-8-keyhole-t-slot-router-bit-for-cnc-routers-1-4-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-of-116",
+   "maker": "IDC Woodcraft",
+   "part_number": "OF-116",
+   "name": "1/16\" Acrylic O Flute",
+   "family": "o-flute",
+   "units": "in",
+   "diameter": 0.0625,
+   "shank": 0.125,
+   "cut_length": 0.25,
+   "flutes": 1,
+   "helix": "o-flute",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 22000,
+     "feed": 45.0,
+     "plunge": 30.0,
+     "stepdown": 0.03125,
+     "chip_load": 0.00205,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft OF-116 O-Flute 1/16 in",
+    "kind": "EndMill",
+    "diameter": 0.0625,
+    "flutes": 1
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-16-acrylic-router-bit-for-for-cnc-routers-1-8-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-of-18",
+   "maker": "IDC Woodcraft",
+   "part_number": "OF-18",
+   "name": "1/8\" Acrylic O Flute",
+   "family": "o-flute",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 0.5,
+   "flutes": 1,
+   "helix": "o-flute",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 17000,
+     "feed": 60.0,
+     "plunge": 15.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00353,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft OF-18 O-Flute 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 1
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-8-0-flute-bit-for-acrylic-cnc-router-1-8-shank-premium",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-of-14",
+   "maker": "IDC Woodcraft",
+   "part_number": "OF-14",
+   "name": "1/4\" Acrylic O Flute",
+   "family": "o-flute",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 1,
+   "helix": "o-flute",
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 17000,
+     "feed": 60.0,
+     "plunge": 15.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00353,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft OF-14 O-Flute 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 1
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-4-0-flute-cnc-router-bit-for-acrylic-1-4-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-su-34",
+   "maker": "IDC Woodcraft",
+   "part_number": "SU-34",
+   "name": "3/4\" Surfacing Bit, 1/8\" Shank",
+   "family": "surfacing",
+   "units": "in",
+   "diameter": 0.75,
+   "shank": 0.125,
+   "cut_length": 0.125,
+   "flutes": 4,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 17000,
+     "feed": 100.0,
+     "plunge": 8.0,
+     "stepdown": 0.05,
+     "chip_load": 0.00147,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft SU-34 Surfacing 3/4 in",
+    "kind": "EndMill",
+    "diameter": 0.75,
+    "flutes": 4
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-8-shank-surfacing-bit-3-4-cut-for-cnc-routers",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-is-10",
+   "maker": "IDC Woodcraft",
+   "part_number": "IS-10",
+   "name": "1\" Indexable Insert Surfacing Bit, 1/4\" Shank",
+   "family": "surfacing",
+   "units": "in",
+   "diameter": 1.0,
+   "shank": 0.25,
+   "cut_length": 0.472,
+   "flutes": 2,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 10000,
+     "feed": 150.0,
+     "plunge": 7.0,
+     "stepdown": 0.125,
+     "chip_load": 0.0075,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft IS-10 Surfacing 1 in",
+    "kind": "EndMill",
+    "diameter": 1.0,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-insert-surfacing-bit-for-cnc-routers-1-4-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-su-10",
+   "maker": "IDC Woodcraft",
+   "part_number": "SU-10",
+   "name": "1\" Surfacing Bit, 1/4\" Shank",
+   "family": "surfacing",
+   "units": "in",
+   "diameter": 1.0,
+   "shank": 0.25,
+   "cut_length": 0.25,
+   "flutes": 4,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 10000,
+     "feed": 150.0,
+     "plunge": 7.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00375,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft SU-10 Surfacing 1 in",
+    "kind": "EndMill",
+    "diameter": 1.0,
+    "flutes": 4
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/ultra-smooth-cut-1-surfacing-bit-for-cnc-router-spoilboard-slab-flattenning-1-4-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-su-15",
+   "maker": "IDC Woodcraft",
+   "part_number": "SU-15",
+   "name": "1.5\" Surfacing Bit, 1/4\" Shank",
+   "family": "surfacing",
+   "units": "in",
+   "diameter": 1.5,
+   "shank": 0.25,
+   "cut_length": 0.25,
+   "flutes": 4,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 12000,
+     "feed": 120.0,
+     "plunge": 8.0,
+     "stepdown": 0.07,
+     "chip_load": 0.0025,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft SU-15 Surfacing 1-1/2 in",
+    "kind": "EndMill",
+    "diameter": 1.5,
+    "flutes": 4
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/1-5-surfacing-bit-for-cnc-router-fast-spoilboard-slab-flattenning-1-4-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-8675309-lb",
+   "maker": "IDC Woodcraft",
+   "part_number": "8675309-LB",
+   "name": "1/8\" Little B Jenny Tapered Ballnose",
+   "family": "tapered-ball",
+   "coating": "ZrCN (zirconium carbonitride)",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.125,
+   "flutes": 2,
+   "angle_deg": 6.8,
+   "tip_diameter": 0.125,
+   "tip_radius": 0.0625,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 15000,
+     "feed": 100.0,
+     "plunge": 55.0,
+     "stepdown": 0.025,
+     "chip_load": 0.00333,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft 8675309-LB 1/8\" Little B Jenny Tapered Ballnose",
+    "kind": "BallNose",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/the-little-b-jenny",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-8675309-sj",
+   "maker": "IDC Woodcraft",
+   "part_number": "8675309-SJ",
+   "name": "Skinny Jenny",
+   "family": "tapered-ball",
+   "coating": "ZrCN (zirconium carbonitride)",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.125,
+   "flutes": 2,
+   "angle_deg": 10.0,
+   "tip_diameter": 0.0624,
+   "tip_radius": 0.0312,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 14000,
+     "feed": 150.0,
+     "plunge": 75.0,
+     "stepdown": 0.032,
+     "chip_load": 0.00536,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft 8675309-SJ Skinny Jenny",
+    "kind": "BallNose",
+    "diameter": 0.0624,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/the-skinny-jenny",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-etb-1",
+   "maker": "IDC Woodcraft",
+   "part_number": "ETB-1",
+   "name": "1/4\" Extended Ultra Fine Detail Tapered Ball Nose",
+   "family": "tapered-ball",
+   "units": "in",
+   "diameter": 0.25,
+   "cut_length": 1.25,
+   "flutes": 2,
+   "angle_deg": 12.0,
+   "tip_diameter": 0.0315,
+   "tip_radius": 0.01575,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 19000,
+     "feed": 60.0,
+     "plunge": 25.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00158,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft ETB-1 1/4\" Extended Ultra Fine Detail Tapered Ball Nose",
+    "kind": "BallNose",
+    "diameter": 0.0315,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/ETB-1",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-etb-2",
+   "maker": "IDC Woodcraft",
+   "part_number": "ETB-2",
+   "name": "1/4\" Extended Fine Detail Tapered Ball Nose",
+   "family": "tapered-ball",
+   "units": "in",
+   "diameter": 0.25,
+   "cut_length": 1.09,
+   "flutes": 2,
+   "angle_deg": 12.0,
+   "tip_diameter": 0.06299,
+   "tip_radius": 0.0315,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 19000,
+     "feed": 60.0,
+     "plunge": 25.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00158,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft ETB-2 1/4\" Extended Fine Detail Tapered Ball Nose",
+    "kind": "BallNose",
+    "diameter": 0.06299,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/ETB-2",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-tbn-1",
+   "maker": "IDC Woodcraft",
+   "part_number": "TBN-1",
+   "name": "1/4\" Ultra-High Detail Tapered Ball Nose",
+   "family": "tapered-ball",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "angle_deg": 20.0,
+   "tip_diameter": 0.03,
+   "tip_radius": 0.015,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 19000,
+     "feed": 60.0,
+     "plunge": 25.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00158,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft TBN-1 1/4\" Ultra-High Detail Tapered Ball Nose",
+    "kind": "BallNose",
+    "diameter": 0.03,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/ultra-high-detail-3d-carving-taper-ball-nose-bit-for-cnc-routers-1-4-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ],
+   "estimated": true,
+   "notes": "Product page states tip diameter 0.015 in; the tool library gives tip (corner) radius 0.015 in."
+  },
+  {
+   "id": "idc-woodcraft-tbn-2",
+   "maker": "IDC Woodcraft",
+   "part_number": "TBN-2",
+   "name": "1/4\" Fine Detail Tapered Ball Nose",
+   "family": "tapered-ball",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "angle_deg": 20.0,
+   "tip_diameter": 0.09,
+   "tip_radius": 0.045,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 19000,
+     "feed": 60.0,
+     "plunge": 25.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00158,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft TBN-2 1/4\" Fine Detail Tapered Ball Nose",
+    "kind": "BallNose",
+    "diameter": 0.09,
+    "flutes": 2
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/fine-detail-3d-carving-bit-for-cnc-routers-1-4-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-lv-30",
+   "maker": "IDC Woodcraft",
+   "part_number": "LV-30",
+   "name": "30° V-Bit 1/8\" Shank",
+   "family": "v-bit",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 0.25,
+   "flutes": 1,
+   "angle_deg": 30.0,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 10000,
+     "feed": 40.0,
+     "plunge": 20.0,
+     "stepdown": 0.15,
+     "chip_load": 0.004,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft LV-30 V-Bit 30° 1/8 in",
+    "kind": "VBit",
+    "diameter": 0.125,
+    "flutes": 1,
+    "angle": 30.0
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/deluxe1-8-shank-30-degree-engraving-v-bit-for-cnc-routers",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-lv-60",
+   "maker": "IDC Woodcraft",
+   "part_number": "LV-60",
+   "name": "60° V-Bit 1/8\" Shank",
+   "family": "v-bit",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 0.125,
+   "flutes": 1,
+   "angle_deg": 60.0,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 10000,
+     "feed": 50.0,
+     "plunge": 30.0,
+     "stepdown": 0.1,
+     "chip_load": 0.005,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft LV-60 V-Bit 60° 1/8 in",
+    "kind": "VBit",
+    "diameter": 0.125,
+    "flutes": 1,
+    "angle": 60.0
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/deluxe-1-8-shank-60-degree-engraving-v-bit-for-cnc-routers",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-lv-90",
+   "maker": "IDC Woodcraft",
+   "part_number": "LV-90",
+   "name": "90° V-Bit 1/8\" Shank",
+   "family": "v-bit",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 0.067,
+   "flutes": 1,
+   "angle_deg": 90.0,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 10000,
+     "feed": 50.0,
+     "plunge": 30.0,
+     "stepdown": 0.055,
+     "chip_load": 0.005,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft LV-90 V-Bit 90° 1/8 in",
+    "kind": "VBit",
+    "diameter": 0.125,
+    "flutes": 1,
+    "angle": 90.0
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/deluxe-1-8-shank-90-degree-engraving-v-bit-for-cnc-routers",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-8675309-v30",
+   "maker": "IDC Woodcraft",
+   "part_number": "8675309-V30",
+   "name": "1/4\" GrooVee 30° VBit",
+   "family": "v-bit",
+   "coating": "ZrCN (zirconium carbonitride)",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.467,
+   "flutes": 2,
+   "angle_deg": 30.0,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 23000,
+     "feed": 60.0,
+     "plunge": 30.0,
+     "stepdown": 0.125,
+     "chip_load": 0.0013,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft 8675309-V30 V-Bit 30° 1/4 in",
+    "kind": "VBit",
+    "diameter": 0.25,
+    "flutes": 2,
+    "angle": 30.0
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/30-groovee-jenny",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-sv-30",
+   "maker": "IDC Woodcraft",
+   "part_number": "SV-30",
+   "name": "30° V-Bit 1/4\" Shank",
+   "family": "v-bit",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 1,
+   "angle_deg": 30.0,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 27000,
+     "feed": 35.0,
+     "plunge": 20.0,
+     "stepdown": 0.025,
+     "chip_load": 0.0013,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft SV-30 V-Bit 30° 1/4 in",
+    "kind": "VBit",
+    "diameter": 0.25,
+    "flutes": 1,
+    "angle": 30.0
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/30-degree-extreme-detail-v-bit-bit-for-cnc-routers-1-4-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ],
+   "notes": "Library flute length is longer than the V cone for this diameter/angle; diameter may be understated."
+  },
+  {
+   "id": "idc-woodcraft-sv-60",
+   "maker": "IDC Woodcraft",
+   "part_number": "SV-60",
+   "name": "60° V-Bit 1/4\" Shank",
+   "family": "v-bit",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.216,
+   "flutes": 2,
+   "angle_deg": 60.0,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 22000,
+     "feed": 60.0,
+     "plunge": 20.0,
+     "stepdown": 0.05,
+     "chip_load": 0.00136,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft SV-60 V-Bit 60° 1/4 in",
+    "kind": "VBit",
+    "diameter": 0.25,
+    "flutes": 2,
+    "angle": 60.0
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/ultra-clean-cutting-60-degree-v-bit-for-cnc-routers-1-4-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-sv-90",
+   "maker": "IDC Woodcraft",
+   "part_number": "SV-90",
+   "name": "90° V-Bit 1/4\" Shank",
+   "family": "v-bit",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.125,
+   "flutes": 2,
+   "angle_deg": 90.0,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 17000,
+     "feed": 45.0,
+     "plunge": 25.0,
+     "stepdown": 0.1,
+     "chip_load": 0.00132,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft SV-90 V-Bit 90° 1/4 in",
+    "kind": "VBit",
+    "diameter": 0.25,
+    "flutes": 2,
+    "angle": 90.0
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/ultra-clean-cutting-90-degree-v-bit-for-cnc-routers-1-4-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-8675309-v60",
+   "maker": "IDC Woodcraft",
+   "part_number": "8675309-V60",
+   "name": "1/4\" GrooVee 60° VBit",
+   "family": "v-bit",
+   "coating": "ZrCN (zirconium carbonitride)",
+   "units": "in",
+   "diameter": 0.375,
+   "cut_length": 0.3,
+   "flutes": 2,
+   "angle_deg": 60.0,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 23000,
+     "feed": 60.0,
+     "plunge": 30.0,
+     "stepdown": 0.125,
+     "chip_load": 0.0013,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft 8675309-V60 V-Bit 60° 3/8 in",
+    "kind": "VBit",
+    "diameter": 0.375,
+    "flutes": 2,
+    "angle": 60.0
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/60-groovee-jenny",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-8675309-v90",
+   "maker": "IDC Woodcraft",
+   "part_number": "8675309-V90",
+   "name": "1/4\" GrooVee 90° VBit",
+   "family": "v-bit",
+   "coating": "ZrCN (zirconium carbonitride)",
+   "units": "in",
+   "diameter": 0.375,
+   "cut_length": 0.1875,
+   "flutes": 2,
+   "angle_deg": 90.0,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 14000,
+     "feed": 85.0,
+     "plunge": 40.0,
+     "stepdown": 0.1,
+     "chip_load": 0.00304,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft 8675309-V90 V-Bit 90° 3/8 in",
+    "kind": "VBit",
+    "diameter": 0.375,
+    "flutes": 2,
+    "angle": 90.0
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/90-groovee-jenny",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-tv-38-6",
+   "maker": "IDC Woodcraft",
+   "part_number": "TV-38-6",
+   "name": "60° V-Bit 3/8\" Shank",
+   "family": "v-bit",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.375,
+   "cut_length": 0.324,
+   "flutes": 1,
+   "angle_deg": 60.0,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 22000,
+     "feed": 80.0,
+     "plunge": 30.0,
+     "stepdown": 0.05,
+     "chip_load": 0.00364,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft TV-38-6 V-Bit 60° 3/8 in",
+    "kind": "VBit",
+    "diameter": 0.375,
+    "flutes": 1,
+    "angle": 60.0
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/ultra-clean-cutting-60-degree-v-bit-for-cnc-routers-3-8-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-tv-38-9",
+   "maker": "IDC Woodcraft",
+   "part_number": "TV-38-9",
+   "name": "90° V-Bit 3/8\" Shank",
+   "family": "v-bit",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.375,
+   "cut_length": 0.265,
+   "flutes": 1,
+   "angle_deg": 90.0,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 22000,
+     "feed": 80.0,
+     "plunge": 30.0,
+     "stepdown": 0.05,
+     "chip_load": 0.00364,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft TV-38-9 V-Bit 90° 3/8 in",
+    "kind": "VBit",
+    "diameter": 0.375,
+    "flutes": 1,
+    "angle": 90.0
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/ultra-clean-cutting-90-degree-v-bit-for-cnc-routers-3-8-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ],
+   "notes": "Library flute length is longer than the V cone for this diameter/angle; diameter may be understated."
+  },
+  {
+   "id": "idc-woodcraft-bv-60",
+   "maker": "IDC Woodcraft",
+   "part_number": "BV-60",
+   "name": "60° 3/4\" V-Bit 1/4\" Shank",
+   "family": "v-bit",
+   "units": "in",
+   "diameter": 0.75,
+   "shank": 0.25,
+   "cut_length": 0.6495,
+   "flutes": 2,
+   "angle_deg": 60.0,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 14000,
+     "feed": 80.0,
+     "plunge": 25.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00286,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft BV-60 V-Bit 60° 3/4 in",
+    "kind": "VBit",
+    "diameter": 0.75,
+    "flutes": 2,
+    "angle": 60.0
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/60-degree-v-grooving-bit-for-cnc-routers-1-4-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-bv-90",
+   "maker": "IDC Woodcraft",
+   "part_number": "BV-90",
+   "name": "90° 3/4\" V-Bit 1/4\" Shank",
+   "family": "v-bit",
+   "units": "in",
+   "diameter": 0.75,
+   "shank": 0.25,
+   "cut_length": 0.375,
+   "flutes": 2,
+   "angle_deg": 90.0,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 14000,
+     "feed": 60.0,
+     "plunge": 30.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00214,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft BV-90 V-Bit 90° 3/4 in",
+    "kind": "VBit",
+    "diameter": 0.75,
+    "flutes": 2,
+    "angle": 90.0
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/90-degree-v-grooving-bit-for-cnc-routers-1-4-shank",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-bv-120",
+   "maker": "IDC Woodcraft",
+   "part_number": "BV-120",
+   "name": "120° 1\" V-Bit 1/4\" Shank",
+   "family": "v-bit",
+   "units": "in",
+   "diameter": 1.0,
+   "shank": 0.25,
+   "cut_length": 0.288,
+   "flutes": 2,
+   "angle_deg": 120.0,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 17000,
+     "feed": 80.0,
+     "plunge": 30.0,
+     "stepdown": 0.19,
+     "chip_load": 0.00235,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft BV-120 V-Bit 120° 1 in",
+    "kind": "VBit",
+    "diameter": 1.0,
+    "flutes": 2,
+    "angle": 120.0
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/120-degree-wide-cutting-v-bit-1-4-shank-for-cnc-routers",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  },
+  {
+   "id": "idc-woodcraft-bv-150",
+   "maker": "IDC Woodcraft",
+   "part_number": "BV-150",
+   "name": "150° 1.5\" V-Bit 1/4\" Shank",
+   "family": "v-bit",
+   "units": "in",
+   "diameter": 1.5,
+   "shank": 0.25,
+   "cut_length": 0.2,
+   "flutes": 2,
+   "angle_deg": 150.0,
+   "presets": [
+    {
+     "group": "softwood",
+     "rpm": 17000,
+     "feed": 60.0,
+     "plunge": 20.0,
+     "stepdown": 0.15,
+     "chip_load": 0.00176,
+     "source": "https://feeds-speeds-chipload-api.fly.dev/download-csv",
+     "note": "IDC tool library preset (Desktop machine, softwood); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "IDC Woodcraft BV-150 V-Bit 150° 1-1/2 in",
+    "kind": "VBit",
+    "diameter": 1.5,
+    "flutes": 2,
+    "angle": 150.0
+   },
+   "sources": [
+    "https://idcwoodcraft.com/products/150-degree-v-groove-router-bit-1-4-shank-the-pizza-peel-taper-bit",
+    "https://idcwoodcraft.com/pages/database-downloads"
+   ]
+  }
+ ]
+}

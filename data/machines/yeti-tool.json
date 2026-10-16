@@ -1,0 +1,344 @@
+{
+ "maker": "Yeti Tool",
+ "website": "https://www.yetitool.com",
+ "machines": [
+  {
+   "id": "yeti-tool-smartbench-precisionpro-plus",
+   "maker": "Yeti Tool",
+   "model": "SmartBench V1.3 PrecisionPro+",
+   "variant": "2500 x 1250",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 49.8,
+    "y": 99.02,
+    "z": 5.12
+   },
+   "work_area_mm": {
+    "x": 1265,
+    "y": 2515,
+    "z": 130
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "SC2 1000 W spindle with digital speed control (120 V or 230 V)",
+     "power_kw": 1.0,
+     "power_hp": 1.34,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER16 (max 10 mm shank; 8 mm and 1/4 in collets supplied)",
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 236.22,
+    "z": 78.74
+   },
+   "rapid_mm_min": {
+    "xy": 6000,
+    "z": 2000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "SmartBench Console (Easycut on Raspberry Pi) + GRBL-Mega based firmware",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": 5.98
+   },
+   "sources": [
+    "https://www.yetitool.com/PRODUCTS/Product-Details/smartbench-v13-precisionpro-plus-cnc-router",
+    "https://github.com/YetiTool/grbl-Mega"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures; maker gives these as max speed",
+    "controllers": "firmware = YetiTool's grbl-Mega fork on GitHub"
+   },
+   "notes": "Portable large-format router (packs into a van), cuts 2500 x 1250 mm sheets edge to edge, material up to 152 mm thick. YetiPilot adjusts feed from spindle load. Laser X/Y datum. Accuracy +/-0.5 mm. CAM: VCarve or Fusion 360."
+  },
+  {
+   "id": "yeti-tool-smartbench-precisionpro-x",
+   "maker": "Yeti Tool",
+   "model": "SmartBench V1.3 PrecisionPro X",
+   "variant": "2500 x 1250",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 49.8,
+    "y": 99.02,
+    "z": 5.12
+   },
+   "work_area_mm": {
+    "x": 1265,
+    "y": 2515,
+    "z": 130
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "SC2 1000 W spindle with digital speed control",
+     "power_kw": 1.0,
+     "power_hp": 1.34,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER16 (max 10 mm shank; 8 mm and 1/4 in collets supplied)",
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 236.22,
+    "z": 78.74
+   },
+   "rapid_mm_min": {
+    "xy": 6000,
+    "z": 2000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "SmartBench Console (Easycut on Raspberry Pi) + GRBL-Mega based firmware",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": 5.98
+   },
+   "sources": [
+    "https://www.yetitool.com/PRODUCTS/Product-Details/smartbench-cnc-router-v13-precisionpro-x",
+    "https://www.yetitool.com/PRODUCTS/Product-Details/smartbench-v13-precisionpro-plus-cnc-router",
+    "https://github.com/YetiTool/grbl-Mega"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures; maker gives these as max speed",
+    "controllers": "firmware = YetiTool's grbl-Mega fork on GitHub",
+    "work_area_mm": "from the PrecisionPro+ page (same frame)"
+   },
+   "notes": "PrecisionPro+ bundled with BigFoot (dust extraction) and Console XL. Travel/speeds taken from the PrecisionPro+ page (same machine, same 2500 x 1250 mm sheet)."
+  },
+  {
+   "id": "yeti-tool-smartbench-mini-precisionpro",
+   "maker": "Yeti Tool",
+   "model": "SmartBench V1.3 PrecisionPro Mini",
+   "variant": "1250 x 1250",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 49.8,
+    "y": 50.79,
+    "z": 5.12
+   },
+   "work_area_mm": {
+    "x": 1265,
+    "y": 1290,
+    "z": 130
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "1000 W spindle with digital speed control",
+     "power_kw": 1.0,
+     "power_hp": 1.34,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER16 (max 10 mm shank; 8 mm and 1/4 in collets supplied)",
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 236.22,
+    "z": 78.74
+   },
+   "rapid_mm_min": {
+    "xy": 6000,
+    "z": 2000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "SmartBench Console (Easycut on Raspberry Pi) + GRBL-Mega based firmware",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": 5.98
+   },
+   "sources": [
+    "https://www.yetitool.com/PRODUCTS/Product-Details/smartbench-mini-precision-pro",
+    "https://github.com/YetiTool/grbl-Mega"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures; maker gives these as max speed",
+    "controllers": "firmware = YetiTool's grbl-Mega fork on GitHub"
+   },
+   "notes": "Short-bed SmartBench: 1250 x 1250 mm sheets, material up to 152 mm thick. Laser X/Y datum, real-time spindle load display."
+  },
+  {
+   "id": "yeti-tool-smartbench-v12-precisionpro",
+   "maker": "Yeti Tool",
+   "model": "SmartBench V1.2 PrecisionPro",
+   "variant": "2500 x 1250",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 49.8,
+    "y": 99.02,
+    "z": 5.12
+   },
+   "work_area_mm": {
+    "x": 1265,
+    "y": 2515,
+    "z": 130
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "1000 W spindle (120 V or 230 V)",
+     "power_kw": 1.0,
+     "power_hp": 1.34,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER16 (max 10 mm shank; 8 mm and 1/4 in collets supplied)",
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 236.22,
+    "z": 78.74
+   },
+   "rapid_mm_min": {
+    "xy": 6000,
+    "z": 2000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "SmartBench Console (Easycut on Raspberry Pi) + GRBL-Mega based firmware",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": 5.98
+   },
+   "sources": [
+    "https://www.yetitool.com/PRODUCTS/Product-Details/smartbench-v1-2-precisionpro-cnc-router",
+    "https://github.com/YetiTool/grbl-Mega"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures; maker gives these as max speed",
+    "controllers": "firmware = YetiTool's grbl-Mega fork on GitHub"
+   },
+   "notes": "Earlier PrecisionPro (before YetiPilot). Cuts 2500 x 1250 mm sheets, material up to 152 mm. ShapeCutter console app. Spindle load display, extra Z lead screw, laser X/Y datum."
+  }
+ ]
+}

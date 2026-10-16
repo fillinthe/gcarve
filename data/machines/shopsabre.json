@@ -1,0 +1,1401 @@
+{
+ "maker": "ShopSabre",
+ "website": "https://www.shopsabre.com",
+ "machines": [
+  {
+   "id": "shopsabre-23",
+   "maker": "ShopSabre",
+   "model": "ShopSabre 23",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 30,
+    "y": 40,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 762,
+    "y": 1016,
+    "z": null
+   },
+   "gantry_clearance_in": 5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 1.7 kW (2.2 HP) air-cooled spindle",
+     "power_kw": 1.7,
+     "power_hp": 2.2,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER25",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "ShopSabre CNC controller (at-machine PC, Windows)",
+     "gcarve_post": "wincnc-single",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool measuring touch pad + auto Z-height touch pad"
+   },
+   "z_zero": [
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.shopsabre.com/cnc-routers/shopsabre-23/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Cut area 30 x 40 in, 5 in Z clearance (Z travel not published). Ball screws on all axes, digital microstep motors, +/-0.001 in repeatability, steel bench with casters. HiFlow vacuum table available."
+  },
+  {
+   "id": "shopsabre-rc4",
+   "maker": "ShopSabre",
+   "model": "RC Series",
+   "variant": "RC4",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51,
+    "y": 49,
+    "z": 9
+   },
+   "work_area_mm": {
+    "x": 1295,
+    "y": 1245,
+    "z": 229
+   },
+   "gantry_clearance_in": 8,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 3 kW (4 HP) spindle",
+     "power_kw": 3,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 HP air-cooled spindle",
+     "power_kw": null,
+     "power_hp": 2.2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 38100,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "ShopSabre CNC controller (at-machine PC, Windows)",
+     "gcarve_post": "wincnc-single",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Footprint is quoted 'with Tool Changer' as an option; details not published."
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool measuring touch pad + auto Z-height touch pad"
+   },
+   "z_zero": [
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.shopsabre.com/cnc-routers/rc-series/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Entry RC Series: inverted rack and pinion 'Floating Drive' on X/Y with planetary gears, ball screw Z, closed-loop hybrid steppers with encoders, 25 mm rails, +/-0.002 in repeatability. Z travel 9 in, 8 in clearance. Page lists a 2.2 HP spindle in the highlights and a 3 kW 4 HP HSD 18,000 RPM spindle in the included list."
+  },
+  {
+   "id": "shopsabre-rc8",
+   "maker": "ShopSabre",
+   "model": "RC Series",
+   "variant": "RC8",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51,
+    "y": 97,
+    "z": 9
+   },
+   "work_area_mm": {
+    "x": 1295,
+    "y": 2464,
+    "z": 229
+   },
+   "gantry_clearance_in": 8,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 3 kW (4 HP) spindle",
+     "power_kw": 3,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 HP air-cooled spindle",
+     "power_kw": null,
+     "power_hp": 2.2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 38100,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "ShopSabre CNC controller (at-machine PC, Windows)",
+     "gcarve_post": "wincnc-single",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Footprint is quoted 'with Tool Changer' as an option; details not published."
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool measuring touch pad + auto Z-height touch pad"
+   },
+   "z_zero": [
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.shopsabre.com/cnc-routers/rc-series/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Entry RC Series: inverted rack and pinion 'Floating Drive' on X/Y with planetary gears, ball screw Z, closed-loop hybrid steppers with encoders, 25 mm rails, +/-0.002 in repeatability. Z travel 9 in, 8 in clearance. Page lists a 2.2 HP spindle in the highlights and a 3 kW 4 HP HSD 18,000 RPM spindle in the included list."
+  },
+  {
+   "id": "shopsabre-rc10",
+   "maker": "ShopSabre",
+   "model": "RC Series",
+   "variant": "RC10",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 62,
+    "y": 122,
+    "z": 9
+   },
+   "work_area_mm": {
+    "x": 1575,
+    "y": 3099,
+    "z": 229
+   },
+   "gantry_clearance_in": 8,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 3 kW (4 HP) spindle",
+     "power_kw": 3,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 HP air-cooled spindle",
+     "power_kw": null,
+     "power_hp": 2.2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 38100,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "ShopSabre CNC controller (at-machine PC, Windows)",
+     "gcarve_post": "wincnc-single",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Footprint is quoted 'with Tool Changer' as an option; details not published."
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool measuring touch pad + auto Z-height touch pad"
+   },
+   "z_zero": [
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.shopsabre.com/cnc-routers/rc-series/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Entry RC Series: inverted rack and pinion 'Floating Drive' on X/Y with planetary gears, ball screw Z, closed-loop hybrid steppers with encoders, 25 mm rails, +/-0.002 in repeatability. Z travel 9 in, 8 in clearance. Page lists a 2.2 HP spindle in the highlights and a 3 kW 4 HP HSD 18,000 RPM spindle in the included list."
+  },
+  {
+   "id": "shopsabre-pro-404",
+   "maker": "ShopSabre",
+   "model": "Pro Series",
+   "variant": "PRO 404",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 50,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 1270,
+    "z": 406
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "5/6 HP fan-cooled ATC spindle (ISO30, ER32)",
+     "power_kw": null,
+     "power_hp": 5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 / ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1200,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30480,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "ShopSabre CNC controller (at-machine PC, Windows)",
+     "gcarve_post": "wincnc-single",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 6,
+    "notes": "6-position tool rack, ISO30 holders"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool measuring touch pad + auto Z-height touch pad"
+   },
+   "z_zero": [
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.shopsabre.com/cnc-routers/pro-series/"
+   ],
+   "estimated": {
+    "spindles[0].power_hp": "published as 5HP/6HP (continuous/peak, presumably); 5 recorded",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Cut area 60 x 50 x 12 in; Z travel 16 in, 12 in clearance. Ball screws on X, dual Y (twin-screw anti-whip) and Z, AC servos with absolute encoders, +/-0.001 in repeatability, 4-zone phenolic vacuum table, pop-up pins."
+  },
+  {
+   "id": "shopsabre-pro-408",
+   "maker": "ShopSabre",
+   "model": "Pro Series",
+   "variant": "PRO 408",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 100,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 2540,
+    "z": 406
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "5/6 HP fan-cooled ATC spindle (ISO30, ER32)",
+     "power_kw": null,
+     "power_hp": 5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 / ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1200,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30480,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "ShopSabre CNC controller (at-machine PC, Windows)",
+     "gcarve_post": "wincnc-single",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 6,
+    "notes": "6-position tool rack, ISO30 holders"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool measuring touch pad + auto Z-height touch pad"
+   },
+   "z_zero": [
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.shopsabre.com/cnc-routers/pro-series/"
+   ],
+   "estimated": {
+    "spindles[0].power_hp": "published as 5HP/6HP (continuous/peak, presumably); 5 recorded",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Cut area 60 x 100 x 12 in; Z travel 16 in, 12 in clearance. Ball screws on X, dual Y (twin-screw anti-whip) and Z, AC servos with absolute encoders, +/-0.001 in repeatability, 4-zone phenolic vacuum table, pop-up pins."
+  },
+  {
+   "id": "shopsabre-pro-510",
+   "maker": "ShopSabre",
+   "model": "Pro Series",
+   "variant": "PRO 510",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 72,
+    "y": 125,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 1829,
+    "y": 3175,
+    "z": 406
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "5/6 HP fan-cooled ATC spindle (ISO30, ER32)",
+     "power_kw": null,
+     "power_hp": 5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 / ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1200,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30480,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "ShopSabre CNC controller (at-machine PC, Windows)",
+     "gcarve_post": "wincnc-single",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 6,
+    "notes": "6-position tool rack, ISO30 holders"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool measuring touch pad + auto Z-height touch pad"
+   },
+   "z_zero": [
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.shopsabre.com/cnc-routers/pro-series/"
+   ],
+   "estimated": {
+    "spindles[0].power_hp": "published as 5HP/6HP (continuous/peak, presumably); 5 recorded",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Cut area 72 x 125 x 12 in; Z travel 16 in, 12 in clearance. Ball screws on X, dual Y (twin-screw anti-whip) and Z, AC servos with absolute encoders, +/-0.001 in repeatability, 4-zone phenolic vacuum table, pop-up pins."
+  },
+  {
+   "id": "shopsabre-is-408",
+   "maker": "ShopSabre",
+   "model": "IS Series",
+   "variant": "IS 408",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 65,
+    "y": 100,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 1651,
+    "y": 2540,
+    "z": 406
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "10/12 HP fan-cooled ATC spindle (ISO30, ER32)",
+     "power_kw": null,
+     "power_hp": 10,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 / ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2100,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 53340,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "ShopSabre onboard PC with integrated WinCNC controller hardware/software",
+     "gcarve_post": "wincnc-atc",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "12-position tool rack, ISO30 holders"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool measuring touch pad + auto Z-height touch pad"
+   },
+   "z_zero": [
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.shopsabre.com/cnc-routers/industrial-series-series/"
+   ],
+   "estimated": {
+    "spindles[0].power_hp": "published as 10HP/12HP; 10 recorded",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "controllers[0].gcarve_post": "product page names WinCNC; ATC machine"
+   },
+   "notes": "Cut area 65 x 100 x 12 in; Z travel 16 in, 12 in clearance. Ball screws on X, dual Y and Z, AC servos with absolute encoders, Z brake, +/-0.001 in repeatability, 4-zone phenolic vacuum table, pop-up pins."
+  },
+  {
+   "id": "shopsabre-is-510",
+   "maker": "ShopSabre",
+   "model": "IS Series",
+   "variant": "IS 510",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 75,
+    "y": 125,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 1905,
+    "y": 3175,
+    "z": 406
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "10/12 HP fan-cooled ATC spindle (ISO30, ER32)",
+     "power_kw": null,
+     "power_hp": 10,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 / ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2100,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 53340,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "ShopSabre onboard PC with integrated WinCNC controller hardware/software",
+     "gcarve_post": "wincnc-atc",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "12-position tool rack, ISO30 holders"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool measuring touch pad + auto Z-height touch pad"
+   },
+   "z_zero": [
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.shopsabre.com/cnc-routers/industrial-series-series/"
+   ],
+   "estimated": {
+    "spindles[0].power_hp": "published as 10HP/12HP; 10 recorded",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "controllers[0].gcarve_post": "product page names WinCNC; ATC machine"
+   },
+   "notes": "Cut area 75 x 125 x 12 in; Z travel 16 in, 12 in clearance. Ball screws on X, dual Y and Z, AC servos with absolute encoders, Z brake, +/-0.001 in repeatability, 4-zone phenolic vacuum table, pop-up pins."
+  },
+  {
+   "id": "shopsabre-is-612",
+   "maker": "ShopSabre",
+   "model": "IS Series",
+   "variant": "IS 612",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 85,
+    "y": 145,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 2159,
+    "y": 3683,
+    "z": 406
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "10/12 HP fan-cooled ATC spindle (ISO30, ER32)",
+     "power_kw": null,
+     "power_hp": 10,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 / ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2100,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 53340,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "ShopSabre onboard PC with integrated WinCNC controller hardware/software",
+     "gcarve_post": "wincnc-atc",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "12-position tool rack, ISO30 holders"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool measuring touch pad + auto Z-height touch pad"
+   },
+   "z_zero": [
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.shopsabre.com/cnc-routers/industrial-series-series/"
+   ],
+   "estimated": {
+    "spindles[0].power_hp": "published as 10HP/12HP; 10 recorded",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "controllers[0].gcarve_post": "product page names WinCNC; ATC machine"
+   },
+   "notes": "Cut area 85 x 145 x 12 in; Z travel 16 in, 12 in clearance. Ball screws on X, dual Y and Z, AC servos with absolute encoders, Z brake, +/-0.001 in repeatability, 4-zone phenolic vacuum table, pop-up pins."
+  },
+  {
+   "id": "shopsabre-is-m-408",
+   "maker": "ShopSabre",
+   "model": "IS-M Series",
+   "variant": "IS-M 408",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 50,
+    "y": 98,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 2489,
+    "z": 406
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 10/12 HP fan-cooled ATC spindle (ISO30, ER32)",
+     "power_kw": null,
+     "power_hp": 10,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 / ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2100,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 53340,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Mitsubishi M80 (M8 series) with ShopSabre interface",
+     "gcarve_post": "wincnc-single",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 10,
+    "notes": "Bi-directional rotary ATC, 10 positions, ISO30 holders"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool measuring touch pad + auto Z-height touch pad"
+   },
+   "z_zero": [
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.shopsabre.com/cnc-routers/is-m-series/"
+   ],
+   "estimated": {
+    "spindles[0].power_hp": "published as 10HP/12HP; 10 recorded",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Cut area 50 x 98 x 12 in; Z travel 16 in, 12 in clearance. Mitsubishi M80 control with fiber-optic servo bus (no gcarve post yet), ball screws on X, dual Y and Z, +/-0.001 in repeatability."
+  },
+  {
+   "id": "shopsabre-is-m-510",
+   "maker": "ShopSabre",
+   "model": "IS-M Series",
+   "variant": "IS-M 510",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 62,
+    "y": 122,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 1575,
+    "y": 3099,
+    "z": 406
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 10/12 HP fan-cooled ATC spindle (ISO30, ER32)",
+     "power_kw": null,
+     "power_hp": 10,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 / ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2100,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 53340,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Mitsubishi M80 (M8 series) with ShopSabre interface",
+     "gcarve_post": "wincnc-single",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 10,
+    "notes": "Bi-directional rotary ATC, 10 positions, ISO30 holders"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool measuring touch pad + auto Z-height touch pad"
+   },
+   "z_zero": [
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.shopsabre.com/cnc-routers/is-m-series/"
+   ],
+   "estimated": {
+    "spindles[0].power_hp": "published as 10HP/12HP; 10 recorded",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Cut area 62 x 122 x 12 in; Z travel 16 in, 12 in clearance. Mitsubishi M80 control with fiber-optic servo bus (no gcarve post yet), ball screws on X, dual Y and Z, +/-0.001 in repeatability."
+  },
+  {
+   "id": "shopsabre-is-m-612",
+   "maker": "ShopSabre",
+   "model": "IS-M Series",
+   "variant": "IS-M 612",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 74,
+    "y": 146,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 1880,
+    "y": 3708,
+    "z": 406
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 10/12 HP fan-cooled ATC spindle (ISO30, ER32)",
+     "power_kw": null,
+     "power_hp": 10,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 / ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2100,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 53340,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Mitsubishi M80 (M8 series) with ShopSabre interface",
+     "gcarve_post": "wincnc-single",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 10,
+    "notes": "Bi-directional rotary ATC, 10 positions, ISO30 holders"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool measuring touch pad + auto Z-height touch pad"
+   },
+   "z_zero": [
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.shopsabre.com/cnc-routers/is-m-series/"
+   ],
+   "estimated": {
+    "spindles[0].power_hp": "published as 10HP/12HP; 10 recorded",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Cut area 74 x 146 x 12 in; Z travel 16 in, 12 in clearance. Mitsubishi M80 control with fiber-optic servo bus (no gcarve post yet), ball screws on X, dual Y and Z, +/-0.001 in repeatability."
+  },
+  {
+   "id": "shopsabre-is-a-510",
+   "maker": "ShopSabre",
+   "model": "IS-A Series",
+   "variant": "IS-A 510",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 65.5,
+    "y": 122,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1664,
+    "y": 3099,
+    "z": 356
+   },
+   "gantry_clearance_in": 3,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "10 HP ATC spindle",
+     "power_kw": null,
+     "power_hp": 10,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2100,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 53340,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Mitsubishi M80 (M8 series) with ShopSabre interface",
+     "gcarve_post": "wincnc-single",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12-position rotary ATC plus 5x4 HSD drill head"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration + Auto Z touch"
+   },
+   "z_zero": [
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.shopsabre.com/cnc-routers/is-a-series-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Automated nesting cell: cut area 65.5 x 122 x 6 in, Z travel 14 in, 3 in Z clearance (as published). Mitsubishi M80 control and 1 kW Mitsubishi servos, auto loader/lift table, pusher bar, unload table, Becker vacuum pump, 4-zone table."
+  },
+  {
+   "id": "shopsabre-is-eva-408",
+   "maker": "ShopSabre",
+   "model": "IS EVA Series",
+   "variant": "IS EVA 408",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 65,
+    "y": 100,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 1651,
+    "y": 2540,
+    "z": 406
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "10/12 HP fan-cooled ATC spindle (ISO30, ER32)",
+     "power_kw": null,
+     "power_hp": 10,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 / ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2100,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 53340,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "ShopSabre controller with WinCNC (at-machine PC)",
+     "gcarve_post": "wincnc-atc",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "12-position tool rack, ISO30 holders"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "dual-head EVA tool calibration package / auto tool measuring touch pad"
+   },
+   "z_zero": [
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.shopsabre.com/cnc-routers/is-eva-series/"
+   ],
+   "notes": "Built for EVA foam (SeaDek). Cut area 65 x 100 x 12 in; Z travel 16 in, 12 in clearance. Ball screws on all axes with dual-driven Y, AC servos, +/-0.001 in repeatability, 4-zone phenolic vacuum table.",
+   "estimated": {
+    "spindles[0].power_hp": "published as 10HP/12HP; 10 recorded",
+    "controllers[0].gcarve_post": "page names WinCNC controller hardware/software; ATC machine",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "shopsabre-is-eva-510",
+   "maker": "ShopSabre",
+   "model": "IS EVA Series",
+   "variant": "IS EVA 510",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 75,
+    "y": 125,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 1905,
+    "y": 3175,
+    "z": 406
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "10/12 HP fan-cooled ATC spindle (ISO30, ER32)",
+     "power_kw": null,
+     "power_hp": 10,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 / ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2100,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 53340,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "ShopSabre controller with WinCNC (at-machine PC)",
+     "gcarve_post": "wincnc-atc",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "12-position tool rack, ISO30 holders"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "dual-head EVA tool calibration package / auto tool measuring touch pad"
+   },
+   "z_zero": [
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.shopsabre.com/cnc-routers/is-eva-series/"
+   ],
+   "notes": "Built for EVA foam (SeaDek). Cut area 75 x 125 x 12 in; Z travel 16 in, 12 in clearance. Ball screws on all axes with dual-driven Y, AC servos, +/-0.001 in repeatability, 4-zone phenolic vacuum table.",
+   "estimated": {
+    "spindles[0].power_hp": "published as 10HP/12HP; 10 recorded",
+    "controllers[0].gcarve_post": "page names WinCNC controller hardware/software; ATC machine",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  }
+ ]
+}

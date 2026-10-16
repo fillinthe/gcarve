@@ -1,0 +1,1578 @@
+{
+ "maker": "Mekanika",
+ "website": "https://www.mekanika.io",
+ "machines": [
+  {
+   "id": "mekanika-evo-s-z250",
+   "maker": "Mekanika",
+   "model": "Evo",
+   "variant": "S Z250",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 24.8,
+    "y": 24.8,
+    "z": 2.95
+   },
+   "work_area_mm": {
+    "x": 630,
+    "y": 630,
+    "z": 75
+   },
+   "gantry_clearance_in": 3.94,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "AMB FME-P 1400 W DI (computer-controlled)",
+     "power_kw": 1.4,
+     "power_hp": null,
+     "rpm_min": 3000,
+     "rpm_max": 25000,
+     "collet": "ER16",
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 787,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "PlanetCNC Mk3/4 (PlanetCNC TNG v2 on embedded Raspberry Pi 4)",
+     "gcarve_post": "planetcnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mekanika.io/en/store/be/evo",
+    "https://www.mekanika.io/en/products/evo"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "converted from mm",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Size S 630 x 630 mm; Z option Z250: Z clearance 100 mm, Z travel 75 mm, max through-cut 45 mm (with 18 mm spoilboard). Reinforced GT2 belts X/Y, T8 lead screw Z, V-slot wheels, 4 x NEMA23 3 A. Accuracy 0.1 mm. Typical cut 3000 mm/min. Spindle optional. Belgium."
+  },
+  {
+   "id": "mekanika-evo-s-z350",
+   "maker": "Mekanika",
+   "model": "Evo",
+   "variant": "S Z350",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 24.8,
+    "y": 24.8,
+    "z": 6.89
+   },
+   "work_area_mm": {
+    "x": 630,
+    "y": 630,
+    "z": 175
+   },
+   "gantry_clearance_in": 7.87,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "AMB FME-P 1400 W DI (computer-controlled)",
+     "power_kw": 1.4,
+     "power_hp": null,
+     "rpm_min": 3000,
+     "rpm_max": 25000,
+     "collet": "ER16",
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 787,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "PlanetCNC Mk3/4 (PlanetCNC TNG v2 on embedded Raspberry Pi 4)",
+     "gcarve_post": "planetcnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mekanika.io/en/store/be/evo",
+    "https://www.mekanika.io/en/products/evo"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "converted from mm",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Size S 630 x 630 mm; Z option Z350: Z clearance 200 mm, Z travel 175 mm, max through-cut 95 mm (with 18 mm spoilboard). Reinforced GT2 belts X/Y, T8 lead screw Z, V-slot wheels, 4 x NEMA23 3 A. Accuracy 0.1 mm. Typical cut 3000 mm/min. Spindle optional. Belgium."
+  },
+  {
+   "id": "mekanika-evo-m-z250",
+   "maker": "Mekanika",
+   "model": "Evo",
+   "variant": "M Z250",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 24.8,
+    "y": 40.55,
+    "z": 2.95
+   },
+   "work_area_mm": {
+    "x": 630,
+    "y": 1030,
+    "z": 75
+   },
+   "gantry_clearance_in": 3.94,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "AMB FME-P 1400 W DI (computer-controlled)",
+     "power_kw": 1.4,
+     "power_hp": null,
+     "rpm_min": 3000,
+     "rpm_max": 25000,
+     "collet": "ER16",
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 787,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "PlanetCNC Mk3/4 (PlanetCNC TNG v2 on embedded Raspberry Pi 4)",
+     "gcarve_post": "planetcnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mekanika.io/en/store/be/evo",
+    "https://www.mekanika.io/en/products/evo"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "converted from mm",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Size M 630 x 1030 mm; Z option Z250: Z clearance 100 mm, Z travel 75 mm, max through-cut 45 mm (with 18 mm spoilboard). Reinforced GT2 belts X/Y, T8 lead screw Z, V-slot wheels, 4 x NEMA23 3 A. Accuracy 0.1 mm. Typical cut 3000 mm/min. Spindle optional. Belgium."
+  },
+  {
+   "id": "mekanika-evo-m-z350",
+   "maker": "Mekanika",
+   "model": "Evo",
+   "variant": "M Z350",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 24.8,
+    "y": 40.55,
+    "z": 6.89
+   },
+   "work_area_mm": {
+    "x": 630,
+    "y": 1030,
+    "z": 175
+   },
+   "gantry_clearance_in": 7.87,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "AMB FME-P 1400 W DI (computer-controlled)",
+     "power_kw": 1.4,
+     "power_hp": null,
+     "rpm_min": 3000,
+     "rpm_max": 25000,
+     "collet": "ER16",
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 787,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "PlanetCNC Mk3/4 (PlanetCNC TNG v2 on embedded Raspberry Pi 4)",
+     "gcarve_post": "planetcnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mekanika.io/en/store/be/evo",
+    "https://www.mekanika.io/en/products/evo"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "converted from mm",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Size M 630 x 1030 mm; Z option Z350: Z clearance 200 mm, Z travel 175 mm, max through-cut 95 mm (with 18 mm spoilboard). Reinforced GT2 belts X/Y, T8 lead screw Z, V-slot wheels, 4 x NEMA23 3 A. Accuracy 0.1 mm. Typical cut 3000 mm/min. Spindle optional. Belgium."
+  },
+  {
+   "id": "mekanika-evo-l-z250",
+   "maker": "Mekanika",
+   "model": "Evo",
+   "variant": "L Z250",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 40.55,
+    "y": 40.55,
+    "z": 2.95
+   },
+   "work_area_mm": {
+    "x": 1030,
+    "y": 1030,
+    "z": 75
+   },
+   "gantry_clearance_in": 3.94,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "AMB FME-P 1400 W DI (computer-controlled)",
+     "power_kw": 1.4,
+     "power_hp": null,
+     "rpm_min": 3000,
+     "rpm_max": 25000,
+     "collet": "ER16",
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 787,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "PlanetCNC Mk3/4 (PlanetCNC TNG v2 on embedded Raspberry Pi 4)",
+     "gcarve_post": "planetcnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mekanika.io/en/store/be/evo",
+    "https://www.mekanika.io/en/products/evo"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "converted from mm",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Size L 1030 x 1030 mm; Z option Z250: Z clearance 100 mm, Z travel 75 mm, max through-cut 45 mm (with 18 mm spoilboard). Reinforced GT2 belts X/Y, T8 lead screw Z, V-slot wheels, 4 x NEMA23 3 A. Accuracy 0.1 mm. Typical cut 3000 mm/min. Spindle optional. Belgium."
+  },
+  {
+   "id": "mekanika-evo-l-z350",
+   "maker": "Mekanika",
+   "model": "Evo",
+   "variant": "L Z350",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 40.55,
+    "y": 40.55,
+    "z": 6.89
+   },
+   "work_area_mm": {
+    "x": 1030,
+    "y": 1030,
+    "z": 175
+   },
+   "gantry_clearance_in": 7.87,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "AMB FME-P 1400 W DI (computer-controlled)",
+     "power_kw": 1.4,
+     "power_hp": null,
+     "rpm_min": 3000,
+     "rpm_max": 25000,
+     "collet": "ER16",
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 787,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "PlanetCNC Mk3/4 (PlanetCNC TNG v2 on embedded Raspberry Pi 4)",
+     "gcarve_post": "planetcnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mekanika.io/en/store/be/evo",
+    "https://www.mekanika.io/en/products/evo"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "converted from mm",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Size L 1030 x 1030 mm; Z option Z350: Z clearance 200 mm, Z travel 175 mm, max through-cut 95 mm (with 18 mm spoilboard). Reinforced GT2 belts X/Y, T8 lead screw Z, V-slot wheels, 4 x NEMA23 3 A. Accuracy 0.1 mm. Typical cut 3000 mm/min. Spindle optional. Belgium."
+  },
+  {
+   "id": "mekanika-pro-s-z250",
+   "maker": "Mekanika",
+   "model": "Pro",
+   "variant": "S Z250",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 24.8,
+    "y": 24.8,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 630,
+    "y": 630,
+    "z": 110
+   },
+   "gantry_clearance_in": 3.54,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled VFD spindle (computer-controlled)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 5000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 394,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 10000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "PlanetCNC Mk3/4 (PlanetCNC TNG v2 on embedded Raspberry Pi 4)",
+     "gcarve_post": "planetcnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mekanika.io/en/store/be/pro",
+    "https://www.mekanika.io/en/products/pro",
+    "https://www.mekanika.io/en/z600-launch"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "converted from mm",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Size S 630 x 630 mm; Z option Z250: Z clearance 90 mm, Z travel 110 mm, max through-cut 60 mm (18 mm spoilboard; optional vacuum table removes 20 mm clearance). NEMA23 5 A 2.2 N·m (4x), HGR20 rails, 16 mm C7 ball screws X/Y/Z. Positioning accuracy ±50 µm / 300 mm. Belgium."
+  },
+  {
+   "id": "mekanika-pro-s-z350",
+   "maker": "Mekanika",
+   "model": "Pro",
+   "variant": "S Z350",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 24.8,
+    "y": 24.8,
+    "z": 8.27
+   },
+   "work_area_mm": {
+    "x": 630,
+    "y": 630,
+    "z": 210
+   },
+   "gantry_clearance_in": 3.54,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled VFD spindle (computer-controlled)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 5000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 394,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 10000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "PlanetCNC Mk3/4 (PlanetCNC TNG v2 on embedded Raspberry Pi 4)",
+     "gcarve_post": "planetcnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mekanika.io/en/store/be/pro",
+    "https://www.mekanika.io/en/products/pro",
+    "https://www.mekanika.io/en/z600-launch"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "converted from mm",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Size S 630 x 630 mm; Z option Z350: Z clearance 90 mm, Z travel 210 mm, max through-cut 90 mm (18 mm spoilboard; optional vacuum table removes 20 mm clearance). NEMA23 5 A 2.2 N·m (4x), HGR20 rails, 16 mm C7 ball screws X/Y/Z. Positioning accuracy ±50 µm / 300 mm. Belgium."
+  },
+  {
+   "id": "mekanika-pro-s-z600",
+   "maker": "Mekanika",
+   "model": "Pro",
+   "variant": "S Z600",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 24.8,
+    "y": 24.8,
+    "z": 15.16
+   },
+   "work_area_mm": {
+    "x": 630,
+    "y": 630,
+    "z": 385
+   },
+   "gantry_clearance_in": 8.66,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled VFD spindle (computer-controlled)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 5000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 394,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 10000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "PlanetCNC Mk3/4 (PlanetCNC TNG v2 on embedded Raspberry Pi 4)",
+     "gcarve_post": "planetcnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mekanika.io/en/store/be/pro",
+    "https://www.mekanika.io/en/products/pro",
+    "https://www.mekanika.io/en/z600-launch"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "converted from mm",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Size S 630 x 630 mm; Z option Z600: Z clearance 220 mm, Z travel 385 mm, max through-cut 200 mm (18 mm spoilboard; optional vacuum table removes 20 mm clearance). NEMA23 5 A 2.2 N·m (4x), HGR20 rails, 16 mm C7 ball screws X/Y/Z. Positioning accuracy ±50 µm / 300 mm. Belgium."
+  },
+  {
+   "id": "mekanika-pro-m-z250",
+   "maker": "Mekanika",
+   "model": "Pro",
+   "variant": "M Z250",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 24.8,
+    "y": 40.55,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 630,
+    "y": 1030,
+    "z": 110
+   },
+   "gantry_clearance_in": 3.54,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled VFD spindle (computer-controlled)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 5000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 394,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 10000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "PlanetCNC Mk3/4 (PlanetCNC TNG v2 on embedded Raspberry Pi 4)",
+     "gcarve_post": "planetcnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mekanika.io/en/store/be/pro",
+    "https://www.mekanika.io/en/products/pro",
+    "https://www.mekanika.io/en/z600-launch"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "converted from mm",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Size M 630 x 1030 mm; Z option Z250: Z clearance 90 mm, Z travel 110 mm, max through-cut 60 mm (18 mm spoilboard; optional vacuum table removes 20 mm clearance). NEMA23 5 A 2.2 N·m (4x), HGR20 rails, 16 mm C7 ball screws X/Y/Z. Positioning accuracy ±50 µm / 300 mm. Belgium."
+  },
+  {
+   "id": "mekanika-pro-m-z350",
+   "maker": "Mekanika",
+   "model": "Pro",
+   "variant": "M Z350",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 24.8,
+    "y": 40.55,
+    "z": 8.27
+   },
+   "work_area_mm": {
+    "x": 630,
+    "y": 1030,
+    "z": 210
+   },
+   "gantry_clearance_in": 3.54,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled VFD spindle (computer-controlled)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 5000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 394,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 10000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "PlanetCNC Mk3/4 (PlanetCNC TNG v2 on embedded Raspberry Pi 4)",
+     "gcarve_post": "planetcnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mekanika.io/en/store/be/pro",
+    "https://www.mekanika.io/en/products/pro",
+    "https://www.mekanika.io/en/z600-launch"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "converted from mm",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Size M 630 x 1030 mm; Z option Z350: Z clearance 90 mm, Z travel 210 mm, max through-cut 90 mm (18 mm spoilboard; optional vacuum table removes 20 mm clearance). NEMA23 5 A 2.2 N·m (4x), HGR20 rails, 16 mm C7 ball screws X/Y/Z. Positioning accuracy ±50 µm / 300 mm. Belgium."
+  },
+  {
+   "id": "mekanika-pro-m-z600",
+   "maker": "Mekanika",
+   "model": "Pro",
+   "variant": "M Z600",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 24.8,
+    "y": 40.55,
+    "z": 15.16
+   },
+   "work_area_mm": {
+    "x": 630,
+    "y": 1030,
+    "z": 385
+   },
+   "gantry_clearance_in": 8.66,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled VFD spindle (computer-controlled)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 5000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 394,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 10000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "PlanetCNC Mk3/4 (PlanetCNC TNG v2 on embedded Raspberry Pi 4)",
+     "gcarve_post": "planetcnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mekanika.io/en/store/be/pro",
+    "https://www.mekanika.io/en/products/pro",
+    "https://www.mekanika.io/en/z600-launch"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "converted from mm",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Size M 630 x 1030 mm; Z option Z600: Z clearance 220 mm, Z travel 385 mm, max through-cut 200 mm (18 mm spoilboard; optional vacuum table removes 20 mm clearance). NEMA23 5 A 2.2 N·m (4x), HGR20 rails, 16 mm C7 ball screws X/Y/Z. Positioning accuracy ±50 µm / 300 mm. Belgium."
+  },
+  {
+   "id": "mekanika-pro-l-z250",
+   "maker": "Mekanika",
+   "model": "Pro",
+   "variant": "L Z250",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 40.55,
+    "y": 40.55,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 1030,
+    "y": 1030,
+    "z": 110
+   },
+   "gantry_clearance_in": 3.54,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled VFD spindle (computer-controlled)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 5000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 394,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 10000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "PlanetCNC Mk3/4 (PlanetCNC TNG v2 on embedded Raspberry Pi 4)",
+     "gcarve_post": "planetcnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mekanika.io/en/store/be/pro",
+    "https://www.mekanika.io/en/products/pro",
+    "https://www.mekanika.io/en/z600-launch"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "converted from mm",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Size L 1030 x 1030 mm; Z option Z250: Z clearance 90 mm, Z travel 110 mm, max through-cut 60 mm (18 mm spoilboard; optional vacuum table removes 20 mm clearance). NEMA23 5 A 2.2 N·m (4x), HGR20 rails, 16 mm C7 ball screws X/Y/Z. Positioning accuracy ±50 µm / 300 mm. Belgium."
+  },
+  {
+   "id": "mekanika-pro-l-z350",
+   "maker": "Mekanika",
+   "model": "Pro",
+   "variant": "L Z350",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 40.55,
+    "y": 40.55,
+    "z": 8.27
+   },
+   "work_area_mm": {
+    "x": 1030,
+    "y": 1030,
+    "z": 210
+   },
+   "gantry_clearance_in": 3.54,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled VFD spindle (computer-controlled)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 5000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 394,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 10000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "PlanetCNC Mk3/4 (PlanetCNC TNG v2 on embedded Raspberry Pi 4)",
+     "gcarve_post": "planetcnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mekanika.io/en/store/be/pro",
+    "https://www.mekanika.io/en/products/pro",
+    "https://www.mekanika.io/en/z600-launch"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "converted from mm",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Size L 1030 x 1030 mm; Z option Z350: Z clearance 90 mm, Z travel 210 mm, max through-cut 90 mm (18 mm spoilboard; optional vacuum table removes 20 mm clearance). NEMA23 5 A 2.2 N·m (4x), HGR20 rails, 16 mm C7 ball screws X/Y/Z. Positioning accuracy ±50 µm / 300 mm. Belgium."
+  },
+  {
+   "id": "mekanika-pro-l-z600",
+   "maker": "Mekanika",
+   "model": "Pro",
+   "variant": "L Z600",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 40.55,
+    "y": 40.55,
+    "z": 15.16
+   },
+   "work_area_mm": {
+    "x": 1030,
+    "y": 1030,
+    "z": 385
+   },
+   "gantry_clearance_in": 8.66,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled VFD spindle (computer-controlled)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 5000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 394,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 10000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "PlanetCNC Mk3/4 (PlanetCNC TNG v2 on embedded Raspberry Pi 4)",
+     "gcarve_post": "planetcnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mekanika.io/en/store/be/pro",
+    "https://www.mekanika.io/en/products/pro",
+    "https://www.mekanika.io/en/z600-launch"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "converted from mm",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Size L 1030 x 1030 mm; Z option Z600: Z clearance 220 mm, Z travel 385 mm, max through-cut 200 mm (18 mm spoilboard; optional vacuum table removes 20 mm clearance). NEMA23 5 A 2.2 N·m (4x), HGR20 rails, 16 mm C7 ball screws X/Y/Z. Positioning accuracy ±50 µm / 300 mm. Belgium."
+  },
+  {
+   "id": "mekanika-fab-z250",
+   "maker": "Mekanika",
+   "model": "Fab",
+   "variant": "Z250",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 52.36,
+    "y": 106.3,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 1330,
+    "y": 2700,
+    "z": 110
+   },
+   "gantry_clearance_in": 3.54,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled VFD spindle (computer-controlled)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 5000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 787,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "PlanetCNC Mk3/4 (PlanetCNC TNG v2 on embedded Raspberry Pi 4)",
+     "gcarve_post": "planetcnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mekanika.io/en/store/be/fab",
+    "https://www.mekanika.io/en/products/fab",
+    "https://www.mekanika.io/en/z600-launch"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "converted from mm",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "1330 x 2700 mm; Z option Z250: Z clearance 90 mm, Z travel 110 mm, max through-cut 60 mm (18 mm spoilboard; optional vacuum table removes 20 mm clearance). NEMA34 4.5 N·m X/Y, NEMA23 Z; double HGR20 rails; Y mod-2 rack and pinion, X/Z 16 mm C7 ball screws. Positioning accuracy ±50 µm / 300 mm. Belgium."
+  },
+  {
+   "id": "mekanika-fab-z350",
+   "maker": "Mekanika",
+   "model": "Fab",
+   "variant": "Z350",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 52.36,
+    "y": 106.3,
+    "z": 8.27
+   },
+   "work_area_mm": {
+    "x": 1330,
+    "y": 2700,
+    "z": 210
+   },
+   "gantry_clearance_in": 3.54,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled VFD spindle (computer-controlled)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 5000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 787,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "PlanetCNC Mk3/4 (PlanetCNC TNG v2 on embedded Raspberry Pi 4)",
+     "gcarve_post": "planetcnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mekanika.io/en/store/be/fab",
+    "https://www.mekanika.io/en/products/fab",
+    "https://www.mekanika.io/en/z600-launch"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "converted from mm",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "1330 x 2700 mm; Z option Z350: Z clearance 90 mm, Z travel 210 mm, max through-cut 90 mm (18 mm spoilboard; optional vacuum table removes 20 mm clearance). NEMA34 4.5 N·m X/Y, NEMA23 Z; double HGR20 rails; Y mod-2 rack and pinion, X/Z 16 mm C7 ball screws. Positioning accuracy ±50 µm / 300 mm. Belgium."
+  },
+  {
+   "id": "mekanika-fab-z600",
+   "maker": "Mekanika",
+   "model": "Fab",
+   "variant": "Z600",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 52.36,
+    "y": 106.3,
+    "z": 15.16
+   },
+   "work_area_mm": {
+    "x": 1330,
+    "y": 2700,
+    "z": 385
+   },
+   "gantry_clearance_in": 8.66,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled VFD spindle (computer-controlled)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 5000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 787,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "PlanetCNC Mk3/4 (PlanetCNC TNG v2 on embedded Raspberry Pi 4)",
+     "gcarve_post": "planetcnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mekanika.io/en/store/be/fab",
+    "https://www.mekanika.io/en/products/fab",
+    "https://www.mekanika.io/en/z600-launch"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "converted from mm",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "1330 x 2700 mm; Z option Z600: Z clearance 220 mm, Z travel 385 mm, max through-cut 200 mm (18 mm spoilboard; optional vacuum table removes 20 mm clearance). NEMA34 4.5 N·m X/Y, NEMA23 Z; double HGR20 rails; Y mod-2 rack and pinion, X/Z 16 mm C7 ball screws. Positioning accuracy ±50 µm / 300 mm. Belgium."
+  }
+ ]
+}

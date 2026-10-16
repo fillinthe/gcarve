@@ -1,0 +1,668 @@
+{
+ "maker": "Axiom Precision",
+ "website": "https://www.axiomprecision.com",
+ "machines": [
+  {
+   "id": "axiom-ar4-pro-v6",
+   "maker": "Axiom Precision",
+   "model": "AR4 Pro V6",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 24,
+    "y": 24.1,
+    "z": 5.9
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 610,
+    "z": 150
+   },
+   "gantry_clearance_in": 6.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW liquid-cooled electro spindle",
+     "power_kw": 2.2,
+     "power_hp": 3,
+     "rpm_min": 0,
+     "rpm_max": 24000,
+     "collet": "ER20 (1/4\" + 1/2\" included)",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto B18 DSP 4-axis handheld",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device (included)"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://ultimate3dprintingstore.com/products/axiom-pro-cnc-v5"
+   ],
+   "notes": "AutoRoute Pro V6: 48 V steppers, 16 mm ball screws, prismatic guides, aluminium extrusion table with MDF spoilboards, prewired for rotary and laser. Gantry clearance 6.5 in max, 5.5 in above the spoilboards. Positional accuracy +/-0.10 mm. Rapid published as \"300 IPM (5 MPM)\" (the two do not agree; IPM kept).",
+   "estimated": {
+    "rapid_mm_min": "converted from 300 IPM; spec also says 5 MPM"
+   }
+  },
+  {
+   "id": "axiom-ar6-pro-v6",
+   "maker": "Axiom Precision",
+   "model": "AR6 Pro V6",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 24,
+    "y": 35.82,
+    "z": 5.9
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 910,
+    "z": 150
+   },
+   "gantry_clearance_in": 6.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW liquid-cooled electro spindle",
+     "power_kw": 2.2,
+     "power_hp": 3,
+     "rpm_min": 0,
+     "rpm_max": 24000,
+     "collet": "ER20 (1/4\" + 1/2\" included)",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto B18 DSP 4-axis handheld",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device (included)"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://ultimate3dprintingstore.com/products/axiom-pro-v5-24-x-36"
+   ],
+   "notes": "AutoRoute Pro V6: 48 V steppers, 16 mm ball screws, prismatic guides, aluminium extrusion table with MDF spoilboards, prewired for rotary and laser. Gantry clearance 6.5 in max, 5.5 in above the spoilboards. Positional accuracy +/-0.10 mm. Rapid published as \"300 IPM (5 MPM)\" (the two do not agree; IPM kept).",
+   "estimated": {
+    "rapid_mm_min": "converted from 300 IPM; spec also says 5 MPM"
+   }
+  },
+  {
+   "id": "axiom-ar8-pro-v6",
+   "maker": "Axiom Precision",
+   "model": "AR8 Pro V6",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 24,
+    "y": 47.63,
+    "z": 5.9
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 1210,
+    "z": 150
+   },
+   "gantry_clearance_in": 6.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW liquid-cooled electro spindle",
+     "power_kw": 2.2,
+     "power_hp": 3,
+     "rpm_min": 0,
+     "rpm_max": 24000,
+     "collet": "ER20 (1/4\" + 1/2\" included)",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto B18 DSP 4-axis handheld",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device (included)"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://ultimate3dprintingstore.com/products/axiom-pro-v5-series-cnc-ar8"
+   ],
+   "notes": "AutoRoute Pro V6: 48 V steppers, 16 mm ball screws, prismatic guides, aluminium extrusion table with MDF spoilboards, prewired for rotary and laser. Gantry clearance 6.5 in max, 5.5 in above the spoilboards. Positional accuracy +/-0.10 mm. Rapid published as \"300 IPM (5 MPM)\" (the two do not agree; IPM kept).",
+   "estimated": {
+    "rapid_mm_min": "converted from 300 IPM; spec also says 5 MPM"
+   }
+  },
+  {
+   "id": "axiom-iconic-4",
+   "maker": "Axiom Precision",
+   "model": "Iconic-4",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.81,
+    "y": 24.01,
+    "z": 3.937
+   },
+   "work_area_mm": {
+    "x": 605,
+    "y": 610,
+    "z": 100
+   },
+   "gantry_clearance_in": 5.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "800 W (1 HP) electro spindle",
+     "power_kw": 0.8,
+     "power_hp": 1,
+     "rpm_min": 0,
+     "rpm_max": 24000,
+     "collet": "1/4\" + 1/8\" collets included",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 3810,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "RichAuto B11 DSP 3-axis handheld",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool touch-off plate (included)"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://ultimate3dprintingstore.com/products/axiom-iconic-series-cnc"
+   ],
+   "notes": "Entry-level line. Gantry clearance 5-1/2 in max, 4-1/2 in above the spoilboards. 115 V. Positional accuracy +/-0.15 mm. Rockler lists the spindle as 1.1 HP."
+  },
+  {
+   "id": "axiom-iconic-6",
+   "maker": "Axiom Precision",
+   "model": "Iconic-6",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.81,
+    "y": 35.82,
+    "z": 3.937
+   },
+   "work_area_mm": {
+    "x": 605,
+    "y": 910,
+    "z": 100
+   },
+   "gantry_clearance_in": 5.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "800 W (1 HP) electro spindle",
+     "power_kw": 0.8,
+     "power_hp": 1,
+     "rpm_min": 0,
+     "rpm_max": 24000,
+     "collet": "1/4\" + 1/8\" collets included",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 3810,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "RichAuto B11 DSP 3-axis handheld",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool touch-off plate (included)"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://ultimate3dprintingstore.com/products/axiom-iconic-series-cnc-iconic-6"
+   ],
+   "notes": "Entry-level line. Gantry clearance 5-1/2 in max, 4-1/2 in above the spoilboards. 115 V. Positional accuracy +/-0.15 mm. Rockler lists the spindle as 1.1 HP."
+  },
+  {
+   "id": "axiom-iconic-8",
+   "maker": "Axiom Precision",
+   "model": "Iconic-8",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.81,
+    "y": 47.63,
+    "z": 3.937
+   },
+   "work_area_mm": {
+    "x": 605,
+    "y": 1210,
+    "z": 100
+   },
+   "gantry_clearance_in": 5.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "800 W (1 HP) electro spindle",
+     "power_kw": 0.8,
+     "power_hp": 1,
+     "rpm_min": 0,
+     "rpm_max": 24000,
+     "collet": "1/4\" + 1/8\" collets included",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 3810,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "RichAuto B11 DSP 3-axis handheld",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool touch-off plate (included)"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://ultimate3dprintingstore.com/products/axiom-iconic-series-cnc-iconic-8",
+    "https://www.burnstools.com/24-x-48-1-hp-iconic-8-cnc-machine",
+    "https://www.rockler.com/axiom-iconic-8-cnc-router"
+   ],
+   "notes": "Entry-level line. Gantry clearance 5-1/2 in max, 4-1/2 in above the spoilboards. 115 V. Positional accuracy +/-0.15 mm. Rockler lists the spindle as 1.1 HP."
+  },
+  {
+   "id": "axiom-ar8-elite",
+   "maker": "Axiom Precision",
+   "model": "AR8 Elite",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 24,
+    "y": 48,
+    "z": 7.48
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 1210,
+    "z": 190
+   },
+   "gantry_clearance_in": 9.25,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW (3 HP) liquid-cooled electro spindle",
+     "power_kw": 2.2,
+     "power_hp": 3,
+     "rpm_min": 0,
+     "rpm_max": 24000,
+     "collet": "ER20 (1/4\" + 1/2\" included)",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 320,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "RichAuto B58 DSP 4-axis handheld",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device (included)"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://ultimate3dprintingstore.com/products/axiom-elite-cnc-ar8-elite"
+   ],
+   "notes": "Servo-driven. Ball screws X 20 mm, Y 25 mm, Z 16 mm. Gantry clearance 9.25 in max, 8.25 in above the spoilboards. Repeatability 0.05 mm. Dealer copy says \"cut at up to 320 IPM\"; spec table calls it rapid feed rate. Travel published as 48 in (1210 mm) on the 48 in axes."
+  },
+  {
+   "id": "axiom-ar16-elite",
+   "maker": "Axiom Precision",
+   "model": "AR16 Elite",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 48,
+    "y": 48,
+    "z": 7.48
+   },
+   "work_area_mm": {
+    "x": 1210,
+    "y": 1210,
+    "z": 190
+   },
+   "gantry_clearance_in": 9.25,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW (3 HP) liquid-cooled electro spindle",
+     "power_kw": 2.2,
+     "power_hp": 3,
+     "rpm_min": 0,
+     "rpm_max": 24000,
+     "collet": "ER20 (1/4\" + 1/2\" included)",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 320,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "RichAuto B58 DSP 4-axis handheld",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device (included)"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://ultimate3dprintingstore.com/products/axiom-elite-cnc-ar16-elite"
+   ],
+   "notes": "Servo-driven. Ball screws X 20 mm, Y 25 mm, Z 16 mm. Gantry clearance 9.25 in max, 8.25 in above the spoilboards. Repeatability 0.05 mm. Dealer copy says \"cut at up to 320 IPM\"; spec table calls it rapid feed rate. Travel published as 48 in (1210 mm) on the 48 in axes.",
+   "estimated": {
+    "work_area_mm.z": "AR16 sheet says 7.48 in (195 mm); mm converted from the inch value"
+   }
+  }
+ ]
+}

@@ -1,0 +1,7516 @@
+{
+ "maker": "Morbidelli (SCM Group)",
+ "website": "https://www.scmgroup.com/en/scmwood",
+ "machines": [
+  {
+   "id": "morbidelli-m100-3110x1320",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M100",
+   "variant": "3110x1320",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.44,
+    "y": 51.97,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3110,
+    "y": 1320,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit 4.5 kW",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 44 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m100-200.32314",
+    "https://wtp.hoechsmann.com/en/lexikon/34836/scm_morbidelli"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Point-to-point panel routing/drilling centre (bar-and-pod table). Vectorial X-Y speed 56 m/min (Pro-Space) or 78 m/min (Pro-Speed); rapid here = Pro-Speed. Z = panel passage 180 mm (stored as gantry clearance; Z stroke not published). Up to 21 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 0-90 deg blade unit 2.2 kW option. Formerly 'Morbidelli author M100'."
+  },
+  {
+   "id": "morbidelli-m100-3710x1320",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M100",
+   "variant": "3710x1320",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 146.06,
+    "y": 51.97,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3710,
+    "y": 1320,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit 4.5 kW",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 44 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m100-200.32314",
+    "https://wtp.hoechsmann.com/en/lexikon/34836/scm_morbidelli"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Point-to-point panel routing/drilling centre (bar-and-pod table). Vectorial X-Y speed 56 m/min (Pro-Space) or 78 m/min (Pro-Speed); rapid here = Pro-Speed. Z = panel passage 180 mm (stored as gantry clearance; Z stroke not published). Up to 21 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 0-90 deg blade unit 2.2 kW option. Formerly 'Morbidelli author M100'."
+  },
+  {
+   "id": "morbidelli-m100-5510x1320",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M100",
+   "variant": "5510x1320",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 216.93,
+    "y": 51.97,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 5510,
+    "y": 1320,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit 4.5 kW",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 44 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m100-200.32314",
+    "https://wtp.hoechsmann.com/en/lexikon/34836/scm_morbidelli"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Point-to-point panel routing/drilling centre (bar-and-pod table). Vectorial X-Y speed 56 m/min (Pro-Space) or 78 m/min (Pro-Speed); rapid here = Pro-Speed. Z = panel passage 180 mm (stored as gantry clearance; Z stroke not published). Up to 21 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 0-90 deg blade unit 2.2 kW option. Formerly 'Morbidelli author M100'."
+  },
+  {
+   "id": "morbidelli-m100-3110x1620",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M100",
+   "variant": "3110x1620",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.44,
+    "y": 63.78,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3110,
+    "y": 1620,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit 4.5 kW",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 44 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m100-200.32314",
+    "https://wtp.hoechsmann.com/en/lexikon/34836/scm_morbidelli"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Point-to-point panel routing/drilling centre (bar-and-pod table). Vectorial X-Y speed 56 m/min (Pro-Space) or 78 m/min (Pro-Speed); rapid here = Pro-Speed. Z = panel passage 180 mm (stored as gantry clearance; Z stroke not published). Up to 21 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 0-90 deg blade unit 2.2 kW option. Formerly 'Morbidelli author M100'."
+  },
+  {
+   "id": "morbidelli-m100-3710x1620",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M100",
+   "variant": "3710x1620",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 146.06,
+    "y": 63.78,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3710,
+    "y": 1620,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit 4.5 kW",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 44 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m100-200.32314",
+    "https://wtp.hoechsmann.com/en/lexikon/34836/scm_morbidelli"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Point-to-point panel routing/drilling centre (bar-and-pod table). Vectorial X-Y speed 56 m/min (Pro-Space) or 78 m/min (Pro-Speed); rapid here = Pro-Speed. Z = panel passage 180 mm (stored as gantry clearance; Z stroke not published). Up to 21 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 0-90 deg blade unit 2.2 kW option. Formerly 'Morbidelli author M100'."
+  },
+  {
+   "id": "morbidelli-m100-5510x1620",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M100",
+   "variant": "5510x1620",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 216.93,
+    "y": 63.78,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 5510,
+    "y": 1620,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit 4.5 kW",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 44 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m100-200.32314",
+    "https://wtp.hoechsmann.com/en/lexikon/34836/scm_morbidelli"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Point-to-point panel routing/drilling centre (bar-and-pod table). Vectorial X-Y speed 56 m/min (Pro-Space) or 78 m/min (Pro-Speed); rapid here = Pro-Speed. Z = panel passage 180 mm (stored as gantry clearance; Z stroke not published). Up to 21 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 0-90 deg blade unit 2.2 kW option. Formerly 'Morbidelli author M100'."
+  },
+  {
+   "id": "morbidelli-m200-3110x1620",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M200",
+   "variant": "3110x1620",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.44,
+    "y": 63.78,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3110,
+    "y": 1620,
+    "z": null
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit 4.5 kW",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 60 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m100-200.32314",
+    "https://wtp.hoechsmann.com/en/lexikon/34836/scm_morbidelli"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 250 mm"
+   },
+   "notes": "Point-to-point panel routing/drilling centre (bar-and-pod table). Vectorial X-Y speed 56 m/min (Pro-Space) or 78 m/min (Pro-Speed); rapid here = Pro-Speed. Z = panel passage 250 mm (stored as gantry clearance; Z stroke not published). Up to 21 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 0-90 deg blade unit 2.2 kW option. Formerly 'Morbidelli author M200'."
+  },
+  {
+   "id": "morbidelli-m200-3710x1620",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M200",
+   "variant": "3710x1620",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 146.06,
+    "y": 63.78,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3710,
+    "y": 1620,
+    "z": null
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit 4.5 kW",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 60 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m100-200.32314",
+    "https://wtp.hoechsmann.com/en/lexikon/34836/scm_morbidelli"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 250 mm"
+   },
+   "notes": "Point-to-point panel routing/drilling centre (bar-and-pod table). Vectorial X-Y speed 56 m/min (Pro-Space) or 78 m/min (Pro-Speed); rapid here = Pro-Speed. Z = panel passage 250 mm (stored as gantry clearance; Z stroke not published). Up to 21 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 0-90 deg blade unit 2.2 kW option. Formerly 'Morbidelli author M200'."
+  },
+  {
+   "id": "morbidelli-m200-5510x1620",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M200",
+   "variant": "5510x1620",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 216.93,
+    "y": 63.78,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 5510,
+    "y": 1620,
+    "z": null
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit 4.5 kW",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 60 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m100-200.32314",
+    "https://wtp.hoechsmann.com/en/lexikon/34836/scm_morbidelli"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 250 mm"
+   },
+   "notes": "Point-to-point panel routing/drilling centre (bar-and-pod table). Vectorial X-Y speed 56 m/min (Pro-Space) or 78 m/min (Pro-Speed); rapid here = Pro-Speed. Z = panel passage 250 mm (stored as gantry clearance; Z stroke not published). Up to 21 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 0-90 deg blade unit 2.2 kW option. Formerly 'Morbidelli author M200'."
+  },
+  {
+   "id": "morbidelli-m100-f-3110x1320",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M100 F",
+   "variant": "3110x1320",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.44,
+    "y": 51.97,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3110,
+    "y": 1320,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit 4.5 kW",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 44 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m100-200f.32339"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Flat (nesting) table version of the M100. Vectorial X-Y speed 56 m/min (Pro-Space) or 78 m/min (Pro-Speed); rapid here = Pro-Speed. Z = panel passage 180 mm (stored as gantry clearance). Up to 21 vertical + 12 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-m100-f-3710x1320",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M100 F",
+   "variant": "3710x1320",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 146.06,
+    "y": 51.97,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3710,
+    "y": 1320,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit 4.5 kW",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 44 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m100-200f.32339"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Flat (nesting) table version of the M100. Vectorial X-Y speed 56 m/min (Pro-Space) or 78 m/min (Pro-Speed); rapid here = Pro-Speed. Z = panel passage 180 mm (stored as gantry clearance). Up to 21 vertical + 12 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-m100-f-5510x1320",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M100 F",
+   "variant": "5510x1320",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 216.93,
+    "y": 51.97,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 5510,
+    "y": 1320,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit 4.5 kW",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 44 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m100-200f.32339"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Flat (nesting) table version of the M100. Vectorial X-Y speed 56 m/min (Pro-Space) or 78 m/min (Pro-Speed); rapid here = Pro-Speed. Z = panel passage 180 mm (stored as gantry clearance). Up to 21 vertical + 12 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-m100-f-3110x1620",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M100 F",
+   "variant": "3110x1620",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.44,
+    "y": 63.78,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3110,
+    "y": 1620,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit 4.5 kW",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 44 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m100-200f.32339"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Flat (nesting) table version of the M100. Vectorial X-Y speed 56 m/min (Pro-Space) or 78 m/min (Pro-Speed); rapid here = Pro-Speed. Z = panel passage 180 mm (stored as gantry clearance). Up to 21 vertical + 12 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-m100-f-3710x1620",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M100 F",
+   "variant": "3710x1620",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 146.06,
+    "y": 63.78,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3710,
+    "y": 1620,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit 4.5 kW",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 44 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m100-200f.32339"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Flat (nesting) table version of the M100. Vectorial X-Y speed 56 m/min (Pro-Space) or 78 m/min (Pro-Speed); rapid here = Pro-Speed. Z = panel passage 180 mm (stored as gantry clearance). Up to 21 vertical + 12 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-m100-f-5510x1620",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M100 F",
+   "variant": "5510x1620",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 216.93,
+    "y": 63.78,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 5510,
+    "y": 1620,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit 4.5 kW",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 44 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m100-200f.32339"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Flat (nesting) table version of the M100. Vectorial X-Y speed 56 m/min (Pro-Space) or 78 m/min (Pro-Speed); rapid here = Pro-Speed. Z = panel passage 180 mm (stored as gantry clearance). Up to 21 vertical + 12 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-m200-f-3110x1620",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M200 F",
+   "variant": "3110x1620",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.44,
+    "y": 63.78,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3110,
+    "y": 1620,
+    "z": null
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit 4.5 kW",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 60 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m100-200f.32339"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 250 mm"
+   },
+   "notes": "Flat (nesting) table version of the M200. Vectorial X-Y speed 56 m/min (Pro-Space) or 78 m/min (Pro-Speed); rapid here = Pro-Speed. Z = panel passage 250 mm (stored as gantry clearance). Up to 21 vertical + 12 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-m200-f-3710x1620",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M200 F",
+   "variant": "3710x1620",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 146.06,
+    "y": 63.78,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3710,
+    "y": 1620,
+    "z": null
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit 4.5 kW",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 60 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m100-200f.32339"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 250 mm"
+   },
+   "notes": "Flat (nesting) table version of the M200. Vectorial X-Y speed 56 m/min (Pro-Space) or 78 m/min (Pro-Speed); rapid here = Pro-Speed. Z = panel passage 250 mm (stored as gantry clearance). Up to 21 vertical + 12 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-m200-f-5510x1620",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M200 F",
+   "variant": "5510x1620",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 216.93,
+    "y": 63.78,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 5510,
+    "y": 1620,
+    "z": null
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit 4.5 kW",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 60 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m100-200f.32339"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 250 mm"
+   },
+   "notes": "Flat (nesting) table version of the M200. Vectorial X-Y speed 56 m/min (Pro-Space) or 78 m/min (Pro-Speed); rapid here = Pro-Speed. Z = panel passage 250 mm (stored as gantry clearance). Up to 21 vertical + 12 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-m220-3110x1620",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M220",
+   "variant": "3110x1620",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.44,
+    "y": 63.78,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3110,
+    "y": 1620,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit 4.5 kW",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 60 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m220.66223"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Panel routing/drilling centre with 34 vertical + 22 horizontal drilling spindles and 2 blades in X. Vectorial speed 56 m/min (Pro-Space) / 78 m/min (Pro-Speed); rapid here = Pro-Speed. Z panel passage 180 mm (stored as gantry clearance)."
+  },
+  {
+   "id": "morbidelli-m220-3710x1620",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M220",
+   "variant": "3710x1620",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 146.06,
+    "y": 63.78,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3710,
+    "y": 1620,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit 4.5 kW",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 60 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m220.66223"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Panel routing/drilling centre with 34 vertical + 22 horizontal drilling spindles and 2 blades in X. Vectorial speed 56 m/min (Pro-Space) / 78 m/min (Pro-Speed); rapid here = Pro-Speed. Z panel passage 180 mm (stored as gantry clearance)."
+  },
+  {
+   "id": "morbidelli-m220-5510x1620",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M220",
+   "variant": "5510x1620",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 216.93,
+    "y": 63.78,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 5510,
+    "y": 1620,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit 4.5 kW",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 60 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m220.66223"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Panel routing/drilling centre with 34 vertical + 22 horizontal drilling spindles and 2 blades in X. Vectorial speed 56 m/min (Pro-Space) / 78 m/min (Pro-Speed); rapid here = Pro-Speed. Z panel passage 180 mm (stored as gantry clearance)."
+  },
+  {
+   "id": "morbidelli-m220-f-3110x1620",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M220 F",
+   "variant": "3110x1620",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.44,
+    "y": 63.78,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3110,
+    "y": 1620,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit 4.5 kW",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 60 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m220f.66387"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Flat (nesting) table version. Panel routing/drilling centre with 34 vertical + 22 horizontal drilling spindles and 2 blades in X. Vectorial speed 56 m/min (Pro-Space) / 78 m/min (Pro-Speed); rapid here = Pro-Speed. Z panel passage 180 mm (stored as gantry clearance)."
+  },
+  {
+   "id": "morbidelli-m220-f-3710x1620",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M220 F",
+   "variant": "3710x1620",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 146.06,
+    "y": 63.78,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3710,
+    "y": 1620,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit 4.5 kW",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 60 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m220f.66387"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Flat (nesting) table version. Panel routing/drilling centre with 34 vertical + 22 horizontal drilling spindles and 2 blades in X. Vectorial speed 56 m/min (Pro-Space) / 78 m/min (Pro-Speed); rapid here = Pro-Speed. Z panel passage 180 mm (stored as gantry clearance)."
+  },
+  {
+   "id": "morbidelli-m220-f-5510x1620",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M220 F",
+   "variant": "5510x1620",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 216.93,
+    "y": 63.78,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 5510,
+    "y": 1620,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit 4.5 kW",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 60 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m220f.66387"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Flat (nesting) table version. Panel routing/drilling centre with 34 vertical + 22 horizontal drilling spindles and 2 blades in X. Vectorial speed 56 m/min (Pro-Space) / 78 m/min (Pro-Speed); rapid here = Pro-Speed. Z panel passage 180 mm (stored as gantry clearance)."
+  },
+  {
+   "id": "morbidelli-m90-3115x1320",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M90",
+   "variant": "3115x1320",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.64,
+    "y": 51.97,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3115,
+    "y": 1320,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 14 kW (19 hp)",
+     "power_kw": 14,
+     "power_hp": 19,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2205,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 56000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changers up to 25 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m90.125283"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Compact panel routing/drilling centre. Y-axis panel clearance 1600 mm. Vectorial speed 56 m/min (Pro-Space). Z panel clearance 180 mm (stored as gantry clearance). Up to 21 vertical + 10 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-m600-f-3650x1600",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M600 F",
+   "variant": "3650x1600",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 143.7,
+    "y": 62.99,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3650,
+    "y": 1600,
+    "z": null
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m600-800f.802"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 250 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 250 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Flat (nesting) table version."
+  },
+  {
+   "id": "morbidelli-m600-f-3650x1840",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M600 F",
+   "variant": "3650x1840",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 143.7,
+    "y": 72.44,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3650,
+    "y": 1840,
+    "z": null
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m600-800f.802"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 250 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 250 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Flat (nesting) table version."
+  },
+  {
+   "id": "morbidelli-m600-f-3650x2120",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M600 F",
+   "variant": "3650x2120",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 143.7,
+    "y": 83.46,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3650,
+    "y": 2120,
+    "z": null
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m600-800f.802"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 250 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 250 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Flat (nesting) table version."
+  },
+  {
+   "id": "morbidelli-m600-f-4970x1600",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M600 F",
+   "variant": "4970x1600",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 195.67,
+    "y": 62.99,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 4970,
+    "y": 1600,
+    "z": null
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m600-800f.802"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 250 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 250 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Flat (nesting) table version."
+  },
+  {
+   "id": "morbidelli-m600-f-4970x1840",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M600 F",
+   "variant": "4970x1840",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 195.67,
+    "y": 72.44,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 4970,
+    "y": 1840,
+    "z": null
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m600-800f.802"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 250 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 250 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Flat (nesting) table version."
+  },
+  {
+   "id": "morbidelli-m600-f-4970x2120",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M600 F",
+   "variant": "4970x2120",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 195.67,
+    "y": 83.46,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 4970,
+    "y": 2120,
+    "z": null
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m600-800f.802"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 250 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 250 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Flat (nesting) table version."
+  },
+  {
+   "id": "morbidelli-m600-f-6170x1600",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M600 F",
+   "variant": "6170x1600",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 242.91,
+    "y": 62.99,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 6170,
+    "y": 1600,
+    "z": null
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m600-800f.802"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 250 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 250 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Flat (nesting) table version."
+  },
+  {
+   "id": "morbidelli-m600-f-6170x1840",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M600 F",
+   "variant": "6170x1840",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 242.91,
+    "y": 72.44,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 6170,
+    "y": 1840,
+    "z": null
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m600-800f.802"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 250 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 250 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Flat (nesting) table version."
+  },
+  {
+   "id": "morbidelli-m600-f-6170x2120",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M600 F",
+   "variant": "6170x2120",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 242.91,
+    "y": 83.46,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 6170,
+    "y": 2120,
+    "z": null
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m600-800f.802"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 250 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 250 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Flat (nesting) table version."
+  },
+  {
+   "id": "morbidelli-m800-f-3650x1600",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M800 F",
+   "variant": "3650x1600",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 143.7,
+    "y": 62.99,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3650,
+    "y": 1600,
+    "z": null
+   },
+   "gantry_clearance_in": 13.78,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m600-800f.802"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 350 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 350 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Flat (nesting) table version."
+  },
+  {
+   "id": "morbidelli-m800-f-3650x1840",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M800 F",
+   "variant": "3650x1840",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 143.7,
+    "y": 72.44,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3650,
+    "y": 1840,
+    "z": null
+   },
+   "gantry_clearance_in": 13.78,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m600-800f.802"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 350 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 350 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Flat (nesting) table version."
+  },
+  {
+   "id": "morbidelli-m800-f-3650x2120",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M800 F",
+   "variant": "3650x2120",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 143.7,
+    "y": 83.46,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3650,
+    "y": 2120,
+    "z": null
+   },
+   "gantry_clearance_in": 13.78,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m600-800f.802"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 350 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 350 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Flat (nesting) table version."
+  },
+  {
+   "id": "morbidelli-m800-f-4970x1600",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M800 F",
+   "variant": "4970x1600",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 195.67,
+    "y": 62.99,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 4970,
+    "y": 1600,
+    "z": null
+   },
+   "gantry_clearance_in": 13.78,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m600-800f.802"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 350 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 350 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Flat (nesting) table version."
+  },
+  {
+   "id": "morbidelli-m800-f-4970x1840",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M800 F",
+   "variant": "4970x1840",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 195.67,
+    "y": 72.44,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 4970,
+    "y": 1840,
+    "z": null
+   },
+   "gantry_clearance_in": 13.78,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m600-800f.802"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 350 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 350 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Flat (nesting) table version."
+  },
+  {
+   "id": "morbidelli-m800-f-4970x2120",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M800 F",
+   "variant": "4970x2120",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 195.67,
+    "y": 83.46,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 4970,
+    "y": 2120,
+    "z": null
+   },
+   "gantry_clearance_in": 13.78,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m600-800f.802"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 350 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 350 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Flat (nesting) table version."
+  },
+  {
+   "id": "morbidelli-m800-f-6170x1600",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M800 F",
+   "variant": "6170x1600",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 242.91,
+    "y": 62.99,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 6170,
+    "y": 1600,
+    "z": null
+   },
+   "gantry_clearance_in": 13.78,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m600-800f.802"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 350 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 350 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Flat (nesting) table version."
+  },
+  {
+   "id": "morbidelli-m800-f-6170x1840",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M800 F",
+   "variant": "6170x1840",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 242.91,
+    "y": 72.44,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 6170,
+    "y": 1840,
+    "z": null
+   },
+   "gantry_clearance_in": 13.78,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m600-800f.802"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 350 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 350 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Flat (nesting) table version."
+  },
+  {
+   "id": "morbidelli-m800-f-6170x2120",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M800 F",
+   "variant": "6170x2120",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 242.91,
+    "y": 83.46,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 6170,
+    "y": 2120,
+    "z": null
+   },
+   "gantry_clearance_in": 13.78,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-m600-800f.802"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 350 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 350 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Flat (nesting) table version."
+  },
+  {
+   "id": "morbidelli-m600-3680x1680",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M600",
+   "variant": "3680x1680",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 144.88,
+    "y": 66.14,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3680,
+    "y": 1680,
+    "z": null
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2021/https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m600-800.793"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 250 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 250 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Bar-and-pod version; data from the 2021 SCM page (web archive). Formerly 'Morbidelli author M600'."
+  },
+  {
+   "id": "morbidelli-m600-3680x1905",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M600",
+   "variant": "3680x1905",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 144.88,
+    "y": 75.0,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3680,
+    "y": 1905,
+    "z": null
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2021/https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m600-800.793"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 250 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 250 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Bar-and-pod version; data from the 2021 SCM page (web archive). Formerly 'Morbidelli author M600'."
+  },
+  {
+   "id": "morbidelli-m600-5020x1680",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M600",
+   "variant": "5020x1680",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 197.64,
+    "y": 66.14,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 5020,
+    "y": 1680,
+    "z": null
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2021/https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m600-800.793"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 250 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 250 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Bar-and-pod version; data from the 2021 SCM page (web archive). Formerly 'Morbidelli author M600'."
+  },
+  {
+   "id": "morbidelli-m600-5020x1905",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M600",
+   "variant": "5020x1905",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 197.64,
+    "y": 75.0,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 5020,
+    "y": 1905,
+    "z": null
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2021/https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m600-800.793"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 250 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 250 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Bar-and-pod version; data from the 2021 SCM page (web archive). Formerly 'Morbidelli author M600'."
+  },
+  {
+   "id": "morbidelli-m600-6360x1680",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M600",
+   "variant": "6360x1680",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 250.39,
+    "y": 66.14,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 6360,
+    "y": 1680,
+    "z": null
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2021/https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m600-800.793"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 250 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 250 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Bar-and-pod version; data from the 2021 SCM page (web archive). Formerly 'Morbidelli author M600'."
+  },
+  {
+   "id": "morbidelli-m600-6360x1905",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M600",
+   "variant": "6360x1905",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 250.39,
+    "y": 75.0,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 6360,
+    "y": 1905,
+    "z": null
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2021/https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m600-800.793"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 250 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 250 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Bar-and-pod version; data from the 2021 SCM page (web archive). Formerly 'Morbidelli author M600'."
+  },
+  {
+   "id": "morbidelli-m800-3680x1680",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M800",
+   "variant": "3680x1680",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 144.88,
+    "y": 66.14,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3680,
+    "y": 1680,
+    "z": null
+   },
+   "gantry_clearance_in": 13.78,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2021/https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m600-800.793"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 350 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 350 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Bar-and-pod version; data from the 2021 SCM page (web archive). Formerly 'Morbidelli author M800'."
+  },
+  {
+   "id": "morbidelli-m800-3680x1905",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M800",
+   "variant": "3680x1905",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 144.88,
+    "y": 75.0,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3680,
+    "y": 1905,
+    "z": null
+   },
+   "gantry_clearance_in": 13.78,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2021/https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m600-800.793"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 350 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 350 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Bar-and-pod version; data from the 2021 SCM page (web archive). Formerly 'Morbidelli author M800'."
+  },
+  {
+   "id": "morbidelli-m800-5020x1680",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M800",
+   "variant": "5020x1680",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 197.64,
+    "y": 66.14,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 5020,
+    "y": 1680,
+    "z": null
+   },
+   "gantry_clearance_in": 13.78,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2021/https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m600-800.793"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 350 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 350 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Bar-and-pod version; data from the 2021 SCM page (web archive). Formerly 'Morbidelli author M800'."
+  },
+  {
+   "id": "morbidelli-m800-5020x1905",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M800",
+   "variant": "5020x1905",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 197.64,
+    "y": 75.0,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 5020,
+    "y": 1905,
+    "z": null
+   },
+   "gantry_clearance_in": 13.78,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2021/https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m600-800.793"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 350 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 350 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Bar-and-pod version; data from the 2021 SCM page (web archive). Formerly 'Morbidelli author M800'."
+  },
+  {
+   "id": "morbidelli-m800-6360x1680",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M800",
+   "variant": "6360x1680",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 250.39,
+    "y": 66.14,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 6360,
+    "y": 1680,
+    "z": null
+   },
+   "gantry_clearance_in": 13.78,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2021/https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m600-800.793"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 350 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 350 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Bar-and-pod version; data from the 2021 SCM page (web archive). Formerly 'Morbidelli author M800'."
+  },
+  {
+   "id": "morbidelli-m800-6360x1905",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M800",
+   "variant": "6360x1905",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 250.39,
+    "y": 75.0,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 6360,
+    "y": 1905,
+    "z": null
+   },
+   "gantry_clearance_in": 13.78,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 17 kW (23 hp)",
+     "power_kw": 17,
+     "power_hp": 23,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 5000,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 127000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 54 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2021/https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m600-800.793"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 350 mm"
+   },
+   "notes": "Vectorial X-Y speed 127 m/min, Z 30 m/min. Z panel passage 350 mm (stored as gantry clearance). Up to 38 vertical + 12 horizontal drilling spindles, 125 mm blade in X, 160 mm 0-90 deg blade. Bar-and-pod version; data from the 2021 SCM page (web archive). Formerly 'Morbidelli author M800'."
+  },
+  {
+   "id": "morbidelli-m400-3680x1380",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M400",
+   "variant": "3680x1380",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 144.88,
+    "y": 54.33,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3680,
+    "y": 1380,
+    "z": null
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (21 hp)",
+     "power_kw": 15,
+     "power_hp": 21,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3346,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 85000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 36 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2021/https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m400.797"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Panel routing/drilling centre (2021 SCM page, web archive; formerly 'Morbidelli author M400'). Vectorial X-Y speed 85 m/min, Z 30 m/min. Z panel passage 170 mm (stored as gantry clearance). Up to 25 vertical + 12 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-m400-3680x1680",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M400",
+   "variant": "3680x1680",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 144.88,
+    "y": 66.14,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3680,
+    "y": 1680,
+    "z": null
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (21 hp)",
+     "power_kw": 15,
+     "power_hp": 21,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3346,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 85000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 36 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2021/https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m400.797"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Panel routing/drilling centre (2021 SCM page, web archive; formerly 'Morbidelli author M400'). Vectorial X-Y speed 85 m/min, Z 30 m/min. Z panel passage 170 mm (stored as gantry clearance). Up to 25 vertical + 12 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-m400-5020x1380",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M400",
+   "variant": "5020x1380",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 197.64,
+    "y": 54.33,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 5020,
+    "y": 1380,
+    "z": null
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (21 hp)",
+     "power_kw": 15,
+     "power_hp": 21,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3346,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 85000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 36 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2021/https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m400.797"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Panel routing/drilling centre (2021 SCM page, web archive; formerly 'Morbidelli author M400'). Vectorial X-Y speed 85 m/min, Z 30 m/min. Z panel passage 170 mm (stored as gantry clearance). Up to 25 vertical + 12 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-m400-5020x1680",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M400",
+   "variant": "5020x1680",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 197.64,
+    "y": 66.14,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 5020,
+    "y": 1680,
+    "z": null
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (21 hp)",
+     "power_kw": 15,
+     "power_hp": 21,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3346,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 85000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 36 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2021/https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m400.797"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Panel routing/drilling centre (2021 SCM page, web archive; formerly 'Morbidelli author M400'). Vectorial X-Y speed 85 m/min, Z 30 m/min. Z panel passage 170 mm (stored as gantry clearance). Up to 25 vertical + 12 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-m400-6360x1380",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M400",
+   "variant": "6360x1380",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 250.39,
+    "y": 54.33,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 6360,
+    "y": 1380,
+    "z": null
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (21 hp)",
+     "power_kw": 15,
+     "power_hp": 21,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3346,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 85000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 36 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2021/https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m400.797"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Panel routing/drilling centre (2021 SCM page, web archive; formerly 'Morbidelli author M400'). Vectorial X-Y speed 85 m/min, Z 30 m/min. Z panel passage 170 mm (stored as gantry clearance). Up to 25 vertical + 12 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-m400-6360x1680",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "M400",
+   "variant": "6360x1680",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 250.39,
+    "y": 66.14,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 6360,
+    "y": 1680,
+    "z": null
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (21 hp)",
+     "power_kw": 15,
+     "power_hp": 21,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3346,
+    "z": 1181
+   },
+   "rapid_mm_min": {
+    "xy": 85000,
+    "z": 30000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 36 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2021/https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/cnc-machining-centres-for-routing-and-drilling.878/morbidelli-m400.797"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Panel routing/drilling centre (2021 SCM page, web archive; formerly 'Morbidelli author M400'). Vectorial X-Y speed 85 m/min, Z 30 m/min. Z panel passage 170 mm (stored as gantry clearance). Up to 25 vertical + 12 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-x50-2556x1296",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "X50",
+   "variant": "2556x1296",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 100.63,
+    "y": 51.02,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2556,
+    "y": 1296,
+    "z": null
+   },
+   "gantry_clearance_in": 5.51,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3-axis electrospindle up to 9.5 kW",
+     "power_kw": 9.5,
+     "power_hp": 12.2,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2244,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 57000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 12 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-x50.202596"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 140 mm"
+   },
+   "notes": "Entry nesting centre. Vectorial X-Y speed 47 m/min (PRO-SPACE) / 57 m/min (PRO-SPEED); rapid here = PRO-SPEED. Z panel passage 140 mm (stored as gantry clearance). Up to 12 vertical + 6 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-x50-3756x1596",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "X50",
+   "variant": "3756x1596",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 147.87,
+    "y": 62.83,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3756,
+    "y": 1596,
+    "z": null
+   },
+   "gantry_clearance_in": 5.51,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3-axis electrospindle up to 9.5 kW",
+     "power_kw": 9.5,
+     "power_hp": 12.2,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2244,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 57000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 12 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-x50.202596"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 140 mm"
+   },
+   "notes": "Entry nesting centre. Vectorial X-Y speed 47 m/min (PRO-SPACE) / 57 m/min (PRO-SPEED); rapid here = PRO-SPEED. Z panel passage 140 mm (stored as gantry clearance). Up to 12 vertical + 6 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-x50-3756x1896",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "X50",
+   "variant": "3756x1896",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 147.87,
+    "y": 74.65,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3756,
+    "y": 1896,
+    "z": null
+   },
+   "gantry_clearance_in": 5.51,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3-axis electrospindle up to 9.5 kW",
+     "power_kw": 9.5,
+     "power_hp": 12.2,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2244,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 57000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 12 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-x50.202596"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 140 mm"
+   },
+   "notes": "Entry nesting centre. Vectorial X-Y speed 47 m/min (PRO-SPACE) / 57 m/min (PRO-SPEED); rapid here = PRO-SPEED. Z panel passage 140 mm (stored as gantry clearance). Up to 12 vertical + 6 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-x50-3156x2216",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "X50",
+   "variant": "3156x2216",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 124.25,
+    "y": 87.24,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3156,
+    "y": 2216,
+    "z": null
+   },
+   "gantry_clearance_in": 5.51,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3-axis electrospindle up to 9.5 kW",
+     "power_kw": 9.5,
+     "power_hp": 12.2,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2244,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 57000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 12 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-x50.202596"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 140 mm"
+   },
+   "notes": "Entry nesting centre. Vectorial X-Y speed 47 m/min (PRO-SPACE) / 57 m/min (PRO-SPEED); rapid here = PRO-SPEED. Z panel passage 140 mm (stored as gantry clearance). Up to 12 vertical + 6 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-x50-4356x2216",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "X50",
+   "variant": "4356x2216",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 171.5,
+    "y": 87.24,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 4356,
+    "y": 2216,
+    "z": null
+   },
+   "gantry_clearance_in": 5.51,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3-axis electrospindle up to 9.5 kW",
+     "power_kw": 9.5,
+     "power_hp": 12.2,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2244,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 57000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 12 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-x50.202596"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 140 mm"
+   },
+   "notes": "Entry nesting centre. Vectorial X-Y speed 47 m/min (PRO-SPACE) / 57 m/min (PRO-SPEED); rapid here = PRO-SPEED. Z panel passage 140 mm (stored as gantry clearance). Up to 12 vertical + 6 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-x100-2556x1296",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "X100",
+   "variant": "2556x1296",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 100.63,
+    "y": 51.02,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2556,
+    "y": 1296,
+    "z": null
+   },
+   "gantry_clearance_in": 5.91,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3-4 axis electrospindle up to 15 kW",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2756,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 70000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 31 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-x100.202594"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 150 mm"
+   },
+   "notes": "Nesting centre. Vectorial X-Y speed 70 m/min (PRO-SPACE). Z panel passage 150 mm (stored as gantry clearance). Up to 16 vertical + 8 horizontal drilling spindles, up to 2 blades."
+  },
+  {
+   "id": "morbidelli-x100-3756x1596",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "X100",
+   "variant": "3756x1596",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 147.87,
+    "y": 62.83,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3756,
+    "y": 1596,
+    "z": null
+   },
+   "gantry_clearance_in": 5.91,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3-4 axis electrospindle up to 15 kW",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2756,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 70000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 31 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-x100.202594"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 150 mm"
+   },
+   "notes": "Nesting centre. Vectorial X-Y speed 70 m/min (PRO-SPACE). Z panel passage 150 mm (stored as gantry clearance). Up to 16 vertical + 8 horizontal drilling spindles, up to 2 blades."
+  },
+  {
+   "id": "morbidelli-x100-3756x1896",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "X100",
+   "variant": "3756x1896",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 147.87,
+    "y": 74.65,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3756,
+    "y": 1896,
+    "z": null
+   },
+   "gantry_clearance_in": 5.91,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3-4 axis electrospindle up to 15 kW",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2756,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 70000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 31 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-x100.202594"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 150 mm"
+   },
+   "notes": "Nesting centre. Vectorial X-Y speed 70 m/min (PRO-SPACE). Z panel passage 150 mm (stored as gantry clearance). Up to 16 vertical + 8 horizontal drilling spindles, up to 2 blades."
+  },
+  {
+   "id": "morbidelli-x100-3156x2216",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "X100",
+   "variant": "3156x2216",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 124.25,
+    "y": 87.24,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3156,
+    "y": 2216,
+    "z": null
+   },
+   "gantry_clearance_in": 5.91,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3-4 axis electrospindle up to 15 kW",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2756,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 70000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 31 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-x100.202594"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 150 mm"
+   },
+   "notes": "Nesting centre. Vectorial X-Y speed 70 m/min (PRO-SPACE). Z panel passage 150 mm (stored as gantry clearance). Up to 16 vertical + 8 horizontal drilling spindles, up to 2 blades."
+  },
+  {
+   "id": "morbidelli-x100-4356x2216",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "X100",
+   "variant": "4356x2216",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 171.5,
+    "y": 87.24,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 4356,
+    "y": 2216,
+    "z": null
+   },
+   "gantry_clearance_in": 5.91,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3-4 axis electrospindle up to 15 kW",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2756,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 70000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 31 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-x100.202594"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 150 mm"
+   },
+   "notes": "Nesting centre. Vectorial X-Y speed 70 m/min (PRO-SPACE). Z panel passage 150 mm (stored as gantry clearance). Up to 16 vertical + 8 horizontal drilling spindles, up to 2 blades."
+  },
+  {
+   "id": "morbidelli-x200-3156x1596",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "X200",
+   "variant": "3156x1596",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 124.25,
+    "y": 62.83,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3156,
+    "y": 1596,
+    "z": null
+   },
+   "gantry_clearance_in": 5.91,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3-4 axis electrospindle up to 15 kW",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit up to 5.4 kW",
+     "power_kw": 5.4,
+     "power_hp": 7.4,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3307,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 84000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 38 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-x200-x400.92699"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 150 mm"
+   },
+   "notes": "Nesting centre. Vectorial X-Y speed 84 m/min (Pro-Space). Z panel passage 150 mm (stored as gantry clearance). Up to 21 vertical + 12 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-x200-3756x1596",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "X200",
+   "variant": "3756x1596",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 147.87,
+    "y": 62.83,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3756,
+    "y": 1596,
+    "z": null
+   },
+   "gantry_clearance_in": 5.91,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3-4 axis electrospindle up to 15 kW",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit up to 5.4 kW",
+     "power_kw": 5.4,
+     "power_hp": 7.4,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3307,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 84000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 38 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-x200-x400.92699"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 150 mm"
+   },
+   "notes": "Nesting centre. Vectorial X-Y speed 84 m/min (Pro-Space). Z panel passage 150 mm (stored as gantry clearance). Up to 21 vertical + 12 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-x200-3756x1896",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "X200",
+   "variant": "3756x1896",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 147.87,
+    "y": 74.65,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3756,
+    "y": 1896,
+    "z": null
+   },
+   "gantry_clearance_in": 5.91,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3-4 axis electrospindle up to 15 kW",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit up to 5.4 kW",
+     "power_kw": 5.4,
+     "power_hp": 7.4,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3307,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 84000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 38 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-x200-x400.92699"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 150 mm"
+   },
+   "notes": "Nesting centre. Vectorial X-Y speed 84 m/min (Pro-Space). Z panel passage 150 mm (stored as gantry clearance). Up to 21 vertical + 12 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-x200-3156x2216",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "X200",
+   "variant": "3156x2216",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 124.25,
+    "y": 87.24,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3156,
+    "y": 2216,
+    "z": null
+   },
+   "gantry_clearance_in": 5.91,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3-4 axis electrospindle up to 15 kW",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit up to 5.4 kW",
+     "power_kw": 5.4,
+     "power_hp": 7.4,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3307,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 84000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 38 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-x200-x400.92699"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 150 mm"
+   },
+   "notes": "Nesting centre. Vectorial X-Y speed 84 m/min (Pro-Space). Z panel passage 150 mm (stored as gantry clearance). Up to 21 vertical + 12 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-x200-4356x2216",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "X200",
+   "variant": "4356x2216",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 171.5,
+    "y": 87.24,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 4356,
+    "y": 2216,
+    "z": null
+   },
+   "gantry_clearance_in": 5.91,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3-4 axis electrospindle up to 15 kW",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Auxiliary routing unit up to 5.4 kW",
+     "power_kw": 5.4,
+     "power_hp": 7.4,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3307,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 84000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 38 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-x200-x400.92699"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 150 mm"
+   },
+   "notes": "Nesting centre. Vectorial X-Y speed 84 m/min (Pro-Space). Z panel passage 150 mm (stored as gantry clearance). Up to 21 vertical + 12 horizontal drilling spindles."
+  },
+  {
+   "id": "morbidelli-x400-3156x1596",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "X400",
+   "variant": "3156x1596",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 124.25,
+    "y": 62.83,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3156,
+    "y": 1596,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3-4 axis electrospindle up to 15 kW",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "5-axis electrospindle up to 13.5 kW",
+     "power_kw": 13.5,
+     "power_hp": 18.4,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 4449,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 113000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 53 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-x200-x400.92699"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Nesting centre. Vectorial X-Y speed 113 m/min (Pro-Speed). Z panel passage 180 mm (stored as gantry clearance). Up to 21 vertical + 12 horizontal drilling spindles; X-PODs for 3D work on the nesting table."
+  },
+  {
+   "id": "morbidelli-x400-3756x1596",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "X400",
+   "variant": "3756x1596",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 147.87,
+    "y": 62.83,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3756,
+    "y": 1596,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3-4 axis electrospindle up to 15 kW",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "5-axis electrospindle up to 13.5 kW",
+     "power_kw": 13.5,
+     "power_hp": 18.4,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 4449,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 113000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 53 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-x200-x400.92699"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Nesting centre. Vectorial X-Y speed 113 m/min (Pro-Speed). Z panel passage 180 mm (stored as gantry clearance). Up to 21 vertical + 12 horizontal drilling spindles; X-PODs for 3D work on the nesting table."
+  },
+  {
+   "id": "morbidelli-x400-3756x1896",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "X400",
+   "variant": "3756x1896",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 147.87,
+    "y": 74.65,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3756,
+    "y": 1896,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3-4 axis electrospindle up to 15 kW",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "5-axis electrospindle up to 13.5 kW",
+     "power_kw": 13.5,
+     "power_hp": 18.4,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 4449,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 113000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 53 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-x200-x400.92699"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Nesting centre. Vectorial X-Y speed 113 m/min (Pro-Speed). Z panel passage 180 mm (stored as gantry clearance). Up to 21 vertical + 12 horizontal drilling spindles; X-PODs for 3D work on the nesting table."
+  },
+  {
+   "id": "morbidelli-x400-3156x2216",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "X400",
+   "variant": "3156x2216",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 124.25,
+    "y": 87.24,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3156,
+    "y": 2216,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3-4 axis electrospindle up to 15 kW",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "5-axis electrospindle up to 13.5 kW",
+     "power_kw": 13.5,
+     "power_hp": 18.4,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 4449,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 113000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 53 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-x200-x400.92699"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Nesting centre. Vectorial X-Y speed 113 m/min (Pro-Speed). Z panel passage 180 mm (stored as gantry clearance). Up to 21 vertical + 12 horizontal drilling spindles; X-PODs for 3D work on the nesting table."
+  },
+  {
+   "id": "morbidelli-x400-4356x2216",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "X400",
+   "variant": "4356x2216",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 171.5,
+    "y": 87.24,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 4356,
+    "y": 2216,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3-4 axis electrospindle up to 15 kW",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "5-axis electrospindle up to 13.5 kW",
+     "power_kw": 13.5,
+     "power_hp": 18.4,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 4449,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 113000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 53 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-x200-x400.92699"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Nesting centre. Vectorial X-Y speed 113 m/min (Pro-Speed). Z panel passage 180 mm (stored as gantry clearance). Up to 21 vertical + 12 horizontal drilling spindles; X-PODs for 3D work on the nesting table."
+  },
+  {
+   "id": "morbidelli-p200-3110x1620",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "P200",
+   "variant": "3110x1620",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.44,
+    "y": 63.78,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3110,
+    "y": 1620,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 60 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-boring-routing-edge-banding.876/morbidelli-p200.49338"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Routing/drilling centre with edge-banding unit (edges 16-85 mm high, 0.4-3 mm thick). Vectorial speed 56 (ProSpace) / 78 m/min (ProSpeed). Z panel passage 180 mm (stored as gantry clearance)."
+  },
+  {
+   "id": "morbidelli-p200-3710x1620",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "P200",
+   "variant": "3710x1620",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 146.06,
+    "y": 63.78,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3710,
+    "y": 1620,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 60 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-boring-routing-edge-banding.876/morbidelli-p200.49338"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Routing/drilling centre with edge-banding unit (edges 16-85 mm high, 0.4-3 mm thick). Vectorial speed 56 (ProSpace) / 78 m/min (ProSpeed). Z panel passage 180 mm (stored as gantry clearance)."
+  },
+  {
+   "id": "morbidelli-p200-5510x1620",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "P200",
+   "variant": "5510x1620",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 216.93,
+    "y": 63.78,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 5510,
+    "y": 1620,
+    "z": null
+   },
+   "gantry_clearance_in": 7.09,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 15 kW (20.5 hp)",
+     "power_kw": 15,
+     "power_hp": 20.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3071,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 78000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 60 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-boring-routing-edge-banding.876/morbidelli-p200.49338"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 180 mm"
+   },
+   "notes": "Routing/drilling centre with edge-banding unit (edges 16-85 mm high, 0.4-3 mm thick). Vectorial speed 56 (ProSpace) / 78 m/min (ProSpeed). Z panel passage 180 mm (stored as gantry clearance)."
+  },
+  {
+   "id": "morbidelli-n200-2440x1220",
+   "maker": "Morbidelli (SCM Group)",
+   "model": "N200",
+   "variant": "2440x1220",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 96.06,
+    "y": 48.03,
+    "z": 5.91
+   },
+   "work_area_mm": {
+    "x": 2440,
+    "y": 1220,
+    "z": 150
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing electrospindle up to 12 kW (16.5 hp)",
+     "power_kw": 12,
+     "power_hp": 16.5,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 4055,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 103000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "SCM CNC control with Maestro programming software (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Tool changer up to 32 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2021/https://www.scmgroup.com/en/scmwood/products/machining-centres.c874/machining-centres-for-nesting.879/morbidelli-n200.794"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "converted from the maker's m/min figures"
+   },
+   "notes": "Nesting centre (2021 SCM page, web archive). Working area X-Y-Z 2440-1220-150 mm, vectorial X-Y speed 103 m/min. Up to 12 vertical drilling spindles, 125 mm blade in X."
+  }
+ ]
+}

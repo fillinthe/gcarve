@@ -1,0 +1,610 @@
+{
+ "maker": "Sienci Labs",
+ "source_summary": "sienci.com product pages (Measurements table, mm) + Sienci LongMill feeds & speeds chart (imperial PDF) for derived chip loads.",
+ "retrieved": "2026-10-08",
+ "bits": [
+  {
+   "id": "sienci-endmill14bu",
+   "maker": "Sienci Labs",
+   "part_number": "ENDMILL14BU",
+   "name": "1/4\" Ball Nose Upcut End Mill – 1/4\" Shank-2F",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 6.35,
+   "shank": 6.35,
+   "cut_length": 25.4,
+   "oal": 63.5,
+   "flutes": 2,
+   "helix": "up",
+   "tip_radius": 3.175,
+   "chip_load": {
+    "softwood": [
+     0.0025,
+     0.0045
+    ],
+    "plywood": [
+     0.0025,
+     0.0045
+    ],
+    "mdf": [
+     0.0025,
+     0.0045
+    ],
+    "hardwood": [
+     0.0025,
+     0.0045
+    ],
+    "plastic-soft": [
+     0.0015,
+     0.0065
+    ],
+    "plastic-hard": [
+     0.0015,
+     0.0065
+    ],
+    "acrylic": [
+     0.0015,
+     0.0065
+    ],
+    "aluminum": [
+     0.001,
+     0.0031
+    ]
+   },
+   "gcarve_tool": {
+    "name": "Sienci Labs ENDMILL14BU Ball Nose 6.35 mm",
+    "kind": "BallNose",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://sienci.com/product/1-4-ballnose-upcut-end-mill/",
+    "https://resources.sienci.com/wp-content/uploads/2022/03/Feeds-and-Speeds-Imperial.pdf"
+   ],
+   "notes": "chip_load derived from Sienci LongMill feeds & speeds chart: feed / (RPM x flutes), range over its speed levels / operations."
+  },
+  {
+   "id": "sienci-endmill026570",
+   "maker": "Sienci Labs",
+   "part_number": "ENDMILL026570",
+   "name": "1/2\"x1-1/4\" Round Groove Bit – 1/4\" Shank-2F",
+   "family": "ball-nose",
+   "tool_material": "carbide tipped",
+   "units": "mm",
+   "diameter": 12.7,
+   "shank": 6.35,
+   "cut_length": 12.7,
+   "oal": 44.45,
+   "flutes": 2,
+   "tip_radius": 6.35,
+   "chip_load": {
+    "softwood": [
+     0.001,
+     0.0015
+    ],
+    "plywood": [
+     0.001,
+     0.0015
+    ],
+    "mdf": [
+     0.001,
+     0.0015
+    ],
+    "hardwood": [
+     0.0009,
+     0.0015
+    ]
+   },
+   "gcarve_tool": {
+    "name": "Sienci Labs ENDMILL026570 Ball Nose 12.7 mm",
+    "kind": "BallNose",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://sienci.com/product/1-2_1-1-4_round_groove_bit/",
+    "https://resources.sienci.com/wp-content/uploads/2022/03/Feeds-and-Speeds-Imperial.pdf"
+   ],
+   "notes": "chip_load derived from Sienci LongMill feeds & speeds chart: feed / (RPM x flutes), range over its speed levels / operations."
+  },
+  {
+   "id": "sienci-endmill029272",
+   "maker": "Sienci Labs",
+   "part_number": "ENDMILL029272",
+   "name": "1/8\" Flat Compression End Mill – 1/8\" Shank-2F (2pcs)",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.175,
+   "shank": 3.175,
+   "cut_length": 13.0,
+   "up_cut_length": 3.0,
+   "oal": 50.0,
+   "flutes": 2,
+   "helix": "compression",
+   "gcarve_tool": {
+    "name": "Sienci Labs ENDMILL029272 Compression 3.175 mm",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://sienci.com/product/1-8_flat_compression_end-mill_2pcs/"
+   ],
+   "notes": "cut_length = listed up-cut + down-cut lengths."
+  },
+  {
+   "id": "sienci-endmill14fcomp",
+   "maker": "Sienci Labs",
+   "part_number": "ENDMILL14FComp",
+   "name": "1/4\" Flat Compression End Mill – 1/4\" Shank-2F",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 6.35,
+   "shank": 6.35,
+   "cut_length": 25.0,
+   "up_cut_length": 4.0,
+   "oal": 63.5,
+   "flutes": 2,
+   "helix": "compression",
+   "gcarve_tool": {
+    "name": "Sienci Labs ENDMILL14FComp Compression 6.35 mm",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://sienci.com/product/1-4-flat-compression-end-mill/"
+   ],
+   "notes": "cut_length = listed up-cut + down-cut lengths. Measurements table lists flute type \"Downcut\"; title says compression."
+  },
+  {
+   "id": "sienci-endmill18fd",
+   "maker": "Sienci Labs",
+   "part_number": "ENDMILL18FD",
+   "name": "1/8\" Flat Downcut End Mill Pack – 1/8\" Shank-2F (3 or 10pcs)",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.175,
+   "shank": 3.175,
+   "cut_length": 15.0,
+   "oal": 45.0,
+   "flutes": 2,
+   "helix": "down",
+   "chip_load": {
+    "softwood": [
+     0.0019,
+     0.0031
+    ],
+    "plywood": [
+     0.0019,
+     0.0031
+    ],
+    "mdf": [
+     0.0019,
+     0.0031
+    ],
+    "hardwood": [
+     0.0019,
+     0.0031
+    ]
+   },
+   "gcarve_tool": {
+    "name": "Sienci Labs ENDMILL18FD Down Spiral 3.175 mm",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://sienci.com/product/1-8-flat-downcut_end-mill_3-10pc_pack/",
+    "https://resources.sienci.com/wp-content/uploads/2022/03/Feeds-and-Speeds-Imperial.pdf"
+   ],
+   "notes": "chip_load derived from Sienci LongMill feeds & speeds chart: feed / (RPM x flutes), range over its speed levels / operations."
+  },
+  {
+   "id": "sienci-endmill14fd",
+   "maker": "Sienci Labs",
+   "part_number": "ENDMILL14FD",
+   "name": "1/4\"x1-1/4\" Flat Downcut End Mill – 1/4\" Shank-2F",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 6.35,
+   "shank": 6.35,
+   "cut_length": 25.4,
+   "oal": 63.5,
+   "flutes": 2,
+   "helix": "down",
+   "chip_load": {
+    "softwood": [
+     0.0027,
+     0.0045
+    ],
+    "plywood": [
+     0.0027,
+     0.0045
+    ],
+    "mdf": [
+     0.0027,
+     0.0045
+    ],
+    "hardwood": [
+     0.0027,
+     0.0045
+    ]
+   },
+   "gcarve_tool": {
+    "name": "Sienci Labs ENDMILL14FD Down Spiral 6.35 mm",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://sienci.com/product/1-4-1-1-4_flat-downcut-end-mill/",
+    "https://resources.sienci.com/wp-content/uploads/2022/03/Feeds-and-Speeds-Imperial.pdf"
+   ],
+   "notes": "chip_load derived from Sienci LongMill feeds & speeds chart: feed / (RPM x flutes), range over its speed levels / operations."
+  },
+  {
+   "id": "sienci-endmill14fu",
+   "maker": "Sienci Labs",
+   "part_number": "ENDMILL14FU",
+   "name": "1/4\" Flat Upcut End Mill-1/4\" Shank-2F",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 6.35,
+   "shank": 6.35,
+   "cut_length": 25.4,
+   "oal": 63.5,
+   "flutes": 2,
+   "helix": "up",
+   "chip_load": {
+    "softwood": [
+     0.0027,
+     0.0045
+    ],
+    "plywood": [
+     0.0027,
+     0.0045
+    ],
+    "mdf": [
+     0.0027,
+     0.0045
+    ],
+    "hardwood": [
+     0.0027,
+     0.0045
+    ],
+    "plastic-soft": [
+     0.0046,
+     0.0065
+    ],
+    "plastic-hard": [
+     0.0046,
+     0.0065
+    ],
+    "acrylic": [
+     0.0046,
+     0.0065
+    ],
+    "aluminum": [
+     0.002,
+     0.0031
+    ]
+   },
+   "gcarve_tool": {
+    "name": "Sienci Labs ENDMILL14FU Up Spiral 6.35 mm",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://sienci.com/product/1-4-flat-upcut-endmill/",
+    "https://resources.sienci.com/wp-content/uploads/2022/03/Feeds-and-Speeds-Imperial.pdf"
+   ],
+   "notes": "chip_load derived from Sienci LongMill feeds & speeds chart: feed / (RPM x flutes), range over its speed levels / operations."
+  },
+  {
+   "id": "sienci-endmill22mmsb",
+   "maker": "Sienci Labs",
+   "part_number": "ENDMILL22mmSB",
+   "name": "22mm Surfacing Bit – 1/4\" Shank-2F",
+   "family": "surfacing",
+   "tool_material": "carbide tipped",
+   "units": "mm",
+   "diameter": 22.0,
+   "shank": 6.35,
+   "cut_length": 12.0,
+   "oal": 46.0,
+   "flutes": 2,
+   "chip_load": {
+    "softwood": [
+     0.0018,
+     0.003
+    ],
+    "plywood": [
+     0.0018,
+     0.003
+    ],
+    "mdf": [
+     0.0018,
+     0.003
+    ],
+    "hardwood": [
+     0.0018,
+     0.003
+    ]
+   },
+   "gcarve_tool": {
+    "name": "Sienci Labs ENDMILL22mmSB Surfacing 22 mm",
+    "kind": "EndMill",
+    "diameter": 0.86614,
+    "flutes": 2
+   },
+   "sources": [
+    "https://sienci.com/product/22mm-surfacing-bit/",
+    "https://resources.sienci.com/wp-content/uploads/2022/03/Feeds-and-Speeds-Imperial.pdf"
+   ],
+   "notes": "chip_load derived from Sienci LongMill feeds & speeds chart: feed / (RPM x flutes), range over its speed levels / operations."
+  },
+  {
+   "id": "sienci-endmill18d05tb",
+   "maker": "Sienci Labs",
+   "part_number": "ENDMILL18D05TB",
+   "name": "1/8\"xR0.25mm Tapered Ball Nose End Mill – 1/8\" Shank-2F (2pcs)",
+   "family": "tapered-ball",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 0.5,
+   "shank": 3.175,
+   "cut_length": 15.0,
+   "oal": 40.0,
+   "flutes": 2,
+   "angle_deg": 5.177,
+   "tip_diameter": 0.5,
+   "tip_radius": 0.25,
+   "chip_load": {
+    "softwood": [
+     0.0014,
+     0.0025
+    ],
+    "plywood": [
+     0.0014,
+     0.0025
+    ],
+    "mdf": [
+     0.0014,
+     0.0025
+    ],
+    "hardwood": [
+     0.0009,
+     0.0025
+    ],
+    "plastic-soft": [
+     0.004,
+     0.0059
+    ],
+    "plastic-hard": [
+     0.004,
+     0.0059
+    ],
+    "acrylic": [
+     0.004,
+     0.0059
+    ]
+   },
+   "gcarve_tool": {
+    "name": "Sienci Labs ENDMILL18D05TB Tapered Ball 0.5 mm",
+    "kind": "BallNose",
+    "diameter": 0.01969,
+    "flutes": 2
+   },
+   "sources": [
+    "https://sienci.com/product/1-8_r0-25_tapered_ballnose_endmill_2pcs/",
+    "https://resources.sienci.com/wp-content/uploads/2022/03/Feeds-and-Speeds-Imperial.pdf"
+   ],
+   "notes": "Sienci \"Flute angle\" taken as the included taper angle (consistent with the shank size and cutting length). chip_load derived from Sienci LongMill feeds & speeds chart: feed / (RPM x flutes), range over its speed levels / operations."
+  },
+  {
+   "id": "sienci-endmill14116tb",
+   "maker": "Sienci Labs",
+   "part_number": "ENDMILL14116TB",
+   "name": "1/4\"x1-1/2\"xR1/32\" Tapered Ball Nose End Mill – 1/4\" Shank-2F",
+   "family": "tapered-ball",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 1.5875,
+   "shank": 6.35,
+   "cut_length": 38.1,
+   "oal": 76.2,
+   "flutes": 2,
+   "angle_deg": 3.65,
+   "tip_diameter": 1.5875,
+   "tip_radius": 0.79375,
+   "chip_load": {
+    "softwood": [
+     0.0022,
+     0.0026
+    ],
+    "plywood": [
+     0.0022,
+     0.0026
+    ],
+    "mdf": [
+     0.0022,
+     0.0026
+    ],
+    "hardwood": [
+     0.0022,
+     0.0026
+    ],
+    "plastic-soft": [
+     0.0014,
+     0.0019
+    ],
+    "plastic-hard": [
+     0.0014,
+     0.0019
+    ],
+    "acrylic": [
+     0.0014,
+     0.0019
+    ]
+   },
+   "gcarve_tool": {
+    "name": "Sienci Labs ENDMILL14116TB Tapered Ball 1.5875 mm",
+    "kind": "BallNose",
+    "diameter": 0.0625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://sienci.com/product/1-4_1-1-2_r1-32-tapered-ballnose-endmill/",
+    "https://resources.sienci.com/wp-content/uploads/2022/03/Feeds-and-Speeds-Imperial.pdf"
+   ],
+   "notes": "Sienci \"Flute angle\" taken as the included taper angle (consistent with the shank size and cutting length). chip_load derived from Sienci LongMill feeds & speeds chart: feed / (RPM x flutes), range over its speed levels / operations."
+  },
+  {
+   "id": "sienci-endmill30dv",
+   "maker": "Sienci Labs",
+   "part_number": "ENDMILL30DV",
+   "name": "30 Degree Engraving V-Bit Pack – 1/8\" Shank-1F (4 or 10pcs)",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.175,
+   "shank": 3.175,
+   "cut_length": 11.0,
+   "oal": 33.0,
+   "flutes": 1,
+   "angle_deg": 30.0,
+   "gcarve_tool": {
+    "name": "Sienci Labs ENDMILL30DV V-Bit 30° 3.175 mm",
+    "kind": "VBit",
+    "diameter": 0.125,
+    "flutes": 1,
+    "angle": 30.0
+   },
+   "sources": [
+    "https://sienci.com/product/30-degree_engraving_vbit_4-10pc_pack/"
+   ]
+  },
+  {
+   "id": "sienci-endmill60dv",
+   "maker": "Sienci Labs",
+   "part_number": "ENDMILL60DV",
+   "name": "15mm 60 Degree V-Bit – 1/4\" Shank-2F",
+   "family": "v-bit",
+   "tool_material": "carbide tipped",
+   "units": "mm",
+   "diameter": 15.0,
+   "shank": 6.35,
+   "cut_length": 17.0,
+   "oal": 52.0,
+   "flutes": 2,
+   "angle_deg": 60.0,
+   "chip_load": {
+    "softwood": [
+     0.001,
+     0.002
+    ],
+    "plywood": [
+     0.001,
+     0.002
+    ],
+    "mdf": [
+     0.001,
+     0.002
+    ],
+    "hardwood": [
+     0.001,
+     0.002
+    ],
+    "plastic-soft": [
+     0.001,
+     0.002
+    ],
+    "plastic-hard": [
+     0.001,
+     0.002
+    ],
+    "acrylic": [
+     0.001,
+     0.002
+    ]
+   },
+   "gcarve_tool": {
+    "name": "Sienci Labs ENDMILL60DV V-Bit 60° 15 mm",
+    "kind": "VBit",
+    "diameter": 0.59055,
+    "flutes": 2,
+    "angle": 60.0
+   },
+   "sources": [
+    "https://sienci.com/product/15mm_60-degree-v-bit/",
+    "https://resources.sienci.com/wp-content/uploads/2022/03/Feeds-and-Speeds-Imperial.pdf"
+   ],
+   "notes": "chip_load derived from Sienci LongMill feeds & speeds chart: feed / (RPM x flutes), range over its speed levels / operations."
+  },
+  {
+   "id": "sienci-endmill90dv",
+   "maker": "Sienci Labs",
+   "part_number": "ENDMILL90DV",
+   "name": "15mm 90 Degree V-Bit – 1/4\" Shank-2F",
+   "family": "v-bit",
+   "tool_material": "carbide tipped",
+   "units": "mm",
+   "diameter": 15.0,
+   "shank": 6.35,
+   "cut_length": 12.7,
+   "oal": 44.0,
+   "flutes": 2,
+   "angle_deg": 90.0,
+   "chip_load": {
+    "softwood": [
+     0.001,
+     0.002
+    ],
+    "plywood": [
+     0.001,
+     0.002
+    ],
+    "mdf": [
+     0.001,
+     0.002
+    ],
+    "hardwood": [
+     0.001,
+     0.002
+    ],
+    "plastic-soft": [
+     0.001,
+     0.002
+    ],
+    "plastic-hard": [
+     0.001,
+     0.002
+    ],
+    "acrylic": [
+     0.001,
+     0.002
+    ]
+   },
+   "gcarve_tool": {
+    "name": "Sienci Labs ENDMILL90DV V-Bit 90° 15 mm",
+    "kind": "VBit",
+    "diameter": 0.59055,
+    "flutes": 2,
+    "angle": 90.0
+   },
+   "sources": [
+    "https://sienci.com/product/15mm_90-degree-1_4-v-bit/",
+    "https://resources.sienci.com/wp-content/uploads/2022/03/Feeds-and-Speeds-Imperial.pdf"
+   ],
+   "notes": "chip_load derived from Sienci LongMill feeds & speeds chart: feed / (RPM x flutes), range over its speed levels / operations."
+  }
+ ]
+}

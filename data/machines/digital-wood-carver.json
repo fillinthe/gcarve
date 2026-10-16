@@ -1,0 +1,484 @@
+{
+ "maker": "Digital Wood Carver",
+ "website": "https://www.digitalwoodcarver.com",
+ "machines": [
+  {
+   "id": "digital-wood-carver-dwc-1824",
+   "maker": "Digital Wood Carver",
+   "model": "DWC1824",
+   "variant": "Mini Carver",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 24,
+    "y": 18,
+    "z": 4
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 457,
+    "z": 102
+   },
+   "gantry_clearance_in": 4,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Makita 1-1/4 HP soft-start router",
+     "power_kw": null,
+     "power_hp": 1.25,
+     "rpm_min": 0,
+     "rpm_max": 24000,
+     "collet": "1/4\"",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 100,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 2540,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 125,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 3175,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "DWC Omni Control (PlanetCNC TNG)",
+     "gcarve_post": "planetcnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-Touch sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.digitalwoodcarver.com/dwc1824-hobby-cnc-router"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Carving area 18 x 24 in (Y x X), table 24 x 30 in, open-ended table. 4 in clearance. Optional 4th axis (3.5 in dia x 18 in)."
+  },
+  {
+   "id": "digital-wood-carver-dwc-2440-pro",
+   "maker": "Digital Wood Carver",
+   "model": "DWC2440 Pro",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 40,
+    "y": 24,
+    "z": 5
+   },
+   "work_area_mm": {
+    "x": 1016,
+    "y": 610,
+    "z": 127
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "2.25 HP soft-start router",
+     "power_kw": null,
+     "power_hp": 2.25,
+     "rpm_min": 0,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2 HP water-cooled spindle (option)",
+     "power_kw": 1.49,
+     "power_hp": 2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "3 HP water-cooled spindle (option)",
+     "power_kw": 2.24,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 125,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 3175,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 250,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 6350,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "DWC Omni Control (PlanetCNC TNG)",
+     "gcarve_post": "planetcnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.digitalwoodcarver.com/dwc2440-pro-cnc-router"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Carving area 24 x 40 in, table 30 x 48 in. Gear-tooth timing belts (dual on X), Z lead screw. Automatic router start/stop."
+  },
+  {
+   "id": "digital-wood-carver-dwc-2636-hd",
+   "maker": "Digital Wood Carver",
+   "model": "DWC2636 HD",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 26,
+    "y": 36,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 660,
+    "y": 914,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW (3 HP) liquid-cooled spindle",
+     "power_kw": 2.2,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12700,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "DWC Omni Control (PlanetCNC TNG)",
+     "gcarve_post": "planetcnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Optional 5-tool carousel ATC (ISO20 holders) with automatic tool length measurement on the DWC3648/2636."
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.digitalwoodcarver.com/dwc2636-hd"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "max_feed_ipm": "maker gives working speed 200-300 in/min; upper value"
+   },
+   "notes": "Travel 26 x 36 x 7 in (axis order as published). Ball screws on all axes, closed-loop hybrid steppers 640 oz-in. Repeatability ~0.02 mm."
+  },
+  {
+   "id": "digital-wood-carver-dwc-3648",
+   "maker": "Digital Wood Carver",
+   "model": "DWC3648",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 36,
+    "y": 48,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 914,
+    "y": 1219,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW (3 HP) liquid-cooled spindle",
+     "power_kw": 2.2,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12700,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "DWC Omni Control (PlanetCNC TNG)",
+     "gcarve_post": "planetcnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Optional 5-tool carousel ATC (ISO20 holders) with automatic tool length measurement on the DWC3648/2636."
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.digitalwoodcarver.com/dwc3648"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "max_feed_ipm": "maker gives working speed 200-300 in/min; upper value"
+   },
+   "notes": "Ball screws on all axes, closed-loop steppers 1142 oz-in with 5:1 planetary gearboxes. ER20 takes 1/8, 1/4, 1/2 in. Optional touchscreen controller, 5-tool carousel ATC, rotary (8 in chuck)."
+  },
+  {
+   "id": "digital-wood-carver-dwc-5100",
+   "maker": "Digital Wood Carver",
+   "model": "DWC5100",
+   "variant": "4x8 commercial",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.2,
+    "y": 98.4,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2499,
+    "z": 203
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3.2 kW (4.25 HP) water-cooled spindle",
+     "power_kw": 3.2,
+     "power_hp": 4.25,
+     "rpm_min": 0,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 450,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 11430,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 550,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 13970,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "USB CNC motion controller (DWC Omni Control / PlanetCNC TNG)",
+     "gcarve_post": "planetcnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": 4.625
+   },
+   "sources": [
+    "https://www.digitalwoodcarver.com/dwc5100-commercial-cnc-router"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "z": "maker gives ~8 in",
+    "controllers": "page says USB motion controller; DWC line runs PlanetCNC TNG"
+   },
+   "notes": "Full 4x8 sheet: working area 51.2 x 98.4 in, Z ~8 in, feeding height 120 mm. Helical rack and pinion X/Y, ball screw Z, planetary gearboxes. Maker also gives 14 m/min rapid / 12 m/min work."
+  }
+ ]
+}

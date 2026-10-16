@@ -1,0 +1,1876 @@
+{
+ "maker": "Bosch",
+ "source_summary": "boschtools.com (US) router bit family pages, variant tables (model number, shank, D, working length L); flute count from the family name. Bearing-guided, edge-profile, dovetail, keyhole and stagger-tooth bits are left out (no flute count published).",
+ "retrieved": "2026-10-09",
+ "bits": [
+  {
+   "id": "bosch-82086m",
+   "maker": "Bosch",
+   "part_number": "82086M",
+   "name": "3/4 In. x 1-1/2 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.75,
+   "shank": 0.5,
+   "cut_length": 1.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 82086M Straight 3/4 in",
+    "kind": "EndMill",
+    "diameter": 0.75,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2608629331"
+   ]
+  },
+  {
+   "id": "bosch-84207m",
+   "maker": "Bosch",
+   "part_number": "84207M",
+   "name": "3/8 In. x 1-1/4 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 84207M Straight 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610037572"
+   ]
+  },
+  {
+   "id": "bosch-84210m",
+   "maker": "Bosch",
+   "part_number": "84210M",
+   "name": "1/2 In. x 1-1/4 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 84210M Straight 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610037571"
+   ]
+  },
+  {
+   "id": "bosch-85221m",
+   "maker": "Bosch",
+   "part_number": "85221M",
+   "name": "1/4 In. x 5/8 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.625,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85221M Straight 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610037555"
+   ]
+  },
+  {
+   "id": "bosch-85221mc",
+   "maker": "Bosch",
+   "part_number": "85221MC",
+   "name": "1/4 In. x 5/8 In. Carbide-Tipped Double-Flute Straight Router Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85221MC Straight 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610049470"
+   ],
+   "notes": "Title says 5/8 in cutting length; the spec table gives 3/4 in (table value used)"
+  },
+  {
+   "id": "bosch-85223m",
+   "maker": "Bosch",
+   "part_number": "85223M",
+   "name": "9/32 In. x 1 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.28125,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85223M Straight 9/32 in",
+    "kind": "EndMill",
+    "diameter": 0.28125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610037575"
+   ]
+  },
+  {
+   "id": "bosch-85224m",
+   "maker": "Bosch",
+   "part_number": "85224M",
+   "name": "5/16 In. x 1 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.3125,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85224M Straight 5/16 in",
+    "kind": "EndMill",
+    "diameter": 0.3125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610037554"
+   ]
+  },
+  {
+   "id": "bosch-85224mc",
+   "maker": "Bosch",
+   "part_number": "85224MC",
+   "name": "5/16 In. x 1 In. Carbide-Tipped Double-Flute Straight Router Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.3125,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85224MC Straight 5/16 in",
+    "kind": "EndMill",
+    "diameter": 0.3125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610049471"
+   ]
+  },
+  {
+   "id": "bosch-85225m",
+   "maker": "Bosch",
+   "part_number": "85225M",
+   "name": "3/8 In. x 1 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85225M Straight 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610037552"
+   ]
+  },
+  {
+   "id": "bosch-85226m",
+   "maker": "Bosch",
+   "part_number": "85226M",
+   "name": "7/16 In. x 1 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.4375,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85226M Straight 7/16 in",
+    "kind": "EndMill",
+    "diameter": 0.4375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610037561"
+   ]
+  },
+  {
+   "id": "bosch-85227mc",
+   "maker": "Bosch",
+   "part_number": "85227MC",
+   "name": "1/2 In. x 1 In. Carbide-Tipped Double-Flute Straight Router Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85227MC Straight 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610049472"
+   ]
+  },
+  {
+   "id": "bosch-85228m",
+   "maker": "Bosch",
+   "part_number": "85228M",
+   "name": "3/8 In. x 1-1/4 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.375,
+   "cut_length": 1.25,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85228M Straight 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2608629263"
+   ]
+  },
+  {
+   "id": "bosch-85229m",
+   "maker": "Bosch",
+   "part_number": "85229M",
+   "name": "9/16 In. x 3/4 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.5625,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85229M Straight 9/16 in",
+    "kind": "EndMill",
+    "diameter": 0.5625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610037562"
+   ]
+  },
+  {
+   "id": "bosch-85230m",
+   "maker": "Bosch",
+   "part_number": "85230M",
+   "name": "5/8 In. x 3/4 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.625,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85230M Straight 5/8 in",
+    "kind": "EndMill",
+    "diameter": 0.625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610037557"
+   ]
+  },
+  {
+   "id": "bosch-85230mc",
+   "maker": "Bosch",
+   "part_number": "85230MC",
+   "name": "5/8 In. x 3/4 In. Carbide-Tipped Double-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.625,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85230MC Straight 5/8 in",
+    "kind": "EndMill",
+    "diameter": 0.625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610049478"
+   ]
+  },
+  {
+   "id": "bosch-85232mc",
+   "maker": "Bosch",
+   "part_number": "85232MC",
+   "name": "3/4 In. x 3/4 In. Carbide-Tipped Double-Flute Straight Router Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.75,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85232MC Straight 3/4 in",
+    "kind": "EndMill",
+    "diameter": 0.75,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610049473"
+   ]
+  },
+  {
+   "id": "bosch-85235m",
+   "maker": "Bosch",
+   "part_number": "85235M",
+   "name": "1-1/16 In. x 1-1/4 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 1.0625,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85235M Straight 1-1/16 in",
+    "kind": "EndMill",
+    "diameter": 1.0625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2608629303"
+   ]
+  },
+  {
+   "id": "bosch-85242m",
+   "maker": "Bosch",
+   "part_number": "85242M",
+   "name": "1/2 In. x 1-1/2 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85242M Straight 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610037563"
+   ]
+  },
+  {
+   "id": "bosch-85242mc",
+   "maker": "Bosch",
+   "part_number": "85242MC",
+   "name": "1/2 In. x 1-1/2 In. Carbide-Tipped Double-Flute Straight Router Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85242MC Straight 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610049474"
+   ]
+  },
+  {
+   "id": "bosch-85243m",
+   "maker": "Bosch",
+   "part_number": "85243M",
+   "name": "1 In. x 1-1/4 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 1.0,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85243M Straight 1 in",
+    "kind": "EndMill",
+    "diameter": 1.0,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610037569"
+   ]
+  },
+  {
+   "id": "bosch-85250m",
+   "maker": "Bosch",
+   "part_number": "85250M",
+   "name": "1/4 In. x 7/8 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.875,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85250M Straight 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610037559"
+   ]
+  },
+  {
+   "id": "bosch-85251m",
+   "maker": "Bosch",
+   "part_number": "85251M",
+   "name": "1/2 In. x 2 In. Carbide-Tipped Double-Flute Straight Router Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 2.0,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85251M Straight 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610037573"
+   ]
+  },
+  {
+   "id": "bosch-85251mc",
+   "maker": "Bosch",
+   "part_number": "85251MC",
+   "name": "1/2 In. x 2 In. Carbide-Tipped Double-Flute Straight Router Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 2.0,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85251MC Straight 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2608674796"
+   ]
+  },
+  {
+   "id": "bosch-85252mc",
+   "maker": "Bosch",
+   "part_number": "85252MC",
+   "name": "1/2 In. x 2-1/2 In. Carbide-Tipped Double-Flute Straight Router Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 2.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85252MC Straight 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610049436"
+   ]
+  },
+  {
+   "id": "bosch-85254m",
+   "maker": "Bosch",
+   "part_number": "85254M",
+   "name": "13/32 In. x 25/32 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.40625,
+   "shank": 0.5,
+   "cut_length": 0.78125,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85254M Straight 13/32 in",
+    "kind": "EndMill",
+    "diameter": 0.40625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2608629311"
+   ]
+  },
+  {
+   "id": "bosch-85255m",
+   "maker": "Bosch",
+   "part_number": "85255M",
+   "name": "7/16 In. x 1-1/4 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.4375,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85255M Straight 7/16 in",
+    "kind": "EndMill",
+    "diameter": 0.4375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2608629284"
+   ]
+  },
+  {
+   "id": "bosch-85256m",
+   "maker": "Bosch",
+   "part_number": "85256M",
+   "name": "1/2 In. x 1-1/2 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85256M Straight 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610037578"
+   ]
+  },
+  {
+   "id": "bosch-85257m",
+   "maker": "Bosch",
+   "part_number": "85257M",
+   "name": "17/32 In. x 1-1/4 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.53125,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85257M Straight 17/32 in",
+    "kind": "EndMill",
+    "diameter": 0.53125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2608629312"
+   ]
+  },
+  {
+   "id": "bosch-85258m",
+   "maker": "Bosch",
+   "part_number": "85258M",
+   "name": "9/16 In. x 1-1/4 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.5625,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85258M Straight 9/16 in",
+    "kind": "EndMill",
+    "diameter": 0.5625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2608629294"
+   ]
+  },
+  {
+   "id": "bosch-85259m",
+   "maker": "Bosch",
+   "part_number": "85259M",
+   "name": "21/32 In. x 1-1/4 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.65625,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85259M Straight 21/32 in",
+    "kind": "EndMill",
+    "diameter": 0.65625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2608629313"
+   ]
+  },
+  {
+   "id": "bosch-85260m",
+   "maker": "Bosch",
+   "part_number": "85260M",
+   "name": "11/16 In. x 1-1/4 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.6875,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85260M Straight 11/16 in",
+    "kind": "EndMill",
+    "diameter": 0.6875,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2608629286"
+   ]
+  },
+  {
+   "id": "bosch-85262m",
+   "maker": "Bosch",
+   "part_number": "85262M",
+   "name": "13/16 In. x 3/4 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.8125,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85262M Straight 13/16 in",
+    "kind": "EndMill",
+    "diameter": 0.8125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2608629148"
+   ]
+  },
+  {
+   "id": "bosch-85265mc",
+   "maker": "Bosch",
+   "part_number": "85265MC",
+   "name": "3/4 In. x 1-1/4 In. Carbide-Tipped Double-Flute Straight Router Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.75,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85265MC Straight 3/4 in",
+    "kind": "EndMill",
+    "diameter": 0.75,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610049475"
+   ]
+  },
+  {
+   "id": "bosch-85272m",
+   "maker": "Bosch",
+   "part_number": "85272M",
+   "name": "3/4 In. x 2 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.75,
+   "shank": 0.5,
+   "cut_length": 2.0,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85272M Straight 3/4 in",
+    "kind": "EndMill",
+    "diameter": 0.75,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2608629245"
+   ]
+  },
+  {
+   "id": "bosch-85273m",
+   "maker": "Bosch",
+   "part_number": "85273M",
+   "name": "25/32 In. x 1-1/4 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.78125,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85273M Straight 25/32 in",
+    "kind": "EndMill",
+    "diameter": 0.78125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2608629259"
+   ]
+  },
+  {
+   "id": "bosch-85274m",
+   "maker": "Bosch",
+   "part_number": "85274M",
+   "name": "5/16 In. x 3/4 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.3125,
+   "shank": 0.5,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85274M Straight 5/16 in",
+    "kind": "EndMill",
+    "diameter": 0.3125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2608629233"
+   ]
+  },
+  {
+   "id": "bosch-85276m",
+   "maker": "Bosch",
+   "part_number": "85276M",
+   "name": "3/8 In. x 1 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.375,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85276M Straight 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610037594"
+   ]
+  },
+  {
+   "id": "bosch-85454m",
+   "maker": "Bosch",
+   "part_number": "85454M",
+   "name": "5/8 In. x 1-1/4 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.625,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85454M Straight 5/8 in",
+    "kind": "EndMill",
+    "diameter": 0.625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610037568"
+   ]
+  },
+  {
+   "id": "bosch-85457m",
+   "maker": "Bosch",
+   "part_number": "85457M",
+   "name": "13/16 In. x 1-1/4 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.8125,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85457M Straight 13/16 in",
+    "kind": "EndMill",
+    "diameter": 0.8125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610037580"
+   ]
+  },
+  {
+   "id": "bosch-85458m",
+   "maker": "Bosch",
+   "part_number": "85458M",
+   "name": "7/8 In. x 1-1/4 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.875,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85458M Straight 7/8 in",
+    "kind": "EndMill",
+    "diameter": 0.875,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2608629196"
+   ]
+  },
+  {
+   "id": "bosch-85460m",
+   "maker": "Bosch",
+   "part_number": "85460M",
+   "name": "1/4 In. x 3/4 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.5,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85460M Straight 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610037558"
+   ]
+  },
+  {
+   "id": "bosch-85465m",
+   "maker": "Bosch",
+   "part_number": "85465M",
+   "name": "1-1/8 In. x 1-1/4 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 1.125,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85465M Straight 1-1/8 in",
+    "kind": "EndMill",
+    "diameter": 1.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2608629300"
+   ]
+  },
+  {
+   "id": "bosch-85466m",
+   "maker": "Bosch",
+   "part_number": "85466M",
+   "name": "1-1/4 In. x 1-1/4 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 1.25,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85466M Straight 1-1/4 in",
+    "kind": "EndMill",
+    "diameter": 1.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2608686182"
+   ]
+  },
+  {
+   "id": "bosch-85469m",
+   "maker": "Bosch",
+   "part_number": "85469M",
+   "name": "1-1/2 In. x 1-1/4 In. Carbide Tipped 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 1.5,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85469M Straight 1-1/2 in",
+    "kind": "EndMill",
+    "diameter": 1.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610037574"
+   ]
+  },
+  {
+   "id": "bosch-85613mc",
+   "maker": "Bosch",
+   "part_number": "85613MC",
+   "name": "1/4 In. x 1 In. Carbide-Tipped Double-Flute Straight Router Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85613MC Straight 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-double-flute-straight-bits-43664-ocs-ac/#2610073648"
+   ]
+  },
+  {
+   "id": "bosch-85096",
+   "maker": "Bosch",
+   "part_number": "85096",
+   "name": "1/4 In. x 3/4 In. High Speed Steel 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "HSS",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85096 Straight 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/high-speed-steel-double-flute-straight-bits-43669-ocs-ac/#2610053449"
+   ]
+  },
+  {
+   "id": "bosch-85180",
+   "maker": "Bosch",
+   "part_number": "85180",
+   "name": "1/4 In. x 1-1/8 In. High Speed Steel 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "HSS",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.125,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85180 Straight 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/high-speed-steel-double-flute-straight-bits-43669-ocs-ac/#2610053456"
+   ]
+  },
+  {
+   "id": "bosch-85181",
+   "maker": "Bosch",
+   "part_number": "85181",
+   "name": "5/16 In. x 1-1/8 In. High Speed Steel 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "HSS",
+   "units": "in",
+   "diameter": 0.3125,
+   "shank": 0.25,
+   "cut_length": 1.125,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85181 Straight 5/16 in",
+    "kind": "EndMill",
+    "diameter": 0.3125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/high-speed-steel-double-flute-straight-bits-43669-ocs-ac/#1608851810"
+   ]
+  },
+  {
+   "id": "bosch-85213m",
+   "maker": "Bosch",
+   "part_number": "85213M",
+   "name": "1/8 In. x 1/2 In. Solid Carbide 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85213M Straight 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/solid-carbide-double-flute-straight-bits-43670-ocs-ac/#2608681095"
+   ]
+  },
+  {
+   "id": "bosch-85213mc",
+   "maker": "Bosch",
+   "part_number": "85213MC",
+   "name": "1/8 In. x 1/2 In. Solid Carbide Double-Flute Straight Router Bit",
+   "family": "straight",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85213MC Straight 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/solid-carbide-double-flute-straight-bits-43670-ocs-ac/#2610049437"
+   ]
+  },
+  {
+   "id": "bosch-85214m",
+   "maker": "Bosch",
+   "part_number": "85214M",
+   "name": "3/16 In. x 7/16 In. Solid Carbide 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.1875,
+   "shank": 0.25,
+   "cut_length": 0.4375,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85214M Straight 3/16 in",
+    "kind": "EndMill",
+    "diameter": 0.1875,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/solid-carbide-double-flute-straight-bits-43670-ocs-ac/#2608681276"
+   ]
+  },
+  {
+   "id": "bosch-85617m",
+   "maker": "Bosch",
+   "part_number": "85617M",
+   "name": "1/4 In. x 1 In. Solid Carbide 2-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85617M Straight 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/solid-carbide-double-flute-straight-bits-43670-ocs-ac/#2608629142"
+   ]
+  },
+  {
+   "id": "bosch-85987mc",
+   "maker": "Bosch",
+   "part_number": "85987MC",
+   "name": "1/4 In. x 1 In. Solid Carbide Double-Flute Straight Router Bit",
+   "family": "straight",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bosch 85987MC Straight 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/solid-carbide-double-flute-straight-bits-43748-ocs-ac/#2610048217"
+   ]
+  },
+  {
+   "id": "bosch-85208m",
+   "maker": "Bosch",
+   "part_number": "85208M",
+   "name": "1/16 In. x 3/16 In. Solid Carbide 1-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.0625,
+   "shank": 0.25,
+   "cut_length": 0.1875,
+   "flutes": 1,
+   "gcarve_tool": {
+    "name": "Bosch 85208M Straight 1/16 in",
+    "kind": "EndMill",
+    "diameter": 0.0625,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/solid-carbide-single-flute-straight-bits-43672-ocs-ac/#2608686148"
+   ]
+  },
+  {
+   "id": "bosch-85209mc",
+   "maker": "Bosch",
+   "part_number": "85209MC",
+   "name": "1/8 In. x 7/16 In. Solid Carbide Single-Flute Straight Router Bit",
+   "family": "straight",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.4375,
+   "flutes": 1,
+   "gcarve_tool": {
+    "name": "Bosch 85209MC Straight 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/solid-carbide-single-flute-straight-bits-43672-ocs-ac/#2610048204"
+   ]
+  },
+  {
+   "id": "bosch-85264m",
+   "maker": "Bosch",
+   "part_number": "85264M",
+   "name": "1/2 In. x 2 In. Carbide Tipped 1-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 2.0,
+   "flutes": 1,
+   "gcarve_tool": {
+    "name": "Bosch 85264M Straight 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-single-flute-straight-bits-43673-ocs-ac/#2610037548"
+   ]
+  },
+  {
+   "id": "bosch-85279m",
+   "maker": "Bosch",
+   "part_number": "85279M",
+   "name": "3/16 In. x 7/16 In. Carbide Tipped 1-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.1875,
+   "shank": 0.25,
+   "cut_length": 0.4375,
+   "flutes": 1,
+   "gcarve_tool": {
+    "name": "Bosch 85279M Straight 3/16 in",
+    "kind": "EndMill",
+    "diameter": 0.1875,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-single-flute-straight-bits-43673-ocs-ac/#2610037549"
+   ]
+  },
+  {
+   "id": "bosch-85409m",
+   "maker": "Bosch",
+   "part_number": "85409M",
+   "name": "3/8 In. x 1 In. Carbide Tipped 1-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.5,
+   "cut_length": 1.0,
+   "flutes": 1,
+   "gcarve_tool": {
+    "name": "Bosch 85409M Straight 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-single-flute-straight-bits-43673-ocs-ac/#2608681280"
+   ]
+  },
+  {
+   "id": "bosch-85410m",
+   "maker": "Bosch",
+   "part_number": "85410M",
+   "name": "1/4 In. x 1 In. Carbide Tipped 1-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 1,
+   "gcarve_tool": {
+    "name": "Bosch 85410M Straight 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-single-flute-straight-bits-43673-ocs-ac/#2610037546"
+   ]
+  },
+  {
+   "id": "bosch-85425m",
+   "maker": "Bosch",
+   "part_number": "85425M",
+   "name": "1/2 In. x 3/4 In. Carbide Tipped 1-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 0.75,
+   "flutes": 1,
+   "gcarve_tool": {
+    "name": "Bosch 85425M Straight 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-single-flute-straight-bits-43673-ocs-ac/#2608629150"
+   ]
+  },
+  {
+   "id": "bosch-85426m",
+   "maker": "Bosch",
+   "part_number": "85426M",
+   "name": "1/2 In. x 1-1/4 In. Carbide Tipped 1-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "flutes": 1,
+   "gcarve_tool": {
+    "name": "Bosch 85426M Straight 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/carbide-tipped-single-flute-straight-bits-43673-ocs-ac/#2610037551"
+   ]
+  },
+  {
+   "id": "bosch-85091",
+   "maker": "Bosch",
+   "part_number": "85091",
+   "name": "1/16 In. x 1/8 In. High Speed Steel 1-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "HSS",
+   "units": "in",
+   "diameter": 0.0625,
+   "shank": 0.25,
+   "cut_length": 0.125,
+   "flutes": 1,
+   "gcarve_tool": {
+    "name": "Bosch 85091 Straight 1/16 in",
+    "kind": "EndMill",
+    "diameter": 0.0625,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/high-speed-steel-single-flute-straight-bits-43671-ocs-ac/#2610053447"
+   ]
+  },
+  {
+   "id": "bosch-85092",
+   "maker": "Bosch",
+   "part_number": "85092",
+   "name": "1/8 In. x 5/16 In. High Speed Steel 1-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "HSS",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.3125,
+   "flutes": 1,
+   "gcarve_tool": {
+    "name": "Bosch 85092 Straight 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/high-speed-steel-single-flute-straight-bits-43671-ocs-ac/#1608850920"
+   ]
+  },
+  {
+   "id": "bosch-85152",
+   "maker": "Bosch",
+   "part_number": "85152",
+   "name": "1/8 In. x 5/8 In. High Speed Steel 1-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "HSS",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.625,
+   "flutes": 1,
+   "gcarve_tool": {
+    "name": "Bosch 85152 Straight 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/high-speed-steel-single-flute-straight-bits-43671-ocs-ac/#2610053453"
+   ]
+  },
+  {
+   "id": "bosch-85152b100",
+   "maker": "Bosch",
+   "part_number": "85152B100",
+   "name": "100 pieces 1/8 In. x 5/8 In. High Speed Steel 1-Flute Straight Bits",
+   "family": "straight",
+   "tool_material": "HSS",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.625,
+   "flutes": 1,
+   "gcarve_tool": {
+    "name": "Bosch 85152B100 Straight 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/high-speed-steel-single-flute-straight-bits-43671-ocs-ac/#2610053463"
+   ]
+  },
+  {
+   "id": "bosch-85153",
+   "maker": "Bosch",
+   "part_number": "85153",
+   "name": "3/16 In. x 3/4 In. High Speed Steel 1-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "HSS",
+   "units": "in",
+   "diameter": 0.1875,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 1,
+   "gcarve_tool": {
+    "name": "Bosch 85153 Straight 3/16 in",
+    "kind": "EndMill",
+    "diameter": 0.1875,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/high-speed-steel-single-flute-straight-bits-43671-ocs-ac/#1608851530"
+   ]
+  },
+  {
+   "id": "bosch-85154",
+   "maker": "Bosch",
+   "part_number": "85154",
+   "name": "1/4 In. x 1 In. High Speed Steel 1-Flute Straight Bit",
+   "family": "straight",
+   "tool_material": "HSS",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 1,
+   "gcarve_tool": {
+    "name": "Bosch 85154 Straight 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/high-speed-steel-single-flute-straight-bits-43671-ocs-ac/#2610053455"
+   ]
+  },
+  {
+   "id": "bosch-85611m",
+   "maker": "Bosch",
+   "part_number": "85611M",
+   "name": "1/4 In. Solid Carbide Double Flute Acrylic Router Bit",
+   "family": "straight",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "materials": [
+    "acrylic"
+   ],
+   "gcarve_tool": {
+    "name": "Bosch 85611M Straight 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/solid-carbide-double-flute-acrylic-bit-43739-ocs-ac/#2608681259"
+   ]
+  },
+  {
+   "id": "bosch-86026m",
+   "maker": "Bosch",
+   "part_number": "86026M",
+   "name": "1/4 In. x 7/8 In. Solid Carbide 2-Flute Compression Spiral Bit",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.875,
+   "flutes": 2,
+   "helix": "compression",
+   "gcarve_tool": {
+    "name": "Bosch 86026M Compression 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/solid-carbide-double-flute-compression-spiral-bit-43747-ocs-ac/#2608629277"
+   ]
+  },
+  {
+   "id": "bosch-85900mc",
+   "maker": "Bosch",
+   "part_number": "85900MC",
+   "name": "1/8 In. x 1/2 In. Solid Carbide Double-Flute Downcut Spiral Router Bit",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "flutes": 2,
+   "helix": "down",
+   "gcarve_tool": {
+    "name": "Bosch 85900MC Down Cut 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/solid-carbide-double-flute-downcut-spiral-bits-43743-ocs-ac/#2610048215"
+   ]
+  },
+  {
+   "id": "bosch-85901m",
+   "maker": "Bosch",
+   "part_number": "85901M",
+   "name": "3/16 In. x 3/4 In. Solid Carbide 2-Flute Downcut Spiral Bit",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.1875,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "helix": "down",
+   "gcarve_tool": {
+    "name": "Bosch 85901M Down Cut 3/16 in",
+    "kind": "EndMill",
+    "diameter": 0.1875,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/solid-carbide-double-flute-downcut-spiral-bits-43743-ocs-ac/#2608686146"
+   ]
+  },
+  {
+   "id": "bosch-85902m",
+   "maker": "Bosch",
+   "part_number": "85902M",
+   "name": "1/4 In. x 3/4 In. Solid Carbide 2-Flute Downcut Spiral Bit",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "helix": "down",
+   "gcarve_tool": {
+    "name": "Bosch 85902M Down Cut 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/solid-carbide-double-flute-downcut-spiral-bits-43743-ocs-ac/#2608629152"
+   ]
+  },
+  {
+   "id": "bosch-85903m",
+   "maker": "Bosch",
+   "part_number": "85903M",
+   "name": "1/4 In. x 1 In. Solid Carbide 2-Flute Downcut Spiral Bit",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "helix": "down",
+   "gcarve_tool": {
+    "name": "Bosch 85903M Down Cut 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/solid-carbide-double-flute-downcut-spiral-bits-43743-ocs-ac/#2608681273"
+   ]
+  },
+  {
+   "id": "bosch-85903mc",
+   "maker": "Bosch",
+   "part_number": "85903MC",
+   "name": "1/4 In. x 1 In. Solid Carbide Double-Flute Downcut Spiral Router Bit",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "helix": "down",
+   "gcarve_tool": {
+    "name": "Bosch 85903MC Down Cut 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/solid-carbide-double-flute-downcut-spiral-bits-43743-ocs-ac/#2610049483"
+   ]
+  },
+  {
+   "id": "bosch-85906m",
+   "maker": "Bosch",
+   "part_number": "85906M",
+   "name": "1/2 In. x 1-1/4 In. Solid Carbide 2-Flute Downcut Spiral Bit",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "flutes": 2,
+   "helix": "down",
+   "gcarve_tool": {
+    "name": "Bosch 85906M Down Cut 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/solid-carbide-double-flute-downcut-spiral-bits-43743-ocs-ac/#2608629185"
+   ]
+  },
+  {
+   "id": "bosch-86007m",
+   "maker": "Bosch",
+   "part_number": "86007M",
+   "name": "1/8 In. x 1/2 In. Solid Carbide 2-Flute O-Flute Bit",
+   "family": "o-flute",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.25,
+   "flutes": 2,
+   "helix": "o-flute",
+   "gcarve_tool": {
+    "name": "Bosch 86007M O-Flute 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/solid-carbide-double-flute-o-flute-bits-43742-ocs-ac/#2608629201"
+   ],
+   "notes": "Title says 1/2 in cutting length; the spec table gives 1/4 in (table value used)"
+  },
+  {
+   "id": "bosch-86010mc",
+   "maker": "Bosch",
+   "part_number": "86010MC",
+   "name": "1/4 In. x 1 In. Solid Carbide Double-Flute O-Flute Router Bit",
+   "family": "o-flute",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "helix": "o-flute",
+   "gcarve_tool": {
+    "name": "Bosch 86010MC O-Flute 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/solid-carbide-double-flute-o-flute-bits-43742-ocs-ac/#2610048218"
+   ]
+  },
+  {
+   "id": "bosch-85908m",
+   "maker": "Bosch",
+   "part_number": "85908M",
+   "name": "1/8 In. x 1/2 In. Solid Carbide 2-Flute Upcut Spiral Bit",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "flutes": 2,
+   "helix": "up",
+   "gcarve_tool": {
+    "name": "Bosch 85908M Up Cut 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/solid-carbide-double-flute-upcut-spiral-bits-43745-ocs-ac/#2608681283"
+   ]
+  },
+  {
+   "id": "bosch-85908mc",
+   "maker": "Bosch",
+   "part_number": "85908MC",
+   "name": "1/8 In. x 1/2 In. Solid Carbide Double-Flute Upcut Spiral Router Bit",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "flutes": 2,
+   "helix": "up",
+   "gcarve_tool": {
+    "name": "Bosch 85908MC Up Cut 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/solid-carbide-double-flute-upcut-spiral-bits-43745-ocs-ac/#2610048216"
+   ]
+  },
+  {
+   "id": "bosch-85909m",
+   "maker": "Bosch",
+   "part_number": "85909M",
+   "name": "3/16 In. x 3/4 In. Solid Carbide 2-Flute Upcut Spiral Bit",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.1875,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "helix": "up",
+   "gcarve_tool": {
+    "name": "Bosch 85909M Up Cut 3/16 in",
+    "kind": "EndMill",
+    "diameter": 0.1875,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/solid-carbide-double-flute-upcut-spiral-bits-43745-ocs-ac/#2608629151"
+   ]
+  },
+  {
+   "id": "bosch-85911m",
+   "maker": "Bosch",
+   "part_number": "85911M",
+   "name": "1/4 In. x 1 In. Solid Carbide 2-Flute Upcut Spiral Bit",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "helix": "up",
+   "gcarve_tool": {
+    "name": "Bosch 85911M Up Cut 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/solid-carbide-double-flute-upcut-spiral-bits-43745-ocs-ac/#2608681251"
+   ]
+  },
+  {
+   "id": "bosch-85911mc",
+   "maker": "Bosch",
+   "part_number": "85911MC",
+   "name": "1/4 In. x 1 In. Solid Carbide Double-Flute Upcut Spiral Router Bit",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "helix": "up",
+   "gcarve_tool": {
+    "name": "Bosch 85911MC Up Cut 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/solid-carbide-double-flute-upcut-spiral-bits-43745-ocs-ac/#2610049484"
+   ]
+  },
+  {
+   "id": "bosch-85913m",
+   "maker": "Bosch",
+   "part_number": "85913M",
+   "name": "3/8 In. x 1-1/4 In. Solid Carbide 2-Flute Upcut Spiral Bit",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "flutes": 2,
+   "helix": "up",
+   "gcarve_tool": {
+    "name": "Bosch 85913M Up Cut 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/solid-carbide-double-flute-upcut-spiral-bits-43745-ocs-ac/#2608686153"
+   ]
+  },
+  {
+   "id": "bosch-85961m",
+   "maker": "Bosch",
+   "part_number": "85961M",
+   "name": "1/2 In. x 1-1/4 In. Solid Carbide 3-Flute Upcut Spiral Bit",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "flutes": 3,
+   "helix": "up",
+   "gcarve_tool": {
+    "name": "Bosch 85961M Up Cut 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.boschtools.com/us/en/solid-carbide-triple-flute-upcut-spiral-bit-43746-ocs-ac/#2608629328"
+   ]
+  }
+ ]
+}

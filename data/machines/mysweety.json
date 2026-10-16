@@ -1,0 +1,160 @@
+{
+ "maker": "MYSWEETY",
+ "website": "https://mysweety.com",
+ "machines": [
+  {
+   "id": "mysweety-cnc-3018-max",
+   "maker": "MYSWEETY",
+   "model": "CNC 3018 MAX",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 7.09,
+    "z": 1.77
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 180,
+    "z": 45
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "200 W spindle (300 W max)",
+     "power_kw": 0.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 12000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL + offline controller",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://easel.com/partners/machines/mysweety-cnc-3018-max/",
+    "https://easel.com/partners/mysweety-cnc/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "T8 lead screw (4 mm lead), double copper anti-backlash nut; 1.3 A 0.25 N·m steppers."
+  },
+  {
+   "id": "mysweety-cnc-4540",
+   "maker": "MYSWEETY",
+   "model": "CNC 4540",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 16.93,
+    "y": 15.35,
+    "z": 3.54
+   },
+   "work_area_mm": {
+    "x": 430,
+    "y": 390,
+    "z": 90
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "500 W spindle",
+     "power_kw": 0.5,
+     "power_hp": null,
+     "rpm_min": 0,
+     "rpm_max": 11000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL + touchscreen offline controller",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://easel.com/partners/machines/mysweety-4540-cnc/",
+    "https://easel.com/partners/mysweety-cnc/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "NEMA17 42x48 mm."
+  }
+ ]
+}

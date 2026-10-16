@@ -1,0 +1,29 @@
+# GCarve in Rust (parallel to the C++/Qt app). gcarve-core = the engine (no UI, no I/O beyond strings), ported from
+# core/ + post/ and checked against the C++ output; gcarve-app = egui front end for desktop (Windows incl. old ones,
+# macOS, Linux) and the web (wasm32), one codebase.
+[workspace]
+resolver = "2"
+members = ["gcarve-core", "gcarve-ui", "gcarve-app"]
+
+[workspace.package]
+edition = "2021"
+version = "0.1.1"
+license = "LicenseRef-Proprietary"
+rust-version = "1.89"   # boostvoronoi needs 1.87, File::try_lock (Control single instance) 1.89
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+
+[profile.release-web]
+inherits = "release"
+opt-level = "z"   # smallest wasm
+lto = true
+codegen-units = 1
+
+# packaged builds (rust/packaging/*): smallest native binary without slowing the CAM code (opt-level stays 3)
+[profile.dist]
+inherits = "release"
+lto = true
+codegen-units = 1
+strip = true

@@ -1,0 +1,79 @@
+{
+ "maker": "Festool",
+ "source_summary": "festool.com product pages (technical data table: D, NL, GL, shank; order number). Festool publishes no flute count for its router bits except cutters with Z in the name, so only those are included.",
+ "retrieved": "2026-10-09",
+ "bits": [
+  {
+   "id": "festool-491078",
+   "maker": "Festool",
+   "part_number": "491078",
+   "name": "HW S8 D8/20 WP Z1 reversible-blade groove cutter",
+   "family": "straight",
+   "tool_material": "carbide insert",
+   "units": "mm",
+   "diameter": 8.0,
+   "shank": 8.0,
+   "cut_length": 20.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "gcarve_tool": {
+    "name": "Festool 491078 Straight 8 mm",
+    "kind": "EndMill",
+    "diameter": 0.31496,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.festool.com/accessory/routing/router-bits/reversible-blade-groove-cutters/491078---hw-s8-d820-wp-z1"
+   ],
+   "notes": "Reversible carbide blade (WP); Festool's feature list also says '25 mm cutting length' while NL is the table value used"
+  },
+  {
+   "id": "festool-491079",
+   "maker": "Festool",
+   "part_number": "491079",
+   "name": "HW S8 D10/25 WP Z1 reversible-blade groove cutter",
+   "family": "straight",
+   "tool_material": "carbide insert",
+   "units": "mm",
+   "diameter": 10.0,
+   "shank": 8.0,
+   "cut_length": 25.0,
+   "oal": 55.0,
+   "flutes": 1,
+   "gcarve_tool": {
+    "name": "Festool 491079 Straight 10 mm",
+    "kind": "EndMill",
+    "diameter": 0.3937,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.festool.com/accessory/routing/router-bits/reversible-blade-groove-cutters/491079---hw-s8-d1025-wp-z1"
+   ],
+   "notes": "Reversible carbide blade (WP); Festool's feature list also says '25 mm cutting length' while NL is the table value used"
+  },
+  {
+   "id": "festool-491080",
+   "maker": "Festool",
+   "part_number": "491080",
+   "name": "HW S8 D12/30 WP Z1 reversible-blade groove cutter",
+   "family": "straight",
+   "tool_material": "carbide insert",
+   "units": "mm",
+   "diameter": 12.0,
+   "shank": 8.0,
+   "cut_length": 30.0,
+   "oal": 61.0,
+   "flutes": 1,
+   "gcarve_tool": {
+    "name": "Festool 491080 Straight 12 mm",
+    "kind": "EndMill",
+    "diameter": 0.47244,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.festool.com/accessory/routing/router-bits/reversible-blade-groove-cutters/491080---hw-s8-d1230-wp-z1"
+   ],
+   "notes": "Reversible carbide blade (WP); Festool's feature list also says '25 mm cutting length' while NL is the table value used"
+  }
+ ]
+}

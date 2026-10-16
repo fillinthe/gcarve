@@ -1,0 +1,4625 @@
+{
+ "maker": "BCAMCNC",
+ "website": "https://www.bcamcnc.com",
+ "machines": [
+  {
+   "id": "bcamcnc-bcm1325sa",
+   "maker": "BCAMCNC",
+   "model": "BCM1325SA",
+   "variant": "SA series",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3.5 kW air-cooled spindle",
+     "power_kw": 3.5,
+     "power_hp": 4.7,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1181.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1575.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto A11 DSP",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    },
+    {
+     "name": "Mach3 (option)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    },
+    {
+     "name": "Weihong NcStudio (option)",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Syntec (option)",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/affordable-cnc-router-for-wood-milling/"
+   ],
+   "notes": "SA series; Chinese ball screw Z; options include Mach3/Mach4, Weihong DSP, Syntec, NcStudio.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm1313sa",
+   "maker": "BCAMCNC",
+   "model": "BCM1313SA",
+   "variant": "SA series",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 51.18,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 1300,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3.5 kW air-cooled spindle",
+     "power_kw": 3.5,
+     "power_hp": 4.7,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1181.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1575.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto A11 DSP",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    },
+    {
+     "name": "Mach3 (option)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    },
+    {
+     "name": "Weihong NcStudio (option)",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Syntec (option)",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/affordable-cnc-router-for-wood-milling/"
+   ],
+   "notes": "SA series optional size; Chinese ball screw Z; options include Mach3/Mach4, Weihong DSP, Syntec, NcStudio.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm2030sa",
+   "maker": "BCAMCNC",
+   "model": "BCM2030SA",
+   "variant": "SA series",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3.5 kW air-cooled spindle",
+     "power_kw": 3.5,
+     "power_hp": 4.7,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1181.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1575.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto A11 DSP",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    },
+    {
+     "name": "Mach3 (option)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    },
+    {
+     "name": "Weihong NcStudio (option)",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Syntec (option)",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/affordable-cnc-router-for-wood-milling/"
+   ],
+   "notes": "SA series optional size; Chinese ball screw Z; options include Mach3/Mach4, Weihong DSP, Syntec, NcStudio.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm2040sa",
+   "maker": "BCAMCNC",
+   "model": "BCM2040SA",
+   "variant": "SA series",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3.5 kW air-cooled spindle",
+     "power_kw": 3.5,
+     "power_hp": 4.7,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1181.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1575.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto A11 DSP",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    },
+    {
+     "name": "Mach3 (option)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    },
+    {
+     "name": "Weihong NcStudio (option)",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Syntec (option)",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/affordable-cnc-router-for-wood-milling/"
+   ],
+   "notes": "SA series optional size; Chinese ball screw Z; options include Mach3/Mach4, Weihong DSP, Syntec, NcStudio.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm2060sa",
+   "maker": "BCAMCNC",
+   "model": "BCM2060SA",
+   "variant": "SA series",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 236.22,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 6000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3.5 kW air-cooled spindle",
+     "power_kw": 3.5,
+     "power_hp": 4.7,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1181.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1575.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto A11 DSP",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    },
+    {
+     "name": "Mach3 (option)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    },
+    {
+     "name": "Weihong NcStudio (option)",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Syntec (option)",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/affordable-cnc-router-for-wood-milling/"
+   ],
+   "notes": "SA series optional size; Chinese ball screw Z; options include Mach3/Mach4, Weihong DSP, Syntec, NcStudio.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm2160s",
+   "maker": "BCAMCNC",
+   "model": "BCM2160S",
+   "variant": "S series",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 82.68,
+    "y": 236.22,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2100,
+    "y": 6000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3.5 kW air-cooled spindle",
+     "power_kw": 3.5,
+     "power_hp": 4.7,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto A11 DSP",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/cnc-wood-router-for-woodworking-2160/"
+   ],
+   "notes": "Roller-chain tensioned gantry; WiFi control; speeds not published.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm2040s",
+   "maker": "BCAMCNC",
+   "model": "BCM2040S",
+   "variant": "S series",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3.5 kW air-cooled spindle",
+     "power_kw": 3.5,
+     "power_hp": 4.7,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto A11 DSP",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/cnc-wood-router-for-woodworking-2160/"
+   ],
+   "notes": "Roller-chain tensioned gantry; WiFi control; speeds not published.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm1325c",
+   "maker": "BCAMCNC",
+   "model": "BCM1325C",
+   "variant": "linear ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2362.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position linear ATC (ISO30)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/atc-cnc-wood-router-machine-for-mdf/"
+   ],
+   "notes": "Syntec servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm1313c",
+   "maker": "BCAMCNC",
+   "model": "BCM1313C",
+   "variant": "linear ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 51.18,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 1300,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2362.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position linear ATC (ISO30)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/atc-cnc-wood-router-machine-for-mdf/"
+   ],
+   "notes": "Syntec servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm1530c",
+   "maker": "BCAMCNC",
+   "model": "BCM1530C",
+   "variant": "linear ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2362.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position linear ATC (ISO30)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/atc-cnc-wood-router-machine-for-mdf/"
+   ],
+   "notes": "Syntec servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm2040c",
+   "maker": "BCAMCNC",
+   "model": "BCM2040C",
+   "variant": "linear ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2362.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position linear ATC (ISO30)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/atc-cnc-wood-router-machine-for-mdf/"
+   ],
+   "notes": "Syntec servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm2060c",
+   "maker": "BCAMCNC",
+   "model": "BCM2060C",
+   "variant": "linear ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 236.22,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 6000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2362.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position linear ATC (ISO30)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/atc-cnc-wood-router-machine-for-mdf/"
+   ],
+   "notes": "Syntec servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm1325d",
+   "maker": "BCAMCNC",
+   "model": "BCM1325D",
+   "variant": "disc ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2756.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 70000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3543.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 90000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60W-E",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12-position carousel (8/10/12/16 options)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/atc-heavy-duty-cnc-wood-router-for-cabinet/"
+   ],
+   "notes": "Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm2060d",
+   "maker": "BCAMCNC",
+   "model": "BCM2060D",
+   "variant": "disc ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 236.22,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 6000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2756.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 70000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3543.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 90000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60W-E",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12-position carousel (8/10/12/16 options)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/atc-heavy-duty-cnc-wood-router-for-cabinet/"
+   ],
+   "notes": "Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm1325ea",
+   "maker": "BCAMCNC",
+   "model": "BCM1325EA",
+   "variant": "ATC nesting with loading/unloading",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2756.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 70000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60CB",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "12-position linear ATC"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/atc-cnc-router-for-woodworking/"
+   ],
+   "notes": "Automatic loading/unloading (15 m/min); Syntec servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm1313ea",
+   "maker": "BCAMCNC",
+   "model": "BCM1313EA",
+   "variant": "ATC nesting with loading/unloading",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 51.18,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 1300,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2756.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 70000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60CB",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "12-position linear ATC"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/atc-cnc-router-for-woodworking/"
+   ],
+   "notes": "Automatic loading/unloading (15 m/min); Syntec servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm1530ea",
+   "maker": "BCAMCNC",
+   "model": "BCM1530EA",
+   "variant": "ATC nesting with loading/unloading",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2756.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 70000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60CB",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "12-position linear ATC"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/atc-cnc-router-for-woodworking/"
+   ],
+   "notes": "Automatic loading/unloading (15 m/min); Syntec servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm2030ea",
+   "maker": "BCAMCNC",
+   "model": "BCM2030EA",
+   "variant": "ATC nesting with loading/unloading",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2756.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 70000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60CB",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "12-position linear ATC"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/atc-cnc-router-for-woodworking/"
+   ],
+   "notes": "Automatic loading/unloading (15 m/min); Syntec servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm2040ea",
+   "maker": "BCAMCNC",
+   "model": "BCM2040EA",
+   "variant": "ATC nesting with loading/unloading",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2756.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 70000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60CB",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "12-position linear ATC"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/atc-cnc-router-for-woodworking/"
+   ],
+   "notes": "Automatic loading/unloading (15 m/min); Syntec servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm2050ea",
+   "maker": "BCAMCNC",
+   "model": "BCM2050EA",
+   "variant": "ATC nesting with loading/unloading",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 196.85,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 5000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2756.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 70000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60CB",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "12-position linear ATC"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/atc-cnc-router-for-woodworking/"
+   ],
+   "notes": "Automatic loading/unloading (15 m/min); Syntec servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm2060ea",
+   "maker": "BCAMCNC",
+   "model": "BCM2060EA",
+   "variant": "ATC nesting with loading/unloading",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 236.22,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 6000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2756.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 70000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60CB",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "12-position linear ATC"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/atc-cnc-router-for-woodworking/"
+   ],
+   "notes": "Automatic loading/unloading (15 m/min); Syntec servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm2030e",
+   "maker": "BCAMCNC",
+   "model": "BCM2030E",
+   "variant": "disc ATC with loading/unloading",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2756.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 70000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 6MB",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "Disc changer (slots not stated) + 5+4 drill block"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/atc-cnc-router-machine-loading-unloading/"
+   ],
+   "notes": "4 x 850 W Yaskawa servos; loading/unloading 15 m/min.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm1325e",
+   "maker": "BCAMCNC",
+   "model": "BCM1325E",
+   "variant": "disc ATC with loading/unloading",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2756.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 70000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 6MB",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "Disc changer (slots not stated) + 5+4 drill block"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/atc-cnc-router-machine-loading-unloading/"
+   ],
+   "notes": "4 x 850 W Yaskawa servos; loading/unloading 15 m/min.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm1330f",
+   "maker": "BCAMCNC",
+   "model": "BCM1330F",
+   "variant": "PTP ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 472.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1181.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "ATC (magazine not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/atc-cnc-wood-router-machine-for-furniture/"
+   ],
+   "notes": "Schmalz PTP pod table; published working speed is for foam.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm2060f",
+   "maker": "BCAMCNC",
+   "model": "BCM2060F",
+   "variant": "PTP ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 236.22,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 6000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 472.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1181.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "ATC (magazine not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/atc-cnc-wood-router-machine-for-furniture/"
+   ],
+   "notes": "Schmalz PTP pod table; published working speed is for foam.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm1325c-4-axis",
+   "maker": "BCAMCNC",
+   "model": "BCM1325C-4 axis",
+   "variant": "Z 600",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 23.62
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 600
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle, +/-90 deg",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2362.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60WE",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ATC (ISO30)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/4-axis-cnc-router-1325/"
+   ],
+   "notes": "Spindle tilts +/-90 deg; Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm1325c-4-axis-down-sunk",
+   "maker": "BCAMCNC",
+   "model": "BCM1325C-4 axis",
+   "variant": "down-sunk table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9.5 kW air-cooled ATC spindle, +/-90 deg",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2362.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60WE",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ATC (ISO30)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/4-axis-cnc-router-down-sunk/"
+   ],
+   "notes": "Down-sunk (recessed) table; spindle tilts +/-90 deg; Yaskawa servos. Spec lists 9 kW, feature text 9.5 kW HSD.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm1313c-4-axis-down-sunk",
+   "maker": "BCAMCNC",
+   "model": "BCM1313C-4 axis",
+   "variant": "down-sunk table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 51.18,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 1300,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9.5 kW air-cooled ATC spindle, +/-90 deg",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2362.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60WE",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ATC (ISO30)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/4-axis-cnc-router-down-sunk/"
+   ],
+   "notes": "Down-sunk (recessed) table; spindle tilts +/-90 deg; Yaskawa servos. Spec lists 9 kW, feature text 9.5 kW HSD.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm1530c-4-axis-down-sunk",
+   "maker": "BCAMCNC",
+   "model": "BCM1530C-4 axis",
+   "variant": "down-sunk table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9.5 kW air-cooled ATC spindle, +/-90 deg",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2362.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60WE",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ATC (ISO30)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/4-axis-cnc-router-down-sunk/"
+   ],
+   "notes": "Down-sunk (recessed) table; spindle tilts +/-90 deg; Yaskawa servos. Spec lists 9 kW, feature text 9.5 kW HSD.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm2030c-4-axis-down-sunk",
+   "maker": "BCAMCNC",
+   "model": "BCM2030C-4 axis",
+   "variant": "down-sunk table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9.5 kW air-cooled ATC spindle, +/-90 deg",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2362.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60WE",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ATC (ISO30)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/4-axis-cnc-router-down-sunk/"
+   ],
+   "notes": "Down-sunk (recessed) table; spindle tilts +/-90 deg; Yaskawa servos. Spec lists 9 kW, feature text 9.5 kW HSD.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm2040c-4-axis-down-sunk",
+   "maker": "BCAMCNC",
+   "model": "BCM2040C-4 axis",
+   "variant": "down-sunk table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9.5 kW air-cooled ATC spindle, +/-90 deg",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2362.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60WE",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ATC (ISO30)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/4-axis-cnc-router-down-sunk/"
+   ],
+   "notes": "Down-sunk (recessed) table; spindle tilts +/-90 deg; Yaskawa servos. Spec lists 9 kW, feature text 9.5 kW HSD.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm2060c-4-axis-down-sunk",
+   "maker": "BCAMCNC",
+   "model": "BCM2060C-4 axis",
+   "variant": "down-sunk table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 236.22,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 6000,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9.5 kW air-cooled ATC spindle, +/-90 deg",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2362.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60WE",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ATC (ISO30)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/4-axis-cnc-router-down-sunk/"
+   ],
+   "notes": "Down-sunk (recessed) table; spindle tilts +/-90 deg; Yaskawa servos. Spec lists 9 kW, feature text 9.5 kW HSD.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm1631f-5-axis",
+   "maker": "BCAMCNC",
+   "model": "BCM1631F-PTP 5 axis",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 62.99,
+    "y": 122.05,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 1600,
+    "y": 3100,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco 5-axis head + Hiteco spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2756.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 70000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3543.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 90000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 610MA",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position linear ATC"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/atc-5-axis-cnc-router/"
+   ],
+   "notes": "Schmalz PTP pod table; Yaskawa servos; RTCP.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm1530ce-5-axis",
+   "maker": "BCAMCNC",
+   "model": "BCM1530CE 5 axis",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 23.62
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 600
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD water-cooled spindle, BCAMCNC 5-axis head",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 591.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/cnc-5-axis-wood-router-economic/"
+   ],
+   "notes": "Economy 5-axis; published working speed 7-8 m/min for foam.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm1325d-5-axis",
+   "maker": "BCAMCNC",
+   "model": "BCM1325D-5 axis",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 31.5
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 800
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco water-cooled 5-axis spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 394.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 10000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 787.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 610MA-E5 (RTCP)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/5-axis-cnc-router-woodworking/"
+   ],
+   "notes": "5-axis for foam moulds; published working speed is for foam; Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm1530d-5-axis",
+   "maker": "BCAMCNC",
+   "model": "BCM1530D-5 axis",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco water-cooled 5-axis spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 394.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 10000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 787.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 610MA-E5 (RTCP)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/5-axis-cnc-router-woodworking/"
+   ],
+   "notes": "5-axis for foam moulds; published working speed is for foam; Yaskawa servos. Z travel not stated for this size.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm2030d-5-axis",
+   "maker": "BCAMCNC",
+   "model": "BCM2030D-5 axis",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco water-cooled 5-axis spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 394.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 10000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 787.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 610MA-E5 (RTCP)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/5-axis-cnc-router-woodworking/"
+   ],
+   "notes": "5-axis for foam moulds; published working speed is for foam; Yaskawa servos. Z travel not stated for this size.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm2540d-5-axis",
+   "maker": "BCAMCNC",
+   "model": "BCM2540D-5 axis",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 98.43,
+    "y": 157.48,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2500,
+    "y": 4000,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco water-cooled 5-axis spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 394.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 10000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 787.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 610MA-E5 (RTCP)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/5-axis-cnc-router-woodworking/"
+   ],
+   "notes": "5-axis for foam moulds; published working speed is for foam; Yaskawa servos. Z travel not stated for this size.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm3060d-5-axis",
+   "maker": "BCAMCNC",
+   "model": "BCM3060D-5 axis",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 118.11,
+    "y": 236.22,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3000,
+    "y": 6000,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco water-cooled 5-axis spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 394.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 10000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 787.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 610MA-E5 (RTCP)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/5-axis-cnc-router-woodworking/"
+   ],
+   "notes": "5-axis for foam moulds; published working speed is for foam; Yaskawa servos. Z travel not stated for this size.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm4080d-5-axis",
+   "maker": "BCAMCNC",
+   "model": "BCM4080D-5 axis",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 157.48,
+    "y": 314.96,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 4000,
+    "y": 8000,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco water-cooled 5-axis spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 394.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 10000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 787.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 610MA-E5 (RTCP)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/5-axis-cnc-router-woodworking/"
+   ],
+   "notes": "5-axis for foam moulds; published working speed is for foam; Yaskawa servos. Z travel not stated for this size.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm60120d-5-axis",
+   "maker": "BCAMCNC",
+   "model": "BCM60120D-5 axis",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 236.22,
+    "y": 472.44,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 6000,
+    "y": 12000,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco water-cooled 5-axis spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 394.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 10000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 787.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 610MA-E5 (RTCP)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/5-axis-cnc-router-woodworking/"
+   ],
+   "notes": "5-axis for foam moulds; published working speed is for foam; Yaskawa servos. Z travel not stated for this size.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm2550dl-5-axis",
+   "maker": "BCAMCNC",
+   "model": "BCM2550DL-5 Axis",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 98.43,
+    "y": 196.85,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2500,
+    "y": 5000,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco water-cooled 5-axis spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 591.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1575.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/5-axis-cnc-wood-router-ultra-large/"
+   ],
+   "notes": "Ultra-large 5-axis mould router (boats, wind blades); Z travel not stated; published working speed is for foam; Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm3060dl-5-axis",
+   "maker": "BCAMCNC",
+   "model": "BCM3060DL-5 Axis",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 118.11,
+    "y": 236.22,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3000,
+    "y": 6000,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco water-cooled 5-axis spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 591.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1575.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/5-axis-cnc-wood-router-ultra-large/"
+   ],
+   "notes": "Ultra-large 5-axis mould router (boats, wind blades); Z travel not stated; published working speed is for foam; Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm40100dl-5-axis",
+   "maker": "BCAMCNC",
+   "model": "BCM40100DL-5 Axis",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 157.48,
+    "y": 393.7,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 4000,
+    "y": 10000,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco water-cooled 5-axis spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 591.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1575.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/5-axis-cnc-wood-router-ultra-large/"
+   ],
+   "notes": "Ultra-large 5-axis mould router (boats, wind blades); Z travel not stated; published working speed is for foam; Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm40120dl-5-axis",
+   "maker": "BCAMCNC",
+   "model": "BCM40120DL-5 Axis",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 157.48,
+    "y": 472.44,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 4000,
+    "y": 12000,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco water-cooled 5-axis spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 591.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1575.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/5-axis-cnc-wood-router-ultra-large/"
+   ],
+   "notes": "Ultra-large 5-axis mould router (boats, wind blades); Z travel not stated; published working speed is for foam; Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm50120dl-5-axis",
+   "maker": "BCAMCNC",
+   "model": "BCM50120DL-5 Axis",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 196.85,
+    "y": 472.44,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 5000,
+    "y": 12000,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco water-cooled 5-axis spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 591.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1575.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/5-axis-cnc-wood-router-ultra-large/"
+   ],
+   "notes": "Ultra-large 5-axis mould router (boats, wind blades); Z travel not stated; published working speed is for foam; Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm50180dl-5-axis",
+   "maker": "BCAMCNC",
+   "model": "BCM50180DL-5 Axis",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 196.85,
+    "y": 708.66,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 5000,
+    "y": 18000,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco water-cooled 5-axis spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 591.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1575.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/5-axis-cnc-wood-router-ultra-large/"
+   ],
+   "notes": "Ultra-large 5-axis mould router (boats, wind blades); Z travel not stated; published working speed is for foam; Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm60240dl-5-axis",
+   "maker": "BCAMCNC",
+   "model": "BCM60240DL-5 Axis",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 236.22,
+    "y": 944.88,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 6000,
+    "y": 24000,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco water-cooled 5-axis spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 591.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1575.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/5-axis-cnc-wood-router-ultra-large/"
+   ],
+   "notes": "Ultra-large 5-axis mould router (boats, wind blades); Z travel not stated; published working speed is for foam; Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm80360dl-5-axis",
+   "maker": "BCAMCNC",
+   "model": "BCM80360DL-5 Axis",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 314.96,
+    "y": 1417.32,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 8000,
+    "y": 36000,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco water-cooled 5-axis spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 591.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1575.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/5-axis-cnc-wood-router-ultra-large/"
+   ],
+   "notes": "Ultra-large 5-axis mould router (boats, wind blades); Z travel not stated; published working speed is for foam; Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm1325s4",
+   "maker": "BCAMCNC",
+   "model": "BCM1325S*4",
+   "variant": "four-process",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Not stated",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": 4,
+    "notes": "Four spindles switched automatically"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/four-process-multi-head-cnc-router/"
+   ],
+   "notes": "Four-process multi-head router; spindle and controller details not in the spec table.",
+   "estimated": {
+    "work_area_in": "converted from mm"
+   }
+  },
+  {
+   "id": "bcamcnc-bcm1530ca",
+   "maker": "BCAMCNC",
+   "model": "BCM1530CA",
+   "variant": "CA series",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Not stated",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ISO30 linear ATC"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bcamcnc.com/atc-woodworking-cnc-machine-factory-price/"
+   ],
+   "notes": "750 W Leadshine servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  }
+ ]
+}

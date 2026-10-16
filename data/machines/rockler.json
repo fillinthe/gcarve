@@ -1,0 +1,318 @@
+{
+ "maker": "Rockler",
+ "website": "https://www.rockler.com",
+ "machines": [
+  {
+   "id": "rockler-cnc-shark-pro-plus",
+   "maker": "Rockler",
+   "model": "CNC Shark Pro Plus",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 25,
+    "y": 25,
+    "z": 5
+   },
+   "work_area_mm": {
+    "x": 635,
+    "y": 635,
+    "z": 127
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Bosch Colt palm router (customer supplied)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 5080,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Next Wave CNC Shark control software (PC, USB) / pendant",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20131111055637/http://www.rockler.com/cnc-shark-pro-plus-routing-system"
+   ],
+   "notes": "Rockler item 39500, Rockler-exclusive (built by Next Wave Automation). 28-1/2 x 36 in aluminium T-slot top, steel and HDPE frame, 269 oz-in steppers, stainless lead screws with anti-backlash nuts, 0.000125 in resolution. \"Up to 200 inches per min\".",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM",
+    "max_feed_ipm": "\"allows up to 200 inches per min\"; treated as max feed"
+   }
+  },
+  {
+   "id": "rockler-cnc-shark-hd-2",
+   "maker": "Rockler",
+   "model": "CNC Shark HD",
+   "variant": "2.0",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 25,
+    "y": 25,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 635,
+    "y": 635,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router (Bosch 1617/1618, PC 890/690, DeWalt 610/616/618)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Next Wave CNC Shark control software (PC, USB) / pendant",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20140321173844/http://www.rockler.com/cnc-shark-hd-version-2-0-routing-system"
+   ],
+   "notes": "Rockler item 54900, Rockler-exclusive (built by Next Wave Automation). 27 x 36 in aluminium T-slot top, routers up to 2.25 HP, supported linear guides on X/Y, stainless lead screws with backlash-reducing nuts.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "rockler-cnc-shark-hd-3",
+   "maker": "Rockler",
+   "model": "CNC Shark HD",
+   "variant": "3.0",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 25,
+    "y": 25,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 635,
+    "y": 635,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router (Bosch 1617/1618, PC 890/690, DeWalt 610/616/618)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Next Wave CNC Shark control software (PC, USB) / pendant",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20150202081447/http://www.rockler.com/cnc-shark-hd-30"
+   ],
+   "notes": "Rockler item 54455, Rockler-exclusive (built by Next Wave Automation). 28 x 36 in interlocking table, Virtual Zero surface mapping, anti-backlash wear-compensated lead screws, routers up to 2-1/4 HP or water-cooled spindles.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "rockler-cnc-shark",
+   "maker": "Rockler",
+   "model": "CNC Shark",
+   "variant": null,
+   "years": "2009-",
+   "class": "hobby",
+   "work_area_in": {
+    "x": 13,
+    "y": null,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 330,
+    "y": null,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Bosch Colt palm router (customer supplied)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Next Wave controller (USB to PC)",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.woodworkersjournal.com/cnc-shark/",
+    "https://www.woodworkingnetwork.com/product/solid-wood-machining-solid-wood-machining-solid-wood-machining-solid-wood-machining/cnc-0"
+   ],
+   "notes": "Original CNC Shark (built by Next Wave Automation, sold only through Rockler, $2,599.99 in 2009). 15-3/4 x 31-1/2 in table, three-axis, Bosch Colt palm router (sold separately), shipped with VCarve Pro 5.0. X travel 13 in per the trade listing (the later Shark Pro nearly doubled it to 24 in); Y and Z travel not published in the sources found.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  }
+ ]
+}

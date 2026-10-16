@@ -1,0 +1,5250 @@
+{
+ "maker": "Laguna Tools",
+ "website": "https://lagunatools.com",
+ "machines": [
+  {
+   "id": "laguna-iq-pro",
+   "maker": "Laguna Tools",
+   "model": "iQ Pro",
+   "variant": "2x4 ATC",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 24,
+    "y": 48,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 1219,
+    "z": null
+   },
+   "gantry_clearance_in": 10,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 HP liquid-cooled ATC spindle",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP B57E handheld",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 5,
+    "notes": "5-position tool holder; needs 87-100 psi air"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off (TTO) switch"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/iq-series/iq-pro/",
+    "https://laguna-file-manager.s3.amazonaws.com/s3/uploads/public/2019/10/15124946/iq-pro-owners-manual-r03-v09-05-15-2026.pdf"
+   ],
+   "notes": "Benchtop ATC machine, SKU MCNC IQ PRO-2 ATC 2x4 w/ 10\" gantry. Work envelope 24 x 48 in; Z travel not published. Ball screws on all axes.",
+   "estimated": {
+    "work_area_mm": "converted from the published inch values"
+   }
+  },
+  {
+   "id": "laguna-swift-4x4",
+   "maker": "Laguna Tools",
+   "model": "Swift",
+   "variant": "4x4",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 49,
+    "y": 49,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 1245,
+    "z": null
+   },
+   "gantry_clearance_in": 7,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 HP liquid-cooled electrospindle",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 400,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 10160,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 700,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 17780,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Laguna handheld DSP (RichAuto)",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/swift-series/standard/",
+    "https://lagunatools.com/cnc/swift-series/vacuum/",
+    "https://lagunatools.com/wp-content/uploads/2025/08/2025-swift-4x4-non-vacuum-footprint.pdf",
+    "https://lagunatools.com/wp-content/uploads/2025/08/2025-swift-4x4-vacuum-footprint.pdf",
+    "https://lagunatools.com/wp-content/uploads/2019/11/swift-standard-manual-r02.pdf",
+    "https://lagunatools.com/wp-content/uploads/2019/11/swift-vacuum-manual-r04-v07.pdf"
+   ],
+   "notes": "Swift (T-slot MDF table) and Swift Vacuum (4-zone phenolic vacuum table) share the frame and specs. Gantry clearance 7 in on the 2025 footprint sheets, 7-1/2 in on the product page. Helical rack and pinion X/Y, ball screw Z, 20 mm linear bearings. Z travel not published.",
+   "estimated": {
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM",
+    "work_area_mm": "converted from the published inch values"
+   }
+  },
+  {
+   "id": "laguna-swift-4x8",
+   "maker": "Laguna Tools",
+   "model": "Swift",
+   "variant": "4x8",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 49,
+    "y": 97,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 2464,
+    "z": null
+   },
+   "gantry_clearance_in": 7,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 HP liquid-cooled electrospindle",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 400,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 10160,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 700,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 17780,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Laguna handheld DSP (RichAuto)",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/swift-series/standard/",
+    "https://lagunatools.com/cnc/swift-series/vacuum/",
+    "https://lagunatools.com/wp-content/uploads/2025/08/2025-swift-4x8-non-vacuum-footprint.pdf",
+    "https://lagunatools.com/wp-content/uploads/2025/08/2025-swift-4x8-vacuum-footprint.pdf",
+    "https://lagunatools.com/wp-content/uploads/2019/11/swift-standard-manual-r02.pdf",
+    "https://lagunatools.com/wp-content/uploads/2019/11/swift-vacuum-manual-r04-v07.pdf"
+   ],
+   "notes": "Swift (T-slot MDF table) and Swift Vacuum (4-zone phenolic vacuum table) share the frame and specs. Gantry clearance 7 in on the 2025 footprint sheets, 7-1/2 in on the product page. Helical rack and pinion X/Y, ball screw Z, 20 mm linear bearings. Z travel not published.",
+   "estimated": {
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM",
+    "work_area_mm": "converted from the published inch values"
+   }
+  },
+  {
+   "id": "laguna-swift-5x10",
+   "maker": "Laguna Tools",
+   "model": "Swift",
+   "variant": "5x10",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": 7,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 HP liquid-cooled electrospindle",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 400,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 10160,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 700,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 17780,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Laguna handheld DSP (RichAuto)",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/swift-series/standard/",
+    "https://lagunatools.com/cnc/swift-series/vacuum/",
+    "https://lagunatools.com/wp-content/uploads/2025/08/2025-swift-5x10-non-vacuum-footprint.pdf",
+    "https://lagunatools.com/wp-content/uploads/2025/08/2025-swift-5x10-vacuum-footprint.pdf",
+    "https://lagunatools.com/wp-content/uploads/2019/11/swift-standard-manual-r02.pdf",
+    "https://lagunatools.com/wp-content/uploads/2019/11/swift-vacuum-manual-r04-v07.pdf"
+   ],
+   "notes": "Swift (T-slot MDF table) and Swift Vacuum (4-zone phenolic vacuum table) share the frame and specs. Gantry clearance 7 in on the 2025 footprint sheets, 7-1/2 in on the product page. Helical rack and pinion X/Y, ball screw Z, 20 mm linear bearings. Z travel not published.",
+   "estimated": {
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM",
+    "work_area_mm": "converted from the published inch values"
+   }
+  },
+  {
+   "id": "laguna-smartshop-m-4x4",
+   "maker": "Laguna Tools",
+   "model": "SmartShop M",
+   "variant": "4x4",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 49,
+    "y": 49,
+    "z": 13
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 1245,
+    "z": 330
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 HP HSD ES950 ATC spindle",
+     "power_kw": null,
+     "power_hp": 6,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 500,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 12700,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 900,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 22860,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec industrial controller",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ISO30 automatic tool changer"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/smartshop-series/ssm/",
+    "https://lagunatools.com/wp-content/uploads/2025/08/2025-ss-maker-4x4-footprint-r2.pdf"
+   ],
+   "notes": "4-zone vacuum table. 12 in Z clearance, 13 in Z travel (product page). A handheld-control version also has a manual.",
+   "estimated": {
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM",
+    "tool_change.kind": "maker says 8-position ATC; rack layout assumed (linear)",
+    "work_area_mm": "converted from the published inch values"
+   }
+  },
+  {
+   "id": "laguna-smartshop-m-4x8",
+   "maker": "Laguna Tools",
+   "model": "SmartShop M",
+   "variant": "4x8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 49,
+    "y": 97,
+    "z": 13
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 2464,
+    "z": 330
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 HP HSD ES950 ATC spindle",
+     "power_kw": null,
+     "power_hp": 6,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 500,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 12700,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 900,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 22860,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec industrial controller",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ISO30 automatic tool changer"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/smartshop-series/ssm/",
+    "https://lagunatools.com/wp-content/uploads/2019/10/ssm-2025-4x8-6hp-spec-sheet.pdf"
+   ],
+   "notes": "4-zone vacuum table. 12 in Z clearance, 13 in Z travel (product page). A handheld-control version also has a manual.",
+   "estimated": {
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM",
+    "tool_change.kind": "maker says 8-position ATC; rack layout assumed (linear)",
+    "work_area_mm": "converted from the published inch values"
+   }
+  },
+  {
+   "id": "laguna-smartshop-m-5x10",
+   "maker": "Laguna Tools",
+   "model": "SmartShop M",
+   "variant": "5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 121,
+    "z": 13
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3073,
+    "z": 330
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 HP HSD ES950 ATC spindle",
+     "power_kw": null,
+     "power_hp": 6,
+     "rpm_min": 5000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 500,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 12700,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 900,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 22860,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec industrial controller",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ISO30 automatic tool changer"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/smartshop-series/ssm/",
+    "https://lagunatools.com/wp-content/uploads/2025/08/2025-ss-maker-5x10-footprint.pdf"
+   ],
+   "notes": "6-zone vacuum table. 12 in Z clearance, 13 in Z travel (product page). A handheld-control version also has a manual.",
+   "estimated": {
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM",
+    "tool_change.kind": "maker says 8-position ATC; rack layout assumed (linear)",
+    "work_area_mm": "converted from the published inch values"
+   }
+  },
+  {
+   "id": "laguna-smartshop-2-pro-4x8",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 2 Pro",
+   "variant": "4x8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 49,
+    "y": 97,
+    "z": 13
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 2464,
+    "z": 330
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD ES951 ATC spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 5000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 800,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20320,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 38100,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec industrial controller",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ISO30 tool rack"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/smartshop-series/ss2-pro/",
+    "https://lagunatools.com/wp-content/uploads/2025/08/2025-ss2-pro-4x8-footprint-r3.pdf",
+    "https://lagunatools.com/wp-content/uploads/2019/10/smartshop-2-pro-syntec-r02-v03.pdf"
+   ],
+   "notes": "Yaskawa AC servos through planetary gearboxes, helical rack and pinion X/Y, ball screw Z. 6-zone vacuum table. Product page and manual say 12 HP HSD and up to 1,800 IPM rapid; the 2025 4x8/5x10 footprint sheets say 6 HP HSD ES951/ES950 and 1,500 IPM rapid / 800 IPM cut (used here for feeds).",
+   "estimated": {
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM",
+    "work_area_mm": "converted from the published inch values"
+   }
+  },
+  {
+   "id": "laguna-smartshop-2-pro-5x10",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 2 Pro",
+   "variant": "5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 121,
+    "z": 13
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3073,
+    "z": 330
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD ES951 ATC spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 5000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 800,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20320,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 38100,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec industrial controller",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ISO30 tool rack"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/smartshop-series/ss2-pro/",
+    "https://lagunatools.com/wp-content/uploads/2025/08/2025-ss2-pro-5x10-footprint-rev2.pdf",
+    "https://lagunatools.com/wp-content/uploads/2019/10/smartshop-2-pro-syntec-r02-v03.pdf"
+   ],
+   "notes": "Yaskawa AC servos through planetary gearboxes, helical rack and pinion X/Y, ball screw Z. 6-zone vacuum table. Product page and manual say 12 HP HSD and up to 1,800 IPM rapid; the 2025 4x8/5x10 footprint sheets say 6 HP HSD ES951/ES950 and 1,500 IPM rapid / 800 IPM cut (used here for feeds).",
+   "estimated": {
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM",
+    "work_area_mm": "converted from the published inch values"
+   }
+  },
+  {
+   "id": "laguna-smartshop-2-pro-5x12",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 2 Pro",
+   "variant": "5x12",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 145,
+    "z": 13
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3683,
+    "z": 330
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD ES951 ATC spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1500,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 38100,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50800,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec industrial controller (current product page)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "B+R P3 servo package (2023 5x12 spec sheet)",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ISO30 tool rack"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/smartshop-series/ss2-pro/",
+    "https://lagunatools.com/wp-content/uploads/2023/03/SS2-Pro_5X12-SPEC-SHEET.pdf",
+    "https://lagunatools.com/wp-content/uploads/2019/10/smartshop-2-pro-syntec-r02-v03.pdf"
+   ],
+   "notes": "Yaskawa AC servos through planetary gearboxes, helical rack and pinion X/Y, ball screw Z. 6-zone vacuum table. Product page and manual say 12 HP HSD and up to 1,800 IPM rapid; the 2025 4x8/5x10 footprint sheets say 6 HP HSD ES951/ES950 and 1,500 IPM rapid / 800 IPM cut (used here for feeds).",
+   "estimated": {
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM",
+    "work_area_mm": "converted from the published inch values"
+   }
+  },
+  {
+   "id": "laguna-smartshop-2-elite-4x8",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 2 Elite",
+   "variant": "4x8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 49,
+    "y": 97,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 2464,
+    "z": 356
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD ES951 ATC spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30480,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 63500,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-F (0i-MF Plus)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position static ISO30 tool changer"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/smartshop-series/ss2-elite/",
+    "https://lagunatools.com/wp-content/uploads/2025/08/elite-4x8-rev3-footprint.pdf",
+    "https://lagunatools.com/wp-content/uploads/2019/10/ss-2-elite-owners-manual-r01-v08-06-06-2025.pdf"
+   ],
+   "notes": "FANUC 750 W servos, helical rack and pinion X/Y, ball screw Z, 6-zone vacuum table (pod-ready). Product page also offers a 5x12 size (no spec sheet found).",
+   "estimated": {
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM",
+    "work_area_mm": "converted from the published inch values"
+   }
+  },
+  {
+   "id": "laguna-smartshop-2-elite-5x10",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 2 Elite",
+   "variant": "5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 121,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3073,
+    "z": 356
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD ES951 ATC spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 5000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30480,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 63500,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-F (0i-MF Plus)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position static ISO30 tool changer"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/smartshop-series/ss2-elite/",
+    "https://lagunatools.com/wp-content/uploads/2025/08/elite-5x10-rev2-footprint.pdf",
+    "https://lagunatools.com/wp-content/uploads/2019/10/ss-2-elite-owners-manual-r01-v08-06-06-2025.pdf"
+   ],
+   "notes": "FANUC 750 W servos, helical rack and pinion X/Y, ball screw Z, 6-zone vacuum table (pod-ready). Product page also offers a 5x12 size (no spec sheet found).",
+   "estimated": {
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM",
+    "work_area_mm": "converted from the published inch values"
+   }
+  },
+  {
+   "id": "laguna-smartshop-3-excel-4x8",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 3 Excel",
+   "variant": "4x8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 49,
+    "y": 97,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 2464,
+    "z": 356
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD ES951 ATC spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 5000,
+     "rpm_max": 24000,
+     "collet": "HSK63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30480,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-MF with Data Server",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12-position servo rotary tool changer, HSK63F"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/smartshop-series/ss3-excel/",
+    "https://lagunatools.com/wp-content/uploads/2025/08/2025-ss3-4x8-excel-r2.pdf",
+    "https://lagunatools.com/wp-content/uploads/2019/10/smartshop-3-excel-om-r01-v01.pdf"
+   ],
+   "notes": "FANUC 1,500 W servos, helical rack and pinion X/Y, ball screw Z, 6-zone pod-ready vacuum table, optional 5x5 HSD boring block.",
+   "estimated": {
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM",
+    "work_area_mm": "converted from the published inch values"
+   }
+  },
+  {
+   "id": "laguna-smartshop-3-excel-5x10",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 3 Excel",
+   "variant": "5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 121,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3073,
+    "z": 356
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD ES951 ATC spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 5000,
+     "rpm_max": 24000,
+     "collet": "HSK63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30480,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-MF with Data Server",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12-position servo rotary tool changer, HSK63F"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/smartshop-series/ss3-excel/",
+    "https://lagunatools.com/wp-content/uploads/2025/08/2025-ss3-5x10-excel-r2.pdf",
+    "https://lagunatools.com/wp-content/uploads/2019/10/smartshop-3-excel-om-r01-v01.pdf"
+   ],
+   "notes": "FANUC 1,500 W servos, helical rack and pinion X/Y, ball screw Z, 6-zone pod-ready vacuum table, optional 5x5 HSD boring block.",
+   "estimated": {
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM",
+    "work_area_mm": "converted from the published inch values"
+   }
+  },
+  {
+   "id": "laguna-smartshop-3-excel-5x12",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 3 Excel",
+   "variant": "5x12",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 145,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3683,
+    "z": 356
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD ES951 ATC spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1500,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 38100,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 63500,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-MF with Data Server",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "2021 5x12 sheet shows a tool rack; current page: 12-position rotary ATC"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/smartshop-series/ss3-excel/",
+    "https://lagunatools.com/wp-content/uploads/2021/05/5x12_SS3_With-Tool-Rack.pdf",
+    "https://lagunatools.com/wp-content/uploads/2019/10/smartshop-3-excel-om-r01-v01.pdf"
+   ],
+   "notes": "FANUC 1,500 W servos, helical rack and pinion X/Y, ball screw Z, 6-zone pod-ready vacuum table, optional 5x5 HSD boring block.",
+   "estimated": {
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM",
+    "work_area_mm": "converted from the published inch values"
+   }
+  },
+  {
+   "id": "laguna-smartshop-3-excel-9x16",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 3 Excel",
+   "variant": "9x16",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 109,
+    "y": 193,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 2769,
+    "y": 4902,
+    "z": 356
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD ES951 ATC spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 5000,
+     "rpm_max": 24000,
+     "collet": "HSK63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30480,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-MF with Data Server",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12-position servo rotary tool changer, HSK63F"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/smartshop-series/ss3-excel/",
+    "https://lagunatools.com/wp-content/uploads/2025/08/2025-ss3-9x16-excel-r1.pdf",
+    "https://lagunatools.com/wp-content/uploads/2019/10/smartshop-3-excel-om-r01-v01.pdf"
+   ],
+   "notes": "FANUC 1,500 W servos, helical rack and pinion X/Y, ball screw Z, 6-zone pod-ready vacuum table, optional 5x5 HSD boring block.",
+   "estimated": {
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM",
+    "work_area_mm": "converted from the published inch values"
+   }
+  },
+  {
+   "id": "laguna-smartshop-5-axis-4x8-24",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 5 Axis",
+   "variant": "4x8 24 in gantry",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 49,
+    "y": 97,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 2464,
+    "z": null
+   },
+   "gantry_clearance_in": 24,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD HS300 2-axis articulating head, 9 HP",
+     "power_kw": null,
+     "power_hp": 9,
+     "rpm_min": 5000,
+     "rpm_max": 18000,
+     "collet": "HSK63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30480,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 31i-B5 with Data Server (5-axis)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12-position rotary tool changer, HSK63F; optional 5x5 HSD boring block"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/smartshop-series/smartshop-5-axis/",
+    "https://lagunatools.com/wp-content/uploads/2025/08/5-axis-4x824-footprint_2025_rev1.pdf"
+   ],
+   "notes": "5-axis router. Working area 49 x 97 in per the 2025 footprint sheet. Helical rack and pinion X/Y, 30 mm linear bearings, FANUC 1500 W servos, 6-zone pod-ready vacuum table, 8600 lb welded frame. Sheet: rapid 3000 IPM, cut 1200 IPM; product page: rapid 2500, cut 1000 IPM. Sheet heads the spindle '12HP HSD HS300 2 Axis, 9 HP'; product page says 9 HP.",
+   "estimated": {
+    "gantry_clearance_in": "from the gantry option in the sheet title (sheet body lists 36 in for every size)",
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-5-axis-4x8-36",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 5 Axis",
+   "variant": "4x8 36 in gantry",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 49,
+    "y": 97,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 2464,
+    "z": null
+   },
+   "gantry_clearance_in": 36,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD HS300 2-axis articulating head, 9 HP",
+     "power_kw": null,
+     "power_hp": 9,
+     "rpm_min": 5000,
+     "rpm_max": 18000,
+     "collet": "HSK63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30480,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 31i-B5 with Data Server (5-axis)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12-position rotary tool changer, HSK63F; optional 5x5 HSD boring block"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/smartshop-series/smartshop-5-axis/",
+    "https://lagunatools.com/wp-content/uploads/2025/08/5-axis-4x836-footprint_2025_rev1.pdf"
+   ],
+   "notes": "5-axis router. Working area 49 x 97 in per the 2025 footprint sheet. Helical rack and pinion X/Y, 30 mm linear bearings, FANUC 1500 W servos, 6-zone pod-ready vacuum table, 8600 lb welded frame. Sheet: rapid 3000 IPM, cut 1200 IPM; product page: rapid 2500, cut 1000 IPM. Sheet heads the spindle '12HP HSD HS300 2 Axis, 9 HP'; product page says 9 HP.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-5-axis-5x5-36",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 5 Axis",
+   "variant": "5x5 36 in gantry",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 61,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 1549,
+    "z": null
+   },
+   "gantry_clearance_in": 36,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD HS300 2-axis articulating head, 9 HP",
+     "power_kw": null,
+     "power_hp": 9,
+     "rpm_min": 5000,
+     "rpm_max": 18000,
+     "collet": "HSK63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30480,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 31i-B5 with Data Server (5-axis)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12-position rotary tool changer, HSK63F; optional 5x5 HSD boring block"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/smartshop-series/smartshop-5-axis/",
+    "https://lagunatools.com/wp-content/uploads/2025/08/5-axis-5x536-footprint_2025_rev1.pdf"
+   ],
+   "notes": "5-axis router. Working area 61 x 61 in per the 2025 footprint sheet. Helical rack and pinion X/Y, 30 mm linear bearings, FANUC 1500 W servos, 6-zone pod-ready vacuum table, 8600 lb welded frame. Sheet: rapid 3000 IPM, cut 1200 IPM; product page: rapid 2500, cut 1000 IPM. Sheet heads the spindle '12HP HSD HS300 2 Axis, 9 HP'; product page says 9 HP.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-5-axis-5x10-24",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 5 Axis",
+   "variant": "5x10 24 in gantry",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 121,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3073,
+    "z": null
+   },
+   "gantry_clearance_in": 24,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD HS300 2-axis articulating head, 9 HP",
+     "power_kw": null,
+     "power_hp": 9,
+     "rpm_min": 5000,
+     "rpm_max": 18000,
+     "collet": "HSK63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30480,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 31i-B5 with Data Server (5-axis)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12-position rotary tool changer, HSK63F; optional 5x5 HSD boring block"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/smartshop-series/smartshop-5-axis/",
+    "https://lagunatools.com/wp-content/uploads/2025/08/5-axis-5x1024-footprint_2025_rev1.pdf"
+   ],
+   "notes": "5-axis router. Working area 61 x 121 in per the 2025 footprint sheet. Helical rack and pinion X/Y, 30 mm linear bearings, FANUC 1500 W servos, 6-zone pod-ready vacuum table, 8600 lb welded frame. Sheet: rapid 3000 IPM, cut 1200 IPM; product page: rapid 2500, cut 1000 IPM. Sheet heads the spindle '12HP HSD HS300 2 Axis, 9 HP'; product page says 9 HP.",
+   "estimated": {
+    "gantry_clearance_in": "from the gantry option in the sheet title (sheet body lists 36 in for every size)",
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-5-axis-5x10-36",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 5 Axis",
+   "variant": "5x10 36 in gantry",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": 36,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD HS300 2-axis articulating head, 9 HP",
+     "power_kw": null,
+     "power_hp": 9,
+     "rpm_min": 5000,
+     "rpm_max": 18000,
+     "collet": "HSK63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30480,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 31i-B5 with Data Server (5-axis)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12-position rotary tool changer, HSK63F; optional 5x5 HSD boring block"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/smartshop-series/smartshop-5-axis/",
+    "https://lagunatools.com/wp-content/uploads/2025/08/5-axis-5x1036-footprint_2025_rev1.pdf"
+   ],
+   "notes": "5-axis router. Working area 61 x 120 in per the 2025 footprint sheet. Helical rack and pinion X/Y, 30 mm linear bearings, FANUC 1500 W servos, 6-zone pod-ready vacuum table, 8600 lb welded frame. Sheet: rapid 3000 IPM, cut 1200 IPM; product page: rapid 2500, cut 1000 IPM. Sheet heads the spindle '12HP HSD HS300 2 Axis, 9 HP'; product page says 9 HP.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-j8",
+   "maker": "Laguna Tools",
+   "model": "SmartShop J",
+   "variant": "J8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 96,
+    "y": 4,
+    "z": 3
+   },
+   "work_area_mm": {
+    "x": 2438,
+    "y": 102,
+    "z": 76
+   },
+   "gantry_clearance_in": 4,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4 HP MT air-cooled spindle",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Laguna handheld DSP (RichAuto)",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": 4
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/speciality-machines/smartshop-j/",
+    "https://lagunatools.com/wp-content/uploads/2019/10/smartshop-j-owners-manual-r02.pdf",
+    "https://lagunatools.com/wp-content/uploads/2025/08/smartshop-j10-spec-sheet.pdf",
+    "https://lagunatools.com/wp-content/uploads/2024/05/smartshop-j8-new-porposed-manual-rev.1_051724.pdf"
+   ],
+   "notes": "Joinery/mortising machine for long stock (X = length). Spec table: working area 96 in X x 4 in Y x 3 in Z travel, 4 in material thickness, rapid 600 IPM, Delta servos, pneumatic clamping, frame 1200 lb. Helical rack X; the J8 manual lists ball screws on Y/Z and '6 in of Z-axis travel' and a 4.5 HP spindle.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-j10",
+   "maker": "Laguna Tools",
+   "model": "SmartShop J",
+   "variant": "J10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 4,
+    "z": 3
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 102,
+    "z": 76
+   },
+   "gantry_clearance_in": 4,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4.5 HP MT air-cooled spindle",
+     "power_kw": null,
+     "power_hp": 4.5,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Laguna handheld DSP (RichAuto)",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": 4
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/speciality-machines/smartshop-j/",
+    "https://lagunatools.com/wp-content/uploads/2019/10/smartshop-j-owners-manual-r02.pdf",
+    "https://lagunatools.com/wp-content/uploads/2025/08/smartshop-j10-spec-sheet.pdf",
+    "https://lagunatools.com/wp-content/uploads/2024/05/smartshop-j8-new-porposed-manual-rev.1_051724.pdf"
+   ],
+   "notes": "Joinery/mortising machine for long stock (X = length). Spec table: working area 120 in X x 4 in Y x 3 in Z travel, 4 in material thickness, rapid 600 IPM, Delta servos, pneumatic clamping, frame 2750 lb. Helical rack X; the J8 manual lists ball screws on Y/Z and '6 in of Z-axis travel' and a 4.5 HP spindle.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-swift-mt-4x8",
+   "maker": "Laguna Tools",
+   "model": "Swift MT",
+   "variant": "4x8",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 49,
+    "y": 97,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 2464,
+    "z": null
+   },
+   "gantry_clearance_in": 7,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 HP liquid-cooled industrial spindle",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20320,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Laguna PC controller",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": null,
+    "notes": "multi-tool head: spindle plus knife tools (drag/oscillating)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/swift-series/swift-mt/",
+    "https://laguna-file-manager.s3.amazonaws.com/s3/uploads/public/2024/11/11062631/swift-4x8-mt-2026-footprint_r1.pdf"
+   ],
+   "notes": "Multi-tool Swift. 2026 footprint sheet: working area as listed, rapid 800 IPM, cutting approx. 600 IPM, Leadshine hybrid steppers, helical rack X/Y, 20 mm linear bearings, 6-zone vacuum table. Product page: rapids up to 650 IPM, 4-6 zone phenolic vacuum table.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-swift-mt-5x10",
+   "maker": "Laguna Tools",
+   "model": "Swift MT",
+   "variant": "5x10",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": 7,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 HP liquid-cooled industrial spindle",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20320,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Laguna PC controller",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": null,
+    "notes": "multi-tool head: spindle plus knife tools (drag/oscillating)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/swift-series/swift-mt/",
+    "https://laguna-file-manager.s3.amazonaws.com/s3/uploads/public/2024/11/11062627/swift-mt-5x10-2026-footprint_r2.pdf"
+   ],
+   "notes": "Multi-tool Swift. 2026 footprint sheet: working area as listed, rapid 800 IPM, cutting approx. 600 IPM, Leadshine hybrid steppers, helical rack X/Y, 20 mm linear bearings, 6-zone vacuum table. Product page: rapids up to 650 IPM, 4-6 zone phenolic vacuum table.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-mt-elite-4x8",
+   "maker": "Laguna Tools",
+   "model": "SmartShop MT Elite",
+   "variant": "4x8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 49,
+    "y": 97,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 2464,
+    "z": null
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD ES951 air-cooled ATC spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30480,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 63500,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-F Type 5",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ATC rack, ISO30 tool clips; up to three extra cutting devices (knives)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/speciality-machines/smartshop-mt/",
+    "https://lagunatools.com/wp-content/uploads/2019/10/mt-elite-4x8-footprint-r2.pdf",
+    "https://lagunatools.com/wp-content/uploads/2019/10/smartshop-mt-elite-r01.pdf"
+   ],
+   "notes": "Router + tangential/oscillating knife platform. 750 W FANUC servos, helical rack X/Y, ball screw Z, 6-zone phenolic grid table with T-slots, optional Laguna Vision. Footprint sheet: rapid 2500 IPM, max cut 1200 IPM.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-mt-elite-5x10",
+   "maker": "Laguna Tools",
+   "model": "SmartShop MT Elite",
+   "variant": "5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 121,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3073,
+    "z": null
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD ES951 air-cooled ATC spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 5000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30480,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 63500,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-F Type 5",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ATC rack, ISO30 tool clips; up to three extra cutting devices (knives)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/speciality-machines/smartshop-mt/",
+    "https://lagunatools.com/wp-content/uploads/2019/10/mt-elite-5x10-footprint-r2.pdf",
+    "https://lagunatools.com/wp-content/uploads/2019/10/smartshop-mt-elite-r01.pdf"
+   ],
+   "notes": "Router + tangential/oscillating knife platform. 750 W FANUC servos, helical rack X/Y, ball screw Z, 6-zone phenolic grid table with T-slots, optional Laguna Vision. Footprint sheet: rapid 2500 IPM, max cut 1200 IPM.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-2-autoloader-4x8",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 2 Auto Loader",
+   "variant": "4x8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "8-position rotary tool changer; HSD 5x5 L-shape drill block"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/smartshop-series/ss2-al/",
+    "https://lagunatools.com/wp-content/uploads/2019/10/smartshop-2-autoloader-om-r01-v01.pdf"
+   ],
+   "notes": "Nesting cell with loading/unloading tables. 4x8 ft table (cutting travel not published). 850 W Yaskawa servos, helical rack. Controller not named on the page."
+  },
+  {
+   "id": "laguna-smartshop-2-autoloader-5x10",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 2 Auto Loader",
+   "variant": "5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "8-position rotary tool changer; HSD 5x5 L-shape drill block"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/smartshop-series/ss2-al/",
+    "https://lagunatools.com/wp-content/uploads/2019/10/smartshop-2-autoloader-om-r01-v01.pdf"
+   ],
+   "notes": "Nesting cell with loading/unloading tables. 5x10 ft table (cutting travel not published). 850 W Yaskawa servos, helical rack. Controller not named on the page."
+  },
+  {
+   "id": "laguna-smartshop-3-autoloader-excel-4x8",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 3 Auto Loader Excel (SS4 Auto Load)",
+   "variant": "4x8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": 7,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP HSD liquid-cooled spindle",
+     "power_kw": null,
+     "power_hp": 18,
+     "rpm_min": 5000,
+     "rpm_max": 24000,
+     "collet": "HSK63",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25400,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-MF",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12-position servo rotary ATC; 5x5 HSD boring block"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch off (TTO)"
+   },
+   "z_zero": [
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/smartshop-series/ss3-al/",
+    "https://lagunatools.com/wp-content/uploads/2024/01/smartshop-4-auto-loader-r02-v02.pdf"
+   ],
+   "notes": "Auto-loading nesting cell with clean-sweep unload and labelling. 4 x 8 ft table (cutting travel not published). 1500 W FANUC servos, helical rack X/Y, ball screw Z, 25 mm linear bearings, 4-zone vacuum (manual; page says 6-zone), 8 in dust port, 3100 lb frame.",
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-cf-16",
+   "maker": "Laguna Tools",
+   "model": "SmartShop Composite Fabricator",
+   "variant": "CF-16",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.1,
+    "y": 189.0,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 4800,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 HP HSD spindle (x3, floating heads)",
+     "power_kw": null,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "B&R industrial controller with touch screen (product page)",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "FANUC 0i-MF PLUS (manual)",
+     "gcarve_post": "fanuc-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": 3,
+    "notes": "1, 2 or 3 spindle design; ATC spindle available"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/specialty-machines/cf-16/",
+    "https://lagunatools.com/wp-content/uploads/2019/10/smartshop-composite-fabricator-16-r02-v02.pdf"
+   ],
+   "notes": "ACM/ACP panel router. Product page: machining area 5 x 16 ft (1500 x 4800 mm), custom sizes available; 6-zone vacuum table, two 10 HP pumps. 750 W FANUC servos, planetary gearboxes, helical rack X/Y, ball screw Z.",
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-cf-20",
+   "maker": "Laguna Tools",
+   "model": "SmartShop Composite Fabricator",
+   "variant": "CF-20",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.7,
+    "y": 236.2,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 6000,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 HP HSD spindle (x3, floating heads)",
+     "power_kw": null,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "B&R industrial controller with touch screen (product page)",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "FANUC 0i-MF PLUS (manual)",
+     "gcarve_post": "fanuc-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": 3,
+    "notes": "1, 2 or 3 spindle design; ATC spindle available"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/cnc/specialty-machines/cf-20/",
+    "https://lagunatools.com/wp-content/uploads/2019/10/smartshop-composite-fabricator-20-r02-v02.pdf"
+   ],
+   "notes": "ACM/ACP panel router. Product page: machining area 6 x 20 ft (2000 x 6000 mm), custom sizes available; 6-zone vacuum table, two 10 HP pumps. 750 W FANUC servos, planetary gearboxes, helical rack X/Y, ball screw Z.",
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   }
+  },
+  {
+   "id": "laguna-iq-24x36",
+   "maker": "Laguna Tools",
+   "model": "iQ (standard)",
+   "variant": "24x36",
+   "years": "2022 catalog",
+   "class": "hobby",
+   "work_area_in": {
+    "x": 36,
+    "y": 24,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 914,
+    "y": 610,
+    "z": null
+   },
+   "gantry_clearance_in": 6,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 HP liquid-cooled electrospindle (single phase, continuous duty)",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Laguna handheld controller",
+     "gcarve_post": "laguna-touch-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/wp-content/uploads/2022/02/CNC_Catalog_022422.pdf"
+   ],
+   "notes": "Bench-top iQ. Work envelope published as 24 x 36 in (recorded X = 36). Ball screws on all axes, 6 in gantry clearance.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   }
+  },
+  {
+   "id": "laguna-iq-24x48",
+   "maker": "Laguna Tools",
+   "model": "iQ (standard)",
+   "variant": "24x48",
+   "years": "2022 catalog",
+   "class": "hobby",
+   "work_area_in": {
+    "x": 48,
+    "y": 24,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 610,
+    "z": null
+   },
+   "gantry_clearance_in": 6,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 HP liquid-cooled electrospindle (single phase, continuous duty)",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Laguna handheld controller",
+     "gcarve_post": "laguna-touch-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/wp-content/uploads/2022/02/CNC_Catalog_022422.pdf"
+   ],
+   "notes": "Bench-top iQ. Work envelope published as 24 x 48 in (recorded X = 48). Ball screws on all axes, 6 in gantry clearance.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   }
+  },
+  {
+   "id": "laguna-iq-pro-24x36",
+   "maker": "Laguna Tools",
+   "model": "iQ Pro",
+   "variant": "24x36",
+   "years": "2022 catalog",
+   "class": "hobby",
+   "work_area_in": {
+    "x": 36,
+    "y": 24,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 914,
+    "y": 610,
+    "z": null
+   },
+   "gantry_clearance_in": 10,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 HP liquid-cooled electrospindle (single phase, continuous duty)",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Laguna handheld controller (toolpath preview)",
+     "gcarve_post": "laguna-touch-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 5,
+    "notes": "5-position automatic tool changer"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/wp-content/uploads/2022/02/CNC_Catalog_022422.pdf"
+   ],
+   "notes": "iQ Pro with ATC, 24 x 36 in size (also 24 x 48, see laguna-iq-pro). 10 in gantry, vacuum table, dual drive motors.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-2-4x4",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 2",
+   "variant": "4x4",
+   "years": "2022 catalog",
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec industrial controller",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "B&R Automation",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ATC"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/wp-content/uploads/2022/02/CNC_Catalog_022422.pdf"
+   ],
+   "notes": "4x4 ft table (cutting travel not published). Japanese helical rack and pinion X/Y, German ball screw Z, HiWin rails, one-piece steel frame, pop-up pins; 4th-axis turner expansion; custom sizes."
+  },
+  {
+   "id": "laguna-smartshop-2-suv-4x4",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 2 SUV",
+   "variant": "4x4",
+   "years": "2022 catalog",
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25400,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1600,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40640,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec industrial controller",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "B&R Automation",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ATC"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/wp-content/uploads/2022/02/CNC_Catalog_022422.pdf"
+   ],
+   "notes": "4x4 ft table (cutting travel not published). B&R servo drives on X/Y/Z/A, helical rack X/Y, one-piece tubular steel frame, cut up to 1000 in/min, rapid 1600 in/min.",
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-mt-4x4",
+   "maker": "Laguna Tools",
+   "model": "SmartShop MT",
+   "variant": "4x4",
+   "years": "2022 catalog",
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD air-cooled spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "WinCNC",
+     "gcarve_post": "wincnc-atc",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position tool changer; up to three extra tool devices (knives, creasing)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/wp-content/uploads/2022/02/CNC_Catalog_022422.pdf"
+   ],
+   "notes": "Multi-tool router, 4x4 ft table (cutting travel not published). Z lead screw, 6-zone phenolic grid table with T-slots, 10 HP vacuum pump, optional Laguna Vision, tangential/oscillating knife, rotary creasing. Later MT Elite moved to FANUC."
+  },
+  {
+   "id": "laguna-smartshop-2-4x8",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 2",
+   "variant": "4x8",
+   "years": "2022 catalog",
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec industrial controller",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "B&R Automation",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ATC"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/wp-content/uploads/2022/02/CNC_Catalog_022422.pdf"
+   ],
+   "notes": "4x8 ft table (cutting travel not published). Japanese helical rack and pinion X/Y, German ball screw Z, HiWin rails, one-piece steel frame, pop-up pins; 4th-axis turner expansion; custom sizes."
+  },
+  {
+   "id": "laguna-smartshop-2-suv-4x8",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 2 SUV",
+   "variant": "4x8",
+   "years": "2022 catalog",
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25400,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1600,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40640,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec industrial controller",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "B&R Automation",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ATC"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/wp-content/uploads/2022/02/CNC_Catalog_022422.pdf"
+   ],
+   "notes": "4x8 ft table (cutting travel not published). B&R servo drives on X/Y/Z/A, helical rack X/Y, one-piece tubular steel frame, cut up to 1000 in/min, rapid 1600 in/min.",
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-mt-4x8",
+   "maker": "Laguna Tools",
+   "model": "SmartShop MT",
+   "variant": "4x8",
+   "years": "2022 catalog",
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD air-cooled spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "WinCNC",
+     "gcarve_post": "wincnc-atc",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position tool changer; up to three extra tool devices (knives, creasing)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/wp-content/uploads/2022/02/CNC_Catalog_022422.pdf"
+   ],
+   "notes": "Multi-tool router, 4x8 ft table (cutting travel not published). Z lead screw, 6-zone phenolic grid table with T-slots, 10 HP vacuum pump, optional Laguna Vision, tangential/oscillating knife, rotary creasing. Later MT Elite moved to FANUC."
+  },
+  {
+   "id": "laguna-smartshop-2-5x10",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 2",
+   "variant": "5x10",
+   "years": "2022 catalog",
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec industrial controller",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "B&R Automation",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ATC"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/wp-content/uploads/2022/02/CNC_Catalog_022422.pdf"
+   ],
+   "notes": "5x10 ft table (cutting travel not published). Japanese helical rack and pinion X/Y, German ball screw Z, HiWin rails, one-piece steel frame, pop-up pins; 4th-axis turner expansion; custom sizes."
+  },
+  {
+   "id": "laguna-smartshop-2-suv-5x10",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 2 SUV",
+   "variant": "5x10",
+   "years": "2022 catalog",
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25400,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1600,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40640,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec industrial controller",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "B&R Automation",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ATC"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/wp-content/uploads/2022/02/CNC_Catalog_022422.pdf"
+   ],
+   "notes": "5x10 ft table (cutting travel not published). B&R servo drives on X/Y/Z/A, helical rack X/Y, one-piece tubular steel frame, cut up to 1000 in/min, rapid 1600 in/min.",
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-mt-5x10",
+   "maker": "Laguna Tools",
+   "model": "SmartShop MT",
+   "variant": "5x10",
+   "years": "2022 catalog",
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD air-cooled spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "WinCNC",
+     "gcarve_post": "wincnc-atc",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position tool changer; up to three extra tool devices (knives, creasing)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/wp-content/uploads/2022/02/CNC_Catalog_022422.pdf"
+   ],
+   "notes": "Multi-tool router, 5x10 ft table (cutting travel not published). Z lead screw, 6-zone phenolic grid table with T-slots, 10 HP vacuum pump, optional Laguna Vision, tangential/oscillating knife, rotary creasing. Later MT Elite moved to FANUC."
+  },
+  {
+   "id": "laguna-smartshop-4th-axis-turner-2x4",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 4th Axis Turner",
+   "variant": "2x4",
+   "years": "2022 catalog",
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco 5.5 HP spindle",
+     "power_kw": null,
+     "power_hp": 5.5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "12 HP HSD spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "B&R industrial controller (touch screen)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/wp-content/uploads/2022/02/CNC_Catalog_022422.pdf"
+   ],
+   "notes": "Rotary turning machine on the SmartShop 2 platform, 2x4 ft size (travel not published). Helical rack X/Y, ball screw Z, HiWin rails; for columns, millwork, rifle stocks."
+  },
+  {
+   "id": "laguna-smartshop-4th-axis-turner-2x6",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 4th Axis Turner",
+   "variant": "2x6",
+   "years": "2022 catalog",
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco 5.5 HP spindle",
+     "power_kw": null,
+     "power_hp": 5.5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "12 HP HSD spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "B&R industrial controller (touch screen)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/wp-content/uploads/2022/02/CNC_Catalog_022422.pdf"
+   ],
+   "notes": "Rotary turning machine on the SmartShop 2 platform, 2x6 ft size (travel not published). Helical rack X/Y, ball screw Z, HiWin rails; for columns, millwork, rifle stocks."
+  },
+  {
+   "id": "laguna-smartshop-4th-axis-turner-2x8",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 4th Axis Turner",
+   "variant": "2x8",
+   "years": "2022 catalog",
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco 5.5 HP spindle",
+     "power_kw": null,
+     "power_hp": 5.5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "12 HP HSD spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "B&R industrial controller (touch screen)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/wp-content/uploads/2022/02/CNC_Catalog_022422.pdf"
+   ],
+   "notes": "Rotary turning machine on the SmartShop 2 platform, 2x8 ft size (travel not published). Helical rack X/Y, ball screw Z, HiWin rails; for columns, millwork, rifle stocks."
+  },
+  {
+   "id": "laguna-smartshop-3-4x4",
+   "maker": "Laguna Tools",
+   "model": "SmartShop 3",
+   "variant": "4x4",
+   "years": "2022 catalog",
+   "class": "industrial",
+   "work_area_in": {
+    "x": null,
+    "y": null,
+    "z": 12
+   },
+   "work_area_mm": {
+    "x": null,
+    "y": null,
+    "z": 305
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 HP 4-bearing HSD spindle (option, for ferrous metals)",
+     "power_kw": null,
+     "power_hp": 16,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1600,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 40640,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 63500,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-MF",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12-position rotary ATC, HSK63F"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://lagunatools.com/wp-content/uploads/2022/02/CNC_Catalog_022422.pdf"
+   ],
+   "notes": "4 x 4 ft table (also 4x8, 5x10, 5x12: see laguna-smartshop-3-excel-*). 12 in Z travel and gantry clearance, 1500 W FANUC servos, cut up to 1600 in/min, rapid 2500 in/min, pop-up pins.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-2-4x8-6hp-2015",
+   "maker": "Laguna Tools",
+   "model": "SmartShop II",
+   "variant": "4x8 6 HP",
+   "years": "2015 (archived)",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48,
+    "y": 96,
+    "z": 6
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 2438,
+    "z": 152
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 HP liquid-cooled spindle (NSK bearings, Delta VFD-B)",
+     "power_kw": null,
+     "power_hp": 6,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 900,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 22860,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Laguna Touch (B&R Automation PLC, touchscreen)",
+     "gcarve_post": "laguna-touch-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2015/http://www.lagunatools.com/cnc/Laguna-Smart-Shop"
+   ],
+   "notes": "Model MCNC SS2 4X8 6 HP. 48 x 96 x 6 in axis travel, 12 in under gantry, rapid 900 in/min, max cut 600 in/min, helical rack X/Y (dual-driven gantry), ground ball screw Z, vacuum table with T-slots, 10 HP vacuum pump.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-2-4x8-atc-2015",
+   "maker": "Laguna Tools",
+   "model": "SmartShop II",
+   "variant": "4x8 7.5 HP ATC",
+   "years": "2015 (archived)",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48,
+    "y": 96,
+    "z": 12
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 2438,
+    "z": 305
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "7.5 HP liquid-cooled ATC spindle (Delta VFD-B)",
+     "power_kw": null,
+     "power_hp": 7.5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 900,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 22860,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Laguna Touch (B&R Automation PLC, touchscreen)",
+     "gcarve_post": "laguna-touch-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ATC (4 tool holders included)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2015/http://www.lagunatools.com/cnc/SmartShop-2-4-X-8-7-5HP-spindle"
+   ],
+   "notes": "Model MCNC SS2 4X8 Liquid Cooled ATC-0158. 48 x 96 x 12 in axis travel, 12 in under gantry, rapid 900 in/min, max cut 600 in/min, helical rack X/Y, ball screw Z, 10 HP vacuum pump. Also sold as 4x4 and 5x10 ATC and with an 11 HP HSD spindle (2014 range list).",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-1-48x48",
+   "maker": "Laguna Tools",
+   "model": "SmartShop I",
+   "variant": "48x48",
+   "years": "2014 (archived)",
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 48,
+    "y": 48,
+    "z": 6
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 1219,
+    "z": 152
+   },
+   "gantry_clearance_in": 7.25,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4 HP liquid-cooled spindle (NSK bearings)",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 900,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 22860,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Laguna handheld controller",
+     "gcarve_post": "laguna-touch-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20140221124639/http://www.lagunatools.com/cnc/Laguna-SmartShop-CNC-Router_12"
+   ],
+   "notes": "Model MCNC SS1 48x48. 48 x 48 x 6 in axis travel, 7-1/4 in under gantry, rapid 900 in/min, max cut 600 in/min. Helical rack X/Y with dual-driven gantry, ground ball screw Z, vacuum table with T-slots, 10 HP vacuum pump.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-1-48x96",
+   "maker": "Laguna Tools",
+   "model": "SmartShop I",
+   "variant": "48x96",
+   "years": "2014 (archived)",
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 48,
+    "y": 96,
+    "z": 6
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 2438,
+    "z": 152
+   },
+   "gantry_clearance_in": 7.25,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4 HP liquid-cooled spindle (NSK bearings)",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 900,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 22860,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Laguna handheld controller",
+     "gcarve_post": "laguna-touch-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20140221124639/http://www.lagunatools.com/cnc/Laguna-SmartShop-CNC-Router_6"
+   ],
+   "notes": "Model MCNC SS1 48x96. 48 x 96 x 6 in axis travel, 7-1/4 in under gantry, rapid 900 in/min, max cut 600 in/min. Helical rack X/Y with dual-driven gantry, ground ball screw Z, vacuum table with T-slots, 10 HP vacuum pump.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-1-60x120",
+   "maker": "Laguna Tools",
+   "model": "SmartShop I",
+   "variant": "60x120",
+   "years": "2014 (archived)",
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": 6
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": 152
+   },
+   "gantry_clearance_in": 7.25,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4 HP liquid-cooled spindle (NSK bearings)",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 900,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 22860,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Laguna handheld controller",
+     "gcarve_post": "laguna-touch-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20140221124639/http://www.lagunatools.com/cnc/Laguna-SmartShop-CNC-Router_7"
+   ],
+   "notes": "Model MCNC SS1 60x120. 60 x 120 x 6 in axis travel, 7-1/4 in under gantry, rapid 900 in/min, max cut 600 in/min. Helical rack X/Y with dual-driven gantry, ground ball screw Z, vacuum table with T-slots, 10 HP vacuum pump.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-2-4x4-6hp-2014",
+   "maker": "Laguna Tools",
+   "model": "SmartShop II",
+   "variant": "4x4 6 HP",
+   "years": "2014 (archived)",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48,
+    "y": 48,
+    "z": 12
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 1219,
+    "z": 305
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 HP liquid-cooled spindle (NSK bearings)",
+     "power_kw": null,
+     "power_hp": 6,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 900,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 22860,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Laguna Touch (B&R Automation PLC, touchscreen)",
+     "gcarve_post": "laguna-touch-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20140221124639/http://www.lagunatools.com/cnc/Laguna-Smart-Shop_10"
+   ],
+   "notes": "Model MCNC SS2 4X4 6 HP. 48 x 48 x 12 in axis travel, 12 in under gantry, rapid 900, max cut 600 in/min, helical rack X/Y (dual-driven), ball screw Z, 10 HP vacuum pump.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-2-4x4-atc-2014",
+   "maker": "Laguna Tools",
+   "model": "SmartShop II",
+   "variant": "4x4 7.5 HP ATC",
+   "years": "2014 (archived)",
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "7.5 HP liquid-cooled ATC electrospindle (BT30)",
+     "power_kw": null,
+     "power_hp": 7.5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "BT30",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "11 HP HSD ATC electrospindle (ISO30, option)",
+     "power_kw": null,
+     "power_hp": 11,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 900,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 22860,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "B&R PLC industrial controller",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ATC, 3 BT30 holders supplied"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20140221124639/http://www.lagunatools.com/cnc/MCNC-SS-48X96-ATC05-0158_2"
+   ],
+   "notes": "Model MCNC SS2 4X4 ATC 7.5. 4 x 4 ft table (axis travel not listed), stepper control motors, 12 in under gantry, rapid 900, max cut 600 in/min.",
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-2-5x10-75-hp-atc-2014",
+   "maker": "Laguna Tools",
+   "model": "SmartShop II",
+   "variant": "5x10 7.5 HP ATC",
+   "years": "2014 (archived)",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": 6
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": 152
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "7.5 HP liquid-cooled ATC spindle (NSK bearings)",
+     "power_kw": null,
+     "power_hp": 7.5,
+     "rpm_min": 6000,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 900,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 22860,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Laguna Touch (B&R Automation PLC, touchscreen)",
+     "gcarve_post": "laguna-touch-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ATC"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20140221124639/http://www.lagunatools.com/cnc/5x10-Smartshop-CNC_router"
+   ],
+   "notes": "60 x 120 x 6 in axis travel, 12 in under gantry, rapid 900, max cut 600 in/min, helical rack X/Y (dual-driven), ball screw Z, 6-zone vacuum table with T-slots, 10 HP vacuum pump.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-2-4x8-11-hp-hsd-atc-2014",
+   "maker": "Laguna Tools",
+   "model": "SmartShop II",
+   "variant": "4x8 11 HP HSD ATC",
+   "years": "2014 (archived)",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48,
+    "y": 96,
+    "z": 9.5
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 2438,
+    "z": 241
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "11 HP HSD ATC spindle (ISO30)",
+     "power_kw": null,
+     "power_hp": 11,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 900,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 22860,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Laguna Touch (B&R Automation PLC, touchscreen)",
+     "gcarve_post": "laguna-touch-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ATC"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20140221124639/http://www.lagunatools.com/cnc/HSD-SmartShop"
+   ],
+   "notes": "48 x 96 x 9.5 in axis travel, 12 in under gantry, rapid 900, max cut 600 in/min, helical rack X/Y (dual-driven), ball screw Z, 6-zone vacuum table with T-slots, 10 HP vacuum pump.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-smartshop-2-5x10-11-hp-hsd-atc-2014",
+   "maker": "Laguna Tools",
+   "model": "SmartShop II",
+   "variant": "5x10 11 HP HSD ATC",
+   "years": "2014 (archived)",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": 9.5
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": 241
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "11 HP HSD ATC spindle (ISO30)",
+     "power_kw": null,
+     "power_hp": 11,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 900,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 22860,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Laguna Touch (B&R Automation PLC, touchscreen)",
+     "gcarve_post": "laguna-touch-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position ATC"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20140221124639/http://www.lagunatools.com/cnc/SmartShop2-4X8-11HP-HSD-spindle"
+   ],
+   "notes": "60 x 120 x 9.5 in axis travel, 12 in under gantry, rapid 900, max cut 600 in/min, helical rack X/Y (dual-driven), ball screw Z, 6-zone vacuum table with T-slots, 10 HP vacuum pump.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-iq-pro-br-24x36",
+   "maker": "Laguna Tools",
+   "model": "iQ Pro (B&R)",
+   "variant": "24x36",
+   "years": "2014 (archived)",
+   "class": "hobby",
+   "work_area_in": {
+    "x": 36,
+    "y": 24,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 914,
+    "y": 610,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 HP liquid-cooled induction electrospindle",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "B&R industrial PLC with touchscreen (Laguna Touch)",
+     "gcarve_post": "laguna-touch-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20140221124639/http://www.lagunatools.com/cnc/IQ-CNC-Router-Pro"
+   ],
+   "notes": "Model MCNC IQ Pro B&R 24-36. Work envelope 24 x 36 in (recorded X = 36). Ground ball screws on all axes, linear guides on Y, runs from compact flash, VNC remote operation. Assembled in the USA.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   }
+  },
+  {
+   "id": "laguna-puma-4x8",
+   "maker": "Laguna Tools",
+   "model": "Puma",
+   "variant": "4x8",
+   "years": "2014 (archived)",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48,
+    "y": 96,
+    "z": 10
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 2438,
+    "z": 254
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "11 HP HSD air-cooled ATC spindle (ISO30)",
+     "power_kw": null,
+     "power_hp": 11,
+     "rpm_min": 4000,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1700,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 43180,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50800,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "B&R industrial controller, 10.4 in touchscreen",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "rotary tool magazine at the spindle; 3 ISO30 holders supplied"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20140221124639/http://www.lagunatools.com/cnc/Laguna-Puma_2"
+   ],
+   "notes": "Model MCNC Puma 48 X 96. Travel X 48 / Y 96 / Z 10 in, 10 in spindle nose to table, 12 in clearance, 4 x 8 ft table with 6 vacuum zones, cut up to 1700 IPM, rapid 2000 IPM, B&R servos with absolute encoders, Z brake.",
+   "estimated": {
+    "spindles[0].rpm_min": "spec list says 4,000; intro text says 1,000-24,000 rpm",
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-puma-5x10",
+   "maker": "Laguna Tools",
+   "model": "Puma",
+   "variant": "5x10",
+   "years": "2014-2015 (archived)",
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "11 HP HSD air-cooled spindle (ceramic bearings)",
+     "power_kw": null,
+     "power_hp": 11,
+     "rpm_min": 4000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1700,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 43180,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50800,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "B&R industrial controller, 10.4 in touchscreen",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "rotary tool magazine travelling with the spindle"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2015/http://www.lagunatools.com/cnc/Laguna-Puma-CNC-Router"
+   ],
+   "notes": "Model MCNC Puma 60 X 120: 5 x 10 ft table with 6 vacuum zones (its page repeats the 4x8's 48/96/10 in travel figures, so travel is left null), 64 in between columns, cut up to 1700 IPM, rapid 2000 IPM, two 10 HP vacuum pumps.",
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "laguna-swift-4-axis-24x48",
+   "maker": "Laguna Tools",
+   "model": "Swift 4-Axis (CNC Turner)",
+   "variant": "24x48",
+   "years": "2014 (archived)",
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 56,
+    "y": 27,
+    "z": 9
+   },
+   "work_area_mm": {
+    "x": 1422,
+    "y": 686,
+    "z": 229
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2 HP water-cooled induction spindle",
+     "power_kw": null,
+     "power_hp": 2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER16",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "B&R SmartShop II 4-axis control package",
+     "gcarve_post": "laguna-touch-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20140221124639/http://www.lagunatools.com/cnc/Swift-CNC-Machine"
+   ],
+   "notes": "Model MCNC SS1 24 x 48 (4-axis turner, X/Y/Z/A). Flat-table work envelope published as 27 x 56 in (recorded X = 56); 9 in Z travel, 12 in gantry clearance to the flat table. Two-up version available.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   }
+  }
+ ]
+}

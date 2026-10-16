@@ -1,0 +1,34 @@
+[package]
+name = "gcarve-ui"
+description = "UI pieces shared by GCarve and GSketch (egui)"
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[features]
+# 3Dconnexion SpaceMouse (desktop: hidapi on its own thread; the web build uses WebHID)
+spacemouse = ["dep:hidapi"]
+# dev check: <APP>_SHOT=out.png saves a settled frame and exits (shot.rs; png is always there for shot::png_bytes)
+screenshot = []
+
+[dependencies]
+gcarve-core = { path = "../gcarve-core" }   # Contour for the glyph outlines (glyphs.rs)
+ttf-parser = { version = "0.25", default-features = false, features = ["std", "opentype-layout"] }   # glyph outlines (assets/LiberationSans-*.ttf, OFL)
+eframe = { version = "0.36", default-features = false, features = ["default_fonts", "glow"] }
+egui_extras = { version = "0.36", default-features = false, features = ["svg"] }
+
+serde_json = "1"
+serde = { version = "1", features = ["derive"] }
+ehttp = "0.6.0"
+sha2 = "0.10"   # proof of work for signed-out reports (help.rs)
+chrono = "0.4"   # licence grace period, recovery copy times (wasm: the browser clock)
+png = "0.17"   # shot::png_bytes: dev screenshots and GSketch's Export Image (web too)
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+hidapi = { version = "2", default-features = false, features = ["linux-native-basic-udev", "windows-native"], optional = true }
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen = "=0.2.129"
+web-sys = { version = "0.3", features = ["Window", "Navigator", "Storage", "Document", "Element", "HtmlAnchorElement", "Blob", "BlobPropertyBag", "Url"] }
+js-sys = "0.3"

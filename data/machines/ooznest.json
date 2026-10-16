@@ -1,0 +1,1332 @@
+{
+ "maker": "Ooznest",
+ "website": "https://ooznest.co.uk",
+ "machines": [
+  {
+   "id": "ooznest-workbee-z1-plus-500x500",
+   "maker": "Ooznest",
+   "model": "WorkBee Z1+",
+   "variant": "500x500",
+   "years": "2021-",
+   "class": "desktop",
+   "work_area_in": {
+    "x": 10.63,
+    "y": 10.63,
+    "z": 3.46
+   },
+   "work_area_mm": {
+    "x": 270,
+    "y": 270,
+    "z": 88
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Katsu Compact 710 W (UK 230 V)",
+     "power_kw": 0.71,
+     "power_hp": null,
+     "rpm_min": 13000,
+     "rpm_max": 33000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    },
+    {
+     "type": "router",
+     "name": "Mafell FM 1000 (110/230 V)",
+     "power_kw": 1.0,
+     "power_hp": null,
+     "rpm_min": 4000,
+     "rpm_max": 25000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Duet 2, RepRapFirmware (WorkBee Control)",
+     "gcarve_post": "duet-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://ooznest.co.uk/wp-content/uploads/2021/08/WorkBee-Z1-Technical-Specification.pdf",
+    "https://ooznest.co.uk/press-release-ooznest-launches-workbee-z1plus/"
+   ],
+   "estimated": {
+    "years": "launch per Aug 2021 press release",
+    "work_area_in": "converted from the published mm work area"
+   },
+   "notes": "Variant = frame size in mm. Z = max Z-axis travel 88 mm; max cut depth 44 mm (both with an 18 mm spoilboard). Stainless lead screws X/Y/Z, wheels on V-slot, NEMA23 175 oz-in. Router choice at order (no default)."
+  },
+  {
+   "id": "ooznest-workbee-z1-plus-750x750",
+   "maker": "Ooznest",
+   "model": "WorkBee Z1+",
+   "variant": "750x750",
+   "years": "2021-",
+   "class": "hobby",
+   "work_area_in": {
+    "x": 20.47,
+    "y": 20.47,
+    "z": 3.46
+   },
+   "work_area_mm": {
+    "x": 520,
+    "y": 520,
+    "z": 88
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Katsu Compact 710 W (UK 230 V)",
+     "power_kw": 0.71,
+     "power_hp": null,
+     "rpm_min": 13000,
+     "rpm_max": 33000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    },
+    {
+     "type": "router",
+     "name": "Mafell FM 1000 (110/230 V)",
+     "power_kw": 1.0,
+     "power_hp": null,
+     "rpm_min": 4000,
+     "rpm_max": 25000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Duet 2, RepRapFirmware (WorkBee Control)",
+     "gcarve_post": "duet-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://ooznest.co.uk/wp-content/uploads/2021/08/WorkBee-Z1-Technical-Specification.pdf",
+    "https://ooznest.co.uk/press-release-ooznest-launches-workbee-z1plus/"
+   ],
+   "estimated": {
+    "years": "launch per Aug 2021 press release",
+    "work_area_in": "converted from the published mm work area"
+   },
+   "notes": "Variant = frame size in mm. Z = max Z-axis travel 88 mm; max cut depth 44 mm (both with an 18 mm spoilboard). Stainless lead screws X/Y/Z, wheels on V-slot, NEMA23 175 oz-in. Router choice at order (no default)."
+  },
+  {
+   "id": "ooznest-workbee-z1-plus-750x1000",
+   "maker": "Ooznest",
+   "model": "WorkBee Z1+",
+   "variant": "750x1000",
+   "years": "2021-",
+   "class": "hobby",
+   "work_area_in": {
+    "x": 20.47,
+    "y": 30.31,
+    "z": 3.46
+   },
+   "work_area_mm": {
+    "x": 520,
+    "y": 770,
+    "z": 88
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Katsu Compact 710 W (UK 230 V)",
+     "power_kw": 0.71,
+     "power_hp": null,
+     "rpm_min": 13000,
+     "rpm_max": 33000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    },
+    {
+     "type": "router",
+     "name": "Mafell FM 1000 (110/230 V)",
+     "power_kw": 1.0,
+     "power_hp": null,
+     "rpm_min": 4000,
+     "rpm_max": 25000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Duet 2, RepRapFirmware (WorkBee Control)",
+     "gcarve_post": "duet-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://ooznest.co.uk/wp-content/uploads/2021/08/WorkBee-Z1-Technical-Specification.pdf",
+    "https://ooznest.co.uk/press-release-ooznest-launches-workbee-z1plus/"
+   ],
+   "estimated": {
+    "years": "launch per Aug 2021 press release",
+    "work_area_in": "converted from the published mm work area"
+   },
+   "notes": "Variant = frame size in mm. Z = max Z-axis travel 88 mm; max cut depth 44 mm (both with an 18 mm spoilboard). Stainless lead screws X/Y/Z, wheels on V-slot, NEMA23 175 oz-in. Router choice at order (no default)."
+  },
+  {
+   "id": "ooznest-workbee-z1-plus-1000x1000",
+   "maker": "Ooznest",
+   "model": "WorkBee Z1+",
+   "variant": "1000x1000",
+   "years": "2021-",
+   "class": "hobby",
+   "work_area_in": {
+    "x": 30.31,
+    "y": 30.31,
+    "z": 3.46
+   },
+   "work_area_mm": {
+    "x": 770,
+    "y": 770,
+    "z": 88
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Katsu Compact 710 W (UK 230 V)",
+     "power_kw": 0.71,
+     "power_hp": null,
+     "rpm_min": 13000,
+     "rpm_max": 33000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    },
+    {
+     "type": "router",
+     "name": "Mafell FM 1000 (110/230 V)",
+     "power_kw": 1.0,
+     "power_hp": null,
+     "rpm_min": 4000,
+     "rpm_max": 25000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Duet 2, RepRapFirmware (WorkBee Control)",
+     "gcarve_post": "duet-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://ooznest.co.uk/wp-content/uploads/2021/08/WorkBee-Z1-Technical-Specification.pdf",
+    "https://ooznest.co.uk/press-release-ooznest-launches-workbee-z1plus/"
+   ],
+   "estimated": {
+    "years": "launch per Aug 2021 press release",
+    "work_area_in": "converted from the published mm work area"
+   },
+   "notes": "Variant = frame size in mm. Z = max Z-axis travel 88 mm; max cut depth 44 mm (both with an 18 mm spoilboard). Stainless lead screws X/Y/Z, wheels on V-slot, NEMA23 175 oz-in. Router choice at order (no default)."
+  },
+  {
+   "id": "ooznest-workbee-z1-plus-1000x1500",
+   "maker": "Ooznest",
+   "model": "WorkBee Z1+",
+   "variant": "1000x1500",
+   "years": "2021-",
+   "class": "hobby",
+   "work_area_in": {
+    "x": 30.31,
+    "y": 50.0,
+    "z": 3.46
+   },
+   "work_area_mm": {
+    "x": 770,
+    "y": 1270,
+    "z": 88
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Katsu Compact 710 W (UK 230 V)",
+     "power_kw": 0.71,
+     "power_hp": null,
+     "rpm_min": 13000,
+     "rpm_max": 33000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    },
+    {
+     "type": "router",
+     "name": "Mafell FM 1000 (110/230 V)",
+     "power_kw": 1.0,
+     "power_hp": null,
+     "rpm_min": 4000,
+     "rpm_max": 25000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Duet 2, RepRapFirmware (WorkBee Control)",
+     "gcarve_post": "duet-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://ooznest.co.uk/wp-content/uploads/2021/08/WorkBee-Z1-Technical-Specification.pdf",
+    "https://ooznest.co.uk/press-release-ooznest-launches-workbee-z1plus/"
+   ],
+   "estimated": {
+    "years": "launch per Aug 2021 press release",
+    "work_area_in": "converted from the published mm work area"
+   },
+   "notes": "Variant = frame size in mm. Z = max Z-axis travel 88 mm; max cut depth 44 mm (both with an 18 mm spoilboard). Stainless lead screws X/Y/Z, wheels on V-slot, NEMA23 175 oz-in. Router choice at order (no default)."
+  },
+  {
+   "id": "ooznest-workbee-z1-plus-1500x1500",
+   "maker": "Ooznest",
+   "model": "WorkBee Z1+",
+   "variant": "1500x1500",
+   "years": "2021-",
+   "class": "hobby",
+   "work_area_in": {
+    "x": 50.0,
+    "y": 50.0,
+    "z": 3.46
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 1270,
+    "z": 88
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Katsu Compact 710 W (UK 230 V)",
+     "power_kw": 0.71,
+     "power_hp": null,
+     "rpm_min": 13000,
+     "rpm_max": 33000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    },
+    {
+     "type": "router",
+     "name": "Mafell FM 1000 (110/230 V)",
+     "power_kw": 1.0,
+     "power_hp": null,
+     "rpm_min": 4000,
+     "rpm_max": 25000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Duet 2, RepRapFirmware (WorkBee Control)",
+     "gcarve_post": "duet-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://ooznest.co.uk/wp-content/uploads/2021/08/WorkBee-Z1-Technical-Specification.pdf",
+    "https://ooznest.co.uk/press-release-ooznest-launches-workbee-z1plus/"
+   ],
+   "estimated": {
+    "years": "launch per Aug 2021 press release",
+    "work_area_in": "converted from the published mm work area"
+   },
+   "notes": "Variant = frame size in mm. Z = max Z-axis travel 88 mm; max cut depth 44 mm (both with an 18 mm spoilboard). Stainless lead screws X/Y/Z, wheels on V-slot, NEMA23 175 oz-in. Router choice at order (no default)."
+  },
+  {
+   "id": "ooznest-workbee-z1-500x500-screw",
+   "maker": "Ooznest",
+   "model": "WorkBee Z1",
+   "variant": "500x500 Screw Drive",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 10.63,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 270,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Duet 2 WiFi/Ethernet (WorkBee firmware)",
+     "gcarve_post": "duet-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://resources.ooznest.co.uk/en/archive/workbee-z1-critical-dimensions",
+    "https://resources.ooznest.co.uk/en/archive/workbee-z1-cnc-router-machine-kit-v22-v23-v231-var-wb-z1-v23-v231"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "WorkBee Z1 versions V1.0-V2.3.1 (before the Z1+). Variant = frame size (mm) and drive. Working area 300 x 270 mm, spoilboard max 370 x 500 mm. Z travel not given in the dimensions table."
+  },
+  {
+   "id": "ooznest-workbee-z1-750x750-screw",
+   "maker": "Ooznest",
+   "model": "WorkBee Z1",
+   "variant": "750x750 Screw Drive",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 21.65,
+    "y": 20.47,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 550,
+    "y": 520,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Duet 2 WiFi/Ethernet (WorkBee firmware)",
+     "gcarve_post": "duet-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://resources.ooznest.co.uk/en/archive/workbee-z1-critical-dimensions",
+    "https://resources.ooznest.co.uk/en/archive/workbee-z1-cnc-router-machine-kit-v22-v23-v231-var-wb-z1-v23-v231"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "WorkBee Z1 versions V1.0-V2.3.1 (before the Z1+). Variant = frame size (mm) and drive. Working area 550 x 520 mm, spoilboard max 620 x 750 mm. Z travel not given in the dimensions table."
+  },
+  {
+   "id": "ooznest-workbee-z1-750x1000-screw",
+   "maker": "Ooznest",
+   "model": "WorkBee Z1",
+   "variant": "750x1000 Screw Drive",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 21.65,
+    "y": 30.31,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 550,
+    "y": 770,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Duet 2 WiFi/Ethernet (WorkBee firmware)",
+     "gcarve_post": "duet-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://resources.ooznest.co.uk/en/archive/workbee-z1-critical-dimensions",
+    "https://resources.ooznest.co.uk/en/archive/workbee-z1-cnc-router-machine-kit-v22-v23-v231-var-wb-z1-v23-v231"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "WorkBee Z1 versions V1.0-V2.3.1 (before the Z1+). Variant = frame size (mm) and drive. Working area 550 x 770 mm, spoilboard max 620 x 1000 mm. Z travel not given in the dimensions table."
+  },
+  {
+   "id": "ooznest-workbee-z1-1000x1000-screw",
+   "maker": "Ooznest",
+   "model": "WorkBee Z1",
+   "variant": "1000x1000 Screw Drive",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 31.5,
+    "y": 30.31,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 800,
+    "y": 770,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Duet 2 WiFi/Ethernet (WorkBee firmware)",
+     "gcarve_post": "duet-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://resources.ooznest.co.uk/en/archive/workbee-z1-critical-dimensions",
+    "https://resources.ooznest.co.uk/en/archive/workbee-z1-cnc-router-machine-kit-v22-v23-v231-var-wb-z1-v23-v231"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "WorkBee Z1 versions V1.0-V2.3.1 (before the Z1+). Variant = frame size (mm) and drive. Working area 800 x 770 mm, spoilboard max 870 x 1000 mm. Z travel not given in the dimensions table."
+  },
+  {
+   "id": "ooznest-workbee-z1-1000x1500-screw",
+   "maker": "Ooznest",
+   "model": "WorkBee Z1",
+   "variant": "1000x1500 Screw Drive",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 31.5,
+    "y": 50.0,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 800,
+    "y": 1270,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Duet 2 WiFi/Ethernet (WorkBee firmware)",
+     "gcarve_post": "duet-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://resources.ooznest.co.uk/en/archive/workbee-z1-critical-dimensions",
+    "https://resources.ooznest.co.uk/en/archive/workbee-z1-cnc-router-machine-kit-v22-v23-v231-var-wb-z1-v23-v231"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "WorkBee Z1 versions V1.0-V2.3.1 (before the Z1+). Variant = frame size (mm) and drive. Working area 800 x 1270 mm, spoilboard max 870 x 1500 mm. Z travel not given in the dimensions table."
+  },
+  {
+   "id": "ooznest-workbee-z1-1500x1500-screw",
+   "maker": "Ooznest",
+   "model": "WorkBee Z1",
+   "variant": "1500x1500 Screw Drive",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 50.0,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 1270,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Duet 2 WiFi/Ethernet (WorkBee firmware)",
+     "gcarve_post": "duet-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://resources.ooznest.co.uk/en/archive/workbee-z1-critical-dimensions",
+    "https://resources.ooznest.co.uk/en/archive/workbee-z1-cnc-router-machine-kit-v22-v23-v231-var-wb-z1-v23-v231"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "WorkBee Z1 versions V1.0-V2.3.1 (before the Z1+). Variant = frame size (mm) and drive. Working area 1300 x 1270 mm, spoilboard max 1370 x 1500 mm. Z travel not given in the dimensions table."
+  },
+  {
+   "id": "ooznest-workbee-z1-750x750-belt",
+   "maker": "Ooznest",
+   "model": "WorkBee Z1",
+   "variant": "750x750 Belt Drive",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 21.65,
+    "y": 20.47,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 550,
+    "y": 520,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Duet 2 WiFi/Ethernet (WorkBee firmware)",
+     "gcarve_post": "duet-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://resources.ooznest.co.uk/en/archive/workbee-z1-critical-dimensions",
+    "https://resources.ooznest.co.uk/en/archive/workbee-z1-cnc-router-machine-kit-v22-v23-v231-var-wb-z1-v23-v231"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "WorkBee Z1 versions V1.0-V2.3.1 (before the Z1+). Variant = frame size (mm) and drive. Working area 550 x 520 mm, spoilboard max 620 x 750 mm. Z travel not given in the dimensions table."
+  },
+  {
+   "id": "ooznest-workbee-z1-750x1000-belt",
+   "maker": "Ooznest",
+   "model": "WorkBee Z1",
+   "variant": "750x1000 Belt Drive",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 21.65,
+    "y": 30.31,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 550,
+    "y": 770,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Duet 2 WiFi/Ethernet (WorkBee firmware)",
+     "gcarve_post": "duet-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://resources.ooznest.co.uk/en/archive/workbee-z1-critical-dimensions",
+    "https://resources.ooznest.co.uk/en/archive/workbee-z1-cnc-router-machine-kit-v22-v23-v231-var-wb-z1-v23-v231"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "WorkBee Z1 versions V1.0-V2.3.1 (before the Z1+). Variant = frame size (mm) and drive. Working area 550 x 770 mm, spoilboard max 620 x 1000 mm. Z travel not given in the dimensions table."
+  },
+  {
+   "id": "ooznest-workbee-z1-1000x1000-belt",
+   "maker": "Ooznest",
+   "model": "WorkBee Z1",
+   "variant": "1000x1000 Belt Drive",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 31.5,
+    "y": 30.31,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 800,
+    "y": 770,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Duet 2 WiFi/Ethernet (WorkBee firmware)",
+     "gcarve_post": "duet-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://resources.ooznest.co.uk/en/archive/workbee-z1-critical-dimensions",
+    "https://resources.ooznest.co.uk/en/archive/workbee-z1-cnc-router-machine-kit-v22-v23-v231-var-wb-z1-v23-v231"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "WorkBee Z1 versions V1.0-V2.3.1 (before the Z1+). Variant = frame size (mm) and drive. Working area 800 x 770 mm, spoilboard max 870 x 1000 mm. Z travel not given in the dimensions table."
+  },
+  {
+   "id": "ooznest-workbee-z1-1000x1500-belt",
+   "maker": "Ooznest",
+   "model": "WorkBee Z1",
+   "variant": "1000x1500 Belt Drive",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 31.5,
+    "y": 50.0,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 800,
+    "y": 1270,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Duet 2 WiFi/Ethernet (WorkBee firmware)",
+     "gcarve_post": "duet-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://resources.ooznest.co.uk/en/archive/workbee-z1-critical-dimensions",
+    "https://resources.ooznest.co.uk/en/archive/workbee-z1-cnc-router-machine-kit-v22-v23-v231-var-wb-z1-v23-v231"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "WorkBee Z1 versions V1.0-V2.3.1 (before the Z1+). Variant = frame size (mm) and drive. Working area 800 x 1270 mm, spoilboard max 870 x 1500 mm. Z travel not given in the dimensions table."
+  },
+  {
+   "id": "ooznest-workbee-z1-1500x1500-belt",
+   "maker": "Ooznest",
+   "model": "WorkBee Z1",
+   "variant": "1500x1500 Belt Drive",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 50.0,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 1270,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Duet 2 WiFi/Ethernet (WorkBee firmware)",
+     "gcarve_post": "duet-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://resources.ooznest.co.uk/en/archive/workbee-z1-critical-dimensions",
+    "https://resources.ooznest.co.uk/en/archive/workbee-z1-cnc-router-machine-kit-v22-v23-v231-var-wb-z1-v23-v231"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "WorkBee Z1 versions V1.0-V2.3.1 (before the Z1+). Variant = frame size (mm) and drive. Working area 1300 x 1270 mm, spoilboard max 1370 x 1500 mm. Z travel not given in the dimensions table."
+  },
+  {
+   "id": "ooznest-workbee-z1-1000x1500-belt-screw",
+   "maker": "Ooznest",
+   "model": "WorkBee Z1",
+   "variant": "1000x1500 Belt & Screw Drive",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 31.5,
+    "y": 50.0,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 800,
+    "y": 1270,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt/leadscrew",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Duet 2 WiFi/Ethernet (WorkBee firmware)",
+     "gcarve_post": "duet-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://resources.ooznest.co.uk/en/archive/workbee-z1-critical-dimensions",
+    "https://resources.ooznest.co.uk/en/archive/workbee-z1-cnc-router-machine-kit-v22-v23-v231-var-wb-z1-v23-v231"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "WorkBee Z1 versions V1.0-V2.3.1 (before the Z1+). Variant = frame size (mm) and drive. Working area 800 x 1270 mm, spoilboard max 870 x 1500 mm. Z travel not given in the dimensions table."
+  }
+ ]
+}

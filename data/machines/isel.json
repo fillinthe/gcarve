@@ -1,0 +1,1158 @@
+{
+ "maker": "isel",
+ "website": "https://www.isel.com",
+ "machines": [
+  {
+   "id": "isel-euromod-mp30",
+   "maker": "isel",
+   "model": "EuroMod",
+   "variant": "MP30",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 24.02,
+    "y": 11.81,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 300,
+    "z": 300
+   },
+   "gantry_clearance_in": 14.37,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 590.6,
+    "z": 590.6
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": 15000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "isel CAN controller iMD + WinRemote (ProNC / isy-CAM optional)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "linear or round tool-change stations optional; automatic tool length measurement optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.isel.com/produkte/euromod"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published \"Verfahrgeschwindigkeit X/Y/Z\"",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 365 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Enclosed compact CNC mill, aluminium-steel construction, LES linear units with ball screws, EC/AC servo motors, iOP-19 touch panel; travels without components mounted. Approx. 500 kg."
+  },
+  {
+   "id": "isel-euromod-mp45",
+   "maker": "isel",
+   "model": "EuroMod",
+   "variant": "MP45",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 24.02,
+    "y": 18.5,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 470,
+    "z": 300
+   },
+   "gantry_clearance_in": 14.37,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 590.6,
+    "z": 590.6
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": 15000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "isel CAN controller iMD + WinRemote (ProNC / isy-CAM optional)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "linear or round tool-change stations optional; automatic tool length measurement optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.isel.com/produkte/euromod"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published \"Verfahrgeschwindigkeit X/Y/Z\"",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 365 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Enclosed compact CNC mill, aluminium-steel construction, LES linear units with ball screws, EC/AC servo motors, iOP-19 touch panel; travels without components mounted. Approx. 550 kg."
+  },
+  {
+   "id": "isel-euromod-mp65",
+   "maker": "isel",
+   "model": "EuroMod",
+   "variant": "MP65",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 35.83,
+    "y": 25.59,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 910,
+    "y": 650,
+    "z": 300
+   },
+   "gantry_clearance_in": 14.37,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 590.6,
+    "z": 590.6
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": 15000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "isel CAN controller iMD + WinRemote (ProNC / isy-CAM optional)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "linear or round tool-change stations optional; automatic tool length measurement optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.isel.com/produkte/euromod"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published \"Verfahrgeschwindigkeit X/Y/Z\"",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 365 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Enclosed compact CNC mill, aluminium-steel construction, LES linear units with ball screws, EC/AC servo motors, iOP-19 touch panel; travels without components mounted. Approx. 650 kg."
+  },
+  {
+   "id": "isel-flatcom-m20-les",
+   "maker": "isel",
+   "model": "FlatCom M",
+   "variant": "M20-LES",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 27.95,
+    "y": 19.69,
+    "z": 8.27
+   },
+   "work_area_mm": {
+    "x": 710,
+    "y": 500,
+    "z": 210
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 590.6,
+    "z": 590.6
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": 15000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "isel CAN controller iMD + WinRemote (ProNC / isy-CAM optional)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "linear or round tool-change stations optional; automatic tool length measurement optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.isel.com/produkte/flatcom-m"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published \"Verfahrgeschwindigkeit X/Y/Z\"",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 250 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Moving gantry, fixed table, ball screws on all axes, brushless servos, isel look-ahead servo control. Z 310 mm / clearance 350 mm optional. Approx. 590 kg."
+  },
+  {
+   "id": "isel-flatcom-m30-les",
+   "maker": "isel",
+   "model": "FlatCom M",
+   "variant": "M30-LES",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 27.95,
+    "y": 29.53,
+    "z": 8.27
+   },
+   "work_area_mm": {
+    "x": 710,
+    "y": 750,
+    "z": 210
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 590.6,
+    "z": 590.6
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": 15000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "isel CAN controller iMD + WinRemote (ProNC / isy-CAM optional)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "linear or round tool-change stations optional; automatic tool length measurement optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.isel.com/produkte/flatcom-m"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published \"Verfahrgeschwindigkeit X/Y/Z\"",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 250 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Moving gantry, fixed table, ball screws on all axes, brushless servos, isel look-ahead servo control. Z 310 mm / clearance 350 mm optional. Approx. 670 kg."
+  },
+  {
+   "id": "isel-flatcom-m40-les",
+   "maker": "isel",
+   "model": "FlatCom M",
+   "variant": "M40-LES",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 47.64,
+    "y": 29.53,
+    "z": 8.27
+   },
+   "work_area_mm": {
+    "x": 1210,
+    "y": 750,
+    "z": 210
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 590.6,
+    "z": 590.6
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": 15000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "isel CAN controller iMD + WinRemote (ProNC / isy-CAM optional)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "linear or round tool-change stations optional; automatic tool length measurement optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.isel.com/produkte/flatcom-m"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published \"Verfahrgeschwindigkeit X/Y/Z\"",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 250 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Moving gantry, fixed table, ball screws on all axes, brushless servos, isel look-ahead servo control. Z 310 mm / clearance 350 mm optional. Approx. 770 kg."
+  },
+  {
+   "id": "isel-flatcom-m50-les",
+   "maker": "isel",
+   "model": "FlatCom M",
+   "variant": "M50-LES",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 47.64,
+    "y": 49.21,
+    "z": 8.27
+   },
+   "work_area_mm": {
+    "x": 1210,
+    "y": 1250,
+    "z": 210
+   },
+   "gantry_clearance_in": 9.84,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 590.6,
+    "z": 590.6
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": 15000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "isel CAN controller iMD + WinRemote (ProNC / isy-CAM optional)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "linear or round tool-change stations optional; automatic tool length measurement optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.isel.com/produkte/flatcom-m"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published \"Verfahrgeschwindigkeit X/Y/Z\"",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 250 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Moving gantry, fixed table, ball screws on all axes, brushless servos, isel look-ahead servo control. Z 310 mm / clearance 350 mm optional. Approx. 820 kg."
+  },
+  {
+   "id": "isel-flatcom-l150",
+   "maker": "isel",
+   "model": "FlatCom L",
+   "variant": "L150",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 66.93,
+    "z": 8.27
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 1700,
+    "z": 210
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 590.6,
+    "z": 590.6
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": 15000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "isel CAN controller iMD + WinRemote (ProNC / isy-CAM optional)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "linear or round tool-change stations optional; automatic tool length measurement optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.isel.com/produkte/flatcom-l"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published \"Verfahrgeschwindigkeit X/Y/Z\"",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Largest standard isel machine: moving gantry with gantry drive, ball screws, servos; Z 310/410 mm (clearance 370/470 mm) and double Z-axis optional."
+  },
+  {
+   "id": "isel-flatcom-l250",
+   "maker": "isel",
+   "model": "FlatCom L",
+   "variant": "L250",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 98.43,
+    "y": 66.93,
+    "z": 8.27
+   },
+   "work_area_mm": {
+    "x": 2500,
+    "y": 1700,
+    "z": 210
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 590.6,
+    "z": 590.6
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": 15000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "isel CAN controller iMD + WinRemote (ProNC / isy-CAM optional)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "linear or round tool-change stations optional; automatic tool length measurement optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.isel.com/produkte/flatcom-l"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published \"Verfahrgeschwindigkeit X/Y/Z\"",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Largest standard isel machine: moving gantry with gantry drive, ball screws, servos; Z 310/410 mm (clearance 370/470 mm) and double Z-axis optional."
+  },
+  {
+   "id": "isel-flatcom-xl102-72",
+   "maker": "isel",
+   "model": "FlatCom XL",
+   "variant": "XL102/72",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 44.29,
+    "y": 28.35,
+    "z": 8.27
+   },
+   "work_area_mm": {
+    "x": 1125,
+    "y": 720,
+    "z": 210
+   },
+   "gantry_clearance_in": 9.06,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 590.6,
+    "z": 590.6
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": 15000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "isel CAN controller iMD + WinRemote (ProNC / isy-CAM optional)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "linear or round tool-change stations optional; automatic tool length measurement optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.isel.com/produkte/flatcom-xl"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published \"Verfahrgeschwindigkeit X/Y/Z\"",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 230 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Gantry drive, travel units mounted on the table, ball screws, servos; Z 410 mm / clearance 450 mm optional. Approx. 680 kg."
+  },
+  {
+   "id": "isel-flatcom-xl102-112",
+   "maker": "isel",
+   "model": "FlatCom XL",
+   "variant": "XL102/112",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 44.29,
+    "y": 43.31,
+    "z": 8.27
+   },
+   "work_area_mm": {
+    "x": 1125,
+    "y": 1100,
+    "z": 210
+   },
+   "gantry_clearance_in": 9.06,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 590.6,
+    "z": 590.6
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": 15000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "isel CAN controller iMD + WinRemote (ProNC / isy-CAM optional)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "linear or round tool-change stations optional; automatic tool length measurement optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.isel.com/produkte/flatcom-xl"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published \"Verfahrgeschwindigkeit X/Y/Z\"",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 230 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Gantry drive, travel units mounted on the table, ball screws, servos; Z 410 mm / clearance 450 mm optional. Approx. 730 kg."
+  },
+  {
+   "id": "isel-flatcom-xl142-112",
+   "maker": "isel",
+   "model": "FlatCom XL",
+   "variant": "XL142/112",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 43.31,
+    "z": 8.27
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 1100,
+    "z": 210
+   },
+   "gantry_clearance_in": 9.06,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 590.6,
+    "z": 590.6
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": 15000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "isel CAN controller iMD + WinRemote (ProNC / isy-CAM optional)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "linear or round tool-change stations optional; automatic tool length measurement optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.isel.com/produkte/flatcom-xl"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published \"Verfahrgeschwindigkeit X/Y/Z\"",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 230 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Gantry drive, travel units mounted on the table, ball screws, servos; Z 410 mm / clearance 450 mm optional. Approx. 840 kg."
+  },
+  {
+   "id": "isel-flatcom-xl142-162",
+   "maker": "isel",
+   "model": "FlatCom XL",
+   "variant": "XL142/162",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 62.99,
+    "z": 8.27
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 1600,
+    "z": 210
+   },
+   "gantry_clearance_in": 9.06,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 590.6,
+    "z": 590.6
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": 15000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "isel CAN controller iMD + WinRemote (ProNC / isy-CAM optional)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "linear or round tool-change stations optional; automatic tool length measurement optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.isel.com/produkte/flatcom-xl"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published \"Verfahrgeschwindigkeit X/Y/Z\"",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 230 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Gantry drive, travel units mounted on the table, ball screws, servos; Z 410 mm / clearance 450 mm optional. Approx. 930 kg."
+  },
+  {
+   "id": "isel-flatcom-xl142-252",
+   "maker": "isel",
+   "model": "FlatCom XL",
+   "variant": "XL142/252",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 98.43,
+    "z": 8.27
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 2500,
+    "z": 210
+   },
+   "gantry_clearance_in": 9.06,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 590.6,
+    "z": 590.6
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": 15000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "isel CAN controller iMD + WinRemote (ProNC / isy-CAM optional)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "linear or round tool-change stations optional; automatic tool length measurement optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.isel.com/produkte/flatcom-xl"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published \"Verfahrgeschwindigkeit X/Y/Z\"",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 230 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Gantry drive, travel units mounted on the table, ball screws, servos; Z 410 mm / clearance 450 mm optional. Approx. 1180 kg."
+  },
+  {
+   "id": "isel-icv-4030ec",
+   "maker": "isel",
+   "model": "iCV 4030 EC",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 11.81,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 300,
+    "z": 140
+   },
+   "gantry_clearance_in": 7.87,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 472.4,
+    "z": 472.4
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": 12000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "isel CAN controller iMD + WinRemote (ProNC / isy-CAM optional)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "linear or round tool-change stations optional; automatic tool length measurement optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.isel.com/produkte/icv-4030ec"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published \"Verfahrgeschwindigkeit X/Y/Z\"",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 200 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Compact enclosed desktop machine: ball screws 16x10/16x10/16x5 mm, servo motors, 500-1200 W spindles, linear tool changer option. Approx. 210 kg."
+  },
+  {
+   "id": "isel-icp-4030p",
+   "maker": "isel",
+   "model": "iCP 4030P",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 11.81,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 300,
+    "z": 140
+   },
+   "gantry_clearance_in": 7.87,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 236.2,
+    "z": 236.2
+   },
+   "rapid_mm_min": {
+    "xy": 6000,
+    "z": 6000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "EdingCNC (integrated)",
+     "gcarve_post": "eding-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.isel.com/produkte/icp-4030p"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published \"Verfahrgeschwindigkeit X/Y/Z\"",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 200 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Compact enclosed desktop machine: ball screws 16x10 mm (16x4 optional, 3.6 m/min), stepper motors, EdingCNC controller with integrated PC. Approx. 190 kg."
+  }
+ ]
+}

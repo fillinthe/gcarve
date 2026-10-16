@@ -1,0 +1,609 @@
+{
+ "maker": "Grizzly",
+ "website": "https://www.grizzly.com",
+ "machines": [
+  {
+   "id": "grizzly-g0894",
+   "maker": "Grizzly",
+   "model": "G0894",
+   "variant": "24 x 36",
+   "years": "2020-",
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 35.375,
+    "y": 23.625,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 899,
+    "y": 600,
+    "z": 203
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 HP liquid-cooled spindle (Delta VFD)",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20 (1/8\", 1/4\", 1/2\" included)",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 384,
+    "z": 192
+   },
+   "rapid_mm_min": {
+    "xy": 9754,
+    "z": 4877
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto A11 DSP handheld",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.grizzly.com/products/grizzly-24-x-36-cnc-router/g0894",
+    "https://cdn0.grizzly.com/manuals/g0894_m.pdf"
+   ],
+   "notes": "Cutting area 23-5/8 x 35-3/8 in (manual lists X travel 35-3/8, Y 23-5/8). Max distance spindle to table 5 in. NEMA 34 steppers. Travel speed published as 32 FPM X/Y, 16 FPM Z; product page says cutting speeds approach 400 IPM. Accuracy +/-0.005 in. 220 V single phase.",
+   "estimated": {
+    "rapid_ipm": "converted from 32 / 16 FPM (travel speed)",
+    "rapid_mm_min": "converted from FPM",
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "grizzly-g0895",
+   "maker": "Grizzly",
+   "model": "G0895",
+   "variant": "4 x 8",
+   "years": "2020-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51,
+    "y": 98.5,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 1295,
+    "y": 2502,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 HP air-cooled spindle (Delta 7.5 HP VFD)",
+     "power_kw": null,
+     "power_hp": 6,
+     "rpm_min": 0,
+     "rpm_max": 18000,
+     "collet": "ER32 (1/4\", 1/2\" included)",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1500,
+    "z": 400
+   },
+   "rapid_mm_min": {
+    "xy": 38100,
+    "z": 10160
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "RichAuto A11 DSP handheld",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool setter"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.grizzly.com/products/grizzly-4-x-8-cnc-router/g0895",
+    "https://cdn0.grizzly.com/manuals/g0895_m.pdf"
+   ],
+   "notes": "Yaskawa AC servos (850 W per press material). Phenolic 6-zone vacuum table with 4 T-tracks, 10 HP vacuum pump (separate 3-phase supply). Max distance spindle to table 7 in. Product prose says rapids approach 1,600 IPM; data sheet says 1,500. Max spindle speed only 18,000 RPM. Accuracy +/-0.005 in.",
+   "estimated": {
+    "rapid_mm_min": "converted from IPM",
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "grizzly-g0932",
+   "maker": "Grizzly",
+   "model": "G0932",
+   "variant": "4 x 8 with rotary",
+   "years": "2021-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.1875,
+    "y": 98.4375,
+    "z": 7.875
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4 HP HSD air-cooled spindle",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": 0,
+     "rpm_max": 18000,
+     "collet": "ER25",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1181,
+    "z": 400
+   },
+   "rapid_mm_min": {
+    "xy": 29997,
+    "z": 10160
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP B18 handheld",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.grizzly.com/products/grizzly-4-x-8-cnc-router-with-vacuum-table/g0932",
+    "https://cdn0.grizzly.com/manuals/g0932_m.pdf"
+   ],
+   "notes": "4-zone phenolic vacuum table, 10 HP pump. Rotary C axis with 3-jaw chuck and tailstock, 7-7/8 in max diameter, 472 IPM rotary rapid. NEMA 34 brushless steppers. Accuracy +/-0.002 in. Max spindle speed only 18,000 RPM.",
+   "estimated": {
+    "rapid_mm_min": "converted from IPM",
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "grizzly-g0403",
+   "maker": "Grizzly",
+   "model": "G0403",
+   "variant": "benchtop",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 13,
+    "y": 25.5625,
+    "z": 7.0625
+   },
+   "work_area_mm": {
+    "x": 330.0,
+    "y": 649.0,
+    "z": 179.0
+   },
+   "gantry_clearance_in": 10.0625,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "65 mm router mount (router not included)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER11 (1/16, 1/8, 1/4 in)",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "T34438 2 hp water-cooled spindle kit (option)",
+     "power_kw": 1.49,
+     "power_hp": 2,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER11",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 118,
+    "z": 118
+   },
+   "rapid_mm_min": {
+    "xy": 2997.0,
+    "z": 2997.0
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "DSP-J2 handheld controller",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cdn0.grizzly.com/specsheets/g0403_ds.pdf",
+    "https://www.grizzly.com/products/g0403"
+   ],
+   "notes": "Table 36 x 15-3/4 in; max spindle-to-table 7-1/16 in (10-1/16 in with gantry raised). NEMA 23 steppers. Optional T34439 4th axis. 110 V.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "rapid_mm_min": "converted from in/min",
+    "spindles.power_kw": "converted from hp"
+   }
+  },
+  {
+   "id": "grizzly-g0931",
+   "maker": "Grizzly",
+   "model": "G0931",
+   "variant": "47 x 47",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 47.25,
+    "y": 47.25,
+    "z": 7.875
+   },
+   "work_area_mm": {
+    "x": 1200.0,
+    "y": 1200.0,
+    "z": 200.0
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 hp water-cooled spindle",
+     "power_kw": 2.24,
+     "power_hp": 3,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 709,
+    "z": 394
+   },
+   "rapid_mm_min": {
+    "xy": 18009.0,
+    "z": 10008.0
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cdn0.grizzly.com/specsheets/g0931_ds.pdf"
+   ],
+   "notes": "Table 51-1/4 x 51-1/4 in aluminium with T-track and PVC pad; cast-iron body; NEMA 34 steppers; 220 V single phase.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "rapid_mm_min": "converted from in/min",
+    "spindles.power_kw": "converted from hp"
+   }
+  },
+  {
+   "id": "grizzly-g0933",
+   "maker": "Grizzly",
+   "model": "G0933",
+   "variant": "4 x 8 4-axis ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.1875,
+    "y": 98.4375,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 1300.0,
+    "y": 2500.0,
+    "z": 400.0
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD air-cooled ATC spindle, 10-3/4 hp",
+     "power_kw": 8.02,
+     "power_hp": 10.75,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1969,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": 50013.0,
+    "z": 19990.0
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Siemens Sinumerik 808D Advanced",
+     "gcarve_post": "siemens-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position linear magazine"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool probe"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cdn0.grizzly.com/specsheets/g0933_ds.pdf"
+   ],
+   "notes": "4th axis (B, tilting 0-90 deg L/R about Y). Phenolic vacuum table, 4 zones; 850 W Siemens servos; helical rack and pinion XY. Spindle collet type listed as ER32 on the data sheet.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "rapid_mm_min": "converted from in/min",
+    "spindles.power_kw": "converted from hp"
+   }
+  },
+  {
+   "id": "grizzly-g0934",
+   "maker": "Grizzly",
+   "model": "G0934",
+   "variant": "5 x 10 ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.0625,
+    "y": 118.125,
+    "z": 7.875
+   },
+   "work_area_mm": {
+    "x": 1500.0,
+    "y": 3000.0,
+    "z": 200.0
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD air-cooled ATC spindle, 12 hp",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1969,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": 50013.0,
+    "z": 19990.0
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Siemens Sinumerik 808D Advanced",
+     "gcarve_post": "siemens-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "Rotary 8-tool changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cdn0.grizzly.com/specsheets/g0934_ds.pdf"
+   ],
+   "notes": "Phenolic vacuum table, 6 zones; 850 W Siemens servos; helical rack and pinion XY; automatic rail oiler.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "rapid_mm_min": "converted from in/min",
+    "spindles.power_kw": "converted from hp"
+   }
+  }
+ ]
+}

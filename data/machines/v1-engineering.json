@@ -1,0 +1,337 @@
+{
+ "maker": "V1 Engineering",
+ "website": "https://www.v1e.com",
+ "machines": [
+  {
+   "id": "v1-engineering-lowrider-v4-full-sheet",
+   "maker": "V1 Engineering",
+   "model": "LowRider CNC v4",
+   "variant": "full sheet 8x4 ft",
+   "years": "2024-",
+   "class": "hobby",
+   "work_area_in": {
+    "x": 48,
+    "y": 96,
+    "z": 1.97
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 2438,
+    "z": 50
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Makita RT0701C / 700-series trim router (recommended, customer supplied)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "V1E Jackpot3 (FluidNC)",
+     "gcarve_post": "fluidnc-mm",
+     "default": true
+    },
+    {
+     "name": "Jackpot3 with grblHAL",
+     "gcarve_post": "grblhal-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z probe"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "screws"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://docs.v1e.com/lowrider/",
+    "https://docs.v1e.com/electronics/jackpot3/"
+   ],
+   "notes": "DIY kit (printed parts + hardware); size is chosen at build time with the LR4 calculator. The docs name full, half and quarter sheet as typical builds (8x4, 4x4, 4x2 ft); X (beam) is the shorter axis. Standard build: 50 mm Z cutting depth, 100 mm with a drop table. Rails are 1 in EMT conduit (29.5-32 mm steel tube), belt-driven X/Y, T8 lead screws on Z, auto-squaring Y and Z leveling. Makita 700-series router recommended. Jackpot3 board (FluidNC, optionally grblHAL); also runs Marlin/RepRap/GRBL boards.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "v1-engineering-lowrider-v4-half-sheet",
+   "maker": "V1 Engineering",
+   "model": "LowRider CNC v4",
+   "variant": "half sheet 4x4 ft",
+   "years": "2024-",
+   "class": "hobby",
+   "work_area_in": {
+    "x": 48,
+    "y": 48,
+    "z": 1.97
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 1219,
+    "z": 50
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Makita RT0701C / 700-series trim router (recommended, customer supplied)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "V1E Jackpot3 (FluidNC)",
+     "gcarve_post": "fluidnc-mm",
+     "default": true
+    },
+    {
+     "name": "Jackpot3 with grblHAL",
+     "gcarve_post": "grblhal-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z probe"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "screws"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://docs.v1e.com/lowrider/",
+    "https://docs.v1e.com/electronics/jackpot3/"
+   ],
+   "notes": "DIY kit (printed parts + hardware); size is chosen at build time with the LR4 calculator. The docs name full, half and quarter sheet as typical builds (8x4, 4x4, 4x2 ft); X (beam) is the shorter axis. Standard build: 50 mm Z cutting depth, 100 mm with a drop table. Rails are 1 in EMT conduit (29.5-32 mm steel tube), belt-driven X/Y, T8 lead screws on Z, auto-squaring Y and Z leveling. Makita 700-series router recommended. Jackpot3 board (FluidNC, optionally grblHAL); also runs Marlin/RepRap/GRBL boards.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "v1-engineering-lowrider-v4-quarter-sheet",
+   "maker": "V1 Engineering",
+   "model": "LowRider CNC v4",
+   "variant": "quarter sheet 4x2 ft",
+   "years": "2024-",
+   "class": "hobby",
+   "work_area_in": {
+    "x": 24,
+    "y": 48,
+    "z": 1.97
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 1219,
+    "z": 50
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Makita RT0701C / 700-series trim router (recommended, customer supplied)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "V1E Jackpot3 (FluidNC)",
+     "gcarve_post": "fluidnc-mm",
+     "default": true
+    },
+    {
+     "name": "Jackpot3 with grblHAL",
+     "gcarve_post": "grblhal-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z probe"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "screws"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://docs.v1e.com/lowrider/",
+    "https://docs.v1e.com/electronics/jackpot3/"
+   ],
+   "notes": "DIY kit (printed parts + hardware); size is chosen at build time with the LR4 calculator. The docs name full, half and quarter sheet as typical builds (8x4, 4x4, 4x2 ft); X (beam) is the shorter axis. Standard build: 50 mm Z cutting depth, 100 mm with a drop table. Rails are 1 in EMT conduit (29.5-32 mm steel tube), belt-driven X/Y, T8 lead screws on Z, auto-squaring Y and Z leveling. Makita 700-series router recommended. Jackpot3 board (FluidNC, optionally grblHAL); also runs Marlin/RepRap/GRBL boards.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "v1-engineering-mpcnc-primo",
+   "maker": "V1 Engineering",
+   "model": "MPCNC Primo",
+   "variant": "kit belt length (780 mm X+Y)",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 15.35,
+    "y": 15.35,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 390,
+    "y": 390,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer trim router or spindle (Makita, DeWalt, Kobalt, ~$99 import spindle)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "V1E Jackpot (FluidNC)",
+     "gcarve_post": "fluidnc-mm",
+     "default": true
+    },
+    {
+     "name": "Marlin (SKR / Rambo boards)",
+     "gcarve_post": "marlin-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z probe"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://docs.v1e.com/mpcnc/intro/"
+   ],
+   "notes": "Mostly Printed CNC: DIY, every axis length is chosen by the builder. The kit's 3 m belt covers 780 mm of X+Y workspace combined (V1 examples: 450 x 330, 390 x 390 mm, 20 x 10 in, 15 x 15 in); over about 1 m the LowRider is recommended. Conduit rails, dual-motor X and Y (belts), single Z motor (lead screw), NEMA 17. Bundle includes the Jackpot board (FluidNC).",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "work_area_mm": "390 x 390 mm is one of V1's example splits of the kit belt, not a fixed size"
+   }
+  }
+ ]
+}

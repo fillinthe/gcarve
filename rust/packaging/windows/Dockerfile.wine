@@ -1,0 +1,10 @@
+# Wine test image for the Windows builds (wine-test.sh): amd64 (Rosetta/qemu on Apple silicon), Debian 13's wine 10 (wine 8 lacks bcryptprimitives.dll, which Rust std imports on Windows 10+)
+# with wine64 + wine32 (i386 multiarch), Xvfb, Mesa llvmpipe (wine's opengl32 -> host GL).
+FROM debian:trixie-slim
+RUN dpkg --add-architecture i386 && apt-get update -qq \
+ && apt-get install -y -qq --no-install-recommends wine wine64 wine32 libwine libwine:i386 \
+      xvfb xauth libgl1 libgl1:i386 libgl1-mesa-dri libgl1-mesa-dri:i386 libglx-mesa0 libglx-mesa0:i386 \
+      unzip mesa-utils procps ca-certificates fonts-dejavu-core \
+ && rm -rf /var/lib/apt/lists/*
+ENV WINEDEBUG=-all LIBGL_ALWAYS_SOFTWARE=1 WINEPREFIX=/root/.wine
+RUN xvfb-run -a sh -c 'wineboot -i; wineserver -w'

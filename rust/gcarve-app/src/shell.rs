@@ -1,0 +1,882 @@
+//! The window chrome of the Qt "modes" layout: menu bar, ModeBar, ModeRail, SheetTabs, status bar, the "Start a job"
+//! card and the mode bar. Widgets push command ids (the Qt app's tbRun / railActivate ids) into `Shell::cmds`;
+//! `App::run` dispatches them, so every piece here is layout only.
+
+use crate::canvas::Canvas;
+use crate::widgets::TipExt;
+use crate::icons::IconButton;
+use crate::widgets;
+use crate::theme;
+use crate::units;
+use eframe::egui::{self, Color32, RichText};
+use gcarve_core::document::{Document, Op, OpType};
+
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub enum Mode {
+    Design,
+    Simulate,
+}
+
+impl Mode {
+    pub fn color(self) -> Color32 {
+        match self {
+            Mode::Design => theme::MODE_DESIGN,
+            Mode::Simulate => theme::MODE_SIMULATE,
+        }
+    }
+}
+
+const MODES: [(Mode, &str, &str, &str, &str); 2] = [
+    (Mode::Design, "pen", "Design", "1", "Draw, arrange vectors and add toolpaths (1; 2 = Toolpaths tab)"),
+    (Mode::Simulate, "simulate", "Simulate", "3", "Carve the board and watch the cut (3)"),
+];
+
+/// Theme.kinds: name, icon, tip per OpType (index = OpType as usize)
+pub const KINDS: [(&str, &str, &str); 13] = [
+    ("Profile", "profile", "Cut around / inside the selected shapes"),
+    ("Pocket", "pocket", "Clear the inside of the selected shapes"),
+    ("Drill", "drill", "Drill at the centre of each shape"),
+    ("V-Carve", "vcarve", "V-carve the selected shapes"),
+    ("Bore", "bore", "Helical bore: holes larger than the bit"),
+    ("Inlay", "inlay", "V-carve inlay: female pocket + mirrored male plug"),
+    ("Flute", "flute", "Flute along the selected vectors with ramps"),
+    ("3D", "relief", "Carve an imported 3D model (import one first)"),
+    ("Chamfer", "chamfer", "Chamfer the edges of the selected vectors with a V-bit"),
+    ("Prism", "prism", "Prism carve: raised, bevelled shapes with a V-bit"),
+    ("Texture", "texture", "Texture: random carved strokes filling the selected shapes (sign backgrounds)"),
+    ("Photo", "photo", "Photo V-Carve: carve a picture with a V-bit, darker = deeper"),
+    ("Imported", "open", "Moves read from a G-code file (File > Import G-code)"),
+];
+
+pub fn kind_index(k: OpType) -> usize {
+    match k {
+        OpType::Profile => 0,
+        OpType::Pocket => 1,
+        OpType::Drill => 2,
+        OpType::VCarve => 3,
+        OpType::Bore => 4,
+        OpType::Inlay => 5,
+        OpType::Flute => 6,
+        OpType::Relief => 7,
+        OpType::Chamfer => 8,
+        OpType::Prism => 9,
+        OpType::Texture => 10,
+        OpType::Photo => 11,
+        OpType::Imported => 12,
+    }
+}
+
+/// Main.qml tbDefs: id → (icon, text, tip)
+pub fn def(id: &str) -> (&'static str, &'static str, &'static str) {
+    match id {
+        "new" => ("new", "New", "New project (⌘N)"),
+        "open" => ("open", "Open", "Open project or import SVG/DXF (⌘O)"),
+        "jobs" => ("jobs", "Jobs", "Job organizer: folders of projects with their G-code and revisions (⌘J)"),
+        "save" => ("save", "Save", "Save project (⌘S)"),
+        "undo" => ("undo", "Undo", "Undo (⌘Z)"),
+        "redo" => ("redo", "Redo", "Redo (⇧⌘Z)"),
+        "copy" => ("copy", "Copy", "Copy vectors with their toolpaths and bits (⌘C)"),
+        "paste" => ("paste", "Paste", "Paste (⌘V)"),
+        "clone" => ("duplicate", "Clone", "Duplicate with toolpaths (⌘D)"),
+        "group" => ("group", "Group", "Group selected vectors so they select and move together (⌘G); Ungroup (⇧⌘G)"),
+        "delete" => ("delete", "Delete", "Delete selection"),
+        "fliph" => ("flip-h", "Flip H", "Flip horizontal"),
+        "flipv" => ("flip-v", "Flip V", "Flip vertical"),
+        "rotate" => ("rotate", "Rotate", "Rotate 90°"),
+        "align" => ("align", "Align", "Align and distribute: to each other or to the board"),
+        "array" => ("array", "Array", "Array copy…"),
+        "nest" => ("nest", "Nest", "Pack the selected parts onto the board"),
+        "link" => ("link", "Link", "Keep two shapes positioned relative to each other (select exactly two)"),
+        "weld" => ("weld", "Weld", "Weld: merge overlapping shapes"),
+        "subtract" => ("subtract", "Minus", "Subtract: cut the smaller shapes out of the largest"),
+        "intersect" => ("intersect", "Overlap", "Intersect: keep only the overlap"),
+        "offset" => ("offset", "Offset", "Offset vectors…"),
+        "dogbone" => ("offset", "Corners", "Corners: dogbone / T-bone so square parts fit a round bit, or fillet (round) them…"),
+        "join" => ("join", "Join", "Join open vectors whose ends meet"),
+        "close" => ("close", "Close", "Close open vectors"),
+        "paths" => ("eye", "Paths", "Show / hide the toolpath previews so you can edit vectors (⇧⌘T)"),
+        "width" => ("offset", "Width", "Show / hide the cut-width bands"),
+        "sim" => ("simulate", "Carve", "Carve the board with all toolpaths (⌘R)"),
+        "watch" => ("simulate", "Watch", "Watch the cut at machine speed (⇧⌘R)"),
+        "vars" => ("variable", "Vars", "Variables (⇧⌘E): named values you can use in any size field"),
+        "tools" => ("layers", "Bits", "Tool library"),
+        "posts" => ("export", "Posts", "Post-processors"),
+        "board" => ("board", "Board", "Board / job setup"),
+        "machine" => ("machine", "Machine", "Choose your CNC machine: its limits keep feeds safe, its controller sets the post"),
+        "export" => ("export", "Export", "Export G-code (⌘E)"),
+        "opedit" => ("edit", "Edit", "Edit the selected toolpath"),
+        "opdelete" => ("delete", "Delete", "Delete the selected toolpath"),
+        "view3d" => ("board", "3D", "Orbit the carved board (⌘3)"),
+        "import" => ("open", "Import", "Import SVG / DXF / PDF / AI / STL into this document"),
+        "edittext" => ("text", "Edit Text", "Change the wording, font or size of the selected text (double-click it on the canvas)"),
+        "tocurves" => ("nodes", "To Curves", "Convert the selected text to plain vectors"),
+        "restart" => ("undo", "Restart", "Back to the start of the simulation"),
+        _ => ("", "", ""),
+    }
+}
+
+
+pub const ARRANGE: [&str; 7] = ["fliph", "flipv", "rotate", "align", "array", "nest", "link"];
+pub const BOOLEAN: [&str; 7] = ["weld", "subtract", "intersect", "offset", "dogbone", "join", "close"];
+
+/// Main.qml tbEnabled
+pub fn enabled(id: &str, sel: usize, ops: usize, can_undo: bool, can_redo: bool) -> bool {
+    match id {
+        "undo" => can_undo,
+        "redo" => can_redo,
+        "copy" | "clone" | "delete" | "fliph" | "flipv" | "rotate" | "align" | "array" | "nest" | "offset" | "dogbone" | "close" => sel > 0,
+        "group" | "weld" | "subtract" | "intersect" | "join" => sel > 1,
+        "link" => sel == 2,
+        "sim" | "watch" | "export" | "opedit" | "opdelete" => ops > 0,
+        _ => true,
+    }
+}
+
+/// Design-mode tools: id, icon, name, key
+const TOOLS: [(&str, &str, &str, &str); 12] = [
+    ("tool:select", "select", "Select", "V"),
+    ("tool:nodes", "nodes", "Nodes", "N"),
+    ("tool:rect", "rect", "Rect", "R"),
+    ("tool:ellipse", "ellipse", "Ellipse", "E"),
+    ("tool:polygon", "polygon", "Polygon", "G"),
+    ("tool:star", "star", "Star", "S"),
+    ("tool:polyline", "polyline", "Polyline", "P"),
+    ("tool:curve", "pen", "Curve", "B"),
+    ("tool:arc", "arc", "Arc", "A"),
+    ("tool:measure", "measure", "Measure", "M"),
+    ("tool:dimension", "dimension", "Dimension", "D"),
+    ("tool:text", "text", "Text", "T"),
+];
+
+fn tool_color(id: &str) -> (Color32, Color32) {
+    // (tint, accent) per Theme.toolColor; select / nodes keep the blue accent bar
+    match id {
+        "tool:select" | "tool:nodes" => (theme::TOOL_SELECT, theme::ACCENT),
+        "tool:measure" | "tool:dimension" => (theme::TOOL_MEASURE, theme::TOOL_MEASURE),
+        "tool:text" => (theme::TOOL_TEXT, theme::TOOL_TEXT),
+        _ => (theme::TOOL_DRAW, theme::TOOL_DRAW),
+    }
+}
+
+/// project unit from Document::bare_unit_in: (name, multiplier from inches, decimals)
+pub fn unit(doc: &Document) -> (&'static str, f64, usize) {
+    (units::name(doc), 1.0 / doc.bare_unit_in, units::decimals(doc))
+}
+
+/// Canvas::boardSummary
+pub fn board_summary(doc: &Document) -> String {
+    let m = &doc.material;
+    let (name, u, dt) = unit(doc);
+    let d = if name == "mm" { 1 } else { 2 };
+    let origins = ["bottom-left", "bottom-right", "top-left", "top-right", "centre"];
+    let sheet = if doc.sheets.len() > 1 { format!("Sheet {} of {}  ·  ", doc.active_sheet + 1, doc.sheets.len()) } else { String::new() };
+    format!(
+        "{sheet}{}  ·  {:.d$} × {:.d$} × {:.dt$} {name}  ·  XY0 {} · Z0 {}",
+        m.kind,
+        m.w * u,
+        m.h * u,
+        m.t * u,
+        origins[(m.origin.max(0) as usize).min(4)],
+        if m.z_bottom { "bed" } else { "top" }
+    ) + &m.machine.as_ref().map(|x| format!("  ·  {}", x.name)).unwrap_or_default()
+}
+
+/// Canvas::feedsSummary
+pub fn feeds_summary(doc: &Document) -> String {
+    if doc.tools.is_empty() {
+        return String::new();
+    }
+    let mat = &doc.material.kind;
+    let n = doc.tools.iter().filter(|t| t.presets.iter().any(|p| p.material.eq_ignore_ascii_case(mat))).count();
+    let rest = if doc.material.auto_feeds { "suggested feeds" } else { "their default feeds" };
+    if n == 0 {
+        format!("No feed presets for {mat}: bits use {rest}")
+    } else if n == doc.tools.len() {
+        format!("All {n} bits have feeds for {mat}")
+    } else {
+        format!("{n} of {} bits have feeds for {mat}, the rest use {rest}", doc.tools.len())
+    }
+}
+
+/// Canvas::opList side + info strings for a toolpath row
+pub fn op_summary(doc: &Document, op: &Op) -> (String, String) {
+    let (name, u, dec) = unit(doc);
+    let num = |v: f64| format!("{:.dec$}", v * u);
+    let side = match op.kind {
+        OpType::Profile => match op.side {
+            gcarve_core::document::Side::Outside => "Outside",
+            gcarve_core::document::Side::Inside => "Inside",
+            gcarve_core::document::Side::On => "On",
+        },
+        k => KINDS[kind_index(k)].0,
+    }
+    .to_string();
+    let mut info = Vec::new();
+    match op.kind {
+        OpType::VCarve => {
+            info.push(if op.flat_depth > 0.0 { format!("flat {}", num(op.flat_depth)) } else { "to full depth".into() });
+        }
+        OpType::Relief => info.push("3D model".into()),
+        OpType::Imported => info.push("from G-code".into()),
+        OpType::Chamfer => {
+            info.push(if op.chamfer_width > 0.0 { format!("width {}", num(op.chamfer_width)) } else { format!("V depth {}", num(op.depth)) });
+            info.push(["outside", "inside", "on"][op.side as usize].into());
+        }
+        OpType::Prism => info.push(format!("max depth {}", num(op.depth))),
+        OpType::Texture => info.push(format!("depth {} · strokes {}", num(op.depth), num(op.ramp_length))),
+        OpType::Photo => info.push(if op.photo.is_empty() { "no picture".into() } else { format!("max depth {} · {}×{} px", num(op.depth), op.photo_w, op.photo_h) }),
+        _ => info.push(format!("depth {}", num(op.depth))),
+    }
+    if op.kind == OpType::Pocket {
+        info.push(format!("stepover {}%", (op.stepover * 100.0).round() as i32));
+    }
+    if op.kind == OpType::Profile && op.tabs {
+        info.push(format!("{} tabs {} × {}", op.tab_count, num(op.tab_width), num(op.tab_height)));
+    }
+    if op.kind == OpType::Drill && op.peck > 0.0 {
+        info.push(format!("peck {}", num(op.peck)));
+    }
+    if op.kind == OpType::Bore {
+        info.push(format!("helix {}/rev", num(op.stepdown.max(0.0))));
+    }
+    // the unit only where there is a length ("depth 0.375 · stepover 40% in"), not after "to full depth", "3D model"
+    let text = info.join(" · ");
+    let unit = if text.contains(|c: char| c.is_ascii_digit()) && !text.ends_with("px") && !text.starts_with("3D") { format!(" {name}") } else { String::new() };
+    (side, text + &unit)
+}
+
+pub struct Shell {
+    pub cmds: Vec<String>,
+    pub side_tab: usize,
+    pub op_sel: Option<usize>,
+    /// toolpath list grouping: 0 none, 1 by bit, 2 by operation
+    pub tp_group: u8,
+    pub lock_aspect: bool,
+    /// inspector Rotate field, degrees
+    pub rot_text: String,
+    pub edit: [String; 4], // inspector X/Y/W/H text being edited
+    pub edit_for: Option<i32>,
+    pub zoom_text: String,
+    pub canvas_rect: egui::Rect,
+    /// the menu bar last frame (menus close on a press anywhere else)
+    pub menu_rect: egui::Rect,
+    /// the status-bar Snap ▾ arrow last frame: a press on it is the popover's own toggle, not a click elsewhere
+    pub snap_arrow: egui::Rect,
+}
+
+impl Shell {
+    pub fn new() -> Self {
+        Shell { cmds: Vec::new(), side_tab: 0, op_sel: None, tp_group: 0, lock_aspect: true, rot_text: "15".into(), edit: Default::default(), edit_for: None, zoom_text: String::new(), canvas_rect: egui::Rect::ZERO, menu_rect: egui::Rect::NOTHING, snap_arrow: egui::Rect::NOTHING }
+    }
+    pub fn push(&mut self, id: impl Into<String>) {
+        self.cmds.push(id.into());
+    }
+}
+
+fn icon_btn(ui: &mut egui::Ui, sh: &mut Shell, id: &str, on: bool) {
+    let (icon, _, tip) = def(id);
+    if ui.add_enabled_ui(on, |ui| IconButton::new(icon).tip(tip).show(ui)).inner.clicked() {
+        sh.push(id);
+    }
+}
+
+/// ModeBar.qml: 46 px bar under the menus
+pub fn mode_bar(ui: &mut egui::Ui, sh: &mut Shell, mode: Mode, title: &str, canvas: &Canvas, can_export: bool) {
+    let (can_undo, can_redo) = (canvas.doc.can_undo(), canvas.doc.can_redo());
+    egui::Panel::top("modebar").frame(egui::Frame::new().fill(theme::BG).inner_margin(egui::Margin { left: 8, right: 8, top: 1, bottom: 2 })).show(ui, |ui| {
+        ui.spacing_mut().item_spacing.x = 2.0;
+        ui.horizontal(|ui| {
+            ui.set_height(28.0);
+            ui.label(RichText::new("GCarve").family(crate::widgets::bold_family()).size(14.0).color(Color32::WHITE));
+            ui.add_space(4.0);
+            ui.add(egui::Label::new(RichText::new(title).color(theme::TEXT.gamma_multiply(0.6))).truncate());
+            ui.add_space(6.0);
+            theme::vsep(ui, 22.0);
+            ui.add_space(4.0);
+            icon_btn(ui, sh, "undo", can_undo); // new / open / jobs / save live in the File menu (user decision)
+            icon_btn(ui, sh, "redo", can_redo);
+            ui.add_space(10.0);
+            // command search box
+            // narrow windows (small laptops, tablets, phones): the search box shrinks to its icon and the export
+            // button to one word, so nothing overlaps the Design / Simulate switch
+            let wide = ui.ctx().content_rect().width();
+            let (r, resp) = ui.allocate_exact_size(egui::vec2(if wide < 1000.0 { 32.0 } else { 230.0 }, 28.0), egui::Sense::click());
+            let resp = resp.tip("Search every command (⌘K)");
+            let p = ui.painter();
+            p.rect(r, theme::RADIUS as f32, theme::FIELD, egui::Stroke::new(1.0, if resp.hovered() { theme::BORDER_STRONG } else { theme::BORDER }), egui::StrokeKind::Inside);
+            crate::icons::paint(ui, "search", egui::Rect::from_min_size(r.left_top() + egui::vec2(8.0, 7.0), egui::vec2(14.0, 14.0)), 14.0, theme::TEXT_DIM);
+            if wide >= 1000.0 {
+                ui.painter().text(r.left_center() + egui::vec2(28.0, 0.0), egui::Align2::LEFT_CENTER, "Search commands…", theme::font(theme::FONT_SIZE), theme::TEXT.gamma_multiply(0.55));
+                let kb = egui::Rect::from_min_max(egui::pos2(r.right() - 36.0, r.top() + 6.0), egui::pos2(r.right() - 6.0, r.bottom() - 6.0));
+                ui.painter().rect_stroke(kb, 4.0, egui::Stroke::new(1.0, theme::BORDER_STRONG), egui::StrokeKind::Inside);
+                ui.painter().text(kb.center(), egui::Align2::CENTER_CENTER, theme::keys("⌘K"), theme::font(10.0), theme::TEXT.gamma_multiply(0.6));
+            }
+            if resp.clicked() {
+                sh.push("palette");
+            }
+            // right-aligned group, then the mode switch in what is left
+            ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                ui.spacing_mut().item_spacing.x = 2.0;
+                if ui.add_enabled_ui(can_export, |ui| IconButton::new("export").text(if wide < 760.0 { "Export" } else { "Export G-code" }).tip("Export G-code (⌘E)").primary(true).show(ui)).inner.clicked() {
+                    sh.push("export");
+                }
+                ui.add_space(6.0);
+                if IconButton::new("heart").tint(theme::ORANGE).tip("Support GCarve: donate (opens gcarve.app)").show(ui).clicked() {
+                    sh.push("donate");
+                }
+                // mode switch pill, centred in the remaining space
+                let avail = ui.available_rect_before_wrap();
+                let pill_w = 6.0 + MODES.iter().map(|(_, _, t, k, _)| 16.0 + 2.0 + 12.0 + text_w(ui, &format!("{t}  {k}"), 12.0)).sum::<f32>() + 2.0 * 2.0;
+                let pill = egui::Rect::from_center_size(egui::pos2(avail.center().x, avail.center().y), egui::vec2(pill_w, 32.0));
+                ui.painter().rect(pill, 8.0, theme::FIELD, egui::Stroke::new(1.0, theme::BORDER), egui::StrokeKind::Inside);
+                let mut child = ui.new_child(egui::UiBuilder::new().max_rect(pill.shrink2(egui::vec2(3.0, 0.0))).layout(egui::Layout::left_to_right(egui::Align::Center)));
+                child.spacing_mut().item_spacing.x = 2.0;
+                for (m, icon, text, key, tip) in MODES {
+                    let label = format!("{text}  {key}");
+                    if IconButton::new(icon).text(&label).tip(tip).size(16.0).padding(6.0).tint(m.color()).active(mode == m).show(&mut child).clicked() {
+                        sh.push(format!("mode:{text}"));
+                    }
+                }
+            });
+        });
+    });
+}
+
+fn text_w(ui: &egui::Ui, s: &str, size: f32) -> f32 {
+    ui.painter().layout_no_wrap(s.to_owned(), theme::font(size), theme::TEXT).size().x
+}
+
+/// The one collapse / expand control for every panel (Qt CollapseButton.qml): same size everywhere, the chevron
+/// points the way the panel will move, same wording. `left` = the panel lives on the left edge.
+pub fn collapse_button(ui: &mut egui::Ui, left: bool, open: bool, what: &str, key: &str) -> bool {
+    let icon = if left == open { "chevron-left" } else { "chevron-right" };
+    let tip = format!("{} {}{}", if open { "Collapse" } else { "Show" }, what, if key.is_empty() { String::new() } else { format!(" ({key})") });
+    IconButton::new(icon).size(14.0).padding(3.0).tip(&crate::theme::keys(&tip)).show(ui).clicked()
+}
+
+/// 18 px folded edge with the shared collapse button (Main.qml `Rail`)
+pub fn folded(ui: &mut egui::Ui, left: bool, what: &str, key: &str) -> bool {
+    ui.centered_and_justified(|ui| collapse_button(ui, left, false, what, key)).inner
+}
+
+/// ModeRail.qml: 82 px, the tools of the current mode with labels under the icons
+/// `extra`: drawn under the Design tools (polygon sides / star points, Qt ModeRail's child column)
+pub fn rail(ui: &mut egui::Ui, sh: &mut Shell, mode: Mode, current: &str, sel: usize, paths_on: bool, extra: impl FnOnce(&mut egui::Ui)) {
+    ui.spacing_mut().item_spacing = egui::vec2(0.0, 1.0);
+    let w = 73.0;
+    // same control and place as the side panel's: top row, on the edge facing the canvas
+    ui.with_layout(egui::Layout::right_to_left(egui::Align::Min), |ui| {
+        if collapse_button(ui, true, true, "the tool rail", "") {
+            sh.push("rail:fold");
+        }
+    });
+    let item = |ui: &mut egui::Ui, sh: &mut Shell, id: &str, icon: &str, name: &str, tip: &str, tint: Color32, accent: Color32, on: bool, active: bool| {
+        if ui.add_enabled_ui(on, |ui| IconButton::new(icon).text(name).tip(tip).label_below().tint(tint).accent(accent).active(active).width(w).show(ui)).inner.clicked() {
+            sh.push(id);
+        }
+    };
+    // short windows (laptops, tablets): the rail scrolls instead of cutting off its last tools
+    egui::ScrollArea::vertical().scroll_bar_visibility(egui::scroll_area::ScrollBarVisibility::AlwaysHidden).show(ui, |ui| match mode {
+        Mode::Design => {
+            for (id, icon, name, key) in TOOLS {
+                let (tint, accent) = tool_color(id);
+                item(ui, sh, id, icon, name, &format!("{name} ({key})"), tint, accent, true, current == id);
+            }
+            item(ui, sh, "import", "open", "Import", "Import SVG / DXF / PDF / AI / STL into this document", theme::TOOL_FILE, theme::TOOL_FILE, true, false);
+            item(ui, sh, "nest", "nest", "Nest", "Pack the selected parts onto the board", theme::TOOL_FILE, theme::TOOL_FILE, sel > 0, false);
+            extra(ui);
+        }
+        Mode::Simulate => {
+            let g = theme::MODE_SIMULATE;
+            item(ui, sh, "sim", "simulate", "Carve", "Carve the board with all toolpaths (⌘R)", g, g, true, false);
+            item(ui, sh, "watch", "simulate", "Watch", "Watch the cut at machine speed (⇧⌘R)", g, g, true, false);
+            item(ui, sh, "view3d", "board", "3D", "Orbit the carved board (⌘3)", theme::GROUP_VIEW, theme::GROUP_VIEW, true, false);
+            item(ui, sh, "paths", "eye", "Paths", "Show / hide the toolpath lines over the simulation", theme::GROUP_VIEW, theme::GROUP_VIEW, true, paths_on);
+            item(ui, sh, "tool:measure", "measure", "Measure", "Measure on the carved board (M)", theme::TOOL_MEASURE, theme::TOOL_MEASURE, true, current == "tool:measure");
+        }
+    });
+}
+
+/// SheetTabs.qml: 28 px strip under the canvas
+pub fn sheet_tabs(ui: &mut egui::Ui, sh: &mut Shell, doc: &Document) {
+    ui.spacing_mut().item_spacing.x = 2.0;
+    ui.horizontal(|ui| {
+        ui.set_height(27.0);
+        ui.add_space(6.0);
+        for i in 0..doc.sheets.len().max(1) {
+            let count = doc.shapes.iter().filter(|s| s.sheet as usize == i).count();
+            let label = if count > 0 { format!("Sheet {}  {count}", i + 1) } else { format!("Sheet {}", i + 1) };
+            let galley = ui.painter().layout_no_wrap(label, theme::font(12.0), theme::TEXT);
+            let (r, resp) = ui.allocate_exact_size(egui::vec2(galley.size().x + 24.0, 24.0), egui::Sense::click());
+            let r = r.translate(egui::vec2(0.0, 1.5));
+            let current = i as i32 == doc.active_sheet;
+            let fill = if current { theme::RAISED } else if resp.hovered() { theme::ROW_HOVER } else { Color32::TRANSPARENT };
+            ui.painter().rect(r, 5.0, fill, egui::Stroke::new(1.0, if current { theme::BORDER_STRONG } else { Color32::TRANSPARENT }), egui::StrokeKind::Inside);
+            ui.painter().galley(r.center() - galley.size() / 2.0, galley, if current { theme::TEXT } else { theme::TEXT.gamma_multiply(0.7) });
+            if resp.clicked() {
+                sh.push(format!("sheet:{i}"));
+            }
+        }
+        if IconButton::new("add").size(13.0).padding(3.0).tip("Add a sheet (another board; parts that don't fit go on the next)").show(ui).clicked() {
+            sh.push("sheet:add");
+        }
+        if ui.add_enabled_ui(doc.sheets.len() > 1, |ui| IconButton::new("remove").size(13.0).padding(3.0).tip("Remove this sheet (its shapes move to the previous one)").show(ui)).inner.clicked() {
+            sh.push("sheet:remove");
+        }
+        ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+            ui.add_space(10.0);
+            if IconButton::new("edit").size(13.0).padding(3.0).tip("Board / job setup").show(ui).clicked() {
+                sh.push("board");
+            }
+            let summary = board_summary(doc);
+            let summary = summary.split_once("  ·  ").filter(|(a, _)| a.starts_with("Sheet ")).map(|(_, b)| b.to_string()).unwrap_or(summary);
+            ui.add(egui::Label::new(RichText::new(summary).size(11.0).color(theme::TEXT.gamma_multiply(0.55))).truncate());
+        });
+    });
+}
+
+/// the status-bar Snap popover (View ▸ Snap Settings… opens it too)
+pub fn snap_popup() -> egui::Id {
+    egui::Id::new("snap-popover")
+}
+
+/// Main.qml footer: cursor readout · status · Paths/Width · zoom · Snap ▾ (snap & grid popover) · units
+pub fn status_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, synced: &mut crate::dialogs::prefs::Synced, message: &str, status: &str, has_ops: bool) {
+    ui.spacing_mut().item_spacing.x = 6.0;
+    ui.horizontal(|ui| {
+        ui.set_height(27.0);
+        ui.add_space(10.0);
+        // narrow windows: the pointer read-out gives way to the buttons on the right
+        if ui.ctx().content_rect().width() >= 760.0 {
+            ui.add_sized([230.0, 20.0], egui::Label::new(RichText::new(status).monospace()).truncate());
+        }
+        ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+            ui.add_space(10.0);
+            // units
+            let (uname, _, _) = unit(&canvas.doc);
+            let names = ["inches", "feet", "mm"];
+            let cur = match uname { "ft" => 1, "mm" => 2, _ => 0 };
+            let mut pick = cur;
+            crate::widgets::combo_box("units").width(100.0).selected_text(names[cur]).show_ui(ui, |ui| {
+                for (i, n) in names.iter().enumerate() {
+                    ui.selectable_value(&mut pick, i, *n);
+                }
+            }).response.tip("Project units: what numbers mean and how they display. Type 4ft, 48in or 1200mm anywhere to override.");
+            if pick != cur {
+                canvas.doc.bare_unit_in = units::BARE[pick];
+                canvas.touch();
+            }
+            let chev = IconButton::new("chevron-down").size(12.0).padding(4.0).tip("Snap & grid settings").active(egui::Popup::is_id_open(ui.ctx(), snap_popup())).show(ui);
+            sh.snap_arrow = chev.rect;
+            egui::Popup::from_toggle_button_response(&chev).id(snap_popup()).close_behavior(egui::PopupCloseBehavior::CloseOnClickOutside).align(egui::RectAlign::TOP_END).frame(widgets::popup_frame().inner_margin(14)).show(|ui| {
+                crate::dialogs::prefs::snap_grid_ui(ui, synced, &canvas.doc);
+            });
+            let mut snap = canvas.snap;
+            if theme::switch(ui, &mut snap, "Snap").changed() {
+                canvas.snap = snap;
+            }
+            theme::vsep(ui, 18.0);
+            if IconButton::new("board").tip("Zoom to board (⌘1)").show(ui).clicked() {
+                sh.push("zoom:board");
+            }
+            if IconButton::new("fit").tip("Zoom to fit shapes (⌘0 / F)").show(ui).clicked() {
+                sh.push("zoom:fit");
+            }
+            if IconButton::new("zoom-in").tip("Zoom in (⌘+)").show(ui).clicked() {
+                sh.push("zoom:in");
+            }
+            let pct = canvas.view.as_ref().map(|v| (v.zoom / 96.0 * 100.0).round() as i32).unwrap_or(100);
+            let shown = format!("{pct}%");
+            let id = ui.id().with("zoom");
+            if !ui.memory(|m| m.has_focus(id)) {
+                sh.zoom_text = shown;
+            }
+            let r = ui.add_sized([64.0, theme::CONTROL_HEIGHT - 2.0], crate::widgets::field(&mut sh.zoom_text).id(id).horizontal_align(egui::Align::Center));
+            if r.lost_focus() && ui.input(|i| i.key_pressed(egui::Key::Enter)) {
+                if let Ok(v) = sh.zoom_text.trim().trim_end_matches('%').parse::<f32>() {
+                    sh.push(format!("zoom:{v}"));
+                }
+            }
+            if IconButton::new("zoom-out").tip("Zoom out (⌘−)").show(ui).clicked() {
+                sh.push("zoom:out");
+            }
+            theme::vsep(ui, 18.0);
+            if has_ops {
+                if IconButton::new("offset").text("Width").active(canvas.show_width).tip("Show / hide cut-width bands").show(ui).clicked() {
+                    canvas.show_width = !canvas.show_width;
+                }
+                if IconButton::new(if canvas.show_paths { "eye" } else { "eye-off" }).text("Paths").active(canvas.show_paths).tip("Show / hide toolpath previews (⇧⌘T): hide them to see just the vectors").show(ui).clicked() {
+                    canvas.show_paths = !canvas.show_paths;
+                }
+            }
+            // Qt: the message fills the space after the cursor readout, left-aligned
+            ui.allocate_ui_with_layout(egui::vec2(ui.available_width(), 20.0), egui::Layout::left_to_right(egui::Align::Center), |ui| {
+                ui.add(egui::Label::new(RichText::new(message).color(theme::TEXT.gamma_multiply(0.8))).truncate());
+            });
+        });
+    });
+}
+
+/// EmptyState.qml: the "Start a job" card over an empty, untouched document
+pub fn empty_state(ui: &mut egui::Ui, sh: &mut Shell, rect: egui::Rect, doc: &Document, recent: &[String]) {
+    // never wider / taller than the canvas (phones, tablets) and clipped to it: never over the rail or inspector
+    let w = (rect.width() - 24.0).min(460.0);
+    if w < 120.0 {
+        return;
+    }
+    let id = ui.id().with("start-card");
+    let h = ui.ctx().data(|d| d.get_temp::<f32>(id)).unwrap_or(150.0).min(rect.height() - 24.0);
+    let card = egui::Rect::from_center_size(rect.center(), egui::vec2(w, h));
+    let mut outer = ui.new_child(egui::UiBuilder::new().max_rect(egui::Rect::from_min_size(card.left_top(), egui::vec2(w, rect.bottom() - card.top()))).layout(egui::Layout::top_down(egui::Align::Min)));
+    outer.set_clip_rect(card.intersect(rect));
+    let r = egui::Frame::new().fill(theme::PANEL.gamma_multiply(0.97)).stroke(egui::Stroke::new(1.0, theme::BORDER)).corner_radius(10).inner_margin(20).show(&mut outer, |c| {
+        c.set_width(w - 40.0);
+        c.spacing_mut().item_spacing = egui::vec2(6.0, 8.0);
+        c.horizontal(|c| {
+            c.label(RichText::new("Start a job").font(crate::widgets::bold(18.0)).color(Color32::WHITE));
+            c.with_layout(egui::Layout::right_to_left(egui::Align::Center), |c| {
+                if IconButton::new("dismiss").tip("Close").show(c).clicked() {
+                    sh.push("startcard:close");
+                }
+            });
+        });
+        let (uname, u, _) = unit(doc);
+        let m = &doc.material;
+        let d = if uname == "mm" { 1 } else { 2 };
+        c.add(egui::Label::new(RichText::new(format!("{}raw with the tools on the left or bring vectors in. Set the board size first if it isn't {:.d$} × {:.d$} × {:.3} {uname}.", if m.machine.is_some() { "D" } else { "Choose your machine, then d" }, m.w * u, m.h * u, m.t * u)).color(theme::TEXT.gamma_multiply(0.65))).wrap());
+        c.add_space(6.0);
+        c.horizontal_wrapped(|ui| {
+            ui.spacing_mut().item_spacing = egui::vec2(6.0, 6.0);
+            if IconButton::new("simulate").text("Try the demo project").primary(true).tip("Opens a sample sign with every toolpath type: look around, simulate it, export it").show(ui).clicked() {
+                sh.push("demo");
+            }
+            if doc.material.machine.is_none() && IconButton::new("machine").text("Choose machine…").tip("Pick your CNC: feeds are scaled to it, the board starts at its table size and the G-code comes out in its dialect").show(ui).clicked() {
+                sh.push("machine");
+            }
+            for (id, icon, text, tip) in [("open", "open", "Open…", "Open a project or import SVG / DXF / PDF (⌘O)"), ("import", "relief", "Import", "Import SVG / DXF / PDF / AI / STL into this document"), ("tool:text", "text", "Add Text", "Add text (T)"), ("board", "board", "Board…", "Board size, material, XY zero, post-processor")] {
+                if IconButton::new(icon).text(text).tip(tip).show(ui).clicked() {
+                    sh.push(id);
+                }
+            }
+        });
+        if !recent.is_empty() {
+            c.add_space(10.0);
+            c.label(RichText::new("RECENT").size(11.0).color(theme::TEXT.gamma_multiply(0.45)));
+            for (i, path) in recent.iter().enumerate() {
+                let mut parts = path.rsplit(['/', '\\']);
+                let name = parts.next().unwrap_or(path);
+                let folder = parts.next().unwrap_or("");
+                let (r, resp) = c.allocate_exact_size(egui::vec2(c.available_width(), 30.0), egui::Sense::click());
+                if resp.hovered() {
+                    c.painter().rect_filled(r, 4.0, theme::ROW_HOVER);
+                }
+                let g = c.painter().text(r.left_center() + egui::vec2(6.0, 0.0), egui::Align2::LEFT_CENTER, name, theme::font(12.0), theme::TEXT);
+                // same file name in several folders: say which folder
+                if recent.iter().filter(|p| p.rsplit(['/', '\\']).next() == Some(name)).count() > 1 {
+                    c.painter().text(egui::pos2(g.right() + 8.0, r.center().y), egui::Align2::LEFT_CENTER, format!("in {folder}"), theme::font(11.0), theme::TEXT_DIM);
+                }
+                if resp.tip(path.as_str()).clicked() {
+                    sh.push(format!("recent:{i}"));
+                }
+            }
+        }
+        c.add_space(8.0);
+        c.horizontal(|c| {
+            c.label(RichText::new(theme::keys("Tip: press ⌘K to find any command by name.")).size(11.0).color(theme::TEXT.gamma_multiply(0.45)));
+            c.with_layout(egui::Layout::right_to_left(egui::Align::Center), |c| {
+                let id = c.id().with("dont-show");
+                let hot = c.ctx().data(|d| d.get_temp::<bool>(id)).unwrap_or(false);
+                let r = c.add(egui::Label::new(RichText::new("Don't show again").size(11.0).color(theme::ACCENT.gamma_multiply(if hot { 1.0 } else { 0.75 }))).sense(egui::Sense::click()));
+                c.ctx().data_mut(|d| d.insert_temp(id, r.hovered()));
+                let r = r.on_hover_cursor(egui::CursorIcon::PointingHand).tip("View › Start Card brings it back");
+                if r.clicked() {
+                    sh.push("startcard");
+                }
+            });
+        });
+    });
+    ui.ctx().data_mut(|d| d.insert_temp(id, r.response.rect.height()));
+}
+
+/// App state the menus show (account line, admin items, Open Recent, check marks).
+pub struct MenuInfo {
+    pub account: String,
+    pub signed_in: bool,
+    pub admin: bool,
+    /// file names, newest first (desktop)
+    pub recent: Vec<String>,
+    pub sim: bool,
+    pub view_3d: bool,
+    pub start_card: bool,
+    pub show_grid: bool,
+    pub rulers: bool,
+}
+
+/// Main.qml menuBar: the same menus, wording and shortcuts
+/// egui closes a menu only on a full click (press + release without moving); a press that drags a little (the
+/// canvas) left it open. Any press outside menus / popups and the menu bar closes them, as does losing focus.
+fn close_menus_on_press_elsewhere(ctx: &egui::Context, bar: egui::Rect, toggle: egui::Rect) {
+    if !ctx.input(|i| i.focused) && egui::Popup::is_any_open(ctx) {
+        egui::Popup::close_all(ctx); // another window, or the site bar above the web app, took the click
+        return;
+    }
+    let Some(p) = ctx.input(|i| i.pointer.any_pressed().then(|| i.pointer.interact_pos()).flatten()) else { return };
+    if egui::Popup::is_any_open(ctx) && !bar.contains(p) && !toggle.contains(p) && ctx.layer_id_at(p).is_none_or(|l| l.order != egui::Order::Foreground) {
+        egui::Popup::close_all(ctx);
+    }
+}
+
+pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, m: &MenuInfo, rail_open: &mut bool, panel_open: &mut bool, has_ops: bool) {
+    let sel = canvas.selection_count();
+    let (can_undo, can_redo) = (canvas.doc.can_undo(), canvas.doc.can_redo());
+    let web = cfg!(target_arch = "wasm32");
+    let text = canvas.selected_text() != 0;
+    close_menus_on_press_elsewhere(ui.ctx(), sh.menu_rect, sh.snap_arrow);
+    sh.menu_rect = egui::Panel::top("menu").frame(egui::Frame::new().fill(theme::BG).inner_margin(egui::Margin { left: 6, right: 6, top: 2, bottom: 2 })).show(ui, |ui| {
+        ui.style_mut().text_styles.insert(egui::TextStyle::Button, theme::font(12.0));
+        ui.spacing_mut().button_padding = egui::vec2(9.0, 3.0);
+        ui.spacing_mut().interact_size.y = 23.0; // 27 px menu bar like the Qt one
+        // style/MenuBarItem.qml: 9 px side padding per title
+        egui::MenuBar::new().config(egui::containers::menu::MenuConfig::new().style(widgets::menu_style)).style(|s: &mut egui::Style| {
+            egui::containers::menu::menu_style(s);
+            s.spacing.button_padding = egui::vec2(9.0, 4.0);
+            s.spacing.item_spacing.x = 0.0;
+        }).ui(ui, |ui| {
+            let mut tops: Vec<egui::Response> = Vec::new(); // the top-level menu buttons (hover switches menus)
+            // item: label, shortcut text, enabled, command id
+            fn item(ui: &mut egui::Ui, sh: &mut Shell, text: &str, key: &str, on: bool, id: &str) {
+                if ui.add_enabled_ui(on, |ui| widgets::menu_item(ui, text, key)).inner.clicked() {
+                    sh.push(id);
+                    ui.close();
+                }
+            }
+            fn check(ui: &mut egui::Ui, text: &str, v: &mut bool) {
+                if widgets::menu_check(ui, text, "", v).clicked() {
+                    ui.close();
+                }
+            }
+            tops.push(ui.menu_button("File", |ui| {
+                item(ui, sh, "New", "⌘N", true, "new");
+                item(ui, sh, "Close Tab", "⌘W", true, "closetab");
+                item(ui, sh, if web { "Open / Import from Computer…" } else { "Open Project / Import…" }, "⌘O", true, "open");
+                item(ui, sh, "Import G-code…", "", true, "importgcode");
+                item(ui, sh, "Cloud Projects…", "", true, "cloud");
+                if !web {
+                    item(ui, sh, "Jobs…", "⌘J", true, "jobs");
+                    item(ui, sh, "Import 3D Model (STL)…", "", true, "importstl");
+                    ui.add_enabled_ui(!m.recent.is_empty(), |ui| {
+                        widgets::submenu(ui, "Open Recent", |ui| {
+                            for (i, r) in m.recent.iter().enumerate() {
+                                // "name — folder" (the full path made the submenu as wide as the screen)
+                                let p = std::path::Path::new(r);
+                                let name = p.file_name().map_or(r.clone(), |n| n.to_string_lossy().into_owned());
+                                let dir = p.parent().and_then(|d| d.file_name()).map(|d| format!(" — {}", d.to_string_lossy())).unwrap_or_default();
+                                item(ui, sh, &format!("{name}{dir}"), "", true, &format!("recent:{i}"));
+                            }
+                            widgets::menu_separator(ui);
+                            item(ui, sh, "Clear Menu", "", true, "recent:clear");
+                        });
+                    });
+                }
+                widgets::menu_separator(ui);
+                item(ui, sh, if web { "Save to Cloud" } else { "Save" }, "⌘S", true, "save");
+                if web {
+                    item(ui, sh, "Download Project (.tlp)", "", true, "saveas");
+                } else {
+                    item(ui, sh, "Save As…", "⇧⌘S", true, "saveas");
+                    item(ui, sh, "Save to Cloud", "", true, "savecloud");
+                }
+                widgets::menu_separator(ui);
+                widgets::submenu(ui, "Export Vectors", |ui| {
+                    // the selection, or every visible vector of this sheet, at real size
+                    item(ui, sh, "As SVG (curves kept)", "", true, "vexport:svg");
+                    item(ui, sh, "As DXF (for CAD / other CAM)", "", true, "vexport:dxf");
+                    item(ui, sh, "As DWG (AutoCAD)", "", true, "vexport:dwg");
+                });
+                item(ui, sh, "Setup Sheet…", "", has_ops, "setupsheet"); // printable job sheet for the operator
+                widgets::menu_separator(ui);
+                item(ui, sh, &m.account, "", true, "account");
+            }).response);
+            tops.push(ui.menu_button("Edit", |ui| {
+                item(ui, sh, "Undo", "⌘Z", can_undo, "undo");
+                item(ui, sh, "Redo", "⇧⌘Z", can_redo, "redo");
+                widgets::menu_separator(ui);
+                item(ui, sh, "Cut", "⌘X", sel > 0, "cut");
+                item(ui, sh, "Copy", "⌘C", sel > 0, "copy");
+                item(ui, sh, "Paste", "⌘V", true, "paste");
+                widgets::menu_separator(ui);
+                item(ui, sh, "Select All", "⌘A", true, "selectall");
+                item(ui, sh, "Duplicate (with toolpaths)", "⌘D", sel > 0, "clone");
+                widgets::menu_separator(ui);
+                item(ui, sh, "Group", "⌘G", sel > 1, "group");
+                item(ui, sh, "Ungroup", "⇧⌘G", canvas.selection_has_group(), "ungroup");
+                item(ui, sh, "Delete", "⌫", sel > 0 || canvas.sel_dim >= 0, "delete");
+                widgets::menu_separator(ui);
+                item(ui, sh, "Add Text…", "T", true, "tool:text");
+                item(ui, sh, "Text on Curve…", "", sel == 1, "text:curve");
+                item(ui, sh, "Edit Text…", "", text, "text:edit");
+                item(ui, sh, "Convert Text to Curves", "", text, "text:curves");
+                widgets::menu_separator(ui);
+                item(ui, sh, "Preferences…", "⌘,", true, "prefs");
+            }).response);
+            tops.push(ui.menu_button("Vectors", |ui| {
+                for (t, k, on, id) in [("Weld", "", sel > 1, "weld"), ("Subtract", "", sel > 1, "subtract"), ("Intersect", "", sel > 1, "intersect")] {
+                    item(ui, sh, t, k, on, id);
+                }
+                widgets::menu_separator(ui);
+                item(ui, sh, "Shapes Library…", "", true, "shapes");
+                item(ui, sh, "Trace Image…", "", true, "trace");
+                widgets::menu_separator(ui);
+                for (t, k, on, id) in [("Offset…", "", sel > 0, "offset"), ("Corners: Dogbone / Fillet…", "", sel > 0, "dogbone"), ("Join Open Vectors", "", sel > 1, "join"), ("Close Vectors", "", sel > 0, "close"), ("Extend Ends to Next Vector", "", sel > 0, "extend"), ("Check Vectors (open, duplicate, tiny)", "", true, "validate")] {
+                    item(ui, sh, t, k, on, id);
+                }
+                ui.add_enabled_ui(sel > 0, |ui| {
+                    widgets::submenu(ui, "Simplify (fewer nodes)", |ui| {
+                        let u = if crate::units::name(&canvas.doc) == "mm" { ["0.03 mm", "0.13 mm", "0.5 mm"] } else { ["0.001 in", "0.005 in", "0.02 in"] };
+                        for (label, tol) in [(format!("Fine: within {}", u[0]), "0.001"), (format!("Medium: within {}", u[1]), "0.005"), (format!("Coarse: within {}", u[2]), "0.02")] {
+                            item(ui, sh, &label, "", true, &format!("simplify:{tol}"));
+                        }
+                    });
+                });
+                widgets::menu_separator(ui);
+                for (t, k, on, id) in [("Flip Horizontal", "", sel > 0, "fliph"), ("Flip Vertical", "", sel > 0, "flipv"), ("Rotate 90°", "", sel > 0, "rotate"), ("Centre on Board", "", sel > 0, "centre"), ("Align & Distribute…", "⇧⌘A", sel > 0, "align"), ("Array Copy…", "", sel > 0, "array"), ("Constrain Two Shapes…", "", sel == 2, "link"), ("Nest on Board…", "", sel > 0, "nest")] {
+                    item(ui, sh, t, k, on, id);
+                }
+                item(ui, sh, "Mirror Copy to the Right", "", sel > 0, "mirror:right");
+                item(ui, sh, "Mirror Copy Upwards", "", sel > 0, "mirror:up");
+                item(ui, sh, "Move to Next Sheet", "", sel > 0 && canvas.doc.sheets.len() > 1, "sheet:next");
+                item(ui, sh, "New Sheet", "", true, "sheet:add");
+                widgets::submenu(ui, "New Back Side (two-sided job)", |ui| {
+                    item(ui, sh, "Flip the board left to right", "", true, "sheet:back-lr");
+                    item(ui, sh, "Flip the board top to bottom", "", true, "sheet:back-tb");
+                });
+            }).response);
+            tops.push(ui.menu_button("Variables", |ui| {
+                item(ui, sh, "Variables & Constraints…", "⇧⌘E", true, "vars");
+                item(ui, sh, "Add Variable", "", true, "var:add");
+            }).response);
+            tops.push(ui.menu_button("Toolpaths", |ui| {
+                for (i, key) in ["⇧⌘P", "⇧⌘K", "⇧⌘D", "⇧⌘V", "⇧⌘B", "⇧⌘I", "⇧⌘F"].iter().enumerate() {
+                    let key = if i == 0 { "" } else { key }; // ⇧⌘P is the side panel (Qt binds it twice)
+                    item(ui, sh, &format!("New {}…", KINDS[i].0), key, sel > 0, &format!("kind:{i}"));
+                }
+                for i in [8, 9, 10, 11] {
+                    item(ui, sh, &format!("New {}…", KINDS[i].0), "", sel > 0, &format!("kind:{i}"));
+                }
+                item(ui, sh, "Export G-code…", "⌘E", has_ops, "export");
+                item(ui, sh, "Export Air-Cut Test…", "", has_ops, "aircut");
+                widgets::menu_separator(ui);
+                item(ui, sh, "Save as Template…", "", has_ops, "templates");
+                item(ui, sh, "Apply Template…", "", true, "templates");
+                widgets::menu_separator(ui);
+                if !web {
+                    item(ui, sh, "Send to GCarve Control", "", has_ops, "control:send");
+                    item(ui, sh, "Open GCarve Control", "", true, "control:open");
+                    widgets::menu_separator(ui);
+                }
+                item(ui, sh, "Tool Library…", "", true, "tools");
+                item(ui, sh, "Board / Job Setup…", "", true, "board");
+                item(ui, sh, "Choose Machine…", "", true, "machine");
+                item(ui, sh, "3D Models…", "", true, "reliefs");
+                item(ui, sh, "Post-Processors…", "", true, "posts");
+            }).response);
+            tops.push(ui.menu_button("View", |ui| {
+                let mut paths = canvas.show_paths;
+                if widgets::menu_check(ui, "Show Toolpaths", "⇧⌘T", &mut paths).clicked() {
+                    sh.push("paths");
+                    ui.close();
+                }
+                item(ui, sh, "Show All Toolpaths", "", has_ops, "ops:showall");
+                item(ui, sh, "Hide All Toolpaths", "", has_ops, "ops:hideall");
+                check(ui, "Show Cut Width", &mut canvas.show_width);
+                item(ui, sh, "Simulate Cut", "⌘R", has_ops, "sim");
+                item(ui, sh, "Watch the Cut", "⇧⌘R", has_ops, "watch");
+                let mut v3 = m.view_3d;
+                if widgets::menu_check(ui, "3D View", "⌘3", &mut v3).clicked() {
+                    sh.push("view3d");
+                    ui.close();
+                }
+                let mut s = m.sim;
+                if ui.add_enabled_ui(has_ops, |ui| widgets::menu_check(ui, "Show Simulation", "", &mut s)).inner.clicked() {
+                    sh.push("showsim");
+                    ui.close();
+                }
+                for (t, k, id) in [("Zoom In", "⌘+", "zoom:in"), ("Zoom Out", "⌘−", "zoom:out"), ("Zoom to Fit", "⌘0", "zoom:fit"), ("Zoom to Board", "⌘1", "zoom:board")] {
+                    item(ui, sh, t, k, true, id);
+                }
+                widgets::menu_separator(ui);
+                item(ui, sh, "Command Palette…", "⌘K", true, "palette");
+                if widgets::menu_check(ui, "Side Panel", "⇧⌘P", panel_open).clicked() {
+                    ui.close();
+                }
+                check(ui, "Tool Rail", rail_open);
+                let mut card = m.start_card;
+                if widgets::menu_check(ui, "Start Card", "", &mut card).clicked() {
+                    sh.push("startcard");
+                    ui.close();
+                }
+                item(ui, sh, "Actual Size (100%)", "⌘2", true, "zoom:100");
+                widgets::menu_separator(ui);
+                check(ui, "Snap", &mut canvas.snap);
+                item(ui, sh, "Snap Settings…", "", true, "snap:settings");
+                item(ui, sh, "Clear Guides", "", !canvas.doc.guides.is_empty(), "guides:clear");
+                let (line, can) = crate::spacemouse::status();
+                item(ui, sh, if can || line.is_empty() { "Connect a SpaceMouse…" } else { line.split(':').next().unwrap_or("SpaceMouse") }, "", can, "spacemouse");
+                for (t, on, id) in [("Show Grid", m.show_grid, "grid:toggle"), ("Rulers", m.rulers, "rulers:toggle")] {
+                    let mut on = on;
+                    if widgets::menu_check(ui, t, "", &mut on).clicked() {
+                        sh.push(id);
+                        ui.close();
+                    }
+                }
+                widgets::submenu(ui, "Units", |ui| {
+                    let (uname, _, _) = unit(&canvas.doc);
+                    for (t, n, v) in [("Inches", "in", units::BARE[0]), ("Feet", "ft", units::BARE[1]), ("Millimetres", "mm", units::BARE[2])] {
+                        let mut on = uname == n;
+                        if widgets::menu_check(ui, t, "", &mut on).clicked() {
+                            canvas.doc.bare_unit_in = v;
+                            canvas.touch();
+                            ui.close();
+                        }
+                    }
+                });
+            }).response);
+            tops.push(ui.menu_button("Help", |ui| {
+                item(ui, sh, "♥ Donate to GCarve…", "", true, "donate");
+                if m.signed_in {
+                    item(ui, sh, "Dashboard (account, requests)…", "", true, "manage");
+                } else {
+                    item(ui, sh, "Sign In…", "", true, "account");
+                }
+                if m.admin {
+                    item(ui, sh, "User Management…", "", true, "admin");
+                }
+                item(ui, sh, "How Do I…?", "", true, "guide");
+                item(ui, sh, "Keyboard Shortcuts", "", true, "shortcuts");
+                item(ui, sh, "Open the Demo Project", "", true, "demo");
+                item(ui, sh, "Request a Change…", "", true, "request");
+                item(ui, sh, "Shared with Me…", "", true, "shares");
+                item(ui, sh, "Support Page", "", true, "support");
+                item(ui, sh, "GCarve Website", "", true, "website");
+                item(ui, sh, "Report a Bug…", "", true, "bug");
+                // web: the free desktop apps; desktop: check for a newer version
+                if cfg!(target_arch = "wasm32") {
+                    item(ui, sh, "Download the Desktop App", "", true, "download");
+                } else {
+                    let up = gcarve_ui::help::available().map_or("Check for Updates…".to_string(), |(v, _)| format!("Update available: {v}…"));
+                    item(ui, sh, &up, "", true, "update");
+                }
+                widgets::menu_separator(ui);
+                item(ui, sh, "About GCarve", "", true, "about");
+            }).response);
+            // like a desktop menu bar: while one menu is open, hovering another title opens that one
+            let ctx = ui.ctx().clone();
+            if tops.iter().any(|r| egui::Popup::is_id_open(&ctx, egui::Popup::default_response_id(r))) {
+                if let Some(h) = tops.iter().find(|r| r.hovered() && !egui::Popup::is_id_open(&ctx, egui::Popup::default_response_id(r))) {
+                    egui::Popup::open_id(&ctx, egui::Popup::default_response_id(h));
+                }
+            }
+        });
+    }).response.rect;
+}
+

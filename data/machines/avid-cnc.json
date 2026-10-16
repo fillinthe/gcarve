@@ -1,0 +1,1365 @@
+{
+ "maker": "Avid CNC",
+ "website": "https://www.avidcnc.com",
+ "machines": [
+  {
+   "id": "avid-cnc-pro4824",
+   "maker": "Avid CNC",
+   "model": "PRO4824",
+   "variant": "4x2",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 49.5,
+    "y": 24,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 1260,
+    "y": 609,
+    "z": 203
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4 HP (3 kW) Hiteco air-cooled spindle + VFD (manual tool change)",
+     "power_kw": 3,
+     "power_hp": 4,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ER20 (to 1/2\")",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "8.7 HP (6.5 kW) Hiteco air-cooled spindle + VFD (manual tool change)",
+     "power_kw": 6.5,
+     "power_hp": 8.7,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "ER32 (to 3/4\")",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "AV40S 4 HP Smart Spindle (ATC-ready)",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 holders (ER20/ER32, to 3/4\")",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "AV70S 7 HP Smart Spindle (ATC-ready)",
+     "power_kw": null,
+     "power_hp": 7,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 holders (ER20/ER32, to 3/4\")",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "router",
+     "name": "Tramming router mount (customer router, not included)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 400,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 10160,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20320,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Avid CNC EX controller (Centroid Acorn, CNC12 software)",
+     "gcarve_post": "centroid-in",
+     "default": true
+    },
+    {
+     "name": "Mach4 (Avid control systems before the late-2024 move to Centroid CNC12)",
+     "gcarve_post": "avid-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Avid Smart ATC option: moving tool rack, 10 / 13 / 15 cradle locations for 4 / 5 / 6 ft wide machines, needs an AV40S or AV70S spindle"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool height setter + auto Z / corner-finding touch plate (included)"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.avidcnc.com/pro4824-4-x-2-cnc-router-machine-p-1334.html",
+    "https://www.avidcnc.com/4-hp-plug-and-play-spindle-vfd-system-p-856.html",
+    "https://www.avidcnc.com/87-hp-plug-and-play-spindle-vfd-system-p-834.html",
+    "https://www.avidcnc.com/av40s-4hp-smart-spindle-vfd-system-p-1492.html",
+    "https://www.avidcnc.com/av70s-7hp-smart-spindle-vfd-system-p-1463.html",
+    "https://www.avidcnc.com/avid-cnc-ex-control-system-p-1397.html",
+    "https://mfgnewsdigital.mydigitalpublication.com/article/Avid+CNC+Chooses+Centroid+CNC+Technology/4892906/836380/article.html",
+    "https://www.avidcnc.com/avid-smart-automatic-tool-change-system-p-1537.html"
+   ],
+   "notes": "Kit machine (customer-assembled). Z travel 8 in standard, 12 in option. Feeds shown for the default NEMA 34 stepper EX system; NEMA 23: 250 IPM cut / 500 IPM rapid; Teknic ClearPath servo option: 600 / 1200 IPM. Repeatability +/-0.002 in. Optional extended gantry (+10 in width) for a second Z axis.",
+   "estimated": {
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "avid-cnc-pro4848",
+   "maker": "Avid CNC",
+   "model": "PRO4848",
+   "variant": "4x4",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 49.5,
+    "y": 49.5,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 1260,
+    "y": 1260,
+    "z": 203
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4 HP (3 kW) Hiteco air-cooled spindle + VFD (manual tool change)",
+     "power_kw": 3,
+     "power_hp": 4,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ER20 (to 1/2\")",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "8.7 HP (6.5 kW) Hiteco air-cooled spindle + VFD (manual tool change)",
+     "power_kw": 6.5,
+     "power_hp": 8.7,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "ER32 (to 3/4\")",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "AV40S 4 HP Smart Spindle (ATC-ready)",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 holders (ER20/ER32, to 3/4\")",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "AV70S 7 HP Smart Spindle (ATC-ready)",
+     "power_kw": null,
+     "power_hp": 7,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 holders (ER20/ER32, to 3/4\")",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "router",
+     "name": "Tramming router mount (customer router, not included)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 400,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 10160,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20320,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Avid CNC EX controller (Centroid Acorn, CNC12 software)",
+     "gcarve_post": "centroid-in",
+     "default": true
+    },
+    {
+     "name": "Mach4 (Avid control systems before the late-2024 move to Centroid CNC12)",
+     "gcarve_post": "avid-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Avid Smart ATC option: moving tool rack, 10 / 13 / 15 cradle locations for 4 / 5 / 6 ft wide machines, needs an AV40S or AV70S spindle"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool height setter + auto Z / corner-finding touch plate (included)"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.avidcnc.com/pro4848-4-x-4-cnc-router-machine-p-1335.html",
+    "https://www.avidcnc.com/4-hp-plug-and-play-spindle-vfd-system-p-856.html",
+    "https://www.avidcnc.com/87-hp-plug-and-play-spindle-vfd-system-p-834.html",
+    "https://www.avidcnc.com/av40s-4hp-smart-spindle-vfd-system-p-1492.html",
+    "https://www.avidcnc.com/av70s-7hp-smart-spindle-vfd-system-p-1463.html",
+    "https://www.avidcnc.com/avid-cnc-ex-control-system-p-1397.html",
+    "https://mfgnewsdigital.mydigitalpublication.com/article/Avid+CNC+Chooses+Centroid+CNC+Technology/4892906/836380/article.html",
+    "https://www.avidcnc.com/avid-smart-automatic-tool-change-system-p-1537.html"
+   ],
+   "notes": "Kit machine (customer-assembled). Z travel 8 in standard, 12 in option. Feeds shown for the default NEMA 34 stepper EX system; NEMA 23: 250 IPM cut / 500 IPM rapid; Teknic ClearPath servo option: 600 / 1200 IPM. Repeatability +/-0.002 in. Optional extended gantry (+10 in width) for a second Z axis.",
+   "estimated": {
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "avid-cnc-pro4896",
+   "maker": "Avid CNC",
+   "model": "PRO4896",
+   "variant": "4x8",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 49.5,
+    "y": 98.75,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 1260,
+    "y": 2508,
+    "z": 203
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4 HP (3 kW) Hiteco air-cooled spindle + VFD (manual tool change)",
+     "power_kw": 3,
+     "power_hp": 4,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ER20 (to 1/2\")",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "8.7 HP (6.5 kW) Hiteco air-cooled spindle + VFD (manual tool change)",
+     "power_kw": 6.5,
+     "power_hp": 8.7,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "ER32 (to 3/4\")",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "AV40S 4 HP Smart Spindle (ATC-ready)",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 holders (ER20/ER32, to 3/4\")",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "AV70S 7 HP Smart Spindle (ATC-ready)",
+     "power_kw": null,
+     "power_hp": 7,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 holders (ER20/ER32, to 3/4\")",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "router",
+     "name": "Tramming router mount (customer router, not included)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 400,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 10160,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20320,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Avid CNC EX controller (Centroid Acorn, CNC12 software)",
+     "gcarve_post": "centroid-in",
+     "default": true
+    },
+    {
+     "name": "Mach4 (Avid control systems before the late-2024 move to Centroid CNC12)",
+     "gcarve_post": "avid-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Avid Smart ATC option: moving tool rack, 10 / 13 / 15 cradle locations for 4 / 5 / 6 ft wide machines, needs an AV40S or AV70S spindle"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool height setter + auto Z / corner-finding touch plate (included)"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.avidcnc.com/pro4896-4-x-8-cnc-router-machine-p-1337.html",
+    "https://www.avidcnc.com/4-hp-plug-and-play-spindle-vfd-system-p-856.html",
+    "https://www.avidcnc.com/87-hp-plug-and-play-spindle-vfd-system-p-834.html",
+    "https://www.avidcnc.com/av40s-4hp-smart-spindle-vfd-system-p-1492.html",
+    "https://www.avidcnc.com/av70s-7hp-smart-spindle-vfd-system-p-1463.html",
+    "https://www.avidcnc.com/avid-cnc-ex-control-system-p-1397.html",
+    "https://mfgnewsdigital.mydigitalpublication.com/article/Avid+CNC+Chooses+Centroid+CNC+Technology/4892906/836380/article.html",
+    "https://www.avidcnc.com/avid-smart-automatic-tool-change-system-p-1537.html"
+   ],
+   "notes": "Kit machine (customer-assembled). Z travel 8 in standard, 12 in option. Feeds shown for the default NEMA 34 stepper EX system; NEMA 23: 250 IPM cut / 500 IPM rapid; Teknic ClearPath servo option: 600 / 1200 IPM. Repeatability +/-0.002 in. Optional extended gantry (+10 in width) for a second Z axis.",
+   "estimated": {
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "avid-cnc-pro6060",
+   "maker": "Avid CNC",
+   "model": "PRO6060",
+   "variant": "5x5",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 61.375,
+    "y": 61.375,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 1559,
+    "y": 1559,
+    "z": 203
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4 HP (3 kW) Hiteco air-cooled spindle + VFD (manual tool change)",
+     "power_kw": 3,
+     "power_hp": 4,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ER20 (to 1/2\")",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "8.7 HP (6.5 kW) Hiteco air-cooled spindle + VFD (manual tool change)",
+     "power_kw": 6.5,
+     "power_hp": 8.7,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "ER32 (to 3/4\")",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "AV40S 4 HP Smart Spindle (ATC-ready)",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 holders (ER20/ER32, to 3/4\")",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "AV70S 7 HP Smart Spindle (ATC-ready)",
+     "power_kw": null,
+     "power_hp": 7,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 holders (ER20/ER32, to 3/4\")",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "router",
+     "name": "Tramming router mount (customer router, not included)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 400,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 10160,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20320,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Avid CNC EX controller (Centroid Acorn, CNC12 software)",
+     "gcarve_post": "centroid-in",
+     "default": true
+    },
+    {
+     "name": "Mach4 (Avid control systems before the late-2024 move to Centroid CNC12)",
+     "gcarve_post": "avid-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Avid Smart ATC option: moving tool rack, 10 / 13 / 15 cradle locations for 4 / 5 / 6 ft wide machines, needs an AV40S or AV70S spindle"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool height setter + auto Z / corner-finding touch plate (included)"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.avidcnc.com/pro6060-5-x-5-cnc-router-machine-p-1336.html",
+    "https://www.avidcnc.com/4-hp-plug-and-play-spindle-vfd-system-p-856.html",
+    "https://www.avidcnc.com/87-hp-plug-and-play-spindle-vfd-system-p-834.html",
+    "https://www.avidcnc.com/av40s-4hp-smart-spindle-vfd-system-p-1492.html",
+    "https://www.avidcnc.com/av70s-7hp-smart-spindle-vfd-system-p-1463.html",
+    "https://www.avidcnc.com/avid-cnc-ex-control-system-p-1397.html",
+    "https://mfgnewsdigital.mydigitalpublication.com/article/Avid+CNC+Chooses+Centroid+CNC+Technology/4892906/836380/article.html",
+    "https://www.avidcnc.com/avid-smart-automatic-tool-change-system-p-1537.html"
+   ],
+   "notes": "Kit machine (customer-assembled). Z travel 8 in standard, 12 in option. Feeds shown for the default NEMA 34 stepper EX system; NEMA 23: 250 IPM cut / 500 IPM rapid; Teknic ClearPath servo option: 600 / 1200 IPM. Repeatability +/-0.002 in. Optional extended gantry (+10 in width) for a second Z axis.",
+   "estimated": {
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "avid-cnc-pro60120",
+   "maker": "Avid CNC",
+   "model": "PRO60120",
+   "variant": "5x10",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 61.375,
+    "y": 124.25,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 1559,
+    "y": 3156,
+    "z": 203
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4 HP (3 kW) Hiteco air-cooled spindle + VFD (manual tool change)",
+     "power_kw": 3,
+     "power_hp": 4,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ER20 (to 1/2\")",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "8.7 HP (6.5 kW) Hiteco air-cooled spindle + VFD (manual tool change)",
+     "power_kw": 6.5,
+     "power_hp": 8.7,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "ER32 (to 3/4\")",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "AV40S 4 HP Smart Spindle (ATC-ready)",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 holders (ER20/ER32, to 3/4\")",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "AV70S 7 HP Smart Spindle (ATC-ready)",
+     "power_kw": null,
+     "power_hp": 7,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 holders (ER20/ER32, to 3/4\")",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "router",
+     "name": "Tramming router mount (customer router, not included)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 400,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 10160,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20320,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Avid CNC EX controller (Centroid Acorn, CNC12 software)",
+     "gcarve_post": "centroid-in",
+     "default": true
+    },
+    {
+     "name": "Mach4 (Avid control systems before the late-2024 move to Centroid CNC12)",
+     "gcarve_post": "avid-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Avid Smart ATC option: moving tool rack, 10 / 13 / 15 cradle locations for 4 / 5 / 6 ft wide machines, needs an AV40S or AV70S spindle"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool height setter + auto Z / corner-finding touch plate (included)"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.avidcnc.com/pro60120-5-x-10-cnc-router-machine-p-1338.html",
+    "https://www.avidcnc.com/4-hp-plug-and-play-spindle-vfd-system-p-856.html",
+    "https://www.avidcnc.com/87-hp-plug-and-play-spindle-vfd-system-p-834.html",
+    "https://www.avidcnc.com/av40s-4hp-smart-spindle-vfd-system-p-1492.html",
+    "https://www.avidcnc.com/av70s-7hp-smart-spindle-vfd-system-p-1463.html",
+    "https://www.avidcnc.com/avid-cnc-ex-control-system-p-1397.html",
+    "https://mfgnewsdigital.mydigitalpublication.com/article/Avid+CNC+Chooses+Centroid+CNC+Technology/4892906/836380/article.html",
+    "https://www.avidcnc.com/avid-smart-automatic-tool-change-system-p-1537.html"
+   ],
+   "notes": "Kit machine (customer-assembled). Z travel 8 in standard, 12 in option. Feeds shown for the default NEMA 34 stepper EX system; NEMA 23: 250 IPM cut / 500 IPM rapid; Teknic ClearPath servo option: 600 / 1200 IPM. Repeatability +/-0.002 in. Optional extended gantry (+10 in width) for a second Z axis.",
+   "estimated": {
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "avid-cnc-benchtop-pro-2424",
+   "maker": "Avid CNC",
+   "model": "Benchtop PRO",
+   "variant": "2424",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 26,
+    "y": 26,
+    "z": 6
+   },
+   "work_area_mm": {
+    "x": 660,
+    "y": 660,
+    "z": 152
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4 HP (3 kW) Hiteco air-cooled spindle + VFD (manual tool change)",
+     "power_kw": 3,
+     "power_hp": 4,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ER20 (to 1/2\")",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "8.7 HP (6.5 kW) Hiteco air-cooled spindle + VFD (manual tool change)",
+     "power_kw": 6.5,
+     "power_hp": 8.7,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "ER32 (to 3/4\")",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "AV40S 4 HP Smart Spindle (ATC-ready)",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 holders (ER20/ER32, to 3/4\")",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "AV70S 7 HP Smart Spindle (ATC-ready)",
+     "power_kw": null,
+     "power_hp": 7,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 holders (ER20/ER32, to 3/4\")",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "router",
+     "name": "Tramming router mount (customer router, not included)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 5080,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Avid CNC EX controller (Centroid Acorn, CNC12 software)",
+     "gcarve_post": "centroid-in",
+     "default": true
+    },
+    {
+     "name": "Mach4 (Avid control systems before the late-2024 move to Centroid CNC12)",
+     "gcarve_post": "avid-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "AV40S / AV70S smart spindles offered"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool height setter + auto Z / corner-finding touch plate (included)"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.avidcnc.com/benchtop-pro-2424-2-x-2-cnc-machine-p-1332.html",
+    "https://www.avidcnc.com/4-hp-plug-and-play-spindle-vfd-system-p-856.html",
+    "https://www.avidcnc.com/87-hp-plug-and-play-spindle-vfd-system-p-834.html",
+    "https://www.avidcnc.com/av40s-4hp-smart-spindle-vfd-system-p-1492.html",
+    "https://www.avidcnc.com/av70s-7hp-smart-spindle-vfd-system-p-1463.html",
+    "https://www.avidcnc.com/avid-cnc-ex-control-system-p-1397.html",
+    "https://mfgnewsdigital.mydigitalpublication.com/article/Avid+CNC+Chooses+Centroid+CNC+Technology/4892906/836380/article.html"
+   ],
+   "notes": "Ballscrews on all axes, aluminium T-slot table. Z work area 6 in (9 in with the 12 in Z option), depends on crossmember position. Feeds shown for the default NEMA 23 stepper EX system; NEMA 34: 250 / 400 IPM; ClearPath servo: 350 / 500 IPM (cut / rapid). Repeatability +/-0.001 in.",
+   "estimated": {
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "avid-cnc-benchtop-pro-2436",
+   "maker": "Avid CNC",
+   "model": "Benchtop PRO",
+   "variant": "2436",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 26,
+    "y": 37.84,
+    "z": 6
+   },
+   "work_area_mm": {
+    "x": 660,
+    "y": 961,
+    "z": 152
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4 HP (3 kW) Hiteco air-cooled spindle + VFD (manual tool change)",
+     "power_kw": 3,
+     "power_hp": 4,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ER20 (to 1/2\")",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "8.7 HP (6.5 kW) Hiteco air-cooled spindle + VFD (manual tool change)",
+     "power_kw": 6.5,
+     "power_hp": 8.7,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "ER32 (to 3/4\")",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "AV40S 4 HP Smart Spindle (ATC-ready)",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 holders (ER20/ER32, to 3/4\")",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "AV70S 7 HP Smart Spindle (ATC-ready)",
+     "power_kw": null,
+     "power_hp": 7,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 holders (ER20/ER32, to 3/4\")",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "router",
+     "name": "Tramming router mount (customer router, not included)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 5080,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Avid CNC EX controller (Centroid Acorn, CNC12 software)",
+     "gcarve_post": "centroid-in",
+     "default": true
+    },
+    {
+     "name": "Mach4 (Avid control systems before the late-2024 move to Centroid CNC12)",
+     "gcarve_post": "avid-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "AV40S / AV70S smart spindles offered"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool height setter + auto Z / corner-finding touch plate (included)"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.avidcnc.com/benchtop-pro-2436-2-x-3-cnc-machine-p-1333.html",
+    "https://www.avidcnc.com/4-hp-plug-and-play-spindle-vfd-system-p-856.html",
+    "https://www.avidcnc.com/87-hp-plug-and-play-spindle-vfd-system-p-834.html",
+    "https://www.avidcnc.com/av40s-4hp-smart-spindle-vfd-system-p-1492.html",
+    "https://www.avidcnc.com/av70s-7hp-smart-spindle-vfd-system-p-1463.html",
+    "https://www.avidcnc.com/avid-cnc-ex-control-system-p-1397.html",
+    "https://mfgnewsdigital.mydigitalpublication.com/article/Avid+CNC+Chooses+Centroid+CNC+Technology/4892906/836380/article.html"
+   ],
+   "notes": "Ballscrews on all axes, aluminium T-slot table. Z work area 6 in (9 in with the 12 in Z option), depends on crossmember position. Feeds shown for the default NEMA 23 stepper EX system; NEMA 34: 250 / 400 IPM; ClearPath servo: 350 / 500 IPM (cut / rapid). Repeatability +/-0.001 in.",
+   "estimated": {
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "avid-cnc-benchtop-pro-3624",
+   "maker": "Avid CNC",
+   "model": "Benchtop PRO",
+   "variant": "3624",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 37.6,
+    "y": 26,
+    "z": 6
+   },
+   "work_area_mm": {
+    "x": 955,
+    "y": 660,
+    "z": 152
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4 HP (3 kW) Hiteco air-cooled spindle + VFD (manual tool change)",
+     "power_kw": 3,
+     "power_hp": 4,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ER20 (to 1/2\")",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "8.7 HP (6.5 kW) Hiteco air-cooled spindle + VFD (manual tool change)",
+     "power_kw": 6.5,
+     "power_hp": 8.7,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "ER32 (to 3/4\")",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "AV40S 4 HP Smart Spindle (ATC-ready)",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 holders (ER20/ER32, to 3/4\")",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "AV70S 7 HP Smart Spindle (ATC-ready)",
+     "power_kw": null,
+     "power_hp": 7,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 holders (ER20/ER32, to 3/4\")",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "router",
+     "name": "Tramming router mount (customer router, not included)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 5080,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Avid CNC EX controller (Centroid Acorn, CNC12 software)",
+     "gcarve_post": "centroid-in",
+     "default": true
+    },
+    {
+     "name": "Mach4 (Avid control systems before the late-2024 move to Centroid CNC12)",
+     "gcarve_post": "avid-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "AV40S / AV70S smart spindles offered"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool height setter + auto Z / corner-finding touch plate (included)"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.avidcnc.com/benchtop-pro-3624-3-x-2-cnc-machine-p-1376.html",
+    "https://www.avidcnc.com/4-hp-plug-and-play-spindle-vfd-system-p-856.html",
+    "https://www.avidcnc.com/87-hp-plug-and-play-spindle-vfd-system-p-834.html",
+    "https://www.avidcnc.com/av40s-4hp-smart-spindle-vfd-system-p-1492.html",
+    "https://www.avidcnc.com/av70s-7hp-smart-spindle-vfd-system-p-1463.html",
+    "https://www.avidcnc.com/avid-cnc-ex-control-system-p-1397.html",
+    "https://mfgnewsdigital.mydigitalpublication.com/article/Avid+CNC+Chooses+Centroid+CNC+Technology/4892906/836380/article.html"
+   ],
+   "notes": "Ballscrews on all axes, aluminium T-slot table. Z work area 6 in (9 in with the 12 in Z option), depends on crossmember position. Feeds shown for the default NEMA 23 stepper EX system; NEMA 34: 250 / 400 IPM; ClearPath servo: 350 / 500 IPM (cut / rapid). Repeatability +/-0.001 in.",
+   "estimated": {
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "avid-cnc-benchtop-pro-3636",
+   "maker": "Avid CNC",
+   "model": "Benchtop PRO",
+   "variant": "3636",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 37.6,
+    "y": 37.6,
+    "z": 6
+   },
+   "work_area_mm": {
+    "x": 955,
+    "y": 955,
+    "z": 152
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4 HP (3 kW) Hiteco air-cooled spindle + VFD (manual tool change)",
+     "power_kw": 3,
+     "power_hp": 4,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ER20 (to 1/2\")",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "8.7 HP (6.5 kW) Hiteco air-cooled spindle + VFD (manual tool change)",
+     "power_kw": 6.5,
+     "power_hp": 8.7,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "ER32 (to 3/4\")",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "AV40S 4 HP Smart Spindle (ATC-ready)",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 holders (ER20/ER32, to 3/4\")",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "AV70S 7 HP Smart Spindle (ATC-ready)",
+     "power_kw": null,
+     "power_hp": 7,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 holders (ER20/ER32, to 3/4\")",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "router",
+     "name": "Tramming router mount (customer router, not included)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 5080,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Avid CNC EX controller (Centroid Acorn, CNC12 software)",
+     "gcarve_post": "centroid-in",
+     "default": true
+    },
+    {
+     "name": "Mach4 (Avid control systems before the late-2024 move to Centroid CNC12)",
+     "gcarve_post": "avid-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "AV40S / AV70S smart spindles offered"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool height setter + auto Z / corner-finding touch plate (included)"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.avidcnc.com/benchtop-pro-3636-3-x-3-cnc-machine-p-1377.html",
+    "https://www.avidcnc.com/4-hp-plug-and-play-spindle-vfd-system-p-856.html",
+    "https://www.avidcnc.com/87-hp-plug-and-play-spindle-vfd-system-p-834.html",
+    "https://www.avidcnc.com/av40s-4hp-smart-spindle-vfd-system-p-1492.html",
+    "https://www.avidcnc.com/av70s-7hp-smart-spindle-vfd-system-p-1463.html",
+    "https://www.avidcnc.com/avid-cnc-ex-control-system-p-1397.html",
+    "https://mfgnewsdigital.mydigitalpublication.com/article/Avid+CNC+Chooses+Centroid+CNC+Technology/4892906/836380/article.html"
+   ],
+   "notes": "Ballscrews on all axes, aluminium T-slot table. Z work area 6 in (9 in with the 12 in Z option), depends on crossmember position. Feeds shown for the default NEMA 23 stepper EX system; NEMA 34: 250 / 400 IPM; ClearPath servo: 350 / 500 IPM (cut / rapid). Repeatability +/-0.001 in.",
+   "estimated": {
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  }
+ ]
+}

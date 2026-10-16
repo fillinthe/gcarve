@@ -1,0 +1,597 @@
+{
+ "maker": "BobsCNC",
+ "website": "https://www.bobscnc.com",
+ "machines": [
+  {
+   "id": "bobscnc-evolution-3",
+   "maker": "BobsCNC",
+   "model": "Evolution 3 (E3)",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 18,
+    "y": 16,
+    "z": 3.3
+   },
+   "work_area_mm": {
+    "x": 457,
+    "y": 406,
+    "z": 85
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Makita RT0701C",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 on Arduino Uno",
+     "gcarve_post": "bobscnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "XYZ touch probe (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "threaded inserts"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2020/https://www.bobscnc.com/products/evolution-3-cnc-router-kit"
+   ],
+   "notes": "GT2 belts X/Y, Tr8 Acme Z, NEMA17, SG20U supported rails, 3/4 in MDF spoilboard with 1/4-20 inserts. Discontinued. bobscnc.com now redirects to an unrelated site (Oct 2026); specs from archived maker pages."
+  },
+  {
+   "id": "bobscnc-evolution-4",
+   "maker": "BobsCNC",
+   "model": "Evolution 4 (E4)",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 24,
+    "y": 24,
+    "z": 3.3
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 610,
+    "z": 85
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Makita RT0701C",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 on Arduino Uno",
+     "gcarve_post": "bobscnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "XYZ touch probe (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "threaded inserts"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2020/https://www.bobscnc.com/products/evolution-4-cnc-router-kit"
+   ],
+   "notes": "GT2 belts X/Y, Tr8 Acme Z, NEMA17. Makita RT0701C or DeWalt 611 mount. Discontinued (replaced by Quantum). bobscnc.com now redirects to an unrelated site (Oct 2026); specs from archived maker pages."
+  },
+  {
+   "id": "bobscnc-quantum",
+   "maker": "BobsCNC",
+   "model": "Quantum",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 24,
+    "y": 24,
+    "z": 3.8
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 610,
+    "z": 98
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Makita RT0701C",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 on Arduino Uno",
+     "gcarve_post": "bobscnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "XYZ touch probe (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "threaded inserts"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2023/https://www.bobscnc.com/products/quantum-cnc-router"
+   ],
+   "notes": "GT2 belts X/Y, Tr8 Acme Z, NEMA17. bobscnc.com now redirects to an unrelated site (Oct 2026); specs from archived maker pages."
+  },
+  {
+   "id": "bobscnc-quantum-max",
+   "maker": "BobsCNC",
+   "model": "Quantum Max",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 50.5,
+    "y": 24,
+    "z": 3.8
+   },
+   "work_area_mm": {
+    "x": 1283,
+    "y": 610,
+    "z": 98
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Makita RT0701C",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 on Arduino Uno",
+     "gcarve_post": "bobscnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "XYZ touch probe (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2024/https://www.bobscnc.com/products/quantum-max-starter-bundle"
+   ],
+   "notes": "Long-X Quantum; 1/2 in MDF with aluminum T-slot spoilboard. bobscnc.com now redirects to an unrelated site (Oct 2026); specs from archived maker pages."
+  },
+  {
+   "id": "bobscnc-kl733",
+   "maker": "BobsCNC",
+   "model": "KL733",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 36,
+    "y": 36,
+    "z": 5
+   },
+   "work_area_mm": {
+    "x": 915,
+    "y": 915,
+    "z": 127
+   },
+   "gantry_clearance_in": 4.5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Makita RT0701C",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 10000,
+     "rpm_max": 30000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 on Arduino Uno",
+     "gcarve_post": "bobscnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "XYZ touch probe (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "threaded inserts"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2023/https://www.bobscnc.com/products/kl7-33-cnc-router"
+   ],
+   "notes": "T5x15 steel-reinforced Bell-Everman belts, SFU1204 ball screw Z, NEMA23 closed-loop 'servo' steppers with encoders. bobscnc.com now redirects to an unrelated site (Oct 2026); specs from archived maker pages."
+  },
+  {
+   "id": "bobscnc-kl744",
+   "maker": "BobsCNC",
+   "model": "KL744",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 48,
+    "y": 48,
+    "z": 5
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 1219,
+    "z": 127
+   },
+   "gantry_clearance_in": 4.5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Makita RT0701C",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 10000,
+     "rpm_max": 30000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 on Arduino Uno",
+     "gcarve_post": "bobscnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "XYZ touch probe (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "threaded inserts"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2023/https://www.bobscnc.com/products/kl7-44-cnc-router"
+   ],
+   "notes": "Same drive as KL733; takes 4x4 ft panels. bobscnc.com now redirects to an unrelated site (Oct 2026); specs from archived maker pages."
+  },
+  {
+   "id": "bobscnc-revolution",
+   "maker": "BobsCNC",
+   "model": "Revolution",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 24,
+    "y": null,
+    "z": 3.3
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": null,
+    "z": 85
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Makita RT0701C",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 on Arduino Uno",
+     "gcarve_post": "bobscnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "4th-axis chuck"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2023/https://www.bobscnc.com/products/revolution-cnc-router-kit"
+   ],
+   "notes": "Rotary-axis machine: X 24 in, A axis up to 6.4 in (165 mm) diameter; no Y. GT2 belts X and A, NEMA17. bobscnc.com now redirects to an unrelated site (Oct 2026); specs from archived maker pages."
+  },
+  {
+   "id": "bobscnc-quantum-mini",
+   "maker": "BobsCNC",
+   "model": "Quantum Mini",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 16.02,
+    "y": 16.02,
+    "z": 3.86
+   },
+   "work_area_mm": {
+    "x": 407,
+    "y": 407,
+    "z": 98
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Makita RT0701C (included)",
+     "power_kw": null,
+     "power_hp": 1.25,
+     "rpm_min": 10000,
+     "rpm_max": 30000,
+     "collet": "1/4\"",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 on Arduino Uno",
+     "gcarve_post": "bobscnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://easel.com/partners/machines/bobscnc-quantum-mini"
+   ],
+   "notes": "Smallest BobsCNC kit. NEMA 17 steppers, GT2 belts on X/Y, acme rod Z. Ships with a Makita RT0701C. Note: bobscnc.com redirected to an unrelated site when checked (2026-10).",
+   "estimated": {
+    "work_area_in": "converted from mm"
+   }
+  }
+ ]
+}

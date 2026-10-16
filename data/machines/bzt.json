@@ -1,0 +1,7978 @@
+{
+ "maker": "BZT",
+ "website": "https://www.bzt-cnc.de",
+ "machines": [
+  {
+   "id": "bzt-pf-1000-p",
+   "maker": "BZT",
+   "model": "PF",
+   "variant": "PF 1000-P",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 26.38,
+    "y": 35.04,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 670,
+    "y": 890,
+    "z": 110
+   },
+   "gantry_clearance_in": 5.12,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pf",
+    "https://www.sorotec.de/shop/BZT-PF600-P---Kugelumlaufspindeln.html"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "130 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Light table-top machine: ball screws 16x10 (X/Y) and 16x5 (Z), steppers 4.2 A / 3.3 Nm (closed loop optional), 43 mm Euro-neck spindle mount. Clamping area 750 × 1.000 mm. Approx. 42 kg."
+  },
+  {
+   "id": "bzt-pf-1010-p",
+   "maker": "BZT",
+   "model": "PF",
+   "variant": "PF 1010-P",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 35.63,
+    "y": 35.04,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 905,
+    "y": 890,
+    "z": 110
+   },
+   "gantry_clearance_in": 5.12,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pf",
+    "https://www.sorotec.de/shop/BZT-PF600-P---Kugelumlaufspindeln.html"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "130 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Light table-top machine: ball screws 16x10 (X/Y) and 16x5 (Z), steppers 4.2 A / 3.3 Nm (closed loop optional), 43 mm Euro-neck spindle mount. Clamping area 1.000 × 1.000 mm. Approx. 52 kg."
+  },
+  {
+   "id": "bzt-pf-1400-p",
+   "maker": "BZT",
+   "model": "PF",
+   "variant": "PF 1400-P",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 26.38,
+    "y": 50.98,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 670,
+    "y": 1295,
+    "z": 110
+   },
+   "gantry_clearance_in": 5.12,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pf",
+    "https://www.sorotec.de/shop/BZT-PF600-P---Kugelumlaufspindeln.html"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "130 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Light table-top machine: ball screws 16x10 (X/Y) and 16x5 (Z), steppers 4.2 A / 3.3 Nm (closed loop optional), 43 mm Euro-neck spindle mount. Clamping area 750 × 1.400 mm. Approx. 50 kg."
+  },
+  {
+   "id": "bzt-pf-1410-p",
+   "maker": "BZT",
+   "model": "PF",
+   "variant": "PF 1410-P",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 35.63,
+    "y": 50.98,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 905,
+    "y": 1295,
+    "z": 110
+   },
+   "gantry_clearance_in": 5.12,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pf",
+    "https://www.sorotec.de/shop/BZT-PF600-P---Kugelumlaufspindeln.html"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "130 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Light table-top machine: ball screws 16x10 (X/Y) and 16x5 (Z), steppers 4.2 A / 3.3 Nm (closed loop optional), 43 mm Euro-neck spindle mount. Clamping area 1.000 × 1.400 mm. Approx. 60 kg."
+  },
+  {
+   "id": "bzt-pf-1600-p",
+   "maker": "BZT",
+   "model": "PF",
+   "variant": "PF 1600-P",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 26.38,
+    "y": 58.86,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 670,
+    "y": 1495,
+    "z": 110
+   },
+   "gantry_clearance_in": 5.12,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pf",
+    "https://www.sorotec.de/shop/BZT-PF600-P---Kugelumlaufspindeln.html"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "130 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Light table-top machine: ball screws 16x10 (X/Y) and 16x5 (Z), steppers 4.2 A / 3.3 Nm (closed loop optional), 43 mm Euro-neck spindle mount. Clamping area 750 × 1.600 mm. Approx. 65 kg."
+  },
+  {
+   "id": "bzt-pf-1610-p",
+   "maker": "BZT",
+   "model": "PF",
+   "variant": "PF 1610-P",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 35.63,
+    "y": 58.86,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 905,
+    "y": 1495,
+    "z": 110
+   },
+   "gantry_clearance_in": 5.12,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pf",
+    "https://www.sorotec.de/shop/BZT-PF600-P---Kugelumlaufspindeln.html"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "130 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Light table-top machine: ball screws 16x10 (X/Y) and 16x5 (Z), steppers 4.2 A / 3.3 Nm (closed loop optional), 43 mm Euro-neck spindle mount. Clamping area 1.000 × 1.600 mm. Approx. 80 kg."
+  },
+  {
+   "id": "bzt-pf-600-p",
+   "maker": "BZT",
+   "model": "PF",
+   "variant": "PF 600-P",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 11.42,
+    "y": 19.29,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 290,
+    "y": 490,
+    "z": 110
+   },
+   "gantry_clearance_in": 5.12,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pf",
+    "https://www.sorotec.de/shop/BZT-PF600-P---Kugelumlaufspindeln.html"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "130 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Light table-top machine: ball screws 16x10 (X/Y) and 16x5 (Z), steppers 4.2 A / 3.3 Nm (closed loop optional), 43 mm Euro-neck spindle mount. Clamping area 375 × 600 mm. Approx. 31 kg."
+  },
+  {
+   "id": "bzt-pf-750-p",
+   "maker": "BZT",
+   "model": "PF",
+   "variant": "PF 750-P",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 16.54,
+    "y": 25.2,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 420,
+    "y": 640,
+    "z": 110
+   },
+   "gantry_clearance_in": 5.12,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pf",
+    "https://www.sorotec.de/shop/BZT-PF600-P---Kugelumlaufspindeln.html"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "130 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Light table-top machine: ball screws 16x10 (X/Y) and 16x5 (Z), steppers 4.2 A / 3.3 Nm (closed loop optional), 43 mm Euro-neck spindle mount. Clamping area 500 × 750 mm. Approx. 39 kg."
+  },
+  {
+   "id": "bzt-pfa-1010-g",
+   "maker": "BZT",
+   "model": "PFA",
+   "variant": "PFA 1010-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 41.34,
+    "y": 41.34,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 1050,
+    "y": 1050,
+    "z": 135
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1181.1,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "BZT control + Penta NC (Optiscout registration-mark option)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfa"
+   ],
+   "estimated": {
+    "rapid_mm_min": "\"with steppers approx. 30,000 mm/min\"",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Sign-making gantry: helical racks in X and Y, Z ball screw 16x5, closed-loop steppers (4 x 6 A) or AC servos (4 x 750 W), Z for HF spindles up to 2.2 kW. Clamping area 1.000 × 1.000 mm. Approx. 400 kg."
+  },
+  {
+   "id": "bzt-pfa-2010-g",
+   "maker": "BZT",
+   "model": "PFA",
+   "variant": "PFA 2010-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 41.34,
+    "y": 80.71,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 1050,
+    "y": 2050,
+    "z": 135
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1181.1,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "BZT control + Penta NC (Optiscout registration-mark option)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfa"
+   ],
+   "estimated": {
+    "rapid_mm_min": "\"with steppers approx. 30,000 mm/min\"",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Sign-making gantry: helical racks in X and Y, Z ball screw 16x5, closed-loop steppers (4 x 6 A) or AC servos (4 x 750 W), Z for HF spindles up to 2.2 kW. Clamping area 1.000 × 2.000 mm. Approx. 550 kg."
+  },
+  {
+   "id": "bzt-pfa-2015-g",
+   "maker": "BZT",
+   "model": "PFA",
+   "variant": "PFA 2015-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61.02,
+    "y": 80.71,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 1550,
+    "y": 2050,
+    "z": 135
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1181.1,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "BZT control + Penta NC (Optiscout registration-mark option)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfa"
+   ],
+   "estimated": {
+    "rapid_mm_min": "\"with steppers approx. 30,000 mm/min\"",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Sign-making gantry: helical racks in X and Y, Z ball screw 16x5, closed-loop steppers (4 x 6 A) or AC servos (4 x 750 W), Z for HF spindles up to 2.2 kW. Clamping area 1.500 × 2.000 mm. Approx. 585 kg."
+  },
+  {
+   "id": "bzt-pfa-2510-g",
+   "maker": "BZT",
+   "model": "PFA",
+   "variant": "PFA 2510-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 41.34,
+    "y": 100.39,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 1050,
+    "y": 2550,
+    "z": 135
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1181.1,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "BZT control + Penta NC (Optiscout registration-mark option)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfa"
+   ],
+   "estimated": {
+    "rapid_mm_min": "\"with steppers approx. 30,000 mm/min\"",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Sign-making gantry: helical racks in X and Y, Z ball screw 16x5, closed-loop steppers (4 x 6 A) or AC servos (4 x 750 W), Z for HF spindles up to 2.2 kW. Clamping area 1.000 × 2.500 mm. Approx. 610 kg."
+  },
+  {
+   "id": "bzt-pfa-2515-g",
+   "maker": "BZT",
+   "model": "PFA",
+   "variant": "PFA 2515-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61.02,
+    "y": 100.39,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 1550,
+    "y": 2550,
+    "z": 135
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1181.1,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "BZT control + Penta NC (Optiscout registration-mark option)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfa"
+   ],
+   "estimated": {
+    "rapid_mm_min": "\"with steppers approx. 30,000 mm/min\"",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Sign-making gantry: helical racks in X and Y, Z ball screw 16x5, closed-loop steppers (4 x 6 A) or AC servos (4 x 750 W), Z for HF spindles up to 2.2 kW. Clamping area 1.500 × 2.500 mm. Approx. 690 kg."
+  },
+  {
+   "id": "bzt-pfa-3020-g",
+   "maker": "BZT",
+   "model": "PFA",
+   "variant": "PFA 3020-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 80.71,
+    "y": 120.08,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 2050,
+    "y": 3050,
+    "z": 135
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1181.1,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "BZT control + Penta NC (Optiscout registration-mark option)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfa"
+   ],
+   "estimated": {
+    "rapid_mm_min": "\"with steppers approx. 30,000 mm/min\"",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Sign-making gantry: helical racks in X and Y, Z ball screw 16x5, closed-loop steppers (4 x 6 A) or AC servos (4 x 750 W), Z for HF spindles up to 2.2 kW. Clamping area 2.000 × 3.000 mm. Approx. 790 kg."
+  },
+  {
+   "id": "bzt-pfa-4020-g",
+   "maker": "BZT",
+   "model": "PFA",
+   "variant": "PFA 4020-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 80.71,
+    "y": 159.45,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 2050,
+    "y": 4050,
+    "z": 135
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1181.1,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "BZT control + Penta NC (Optiscout registration-mark option)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfa"
+   ],
+   "estimated": {
+    "rapid_mm_min": "\"with steppers approx. 30,000 mm/min\"",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Sign-making gantry: helical racks in X and Y, Z ball screw 16x5, closed-loop steppers (4 x 6 A) or AC servos (4 x 750 W), Z for HF spindles up to 2.2 kW. Clamping area 2.000 × 4.000 mm. Approx. 1010 kg."
+  },
+  {
+   "id": "bzt-pfa-5020-g",
+   "maker": "BZT",
+   "model": "PFA",
+   "variant": "PFA 5020-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 80.71,
+    "y": 198.82,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 2050,
+    "y": 5050,
+    "z": 135
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1181.1,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "BZT control + Penta NC (Optiscout registration-mark option)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfa"
+   ],
+   "estimated": {
+    "rapid_mm_min": "\"with steppers approx. 30,000 mm/min\"",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Sign-making gantry: helical racks in X and Y, Z ball screw 16x5, closed-loop steppers (4 x 6 A) or AC servos (4 x 750 W), Z for HF spindles up to 2.2 kW. Clamping area 2.000 × 5.000 mm. Approx. 1190 kg."
+  },
+  {
+   "id": "bzt-pfa-6020-g",
+   "maker": "BZT",
+   "model": "PFA",
+   "variant": "PFA 6020-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 80.71,
+    "y": 238.19,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 2050,
+    "y": 6050,
+    "z": 135
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1181.1,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "BZT control + Penta NC (Optiscout registration-mark option)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfa"
+   ],
+   "estimated": {
+    "rapid_mm_min": "\"with steppers approx. 30,000 mm/min\"",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Sign-making gantry: helical racks in X and Y, Z ball screw 16x5, closed-loop steppers (4 x 6 A) or AC servos (4 x 750 W), Z for HF spindles up to 2.2 kW. Clamping area 2.000 × 6.000 mm. Approx. 1410 kg."
+  },
+  {
+   "id": "bzt-pfb-3020",
+   "maker": "BZT",
+   "model": "PFB",
+   "variant": "PFB 3020",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 70.87,
+    "y": 131.89,
+    "z": 33.46
+   },
+   "work_area_mm": {
+    "x": 1800,
+    "y": 3350,
+    "z": 850
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew/rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "OSAI 5-axis CNC (EtherCAT)",
+     "gcarve_post": "osai-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfb"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Large-format steel gantry: ball screws X/Z, ground racks Y, absolute servos; scalable up to 40 x 4 m; ATC on request."
+  },
+  {
+   "id": "bzt-pfe-1000-px",
+   "maker": "BZT",
+   "model": "PFE",
+   "variant": "PFE 1000-PX",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 28.35,
+    "y": 45.28,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 720,
+    "y": 1150,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.27,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 157.5,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 4000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfe",
+    "https://www.sorotec.de/shop/BZT-PFE1000PX.html"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Sorotec dealer page (rapid ca. 8000, max working 4000 mm/min)",
+    "gantry_clearance_in": "210 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel frame, Bosch Rexroth 15 mm rails, ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A (closed loop or servo optional), 43 mm Euro-neck mount. Clamping area 750 × 1.495 mm. Approx. 185 kg."
+  },
+  {
+   "id": "bzt-pfe-1010-px",
+   "maker": "BZT",
+   "model": "PFE",
+   "variant": "PFE 1010-PX",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 39.17,
+    "y": 45.28,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 995,
+    "y": 1150,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.27,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 157.5,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 4000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfe",
+    "https://www.sorotec.de/shop/BZT-PFE1000PX.html"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Sorotec dealer page (rapid ca. 8000, max working 4000 mm/min)",
+    "gantry_clearance_in": "210 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel frame, Bosch Rexroth 15 mm rails, ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A (closed loop or servo optional), 43 mm Euro-neck mount. Clamping area 1.000 × 1.495 mm. Approx. 210 kg."
+  },
+  {
+   "id": "bzt-pfe-1012-px",
+   "maker": "BZT",
+   "model": "PFE",
+   "variant": "PFE 1012-PX",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 47.44,
+    "y": 45.28,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 1205,
+    "y": 1150,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.27,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 157.5,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 4000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfe",
+    "https://www.sorotec.de/shop/BZT-PFE1000PX.html"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Sorotec dealer page (rapid ca. 8000, max working 4000 mm/min)",
+    "gantry_clearance_in": "210 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel frame, Bosch Rexroth 15 mm rails, ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A (closed loop or servo optional), 43 mm Euro-neck mount. Clamping area 1.250 × 1.495 mm. Approx. 230 kg."
+  },
+  {
+   "id": "bzt-pfe-1500-px",
+   "maker": "BZT",
+   "model": "PFE",
+   "variant": "PFE 1500-PX",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 28.35,
+    "y": 61.02,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 720,
+    "y": 1550,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.27,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 157.5,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 4000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfe",
+    "https://www.sorotec.de/shop/BZT-PFE1000PX.html"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Sorotec dealer page (rapid ca. 8000, max working 4000 mm/min)",
+    "gantry_clearance_in": "210 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel frame, Bosch Rexroth 15 mm rails, ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A (closed loop or servo optional), 43 mm Euro-neck mount. Clamping area 750 × 1.915 mm. Approx. 230 kg."
+  },
+  {
+   "id": "bzt-pfe-1510-px",
+   "maker": "BZT",
+   "model": "PFE",
+   "variant": "PFE 1510-PX",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 39.17,
+    "y": 61.02,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 995,
+    "y": 1550,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.27,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 157.5,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 4000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfe",
+    "https://www.sorotec.de/shop/BZT-PFE1000PX.html"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Sorotec dealer page (rapid ca. 8000, max working 4000 mm/min)",
+    "gantry_clearance_in": "210 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel frame, Bosch Rexroth 15 mm rails, ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A (closed loop or servo optional), 43 mm Euro-neck mount. Clamping area 1.000 × 1.915 mm. Approx. 250 kg."
+  },
+  {
+   "id": "bzt-pfe-1512-px",
+   "maker": "BZT",
+   "model": "PFE",
+   "variant": "PFE 1512-PX",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 47.44,
+    "y": 61.02,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 1205,
+    "y": 1550,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.27,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 157.5,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 4000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfe",
+    "https://www.sorotec.de/shop/BZT-PFE1000PX.html"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Sorotec dealer page (rapid ca. 8000, max working 4000 mm/min)",
+    "gantry_clearance_in": "210 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel frame, Bosch Rexroth 15 mm rails, ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A (closed loop or servo optional), 43 mm Euro-neck mount. Clamping area 1.250 × 1.915 mm. Approx. 270 kg."
+  },
+  {
+   "id": "bzt-pfe-500-px",
+   "maker": "BZT",
+   "model": "PFE",
+   "variant": "PFE 500-PX",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 28.35,
+    "y": 20.67,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 720,
+    "y": 525,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.27,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 157.5,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 4000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfe",
+    "https://www.sorotec.de/shop/BZT-PFE1000PX.html"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Sorotec dealer page (rapid ca. 8000, max working 4000 mm/min)",
+    "gantry_clearance_in": "210 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel frame, Bosch Rexroth 15 mm rails, ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A (closed loop or servo optional), 43 mm Euro-neck mount. Clamping area 750 × 870 mm. Approx. 140 kg."
+  },
+  {
+   "id": "bzt-pfe-510-px",
+   "maker": "BZT",
+   "model": "PFE",
+   "variant": "PFE 510-PX",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 39.17,
+    "y": 20.67,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 995,
+    "y": 525,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.27,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 157.5,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 4000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfe",
+    "https://www.sorotec.de/shop/BZT-PFE1000PX.html"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Sorotec dealer page (rapid ca. 8000, max working 4000 mm/min)",
+    "gantry_clearance_in": "210 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel frame, Bosch Rexroth 15 mm rails, ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A (closed loop or servo optional), 43 mm Euro-neck mount. Clamping area 1.000 × 870 mm. Approx. 170 kg."
+  },
+  {
+   "id": "bzt-pfe-512-px",
+   "maker": "BZT",
+   "model": "PFE",
+   "variant": "PFE 512-PX",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 47.44,
+    "y": 20.67,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 1205,
+    "y": 525,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.27,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 157.5,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 4000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfe",
+    "https://www.sorotec.de/shop/BZT-PFE1000PX.html"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Sorotec dealer page (rapid ca. 8000, max working 4000 mm/min)",
+    "gantry_clearance_in": "210 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel frame, Bosch Rexroth 15 mm rails, ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A (closed loop or servo optional), 43 mm Euro-neck mount. Clamping area 1.250 × 870 mm. Approx. 190 kg."
+  },
+  {
+   "id": "bzt-pfg-s-2010",
+   "maker": "BZT",
+   "model": "PFG-S",
+   "variant": "PFG-S 2010",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 39.37,
+    "y": 78.74,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 1000,
+    "y": 2000,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfg-s"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Steel gantry, dual Y ball screws with driven nuts (Bosch Rexroth 25x10), servos 750 W, HF spindles up to 15 kW; ATC (2 x 8 disc or 10-slot magazine) optional. Clamping area 1.000 × 2.500 mm. Approx. 4000 kg."
+  },
+  {
+   "id": "bzt-pfg-s-2515",
+   "maker": "BZT",
+   "model": "PFG-S",
+   "variant": "PFG-S 2515",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 98.43,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 2500,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfg-s"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Steel gantry, dual Y ball screws with driven nuts (Bosch Rexroth 25x10), servos 750 W, HF spindles up to 15 kW; ATC (2 x 8 disc or 10-slot magazine) optional. Clamping area 1.500 × 3.000 mm. Approx. 4500 kg."
+  },
+  {
+   "id": "bzt-pfg-s-3015",
+   "maker": "BZT",
+   "model": "PFG-S",
+   "variant": "PFG-S 3015",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfg-s"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Steel gantry, dual Y ball screws with driven nuts (Bosch Rexroth 25x10), servos 750 W, HF spindles up to 15 kW; ATC (2 x 8 disc or 10-slot magazine) optional. Clamping area 1.500 × 3.500 mm. Approx. 4700 kg."
+  },
+  {
+   "id": "bzt-pfg-s-3020",
+   "maker": "BZT",
+   "model": "PFG-S",
+   "variant": "PFG-S 3020",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfg-s"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Steel gantry, dual Y ball screws with driven nuts (Bosch Rexroth 25x10), servos 750 W, HF spindles up to 15 kW; ATC (2 x 8 disc or 10-slot magazine) optional. Clamping area 2.000 × 3.500 mm. Approx. 5000 kg."
+  },
+  {
+   "id": "bzt-pfg-s-4020",
+   "maker": "BZT",
+   "model": "PFG-S",
+   "variant": "PFG-S 4020",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfg-s"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Steel gantry, dual Y ball screws with driven nuts (Bosch Rexroth 25x10), servos 750 W, HF spindles up to 15 kW; ATC (2 x 8 disc or 10-slot magazine) optional. Clamping area 2.000 × 4.500 mm. Approx. 5500 kg."
+  },
+  {
+   "id": "bzt-pfh-1510-g",
+   "maker": "BZT",
+   "model": "PFH",
+   "variant": "PFH 1510-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 40.16,
+    "y": 59.45,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 1020,
+    "y": 1510,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfh"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Steel-beam X gantry, Bosch Rexroth ball screws and rails, HF spindles up to 15 kW with optional ATC; servos optional; Z 300/450 mm optional. Clamping area 1.000 × 1.500 mm."
+  },
+  {
+   "id": "bzt-pfh-1515-g",
+   "maker": "BZT",
+   "model": "PFH",
+   "variant": "PFH 1515-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.84,
+    "y": 59.45,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 1520,
+    "y": 1510,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfh"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Steel-beam X gantry, Bosch Rexroth ball screws and rails, HF spindles up to 15 kW with optional ATC; servos optional; Z 300/450 mm optional. Clamping area 1.500 × 1.500 mm."
+  },
+  {
+   "id": "bzt-pfh-2010-g",
+   "maker": "BZT",
+   "model": "PFH",
+   "variant": "PFH 2010-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 40.16,
+    "y": 79.13,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 1020,
+    "y": 2010,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfh"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Steel-beam X gantry, Bosch Rexroth ball screws and rails, HF spindles up to 15 kW with optional ATC; servos optional; Z 300/450 mm optional. Clamping area 1.000 × 2.000 mm."
+  },
+  {
+   "id": "bzt-pfh-2015-g",
+   "maker": "BZT",
+   "model": "PFH",
+   "variant": "PFH 2015-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.84,
+    "y": 79.13,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 1520,
+    "y": 2010,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfh"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Steel-beam X gantry, Bosch Rexroth ball screws and rails, HF spindles up to 15 kW with optional ATC; servos optional; Z 300/450 mm optional. Clamping area 1.500 × 2.000 mm."
+  },
+  {
+   "id": "bzt-pfh-2510-g",
+   "maker": "BZT",
+   "model": "PFH",
+   "variant": "PFH 2510-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 40.16,
+    "y": 98.82,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 1020,
+    "y": 2510,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfh"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Steel-beam X gantry, Bosch Rexroth ball screws and rails, HF spindles up to 15 kW with optional ATC; servos optional; Z 300/450 mm optional. Clamping area 1.000 × 2.500 mm."
+  },
+  {
+   "id": "bzt-pfh-2515-g",
+   "maker": "BZT",
+   "model": "PFH",
+   "variant": "PFH 2515-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.84,
+    "y": 98.82,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 1520,
+    "y": 2510,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfh"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Steel-beam X gantry, Bosch Rexroth ball screws and rails, HF spindles up to 15 kW with optional ATC; servos optional; Z 300/450 mm optional. Clamping area 1.500 × 2.500 mm."
+  },
+  {
+   "id": "bzt-pfh-2520-g",
+   "maker": "BZT",
+   "model": "PFH",
+   "variant": "PFH 2520-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 79.53,
+    "y": 98.82,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 2020,
+    "y": 2510,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfh"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Steel-beam X gantry, Bosch Rexroth ball screws and rails, HF spindles up to 15 kW with optional ATC; servos optional; Z 300/450 mm optional. Clamping area 2.000 × 2.500 mm."
+  },
+  {
+   "id": "bzt-pfh-3015-g",
+   "maker": "BZT",
+   "model": "PFH",
+   "variant": "PFH 3015-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.84,
+    "y": 118.5,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 1520,
+    "y": 3010,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfh"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Steel-beam X gantry, Bosch Rexroth ball screws and rails, HF spindles up to 15 kW with optional ATC; servos optional; Z 300/450 mm optional. Clamping area 1.500 × 3.000 mm."
+  },
+  {
+   "id": "bzt-pfh-3020-g",
+   "maker": "BZT",
+   "model": "PFH",
+   "variant": "PFH 3020-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 79.53,
+    "y": 118.5,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 2020,
+    "y": 3010,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfh"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Steel-beam X gantry, Bosch Rexroth ball screws and rails, HF spindles up to 15 kW with optional ATC; servos optional; Z 300/450 mm optional. Clamping area 2.000 × 3.000 mm."
+  },
+  {
+   "id": "bzt-pfh-3025-g",
+   "maker": "BZT",
+   "model": "PFH",
+   "variant": "PFH 3025-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 99.21,
+    "y": 118.5,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 2520,
+    "y": 3010,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfh"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Steel-beam X gantry, Bosch Rexroth ball screws and rails, HF spindles up to 15 kW with optional ATC; servos optional; Z 300/450 mm optional. Clamping area 2.500 × 3.000 mm."
+  },
+  {
+   "id": "bzt-pfh-3515-g",
+   "maker": "BZT",
+   "model": "PFH",
+   "variant": "PFH 3515-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.84,
+    "y": 138.19,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 1520,
+    "y": 3510,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfh"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Steel-beam X gantry, Bosch Rexroth ball screws and rails, HF spindles up to 15 kW with optional ATC; servos optional; Z 300/450 mm optional. Clamping area 1.500 × 3.500 mm."
+  },
+  {
+   "id": "bzt-pfh-3520-g",
+   "maker": "BZT",
+   "model": "PFH",
+   "variant": "PFH 3520-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 79.53,
+    "y": 138.19,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 2020,
+    "y": 3510,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfh"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Steel-beam X gantry, Bosch Rexroth ball screws and rails, HF spindles up to 15 kW with optional ATC; servos optional; Z 300/450 mm optional. Clamping area 2.000 × 3.500 mm."
+  },
+  {
+   "id": "bzt-pfh-3525-g",
+   "maker": "BZT",
+   "model": "PFH",
+   "variant": "PFH 3525-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 99.21,
+    "y": 138.19,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 2520,
+    "y": 3510,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfh"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Steel-beam X gantry, Bosch Rexroth ball screws and rails, HF spindles up to 15 kW with optional ATC; servos optional; Z 300/450 mm optional. Clamping area 2.500 × 3.500 mm."
+  },
+  {
+   "id": "bzt-pfh-4020-g",
+   "maker": "BZT",
+   "model": "PFH",
+   "variant": "PFH 4020-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 79.53,
+    "y": 157.87,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 2020,
+    "y": 4010,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfh"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Steel-beam X gantry, Bosch Rexroth ball screws and rails, HF spindles up to 15 kW with optional ATC; servos optional; Z 300/450 mm optional. Clamping area 2.000 × 4.000 mm."
+  },
+  {
+   "id": "bzt-pfh-4025-g",
+   "maker": "BZT",
+   "model": "PFH",
+   "variant": "PFH 4025-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 99.21,
+    "y": 157.87,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 2520,
+    "y": 4010,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfh"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Steel-beam X gantry, Bosch Rexroth ball screws and rails, HF spindles up to 15 kW with optional ATC; servos optional; Z 300/450 mm optional. Clamping area 2.500 × 4.000 mm."
+  },
+  {
+   "id": "bzt-pfh-4520-g",
+   "maker": "BZT",
+   "model": "PFH",
+   "variant": "PFH 4520-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 79.53,
+    "y": 177.56,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 2020,
+    "y": 4510,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfh"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Steel-beam X gantry, Bosch Rexroth ball screws and rails, HF spindles up to 15 kW with optional ATC; servos optional; Z 300/450 mm optional. Clamping area 2.000 × 4.500 mm."
+  },
+  {
+   "id": "bzt-pfi",
+   "maker": "BZT",
+   "model": "PFI",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 20.28,
+    "y": 11.81,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 515,
+    "y": 300,
+    "z": 135
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Integrated stepper / closed-loop control",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfi"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Compact enclosed machine with integrated control, ball screws on all axes, steppers 4.2 A (closed loop optional)."
+  },
+  {
+   "id": "bzt-pfj-1000-p",
+   "maker": "BZT",
+   "model": "PFJ",
+   "variant": "PFJ 1000-P",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 24.8,
+    "y": 35.04,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 630,
+    "y": 890,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfj"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published as 6,000-8,000 mm/min; upper value used",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Series-production / cabinet machining: ball screws all axes, hardened steel-shaft guides, steppers 4.2 A (closed loop optional). Clamping area 750 × 1.000 mm."
+  },
+  {
+   "id": "bzt-pfj-1010-p",
+   "maker": "BZT",
+   "model": "PFJ",
+   "variant": "PFJ 1010-P",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 35.63,
+    "y": 35.04,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 905,
+    "y": 890,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfj"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published as 6,000-8,000 mm/min; upper value used",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Series-production / cabinet machining: ball screws all axes, hardened steel-shaft guides, steppers 4.2 A (closed loop optional). Clamping area 1.000 × 1.000 mm."
+  },
+  {
+   "id": "bzt-pfk-0203",
+   "maker": "BZT",
+   "model": "PFK",
+   "variant": "PFK 0203",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 13.39,
+    "y": 10.24,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 340,
+    "y": 260,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.66,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": 118.1
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": 3000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfk",
+    "https://www.sorotec.de/shop/BZT-PFK-0205-PX.html"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "published working speed up to 8000 (X/Y) / 3000 (Z) mm/min",
+    "gantry_clearance_in": "220 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min"
+   },
+   "notes": "Compact gantry: ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A, closed-loop or servo optional. Clamping area 375 × 490 mm. Approx. 60 kg."
+  },
+  {
+   "id": "bzt-pfk-0205",
+   "maker": "BZT",
+   "model": "PFK",
+   "variant": "PFK 0205",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 20.47,
+    "y": 10.24,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 520,
+    "y": 260,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.66,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": 118.1
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": 3000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfk",
+    "https://www.sorotec.de/shop/BZT-PFK-0205-PX.html"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "published working speed up to 8000 (X/Y) / 3000 (Z) mm/min",
+    "gantry_clearance_in": "220 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min"
+   },
+   "notes": "Compact gantry: ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A, closed-loop or servo optional. Clamping area 500 × 490 mm. Approx. 75 kg."
+  },
+  {
+   "id": "bzt-pfk-0207",
+   "maker": "BZT",
+   "model": "PFK",
+   "variant": "PFK 0207",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 29.53,
+    "y": 10.24,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 750,
+    "y": 260,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.66,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": 118.1
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": 3000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfk",
+    "https://www.sorotec.de/shop/BZT-PFK-0205-PX.html"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "published working speed up to 8000 (X/Y) / 3000 (Z) mm/min",
+    "gantry_clearance_in": "220 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min"
+   },
+   "notes": "Compact gantry: ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A, closed-loop or servo optional. Clamping area 750 × 490 mm. Approx. 110 kg."
+  },
+  {
+   "id": "bzt-pfk-0403",
+   "maker": "BZT",
+   "model": "PFK",
+   "variant": "PFK 0403",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 13.39,
+    "y": 17.52,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 340,
+    "y": 445,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.66,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": 118.1
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": 3000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfk",
+    "https://www.sorotec.de/shop/BZT-PFK-0205-PX.html"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "published working speed up to 8000 (X/Y) / 3000 (Z) mm/min",
+    "gantry_clearance_in": "220 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min"
+   },
+   "notes": "Compact gantry: ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A, closed-loop or servo optional. Clamping area 375 × 670 mm. Approx. 65 kg."
+  },
+  {
+   "id": "bzt-pfk-0405",
+   "maker": "BZT",
+   "model": "PFK",
+   "variant": "PFK 0405",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 20.47,
+    "y": 17.52,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 520,
+    "y": 445,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.66,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": 118.1
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": 3000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfk",
+    "https://www.sorotec.de/shop/BZT-PFK-0205-PX.html"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "published working speed up to 8000 (X/Y) / 3000 (Z) mm/min",
+    "gantry_clearance_in": "220 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min"
+   },
+   "notes": "Compact gantry: ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A, closed-loop or servo optional. Clamping area 500 × 670 mm. Approx. 78 kg."
+  },
+  {
+   "id": "bzt-pfk-0407",
+   "maker": "BZT",
+   "model": "PFK",
+   "variant": "PFK 0407",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 29.53,
+    "y": 17.52,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 750,
+    "y": 445,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.66,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": 118.1
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": 3000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfk",
+    "https://www.sorotec.de/shop/BZT-PFK-0205-PX.html"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "published working speed up to 8000 (X/Y) / 3000 (Z) mm/min",
+    "gantry_clearance_in": "220 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min"
+   },
+   "notes": "Compact gantry: ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A, closed-loop or servo optional. Clamping area 750 × 670 mm. Approx. 120 kg."
+  },
+  {
+   "id": "bzt-pfk-0603",
+   "maker": "BZT",
+   "model": "PFK",
+   "variant": "PFK 0603",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 13.39,
+    "y": 24.8,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 340,
+    "y": 630,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.66,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": 118.1
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": 3000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfk",
+    "https://www.sorotec.de/shop/BZT-PFK-0205-PX.html"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "published working speed up to 8000 (X/Y) / 3000 (Z) mm/min",
+    "gantry_clearance_in": "220 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min"
+   },
+   "notes": "Compact gantry: ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A, closed-loop or servo optional. Clamping area 375 × 870 mm. Approx. 70 kg."
+  },
+  {
+   "id": "bzt-pfk-0605",
+   "maker": "BZT",
+   "model": "PFK",
+   "variant": "PFK 0605",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 20.47,
+    "y": 24.41,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 520,
+    "y": 620,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.66,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": 118.1
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": 3000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfk",
+    "https://www.sorotec.de/shop/BZT-PFK-0205-PX.html"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "published working speed up to 8000 (X/Y) / 3000 (Z) mm/min",
+    "gantry_clearance_in": "220 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min"
+   },
+   "notes": "Compact gantry: ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A, closed-loop or servo optional. Clamping area 500 × 870 mm. Approx. 88 kg."
+  },
+  {
+   "id": "bzt-pfk-0607",
+   "maker": "BZT",
+   "model": "PFK",
+   "variant": "PFK 0607",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 29.53,
+    "y": 24.8,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 750,
+    "y": 630,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.66,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": 118.1
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": 3000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfk",
+    "https://www.sorotec.de/shop/BZT-PFK-0205-PX.html"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "published working speed up to 8000 (X/Y) / 3000 (Z) mm/min",
+    "gantry_clearance_in": "220 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min"
+   },
+   "notes": "Compact gantry: ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A, closed-loop or servo optional. Clamping area 750 × 870 mm. Approx. 130 kg."
+  },
+  {
+   "id": "bzt-pfk-0803",
+   "maker": "BZT",
+   "model": "PFK",
+   "variant": "PFK 0803",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 13.39,
+    "y": 33.27,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 340,
+    "y": 845,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.66,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": 118.1
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": 3000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfk",
+    "https://www.sorotec.de/shop/BZT-PFK-0205-PX.html"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "published working speed up to 8000 (X/Y) / 3000 (Z) mm/min",
+    "gantry_clearance_in": "220 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min"
+   },
+   "notes": "Compact gantry: ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A, closed-loop or servo optional. Clamping area 375 × 1.070 mm. Approx. 75 kg."
+  },
+  {
+   "id": "bzt-pfk-0805",
+   "maker": "BZT",
+   "model": "PFK",
+   "variant": "PFK 0805",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 20.47,
+    "y": 33.27,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 520,
+    "y": 845,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.66,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": 118.1
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": 3000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfk",
+    "https://www.sorotec.de/shop/BZT-PFK-0205-PX.html"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "published working speed up to 8000 (X/Y) / 3000 (Z) mm/min",
+    "gantry_clearance_in": "220 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min"
+   },
+   "notes": "Compact gantry: ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A, closed-loop or servo optional. Clamping area 500 × 1.070 mm. Approx. 95 kg."
+  },
+  {
+   "id": "bzt-pfk-0807",
+   "maker": "BZT",
+   "model": "PFK",
+   "variant": "PFK 0807",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 29.53,
+    "y": 33.27,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 750,
+    "y": 845,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.66,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": 118.1
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": 3000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfk",
+    "https://www.sorotec.de/shop/BZT-PFK-0205-PX.html"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "published working speed up to 8000 (X/Y) / 3000 (Z) mm/min",
+    "gantry_clearance_in": "220 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min"
+   },
+   "notes": "Compact gantry: ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A, closed-loop or servo optional. Clamping area 750 × 1.070 mm. Approx. 145 kg."
+  },
+  {
+   "id": "bzt-pfk-1203",
+   "maker": "BZT",
+   "model": "PFK",
+   "variant": "PFK 1203",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 13.39,
+    "y": 49.61,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 340,
+    "y": 1260,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.66,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": 118.1
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": 3000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfk",
+    "https://www.sorotec.de/shop/BZT-PFK-0205-PX.html"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "published working speed up to 8000 (X/Y) / 3000 (Z) mm/min",
+    "gantry_clearance_in": "220 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min"
+   },
+   "notes": "Compact gantry: ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A, closed-loop or servo optional. Clamping area 375 × 1.490 mm. Approx. 90 kg."
+  },
+  {
+   "id": "bzt-pfk-1205",
+   "maker": "BZT",
+   "model": "PFK",
+   "variant": "PFK 1205",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 20.47,
+    "y": 49.61,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 520,
+    "y": 1260,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.66,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": 118.1
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": 3000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfk",
+    "https://www.sorotec.de/shop/BZT-PFK-0205-PX.html"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "published working speed up to 8000 (X/Y) / 3000 (Z) mm/min",
+    "gantry_clearance_in": "220 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min"
+   },
+   "notes": "Compact gantry: ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A, closed-loop or servo optional. Clamping area 500 × 1.490 mm. Approx. 112 kg."
+  },
+  {
+   "id": "bzt-pfk-1207",
+   "maker": "BZT",
+   "model": "PFK",
+   "variant": "PFK 1207",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 29.53,
+    "y": 49.61,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 750,
+    "y": 1260,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.66,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": 118.1
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": 3000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfk",
+    "https://www.sorotec.de/shop/BZT-PFK-0205-PX.html"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "published working speed up to 8000 (X/Y) / 3000 (Z) mm/min",
+    "gantry_clearance_in": "220 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min"
+   },
+   "notes": "Compact gantry: ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A, closed-loop or servo optional. Clamping area 750 × 1.490 mm. Approx. 160 kg."
+  },
+  {
+   "id": "bzt-pfk-1603",
+   "maker": "BZT",
+   "model": "PFK",
+   "variant": "PFK 1603",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 13.39,
+    "y": 66.14,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 340,
+    "y": 1680,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.66,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": 118.1
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": 3000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfk",
+    "https://www.sorotec.de/shop/BZT-PFK-0205-PX.html"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "published working speed up to 8000 (X/Y) / 3000 (Z) mm/min",
+    "gantry_clearance_in": "220 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min"
+   },
+   "notes": "Compact gantry: ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A, closed-loop or servo optional. Clamping area 375 × 1.910 mm. Approx. 115 kg."
+  },
+  {
+   "id": "bzt-pfk-1605",
+   "maker": "BZT",
+   "model": "PFK",
+   "variant": "PFK 1605",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 20.47,
+    "y": 66.14,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 520,
+    "y": 1680,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.66,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": 118.1
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": 3000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfk",
+    "https://www.sorotec.de/shop/BZT-PFK-0205-PX.html"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "published working speed up to 8000 (X/Y) / 3000 (Z) mm/min",
+    "gantry_clearance_in": "220 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min"
+   },
+   "notes": "Compact gantry: ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A, closed-loop or servo optional. Clamping area 500 × 1.910 mm. Approx. 145 kg."
+  },
+  {
+   "id": "bzt-pfk-1607",
+   "maker": "BZT",
+   "model": "PFK",
+   "variant": "PFK 1607",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 29.53,
+    "y": 66.14,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 750,
+    "y": 1680,
+    "z": 135
+   },
+   "gantry_clearance_in": 8.66,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": 118.1
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": 3000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfk",
+    "https://www.sorotec.de/shop/BZT-PFK-0205-PX.html"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "published working speed up to 8000 (X/Y) / 3000 (Z) mm/min",
+    "gantry_clearance_in": "220 mm clearance under the portal (Sorotec dealer page)",
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min"
+   },
+   "notes": "Compact gantry: ball screws 16x10 (X/Y) / 16x5 (Z), steppers 4.2 A or 6 A, closed-loop or servo optional. Clamping area 750 × 1.910 mm. Approx. 220 kg."
+  },
+  {
+   "id": "bzt-pfl-0302",
+   "maker": "BZT",
+   "model": "PFL",
+   "variant": "PFL 0302",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 10.24,
+    "y": 14.96,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 260,
+    "y": 380,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 196.9,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/BZT-PFL-0302.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Entry PFL-3 series (Sorotec dealer listing): ball screws 16x10 X/Y, 16x5 Z, 4 A steppers, 15 mm aluminium T-slot plate included, covered guides."
+  },
+  {
+   "id": "bzt-pfl-0304",
+   "maker": "BZT",
+   "model": "PFL",
+   "variant": "PFL 0304",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 20.47,
+    "y": 14.96,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 520,
+    "y": 380,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 196.9,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/BZT-PFL-0304.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Entry PFL-3 series (Sorotec dealer listing): ball screws 16x10 X/Y, 16x5 Z, 4 A steppers, 15 mm aluminium T-slot plate included, covered guides."
+  },
+  {
+   "id": "bzt-pfl-0602",
+   "maker": "BZT",
+   "model": "PFL",
+   "variant": "PFL 0602",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 10.24,
+    "y": 29.92,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 260,
+    "y": 760,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 196.9,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/BZT-PFL-0602.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Entry PFL-3 series (Sorotec dealer listing): ball screws 16x10 X/Y, 16x5 Z, 4 A steppers, 15 mm aluminium T-slot plate included, covered guides."
+  },
+  {
+   "id": "bzt-pfl-0604",
+   "maker": "BZT",
+   "model": "PFL",
+   "variant": "PFL 0604",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 20.47,
+    "y": 29.92,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 520,
+    "y": 760,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 196.9,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/BZT-PFL-0604.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Entry PFL-3 series (Sorotec dealer listing): ball screws 16x10 X/Y, 16x5 Z, 4 A steppers, 15 mm aluminium T-slot plate included, covered guides."
+  },
+  {
+   "id": "bzt-pfr-2020",
+   "maker": "BZT",
+   "model": "PFR",
+   "variant": "PFR 2020",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 59.06,
+    "z": 39.37
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 1500,
+    "z": 1000
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.3,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfr"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Large-format foam/3D machine: ball screws 25x10 (X/Z), 25x25 (Y), servos 1 kW X/Y, 2 kW Z. Clamping area Ø 1600 mm. Approx. 1800 kg."
+  },
+  {
+   "id": "bzt-pfr-2030",
+   "maker": "BZT",
+   "model": "PFR",
+   "variant": "PFR 2030",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 98.43,
+    "y": 59.06,
+    "z": 39.37
+   },
+   "work_area_mm": {
+    "x": 2500,
+    "y": 1500,
+    "z": 1000
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.3,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfr"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Large-format foam/3D machine: ball screws 25x10 (X/Z), 25x25 (Y), servos 1 kW X/Y, 2 kW Z. Clamping area 2.500 × 1.500 mm. Approx. 2200 kg."
+  },
+  {
+   "id": "bzt-pfs-10075",
+   "maker": "BZT",
+   "model": "PFS",
+   "variant": "PFS 10075",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 39.37,
+    "y": 29.53,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 1000,
+    "y": 750,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.3,
+    "z": 472.4
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": 12000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfs"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Profile machining (long X), Bosch Rexroth ball screws with driven nuts in X/Y, servos 750 W; ATC and swivel head optional. Clamping area 1.896 × 750 mm. Approx. 2450 kg."
+  },
+  {
+   "id": "bzt-pfs-20075",
+   "maker": "BZT",
+   "model": "PFS",
+   "variant": "PFS 20075",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 29.53,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 750,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.3,
+    "z": 472.4
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": 12000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfs"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Profile machining (long X), Bosch Rexroth ball screws with driven nuts in X/Y, servos 750 W; ATC and swivel head optional. Clamping area 2.896 × 750 mm. Approx. 2550 kg."
+  },
+  {
+   "id": "bzt-pfs-25075",
+   "maker": "BZT",
+   "model": "PFS",
+   "variant": "PFS 25075",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 98.43,
+    "y": 29.53,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 2500,
+    "y": 750,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.3,
+    "z": 472.4
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": 12000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfs"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Profile machining (long X), Bosch Rexroth ball screws with driven nuts in X/Y, servos 750 W; ATC and swivel head optional. Clamping area 3.396 × 750 mm. Approx. 2600 kg."
+  },
+  {
+   "id": "bzt-pfs-30025",
+   "maker": "BZT",
+   "model": "PFS",
+   "variant": "PFS 30025",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 118.11,
+    "y": 9.84,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 3000,
+    "y": 250,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.3,
+    "z": 472.4
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": 12000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfs"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Profile machining (long X), Bosch Rexroth ball screws with driven nuts in X/Y, servos 750 W; ATC and swivel head optional. Clamping area 3.869 × 250 mm. Approx. 2500 kg."
+  },
+  {
+   "id": "bzt-pfs-30050",
+   "maker": "BZT",
+   "model": "PFS",
+   "variant": "PFS 30050",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 118.11,
+    "y": 19.69,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 3000,
+    "y": 500,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.3,
+    "z": 472.4
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": 12000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfs"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Profile machining (long X), Bosch Rexroth ball screws with driven nuts in X/Y, servos 750 W; ATC and swivel head optional. Clamping area 3.896 × 500 mm. Approx. 2550 kg."
+  },
+  {
+   "id": "bzt-pfs-30075",
+   "maker": "BZT",
+   "model": "PFS",
+   "variant": "PFS 30075",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 118.11,
+    "y": 29.53,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 3000,
+    "y": 750,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.3,
+    "z": 472.4
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": 12000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfs"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Profile machining (long X), Bosch Rexroth ball screws with driven nuts in X/Y, servos 750 W; ATC and swivel head optional. Clamping area 3.896 × 750 mm. Approx. 2650 kg."
+  },
+  {
+   "id": "bzt-pfs-40075",
+   "maker": "BZT",
+   "model": "PFS",
+   "variant": "PFS 40075",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 157.48,
+    "y": 29.53,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 4000,
+    "y": 750,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.3,
+    "z": 472.4
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": 12000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfs"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Profile machining (long X), Bosch Rexroth ball screws with driven nuts in X/Y, servos 750 W; ATC and swivel head optional. Clamping area 4.896 × 750 mm. Approx. 2750 kg."
+  },
+  {
+   "id": "bzt-pfs-50075",
+   "maker": "BZT",
+   "model": "PFS",
+   "variant": "PFS 50075",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 196.85,
+    "y": 29.53,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 5000,
+    "y": 750,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.3,
+    "z": 472.4
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": 12000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfs"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Profile machining (long X), Bosch Rexroth ball screws with driven nuts in X/Y, servos 750 W; ATC and swivel head optional. Clamping area 5.896 × 750 mm. Approx. 2850 kg."
+  },
+  {
+   "id": "bzt-pfs-60075",
+   "maker": "BZT",
+   "model": "PFS",
+   "variant": "PFS 60075",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 236.22,
+    "y": 29.53,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 6000,
+    "y": 750,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.3,
+    "z": 472.4
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": 12000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfs"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Profile machining (long X), Bosch Rexroth ball screws with driven nuts in X/Y, servos 750 W; ATC and swivel head optional. Clamping area 6.896 × 750 mm. Approx. 2950 kg."
+  },
+  {
+   "id": "bzt-pfu-1010",
+   "maker": "BZT",
+   "model": "PFU",
+   "variant": "PFU 1010",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 40.16,
+    "y": 38.19,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 1020,
+    "y": 970,
+    "z": 135
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu"
+   ],
+   "estimated": {
+    "rapid_mm_min": "8,000 mm/min with steppers, 12,000 with servos",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Universal gantry: ball screws all axes (-G = dual Y drive), Bosch Rexroth rails, steppers 6 A (closed-loop or servo optional), HF spindles up to 2.2 kW. Clamping area 1.000 × 1.000 mm. Approx. 400 kg."
+  },
+  {
+   "id": "bzt-pfu-1010-g",
+   "maker": "BZT",
+   "model": "PFU",
+   "variant": "PFU 1010-G",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 40.16,
+    "y": 39.76,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 1020,
+    "y": 1010,
+    "z": 135
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu"
+   ],
+   "estimated": {
+    "rapid_mm_min": "8,000 mm/min with steppers, 12,000 with servos",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Universal gantry: ball screws all axes (-G = dual Y drive), Bosch Rexroth rails, steppers 6 A (closed-loop or servo optional), HF spindles up to 2.2 kW. Clamping area 1.000 × 1.000 mm. Approx. 410 kg."
+  },
+  {
+   "id": "bzt-pfu-2010",
+   "maker": "BZT",
+   "model": "PFU",
+   "variant": "PFU 2010",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 40.16,
+    "y": 77.56,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 1020,
+    "y": 1970,
+    "z": 135
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu"
+   ],
+   "estimated": {
+    "rapid_mm_min": "8,000 mm/min with steppers, 12,000 with servos",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Universal gantry: ball screws all axes (-G = dual Y drive), Bosch Rexroth rails, steppers 6 A (closed-loop or servo optional), HF spindles up to 2.2 kW. Clamping area 1.000 × 2.000 mm. Approx. 450 kg."
+  },
+  {
+   "id": "bzt-pfu-2010-g",
+   "maker": "BZT",
+   "model": "PFU",
+   "variant": "PFU 2010-G",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 40.16,
+    "y": 79.13,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 1020,
+    "y": 2010,
+    "z": 135
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu"
+   ],
+   "estimated": {
+    "rapid_mm_min": "8,000 mm/min with steppers, 12,000 with servos",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Universal gantry: ball screws all axes (-G = dual Y drive), Bosch Rexroth rails, steppers 6 A (closed-loop or servo optional), HF spindles up to 2.2 kW. Clamping area 1.000 × 2.000 mm. Approx. 460 kg."
+  },
+  {
+   "id": "bzt-pfu-2015-g",
+   "maker": "BZT",
+   "model": "PFU",
+   "variant": "PFU 2015-G",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 59.84,
+    "y": 79.13,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 1520,
+    "y": 2010,
+    "z": 135
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu"
+   ],
+   "estimated": {
+    "rapid_mm_min": "8,000 mm/min with steppers, 12,000 with servos",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Universal gantry: ball screws all axes (-G = dual Y drive), Bosch Rexroth rails, steppers 6 A (closed-loop or servo optional), HF spindles up to 2.2 kW. Clamping area 1.500 × 2.000 mm. Approx. 490 kg."
+  },
+  {
+   "id": "bzt-pfu-2515-g",
+   "maker": "BZT",
+   "model": "PFU",
+   "variant": "PFU 2515-G",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 59.84,
+    "y": 98.82,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 1520,
+    "y": 2510,
+    "z": 135
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu"
+   ],
+   "estimated": {
+    "rapid_mm_min": "8,000 mm/min with steppers, 12,000 with servos",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Universal gantry: ball screws all axes (-G = dual Y drive), Bosch Rexroth rails, steppers 6 A (closed-loop or servo optional), HF spindles up to 2.2 kW. Clamping area 1.500 × 2.500 mm. Approx. 525 kg."
+  },
+  {
+   "id": "bzt-pfu-3015-g",
+   "maker": "BZT",
+   "model": "PFU",
+   "variant": "PFU 3015-G",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 59.84,
+    "y": 118.5,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 1520,
+    "y": 3010,
+    "z": 135
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu"
+   ],
+   "estimated": {
+    "rapid_mm_min": "8,000 mm/min with steppers, 12,000 with servos",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Universal gantry: ball screws all axes (-G = dual Y drive), Bosch Rexroth rails, steppers 6 A (closed-loop or servo optional), HF spindles up to 2.2 kW. Clamping area 1.500 × 3.000 mm. Approx. 810 kg."
+  },
+  {
+   "id": "bzt-pfu-3020-g",
+   "maker": "BZT",
+   "model": "PFU",
+   "variant": "PFU 3020-G",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 79.53,
+    "y": 118.5,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 2020,
+    "y": 3010,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu"
+   ],
+   "estimated": {
+    "rapid_mm_min": "8,000 mm/min with steppers, 12,000 with servos",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Universal gantry: ball screws all axes (-G = dual Y drive), Bosch Rexroth rails, steppers 6 A (closed-loop or servo optional), HF spindles up to 2.2 kW. Clamping area 2.000 × 3.000 mm. Approx. 900 kg."
+  },
+  {
+   "id": "bzt-pfu-4020-g",
+   "maker": "BZT",
+   "model": "PFU",
+   "variant": "PFU 4020-G",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 79.53,
+    "y": 157.87,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 2020,
+    "y": 4010,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BZT stepper control (U-ST / E-ST series)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu"
+   ],
+   "estimated": {
+    "rapid_mm_min": "8,000 mm/min with steppers, 12,000 with servos",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Universal gantry: ball screws all axes (-G = dual Y drive), Bosch Rexroth rails, steppers 6 A (closed-loop or servo optional), HF spindles up to 2.2 kW. Clamping area 2.000 × 4.000 mm. Approx. 1100 kg."
+  },
+  {
+   "id": "bzt-pfu-s-1010-g",
+   "maker": "BZT",
+   "model": "PFU-S",
+   "variant": "PFU-S 1010-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 40.16,
+    "y": 39.76,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 1020,
+    "y": 1010,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu-s"
+   ],
+   "estimated": {
+    "rapid_mm_min": "ca. 12,000 mm/min; large models 8,000 (closed loop) / 20,000 (servo)",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel gantry, dual Y ball screws 16x16 with driven nuts, closed-loop steppers 6 A (servo optional), HF spindles up to 4.5 kW (3.6 kW with ATC). Clamping area 1.000 × 1.000 mm."
+  },
+  {
+   "id": "bzt-pfu-s-1510-g",
+   "maker": "BZT",
+   "model": "PFU-S",
+   "variant": "PFU-S 1510-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 40.16,
+    "y": 59.45,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 1020,
+    "y": 1510,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu-s"
+   ],
+   "estimated": {
+    "rapid_mm_min": "ca. 12,000 mm/min; large models 8,000 (closed loop) / 20,000 (servo)",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel gantry, dual Y ball screws 16x16 with driven nuts, closed-loop steppers 6 A (servo optional), HF spindles up to 4.5 kW (3.6 kW with ATC). Clamping area 1.000 × 1.500 mm."
+  },
+  {
+   "id": "bzt-pfu-s-1515-g",
+   "maker": "BZT",
+   "model": "PFU-S",
+   "variant": "PFU-S 1515-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.84,
+    "y": 59.45,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 1520,
+    "y": 1510,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu-s"
+   ],
+   "estimated": {
+    "rapid_mm_min": "ca. 12,000 mm/min; large models 8,000 (closed loop) / 20,000 (servo)",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel gantry, dual Y ball screws 16x16 with driven nuts, closed-loop steppers 6 A (servo optional), HF spindles up to 4.5 kW (3.6 kW with ATC). Clamping area 1.500 × 1.500 mm."
+  },
+  {
+   "id": "bzt-pfu-s-2-1010-g",
+   "maker": "BZT",
+   "model": "PFU-S-2",
+   "variant": "PFU-S-2 1010-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 40.16,
+    "y": 39.76,
+    "z": 10.63
+   },
+   "work_area_mm": {
+    "x": 1020,
+    "y": 1010,
+    "z": 270
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu-s-2"
+   ],
+   "estimated": {
+    "rapid_mm_min": "8,000 (closed loop) or 12,000 mm/min (servo); servo value",
+    "work_area_mm.z": "270 mm standard, 450 mm option",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "High-Z steel gantry: Z 270 mm or 450 mm, dual Y ball screws 16x16 with driven nuts, HF spindles up to 4.5 kW ER32 or 3.6 kW SK30 with ATC. Clamping area 1.000 × 1.000 mm."
+  },
+  {
+   "id": "bzt-pfu-s-2-1015-g",
+   "maker": "BZT",
+   "model": "PFU-S-2",
+   "variant": "PFU-S-2 1015-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.84,
+    "y": 39.76,
+    "z": 10.63
+   },
+   "work_area_mm": {
+    "x": 1520,
+    "y": 1010,
+    "z": 270
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu-s-2"
+   ],
+   "estimated": {
+    "rapid_mm_min": "8,000 (closed loop) or 12,000 mm/min (servo); servo value",
+    "work_area_mm.z": "270 mm standard, 450 mm option",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "High-Z steel gantry: Z 270 mm or 450 mm, dual Y ball screws 16x16 with driven nuts, HF spindles up to 4.5 kW ER32 or 3.6 kW SK30 with ATC. Clamping area 1.500 × 1.000 mm."
+  },
+  {
+   "id": "bzt-pfu-s-2-1510-g",
+   "maker": "BZT",
+   "model": "PFU-S-2",
+   "variant": "PFU-S-2 1510-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 40.16,
+    "y": 59.45,
+    "z": 10.63
+   },
+   "work_area_mm": {
+    "x": 1020,
+    "y": 1510,
+    "z": 270
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu-s-2"
+   ],
+   "estimated": {
+    "rapid_mm_min": "8,000 (closed loop) or 12,000 mm/min (servo); servo value",
+    "work_area_mm.z": "270 mm standard, 450 mm option",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "High-Z steel gantry: Z 270 mm or 450 mm, dual Y ball screws 16x16 with driven nuts, HF spindles up to 4.5 kW ER32 or 3.6 kW SK30 with ATC. Clamping area 1.000 × 1.500 mm."
+  },
+  {
+   "id": "bzt-pfu-s-2-1515-g",
+   "maker": "BZT",
+   "model": "PFU-S-2",
+   "variant": "PFU-S-2 1515-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.84,
+    "y": 59.45,
+    "z": 10.63
+   },
+   "work_area_mm": {
+    "x": 1520,
+    "y": 1510,
+    "z": 270
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu-s-2"
+   ],
+   "estimated": {
+    "rapid_mm_min": "8,000 (closed loop) or 12,000 mm/min (servo); servo value",
+    "work_area_mm.z": "270 mm standard, 450 mm option",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "High-Z steel gantry: Z 270 mm or 450 mm, dual Y ball screws 16x16 with driven nuts, HF spindles up to 4.5 kW ER32 or 3.6 kW SK30 with ATC. Clamping area 1.500 × 1.500 mm."
+  },
+  {
+   "id": "bzt-pfu-s-2-2010-g",
+   "maker": "BZT",
+   "model": "PFU-S-2",
+   "variant": "PFU-S-2 2010-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 40.16,
+    "y": 79.13,
+    "z": 10.63
+   },
+   "work_area_mm": {
+    "x": 1020,
+    "y": 2010,
+    "z": 270
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu-s-2"
+   ],
+   "estimated": {
+    "rapid_mm_min": "8,000 (closed loop) or 12,000 mm/min (servo); servo value",
+    "work_area_mm.z": "270 mm standard, 450 mm option",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "High-Z steel gantry: Z 270 mm or 450 mm, dual Y ball screws 16x16 with driven nuts, HF spindles up to 4.5 kW ER32 or 3.6 kW SK30 with ATC. Clamping area 1.000 × 2.000 mm."
+  },
+  {
+   "id": "bzt-pfu-s-2-2015-g",
+   "maker": "BZT",
+   "model": "PFU-S-2",
+   "variant": "PFU-S-2 2015-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.84,
+    "y": 79.13,
+    "z": 10.63
+   },
+   "work_area_mm": {
+    "x": 1520,
+    "y": 2010,
+    "z": 270
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu-s-2"
+   ],
+   "estimated": {
+    "rapid_mm_min": "8,000 (closed loop) or 12,000 mm/min (servo); servo value",
+    "work_area_mm.z": "270 mm standard, 450 mm option",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "High-Z steel gantry: Z 270 mm or 450 mm, dual Y ball screws 16x16 with driven nuts, HF spindles up to 4.5 kW ER32 or 3.6 kW SK30 with ATC. Clamping area 1.500 × 2.000 mm."
+  },
+  {
+   "id": "bzt-pfu-s-2-2510-g",
+   "maker": "BZT",
+   "model": "PFU-S-2",
+   "variant": "PFU-S-2 2510-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 40.16,
+    "y": 98.82,
+    "z": 10.63
+   },
+   "work_area_mm": {
+    "x": 1020,
+    "y": 2510,
+    "z": 270
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu-s-2"
+   ],
+   "estimated": {
+    "rapid_mm_min": "8,000 (closed loop) or 12,000 mm/min (servo); servo value",
+    "work_area_mm.z": "270 mm standard, 450 mm option",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "High-Z steel gantry: Z 270 mm or 450 mm, dual Y ball screws 16x16 with driven nuts, HF spindles up to 4.5 kW ER32 or 3.6 kW SK30 with ATC. Clamping area 1.000 × 2.500 mm."
+  },
+  {
+   "id": "bzt-pfu-s-2-2515-g",
+   "maker": "BZT",
+   "model": "PFU-S-2",
+   "variant": "PFU-S-2 2515-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.84,
+    "y": 98.82,
+    "z": 10.63
+   },
+   "work_area_mm": {
+    "x": 1520,
+    "y": 2510,
+    "z": 270
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu-s-2"
+   ],
+   "estimated": {
+    "rapid_mm_min": "8,000 (closed loop) or 12,000 mm/min (servo); servo value",
+    "work_area_mm.z": "270 mm standard, 450 mm option",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "High-Z steel gantry: Z 270 mm or 450 mm, dual Y ball screws 16x16 with driven nuts, HF spindles up to 4.5 kW ER32 or 3.6 kW SK30 with ATC. Clamping area –."
+  },
+  {
+   "id": "bzt-pfu-s-2010-g",
+   "maker": "BZT",
+   "model": "PFU-S",
+   "variant": "PFU-S 2010-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 40.16,
+    "y": 79.13,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 1020,
+    "y": 2010,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu-s"
+   ],
+   "estimated": {
+    "rapid_mm_min": "ca. 12,000 mm/min; large models 8,000 (closed loop) / 20,000 (servo)",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel gantry, dual Y ball screws 16x16 with driven nuts, closed-loop steppers 6 A (servo optional), HF spindles up to 4.5 kW (3.6 kW with ATC). Clamping area 1.000 × 2.000 mm."
+  },
+  {
+   "id": "bzt-pfu-s-2015-g",
+   "maker": "BZT",
+   "model": "PFU-S",
+   "variant": "PFU-S 2015-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.84,
+    "y": 79.13,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 1520,
+    "y": 2010,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu-s"
+   ],
+   "estimated": {
+    "rapid_mm_min": "ca. 12,000 mm/min; large models 8,000 (closed loop) / 20,000 (servo)",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel gantry, dual Y ball screws 16x16 with driven nuts, closed-loop steppers 6 A (servo optional), HF spindles up to 4.5 kW (3.6 kW with ATC). Clamping area 1.500 × 2.000 mm."
+  },
+  {
+   "id": "bzt-pfu-s-2510-g",
+   "maker": "BZT",
+   "model": "PFU-S",
+   "variant": "PFU-S 2510-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 40.16,
+    "y": 98.82,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 1020,
+    "y": 2510,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu-s"
+   ],
+   "estimated": {
+    "rapid_mm_min": "ca. 12,000 mm/min; large models 8,000 (closed loop) / 20,000 (servo)",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel gantry, dual Y ball screws 16x16 with driven nuts, closed-loop steppers 6 A (servo optional), HF spindles up to 4.5 kW (3.6 kW with ATC). Clamping area 1.000 × 2.500 mm."
+  },
+  {
+   "id": "bzt-pfu-s-2515-g",
+   "maker": "BZT",
+   "model": "PFU-S",
+   "variant": "PFU-S 2515-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.84,
+    "y": 98.82,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 1520,
+    "y": 2510,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu-s"
+   ],
+   "estimated": {
+    "rapid_mm_min": "ca. 12,000 mm/min; large models 8,000 (closed loop) / 20,000 (servo)",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel gantry, dual Y ball screws 16x16 with driven nuts, closed-loop steppers 6 A (servo optional), HF spindles up to 4.5 kW (3.6 kW with ATC). Clamping area 1.500 × 2.500 mm."
+  },
+  {
+   "id": "bzt-pfu-s-3015-g",
+   "maker": "BZT",
+   "model": "PFU-S",
+   "variant": "PFU-S 3015-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.84,
+    "y": 118.5,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 1520,
+    "y": 3010,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu-s"
+   ],
+   "estimated": {
+    "rapid_mm_min": "ca. 12,000 mm/min; large models 8,000 (closed loop) / 20,000 (servo)",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel gantry, dual Y ball screws 16x16 with driven nuts, closed-loop steppers 6 A (servo optional), HF spindles up to 4.5 kW (3.6 kW with ATC). Clamping area 1.500 × 3.000 mm."
+  },
+  {
+   "id": "bzt-pfu-s-4020-g",
+   "maker": "BZT",
+   "model": "PFU-S",
+   "variant": "PFU-S 4020-G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 79.53,
+    "y": 157.87,
+    "z": 6.69
+   },
+   "work_area_mm": {
+    "x": 2020,
+    "y": 4010,
+    "z": 170
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "OSAI, Heidenhain or Siemens CNC (customer choice)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfu-s"
+   ],
+   "estimated": {
+    "rapid_mm_min": "ca. 12,000 mm/min; large models 8,000 (closed loop) / 20,000 (servo)",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel gantry, dual Y ball screws 16x16 with driven nuts, closed-loop steppers 6 A (servo optional), HF spindles up to 4.5 kW (3.6 kW with ATC). Clamping area 2.000 × 4.000 mm."
+  },
+  {
+   "id": "bzt-pfx-1000",
+   "maker": "BZT",
+   "model": "PFX",
+   "variant": "PFX 1000",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 33.74,
+    "y": 39.17,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 857,
+    "y": 995,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.3,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "BZT, OSAI or Heidenhain CNC",
+     "gcarve_post": "osai-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfx"
+   ],
+   "estimated": {
+    "rapid_mm_min": "servo version; closed-loop version lower",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "HSC 3D milling gantry, enclosed, tool changer with up to 10 slots in the enclosure. Clamping area 740 × 1.000 mm. Approx. 800 kg."
+  },
+  {
+   "id": "bzt-pfx-1500",
+   "maker": "BZT",
+   "model": "PFX",
+   "variant": "PFX 1500",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 33.74,
+    "y": 57.09,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 857,
+    "y": 1450,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.3,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "BZT, OSAI or Heidenhain CNC",
+     "gcarve_post": "osai-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfx"
+   ],
+   "estimated": {
+    "rapid_mm_min": "servo version; closed-loop version lower",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "HSC 3D milling gantry, enclosed, tool changer with up to 10 slots in the enclosure. Clamping area 740 × 1.500 mm. Approx. 1000 kg."
+  },
+  {
+   "id": "bzt-pfx-500-h",
+   "maker": "BZT",
+   "model": "PFX",
+   "variant": "PFX 500-H",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 13.78,
+    "y": 23.03,
+    "z": 8.27
+   },
+   "work_area_mm": {
+    "x": 350,
+    "y": 585,
+    "z": 210
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.3,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "BZT, OSAI or Heidenhain CNC",
+     "gcarve_post": "osai-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfx"
+   ],
+   "estimated": {
+    "rapid_mm_min": "servo version; closed-loop version lower",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "HSC 3D milling gantry, enclosed, tool changer with up to 10 slots in the enclosure. Clamping area 375 × 600 mm. Approx. 700 kg."
+  },
+  {
+   "id": "bzt-pfx-700",
+   "maker": "BZT",
+   "model": "PFX",
+   "variant": "PFX 700",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 20.47,
+    "y": 27.56,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 520,
+    "y": 700,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.3,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "BZT, OSAI or Heidenhain CNC",
+     "gcarve_post": "osai-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bzt-cnc.de/produkte/baureihe-pfx"
+   ],
+   "estimated": {
+    "rapid_mm_min": "servo version; closed-loop version lower",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "HSC 3D milling gantry, enclosed, tool changer with up to 10 slots in the enclosure. Clamping area 375 × 680 mm. Approx. 600 kg."
+  }
+ ]
+}

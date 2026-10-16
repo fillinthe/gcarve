@@ -1,0 +1,1813 @@
+{
+ "maker": "Bulk-Man 3D",
+ "website": "https://bulkman3d.com",
+ "machines": [
+  {
+   "id": "bulk-man-3d-ultimate-bee-500x500",
+   "maker": "Bulk-Man 3D",
+   "model": "ULTIMATE Bee",
+   "variant": "500x500mm",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 10.75,
+    "y": 10.31,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 273,
+    "y": 262,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle (110V/220V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 8000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled spindle (110V/220V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 8000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "DDCS V4.1 offline control box",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Mini UC300 (Mach3)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://bulkman3d.com/product/ultimate-bee-cnc-full-kit-ddcs-v4-1-4axis-offline-control-box-system/",
+    "https://bulkman3d.com/product/20off-ultimate-bee-cnc-full-kit-mini-uc300-mach3-4axis-control-box-system/"
+   ],
+   "notes": "Variant = frame size; area = maker's 'workable dimensions'. C-Beam extrusions, HGR linear rails, SFS1210 (10 mm pitch) ballscrews; 3 Nm closed-loop steppers (4 pcs) in the full kits. Mechanical kit also sold without electronics.",
+   "estimated": {
+    "drive": "Z drive assumed ballscrew ('SFS1210 used on all axis')",
+    "work_area_in": "converted from the mm spec"
+   }
+  },
+  {
+   "id": "bulk-man-3d-ultimate-bee-500x750",
+   "maker": "Bulk-Man 3D",
+   "model": "ULTIMATE Bee",
+   "variant": "500x750mm",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 10.75,
+    "y": 20.16,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 273,
+    "y": 512,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle (110V/220V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 8000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled spindle (110V/220V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 8000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "DDCS V4.1 offline control box",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Mini UC300 (Mach3)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://bulkman3d.com/product/ultimate-bee-cnc-full-kit-ddcs-v4-1-4axis-offline-control-box-system/",
+    "https://bulkman3d.com/product/20off-ultimate-bee-cnc-full-kit-mini-uc300-mach3-4axis-control-box-system/"
+   ],
+   "notes": "Variant = frame size; area = maker's 'workable dimensions'. C-Beam extrusions, HGR linear rails, SFS1210 (10 mm pitch) ballscrews; 3 Nm closed-loop steppers (4 pcs) in the full kits. Mechanical kit also sold without electronics.",
+   "estimated": {
+    "drive": "Z drive assumed ballscrew ('SFS1210 used on all axis')",
+    "work_area_in": "converted from the mm spec"
+   }
+  },
+  {
+   "id": "bulk-man-3d-ultimate-bee-750x750",
+   "maker": "Bulk-Man 3D",
+   "model": "ULTIMATE Bee",
+   "variant": "750x750mm",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 20.59,
+    "y": 20.16,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 523,
+    "y": 512,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle (110V/220V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 8000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled spindle (110V/220V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 8000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "DDCS V4.1 offline control box",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Mini UC300 (Mach3)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://bulkman3d.com/product/ultimate-bee-cnc-full-kit-ddcs-v4-1-4axis-offline-control-box-system/",
+    "https://bulkman3d.com/product/20off-ultimate-bee-cnc-full-kit-mini-uc300-mach3-4axis-control-box-system/"
+   ],
+   "notes": "Variant = frame size; area = maker's 'workable dimensions'. C-Beam extrusions, HGR linear rails, SFS1210 (10 mm pitch) ballscrews; 3 Nm closed-loop steppers (4 pcs) in the full kits. Mechanical kit also sold without electronics.",
+   "estimated": {
+    "drive": "Z drive assumed ballscrew ('SFS1210 used on all axis')",
+    "work_area_in": "converted from the mm spec"
+   }
+  },
+  {
+   "id": "bulk-man-3d-ultimate-bee-750x1000",
+   "maker": "Bulk-Man 3D",
+   "model": "ULTIMATE Bee",
+   "variant": "750x1000mm",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 20.59,
+    "y": 30.0,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 523,
+    "y": 762,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle (110V/220V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 8000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled spindle (110V/220V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 8000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "DDCS V4.1 offline control box",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Mini UC300 (Mach3)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://bulkman3d.com/product/ultimate-bee-cnc-full-kit-ddcs-v4-1-4axis-offline-control-box-system/",
+    "https://bulkman3d.com/product/20off-ultimate-bee-cnc-full-kit-mini-uc300-mach3-4axis-control-box-system/"
+   ],
+   "notes": "Variant = frame size; area = maker's 'workable dimensions'. C-Beam extrusions, HGR linear rails, SFS1210 (10 mm pitch) ballscrews; 3 Nm closed-loop steppers (4 pcs) in the full kits. Mechanical kit also sold without electronics.",
+   "estimated": {
+    "drive": "Z drive assumed ballscrew ('SFS1210 used on all axis')",
+    "work_area_in": "converted from the mm spec"
+   }
+  },
+  {
+   "id": "bulk-man-3d-ultimate-bee-1000x1000",
+   "maker": "Bulk-Man 3D",
+   "model": "ULTIMATE Bee",
+   "variant": "1000x1000mm",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 30.43,
+    "y": 30.0,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 773,
+    "y": 762,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle (110V/220V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 8000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled spindle (110V/220V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 8000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "DDCS V4.1 offline control box",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Mini UC300 (Mach3)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://bulkman3d.com/product/ultimate-bee-cnc-full-kit-ddcs-v4-1-4axis-offline-control-box-system/",
+    "https://bulkman3d.com/product/20off-ultimate-bee-cnc-full-kit-mini-uc300-mach3-4axis-control-box-system/"
+   ],
+   "notes": "Variant = frame size; area = maker's 'workable dimensions'. C-Beam extrusions, HGR linear rails, SFS1210 (10 mm pitch) ballscrews; 3 Nm closed-loop steppers (4 pcs) in the full kits. Mechanical kit also sold without electronics.",
+   "estimated": {
+    "drive": "Z drive assumed ballscrew ('SFS1210 used on all axis')",
+    "work_area_in": "converted from the mm spec"
+   }
+  },
+  {
+   "id": "bulk-man-3d-ultimate-bee-1000x1500",
+   "maker": "Bulk-Man 3D",
+   "model": "ULTIMATE Bee",
+   "variant": "1000x1500mm",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 30.43,
+    "y": 49.69,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 773,
+    "y": 1262,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle (110V/220V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 8000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled spindle (110V/220V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 8000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "DDCS V4.1 offline control box",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Mini UC300 (Mach3)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://bulkman3d.com/product/ultimate-bee-cnc-full-kit-ddcs-v4-1-4axis-offline-control-box-system/",
+    "https://bulkman3d.com/product/20off-ultimate-bee-cnc-full-kit-mini-uc300-mach3-4axis-control-box-system/"
+   ],
+   "notes": "Variant = frame size; area = maker's 'workable dimensions'. C-Beam extrusions, HGR linear rails, SFS1210 (10 mm pitch) ballscrews; 3 Nm closed-loop steppers (4 pcs) in the full kits. Mechanical kit also sold without electronics.",
+   "estimated": {
+    "drive": "Z drive assumed ballscrew ('SFS1210 used on all axis')",
+    "work_area_in": "converted from the mm spec"
+   }
+  },
+  {
+   "id": "bulk-man-3d-ultimate-bee-1500x1500",
+   "maker": "Bulk-Man 3D",
+   "model": "ULTIMATE Bee",
+   "variant": "1500x1500mm",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 50.12,
+    "y": 49.69,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 1273,
+    "y": 1262,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle (110V/220V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 8000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled spindle (110V/220V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 8000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "DDCS V4.1 offline control box",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Mini UC300 (Mach3)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://bulkman3d.com/product/ultimate-bee-cnc-full-kit-ddcs-v4-1-4axis-offline-control-box-system/",
+    "https://bulkman3d.com/product/20off-ultimate-bee-cnc-full-kit-mini-uc300-mach3-4axis-control-box-system/"
+   ],
+   "notes": "Variant = frame size; area = maker's 'workable dimensions'. C-Beam extrusions, HGR linear rails, SFS1210 (10 mm pitch) ballscrews; 3 Nm closed-loop steppers (4 pcs) in the full kits. Mechanical kit also sold without electronics.",
+   "estimated": {
+    "drive": "Z drive assumed ballscrew ('SFS1210 used on all axis')",
+    "work_area_in": "converted from the mm spec"
+   }
+  },
+  {
+   "id": "bulk-man-3d-aluma-mill-3518",
+   "maker": "Bulk-Man 3D",
+   "model": "ALUMA MILL",
+   "variant": "3518",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 13.78,
+    "y": 7.09,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 350,
+    "y": 180,
+    "z": 220
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle (110V/220V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 8000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "DDCS V4.1 4-axis offline control box",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://bulkman3d.com/product/3-axis-aluma-mill-3518-cnc-full-kit/"
+   ],
+   "notes": "Compact mill: HGR20 rails, SFU1605 ballscrews, closed-loop steppers (X 2.2 Nm, Y/Z 3.0 Nm), 2.2 kW water-cooled spindle (400 Hz, 24000 RPM max). Machine size 750 x 610 x 860 mm.",
+   "estimated": {
+    "spindles": "rpm_min 8000 taken from Bulk-Man's 2.2 kW spindle spec on the ULTIMATE Bee page",
+    "work_area_in": "converted from the mm spec"
+   }
+  },
+  {
+   "id": "bulk-man-3d-workbii-500x750",
+   "maker": "Bulk-Man 3D",
+   "model": "WorkBii",
+   "variant": "500x750",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 20.47,
+    "z": 3.7
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 520,
+    "z": 94
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "CNC xPRO V5 (GRBL; recommended of 6 controller bundles)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://bulkman3d.com/product/workbee-cnc-router-machine-full-kit/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Variant = frame size (mm). Z travel 94 mm in the low spoilboard configuration (54 mm high configuration) with a 12 mm spoilboard; max through-cut 47/27 mm. 4 x NEMA23 2.45 N·m. Spindle bundle chosen at order."
+  },
+  {
+   "id": "bulk-man-3d-workbii-750x750",
+   "maker": "Bulk-Man 3D",
+   "model": "WorkBii",
+   "variant": "750x750",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 21.65,
+    "y": 20.47,
+    "z": 3.7
+   },
+   "work_area_mm": {
+    "x": 550,
+    "y": 520,
+    "z": 94
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "CNC xPRO V5 (GRBL; recommended of 6 controller bundles)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://bulkman3d.com/product/workbee-cnc-router-machine-full-kit/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Variant = frame size (mm). Z travel 94 mm in the low spoilboard configuration (54 mm high configuration) with a 12 mm spoilboard; max through-cut 47/27 mm. 4 x NEMA23 2.45 N·m. Spindle bundle chosen at order."
+  },
+  {
+   "id": "bulk-man-3d-workbii-750x1000",
+   "maker": "Bulk-Man 3D",
+   "model": "WorkBii",
+   "variant": "750x1000",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 21.65,
+    "y": 30.31,
+    "z": 3.7
+   },
+   "work_area_mm": {
+    "x": 550,
+    "y": 770,
+    "z": 94
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "CNC xPRO V5 (GRBL; recommended of 6 controller bundles)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://bulkman3d.com/product/workbee-cnc-router-machine-full-kit/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Variant = frame size (mm). Z travel 94 mm in the low spoilboard configuration (54 mm high configuration) with a 12 mm spoilboard; max through-cut 47/27 mm. 4 x NEMA23 2.45 N·m. Spindle bundle chosen at order."
+  },
+  {
+   "id": "bulk-man-3d-workbii-1000x1000",
+   "maker": "Bulk-Man 3D",
+   "model": "WorkBii",
+   "variant": "1000x1000",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 31.5,
+    "y": 30.31,
+    "z": 3.7
+   },
+   "work_area_mm": {
+    "x": 800,
+    "y": 770,
+    "z": 94
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "CNC xPRO V5 (GRBL; recommended of 6 controller bundles)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://bulkman3d.com/product/workbee-cnc-router-machine-full-kit/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Variant = frame size (mm). Z travel 94 mm in the low spoilboard configuration (54 mm high configuration) with a 12 mm spoilboard; max through-cut 47/27 mm. 4 x NEMA23 2.45 N·m. Spindle bundle chosen at order."
+  },
+  {
+   "id": "bulk-man-3d-workbii-1000x1500",
+   "maker": "Bulk-Man 3D",
+   "model": "WorkBii",
+   "variant": "1000x1500",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 31.5,
+    "y": 50.0,
+    "z": 3.7
+   },
+   "work_area_mm": {
+    "x": 800,
+    "y": 1270,
+    "z": 94
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "CNC xPRO V5 (GRBL; recommended of 6 controller bundles)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://bulkman3d.com/product/workbee-cnc-router-machine-full-kit/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Variant = frame size (mm). Z travel 94 mm in the low spoilboard configuration (54 mm high configuration) with a 12 mm spoilboard; max through-cut 47/27 mm. 4 x NEMA23 2.45 N·m. Spindle bundle chosen at order."
+  },
+  {
+   "id": "bulk-man-3d-workbii-1500x1500",
+   "maker": "Bulk-Man 3D",
+   "model": "WorkBii",
+   "variant": "1500x1500",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 50.0,
+    "z": 3.7
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 1270,
+    "z": 94
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "CNC xPRO V5 (GRBL; recommended of 6 controller bundles)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://bulkman3d.com/product/workbee-cnc-router-machine-full-kit/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Variant = frame size (mm). Z travel 94 mm in the low spoilboard configuration (54 mm high configuration) with a 12 mm spoilboard; max through-cut 47/27 mm. 4 x NEMA23 2.45 N·m. Spindle bundle chosen at order."
+  },
+  {
+   "id": "bulk-man-3d-ox-500x750",
+   "maker": "Bulk-Man 3D",
+   "model": "OX CNC",
+   "variant": "500x750",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 12.6,
+    "y": 20.67,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 320,
+    "y": 525,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://bulkman3d.com/product/ox001-1/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Mechanical kit (OpenBuilds OX design); variant = frame size (mm). Spoilboard, spindle and electronics not included. NEMA23 1.26 or 2.45 N·m motors optional. Z travel not published."
+  },
+  {
+   "id": "bulk-man-3d-ox-750x750",
+   "maker": "Bulk-Man 3D",
+   "model": "OX CNC",
+   "variant": "750x750",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 22.44,
+    "y": 20.67,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 570,
+    "y": 525,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://bulkman3d.com/product/ox001-1/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Mechanical kit (OpenBuilds OX design); variant = frame size (mm). Spoilboard, spindle and electronics not included. NEMA23 1.26 or 2.45 N·m motors optional. Z travel not published."
+  },
+  {
+   "id": "bulk-man-3d-ox-750x1000",
+   "maker": "Bulk-Man 3D",
+   "model": "OX CNC",
+   "variant": "750x1000",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 22.44,
+    "y": 30.51,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 570,
+    "y": 775,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://bulkman3d.com/product/ox001-1/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Mechanical kit (OpenBuilds OX design); variant = frame size (mm). Spoilboard, spindle and electronics not included. NEMA23 1.26 or 2.45 N·m motors optional. Z travel not published."
+  },
+  {
+   "id": "bulk-man-3d-ox-1000x1000",
+   "maker": "Bulk-Man 3D",
+   "model": "OX CNC",
+   "variant": "1000x1000",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 32.28,
+    "y": 30.51,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 820,
+    "y": 775,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://bulkman3d.com/product/ox001-1/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Mechanical kit (OpenBuilds OX design); variant = frame size (mm). Spoilboard, spindle and electronics not included. NEMA23 1.26 or 2.45 N·m motors optional. Z travel not published."
+  },
+  {
+   "id": "bulk-man-3d-ox-1000x1500",
+   "maker": "Bulk-Man 3D",
+   "model": "OX CNC",
+   "variant": "1000x1500",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 32.28,
+    "y": 50.2,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 820,
+    "y": 1275,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://bulkman3d.com/product/ox001-1/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Mechanical kit (OpenBuilds OX design); variant = frame size (mm). Spoilboard, spindle and electronics not included. NEMA23 1.26 or 2.45 N·m motors optional. Z travel not published."
+  },
+  {
+   "id": "bulk-man-3d-ox-1500x1500",
+   "maker": "Bulk-Man 3D",
+   "model": "OX CNC",
+   "variant": "1500x1500",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 51.97,
+    "y": 50.2,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1320,
+    "y": 1275,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://bulkman3d.com/product/ox001-1/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Mechanical kit (OpenBuilds OX design); variant = frame size (mm). Spoilboard, spindle and electronics not included. NEMA23 1.26 or 2.45 N·m motors optional. Z travel not published."
+  },
+  {
+   "id": "bulk-man-3d-lead-1000x1000",
+   "maker": "Bulk-Man 3D",
+   "model": "LEAD CNC",
+   "variant": "1000x1000",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 28.74,
+    "y": 31.89,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 730,
+    "y": 810,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": 1.97
+   },
+   "sources": [
+    "https://bulkman3d.com/product/ld-cnc/"
+   ],
+   "estimated": {
+    "table.max_material_thickness_in": "converted from 50 mm",
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Variant = footprint (mm). TR8x8 acme lead screws, accuracy 0.05-0.10 mm. Z travel approx. 100 mm; workable material height approx. 50 mm with a 12 mm base board. Controller bundle chosen at order."
+  },
+  {
+   "id": "bulk-man-3d-lead-1000x1500",
+   "maker": "Bulk-Man 3D",
+   "model": "LEAD CNC",
+   "variant": "1000x1500",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 28.74,
+    "y": 51.57,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 730,
+    "y": 1310,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": 1.97
+   },
+   "sources": [
+    "https://bulkman3d.com/product/ld-cnc/"
+   ],
+   "estimated": {
+    "table.max_material_thickness_in": "converted from 50 mm",
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Variant = footprint (mm). TR8x8 acme lead screws, accuracy 0.05-0.10 mm. Z travel approx. 100 mm; workable material height approx. 50 mm with a 12 mm base board. Controller bundle chosen at order."
+  },
+  {
+   "id": "bulk-man-3d-lead-1500x1500",
+   "maker": "Bulk-Man 3D",
+   "model": "LEAD CNC",
+   "variant": "1500x1500",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 51.57,
+    "y": 51.57,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 1310,
+    "y": 1310,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": 1.97
+   },
+   "sources": [
+    "https://bulkman3d.com/product/ld-cnc/"
+   ],
+   "estimated": {
+    "table.max_material_thickness_in": "converted from 50 mm",
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Variant = footprint (mm). TR8x8 acme lead screws, accuracy 0.05-0.10 mm. Z travel approx. 100 mm; workable material height approx. 50 mm with a 12 mm base board. Controller bundle chosen at order."
+  },
+  {
+   "id": "bulk-man-3d-minimill",
+   "maker": "Bulk-Man 3D",
+   "model": "MiniMill",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 4.72,
+    "y": 7.68,
+    "z": 3.15
+   },
+   "work_area_mm": {
+    "x": 120,
+    "y": 195,
+    "z": 80
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": 2.36
+   },
+   "sources": [
+    "https://bulkman3d.com/product/mn01/"
+   ],
+   "estimated": {
+    "table.max_material_thickness_in": "converted from 60 mm",
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Mechanical kit (OpenBuilds MiniMill design), 3 x NEMA23 1.26 N·m, TR8x8 lead screws, accuracy 0.05-0.10 mm. Workable material height 60 mm with a 12 mm base board. Electronics not included."
+  },
+  {
+   "id": "bulk-man-3d-c-beam-machine",
+   "maker": "Bulk-Man 3D",
+   "model": "C-Beam Machine",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 13.78,
+    "y": 11.02,
+    "z": 6.3
+   },
+   "work_area_mm": {
+    "x": 350,
+    "y": 280,
+    "z": 160
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://bulkman3d.com/product/cb01/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Mechanical kit (OpenBuilds C-Beam design), NEMA23 177.5 oz·in, TR8x8 4-start lead screws. Z travel 160 mm, actual working depth 31.75 mm (1.25 in)."
+  },
+  {
+   "id": "bulk-man-3d-c-beam-machine-xl",
+   "maker": "Bulk-Man 3D",
+   "model": "C-Beam Machine XL",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 29.53,
+    "y": 12.99,
+    "z": 6.3
+   },
+   "work_area_mm": {
+    "x": 750,
+    "y": 330,
+    "z": 160
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://bulkman3d.com/product/cbxl01/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Mechanical kit (OpenBuilds C-Beam XL design), 4 x NEMA23 2.45 N·m optional. Cutting depth 25 mm depending on spoilboard, up to 2 in."
+  }
+ ]
+}

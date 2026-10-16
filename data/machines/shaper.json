@@ -1,0 +1,163 @@
+{
+ "maker": "Shaper Tools",
+ "website": "https://www.shapertools.com",
+ "machines": [
+  {
+   "id": "shaper-origin",
+   "maker": "Shaper Tools",
+   "model": "Origin",
+   "variant": "Gen 2",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": null,
+    "y": null,
+    "z": 1.69
+   },
+   "work_area_mm": {
+    "x": null,
+    "y": null,
+    "z": 42.9
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Shaper SM1 spindle, 720 W brushed motor (made by Festool)",
+     "power_kw": 0.72,
+     "power_hp": null,
+     "rpm_min": 10000,
+     "rpm_max": 26000,
+     "collet": "1/4\" (8 mm in metric countries; 1/8\" optional)",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Shaper Origin onboard computer (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic Z touch-off"
+   },
+   "z_zero": [
+    "top of material",
+    "automatic touch-off"
+   ],
+   "table": {
+    "hold_down": [
+     "double-sided tape",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.shapertools.com/en-us/origin/spec",
+    "https://www.shapertools.com/en-us/origin",
+    "https://support.shapertools.com/hc/en-us/articles/115002741013-what-are-the-specs-of-the-sm1-spindle"
+   ],
+   "notes": "Handheld CNC router: no fixed work area (the user moves it over a ShaperTape-marked Workspace, camera tracking with automatic correction within about 1/2 in). Depth of cut 43 mm, digitally set, automatic Z touch-off. 339 x 227 x 306 mm, 6.75 kg, 120 VAC. Proprietary on-tool design/cut software (SVG import), not G-code. Shaper Workstation is a workholding fixture (vertical/horizontal clamping), not a separate machine; no capacity specs published.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "work_area_in.z": "43 mm depth of cut converted to inches"
+   }
+  },
+  {
+   "id": "shaper-origin-gen1",
+   "maker": "Shaper Tools",
+   "model": "Origin",
+   "variant": "Gen 1",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": null,
+    "y": null,
+    "z": 1.7
+   },
+   "work_area_mm": {
+    "x": null,
+    "y": null,
+    "z": 43.2
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "SM-1 spindle, 720 W brushed motor (made by Festool)",
+     "power_kw": 0.72,
+     "power_hp": null,
+     "rpm_min": 10000,
+     "rpm_max": 26000,
+     "collet": "1/4\" (1/8\" optional)",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Shaper Origin onboard computer (proprietary)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic Z touch-off"
+   },
+   "z_zero": [
+    "top of material",
+    "automatic touch-off"
+   ],
+   "table": {
+    "hold_down": [
+     "double-sided tape",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20200806214334/https://www.shapertools.com/en-us/origin/spec"
+   ],
+   "notes": "First-generation handheld CNC router (spec page 2020): no fixed work area (ShaperTape Workspace, camera tracking). 43 mm / 1.7 in Z max depth, automated touch-off, 14.5 lb, 13.75 W x 7.75 D x 11.75 H in, 120 VAC, WiFi/USB, ShaperHub file transfer. Proprietary on-tool software, not G-code.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  }
+ ]
+}

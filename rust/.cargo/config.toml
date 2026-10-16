@@ -1,0 +1,3 @@
+# boostvoronoi -> cpp_map -> rand -> getrandom: in the browser it must use crypto.getRandomValues
+[target.wasm32-unknown-unknown]
+rustflags = ['--cfg', 'getrandom_backend="wasm_js"']

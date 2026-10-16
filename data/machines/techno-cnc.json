@@ -1,0 +1,2564 @@
+{
+ "maker": "Techno CNC",
+ "website": "https://www.technocnc.com",
+ "machines": [
+  {
+   "id": "techno-cnc-hds-4848",
+   "maker": "Techno CNC",
+   "model": "HDS Series",
+   "variant": "4848",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 50,
+    "y": 50,
+    "z": 7.5
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 1270,
+    "z": 190
+   },
+   "gantry_clearance_in": 7.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD ATC spindle (ISO30, ER)",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30 / ER",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 33020,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 38100,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Osai PC-based industrial CNC controller (Techno G-code interface)",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position tool rack at the rear of the machine"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration pad"
+   },
+   "z_zero": [
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://technocnc.com/wp-content/uploads/2019/03/Techno-2019-catalog.pdf",
+    "https://www.technocnc.com/hds-series-cnc-router/",
+    "https://technocnc.com/wp-content/uploads/2022/03/HDS-2022-2.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "2019 catalog: process area X x Y x Z, gantry height 7.5 in, cut 1300 / rapid 1500 (in/min). Helical rack and pinion X/Y (inverted), ballscrew Z, Yaskawa AC servos, THK rails, 4-zone phenolic vacuum T-slot table, pop-up pins, hand-held pulse generator. Osai control: no gcarve post yet."
+  },
+  {
+   "id": "techno-cnc-hds-4896",
+   "maker": "Techno CNC",
+   "model": "HDS Series",
+   "variant": "4896",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 50,
+    "y": 97,
+    "z": 7.5
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 2464,
+    "z": 190
+   },
+   "gantry_clearance_in": 7.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD ATC spindle (ISO30, ER)",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30 / ER",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 33020,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 38100,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Osai PC-based industrial CNC controller (Techno G-code interface)",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position tool rack at the rear of the machine"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration pad"
+   },
+   "z_zero": [
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://technocnc.com/wp-content/uploads/2019/03/Techno-2019-catalog.pdf",
+    "https://www.technocnc.com/hds-series-cnc-router/",
+    "https://technocnc.com/wp-content/uploads/2022/03/HDS-2022-2.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "2019 catalog: process area X x Y x Z, gantry height 7.5 in, cut 1300 / rapid 1500 (in/min). Helical rack and pinion X/Y (inverted), ballscrew Z, Yaskawa AC servos, THK rails, 4-zone phenolic vacuum T-slot table, pop-up pins, hand-held pulse generator. Osai control: no gcarve post yet."
+  },
+  {
+   "id": "techno-cnc-hds-60120",
+   "maker": "Techno CNC",
+   "model": "HDS Series",
+   "variant": "60120",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 121,
+    "z": 7.5
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3073,
+    "z": 190
+   },
+   "gantry_clearance_in": 7.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD ATC spindle (ISO30, ER)",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30 / ER",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 33020,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 38100,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Osai PC-based industrial CNC controller (Techno G-code interface)",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position tool rack at the rear of the machine"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration pad"
+   },
+   "z_zero": [
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://technocnc.com/wp-content/uploads/2019/03/Techno-2019-catalog.pdf",
+    "https://www.technocnc.com/hds-series-cnc-router/",
+    "https://technocnc.com/wp-content/uploads/2022/03/HDS-2022-2.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "2019 catalog: process area X x Y x Z, gantry height 7.5 in, cut 1300 / rapid 1500 (in/min). Helical rack and pinion X/Y (inverted), ballscrew Z, Yaskawa AC servos, THK rails, 4-zone phenolic vacuum T-slot table, pop-up pins, hand-held pulse generator. Osai control: no gcarve post yet."
+  },
+  {
+   "id": "techno-cnc-hds-dual-bed",
+   "maker": "Techno CNC",
+   "model": "HDS Dual Bed Series",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD ATC spindle (ISO30, ER)",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30 / ER",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Osai PC-based industrial CNC controller (Techno G-code interface)",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position tool rack (gantry-mounted per the spec sheet text)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration pad"
+   },
+   "z_zero": [
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.technocnc.com/hds-dual-bed-series-cnc-router/",
+    "https://technocnc.com/wp-content/uploads/2021/03/HDS-DualBed-Series-Specifications2021.pdf"
+   ],
+   "notes": "Two vacuum tables: cuts on one while the operator unloads the other. Sizes not published. Helical rack and pinion X/Y, Yaskawa AC servos, Osai controller."
+  },
+  {
+   "id": "techno-cnc-hd-ii-2136",
+   "maker": "Techno CNC",
+   "model": "HD II Tabletop",
+   "variant": "2136",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 20.5,
+    "y": 36,
+    "z": 9.5
+   },
+   "work_area_mm": {
+    "x": 521,
+    "y": 914,
+    "z": 241
+   },
+   "gantry_clearance_in": 7.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 2 HP high frequency collet spindle",
+     "power_kw": null,
+     "power_hp": 2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Techno hand-held controller",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "WinCNC (option)",
+     "gcarve_post": "wincnc-single",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration pad"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://technocnc.com/wp-content/uploads/2019/03/Techno-2019-catalog.pdf",
+    "https://www.technocnc.com/hdii-tabletop-cnc-router/",
+    "https://technocnc.com/wp-content/uploads/2022/03/HD-II-Tabletop.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "2019 catalog: 20.5 x 36 in process area, 7.5 in gantry clearance, 9.5 in Z stroke (the same catalog's bullet list says 20 x 35; the current page and 2022 brochure say 20 x 30 in). Ball screws on all axes, brushless (micro)steppers (servo optional), phenolic vacuum table with T-slots; WinCNC controller is an option."
+  },
+  {
+   "id": "techno-cnc-hd-mini",
+   "maker": "Techno CNC",
+   "model": "HD Mini",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 23,
+    "y": 35,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 584,
+    "y": 889,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 2 HP air-cooled high frequency collet spindle",
+     "power_kw": null,
+     "power_hp": 2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Techno hand-held controller",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration pad"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://technocnc.com/wp-content/uploads/2019/03/Techno-2019-catalog.pdf",
+    "https://web.archive.org/web/2019/https://technocnc.com/hd-mini-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "2 x 3 ft bench machine: 23 x 35 in process area, ball screws on all axes, hand-held micro-stepper controller (G/M code or DXF). Z not published."
+  },
+  {
+   "id": "techno-cnc-lc-4848",
+   "maker": "Techno CNC",
+   "model": "LC Series (original)",
+   "variant": "4848",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 48,
+    "y": 48,
+    "z": 5.0
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 1219,
+    "z": 127
+   },
+   "gantry_clearance_in": 5.0,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 800,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20320,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20320,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Techno Windows-based G-code interface",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2012/http://www.technocnc.com/cnc-router-systems/lc-series-cnc-router.htm"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Original LC Series (2001 to about 2015, 2012 page): process area X x Y x Z, gantry height 5 in, cut and rapid 800 (in/min). Precision ball screw drives, THK bearings, closed-loop servos, aluminum T-slot table; collet or ATC spindles 1-16 HP offered (none standard)."
+  },
+  {
+   "id": "techno-cnc-lc-4896",
+   "maker": "Techno CNC",
+   "model": "LC Series (original)",
+   "variant": "4896",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 48,
+    "y": 96,
+    "z": 5.0
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 2438,
+    "z": 127
+   },
+   "gantry_clearance_in": 5.0,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 800,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20320,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20320,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Techno Windows-based G-code interface",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2012/http://www.technocnc.com/cnc-router-systems/lc-series-cnc-router.htm"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Original LC Series (2001 to about 2015, 2012 page): process area X x Y x Z, gantry height 5 in, cut and rapid 800 (in/min). Precision ball screw drives, THK bearings, closed-loop servos, aluminum T-slot table; collet or ATC spindles 1-16 HP offered (none standard)."
+  },
+  {
+   "id": "techno-cnc-lc-59120",
+   "maker": "Techno CNC",
+   "model": "LC Series (original)",
+   "variant": "59120",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 59,
+    "y": 120,
+    "z": 5.0
+   },
+   "work_area_mm": {
+    "x": 1499,
+    "y": 3048,
+    "z": 127
+   },
+   "gantry_clearance_in": 5.0,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 800,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20320,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20320,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Techno Windows-based G-code interface",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2012/http://www.technocnc.com/cnc-router-systems/lc-series-cnc-router.htm"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Original LC Series (2001 to about 2015, 2012 page): process area X x Y x Z, gantry height 5 in, cut and rapid 800 (in/min). Precision ball screw drives, THK bearings, closed-loop servos, aluminum T-slot table; collet or ATC spindles 1-16 HP offered (none standard)."
+  },
+  {
+   "id": "techno-cnc-lc-78120",
+   "maker": "Techno CNC",
+   "model": "LC Series (original)",
+   "variant": "78120",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 78,
+    "y": 120,
+    "z": 5.0
+   },
+   "work_area_mm": {
+    "x": 1981,
+    "y": 3048,
+    "z": 127
+   },
+   "gantry_clearance_in": 5.0,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 800,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20320,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20320,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Techno Windows-based G-code interface",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2012/http://www.technocnc.com/cnc-router-systems/lc-series-cnc-router.htm"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Original LC Series (2001 to about 2015, 2012 page): process area X x Y x Z, gantry height 5 in, cut and rapid 800 (in/min). Precision ball screw drives, THK bearings, closed-loop servos, aluminum T-slot table; collet or ATC spindles 1-16 HP offered (none standard)."
+  },
+  {
+   "id": "techno-cnc-lc-tabletop-3024",
+   "maker": "Techno CNC",
+   "model": "LC Series Tabletop",
+   "variant": "3024",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 30,
+    "y": 24,
+    "z": 8.9
+   },
+   "work_area_mm": {
+    "x": 762,
+    "y": 610,
+    "z": 226
+   },
+   "gantry_clearance_in": 5.875,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 250,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 6350,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Techno Windows-based G-code interface",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2012/http://www.technocnc.com/cnc-router-systems/lc-series-tabletop-cnc-router.htm"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "2012 page: process area X x Y, bridge clearance 5-7/8 in, Z travel 8.9 in, max speed 250 in/min, repeatability 0.001 in, resolution 0.0002 in."
+  },
+  {
+   "id": "techno-cnc-lc-tabletop-5024",
+   "maker": "Techno CNC",
+   "model": "LC Series Tabletop",
+   "variant": "5024",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 50,
+    "y": 24,
+    "z": 8.9
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 610,
+    "z": 226
+   },
+   "gantry_clearance_in": 5.875,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 250,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 6350,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Techno Windows-based G-code interface",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2012/http://www.technocnc.com/cnc-router-systems/lc-series-tabletop-cnc-router.htm"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "2012 page: process area X x Y, bridge clearance 5-7/8 in, Z travel 8.9 in, max speed 250 in/min, repeatability 0.001 in, resolution 0.0002 in."
+  },
+  {
+   "id": "techno-cnc-lc-new-generation",
+   "maker": "Techno CNC",
+   "model": "LC Series (New Generation)",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP ATC spindle (ISO30, ER)",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30 / ER",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Techno hand-held controller",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position tool rack at the rear"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration pad"
+   },
+   "z_zero": [
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.technocnc.com/lc-series-the-new-generation/",
+    "https://www.technocnc.com/wp-content/uploads/2025/03/LC-Series-New-Generation-Brochure-2024-7.pdf"
+   ],
+   "notes": "Revived LC line (2024-), 4x4, 4x8 and 5x10 ft sizes; travel and speeds not published. All steel, ball screws on all 3 axes; 12 in gantry clearance in the summary, 11 in raised gantry in the feature text, AC servos, 5 pop-up pins, pneumatic vacuum hood."
+  },
+  {
+   "id": "techno-cnc-lc-plus",
+   "maker": "Techno CNC",
+   "model": "LC Plus (New Generation)",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP ATC spindle (ISO30, ER)",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30 / ER",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Industrial PC-based control system",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position tool rack at the rear"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration pad"
+   },
+   "z_zero": [
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.technocnc.com/lc-plus-the-new-generation-cnc-router/"
+   ],
+   "notes": "Revived LC line (2024-), 4x4, 4x8 and 5x10 ft sizes; travel and speeds not published. All steel, helical rack and pinion X/Y, ball screw Z; 12 in raised gantry; 12 HP Hiteco ATC spindle per the description (HSD not stated), 10 HP Becker vacuum pump, AC servos, 5 pop-up pins, pneumatic vacuum hood."
+  },
+  {
+   "id": "techno-cnc-titan-4848",
+   "maker": "Techno CNC",
+   "model": "Titan Series",
+   "variant": "4848",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 50,
+    "y": 50,
+    "z": 11.5
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 1270,
+    "z": 292
+   },
+   "gantry_clearance_in": 7.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD ATC spindle (ISO30, ER)",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30 / ER",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Techno hand-held controller",
+     "gcarve_post": "techno-in",
+     "default": true
+    },
+    {
+     "name": "PC-based system (option)",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position tool rack"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "closed-loop touch pad (tool length) + secondary Z-zero pad"
+   },
+   "z_zero": [
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://technocnc.com/wp-content/uploads/2019/03/Techno-2019-catalog.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "2019 catalog: 7.5 in gantry clearance, 11.5 in Z stroke, helical rack and pinion. Speed columns: stepper 800, servo 1500 (in/min, cut/rapid not specified)."
+  },
+  {
+   "id": "techno-cnc-atlas-4848",
+   "maker": "Techno CNC",
+   "model": "Atlas Series",
+   "variant": "4848",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 50,
+    "y": 50,
+    "z": 11.5
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 1270,
+    "z": 292
+   },
+   "gantry_clearance_in": 7.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 4 HP high frequency collet spindle",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Techno hand-held controller",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration pad"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://technocnc.com/wp-content/uploads/2019/03/Techno-2019-catalog.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "2019 catalog: 7.5 in gantry clearance, 11.5 in Z stroke, helical rack and pinion, brushless steppers (servo optional). Speed columns: stepper 800, servo 1500 (in/min)."
+  },
+  {
+   "id": "techno-cnc-goliath-4848",
+   "maker": "Techno CNC",
+   "model": "Goliath Series",
+   "variant": "4848",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 50,
+    "y": 50,
+    "z": 29.5
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 1270,
+    "z": 749
+   },
+   "gantry_clearance_in": 23.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD ATC spindle (ISO30, ER)",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30 / ER",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25400,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1200,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30480,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Techno hand-held controller",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position tool rack"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration pads"
+   },
+   "z_zero": [
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://technocnc.com/wp-content/uploads/2019/03/Techno-2019-catalog.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "2019 catalog: tall-gantry machine (23.5 in gantry height, 29.5 in Z process; features list says 24 in gantry with 30 in Z stroke), Yaskawa AC servos."
+  },
+  {
+   "id": "techno-cnc-titan-4896",
+   "maker": "Techno CNC",
+   "model": "Titan Series",
+   "variant": "4896",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 50,
+    "y": 97,
+    "z": 11.5
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 2464,
+    "z": 292
+   },
+   "gantry_clearance_in": 7.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD ATC spindle (ISO30, ER)",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30 / ER",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Techno hand-held controller",
+     "gcarve_post": "techno-in",
+     "default": true
+    },
+    {
+     "name": "PC-based system (option)",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position tool rack"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "closed-loop touch pad (tool length) + secondary Z-zero pad"
+   },
+   "z_zero": [
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://technocnc.com/wp-content/uploads/2019/03/Techno-2019-catalog.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "2019 catalog: 7.5 in gantry clearance, 11.5 in Z stroke, helical rack and pinion. Speed columns: stepper 800, servo 1500 (in/min, cut/rapid not specified)."
+  },
+  {
+   "id": "techno-cnc-atlas-4896",
+   "maker": "Techno CNC",
+   "model": "Atlas Series",
+   "variant": "4896",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 50,
+    "y": 97,
+    "z": 11.5
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 2464,
+    "z": 292
+   },
+   "gantry_clearance_in": 7.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 4 HP high frequency collet spindle",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Techno hand-held controller",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration pad"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://technocnc.com/wp-content/uploads/2019/03/Techno-2019-catalog.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "2019 catalog: 7.5 in gantry clearance, 11.5 in Z stroke, helical rack and pinion, brushless steppers (servo optional). Speed columns: stepper 800, servo 1500 (in/min)."
+  },
+  {
+   "id": "techno-cnc-goliath-4896",
+   "maker": "Techno CNC",
+   "model": "Goliath Series",
+   "variant": "4896",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 50,
+    "y": 97,
+    "z": 29.5
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 2464,
+    "z": 749
+   },
+   "gantry_clearance_in": 23.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD ATC spindle (ISO30, ER)",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30 / ER",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25400,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1200,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30480,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Techno hand-held controller",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position tool rack"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration pads"
+   },
+   "z_zero": [
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://technocnc.com/wp-content/uploads/2019/03/Techno-2019-catalog.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "2019 catalog: tall-gantry machine (23.5 in gantry height, 29.5 in Z process; features list says 24 in gantry with 30 in Z stroke), Yaskawa AC servos."
+  },
+  {
+   "id": "techno-cnc-titan-60120",
+   "maker": "Techno CNC",
+   "model": "Titan Series",
+   "variant": "60120",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 121,
+    "z": 11.5
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3073,
+    "z": 292
+   },
+   "gantry_clearance_in": 7.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD ATC spindle (ISO30, ER)",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30 / ER",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Techno hand-held controller",
+     "gcarve_post": "techno-in",
+     "default": true
+    },
+    {
+     "name": "PC-based system (option)",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position tool rack"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "closed-loop touch pad (tool length) + secondary Z-zero pad"
+   },
+   "z_zero": [
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://technocnc.com/wp-content/uploads/2019/03/Techno-2019-catalog.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "2019 catalog: 7.5 in gantry clearance, 11.5 in Z stroke, helical rack and pinion. Speed columns: stepper 800, servo 1500 (in/min, cut/rapid not specified)."
+  },
+  {
+   "id": "techno-cnc-atlas-60120",
+   "maker": "Techno CNC",
+   "model": "Atlas Series",
+   "variant": "60120",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 61,
+    "y": 121,
+    "z": 11.5
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3073,
+    "z": 292
+   },
+   "gantry_clearance_in": 7.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 4 HP high frequency collet spindle",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Techno hand-held controller",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration pad"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://technocnc.com/wp-content/uploads/2019/03/Techno-2019-catalog.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "2019 catalog: 7.5 in gantry clearance, 11.5 in Z stroke, helical rack and pinion, brushless steppers (servo optional). Speed columns: stepper 800, servo 1500 (in/min)."
+  },
+  {
+   "id": "techno-cnc-goliath-60120",
+   "maker": "Techno CNC",
+   "model": "Goliath Series",
+   "variant": "60120",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 121,
+    "z": 29.5
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3073,
+    "z": 749
+   },
+   "gantry_clearance_in": 23.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD ATC spindle (ISO30, ER)",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30 / ER",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25400,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1200,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30480,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Techno hand-held controller",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position tool rack"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration pads"
+   },
+   "z_zero": [
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://technocnc.com/wp-content/uploads/2019/03/Techno-2019-catalog.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "2019 catalog: tall-gantry machine (23.5 in gantry height, 29.5 in Z process; features list says 24 in gantry with 30 in Z stroke), Yaskawa AC servos."
+  },
+  {
+   "id": "techno-cnc-venture-plus-4896",
+   "maker": "Techno CNC",
+   "model": "Venture Plus",
+   "variant": "4896",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 50,
+    "y": 97,
+    "z": 7.5
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 2464,
+    "z": 190
+   },
+   "gantry_clearance_in": 7.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD ATC spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 HP ATC spindle",
+     "power_kw": null,
+     "power_hp": 16,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30480,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Osai PC-based industrial CNC controller (Techno G-code interface)",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "8-position rotary carousel"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://technocnc.com/wp-content/uploads/2019/03/Techno-2019-catalog.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "2019 catalog: cabinet nesting machine, 1.5 kW AC servos, helical rack and pinion X/Y, ballscrew Z, Osai controller, drill bank and aggregate options."
+  },
+  {
+   "id": "techno-cnc-venture-plus-60120",
+   "maker": "Techno CNC",
+   "model": "Venture Plus",
+   "variant": "60120",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 121,
+    "z": 7.5
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3073,
+    "z": 190
+   },
+   "gantry_clearance_in": 7.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP HSD ATC spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 HP ATC spindle",
+     "power_kw": null,
+     "power_hp": 16,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30480,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Osai PC-based industrial CNC controller (Techno G-code interface)",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "8-position rotary carousel"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://technocnc.com/wp-content/uploads/2019/03/Techno-2019-catalog.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "2019 catalog: cabinet nesting machine, 1.5 kW AC servos, helical rack and pinion X/Y, ballscrew Z, Osai controller, drill bank and aggregate options."
+  },
+  {
+   "id": "techno-cnc-lc-3024",
+   "maker": "Techno CNC",
+   "model": "LC Series (original)",
+   "variant": "3024",
+   "years": "1986-2009 (older models page)",
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 30,
+    "y": 24,
+    "z": 5
+   },
+   "work_area_mm": {
+    "x": 762,
+    "y": 610,
+    "z": 127
+   },
+   "gantry_clearance_in": 5,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 250,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 6350,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Techno Windows-based G-code interface",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.technocnc.com/older-models/"
+   ],
+   "notes": "Older-models page: work envelope 30 x 24 in, bed 30 x 56 in, Z travel 5 in, bridge clearance 5 in, speed 250 in/min (optional 900 in/min upgrade), repeatability 0.001 in, resolution 0.0002 in. Closed-loop servos, ball screws on all axes, aluminium T-slot table.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "techno-cnc-lc-tabletop-4040",
+   "maker": "Techno CNC",
+   "model": "LC Tabletop Series",
+   "variant": "4040",
+   "years": "1986-2009 (older models page)",
+   "class": "hobby",
+   "work_area_in": {
+    "x": 40,
+    "y": 40,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1016,
+    "y": 1016,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Techno Windows-based G-code interface",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.technocnc.com/older-models/"
+   ],
+   "notes": "Older-models page lists the 4040 with a 40 x 40 in work envelope; the other columns are only filled for the 3024 (250 in/min, 8.9 in Z, 5 in bridge). Ball screws on all axes, THK rails, T-slot table.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   }
+  },
+  {
+   "id": "techno-cnc-davinci-servo-1419",
+   "maker": "Techno CNC",
+   "model": "DaVinci Servo",
+   "variant": "1419",
+   "years": "1986-2009 (older models page)",
+   "class": "desktop",
+   "work_area_in": {
+    "x": 19.6,
+    "y": 14.7,
+    "z": 6.8
+   },
+   "work_area_mm": {
+    "x": 498,
+    "y": 373,
+    "z": 173
+   },
+   "gantry_clearance_in": 4.9,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 250,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 6350,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Techno Windows-based G-code interface",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.technocnc.com/older-models/"
+   ],
+   "notes": "Education machine (F1 / CO2 car). Work envelope 19.6 x 14.7 in, Z 6.8 in, bridge clearance 4.9 in, max 250 in/min, repeatability 0.004 in, 150 lb. Closed-loop servos, ball screws, tool calibration pad.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "techno-cnc-davinci-stepper-d1012",
+   "maker": "Techno CNC",
+   "model": "DaVinci Stepper",
+   "variant": "D1012",
+   "years": "1986-2009 (older models page)",
+   "class": "desktop",
+   "work_area_in": {
+    "x": 10,
+    "y": 12,
+    "z": 5
+   },
+   "work_area_mm": {
+    "x": 254,
+    "y": 305,
+    "z": 127
+   },
+   "gantry_clearance_in": 3.5,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 140,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 3556,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Techno Windows-based G-code interface",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.technocnc.com/older-models/"
+   ],
+   "notes": "Fixed bridge, moving table. Travel 10 x 12 in, Z 5 in, bridge clearance 3.5 in, 140 in/min, repeatability/resolution 0.0004 in, 85 lb. Ball screws.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "techno-cnc-premium-5950",
+   "maker": "Techno CNC",
+   "model": "Premium Series",
+   "variant": "5950",
+   "years": "1986-2009 (older models page)",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59,
+    "y": 50,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1499,
+    "y": 1270,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 800,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20320,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Techno Windows-based G-code interface (PC touchscreen)",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.technocnc.com/older-models/"
+   ],
+   "notes": "Work envelope 59 x 50 in, cutting speed 800 in/min, repeatability 0.001 in, resolution 0.0002 in. Ball screws, THK rails, closed-loop AC servos, PC touchscreen.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "techno-cnc-premium-5996",
+   "maker": "Techno CNC",
+   "model": "Premium Series",
+   "variant": "5996",
+   "years": "1986-2009 (older models page)",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59,
+    "y": 96,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1499,
+    "y": 2438,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 800,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20320,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Techno Windows-based G-code interface (PC touchscreen)",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.technocnc.com/older-models/"
+   ],
+   "notes": "Work envelope 59 x 96 in, cutting speed 800 in/min, repeatability 0.001 in, resolution 0.0002 in. Ball screws, THK rails, closed-loop AC servos, PC touchscreen.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "techno-cnc-premium-59120",
+   "maker": "Techno CNC",
+   "model": "Premium Series",
+   "variant": "59120",
+   "years": "1986-2009 (older models page)",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1499,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 800,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20320,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Techno Windows-based G-code interface (PC touchscreen)",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.technocnc.com/older-models/"
+   ],
+   "notes": "Work envelope 59 x 120 in, cutting speed 800 in/min, repeatability 0.001 in, resolution 0.0002 in. Ball screws, THK rails, closed-loop AC servos, PC touchscreen.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "techno-cnc-bt1212",
+   "maker": "Techno CNC",
+   "model": "BT1212 Benchtop",
+   "variant": "1212",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 12,
+    "y": 12,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 305,
+    "y": 305,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "800 W (1 HP) variable-speed spindle",
+     "power_kw": 0.8,
+     "power_hp": 1,
+     "rpm_min": 8000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Techno hand-held controller",
+     "gcarve_post": "techno-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.technocnc.com/bt1212-tabletop-router/",
+    "https://www.technocnc.com/stem-educational-cnc-routers/"
+   ],
+   "notes": "12 x 12 in process area, full safety enclosure, aluminium T-slot table, brushless micro-stepper motors, LED light; 4th-axis rotary (50 mm chuck) and stand optional. Spindle range also given as 6000-24000 RPM.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   }
+  }
+ ]
+}

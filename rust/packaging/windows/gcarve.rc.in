@@ -1,0 +1,25 @@
+1 ICON "@ICON@"
+1 VERSIONINFO
+FILEVERSION @V4@
+PRODUCTVERSION @V4@
+FILEOS 0x40004
+FILETYPE 0x1
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904B0"
+    BEGIN
+      VALUE "CompanyName", "GCarve"
+      VALUE "FileDescription", "GCarve"
+      VALUE "FileVersion", "@VERSION@"
+      VALUE "InternalName", "gcarve"
+      VALUE "OriginalFilename", "gcarve.exe"
+      VALUE "ProductName", "GCarve"
+      VALUE "ProductVersion", "@VERSION@"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 1200
+  END
+END

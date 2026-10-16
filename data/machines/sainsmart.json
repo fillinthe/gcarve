@@ -1,0 +1,1814 @@
+{
+ "maker": "SainSmart Genmitsu",
+ "website": "https://www.sainsmart.com",
+ "machines": [
+  {
+   "id": "sainsmart-genmitsu-3018-prover",
+   "maker": "SainSmart Genmitsu",
+   "model": "3018-PROVer",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 7.09,
+    "z": 1.77
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 180,
+    "z": 45
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "775 DC motor, 12-24 V (rated 60 W, max 120 W)",
+     "power_kw": 0.06,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 10000,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 (Genmitsu controller)",
+     "gcarve_post": "genmitsu-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sainsmart.com/products/fully-assembled-genmitsu-cnc-router-3018-prover-kit"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the published mm work area"
+   },
+   "notes": "Discontinued. Page gives two work areas: 300x180x45 mm (comparison table, used here) and 'effective engraving area' 260x155x35 mm. GRBL 1.1 with offline controller."
+  },
+  {
+   "id": "sainsmart-genmitsu-3018-prover-v2",
+   "maker": "SainSmart Genmitsu",
+   "model": "3018-PROVer V2",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.4,
+    "y": 7.1,
+    "z": 1.6
+   },
+   "work_area_mm": {
+    "x": 290,
+    "y": 180,
+    "z": 40
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "775 spindle motor (42 mm)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 (Genmitsu controller)",
+     "gcarve_post": "genmitsu-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "aluminum spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sainsmart.com/products/genmitsu-3018-prover-v2-upgraded-semi-assembled-cnc-router-kit"
+   ],
+   "notes": "Stock spindle named only in the FAQ (775, 42 mm); power/RPM not published. 32-bit board, TB67S109 drivers."
+  },
+  {
+   "id": "sainsmart-genmitsu-3018-rex",
+   "maker": "SainSmart Genmitsu",
+   "model": "3018 REX",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 7.09,
+    "z": 2.36
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 180,
+    "z": 60
+   },
+   "gantry_clearance_in": 3.58,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 118.11,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 3000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 (Genmitsu controller)",
+     "gcarve_post": "genmitsu-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot aluminum platform",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sainsmart.com/products/3018-rex"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "91 mm from the feature text, converted",
+    "rapid_mm_min": "published 'Max Speed' (GRBL max rate)",
+    "rapid_ipm": "converted from the published mm rapid"
+   },
+   "notes": "X linear guide (HG15) + lead screws. Spindle not specified on the page. GRBL 1.1h compatible, WiFi app."
+  },
+  {
+   "id": "sainsmart-genmitsu-3020-pro-max-v2",
+   "maker": "SainSmart Genmitsu",
+   "model": "3020-PRO MAX",
+   "variant": "V2",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 8.07,
+    "z": 3.07
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 205,
+    "z": 78
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "stock spindle (power/RPM not published)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER11 1/8\"",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 78.74,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 2000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 (Genmitsu controller)",
+     "gcarve_post": "genmitsu-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "aluminum spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sainsmart.com/products/3020-pro-max-v2"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published 'Max Speed' (GRBL max rate)",
+    "drive": "lead screws assumed from the 3020 family; page only names guide rails",
+    "rapid_ipm": "converted from the published mm rapid"
+   },
+   "notes": "Grbl 1.1, TB67S109 drivers. Photoelectric Z-probe."
+  },
+  {
+   "id": "sainsmart-genmitsu-3020-pro-ultra",
+   "maker": "SainSmart Genmitsu",
+   "model": "3020-PRO Ultra",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 8.07,
+    "z": 3.07
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 205,
+    "z": 78
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "710 W trim router (6-speed dial)",
+     "power_kw": 0.71,
+     "power_hp": null,
+     "rpm_min": 6500,
+     "rpm_max": 30000,
+     "collet": "1/8\" ER11",
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 (Genmitsu controller)",
+     "gcarve_post": "genmitsu-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sainsmart.com/products/3020-pro-ultra"
+   ],
+   "notes": "T8 lead screws, NEMA17 60 mm steppers. Photoelectric Z-probe, offline controller included."
+  },
+  {
+   "id": "sainsmart-genmitsu-3030-prover-ultra",
+   "maker": "SainSmart Genmitsu",
+   "model": "3030-PROVer Ultra",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 11.81,
+    "z": 3.07
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 300,
+    "z": 78
+   },
+   "gantry_clearance_in": 3.66,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "710 W AC spindle",
+     "power_kw": 0.71,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 78.74,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 2000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 (Genmitsu controller)",
+     "gcarve_post": "genmitsu-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sainsmart.com/products/3030-prover-max",
+    "https://genmitsu.s3.dualstack.us-east-1.amazonaws.com/101-60-3030PU/Genmitsu_3030_PROVer_Ultra_Manual_V1.0_2512.pdf"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "93 mm 'max pass-through height' converted",
+    "rapid_mm_min": "published 'Max Speed' (GRBL max rate)",
+    "rapid_ipm": "converted from the published mm rapid"
+   },
+   "notes": "Manual: GRBL 1.1h, HG15 linear guides + ball screws, 710 W AC spindle (RPM not given). Product FAQ mentions a 775 spindle (conflict). A 300 W variant is sold as 3030-PROVer MAX."
+  },
+  {
+   "id": "sainsmart-genmitsu-4040-pro",
+   "maker": "SainSmart Genmitsu",
+   "model": "4040-PRO",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 15.75,
+    "z": 3.1
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 400,
+    "z": 78
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "75 W spindle",
+     "power_kw": 0.075,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 9000,
+     "collet": "ER11 (4 mm + 3.175 mm)",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 78.74,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 2000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 (Genmitsu controller)",
+     "gcarve_post": "genmitsu-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "MDF spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sainsmart.com/products/genmitsu-4040-pro-semi-assembly-desktop-cnc-machine-for-carving-and-cutting"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published 'Max Speed' (GRBL max rate)",
+    "rapid_ipm": "converted from the published mm rapid"
+   },
+   "notes": "NEMA17 steppers, 32-bit GRBL board (TB67S109). 42/52 mm spindle mount; 65/69 mm mounts sold separately."
+  },
+  {
+   "id": "sainsmart-genmitsu-4040-pro-max",
+   "maker": "SainSmart Genmitsu",
+   "model": "4040-PRO MAX",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 15.75,
+    "z": 3.1
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 400,
+    "z": 78
+   },
+   "gantry_clearance_in": 3.94,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "710 W trim router (6-speed dial)",
+     "power_kw": 0.71,
+     "power_hp": null,
+     "rpm_min": 6500,
+     "rpm_max": 30000,
+     "collet": "ER11 (4 mm + 3.175 mm)",
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 78.74,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 2000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 (Genmitsu controller)",
+     "gcarve_post": "genmitsu-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "MDF spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sainsmart.com/products/4040-pro-max"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "100 mm Z pass height converted",
+    "rapid_mm_min": "published 'Max Speed' (GRBL max rate)",
+    "rapid_ipm": "converted from the published mm rapid"
+   },
+   "notes": "Y lead screw, X optical rail, Z linear guide; NEMA17 steppers; GRBL 32-bit."
+  },
+  {
+   "id": "sainsmart-genmitsu-4040-reno",
+   "maker": "SainSmart Genmitsu",
+   "model": "4040 RENO",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 15.75,
+    "z": 2.99
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 400,
+    "z": 76
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "75 W spindle",
+     "power_kw": 0.075,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 9000,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 78.74,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 2000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 (Genmitsu controller)",
+     "gcarve_post": "genmitsu-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "MDF spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sainsmart.com/products/4040-reno"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published 'Max Speed' (GRBL max rate)",
+    "work_area_in": "converted from the published mm work area",
+    "rapid_ipm": "converted from the published mm rapid"
+   },
+   "notes": "Belt-driven X/Y. 42/52 mm spindle mounts."
+  },
+  {
+   "id": "sainsmart-genmitsu-proverxl-4030-v2",
+   "maker": "SainSmart Genmitsu",
+   "model": "PROVerXL 4030",
+   "variant": "V2",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 15.8,
+    "y": 11.8,
+    "z": 4.3
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 300,
+    "z": 110
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DC spindle 0-48 V (max 400 W)",
+     "power_kw": 0.4,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 10000,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 196.85,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 (Genmitsu controller)",
+     "gcarve_post": "genmitsu-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot hybrid spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sainsmart.com/products/proverxl-4030-v2"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published 'Max Speed' (GRBL max rate)",
+    "rapid_ipm": "converted from the published mm rapid"
+   },
+   "notes": "1204 ball screws, NEMA23 closed-loop steppers, GRBL 1.1h. Low max spindle RPM (10000) for small bits. Extra 65 mm holder included."
+  },
+  {
+   "id": "sainsmart-genmitsu-proverxl-4030s",
+   "maker": "SainSmart Genmitsu",
+   "model": "PROVerXL 4030S",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 11.81,
+    "z": 4.72
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 300,
+    "z": 120
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "710 W trim router (6-speed dial)",
+     "power_kw": 0.71,
+     "power_hp": null,
+     "rpm_min": 6500,
+     "rpm_max": 30000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 196.85,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 (Genmitsu controller)",
+     "gcarve_post": "genmitsu-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "MDF spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sainsmart.com/products/proverxl-4030s"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published 'Max Speed' (GRBL max rate)",
+    "rapid_ipm": "converted from the published mm rapid"
+   },
+   "notes": "T-screw drives (XY on wheels, Z linear guide), NEMA23 open-loop, GRBL 1.1h 32-bit. Text also mentions a 130 mm Z pass height."
+  },
+  {
+   "id": "sainsmart-genmitsu-proverxl-6050-plus",
+   "maker": "SainSmart Genmitsu",
+   "model": "PROVerXL 6050 Plus",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.6,
+    "y": 19.7,
+    "z": 4.5
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 500,
+    "z": 115
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DC spindle 0-48 V, 300 W",
+     "power_kw": 0.3,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 12000,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 78.74,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 2000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 (Genmitsu controller)",
+     "gcarve_post": "genmitsu-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "hybrid spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sainsmart.com/products/proverxl-6050-plus"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published 'Max Speed' (GRBL max rate)",
+    "drive": "description says dual linear rails + lead screws",
+    "rapid_ipm": "converted from the published mm rapid"
+   },
+   "notes": "NEMA23 open-loop, TB6560 drivers, GRBL 1.1h. Extra 65 mm spindle holder included."
+  },
+  {
+   "id": "sainsmart-genmitsu-proverxl-2x2",
+   "maker": "SainSmart Genmitsu",
+   "model": "PROVerXL 2x2",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 26.73,
+    "y": 26.73,
+    "z": 4.45
+   },
+   "work_area_mm": {
+    "x": 679,
+    "y": 679,
+    "z": 113
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "710 W trim router (6-speed dial)",
+     "power_kw": 0.71,
+     "power_hp": null,
+     "rpm_min": 6500,
+     "rpm_max": 30000,
+     "collet": "ER11 1/4\" + 1/8\"",
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 196.85,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 (Genmitsu controller)",
+     "gcarve_post": "genmitsu-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "hybrid MDF/aluminum spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sainsmart.com/products/proverxl-2x2"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published 'Max Speed' (GRBL max rate)",
+    "spindles[0].rpm_min": "page gives only 30,000 RPM; 6500 min assumed from the same 710 W router on other Genmitsu pages",
+    "work_area_in": "converted from the published mm work area",
+    "rapid_ipm": "converted from the published mm rapid"
+   },
+   "notes": "Ball screws X/Y 20 mm, Z 12 mm; HG20/HG15 guides; NEMA23 closed-loop; GRBL 1.1h 32-bit. Optional 1.5-2.2 kW water-cooled spindle. 90 kg."
+  },
+  {
+   "id": "sainsmart-genmitsu-cubiko",
+   "maker": "SainSmart Genmitsu",
+   "model": "Cubiko",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 5.91,
+    "y": 4.33,
+    "z": 1.57
+   },
+   "work_area_mm": {
+    "x": 150,
+    "y": 110,
+    "z": 40
+   },
+   "gantry_clearance_in": 2.28,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "75 W spindle",
+     "power_kw": 0.075,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 10000,
+     "collet": "ER11 1/8\"",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 78.74,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 2000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 (Genmitsu controller)",
+     "gcarve_post": "genmitsu-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto Z probing"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sainsmart.com/products/cubiko",
+    "https://www.sainsmart.com/cdn/shop/files/specification-ks.png"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published 'Max Speed' (GRBL max rate)",
+    "rapid_ipm": "converted from the published mm rapid"
+   },
+   "notes": "Enclosed, height-map auto leveling for PCB milling. GRBL compatible, USB/WiFi."
+  },
+  {
+   "id": "sainsmart-genmitsu-pronax-spark",
+   "maker": "SainSmart Genmitsu",
+   "model": "PRONAX Spark",
+   "variant": "6090",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 35.43,
+    "z": 4.65
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 900,
+    "z": 118
+   },
+   "gantry_clearance_in": 5.87,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled spindle",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 0,
+     "rpm_max": 18000,
+     "collet": "ER20",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 244.92,
+    "z": 195.75
+   },
+   "rapid_mm_min": {
+    "xy": 6221,
+    "z": 4972
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "NAX control box, GRBL 1.1f",
+     "gcarve_post": "genmitsu-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "optional NAX5 5-position ATC (RS485)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-probe block; NAX5 ATC adds an integrated tool probe"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "hybrid spoilboard (option)",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sainsmart.com/products/pronax-spark-atc-cnc",
+    "https://www.sainsmart.com/products/nax5-atc-system-for-pronax"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "149 mm 'material clearance' converted",
+    "rapid_mm_min": "published 'Max Speed' (GRBL max rate)",
+    "work_area_in": "converted from the published mm work area",
+    "rapid_ipm": "converted from the published mm rapid"
+   },
+   "notes": "1605 ball screws X/Y, 1204 Z; closed-loop NEMA24. 0-18000 RPM VFD spindle (max lower than typical 24000)."
+  },
+  {
+   "id": "sainsmart-genmitsu-pronax-forge",
+   "maker": "SainSmart Genmitsu",
+   "model": "PRONAX Forge",
+   "variant": "8080",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 31.5,
+    "y": 31.5,
+    "z": 4.65
+   },
+   "work_area_mm": {
+    "x": 800,
+    "y": 800,
+    "z": 118
+   },
+   "gantry_clearance_in": 5.87,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled spindle",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 0,
+     "rpm_max": 18000,
+     "collet": "ER20",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 118.11,
+    "z": 118.11
+   },
+   "rapid_mm_min": {
+    "xy": 3000,
+    "z": 3000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "NAX control box, GRBL 1.1f",
+     "gcarve_post": "genmitsu-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "optional NAX5 5-position ATC (RS485)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-probe block; NAX5 ATC adds an integrated tool probe"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "hybrid spoilboard (option)",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sainsmart.com/products/pronax-forge-atc-cnc",
+    "https://www.sainsmart.com/products/nax5-atc-system-for-pronax"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "149 mm 'material clearance' converted",
+    "rapid_mm_min": "published 'Max Speed' (GRBL max rate)",
+    "variant": "named from the 800x800 work area",
+    "work_area_in": "converted from the published mm work area",
+    "rapid_ipm": "converted from the published mm rapid"
+   },
+   "notes": "Published max speed 3000 mm/min (slower than the smaller Spark's 6221). 1605/1204 ball screws, closed-loop NEMA24."
+  },
+  {
+   "id": "sainsmart-genmitsu-proverxl-4x4",
+   "maker": "SainSmart Genmitsu",
+   "model": "PROVerXL 4x4",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 51.18,
+    "z": 4.65
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 1300,
+    "z": 118
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "710 W trim router (Φ65 mm)",
+     "power_kw": 0.71,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "1.5-2.2 kW water-cooled spindle (optional)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 197,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL 1.1h (32-bit Genmitsu controller, Wi-Fi app)",
+     "gcarve_post": "genmitsu-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-probe"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "hybrid spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sainsmart.com/products/proverxl-4x4-cnc"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Ball screws X/Y Φ20, Z Φ12; linear guides HG20 (Y) / HG15 (X, Z). NEMA23 closed-loop on X/Y, max speed 5000 mm/min. Optional second Z axis: work area 600 x 1300 x 118 mm with dual Z."
+  },
+  {
+   "id": "sainsmart-genmitsu-3018-pro",
+   "maker": "SainSmart Genmitsu",
+   "model": "3018-PRO",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 7.09,
+    "z": 1.77
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 180,
+    "z": 45
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "775 DC motor",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1f (Genmitsu V2 controller, offline controller option)",
+     "gcarve_post": "genmitsu-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://computers.woot.com/offers/sainsmart-genmitsu-cnc-3018-pro-router-kit-8",
+    "https://web.archive.org/web/2024/https://www.sainsmart.com/products/fully-assembled-genmitsu-cnc-router-3018-pro-diy-kit"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Effective engraving area 300 x 180 x 45 mm (depth 1.8 in). PF + aluminum frame. Discontinued."
+  },
+  {
+   "id": "sainsmart-genmitsu-3018-prover-mach3",
+   "maker": "SainSmart Genmitsu",
+   "model": "3018-PROVer Mach3",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 10.24,
+    "y": 6.1,
+    "z": 1.38
+   },
+   "work_area_mm": {
+    "x": 260,
+    "y": 155,
+    "z": 35
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "775 motor, 24 V",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 9000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3 controller board (also DrufelCNC)",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2024/https://www.sainsmart.com/products/genmitsu-3018prover-mach3-cnc-router-machine"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "All-aluminum 3018-PROVer frame with a Mach3 (parallel/USB) controller. Laser not supported. Discontinued."
+  },
+  {
+   "id": "sainsmart-genmitsu-3018-mx3",
+   "maker": "SainSmart Genmitsu",
+   "model": "3018-MX3",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 10.24,
+    "y": 6.1,
+    "z": 1.38
+   },
+   "work_area_mm": {
+    "x": 260,
+    "y": 155,
+    "z": 35
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "775 motor, 24 V",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 9000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3 controller (not GRBL compatible)",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2024/https://www.sainsmart.com/products/open-box-sainsmart-genmitsu-cnc-router-3018-mx3-diy-kit"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Spec list gives effective engraving area 260 x 155 x 35 mm; the description text of the same page says 300 x 180 x 45 mm. Discontinued."
+  },
+  {
+   "id": "sainsmart-genmitsu-3020-pro-max",
+   "maker": "SainSmart Genmitsu",
+   "model": "3020-PRO MAX",
+   "variant": "V1",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 7.87,
+    "z": 2.83
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 200,
+    "z": 72
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "300 W spindle",
+     "power_kw": 0.3,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 12000,
+     "collet": "ER11 (3.175 mm) extension rod",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1h (Genmitsu controller)",
+     "gcarve_post": "genmitsu-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2024/https://www.sainsmart.com/products/open-box-genmitsu-3020-pro-max-cnc-router"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "All-aluminum body, linear guides. Positioning accuracy ±0.1 mm. Superseded by the 3020-PRO MAX V2."
+  },
+  {
+   "id": "sainsmart-genmitsu-proverxl-4030",
+   "maker": "SainSmart Genmitsu",
+   "model": "PROVerXL 4030",
+   "variant": "V1",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 11.81,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 300,
+    "z": 110
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "300 W spindle (6 A)",
+     "power_kw": 0.3,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 12000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 79,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 2000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1h (PROVerXL control box)",
+     "gcarve_post": "genmitsu-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-probe"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2024/https://www.sainsmart.com/products/open-box-genmitsu-proverxl-4030-cnc-router"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "C-Beam frame, T10 acme lead screws (dual Y), NEMA23 3 A steppers. Max speed 2000 mm/min, accuracy 0.1 mm. Superseded by PROVerXL 4030 V2."
+  }
+ ]
+}

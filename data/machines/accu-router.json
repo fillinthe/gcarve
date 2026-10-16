@@ -1,0 +1,504 @@
+{
+ "maker": "Accu-Router",
+ "website": "https://www.accu-router.com",
+ "machines": [
+  {
+   "id": "accu-router-kratos-2x4",
+   "maker": "Accu-Router",
+   "model": "Kratos",
+   "variant": "2x4 ft table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 24,
+    "y": 48,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 1219,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Accu-Router spindle (manual collet, push-button quick change or ATC)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": 800
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": 20320
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Manual collet, push-button quick change, or automatic (rack or carousel)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "roller hold-down",
+     "flip pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.accu-router.com/cncmachinery",
+    "https://www.plantautomation-technology.com/products/accu-router-inc/series-i-3-axis"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "X x Y = nominal table size at the small end of the published range (travels not published). Speeds up to 3000 in/min XY, 800 in/min Z. Morrison, Tennessee. Current flagship (fixed bridge, moving solid aluminum jig-plate table); table sizes range 2x4 to 6x12 ft, custom, twin and inline shuttle tables."
+  },
+  {
+   "id": "accu-router-kratos-6x12",
+   "maker": "Accu-Router",
+   "model": "Kratos",
+   "variant": "6x12 ft table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 72,
+    "y": 144,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1829,
+    "y": 3658,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Accu-Router spindle (manual collet, push-button quick change or ATC)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": 800
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": 20320
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Manual collet, push-button quick change, or automatic (rack or carousel)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "roller hold-down",
+     "flip pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.accu-router.com/cncmachinery",
+    "https://www.plantautomation-technology.com/products/accu-router-inc/series-i-3-axis"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "X x Y = nominal table size at the large end of the published range (travels not published). Speeds up to 3000 in/min XY, 800 in/min Z. Morrison, Tennessee. Current flagship (fixed bridge, moving solid aluminum jig-plate table); table sizes range 2x4 to 6x12 ft, custom, twin and inline shuttle tables."
+  },
+  {
+   "id": "accu-router-series-iii-c-4x8",
+   "maker": "Accu-Router",
+   "model": "Series III-C",
+   "variant": "4x8 ft table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48,
+    "y": 96,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 2438,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Accu-Router spindle (manual collet, push-button quick change or ATC)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": 800
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": 20320
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Manual collet, push-button quick change, or automatic (rack or carousel)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "roller hold-down",
+     "flip pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.accu-router.com/cncmachinery",
+    "https://www.plantautomation-technology.com/products/accu-router-inc/series-iii-3-axis"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "X x Y = nominal table size at the small end of the published range (travels not published). Speeds up to 3000 in/min XY, 800 in/min Z. Morrison, Tennessee. No longer built new, rebuilt via Green CNC; 50 mm spin-the-nut ball screw on X, THK rails; twin or inline shuttle up to 6 x 25 ft."
+  },
+  {
+   "id": "accu-router-series-iii-c-5x12",
+   "maker": "Accu-Router",
+   "model": "Series III-C",
+   "variant": "5x12 ft table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 144,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3658,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Accu-Router spindle (manual collet, push-button quick change or ATC)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": 800
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": 20320
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Manual collet, push-button quick change, or automatic (rack or carousel)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "roller hold-down",
+     "flip pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.accu-router.com/cncmachinery",
+    "https://www.plantautomation-technology.com/products/accu-router-inc/series-iii-3-axis"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "X x Y = nominal table size at the large end of the published range (travels not published). Speeds up to 3000 in/min XY, 800 in/min Z. Morrison, Tennessee. No longer built new, rebuilt via Green CNC; 50 mm spin-the-nut ball screw on X, THK rails; twin or inline shuttle up to 6 x 25 ft."
+  },
+  {
+   "id": "accu-router-series-ii-4x8",
+   "maker": "Accu-Router",
+   "model": "Series II",
+   "variant": "4x8 ft table",
+   "years": "1986-1989",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48,
+    "y": 96,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 2438,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Accu-Router spindle (manual collet, push-button quick change or ATC)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": 800
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": 20320
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Manual collet, push-button quick change, or automatic (rack or carousel)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "roller hold-down",
+     "flip pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.accu-router.com/cncmachinery",
+    "https://www.plantautomation-technology.com/products/accu-router-inc/series-ii-3-axis"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "X x Y = nominal table size at the small end of the published range (travels not published). Speeds up to 3000 in/min XY, 800 in/min Z. Morrison, Tennessee. Predecessor of Series III (1986-89), only rebuilt via Green CNC; round rails."
+  },
+  {
+   "id": "accu-router-series-ii-5x12",
+   "maker": "Accu-Router",
+   "model": "Series II",
+   "variant": "5x12 ft table",
+   "years": "1986-1989",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 144,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3658,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Accu-Router spindle (manual collet, push-button quick change or ATC)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": 800
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": 20320
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Manual collet, push-button quick change, or automatic (rack or carousel)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "roller hold-down",
+     "flip pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.accu-router.com/cncmachinery",
+    "https://www.plantautomation-technology.com/products/accu-router-inc/series-ii-3-axis"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "X x Y = nominal table size at the large end of the published range (travels not published). Speeds up to 3000 in/min XY, 800 in/min Z. Morrison, Tennessee. Predecessor of Series III (1986-89), only rebuilt via Green CNC; round rails."
+  }
+ ]
+}

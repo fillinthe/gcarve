@@ -1,0 +1,3549 @@
+{
+ "maker": "MultiCam",
+ "website": "https://www.multicam.com",
+ "machines": [
+  {
+   "id": "multicam-apex1r-gen2-103",
+   "maker": "MultiCam",
+   "model": "Apex1R Gen 2",
+   "variant": "103",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 50,
+    "y": 100,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 2540,
+    "z": null
+   },
+   "gantry_clearance_in": 7,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 1300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 33018,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1900,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 48258,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: linear automatic tool changer; automatic knife tool change"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "hands-free surface probe + auto touch-off tool length sensor (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": 3
+   },
+   "sources": [
+    "https://www.multicam.com/en/cnc-routers/apex1r-gen2/features",
+    "https://www.multicam.com/en/cnc-routers/apex1r-gen2"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the published 550.3 mm/s",
+    "rapid_mm_min": "converted from the published 804.3 mm/s",
+    "drive": "published as 'Helical' for X/Y (helical rack); Z ball screw"
+   },
+   "notes": "Model 103 (50x100 in). Spindle options 4-10 HP (no model/RPM published). Standard work surface 1 in phenolic. Gantry height 7 in, max material 3 in. Original Apex1R: same table but 1838 IPM rapids."
+  },
+  {
+   "id": "multicam-apex1r-gen2-204",
+   "maker": "MultiCam",
+   "model": "Apex1R Gen 2",
+   "variant": "204",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1520,
+    "y": 3050,
+    "z": null
+   },
+   "gantry_clearance_in": 7,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 1300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 33018,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1900,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 48258,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: linear automatic tool changer; automatic knife tool change"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "hands-free surface probe + auto touch-off tool length sensor (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": 3
+   },
+   "sources": [
+    "https://www.multicam.com/en/cnc-routers/apex1r-gen2/features",
+    "https://www.multicam.com/en/cnc-routers/apex1r-gen2"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the published 550.3 mm/s",
+    "rapid_mm_min": "converted from the published 804.3 mm/s",
+    "drive": "published as 'Helical' for X/Y (helical rack); Z ball screw"
+   },
+   "notes": "Model 204 (60x120 in). Spindle options 4-10 HP (no model/RPM published). Standard work surface 1 in phenolic. Gantry height 7 in, max material 3 in. Original Apex1R: same table but 1838 IPM rapids."
+  },
+  {
+   "id": "multicam-5000-series",
+   "maker": "MultiCam",
+   "model": "5000 Series",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 1600,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 40640,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 76000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: gantry-mounted 12-position rotary tool carousel"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.multicam.com/en/cnc-routers/5000-series/features"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the inch spec"
+   },
+   "notes": "Working area from 50x50 in to 120x242 in. Spindles 5.5-20 HP (13.4/16/20 HP high-torque, 7.5 HP HSD collet). Brushless AC servos with precision gearboxes; all-steel frame. Z clearance options 12 or 16 in. Repeatability 0.001 in."
+  },
+  {
+   "id": "multicam-apex1r-101",
+   "maker": "MultiCam",
+   "model": "Apex1R",
+   "variant": "101",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 50,
+    "y": 50,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 1270,
+    "z": null
+   },
+   "gantry_clearance_in": 7,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 1300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 33020,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1838,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 46685,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Options: linear ATC, automatic knife tool changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "hands-free material surface probe + tool calibration sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": 3
+   },
+   "sources": [
+    "https://www.multicam.com/en/cnc-routers/apex1r/features",
+    "https://www.multicam.com/en/cnc-routers/apex1r"
+   ],
+   "notes": "Model 101 (50x50 in, 4x4 ft). Cutting speed 1300 IPM (550.3 mm/s), rapid 1838 IPM (778 mm/s), repeatability +/-0.001 in, helical rack X/Y, ball screw Z, 1 in phenolic work surface. Spindle options 7.5-10 HP; 2/5 mm electric oscillating knife, tangential knives.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-apex1r-gen2-101",
+   "maker": "MultiCam",
+   "model": "Apex1R Gen 2",
+   "variant": "101",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 50,
+    "y": 50,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 1270,
+    "z": null
+   },
+   "gantry_clearance_in": 7,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 1300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 33020,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1900,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 48260,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: linear automatic tool changer; automatic knife tool change"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "hands-free surface probe + auto touch-off tool length sensor (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": 3
+   },
+   "sources": [
+    "https://www.multicam.com/en/cnc-routers/apex1r-gen2/features",
+    "https://www.multicam.com/en/cnc-routers/apex1r-gen2"
+   ],
+   "notes": "Model 101 (50x50 in, 4x4 ft). Spindle options 4-10 HP. Standard 1 in phenolic work surface. Gantry height 7 in, max material 3 in. Rapid 1900 IPM (804.3 mm/s).",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-apex1r-103",
+   "maker": "MultiCam",
+   "model": "Apex1R",
+   "variant": "103",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 50,
+    "y": 100,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 2540,
+    "z": null
+   },
+   "gantry_clearance_in": 7,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 1300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 33020,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1838,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 46685,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Options: linear ATC, automatic knife tool changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "hands-free material surface probe + tool calibration sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": 3
+   },
+   "sources": [
+    "https://www.multicam.com/en/cnc-routers/apex1r/features",
+    "https://www.multicam.com/en/cnc-routers/apex1r"
+   ],
+   "notes": "Model 103 (50x100 in, 4x8 ft). Cutting speed 1300 IPM (550.3 mm/s), rapid 1838 IPM (778 mm/s), repeatability +/-0.001 in, helical rack X/Y, ball screw Z, 1 in phenolic work surface. Spindle options 7.5-10 HP; 2/5 mm electric oscillating knife, tangential knives.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-apex1r-204",
+   "maker": "MultiCam",
+   "model": "Apex1R",
+   "variant": "204",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": 7,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 1300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 33020,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1838,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 46685,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Options: linear ATC, automatic knife tool changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "hands-free material surface probe + tool calibration sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": 3
+   },
+   "sources": [
+    "https://www.multicam.com/en/cnc-routers/apex1r/features",
+    "https://www.multicam.com/en/cnc-routers/apex1r"
+   ],
+   "notes": "Model 204 (60x120 in, 5x10 ft). Cutting speed 1300 IPM (550.3 mm/s), rapid 1838 IPM (778 mm/s), repeatability +/-0.001 in, helical rack X/Y, ball screw Z, 1 in phenolic work surface. Spindle options 7.5-10 HP; 2/5 mm electric oscillating knife, tangential knives.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-apex1r-205",
+   "maker": "MultiCam",
+   "model": "Apex1R",
+   "variant": "205",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 144,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3658,
+    "z": null
+   },
+   "gantry_clearance_in": 7,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 1300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 33020,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1838,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 46685,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Options: linear ATC, automatic knife tool changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "hands-free material surface probe + tool calibration sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": 3
+   },
+   "sources": [
+    "https://www.multicam.com/en/cnc-routers/apex1r/features",
+    "https://www.multicam.com/en/cnc-routers/apex1r"
+   ],
+   "notes": "Model 205 (60x144 in, 5x12 ft). Cutting speed 1300 IPM (550.3 mm/s), rapid 1838 IPM (778 mm/s), repeatability +/-0.001 in, helical rack X/Y, ball screw Z, 1 in phenolic work surface. Spindle options 7.5-10 HP; 2/5 mm electric oscillating knife, tangential knives.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-apex1r-gen2-205",
+   "maker": "MultiCam",
+   "model": "Apex1R Gen 2",
+   "variant": "205",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 144,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3658,
+    "z": null
+   },
+   "gantry_clearance_in": 7,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 1300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 33020,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1900,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 48260,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: linear automatic tool changer; automatic knife tool change"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "hands-free surface probe + auto touch-off tool length sensor (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": 3
+   },
+   "sources": [
+    "https://www.multicam.com/en/cnc-routers/apex1r-gen2/features",
+    "https://www.multicam.com/en/cnc-routers/apex1r-gen2"
+   ],
+   "notes": "Model 205 (60x144 in, 5x12 ft). Spindle options 4-10 HP. Standard 1 in phenolic work surface. Gantry height 7 in, max material 3 in. Rapid 1900 IPM (804.3 mm/s).",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-apex1r-304",
+   "maker": "MultiCam",
+   "model": "Apex1R",
+   "variant": "304",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 80,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2032,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": 7,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 1300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 33020,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1838,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 46685,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Options: linear ATC, automatic knife tool changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "hands-free material surface probe + tool calibration sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": 3
+   },
+   "sources": [
+    "https://www.multicam.com/en/cnc-routers/apex1r/features",
+    "https://www.multicam.com/en/cnc-routers/apex1r"
+   ],
+   "notes": "Model 304 (80x120 in, 6.5x10 ft). Cutting speed 1300 IPM (550.3 mm/s), rapid 1838 IPM (778 mm/s), repeatability +/-0.001 in, helical rack X/Y, ball screw Z, 1 in phenolic work surface. Spindle options 7.5-10 HP; 2/5 mm electric oscillating knife, tangential knives.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-apex1r-gen2-304",
+   "maker": "MultiCam",
+   "model": "Apex1R Gen 2",
+   "variant": "304",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 80,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2032,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": 7,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 1300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 33020,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1900,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 48260,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: linear automatic tool changer; automatic knife tool change"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "hands-free surface probe + auto touch-off tool length sensor (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": 3
+   },
+   "sources": [
+    "https://www.multicam.com/en/cnc-routers/apex1r-gen2/features",
+    "https://www.multicam.com/en/cnc-routers/apex1r-gen2"
+   ],
+   "notes": "Model 304 (80x120 in, 6.5x10 ft). Spindle options 4-10 HP. Standard 1 in phenolic work surface. Gantry height 7 in, max material 3 in. Rapid 1900 IPM (804.3 mm/s).",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-apex1r-305",
+   "maker": "MultiCam",
+   "model": "Apex1R",
+   "variant": "305",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 80,
+    "y": 144,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2032,
+    "y": 3658,
+    "z": null
+   },
+   "gantry_clearance_in": 7,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 1300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 33020,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1838,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 46685,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Options: linear ATC, automatic knife tool changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "hands-free material surface probe + tool calibration sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": 3
+   },
+   "sources": [
+    "https://www.multicam.com/en/cnc-routers/apex1r/features",
+    "https://www.multicam.com/en/cnc-routers/apex1r"
+   ],
+   "notes": "Model 305 (80x144 in, 6.5x12 ft). Cutting speed 1300 IPM (550.3 mm/s), rapid 1838 IPM (778 mm/s), repeatability +/-0.001 in, helical rack X/Y, ball screw Z, 1 in phenolic work surface. Spindle options 7.5-10 HP; 2/5 mm electric oscillating knife, tangential knives.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-apex1r-gen2-305",
+   "maker": "MultiCam",
+   "model": "Apex1R Gen 2",
+   "variant": "305",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 80,
+    "y": 144,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2032,
+    "y": 3658,
+    "z": null
+   },
+   "gantry_clearance_in": 7,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 1300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 33020,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1900,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 48260,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: linear automatic tool changer; automatic knife tool change"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "hands-free surface probe + auto touch-off tool length sensor (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": 3
+   },
+   "sources": [
+    "https://www.multicam.com/en/cnc-routers/apex1r-gen2/features",
+    "https://www.multicam.com/en/cnc-routers/apex1r-gen2"
+   ],
+   "notes": "Model 305 (80x144 in, 6.5x12 ft). Spindle options 4-10 HP. Standard 1 in phenolic work surface. Gantry height 7 in, max material 3 in. Rapid 1900 IPM (804.3 mm/s).",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-apex3r-evo-53x100",
+   "maker": "MultiCam",
+   "model": "Apex3R Evo",
+   "variant": "53x100 table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 1400,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 35560,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 63500,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: linear automatic tool changer; pneumatic quick-change knife/tapping"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": 5
+   },
+   "sources": [
+    "https://www.multicam.com/en/cnc-routers/apex3r-evo/features"
+   ],
+   "notes": "Table size 53 x 100 in (135 x 254 cm); cutting travel not published. Spindles 5.5-13.4 HP (collet and ATC, 24-32k RPM). Z-axis clearance 6-8 in, repeatability +/-0.001 in, brushless AC servos, 25 mm profile rails, 1 in phenolic surface, weight 3150-4400 lb.",
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-apex3r-evo-63x121",
+   "maker": "MultiCam",
+   "model": "Apex3R Evo",
+   "variant": "63x121 table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 1400,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 35560,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 63500,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: linear automatic tool changer; pneumatic quick-change knife/tapping"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": 5
+   },
+   "sources": [
+    "https://www.multicam.com/en/cnc-routers/apex3r-evo/features"
+   ],
+   "notes": "Table size 63 x 121 in (160 x 307 cm); cutting travel not published. Spindles 5.5-13.4 HP (collet and ATC, 24-32k RPM). Z-axis clearance 6-8 in, repeatability +/-0.001 in, brushless AC servos, 25 mm profile rails, 1 in phenolic surface, weight 3150-4400 lb.",
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-apex3r-evo-83x121",
+   "maker": "MultiCam",
+   "model": "Apex3R Evo",
+   "variant": "83x121 table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 1400,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 35560,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 63500,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: linear automatic tool changer; pneumatic quick-change knife/tapping"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": 5
+   },
+   "sources": [
+    "https://www.multicam.com/en/cnc-routers/apex3r-evo/features"
+   ],
+   "notes": "Table size 83 x 121 in (210 x 307 cm); cutting travel not published. Spindles 5.5-13.4 HP (collet and ATC, 24-32k RPM). Z-axis clearance 6-8 in, repeatability +/-0.001 in, brushless AC servos, 25 mm profile rails, 1 in phenolic surface, weight 3150-4400 lb.",
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-3000-101",
+   "maker": "MultiCam",
+   "model": "3000 Series",
+   "variant": "101",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 50,
+    "y": 50,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 1270,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Options: linear ATC rack or 12-tool rotary turret ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/3000cncrouter.html"
+   ],
+   "notes": "Model 101, work area 50 x 50 in (2014 size chart). All-steel plate frame, 3/8 in steel-tube gantry, cast-iron gantry supports, brushless digital AC servos. Spindle options 4-13.3 HP incl. ATC spindles; CNC knife and MultiVision options.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   }
+  },
+  {
+   "id": "multicam-3000-103",
+   "maker": "MultiCam",
+   "model": "3000 Series",
+   "variant": "103",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 50,
+    "y": 100,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 2540,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Options: linear ATC rack or 12-tool rotary turret ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/3000cncrouter.html"
+   ],
+   "notes": "Model 103, work area 50 x 100 in (2014 size chart). All-steel plate frame, 3/8 in steel-tube gantry, cast-iron gantry supports, brushless digital AC servos. Spindle options 4-13.3 HP incl. ATC spindles; CNC knife and MultiVision options.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   }
+  },
+  {
+   "id": "multicam-3000-202",
+   "maker": "MultiCam",
+   "model": "3000 Series",
+   "variant": "202",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60.5,
+    "y": 60,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1537,
+    "y": 1524,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Options: linear ATC rack or 12-tool rotary turret ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/3000cncrouter.html"
+   ],
+   "notes": "Model 202, work area 60.5 x 60 in (2014 size chart). All-steel plate frame, 3/8 in steel-tube gantry, cast-iron gantry supports, brushless digital AC servos. Spindle options 4-13.3 HP incl. ATC spindles; CNC knife and MultiVision options.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   }
+  },
+  {
+   "id": "multicam-3000-204",
+   "maker": "MultiCam",
+   "model": "3000 Series",
+   "variant": "204",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60.5,
+    "y": 122,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1537,
+    "y": 3099,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Options: linear ATC rack or 12-tool rotary turret ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/3000cncrouter.html"
+   ],
+   "notes": "Model 204, work area 60.5 x 122 in (2014 size chart). All-steel plate frame, 3/8 in steel-tube gantry, cast-iron gantry supports, brushless digital AC servos. Spindle options 4-13.3 HP incl. ATC spindles; CNC knife and MultiVision options.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   }
+  },
+  {
+   "id": "multicam-3000-304",
+   "maker": "MultiCam",
+   "model": "3000 Series",
+   "variant": "304",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 80,
+    "y": 122,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2032,
+    "y": 3099,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Options: linear ATC rack or 12-tool rotary turret ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/3000cncrouter.html"
+   ],
+   "notes": "Model 304, work area 80 x 122 in (2014 size chart). All-steel plate frame, 3/8 in steel-tube gantry, cast-iron gantry supports, brushless digital AC servos. Spindle options 4-13.3 HP incl. ATC spindles; CNC knife and MultiVision options.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   }
+  },
+  {
+   "id": "multicam-5000-101",
+   "maker": "MultiCam",
+   "model": "5000 Series",
+   "variant": "101",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 50,
+    "y": 50,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 1270,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2700,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 68580,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 12-position bidirectional rotary ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/5000cncrouter.html"
+   ],
+   "notes": "Model 101, work area 50 x 50 in (2014 size chart). 2700 IPM rapid traverse, helical rack X/Y, one-piece steel-plate base frame, cast-iron gantry supports, brushless digital AC servos. Model 308 omitted (its inch and mm chart rows disagree).",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-5000-103",
+   "maker": "MultiCam",
+   "model": "5000 Series",
+   "variant": "103",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 50,
+    "y": 100,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 2540,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2700,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 68580,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 12-position bidirectional rotary ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/5000cncrouter.html"
+   ],
+   "notes": "Model 103, work area 50 x 100 in (2014 size chart). 2700 IPM rapid traverse, helical rack X/Y, one-piece steel-plate base frame, cast-iron gantry supports, brushless digital AC servos. Model 308 omitted (its inch and mm chart rows disagree).",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-5000-202",
+   "maker": "MultiCam",
+   "model": "5000 Series",
+   "variant": "202",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60.5,
+    "y": 60,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1537,
+    "y": 1524,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2700,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 68580,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 12-position bidirectional rotary ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/5000cncrouter.html"
+   ],
+   "notes": "Model 202, work area 60.5 x 60 in (2014 size chart). 2700 IPM rapid traverse, helical rack X/Y, one-piece steel-plate base frame, cast-iron gantry supports, brushless digital AC servos. Model 308 omitted (its inch and mm chart rows disagree).",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-5000-204",
+   "maker": "MultiCam",
+   "model": "5000 Series",
+   "variant": "204",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60.5,
+    "y": 122,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1537,
+    "y": 3099,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2700,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 68580,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 12-position bidirectional rotary ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/5000cncrouter.html"
+   ],
+   "notes": "Model 204, work area 60.5 x 122 in (2014 size chart). 2700 IPM rapid traverse, helical rack X/Y, one-piece steel-plate base frame, cast-iron gantry supports, brushless digital AC servos. Model 308 omitted (its inch and mm chart rows disagree).",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-5000-205",
+   "maker": "MultiCam",
+   "model": "5000 Series",
+   "variant": "205",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60.5,
+    "y": 145,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1537,
+    "y": 3683,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2700,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 68580,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 12-position bidirectional rotary ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/5000cncrouter.html"
+   ],
+   "notes": "Model 205, work area 60.5 x 145 in (2014 size chart). 2700 IPM rapid traverse, helical rack X/Y, one-piece steel-plate base frame, cast-iron gantry supports, brushless digital AC servos. Model 308 omitted (its inch and mm chart rows disagree).",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-5000-208",
+   "maker": "MultiCam",
+   "model": "5000 Series",
+   "variant": "208",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60.5,
+    "y": 242,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1537,
+    "y": 6147,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2700,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 68580,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 12-position bidirectional rotary ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/5000cncrouter.html"
+   ],
+   "notes": "Model 208, work area 60.5 x 242 in (2014 size chart). 2700 IPM rapid traverse, helical rack X/Y, one-piece steel-plate base frame, cast-iron gantry supports, brushless digital AC servos. Model 308 omitted (its inch and mm chart rows disagree).",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-5000-304",
+   "maker": "MultiCam",
+   "model": "5000 Series",
+   "variant": "304",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 80,
+    "y": 122,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2032,
+    "y": 3099,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2700,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 68580,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 12-position bidirectional rotary ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/5000cncrouter.html"
+   ],
+   "notes": "Model 304, work area 80 x 122 in (2014 size chart). 2700 IPM rapid traverse, helical rack X/Y, one-piece steel-plate base frame, cast-iron gantry supports, brushless digital AC servos. Model 308 omitted (its inch and mm chart rows disagree).",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-5000-305",
+   "maker": "MultiCam",
+   "model": "5000 Series",
+   "variant": "305",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 80,
+    "y": 145,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2032,
+    "y": 3683,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2700,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 68580,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 12-position bidirectional rotary ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/5000cncrouter.html"
+   ],
+   "notes": "Model 305, work area 80 x 145 in (2014 size chart). 2700 IPM rapid traverse, helical rack X/Y, one-piece steel-plate base frame, cast-iron gantry supports, brushless digital AC servos. Model 308 omitted (its inch and mm chart rows disagree).",
+   "estimated": {
+    "work_area_mm": "from the maker's mm chart",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "work_area_in": "inch chart row shows 80 x 242; the mm chart (2032 x 3683) and the machine length match 80 x 145"
+   }
+  },
+  {
+   "id": "multicam-5000-404",
+   "maker": "MultiCam",
+   "model": "5000 Series",
+   "variant": "404",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 96,
+    "y": 122,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2438,
+    "y": 3099,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2700,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 68580,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 12-position bidirectional rotary ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/5000cncrouter.html"
+   ],
+   "notes": "Model 404, work area 96 x 122 in (2014 size chart). 2700 IPM rapid traverse, helical rack X/Y, one-piece steel-plate base frame, cast-iron gantry supports, brushless digital AC servos. Model 308 omitted (its inch and mm chart rows disagree).",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-5000-405",
+   "maker": "MultiCam",
+   "model": "5000 Series",
+   "variant": "405",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 96,
+    "y": 145,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2438,
+    "y": 3683,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2700,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 68580,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 12-position bidirectional rotary ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/5000cncrouter.html"
+   ],
+   "notes": "Model 405, work area 96 x 145 in (2014 size chart). 2700 IPM rapid traverse, helical rack X/Y, one-piece steel-plate base frame, cast-iron gantry supports, brushless digital AC servos. Model 308 omitted (its inch and mm chart rows disagree).",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-5000-408",
+   "maker": "MultiCam",
+   "model": "5000 Series",
+   "variant": "408",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 96,
+    "y": 242,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2438,
+    "y": 6147,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2700,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 68580,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 12-position bidirectional rotary ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/5000cncrouter.html"
+   ],
+   "notes": "Model 408, work area 96 x 242 in (2014 size chart). 2700 IPM rapid traverse, helical rack X/Y, one-piece steel-plate base frame, cast-iron gantry supports, brushless digital AC servos. Model 308 omitted (its inch and mm chart rows disagree).",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-5000-505",
+   "maker": "MultiCam",
+   "model": "5000 Series",
+   "variant": "505",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 145,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 3683,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2700,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 68580,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 12-position bidirectional rotary ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/5000cncrouter.html"
+   ],
+   "notes": "Model 505, work area 120 x 145 in (2014 size chart). 2700 IPM rapid traverse, helical rack X/Y, one-piece steel-plate base frame, cast-iron gantry supports, brushless digital AC servos. Model 308 omitted (its inch and mm chart rows disagree).",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-5000-508",
+   "maker": "MultiCam",
+   "model": "5000 Series",
+   "variant": "508",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 242,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 6147,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2700,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 68580,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 12-position bidirectional rotary ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/5000cncrouter.html"
+   ],
+   "notes": "Model 508, work area 120 x 242 in (2014 size chart). 2700 IPM rapid traverse, helical rack X/Y, one-piece steel-plate base frame, cast-iron gantry supports, brushless digital AC servos. Model 308 omitted (its inch and mm chart rows disagree).",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-7000-103",
+   "maker": "MultiCam",
+   "model": "7000 Series",
+   "variant": "103",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 50,
+    "y": 100,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 2540,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 12-position bidirectional rotary ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/7000cncrouter.html"
+   ],
+   "notes": "Model 103, work area 50 x 100 in (2014 size chart). 3000 IPM rapid traverse, helical rack X/Y, heavy steel-plate frame, 22 in X-axis bearing spacing, brushless digital AC servos.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-7000-202",
+   "maker": "MultiCam",
+   "model": "7000 Series",
+   "variant": "202",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60.5,
+    "y": 60,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1537,
+    "y": 1524,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 12-position bidirectional rotary ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/7000cncrouter.html"
+   ],
+   "notes": "Model 202, work area 60.5 x 60 in (2014 size chart). 3000 IPM rapid traverse, helical rack X/Y, heavy steel-plate frame, 22 in X-axis bearing spacing, brushless digital AC servos.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-7000-204",
+   "maker": "MultiCam",
+   "model": "7000 Series",
+   "variant": "204",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60.5,
+    "y": 122,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1537,
+    "y": 3099,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 12-position bidirectional rotary ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/7000cncrouter.html"
+   ],
+   "notes": "Model 204, work area 60.5 x 122 in (2014 size chart). 3000 IPM rapid traverse, helical rack X/Y, heavy steel-plate frame, 22 in X-axis bearing spacing, brushless digital AC servos.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-7000-205",
+   "maker": "MultiCam",
+   "model": "7000 Series",
+   "variant": "205",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60.5,
+    "y": 145,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1537,
+    "y": 3683,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 12-position bidirectional rotary ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/7000cncrouter.html"
+   ],
+   "notes": "Model 205, work area 60.5 x 145 in (2014 size chart). 3000 IPM rapid traverse, helical rack X/Y, heavy steel-plate frame, 22 in X-axis bearing spacing, brushless digital AC servos.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-7000-208",
+   "maker": "MultiCam",
+   "model": "7000 Series",
+   "variant": "208",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60.5,
+    "y": 242,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1537,
+    "y": 6147,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 12-position bidirectional rotary ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/7000cncrouter.html"
+   ],
+   "notes": "Model 208, work area 60.5 x 242 in (2014 size chart). 3000 IPM rapid traverse, helical rack X/Y, heavy steel-plate frame, 22 in X-axis bearing spacing, brushless digital AC servos.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-7000-209",
+   "maker": "MultiCam",
+   "model": "7000 Series",
+   "variant": "209",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60.5,
+    "y": 290,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1537,
+    "y": 7366,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 12-position bidirectional rotary ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/7000cncrouter.html"
+   ],
+   "notes": "Model 209, work area 60.5 x 290 in (2014 size chart). 3000 IPM rapid traverse, helical rack X/Y, heavy steel-plate frame, 22 in X-axis bearing spacing, brushless digital AC servos.",
+   "estimated": {
+    "work_area_mm": "converted from inches; the mm chart lists 2032 x 7341",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-7000-304",
+   "maker": "MultiCam",
+   "model": "7000 Series",
+   "variant": "304",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 84,
+    "y": 122,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2134,
+    "y": 3099,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 12-position bidirectional rotary ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/7000cncrouter.html"
+   ],
+   "notes": "Model 304, work area 84 x 122 in (2014 size chart). 3000 IPM rapid traverse, helical rack X/Y, heavy steel-plate frame, 22 in X-axis bearing spacing, brushless digital AC servos.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-7000-305",
+   "maker": "MultiCam",
+   "model": "7000 Series",
+   "variant": "305",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 84,
+    "y": 145,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2134,
+    "y": 3683,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 12-position bidirectional rotary ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/7000cncrouter.html"
+   ],
+   "notes": "Model 305, work area 84 x 145 in (2014 size chart). 3000 IPM rapid traverse, helical rack X/Y, heavy steel-plate frame, 22 in X-axis bearing spacing, brushless digital AC servos.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-7000-306",
+   "maker": "MultiCam",
+   "model": "7000 Series",
+   "variant": "306",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 84,
+    "y": 170,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2134,
+    "y": 4318,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 76200,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 12-position bidirectional rotary ATC"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration (standard)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/7000cncrouter.html"
+   ],
+   "notes": "Model 306, work area 84 x 170 in (2014 size chart). 3000 IPM rapid traverse, helical rack X/Y, heavy steel-plate frame, 22 in X-axis bearing spacing, brushless digital AC servos.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-celero-3-5x10",
+   "maker": "MultiCam",
+   "model": "Celero 3 Series",
+   "variant": "60x120",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": 3,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 HP router spindle",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1700,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 43180,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2757,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 70028,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam Coreo touchscreen",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": null,
+    "notes": "3 independent Z heads (spindle, universal knife, oscillating knife); automatic knife tool changing"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/celero-3-series/"
+   ],
+   "notes": "Digital flatbed cutter/router. Table size 60 x 120 in (travel not published); Z-axis travel 6.5 in, clearance 3 in; cut speed 1700 IPM, rapid 2757 IPM, repeatability +/-0.001 in; MultiVision camera.",
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-celero-5-5x10",
+   "maker": "MultiCam",
+   "model": "Celero 5 Series",
+   "variant": "64x120",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": 2.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4 HP liquid-cooled router spindle",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": 50000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 4400,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 111760,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 7000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 177800,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam Coreo touchscreen",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": null,
+    "notes": "3 independent Z heads; automatic knife changer (up to 6 knife cartridges per program)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool calibration"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/celero-5-series/"
+   ],
+   "notes": "Digital flatbed cutter/router. Table size 64 x 120 in (5 x 10 ft working surface); Z travel 5 in, clearance 2.5 in; cut 4400 IPM, rapid 7000 IPM, repeatability +/-0.001 in; camera registration.",
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-celero-7",
+   "maker": "MultiCam",
+   "model": "Celero 7 Series",
+   "variant": null,
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": 2.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW HSD spindle",
+     "power_kw": 3,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 50000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 7800,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 198120,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 11030,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 280162,
+    "z": null
+   },
+   "accel": "1.2 g (400 in/s²)",
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam Coreo touchscreen",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": 18,
+    "notes": "ATC holds up to 18 tools (9 router bits + 9 knives); 3 independent Z heads"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/celero-7-series/"
+   ],
+   "notes": "Wide-format digital finishing cutter with linear motors. Five table sizes from 5 x 10 ft to 10 x 13 ft (individual sizes not listed); Z travel 6.5 in, clearance 2.5 in; cut 7800 IPM, traverse 11030 IPM.",
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-apex3r-53x100",
+   "maker": "MultiCam",
+   "model": "Apex3R (original)",
+   "variant": "53x100 table",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 1400,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 35560,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 63500,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: automatic tool changer"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/apex3r-cnc-router"
+   ],
+   "notes": "Pre-Evo Apex3R. Table size 53 x 100 in (travel not published). Z-axis clearance 6-10 in, spindles 5.5-13 HP (options 4-13.3 HP), repeatability +/-0.001 in, 1 in phenolic surface, 3150-4400 lb.",
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-apex3r-63x121",
+   "maker": "MultiCam",
+   "model": "Apex3R (original)",
+   "variant": "63x121 table",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 1400,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 35560,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 63500,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: automatic tool changer"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/apex3r-cnc-router"
+   ],
+   "notes": "Pre-Evo Apex3R. Table size 63 x 121 in (travel not published). Z-axis clearance 6-10 in, spindles 5.5-13 HP (options 4-13.3 HP), repeatability +/-0.001 in, 1 in phenolic surface, 3150-4400 lb.",
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "multicam-apex3r-83x121",
+   "maker": "MultiCam",
+   "model": "Apex3R (original)",
+   "variant": "83x121 table",
+   "years": "archived 2014",
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 1400,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 35560,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 63500,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "MultiCam EZ Control (EZ G-Code)",
+     "gcarve_post": "multicam-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: automatic tool changer"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2014/http://www.multicam.com/apex3r-cnc-router"
+   ],
+   "notes": "Pre-Evo Apex3R. Table size 83 x 121 in (travel not published). Z-axis clearance 6-10 in, spindles 5.5-13 HP (options 4-13.3 HP), repeatability +/-0.001 in, 1 in phenolic surface, 3150-4400 lb.",
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  }
+ ]
+}

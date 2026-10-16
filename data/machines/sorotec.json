@@ -1,0 +1,2996 @@
+{
+ "maker": "Sorotec",
+ "website": "https://www.sorotec.de",
+ "machines": [
+  {
+   "id": "sorotec-alu-line-0605",
+   "maker": "Sorotec",
+   "model": "Alu-Line",
+   "variant": "0605",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 25.59,
+    "y": 21.65,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 650,
+    "y": 550,
+    "z": 220
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfr-se-ALU-Line-0605-Bausatz-10899.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), aluminium profile gantry; motors and control not included. Ball screws X 16 x 10, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-alu-line-0607",
+   "maker": "Sorotec",
+   "model": "Alu-Line",
+   "variant": "0607",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 25.59,
+    "y": 29.53,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 650,
+    "y": 750,
+    "z": 220
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfr-se-AL-Line-0607-Bausatz-10900.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), aluminium profile gantry; motors and control not included. Ball screws X 16 x 10, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-alu-line-0610",
+   "maker": "Sorotec",
+   "model": "Alu-Line",
+   "variant": "0610",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 25.59,
+    "y": 41.34,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 650,
+    "y": 1050,
+    "z": 220
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfr-se-AL-Line-0610-Bausatz-10902.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), aluminium profile gantry; motors and control not included. Ball screws X 16 x 10, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-alu-line-1105",
+   "maker": "Sorotec",
+   "model": "Alu-Line",
+   "variant": "1105",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 45.28,
+    "y": 21.65,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 1150,
+    "y": 550,
+    "z": 220
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfr-se-AL-Line-1105-Bausatz-10892.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), aluminium profile gantry; motors and control not included. Ball screws X 16 x 10, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-alu-line-1107",
+   "maker": "Sorotec",
+   "model": "Alu-Line",
+   "variant": "1107",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 45.28,
+    "y": 29.53,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 1150,
+    "y": 750,
+    "z": 220
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfr-se-AL-Line-1107-Bausatz-10905.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), aluminium profile gantry; motors and control not included. Ball screws X 16 x 10, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-alu-line-1110",
+   "maker": "Sorotec",
+   "model": "Alu-Line",
+   "variant": "1110",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 45.28,
+    "y": 41.34,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 1150,
+    "y": 1050,
+    "z": 220
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfr-se-AL-Line-1110-Bausatz-10893.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), aluminium profile gantry; motors and control not included. Ball screws X 16 x 10, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-alu-line-1505",
+   "maker": "Sorotec",
+   "model": "Alu-Line",
+   "variant": "1505",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 61.02,
+    "y": 21.65,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 1550,
+    "y": 550,
+    "z": 220
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Alu-Line-1505.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), aluminium profile gantry; motors and control not included. Ball screws X 16 x 10, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-alu-line-1507",
+   "maker": "Sorotec",
+   "model": "Alu-Line",
+   "variant": "1507",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 61.02,
+    "y": 29.53,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 1550,
+    "y": 750,
+    "z": 220
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Alu-Line-1507.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), aluminium profile gantry; motors and control not included."
+  },
+  {
+   "id": "sorotec-alu-line-1510",
+   "maker": "Sorotec",
+   "model": "Alu-Line",
+   "variant": "1510",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 61.02,
+    "y": 41.34,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 1550,
+    "y": 1050,
+    "z": 220
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Alu-Line-1510.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), aluminium profile gantry; motors and control not included. Ball screws X 16 x 10, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-alu-line-heavy-1105",
+   "maker": "Sorotec",
+   "model": "Alu-Line Heavy",
+   "variant": "1105",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 45.28,
+    "y": 21.65,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 1150,
+    "y": 550,
+    "z": 220
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfraese-AL-Line-1105-Heavy-10904.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), aluminium profile gantry with heavier X drive; motors and control not included. Ball screws X 25 x 10, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-alu-line-heavy-1107",
+   "maker": "Sorotec",
+   "model": "Alu-Line Heavy",
+   "variant": "1107",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 45.28,
+    "y": 29.53,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 1150,
+    "y": 750,
+    "z": 220
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfraese-AL-Line-1107-Heavy-10906.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), aluminium profile gantry with heavier X drive; motors and control not included. Ball screws X 25 x 10, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-alu-line-heavy-1110",
+   "maker": "Sorotec",
+   "model": "Alu-Line Heavy",
+   "variant": "1110",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 45.28,
+    "y": 41.34,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 1150,
+    "y": 1050,
+    "z": 220
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfraese-AL-Line-1110-Heavy-10546-10933.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), aluminium profile gantry with heavier X drive; motors and control not included. Ball screws X 25 x 10, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-alu-line-heavy-1505",
+   "maker": "Sorotec",
+   "model": "Alu-Line Heavy",
+   "variant": "1505",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61.02,
+    "y": 21.65,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 1550,
+    "y": 550,
+    "z": 220
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfraese-AL-Line-1505-Heavy-10940.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), aluminium profile gantry with heavier X drive; motors and control not included. Ball screws X 25 x 20, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-alu-line-heavy-1507",
+   "maker": "Sorotec",
+   "model": "Alu-Line Heavy",
+   "variant": "1507",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61.02,
+    "y": 29.53,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 1550,
+    "y": 750,
+    "z": 220
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfr-se-ALU-Line-1507-Heavy-Bausatz-10943.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), aluminium profile gantry with heavier X drive; motors and control not included. Ball screws X 25 x 20, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-alu-line-heavy-1510",
+   "maker": "Sorotec",
+   "model": "Alu-Line Heavy",
+   "variant": "1510",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61.02,
+    "y": 41.34,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 1550,
+    "y": 1050,
+    "z": 220
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfraese-AL-Line-1510-Heavy-10946.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), aluminium profile gantry with heavier X drive; motors and control not included. Ball screws X 25 x 20, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-alu-line-heavy-1513",
+   "maker": "Sorotec",
+   "model": "Alu-Line Heavy",
+   "variant": "1513",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61.02,
+    "y": 53.15,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 1550,
+    "y": 1350,
+    "z": 220
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfraese-AL-Line-1513--Heavy-10947.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), aluminium profile gantry with heavier X drive; motors and control not included. Ball screws X 25 x 20, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-alu-line-heavy-2005",
+   "maker": "Sorotec",
+   "model": "Alu-Line Heavy",
+   "variant": "2005",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 80.71,
+    "y": 21.65,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 2050,
+    "y": 550,
+    "z": 220
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Alu-Line-2005-Heavy.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), aluminium profile gantry with heavier X drive; motors and control not included. Ball screws X 25 x 20, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-alu-line-heavy-2007",
+   "maker": "Sorotec",
+   "model": "Alu-Line Heavy",
+   "variant": "2007",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 80.71,
+    "y": 29.53,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 2050,
+    "y": 750,
+    "z": 220
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfraese-AL-Line-2007-Heavy-10950.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), aluminium profile gantry with heavier X drive; motors and control not included. Ball screws X 25 x 20, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-alu-line-heavy-2010",
+   "maker": "Sorotec",
+   "model": "Alu-Line Heavy",
+   "variant": "2010",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 80.71,
+    "y": 41.34,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 2050,
+    "y": 1050,
+    "z": 220
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfraese-AL-Line-2010-Heavy-10952.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), aluminium profile gantry with heavier X drive; motors and control not included. Ball screws X 25 x 20, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-alu-line-heavy-2013",
+   "maker": "Sorotec",
+   "model": "Alu-Line Heavy",
+   "variant": "2013",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 80.71,
+    "y": 53.15,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 2050,
+    "y": 1350,
+    "z": 220
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfraese-AL-Line-2013-Heavy-10953.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), aluminium profile gantry with heavier X drive; motors and control not included. Ball screws X 25 x 20, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-alu-line-heavy-2505",
+   "maker": "Sorotec",
+   "model": "Alu-Line Heavy",
+   "variant": "2505",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 100.39,
+    "y": 21.65,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 2550,
+    "y": 550,
+    "z": 220
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Alu-Line-2505-Heavy.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), aluminium profile gantry with heavier X drive; motors and control not included. Ball screws X 25 x 20, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-alu-line-heavy-2507",
+   "maker": "Sorotec",
+   "model": "Alu-Line Heavy",
+   "variant": "2507",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 100.39,
+    "y": 29.53,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 2550,
+    "y": 750,
+    "z": 220
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Alu-Line-2507-Heavy.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), aluminium profile gantry with heavier X drive; motors and control not included. Ball screws X 25 x 20, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-alu-line-heavy-2510",
+   "maker": "Sorotec",
+   "model": "Alu-Line Heavy",
+   "variant": "2510",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 100.39,
+    "y": 41.34,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 2550,
+    "y": 1050,
+    "z": 220
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfraese-Alu-Line-2510-Heavy-10956.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), aluminium profile gantry with heavier X drive; motors and control not included. Ball screws X 25 x 20, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-alu-line-heavy-2513",
+   "maker": "Sorotec",
+   "model": "Alu-Line Heavy",
+   "variant": "2513",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 100.39,
+    "y": 53.15,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 2550,
+    "y": 1350,
+    "z": 220
+   },
+   "gantry_clearance_in": 10.63,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfraese-AL-Line-2513-Heavy-10957.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 270 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), aluminium profile gantry with heavier X drive; motors and control not included. Ball screws X 25 x 20, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-basic-line-1007",
+   "maker": "Sorotec",
+   "model": "Basic-Line",
+   "variant": "1007",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 40.75,
+    "y": 28.15,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 1035,
+    "y": 715,
+    "z": 140
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Sorotec SFM 1000",
+     "power_kw": 1.0,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Sorotec Control Unit C1 + Beamicon Basic",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool length sensor WLS 2"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Basic-Line-1007-Instant-Milling-Kit-12884.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Instant Milling Kit (self-assembly): performance kit, 3 x 3 Nm steppers, Control Unit C1 with Beamicon Basic, SFM 1000 router, WLS 2 tool length sensor."
+  },
+  {
+   "id": "sorotec-compact-line-0403",
+   "maker": "Sorotec",
+   "model": "Compact-Line",
+   "variant": "0403",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 16.54,
+    "y": 12.2,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 420,
+    "y": 310,
+    "z": 140
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfraese-Compact-Line-10862.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly): integrated load-bearing T-slot plate, HGR20 rails, HIWIN T07 ball screws; motors and control not included. Ball screws X 16 x 10, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-compact-line-0404",
+   "maker": "Sorotec",
+   "model": "Compact-Line",
+   "variant": "0404",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 16.54,
+    "y": 16.14,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 420,
+    "y": 410,
+    "z": 140
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfraese-Compact-Line-10863.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly): integrated load-bearing T-slot plate, HGR20 rails, HIWIN T07 ball screws; motors and control not included. Ball screws X 16 x 10, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-compact-line-0405",
+   "maker": "Sorotec",
+   "model": "Compact-Line",
+   "variant": "0405",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 16.54,
+    "y": 20.08,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 420,
+    "y": 510,
+    "z": 140
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfraese-Compact-Line-10864.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly): integrated load-bearing T-slot plate, HGR20 rails, HIWIN T07 ball screws; motors and control not included. Ball screws X 16 x 10, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-compact-line-0604",
+   "maker": "Sorotec",
+   "model": "Compact-Line",
+   "variant": "0604",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 24.41,
+    "y": 16.14,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 620,
+    "y": 410,
+    "z": 140
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfraese-Compact-Line-10865.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly): integrated load-bearing T-slot plate, HGR20 rails, HIWIN T07 ball screws; motors and control not included. Ball screws X 16 x 10, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-compact-line-0605",
+   "maker": "Sorotec",
+   "model": "Compact-Line",
+   "variant": "0605",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 24.41,
+    "y": 20.08,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 620,
+    "y": 510,
+    "z": 140
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfr-smaschine-CL-Line-10866.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly): integrated load-bearing T-slot plate, HGR20 rails, HIWIN T07 ball screws; motors and control not included. Ball screws X 16 x 10, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-compact-line-0804",
+   "maker": "Sorotec",
+   "model": "Compact-Line",
+   "variant": "0804",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 32.28,
+    "y": 16.14,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 820,
+    "y": 410,
+    "z": 140
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfraese-Compact-Line-10867.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly): integrated load-bearing T-slot plate, HGR20 rails, HIWIN T07 ball screws; motors and control not included. Ball screws X 16 x 10, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-compact-line-0805",
+   "maker": "Sorotec",
+   "model": "Compact-Line",
+   "variant": "0805",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 32.28,
+    "y": 20.08,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 820,
+    "y": 510,
+    "z": 140
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfraese-Compact-Line-10868.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly): integrated load-bearing T-slot plate, HGR20 rails, HIWIN T07 ball screws; motors and control not included. Ball screws X 16 x 10, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-compact-line-0807",
+   "maker": "Sorotec",
+   "model": "Compact-Line",
+   "variant": "0807",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 32.28,
+    "y": 27.95,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 820,
+    "y": 710,
+    "z": 140
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfraese-Compact-Line-0807-10869.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly): integrated load-bearing T-slot plate, HGR20 rails, HIWIN T07 ball screws; motors and control not included. Ball screws X 16 x 10, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-compact-line-1005",
+   "maker": "Sorotec",
+   "model": "Compact-Line",
+   "variant": "1005",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 40.16,
+    "y": 20.08,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 1020,
+    "y": 510,
+    "z": 140
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfraese-Compact-Line-10870.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly): integrated load-bearing T-slot plate, HGR20 rails, HIWIN T07 ball screws; motors and control not included. Ball screws X 16 x 10, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-compact-line-1007",
+   "maker": "Sorotec",
+   "model": "Compact-Line",
+   "variant": "1007",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 40.16,
+    "y": 27.95,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 1020,
+    "y": 710,
+    "z": 140
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Portalfraese-Compact-Line-10871.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly): integrated load-bearing T-slot plate, HGR20 rails, HIWIN T07 ball screws; motors and control not included. Ball screws X 16 x 10, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-compact-line-light-0404",
+   "maker": "Sorotec",
+   "model": "Compact-Line Light",
+   "variant": "0404",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 16.54,
+    "y": 16.14,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 420,
+    "y": 410,
+    "z": 140
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Compact-Line-Light-0404.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), lighter version of the Compact-Line (fewer carriages); motors and control not included. The T-slot plate is a load-bearing part of the frame."
+  },
+  {
+   "id": "sorotec-compact-line-light-0405",
+   "maker": "Sorotec",
+   "model": "Compact-Line Light",
+   "variant": "0405",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 16.54,
+    "y": 20.08,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 420,
+    "y": 510,
+    "z": 140
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Compact-Line-Light-0405.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), lighter version of the Compact-Line (fewer carriages); motors and control not included. The T-slot plate is a load-bearing part of the frame."
+  },
+  {
+   "id": "sorotec-compact-line-light-0604",
+   "maker": "Sorotec",
+   "model": "Compact-Line Light",
+   "variant": "0604",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 24.41,
+    "y": 16.14,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 620,
+    "y": 410,
+    "z": 140
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Compact-Line-Light-0604.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), lighter version of the Compact-Line (fewer carriages); motors and control not included. The T-slot plate is a load-bearing part of the frame."
+  },
+  {
+   "id": "sorotec-compact-line-light-0605",
+   "maker": "Sorotec",
+   "model": "Compact-Line Light",
+   "variant": "0605",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 24.41,
+    "y": 20.08,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 620,
+    "y": 510,
+    "z": 140
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Compact-Line-Light-0605.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), lighter version of the Compact-Line (fewer carriages); motors and control not included. The T-slot plate is a load-bearing part of the frame. Ball screws X 16 x 10, Y 16 x 10, Z 16 x 05 mm."
+  },
+  {
+   "id": "sorotec-compact-line-light-0804",
+   "maker": "Sorotec",
+   "model": "Compact-Line Light",
+   "variant": "0804",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 32.28,
+    "y": 16.14,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 820,
+    "y": 410,
+    "z": 140
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Compact-Line-Light-0804.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), lighter version of the Compact-Line (fewer carriages); motors and control not included. The T-slot plate is a load-bearing part of the frame."
+  },
+  {
+   "id": "sorotec-compact-line-light-0805",
+   "maker": "Sorotec",
+   "model": "Compact-Line Light",
+   "variant": "0805",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 32.28,
+    "y": 20.08,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 820,
+    "y": 510,
+    "z": 140
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Compact-Line-Light-0805.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), lighter version of the Compact-Line (fewer carriages); motors and control not included. The T-slot plate is a load-bearing part of the frame."
+  },
+  {
+   "id": "sorotec-compact-line-light-0807",
+   "maker": "Sorotec",
+   "model": "Compact-Line Light",
+   "variant": "0807",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 32.28,
+    "y": 27.95,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 820,
+    "y": 710,
+    "z": 140
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Compact-Line-Light-0807.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), lighter version of the Compact-Line (fewer carriages); motors and control not included. The T-slot plate is a load-bearing part of the frame."
+  },
+  {
+   "id": "sorotec-compact-line-light-1005",
+   "maker": "Sorotec",
+   "model": "Compact-Line Light",
+   "variant": "1005",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 40.16,
+    "y": 20.08,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 1020,
+    "y": 510,
+    "z": 140
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Compact-Line-Light-1005.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), lighter version of the Compact-Line (fewer carriages); motors and control not included. The T-slot plate is a load-bearing part of the frame."
+  },
+  {
+   "id": "sorotec-compact-line-light-1007",
+   "maker": "Sorotec",
+   "model": "Compact-Line Light",
+   "variant": "1007",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 40.16,
+    "y": 27.95,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 1020,
+    "y": 710,
+    "z": 140
+   },
+   "gantry_clearance_in": 6.69,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Compact-Line-Light-1007.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 170 mm"
+   },
+   "notes": "Mechanics parts kit (self-assembly), lighter version of the Compact-Line (fewer carriages); motors and control not included. The T-slot plate is a load-bearing part of the frame."
+  },
+  {
+   "id": "sorotec-hobby-line-10560",
+   "maker": "Sorotec",
+   "model": "Hobby-Line",
+   "variant": "10560",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 24.02,
+    "y": 41.34,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 1050,
+    "z": 140
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Sorotec SFM 800",
+     "power_kw": 0.8,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Sorotec Control Unit C1 + Beamicon Basic",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool length sensor WLS 1"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "threaded inserts (MDF grid)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Instant-Milling-Kit-Hobby-Line-10560-EN.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Instant Milling Kit (self-assembly): stepper motor set, Control Unit C1 with Beamicon Basic, MDF threaded-grid table, SFM 800 router, WLS 1 tool length sensor. Without enclosure: 2 m/min max traverse, 3.175 mm cutter limit."
+  },
+  {
+   "id": "sorotec-hobby-line-4530",
+   "maker": "Sorotec",
+   "model": "Hobby-Line",
+   "variant": "4530",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 17.72,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 450,
+    "z": 140
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Sorotec SFM 800",
+     "power_kw": 0.8,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Sorotec Control Unit C1 + Beamicon Basic",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool length sensor WLS 1"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "threaded inserts (MDF grid)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Instant-Milling-Kit-Hobby-Line-4530-EN.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Instant Milling Kit (self-assembly): stepper motor set, Control Unit C1 with Beamicon Basic, MDF threaded-grid table, SFM 800 router, WLS 1 tool length sensor. Without enclosure: 2 m/min max traverse, 3.175 mm cutter limit."
+  },
+  {
+   "id": "sorotec-hobby-line-6045",
+   "maker": "Sorotec",
+   "model": "Hobby-Line",
+   "variant": "6045",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 18.11,
+    "y": 23.62,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 460,
+    "y": 600,
+    "z": 140
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Sorotec SFM 800",
+     "power_kw": 0.8,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Sorotec Control Unit C1 + Beamicon Basic",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool length sensor WLS 1"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "threaded inserts (MDF grid)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Instant-Milling-Kit-Hobby-Line-6045-EN.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Instant Milling Kit (self-assembly): stepper motor set, Control Unit C1 with Beamicon Basic, MDF threaded-grid table, SFM 800 router, WLS 1 tool length sensor. Without enclosure: 2 m/min max traverse, 3.175 mm cutter limit."
+  },
+  {
+   "id": "sorotec-hobby-line-7545",
+   "maker": "Sorotec",
+   "model": "Hobby-Line",
+   "variant": "7545",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 18.11,
+    "y": 29.53,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 460,
+    "y": 750,
+    "z": 140
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Sorotec SFM 800",
+     "power_kw": 0.8,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Sorotec Control Unit C1 + Beamicon Basic",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool length sensor WLS 1"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "threaded inserts (MDF grid)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/Instant-Milling-Kit-Hobby-Line-7545-EN.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Instant Milling Kit (self-assembly): stepper motor set, Control Unit C1 with Beamicon Basic, MDF threaded-grid table, SFM 800 router, WLS 1 tool length sensor. Without enclosure: 2 m/min max traverse, 3.175 mm cutter limit."
+  },
+  {
+   "id": "sorotec-st-line-0704",
+   "maker": "Sorotec",
+   "model": "ST-Line",
+   "variant": "0704",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 29.53,
+    "y": 18.11,
+    "z": 7.48
+   },
+   "work_area_mm": {
+    "x": 750,
+    "y": 460,
+    "z": 190
+   },
+   "gantry_clearance_in": 10.24,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/ST-Line-0704.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 260 mm"
+   },
+   "notes": "Steel-frame portal mill, HIWIN size-20 rails; clearance 260 mm without T-slot plate. Supplied by freight; control optional. Approx. 205 kg."
+  },
+  {
+   "id": "sorotec-st-line-1006",
+   "maker": "Sorotec",
+   "model": "ST-Line",
+   "variant": "1006",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 41.34,
+    "y": 25.98,
+    "z": 7.48
+   },
+   "work_area_mm": {
+    "x": 1050,
+    "y": 660,
+    "z": 190
+   },
+   "gantry_clearance_in": 10.24,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.sorotec.de/shop/ST1006-ohne-Steuerung.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 260 mm"
+   },
+   "notes": "Steel-frame portal mill, HIWIN size-20 rails; clearance 260 mm without T-slot plate. Supplied by freight; control optional. Ball screws X 16 x 10, Y 16 x 10, Z 16 x 5 mm."
+  }
+ ]
+}

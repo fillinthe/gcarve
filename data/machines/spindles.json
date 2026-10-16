@@ -1,0 +1,4365 @@
+{
+  "spindles": [
+    {
+      "id": "makita-rt0701c",
+      "maker": "Makita",
+      "model": "RT0701C",
+      "type": "router",
+      "power_kw": null,
+      "power_hp": 1.25,
+      "rpm_min": 10000,
+      "rpm_max": 30000,
+      "collet": "1/4\" (3/8\" optional)",
+      "collet_min_in": 0.25,
+      "collet_max_in": 0.375,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": null,
+      "sources": [
+        "https://www.makitatools.com/products/details/RT0701C",
+        "https://www.makitatools.com/products/details/RT0701CX7"
+      ],
+      "notes": "6.5 A; 1-1/4 HP is Makita's maximum horsepower. 3/8\" collet 763619-3 listed as accessory on the maker page. Outside the US sold as RT0700C with 6/8 mm collets. Onefinity, Sienci LongMill and others ship 65 mm mounts for it."
+    },
+    {
+      "id": "makita-xtr01",
+      "maker": "Makita",
+      "model": "XTR01Z (18V LXT cordless)",
+      "type": "router",
+      "power_kw": null,
+      "power_hp": null,
+      "rpm_min": 10000,
+      "rpm_max": 30000,
+      "collet": "1/4\" + 3/8\"",
+      "collet_min_in": 0.25,
+      "collet_max_in": 0.375,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": "18 V battery",
+      "sources": [
+        "https://www.makitatools.com/products/details/XTR01Z"
+      ],
+      "notes": "Brushless; 1/4\" and 3/8\" collets included. No power rating published. Battery runtime limits CNC use."
+    },
+    {
+      "id": "dewalt-dwp611",
+      "maker": "DeWalt",
+      "model": "DWP611",
+      "type": "router",
+      "power_kw": null,
+      "power_hp": 1.25,
+      "rpm_min": 16000,
+      "rpm_max": 27000,
+      "collet": "1/4\"",
+      "collet_min_in": 0.25,
+      "collet_max_in": 0.25,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": "120 V",
+      "sources": [
+        "https://www.dewalt.com/product/dwp611/125-hp-max-torque-variable-speed-compact-router-with-led-s",
+        "https://assets.dewalt.com/GLOBALBOM/QU/DWP611/1/Instruction_Manual/EN/N336740_DWP611.pdf"
+      ],
+      "notes": "7 A; 1-1/4 HP max torque. Dial 1-6 = approx. 16,000-27,000 rpm (manual). Bits up to 1-3/8\" diameter. Common Shapeoko/X-Carve router."
+    },
+    {
+      "id": "dewalt-dcw600",
+      "maker": "DeWalt",
+      "model": "DCW600 (20V MAX XR cordless)",
+      "type": "router",
+      "power_kw": null,
+      "power_hp": null,
+      "rpm_min": 16000,
+      "rpm_max": 25500,
+      "collet": "1/4\"",
+      "collet_min_in": 0.25,
+      "collet_max_in": 0.25,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": "20 V battery",
+      "sources": [
+        "https://www.dewalt.com/product/dcw600b/20v-max-xr-cordless-compact-router-tool-only",
+        "https://assets.dewalt.com/GLOBALBOM/QU/DCW600B/1/Instruction_Manual/EN/NA115327_DCW600.pdf"
+      ],
+      "notes": "Brushless; 7 dial speeds 16,000-25,500 rpm (manual). No power rating published. Max bit diameter 1-3/8\"."
+    },
+    {
+      "id": "bosch-pr20evs",
+      "maker": "Bosch",
+      "model": "Colt PR20EVS",
+      "type": "router",
+      "power_kw": null,
+      "power_hp": 1.0,
+      "rpm_min": 16000,
+      "rpm_max": 35000,
+      "collet": "1/4\"",
+      "collet_min_in": 0.25,
+      "collet_max_in": 0.25,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": "120 V",
+      "sources": [
+        "https://www.boschtools.com/us/en/products/pr20evs-060160A71A"
+      ],
+      "notes": "5.6 A, 1.0 HP max. Highest top speed of the trim routers here."
+    },
+    {
+      "id": "bosch-1617evs",
+      "maker": "Bosch",
+      "model": "1617EVS",
+      "type": "router",
+      "power_kw": null,
+      "power_hp": 2.25,
+      "rpm_min": 8000,
+      "rpm_max": 25000,
+      "collet": "1/4\" + 3/8\" + 1/2\" + 8 mm",
+      "collet_min_in": 0.25,
+      "collet_max_in": 0.5,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": "120 V",
+      "sources": [
+        "https://www.boschtools.com/us/en/products/1617evs-0601617763"
+      ],
+      "notes": "12 A, 2-1/4 HP; full-size router (motor body far larger than 65 mm). Collet capacity as listed by Bosch."
+    },
+    {
+      "id": "porter-cable-892",
+      "maker": "Porter-Cable",
+      "model": "892 (890 series)",
+      "type": "router",
+      "power_kw": null,
+      "power_hp": 2.25,
+      "rpm_min": 10000,
+      "rpm_max": 23000,
+      "collet": "1/4\" + 1/2\" (3/8\" optional)",
+      "collet_min_in": 0.25,
+      "collet_max_in": 0.5,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": null,
+      "sources": [
+        "https://www.portercable.com/products/power-tools/woodworking-tools/routers/214-hp-fixed-base-router-kit/892",
+        "https://www.portercable.com/GLOBALBOM/QU/8931/1/Instruction_Manual/EN/En903618.pdf"
+      ],
+      "notes": "2-1/4 HP (product name). Manual (891/892): variable 10,000-23,000 rpm; bits over 2-1/2\" only at 10,000-13,000 rpm, max 3-1/2\". 891 is the clamp-lever sibling; 8902 is the bare variable-speed motor."
+    },
+    {
+      "id": "kress-800-fme",
+      "maker": "AMB (Kress)",
+      "model": "800 FME",
+      "type": "router",
+      "power_kw": 0.8,
+      "power_hp": null,
+      "rpm_min": 10000,
+      "rpm_max": 29000,
+      "collet": "Kress/AMB standard collet (8 mm stock)",
+      "collet_min_in": 0.079,
+      "collet_max_in": 0.394,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": "230 V",
+      "sources": [
+        "https://www.amb-elektrik.de/products/amb-frasmotor-800-fme-230v-fur-standard-spannzangen",
+        "https://www.amb-elektrik.de/products/standard-spannzangen-2-10-mm"
+      ],
+      "notes": "0.8 kW is input power (Aufnahmeleistung). 43 mm Euro collar. 110 V version sold as 8000 FME; quick-change cord version 800 FME-Q (same data).",
+      "estimated": {
+        "collet_min_in": "converted from AMB standard collets 2-10 mm",
+        "collet_max_in": "converted from AMB standard collets 2-10 mm"
+      }
+    },
+    {
+      "id": "amb-1050-fme-1",
+      "maker": "AMB (Kress)",
+      "model": "1050 FME-1",
+      "type": "router",
+      "power_kw": 1.05,
+      "power_hp": null,
+      "rpm_min": 5000,
+      "rpm_max": 25000,
+      "collet": "Kress/AMB standard collet (8 mm stock)",
+      "collet_min_in": 0.079,
+      "collet_max_in": 0.394,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": "230 V",
+      "sources": [
+        "https://www.amb-elektrik.de/products/amb-frasmotor-1050-fme-1-230v-fur-standard-spannzangen",
+        "https://www.amb-elektrik.de/products/standard-spannzangen-2-10-mm"
+      ],
+      "notes": "1.05 kW input power. 43 mm Euro collar. Formerly Kress.",
+      "estimated": {
+        "collet_min_in": "converted from AMB standard collets 2-10 mm",
+        "collet_max_in": "converted from AMB standard collets 2-10 mm"
+      }
+    },
+    {
+      "id": "amb-1050-fme-p",
+      "maker": "AMB (Kress)",
+      "model": "1050 FME-P",
+      "type": "router",
+      "power_kw": 1.05,
+      "power_hp": null,
+      "rpm_min": 5000,
+      "rpm_max": 25000,
+      "collet": "ER16",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.394,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": "230 V",
+      "sources": [
+        "https://www.amb-elektrik.de/products/amb-frasmotor-1050-fme-p-230v-fur-er16-prazisions-spannzangen",
+        "https://www.amb-elektrik.de/products/prazisions-spannzangen-er16-1-10-mm"
+      ],
+      "notes": "1.05 kW input power; precision ER16 version with sealed bearings for long duty.",
+      "estimated": {
+        "collet_min_in": "converted from AMB ER16 collets 1-10 mm",
+        "collet_max_in": "converted from AMB ER16 collets 1-10 mm"
+      }
+    },
+    {
+      "id": "amb-1050-fme-p-di",
+      "maker": "AMB (Kress)",
+      "model": "1050 FME-P DI",
+      "type": "router",
+      "power_kw": 1.05,
+      "power_hp": null,
+      "rpm_min": 3500,
+      "rpm_max": 25000,
+      "collet": "ER16",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.394,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": "230 V",
+      "sources": [
+        "https://www.amb-elektrik.de/products/amb-frasmotor-1050-fme-p-di-230v-fur-er16-prazisions-spannzangen",
+        "https://www.amb-elektrik.de/products/prazisions-spannzangen-er16-1-10-mm"
+      ],
+      "notes": "DI = speed set by the controller over a 0-10 V signal (no VFD). 1.05 kW input power.",
+      "estimated": {
+        "collet_min_in": "converted from AMB ER16 collets 1-10 mm",
+        "collet_max_in": "converted from AMB ER16 collets 1-10 mm"
+      }
+    },
+    {
+      "id": "amb-1400-fme-p",
+      "maker": "AMB (Kress)",
+      "model": "1400 FME-P (ER16)",
+      "type": "router",
+      "power_kw": 1.4,
+      "power_hp": null,
+      "rpm_min": 5000,
+      "rpm_max": 25000,
+      "collet": "ER16",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.394,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": "230 V",
+      "sources": [
+        "https://www.amb-elektrik.de/products/amb-frasmotor-1400-fme-p-230v-fur-er16-prazisions-spannzangen",
+        "https://www.amb-elektrik.de/products/prazisions-spannzangen-er16-1-10-mm"
+      ],
+      "notes": "1.4 kW input power. AMB has no '1400 FME-Q'; the 1400 is sold as FME-P (ER16 or ER20), plus DI/U/W variants.",
+      "estimated": {
+        "collet_min_in": "converted from AMB ER16 collets 1-10 mm",
+        "collet_max_in": "converted from AMB ER16 collets 1-10 mm"
+      }
+    },
+    {
+      "id": "amb-1400-fme-p-er20",
+      "maker": "AMB (Kress)",
+      "model": "1400 FME-P (ER20)",
+      "type": "router",
+      "power_kw": 1.4,
+      "power_hp": null,
+      "rpm_min": 5000,
+      "rpm_max": 25000,
+      "collet": "ER20",
+      "collet_min_in": null,
+      "collet_max_in": 0.5,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": "230 V",
+      "sources": [
+        "https://www.amb-elektrik.de/products/amb-frasmotor-1400-fme-p-230v-fur-er20-prazisions-spannzangen"
+      ],
+      "notes": "1.4 kW input power. AMB: ER20 for shanks up to 12 mm (1/2\"); 12 mm stock collet.",
+      "estimated": {
+        "collet_max_in": "AMB states up to 12 mm (1/2\"); 0.5 in used"
+      }
+    },
+    {
+      "id": "mafell-fm-1000",
+      "maker": "Mafell",
+      "model": "FM 1000",
+      "type": "router",
+      "power_kw": 1.0,
+      "power_hp": null,
+      "rpm_min": 4000,
+      "rpm_max": 25000,
+      "collet": "OZ8 collet (8 mm stock)",
+      "collet_min_in": 0.079,
+      "collet_max_in": 0.394,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": "230 V",
+      "sources": [
+        "https://marketing.mafell.de/download/brochures/FM1000/mafell_datenblatt_fm1000_0725_DE_s.pdf"
+      ],
+      "notes": "1000 W input, 43 mm collar, 1.65 kg. Optional OZ8 collets 2-10 mm incl. 1/8\" and 1/4\". No 'FM 1000 WSP' exists; closest are FM 1000 WS / PV-WS.",
+      "estimated": {
+        "collet_min_in": "converted from optional OZ8 collets 2-10 mm",
+        "collet_max_in": "converted from optional OZ8 collets 2-10 mm"
+      }
+    },
+    {
+      "id": "mafell-fm-1000-pv-ws",
+      "maker": "Mafell",
+      "model": "FM 1000 PV-WS",
+      "type": "router",
+      "power_kw": 1.0,
+      "power_hp": null,
+      "rpm_min": 4000,
+      "rpm_max": 25000,
+      "collet": "8 mm quick-clamp (reducer sleeves; OZ and ER16 adapters optional)",
+      "collet_min_in": 0.118,
+      "collet_max_in": 0.315,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": "230 V",
+      "sources": [
+        "https://marketing.mafell.de/download/brochures/FM1000PV-WS/mafell_datenblatt_fm1000pv_ws_0925_DE_s.pdf"
+      ],
+      "notes": "1000 W input; toolless quick-clamp; portal interface (8-56 V supply, 0-10 V speed). Reducer sleeves 3, 1/8\", 4, 6 mm.",
+      "estimated": {
+        "collet_min_in": "converted from 3 mm reducer sleeve",
+        "collet_max_in": "converted from 8 mm holder"
+      }
+    },
+    {
+      "id": "carbide3d-compact-router",
+      "maker": "Carbide 3D",
+      "model": "Carbide Compact Router",
+      "type": "router",
+      "power_kw": null,
+      "power_hp": null,
+      "rpm_min": 12000,
+      "rpm_max": 30000,
+      "collet": "proprietary 1/4\" + 1/8\" precision collets",
+      "collet_min_in": 0.125,
+      "collet_max_in": 0.25,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": "120 V",
+      "sources": [
+        "https://shop.carbide3d.com/products/carbide-compact-router",
+        "https://carbide3d.com/hub/docs/carbide-compact-router/"
+      ],
+      "notes": "65 mm body. Dial 1-6 approx. 11,000/13,500/18,250/24,500/29,250/31,000 rpm. No power rating published."
+    },
+    {
+      "id": "carbide3d-compact-router-er11",
+      "maker": "Carbide 3D",
+      "model": "ER-11 Compact Router",
+      "type": "router",
+      "power_kw": null,
+      "power_hp": null,
+      "rpm_min": 12000,
+      "rpm_max": 30000,
+      "collet": "ER11",
+      "collet_min_in": 0.125,
+      "collet_max_in": 0.25,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": "120 V",
+      "sources": [
+        "https://shop.carbide3d.com/products/er11-compact-router",
+        "https://carbide3d.com/hub/docs/carbide-compact-router/"
+      ],
+      "notes": "Same router as the Compact Router with ER11 nose; 1/8\" and 1/4\" collets included, max cutter 1/4\"."
+    },
+    {
+      "id": "carbide3d-vfd-65mm-er16",
+      "maker": "Carbide 3D",
+      "model": "65 mm VFD Spindle (ER16)",
+      "type": "spindle",
+      "power_kw": 1.2,
+      "power_hp": null,
+      "rpm_min": 8000,
+      "rpm_max": 24000,
+      "collet": "ER16",
+      "collet_min_in": 0.125,
+      "collet_max_in": 0.375,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "110 V",
+      "sources": [
+        "https://shop.carbide3d.com/products/vfd-spindle-kit",
+        "https://carbide3d.com/hub/docs/65mm-er16-spindle/"
+      ],
+      "notes": "1200 W, 12 A on 110 V; 1/8\", 1/4\", 3/8\" collets. Replaced the ER11 version in May 2025. G-code speed control."
+    },
+    {
+      "id": "carbide3d-vfd-80mm",
+      "maker": "Carbide 3D",
+      "model": "80 mm Water-Cooled VFD Spindle",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": 8000,
+      "rpm_max": 24000,
+      "collet": "ER20",
+      "collet_min_in": 0.125,
+      "collet_max_in": 0.5,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://shop.carbide3d.com/products/vfd-spindle-80mm",
+        "https://carbide3d.com/hub/docs/80mm-spindle-kit/"
+      ],
+      "notes": "Shapeoko 5 Pro only. 12 A on 220 V; chiller included (110 V). 1/8\", 1/4\", 1/2\" collets."
+    },
+    {
+      "id": "sienci-autospin-t1",
+      "maker": "Sienci Labs",
+      "model": "AutoSpin T1 Router",
+      "type": "router",
+      "power_kw": 0.36,
+      "power_hp": 1.25,
+      "rpm_min": 10000,
+      "rpm_max": 30000,
+      "collet": "ER11",
+      "collet_min_in": 0.125,
+      "collet_max_in": 0.25,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": "120 V",
+      "sources": [
+        "https://sienci.com/product/autospin-t1-router",
+        "https://sienci.com/2026/01/20/everything-you-need-to-know-about-the-autospin-t1-router/"
+      ],
+      "notes": "Output 360 W; 1.25 hp is Sienci's 'at peak' figure. 6.5 A. 65 mm. PWM (5 V) speed control or manual dial (1-5 = 10k/15k/20k/25k/30k rpm)."
+    },
+    {
+      "id": "sienci-spindle-1-5kw-er20",
+      "maker": "Sienci Labs",
+      "model": "1.5 kW ER20 Spindle Kit",
+      "type": "spindle",
+      "power_kw": 1.5,
+      "power_hp": 2.0,
+      "rpm_min": 7500,
+      "rpm_max": 24000,
+      "collet": "ER20",
+      "collet_min_in": 0.125,
+      "collet_max_in": 0.5,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "110/120 V",
+      "sources": [
+        "https://resources.sienci.com/?p=22503",
+        "https://resources.sienci.com/view/am-spindle-kit/"
+      ],
+      "notes": "80 mm air-cooled; 1/8\", 1/4\", 3/8\", 1/2\" collets. LongMill/AltMill. Earlier ER16 1.5 kW kit discontinued Sept 2025."
+    },
+    {
+      "id": "sienci-spindle-2-2kw-er20",
+      "maker": "Sienci Labs",
+      "model": "2.2 kW ER20 Spindle Kit (AltMill)",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": 3.0,
+      "rpm_min": 7500,
+      "rpm_max": 24000,
+      "collet": "ER20",
+      "collet_min_in": 0.125,
+      "collet_max_in": 0.5,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/240 V",
+      "sources": [
+        "https://resources.sienci.com/?p=22503",
+        "https://resources.sienci.com/view/am-spindle-kit/"
+      ],
+      "notes": "80 mm air-cooled; 1/8\", 1/4\", 3/8\", 1/2\" collets."
+    },
+    {
+      "id": "onefinity-redline-2-2kw",
+      "maker": "Onefinity",
+      "model": "Spindle Kit by Redline CNC 2.2 kW",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": null,
+      "collet": "ER20",
+      "collet_min_in": 0.125,
+      "collet_max_in": 0.5,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://www.onefinitycnc.com/product-page/onefinity-spindle-by-redline-cnc-80mm-2-2kw-air-cooled-220v"
+      ],
+      "notes": "80 mm air-cooled, 2.2 kW VFD; 1/8\", 1/4\", 3/8\", 1/2\" collets. RPM range not published. Onefinity's router option is the Makita RT0701C (65 mm mount)."
+    },
+    {
+      "id": "pwncnc-1-5kw-er11",
+      "maker": "PwnCNC",
+      "model": "1.5 kW 110 V ER11 65 mm",
+      "type": "spindle",
+      "power_kw": 1.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER11",
+      "collet_min_in": 0.0625,
+      "collet_max_in": 0.25,
+      "cooling": null,
+      "vfd": true,
+      "voltage": "110 V",
+      "sources": [
+        "https://pwncnc.com/products/pwncnc-spindle-motor",
+        "https://shop.pwncnc.com/products/spindle-kit",
+        "https://support.pwncnc.com/kb/article/115-other-pwm-controllers/"
+      ],
+      "notes": "Air- or water-cooled versions. 12 A. 1/16\", 1/8\", 1/4\" collets (up to 1/4\" shank). 2-pole 400 Hz. PwnCNC KB: 'spindles run between 0-24000 rpm'; staff on the forum call 12k-24k practical for 2-pole motors (rpm_min left null)."
+    },
+    {
+      "id": "pwncnc-1-5kw-er20",
+      "maker": "PwnCNC",
+      "model": "1.5 kW 110 V ER20 80 mm",
+      "type": "spindle",
+      "power_kw": 1.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER20",
+      "collet_min_in": 0.125,
+      "collet_max_in": 0.5,
+      "cooling": null,
+      "vfd": true,
+      "voltage": "110 V",
+      "sources": [
+        "https://pwncnc.com/products/pwncnc-spindle-motor",
+        "https://shop.pwncnc.com/products/spindle-kit",
+        "https://support.pwncnc.com/kb/article/115-other-pwm-controllers/"
+      ],
+      "notes": "Air- or water-cooled versions. 12 A. 1/8\", 1/4\", 1/2\" collets. 2-pole 400 Hz. PwnCNC KB: 'spindles run between 0-24000 rpm'; staff on the forum call 12k-24k practical for 2-pole motors (rpm_min left null)."
+    },
+    {
+      "id": "pwncnc-2-2kw-er20",
+      "maker": "PwnCNC",
+      "model": "2.2 kW 220 V ER20 80 mm",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER20",
+      "collet_min_in": 0.125,
+      "collet_max_in": 0.5,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://pwncnc.com/products/pwncnc-spindle-motor",
+        "https://shop.pwncnc.com/products/spindle-kit",
+        "https://support.pwncnc.com/kb/article/115-other-pwm-controllers/"
+      ],
+      "notes": "Air-cooled (water-cooled version also sold). 10 A. 1/8\", 1/4\", 1/2\" collets. 2-pole 400 Hz. PwnCNC KB: 'spindles run between 0-24000 rpm'; staff on the forum call 12k-24k practical for 2-pole motors (rpm_min left null)."
+    },
+    {
+      "id": "avid-3hp-2-2kw",
+      "maker": "Avid CNC",
+      "model": "3 HP (2.2 kW) Plug and Play Spindle",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": 3.0,
+      "rpm_min": 8000,
+      "rpm_max": 24000,
+      "collet": "ER20",
+      "collet_min_in": null,
+      "collet_max_in": 0.5,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://www.avidcnc.com/3-hp-plug-and-play-spindle-vfd-system-p-353.html",
+        "https://web.archive.org/web/20210121225659/https://www.avidcnc.com/3-hp-plug-and-play-spindle-vfd-system-p-353.html"
+      ],
+      "notes": "Approx. 9.7 A; 1/2\" ER20 collet included. Delta VFD. No longer listed in the current catalog."
+    },
+    {
+      "id": "avid-4hp-3kw",
+      "maker": "Avid CNC",
+      "model": "4 HP (3 kW) Plug and Play Spindle",
+      "type": "spindle",
+      "power_kw": 3.0,
+      "power_hp": 4.0,
+      "rpm_min": 6000,
+      "rpm_max": 24000,
+      "collet": "ER20",
+      "collet_min_in": null,
+      "collet_max_in": 0.5,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://www.avidcnc.com/4-hp-plug-and-play-spindle-vfd-system-p-856.html"
+      ],
+      "notes": "Hiteco spindle, approx. 11 A; ER20 up to 1/2\" shank."
+    },
+    {
+      "id": "avid-8-7hp-6-5kw",
+      "maker": "Avid CNC",
+      "model": "8.7 HP (6.5 kW) Plug and Play Spindle",
+      "type": "spindle",
+      "power_kw": 6.5,
+      "power_hp": 8.7,
+      "rpm_min": 1000,
+      "rpm_max": 24000,
+      "collet": "ER32",
+      "collet_min_in": null,
+      "collet_max_in": 0.75,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "208 V 3-phase / 240 V 1-phase",
+      "sources": [
+        "https://www.avidcnc.com/87-hp-plug-and-play-spindle-vfd-system-p-834.html"
+      ],
+      "notes": "Hiteco QN-1F, electric fan; constant torque 1,000-18,000 rpm. ER32 up to 3/4\" shank."
+    },
+    {
+      "id": "avid-av40s",
+      "maker": "Avid CNC",
+      "model": "AV40S 4 HP Smart Spindle (ATC)",
+      "type": "spindle",
+      "power_kw": null,
+      "power_hp": 4.0,
+      "rpm_min": 1000,
+      "rpm_max": 24000,
+      "collet": "ISO30",
+      "collet_min_in": null,
+      "collet_max_in": 0.75,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "240 V",
+      "sources": [
+        "https://www.avidcnc.com/av40s-4hp-smart-spindle-vfd-system-p-1492.html"
+      ],
+      "notes": "Automatic tool change; ISO30 holders for ER32 or ER20 collets, shanks up to 3/4\". Electric fan cooling."
+    },
+    {
+      "id": "shopbot-hsd-mt1073",
+      "maker": "ShopBot",
+      "model": "HSD 2.2 HP / 4 HP spindle kit (MT1073)",
+      "type": "spindle",
+      "power_kw": null,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": null,
+      "collet": "ER25",
+      "collet_min_in": 0.25,
+      "collet_max_in": 0.5,
+      "cooling": null,
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.shopbottools.com/products/accessories/spindles",
+        "https://store.shopbottools.com/products/collet-er25"
+      ],
+      "notes": "HSD MT1073 with Yaskawa VFD; ships with 1/4\" and 1/2\" ER25 collets. ShopBot publishes no rpm range. 2.2 HP and 4 HP versions."
+    },
+    {
+      "id": "hsd-es915-3-8kw",
+      "maker": "HSD",
+      "model": "ES915 H6161H0310",
+      "type": "spindle",
+      "power_kw": 3.8,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": null,
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://www.hsdusa.com/viewdoc.asp?co_id=361",
+        "https://web.archive.org/web/2022/https://www.hsdusa.com/viewdoc.asp?co_id=361"
+      ],
+      "notes": "ATC (pneumatic tool clamp), short nose, 2-pole, S1 3.8 / S6 4.6 kW, electric fan, 21 kg. Tool interface not on the page (ES915 is typically ISO30). Page now only in the web archive."
+    },
+    {
+      "id": "hsd-es915-5kw",
+      "maker": "HSD",
+      "model": "ES915 H6161H0380",
+      "type": "spindle",
+      "power_kw": 5.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": null,
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://www.hsdusa.com/viewdoc.asp?co_id=431",
+        "https://web.archive.org/web/20210729122056/https://www.hsdusa.com/viewdoc.asp?co_id=431"
+      ],
+      "notes": "ATC, short nose, 4-pole, S1 5 / S6 6 kW, electric fan, 29 kg. Tool interface not on the page."
+    },
+    {
+      "id": "hsd-es929-7-5kw",
+      "maker": "HSD",
+      "model": "ES929 H6161H0821",
+      "type": "spindle",
+      "power_kw": 7.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": null,
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.hsdusa.com/viewdoc.asp?co_id=470",
+        "https://web.archive.org/web/20220703143450/https://www.hsdusa.com/viewdoc.asp?co_id=470"
+      ],
+      "notes": "ATC, long nose, 4-pole, S1 7.5 / S6 9.0 kW, electric fan, 31 kg. Tool interface not on the page."
+    },
+    {
+      "id": "hsd-es951-8kw",
+      "maker": "HSD",
+      "model": "ES951 8 kW",
+      "type": "spindle",
+      "power_kw": 8.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ISO30 / HSK63F",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es951/"
+      ],
+      "notes": "ATC, S1 8 / S6 9.6 kW, electric fan / forced air. ES951 also 6.5 kW HSK F50 36,000 rpm liquid, 8.5/11 kW, 16/25 kW liquid."
+    },
+    {
+      "id": "hsd-es951-11kw",
+      "maker": "HSD",
+      "model": "ES951 11 kW",
+      "type": "spindle",
+      "power_kw": 11.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ISO30 / HSK63F",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es951/"
+      ],
+      "notes": "ATC, S1 11 / S6 13.2 kW, electric fan / forced air."
+    },
+    {
+      "id": "hsd-mt1073-060",
+      "maker": "HSD",
+      "model": "MT 1073-060 (1.5 kW)",
+      "type": "spindle",
+      "power_kw": 1.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER25",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.63,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/mt-1073-060/"
+      ],
+      "notes": "Manual tool change; S1 1.5 / S6 1.8 kW; shaft-driven or electric fan.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "hsd-mt1073-120",
+      "maker": "HSD",
+      "model": "MT 1073-120 (3 kW)",
+      "type": "spindle",
+      "power_kw": 3.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER25",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.63,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/mt-1073-120/"
+      ],
+      "notes": "Manual tool change; S1 3 / S6 3.6 kW, 1.6 Nm; ER25 or HSK C32 nose.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "hsd-mt1055",
+      "maker": "HSD",
+      "model": "MT1055 H6162H0086",
+      "type": "spindle",
+      "power_kw": 1.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 30000,
+      "collet": "ER20",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.512,
+      "cooling": null,
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://www.hsdusa.com/viewdoc.asp?co_id=1074",
+        "https://web.archive.org/web/20220703152935/https://www.hsdusa.com/viewdoc.asp?co_id=1074"
+      ],
+      "notes": "Manual tool change; S1 1.0 / S6 1.3 kW, rated 18,000 rpm, max 30,000.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "teknomotor-4147-c-er25",
+      "maker": "Teknomotor",
+      "model": "4147-C-DB-P-ER25-RH (2.2 kW)",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 18000,
+      "collet": "ER25",
+      "collet_min_in": 0.079,
+      "collet_max_in": 0.63,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/4147-c-db-p-er25-rh-2/",
+        "https://web.archive.org/web/20240424032039/https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/4147-c-db-p-er25-rh-2/",
+        "https://www.teknomotor.com/eng/faq.php"
+      ],
+      "notes": "Manual tool change, S1 2.2 kW, 1.17 Nm, nominal = max 18,000 rpm, 8.41 kg, order code COM41470244. 1.5 kW sibling COM41470272: 12,000 nominal / 18,000 max. Teknomotor blocks scripted access; archive copy used.",
+      "estimated": {
+        "collet_min_in": "converted from Teknomotor FAQ: P-ER25 shaft takes 2-16 mm",
+        "collet_max_in": "converted from Teknomotor FAQ: P-ER25 shaft takes 2-16 mm"
+      }
+    },
+    {
+      "id": "teknomotor-atc71-a-iso30",
+      "maker": "Teknomotor",
+      "model": "ATC71-A-ISO30-LN-2P",
+      "type": "spindle",
+      "power_kw": 4.6,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ISO30",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/atc71-a-iso30-ln-2p-2/",
+        "https://web.archive.org/web/20240719051321/https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/atc71-a-iso30-ln-2p-2/"
+      ],
+      "notes": "ATC; 4.6 kW is the S6 60% rating; 3.66 Nm; nominal 12,000 / max 24,000 rpm; 25 kg; COMTC710013."
+    },
+    {
+      "id": "teknomotor-atc71-c-hsk63f",
+      "maker": "Teknomotor",
+      "model": "ATC71-C-HSK63F-LN-2P-AC",
+      "type": "spindle",
+      "power_kw": 9.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "HSK63F",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://www.teknomotor.com/product/applications/spindles-for-robotic-applications-automations/atc71-c-hsk63f-ln-2p-ac/",
+        "https://web.archive.org/web/20240424021359/https://www.teknomotor.com/product/applications/spindles-for-robotic-applications-automations/atc71-c-hsk63f-ln-2p-ac/"
+      ],
+      "notes": "ATC; 9 kW is the S6 60% rating; 7.17 Nm; nominal 12,000 / max 24,000 rpm; 29.95 kg; COMTC710037. Cooling assumed fan (AC) - see estimated.",
+      "estimated": {
+        "cooling": "'AC' suffix and ATC71 family are fan-cooled; product table does not state cooling"
+      }
+    },
+    {
+      "id": "colombo-rs73-2-er25",
+      "maker": "Giordano Colombo",
+      "model": "RS73/2FP1CPE25DX",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER25",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.63,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://gcolombo.eu/en/prodotto/rs73-2fp1cpe25dx/"
+      ],
+      "notes": "RS series = electric fan. Manual tool change; S1 2.2 kW, 1.17 Nm, nominal 18,000 / max 24,000 rpm, 8.6 A, 8 kg.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "colombo-rs90-er32",
+      "maker": "Giordano Colombo",
+      "model": "RS90/2FP1SBCPE32DX",
+      "type": "spindle",
+      "power_kw": 6.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER32",
+      "collet_min_in": 0.079,
+      "collet_max_in": 0.787,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://gcolombo.eu/en/prodotto/rs90-2fp1sbcpe32dx/"
+      ],
+      "notes": "Electric fan; manual tool change; S1 6 kW, 2.39 Nm, 12.5 A, 13 kg.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "colombo-ra90-er25",
+      "maker": "Giordano Colombo",
+      "model": "RA90/2235FP1CPE25DX",
+      "type": "spindle",
+      "power_kw": 5.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER25",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.63,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://gcolombo.eu/en/prodotto/ra90-2235fp1cpe25dx/"
+      ],
+      "notes": "RA series = liquid cooled; manual tool change; S1 5.5 kW, 2.19 Nm, 12.5 A, 19 kg.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "generic-0-8kw-air-er11",
+      "maker": "Generic (China)",
+      "model": "0.8 kW air-cooled ER11 65 mm",
+      "type": "spindle",
+      "power_kw": 0.8,
+      "power_hp": null,
+      "rpm_min": 9000,
+      "rpm_max": 24000,
+      "collet": "ER11",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.276,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://vxb.com/products/air-cooled-800w-cnc-spindle-motor-220v-er11-65mm-0"
+      ],
+      "notes": "GENERIC: representative marketplace listing, not a maker datasheet; many brands sell near-identical units. 4 A, 0-400 Hz; listing says 0-24,000 rpm, 'recommended above 9000' (used as rpm_min).",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "generic-1-5kw-water-er11",
+      "maker": "Generic (China)",
+      "model": "1.5 kW water-cooled ER11 80 mm",
+      "type": "spindle",
+      "power_kw": 1.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER11",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.276,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://vxb.com/products/heavy-duty-water-cooled-cnc-spindle-motor-1-5kw-wi"
+      ],
+      "notes": "GENERIC: representative marketplace listing, not a maker datasheet; many brands sell near-identical units. ",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "generic-1-5kw-water-er16",
+      "maker": "Generic (China)",
+      "model": "1.5 kW water-cooled ER16 80 mm",
+      "type": "spindle",
+      "power_kw": 1.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER16",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.394,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "220 V 1-phase / 380 V 3-phase",
+      "sources": [
+        "https://vxb.com/products/top-shelf-1-5-kw-water-cooled-cnc-spindle-motor-wi"
+      ],
+      "notes": "GENERIC: representative marketplace listing, not a maker datasheet; many brands sell near-identical units. ",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "generic-2-2kw-water-er20",
+      "maker": "Generic (China)",
+      "model": "2.2 kW water-cooled ER20 80 mm",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER20",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.512,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://vxb.com/products/water-cooled-cnc-spindle-motor-2-2kw-220v-with-er2"
+      ],
+      "notes": "GENERIC: representative marketplace listing, not a maker datasheet; many brands sell near-identical units. ",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "generic-2-2kw-air-er20",
+      "maker": "Generic (China)",
+      "model": "2.2 kW air-cooled ER20 80 mm",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER20",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.512,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://manuals.plus/asin/B0F59R8C8S.pdf",
+        "https://vxb.com/products/beefy-22kw-air-cooled-er20-spindle-with-4-bearings"
+      ],
+      "notes": "GENERIC: representative marketplace listing, not a maker datasheet; many brands sell near-identical units. LVSEDTAL GDZ80x73-2.2 manual: 400 Hz, 6 A, axial fan, ER20 1-13 mm. VXB listing: 10 A, 1-13 mm.",
+      "estimated": {
+        "collet_min_in": "converted from listing 1-13 mm",
+        "collet_max_in": "converted from listing 1-13 mm"
+      }
+    },
+    {
+      "id": "generic-3kw-water-er20",
+      "maker": "Generic (China)",
+      "model": "3.0 kW water-cooled ER20 100 mm",
+      "type": "spindle",
+      "power_kw": 3.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER20",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.512,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://vxb.com/products/beefy-3kw-water-cooled-cnc-spindle-motor-220v-2400"
+      ],
+      "notes": "GENERIC: representative marketplace listing, not a maker datasheet; many brands sell near-identical units. 400 Hz, 100 mm x 220 mm body.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "hsd-es920-1-1kw",
+      "maker": "HSD",
+      "model": "ES920 H6161H2042 (1.1 kW, ISO 20)",
+      "type": "spindle",
+      "power_kw": 1.1,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ISO 20",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es920/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es920/page-data.json"
+      ],
+      "notes": "ATC (ES9 Line C, ES9 Line W); S1 1.1 / S6 40% 1.4 kW, 0.58 / 0.73 Nm, asynchronous motor, cooling: Electric fan, 7 kg, body square 82x92.5 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es920-2-2kw",
+      "maker": "HSD",
+      "model": "ES920 H6161H2042 (2.2 kW, ISO 20)",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 30000,
+      "collet": "ISO 20",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es920/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es920/page-data.json"
+      ],
+      "notes": "ATC (ES9 Line C, ES9 Line W); S1 2.2 / S6 40% 2.6 kW, 0.88 / 1.05 Nm, asynchronous motor, cooling: Electric fan, 7 kg, body square 82x92.5 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es950-3-8kw",
+      "maker": "HSD",
+      "model": "ES950 H6161H1658 (3.8 kW, ISO 30)",
+      "type": "spindle",
+      "power_kw": 3.8,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ISO 30",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es950/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es950/page-data.json"
+      ],
+      "notes": "ATC (ES9 Line C, ES9 Line W); S1 3.8 / S6 40% 4.5 kW, 3 / 3.6 Nm, asynchronous motor, cooling: Electric fan, 25 kg, body square 142x145 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es950-5kw",
+      "maker": "HSD",
+      "model": "ES950 H6161H1843 (5 kW, ISO 30 / HSK F63)",
+      "type": "spindle",
+      "power_kw": 5.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ISO 30 / HSK F63",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es950/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es950/page-data.json"
+      ],
+      "notes": "ATC (ES9 Line C, ES9 Line W); S1 5 / S6 40% 6 kW, 4 / 4.8 Nm, asynchronous motor, cooling: Electric fan, 25 kg, body square 142x145 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es950-7-5kw",
+      "maker": "HSD",
+      "model": "ES950 H6161H1691 (7.5 kW, ISO 30 / HSK F63)",
+      "type": "spindle",
+      "power_kw": 7.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ISO 30 / HSK F63",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es950/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es950/page-data.json"
+      ],
+      "notes": "ATC (ES9 Line C, ES9 Line W); S1 7.5 / S6 40% 9 kW, 6 / 7.2 Nm, asynchronous motor, cooling: Liquid, 25 kg, body square 142x145 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es951-8-5kw",
+      "maker": "HSD",
+      "model": "ES951 H6161H1634 (8.5 kW, ISO 30 / HSK F63)",
+      "type": "spindle",
+      "power_kw": 8.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ISO 30 / HSK F63",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es951/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es951/page-data.json"
+      ],
+      "notes": "ATC (ES9 Line C, ES9 Line W); S1 8.5 / S6 40% 10.2 kW, 13.5 / 16.2 Nm, asynchronous motor, cooling: Electric fan / Forced Air, 30 kg, body square 142x145 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es951-6-5kw-hskf50",
+      "maker": "HSD",
+      "model": "ES951 H6161H2055 (6.5 kW, HSK F50)",
+      "type": "spindle",
+      "power_kw": 6.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 36000,
+      "collet": "HSK F50",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es951/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es951/page-data.json"
+      ],
+      "notes": "ATC (ES9 Line C, ES9 Line W); S1 6.5 / S6 40% 7.8 kW, 3.4 / 4.1 Nm, asynchronous motor, cooling: Liquid, 25 kg, body square 142x145 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es951-16kw-hskf63",
+      "maker": "HSD",
+      "model": "ES951 H6161H2182 (16 kW, HSK F63)",
+      "type": "spindle",
+      "power_kw": 16.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "HSK F63",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es951/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es951/page-data.json"
+      ],
+      "notes": "ATC (ES9 Line C, ES9 Line W); S1 16 / S6 40% 19.2 kW, 19 / 22.8 (*) Nm, asynchronous motor, cooling: Liquid, 30 kg, body square 142x145 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es951-16kw-hske63",
+      "maker": "HSD",
+      "model": "ES951 H6161H2106 (16 kW, HSK E63)",
+      "type": "spindle",
+      "power_kw": 16.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 18000,
+      "collet": "HSK E63",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es951/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es951/page-data.json"
+      ],
+      "notes": "ATC (ES9 Line C, ES9 Line W); S1 16 / S6 40% 19.2 kW, 19 / 22.8 (*) Nm, asynchronous motor, cooling: Liquid, 30.5 kg, body square 142x145 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es951-25kw",
+      "maker": "HSD",
+      "model": "ES951 H6161H1692 (25 kW, HSK F63)",
+      "type": "spindle",
+      "power_kw": 25.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 18000,
+      "collet": "HSK F63",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es951/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es951/page-data.json"
+      ],
+      "notes": "ATC (ES9 Line C, ES9 Line W); S1 25 / S6 40% 30 kW, 23.9 / 28.6 Nm, asynchronous motor, cooling: Liquid, 29 kg, body square 142x145 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es330-4kw",
+      "maker": "HSD",
+      "model": "ES330 H6161090A6 (4 kW, ISO 30)",
+      "type": "spindle",
+      "power_kw": 4.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ISO 30",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es330/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es330/page-data.json"
+      ],
+      "notes": "ATC (ES3 Line C); S1 4 / S6 40% 4.5 kW, 3.18 / 3.58 Nm, asynchronous motor, cooling: Elettric fan, 15 kg, body square 119.5x102.5 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es325-2kw",
+      "maker": "HSD",
+      "model": "ES325 H6161H0405 (2 kW, HSK E25)",
+      "type": "spindle",
+      "power_kw": 2.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 50000,
+      "collet": "HSK E25",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es325/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es325/page-data.json"
+      ],
+      "notes": "ATC (ES3 Line C); S1 2 / S6 40% 2.4 kW, 0.79 / 0.95 Nm, asynchronous motor, cooling: Liquid, 7 kg, body square 95x95 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es326-4kw",
+      "maker": "HSD",
+      "model": "ES326 H6161H0460 (4 kW, HSK E25)",
+      "type": "spindle",
+      "power_kw": 4.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 50000,
+      "collet": "HSK E25",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es326/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es326/page-data.json"
+      ],
+      "notes": "ATC (ES3 Line C); S1 4 / S6 40% 4.8 kW, 2.1 / 2.6 Nm, asynchronous motor, cooling: Liquid, 7 kg, body square 108x111 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es327-3kw",
+      "maker": "HSD",
+      "model": "ES327 H6161H1830 (3 kW, HSK E25)",
+      "type": "spindle",
+      "power_kw": 3.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 50000,
+      "collet": "HSK E25",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es327/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es327/page-data.json"
+      ],
+      "notes": "ATC (ES3 Line, ES3 Line C); S1 3 / S6 40% 3.6 kW, 1 / 1,3 Nm, asynchronous motor, cooling: Liquid, 8 kg, body Ø80 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es350-6-5kw",
+      "maker": "HSD",
+      "model": "ES350 H6161H2022 (6.5 kW, HSK E40)",
+      "type": "spindle",
+      "power_kw": 6.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 36000,
+      "collet": "HSK E40",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es350/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es350/page-data.json"
+      ],
+      "notes": "ATC (ES3 Line C); S1 6.5 / S6 40% 8 kW, 5.2 / 6.8 Nm, asynchronous motor, cooling: Liquid, 15 kg, body square 110x111 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es350-8kw",
+      "maker": "HSD",
+      "model": "ES350 H6161H2109 (8 kW, HSK E40)",
+      "type": "spindle",
+      "power_kw": 8.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 36000,
+      "collet": "HSK E40",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es350/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es350/page-data.json"
+      ],
+      "notes": "ATC (ES3 Line C); S1 8 / S6 40% 9 kW, 6.4 / 7.2 Nm, asynchronous motor, cooling: Liquid, 15 kg, body square 110x111 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es351-6-5kw",
+      "maker": "HSD",
+      "model": "ES351 H6161H1036 (6.5 kW, HSK E32 / E40)",
+      "type": "spindle",
+      "power_kw": 6.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 40000,
+      "collet": "HSK E32 / E40",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es351/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es351/page-data.json"
+      ],
+      "notes": "ATC (ES3 Line C); S1 6.5 / S6 40% 7.5 kW, 5.2 / 6 Nm, asynchronous motor, cooling: Liquid, 15 kg, body square 110x111 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es367-18kw",
+      "maker": "HSD",
+      "model": "ES367 H6161H2165 (18 kW, HSK E63)",
+      "type": "spindle",
+      "power_kw": 18.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "HSK E63",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es367/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es367/page-data.json"
+      ],
+      "notes": "ATC (ES3 Line C, ES3 Line W); S1 18 / S6 40% 21.6 kW, 21.5 / 25.8 Nm, synchronous motor, cooling: Liquid, 25 kg, body square 132x132 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es368-7kw",
+      "maker": "HSD",
+      "model": "ES368 H6161H1806 (7 kW, HSK F63)",
+      "type": "spindle",
+      "power_kw": 7.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 20000,
+      "collet": "HSK F63",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es368/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es368/page-data.json"
+      ],
+      "notes": "ATC (ES3 Line C, ES3 Line W); S1 7 / S6 40% 8.7 kW, 5,6 / 6,9 Nm, asynchronous motor, cooling: Liquid, 20 kg, body square 132x132 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es368-11kw",
+      "maker": "HSD",
+      "model": "ES368 H6161H1679 (11 kW, HSK F63)",
+      "type": "spindle",
+      "power_kw": 11.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "HSK F63",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es368/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es368/page-data.json"
+      ],
+      "notes": "ATC (ES3 Line C, ES3 Line W); S1 11 / S6 40% 13 kW, 8,7 / 10.3 Nm, synchronous motor, cooling: Liquid, 20 kg, body square 132x132 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es368-6-5kw-hske40",
+      "maker": "HSD",
+      "model": "ES368 H6161H1327 (6.5 kW, HSK E40)",
+      "type": "spindle",
+      "power_kw": 6.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 36000,
+      "collet": "HSK E40",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es368/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es368/page-data.json"
+      ],
+      "notes": "ATC (ES3 Line C, ES3 Line W); S1 6.5 / S6 40% 7.8 kW, 3.4 / 4.1 Nm, asynchronous motor, cooling: Liquid, 20 kg, body square 132x132 mm. No minimum speed published. Listed on the maker page under the header \"ES368 - 3.4kW\", but its sheet gives power 6.5 / 7.8 kW and torque 3.4 / 4.1 Nm; power taken from the sheet."
+    },
+    {
+      "id": "hsd-es779-10kw-hskf63",
+      "maker": "HSD",
+      "model": "ES779 H6161H1551 (10 kW, HSK F63)",
+      "type": "spindle",
+      "power_kw": 10.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "HSK F63",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es779/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es779/page-data.json"
+      ],
+      "notes": "ATC (ES7 Line C, ES7 Line W); S1 10 / S6 40% 12 kW, 12.7 / 15.3 Nm, asynchronous motor, cooling: Liquid, 31 kg, body square 150x150 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es779-10kw-hske63",
+      "maker": "HSD",
+      "model": "ES779 H6161H1563 (10 kW, HSK E63)",
+      "type": "spindle",
+      "power_kw": 10.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 15000,
+      "collet": "HSK E63",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es779/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es779/page-data.json"
+      ],
+      "notes": "ATC (ES7 Line C, ES7 Line W); S1 10 / S6 40% 12 kW, 12.7 / 15.3 Nm, asynchronous motor, cooling: Liquid, 31 kg, body square 150x150 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es779-15kw-hskf63",
+      "maker": "HSD",
+      "model": "ES779 H6161H1565 (15 kW, HSK F63)",
+      "type": "spindle",
+      "power_kw": 15.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "HSK F63",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es779/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es779/page-data.json"
+      ],
+      "notes": "ATC (ES7 Line C, ES7 Line W); S1 15 / S6 40% 18 kW, 11.9 / 14.3 Nm, asynchronous motor, cooling: Liquid, 31 kg, body square 150x150 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es779-15kw-hska63",
+      "maker": "HSD",
+      "model": "ES779 H6161H52024 (15 kW, HSK A63 / E63)",
+      "type": "spindle",
+      "power_kw": 15.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 18000,
+      "collet": "HSK A63 / E63",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es779/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es779/page-data.json"
+      ],
+      "notes": "ATC (ES7 Line C, ES7 Line W); S1 15 / S6 40% 18 kW, 11.9 / 14.3 Nm, asynchronous motor, cooling: Liquid, 31 kg, body square 150x150 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es779-22kw",
+      "maker": "HSD",
+      "model": "ES779 H6161H52123 (22 kW, HSK F63 / A63 / E63)",
+      "type": "spindle",
+      "power_kw": 22.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "HSK F63 / A63 / E63",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es779/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es779/page-data.json"
+      ],
+      "notes": "ATC (ES7 Line C, ES7 Line W); S1 22 / S6 40% 25 kW, 20 / 22.6 Nm, synchronous motor, cooling: Liquid, 31 kg, body square 150x150 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es789-15kw",
+      "maker": "HSD",
+      "model": "ES789 H6161H12089 (15 kW, HSK F63 / A63 / E63)",
+      "type": "spindle",
+      "power_kw": 15.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "HSK F63 / A63 / E63",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es789/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es789/page-data.json"
+      ],
+      "notes": "ATC (ES7 Line C, ES7 Line W); S1 15 / S6 40% 18 kW, 19.1 / 20.9 Nm, asynchronous motor, cooling: Liquid, 36 kg, body square 150x150 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es789-25kw",
+      "maker": "HSD",
+      "model": "ES789 H6161H12038 (25 kW, HSK F63 / A63 / E63)",
+      "type": "spindle",
+      "power_kw": 25.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "HSK F63 / A63 / E63",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es789/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es789/page-data.json"
+      ],
+      "notes": "ATC (ES7 Line C, ES7 Line W); S1 25 / S6 40% 30 kW, 23.9 / 28.6 Nm, asynchronous motor, cooling: Liquid, 36 kg, body square 150x150 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es884-16kw",
+      "maker": "HSD",
+      "model": "ES884 H6161H1720 (16 kW, HSK E63)",
+      "type": "spindle",
+      "power_kw": 16.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 15000,
+      "collet": "HSK E63",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es884/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es884/page-data.json"
+      ],
+      "notes": "ATC (ES8 Line W); S1 16 / S6 40% 18 kW, 19 / 21.5 Nm, asynchronous motor, cooling: Liquid, 57 kg, body Ø170 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es884-19kw",
+      "maker": "HSD",
+      "model": "ES884 H6161H1724 (19 kW, HSK E63)",
+      "type": "spindle",
+      "power_kw": 19.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 15000,
+      "collet": "HSK E63",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/es884/",
+        "https://www.hsdmechatronics.com/page-data/en/products/es884/page-data.json"
+      ],
+      "notes": "ATC (ES8 Line W); S1 19 / S6 40% 22.8 kW, 24.2 / 29 Nm, asynchronous motor, cooling: Liquid, 57 kg, body Ø170 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-mt1090-4-5kw",
+      "maker": "HSD",
+      "model": "MT 1090-100 H6162H0166 (4.5 kW, ER32)",
+      "type": "spindle",
+      "power_kw": 4.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER32",
+      "collet_min_in": 0.079,
+      "collet_max_in": 0.787,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/mt-1090-100/",
+        "https://www.hsdmechatronics.com/page-data/en/products/mt-1090-100/page-data.json"
+      ],
+      "notes": "Manual tool change (MT Line); S1 4.5 / S6 40% 5.4 kW, 2.4 /2.9 Nm, cooling: Shaft driven fan, body square 102x119.5 mm. No minimum speed published.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "hsd-mt1090-6kw",
+      "maker": "HSD",
+      "model": "MT 1090-140 H6162H0170 (6 kW, ER32)",
+      "type": "spindle",
+      "power_kw": 6.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER32",
+      "collet_min_in": 0.079,
+      "collet_max_in": 0.787,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/mt-1090-140/",
+        "https://www.hsdmechatronics.com/page-data/en/products/mt-1090-140/page-data.json"
+      ],
+      "notes": "Manual tool change (MT Line); S1 6 / S6 40% 7.2 kW, 3.2 / 3.8 Nm, cooling: Shaft driven fan, body square 102x119.5 mm. No minimum speed published. Same page also lists an HSK C40 nose version (4.5 / 5.4 kW).",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "hsd-mt1120-13-5kw",
+      "maker": "HSD",
+      "model": "MT 1120-170 H6162H0127 (13.5 kW, ER40)",
+      "type": "spindle",
+      "power_kw": 13.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 18000,
+      "collet": "ER40",
+      "collet_min_in": 0.118,
+      "collet_max_in": 1.024,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/mt-1120-170/",
+        "https://www.hsdmechatronics.com/page-data/en/products/mt-1120-170/page-data.json"
+      ],
+      "notes": "Manual tool change (MT Line); S1 13.5 / S6 40% 16.2 kW, 10.7 / 12.9 Nm, cooling: Shaft driven fan, body square 177x145 mm. No minimum speed published.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "hsd-mtr1120-8-1kw-hskc63",
+      "maker": "HSD",
+      "model": "MTR 1120 H6162H0158 (8.1 kW, HSK C63)",
+      "type": "spindle",
+      "power_kw": 8.1,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 9000,
+      "collet": "HSK C63",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://www.hsdmechatronics.com/en/products/mt-1120-170/",
+        "https://www.hsdmechatronics.com/page-data/en/products/mt-1120-170/page-data.json"
+      ],
+      "notes": "Manual tool change (MT Line); S1 8.1 / S6 40% 9.7 kW, 12.9 / 15.4 Nm, cooling: Shaft driven fan, body square 177x145 mm. No minimum speed published."
+    },
+    {
+      "id": "hsd-es919-h6161h0233b",
+      "maker": "HSD",
+      "model": "ES919 H6161H0233B (6.6 kW, ISO30, short nose)",
+      "type": "spindle",
+      "power_kw": 6.6,
+      "power_hp": 8.9,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ISO30",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.cncpd.com/product/hsd-es919-spindle-motor-h6161h0233b/"
+      ],
+      "notes": "ATC, short nose, 2-pole, S1 6.6 kW / S6 60% 8 kW (10.7 hp), rated 12,000 rpm @ 200 Hz, max 24,000 @ 400 Hz, electric fan. Discontinued model; specs from reseller CNC Parts Dept. (no current HSD page). Common on CAMaster/ShopBot-class ATC routers."
+    },
+    {
+      "id": "hsd-es919-h6161h0301",
+      "maker": "HSD",
+      "model": "ES919 H6161H0301 (6.6 kW, ISO30, long nose)",
+      "type": "spindle",
+      "power_kw": 6.6,
+      "power_hp": 8.9,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ISO30",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.cncpd.com/product/h6161h0301-es919-hsd-spindle-motor"
+      ],
+      "notes": "ATC, long nose, 2-pole, S1 6.6 kW / S6 60% 8 kW (10.7 hp), rated 12,000 rpm @ 200 Hz, max 24,000 @ 400 Hz, electric fan. Discontinued model; specs from reseller CNC Parts Dept. (no current HSD page). Common on CAMaster/ShopBot-class ATC routers."
+    },
+    {
+      "id": "mechatron-hfsac-6508-24-er11",
+      "maker": "Mechatron",
+      "model": "HFSAC-6508-24-ER11",
+      "type": "spindle",
+      "power_kw": 0.8,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER11",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.276,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "230 V",
+      "sources": [
+        "https://www.mechatron-gmbh.de/en/products/standard-series/",
+        "https://www.mechatron-gmbh.de/wp-content/uploads/2025/05/Datenblatt_HFSAC-6508-24-ER11.pdf"
+      ],
+      "notes": "Manual tool change; 65 mm; S1 0.8 kW / 4.0 A; rated = max 24,000 rpm (400 Hz); forced-fan cooling; 2.5 kg. Maker (mechatron GmbH, Langgoens) is in liquidation (i. L.) per its imprint.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "mechatron-hfsac-8022-24-er16",
+      "maker": "Mechatron",
+      "model": "HFSAC-8022-24-ER16",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER16",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.394,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "230 V",
+      "sources": [
+        "https://www.mechatron-gmbh.de/en/products/standard-series/",
+        "https://www.mechatron-gmbh.de/wp-content/uploads/2025/05/Datenblatt_HFSAC-8022-24-ER16.pdf"
+      ],
+      "notes": "Manual tool change; 80 mm; S1 2.2 kW / 8.0 A; 24,000 rpm (400 Hz); forced-fan cooling; 4.0 kg. Maker (mechatron GmbH, Langgoens) is in liquidation (i. L.) per its imprint.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "mechatron-hfsac-8022-24-er20",
+      "maker": "Mechatron",
+      "model": "HFSAC-8022-24-ER20",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER20",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.512,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "230 V",
+      "sources": [
+        "https://www.mechatron-gmbh.de/en/products/standard-series/",
+        "https://www.mechatron-gmbh.de/wp-content/uploads/2025/05/Datenblatt_HFSAC-8022-24-ER20.pdf"
+      ],
+      "notes": "Manual tool change; 80 mm; S1 2.2 kW / 8.0 A; 24,000 rpm (400 Hz); forced-fan cooling; 4 kg. Maker (mechatron GmbH, Langgoens) is in liquidation (i. L.) per its imprint.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "mechatron-hfs-6508-24-er11",
+      "maker": "Mechatron",
+      "model": "HFS-6508-24-ER11",
+      "type": "spindle",
+      "power_kw": 0.8,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER11",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.276,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "230 V",
+      "sources": [
+        "https://www.mechatron-gmbh.de/en/products/standard-series/",
+        "https://www.mechatron-gmbh.de/wp-content/uploads/2024/03/Datenblatt_HFS-6508-24-ER11.pdf"
+      ],
+      "notes": "Manual tool change; 65 mm; S1 0.8 kW / 4.0 A; 24,000 rpm (400 Hz); liquid cooled; 2.5 kg. Maker (mechatron GmbH, Langgoens) is in liquidation (i. L.) per its imprint.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "mechatron-hfs-8022-24-er16",
+      "maker": "Mechatron",
+      "model": "HFS-8022-24-ER16",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER16",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.394,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "230 V",
+      "sources": [
+        "https://www.mechatron-gmbh.de/en/products/standard-series/",
+        "https://www.mechatron-gmbh.de/wp-content/uploads/2023/11/Datenblatt_HFS-8022-24-ER16.pdf"
+      ],
+      "notes": "Manual tool change; 80 mm; S1 2.2 kW / 8.0 A; 24,000 rpm (400 Hz); liquid cooled; 4.8 kg. Maker (mechatron GmbH, Langgoens) is in liquidation (i. L.) per its imprint.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "mechatron-hfs-8022-24-er20",
+      "maker": "Mechatron",
+      "model": "HFS-8022-24-ER20",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER20",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.512,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "230 V",
+      "sources": [
+        "https://www.mechatron-gmbh.de/en/products/standard-series/",
+        "https://www.mechatron-gmbh.de/wp-content/uploads/2023/11/Datenblatt_HFS-8022-24-ER20.pdf"
+      ],
+      "notes": "Manual tool change; 80 mm; S1 2.2 kW / 8.0 A; 24,000 rpm (400 Hz); liquid cooled; 4.8 kg. Maker (mechatron GmbH, Langgoens) is in liquidation (i. L.) per its imprint.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "mechatron-hfp-6508-er11",
+      "maker": "Mechatron",
+      "model": "HFP-6508-ER11",
+      "type": "spindle",
+      "power_kw": 0.8,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 60000,
+      "collet": "ER11",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.276,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "230 V",
+      "sources": [
+        "https://www.mechatron-gmbh.de/en/products/professional-series/",
+        "https://www.mechatron-gmbh.de/wp-content/uploads/2023/11/Datenblatt_HFP-6508-ER11.pdf"
+      ],
+      "notes": "Professional series, manual tool change; 65 mm; S1 0.8 kW / 4.0 A; ordered as 24,000/30,000/42,000/50,000/60,000 rpm versions (60,000 = 1000 Hz); liquid cooled, sealing air; 2.4 kg. Maker (mechatron GmbH, Langgoens) is in liquidation (i. L.) per its imprint.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "mechatron-hfp-8022-er20",
+      "maker": "Mechatron",
+      "model": "HFP-8022-ER20",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 42000,
+      "collet": "ER20",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.512,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "230 V",
+      "sources": [
+        "https://www.mechatron-gmbh.de/en/products/professional-series/",
+        "https://www.mechatron-gmbh.de/wp-content/uploads/2023/11/Datenblatt_HFP-8022-ER20.pdf"
+      ],
+      "notes": "Professional series, manual tool change; 80 mm; S1 2.2 kW / 8.0 A; 24,000/30,000/42,000 rpm versions; liquid cooled, sealing air; 4.9 kg. Same motor with ER16 (HFP-8022-ER16) and ER25 (HFP-8022-ER25) noses. Maker (mechatron GmbH, Langgoens) is in liquidation (i. L.) per its imprint.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "mechatron-hfp-8022-hsk-c25",
+      "maker": "Mechatron",
+      "model": "HFP-8022-HSK-C25",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 42000,
+      "collet": "HSK-C25",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "230 V",
+      "sources": [
+        "https://www.mechatron-gmbh.de/en/products/professional-series/",
+        "https://www.mechatron-gmbh.de/wp-content/uploads/2025/06/Datenblatt_HFP-8022-HSK-C25.pdf"
+      ],
+      "notes": "Professional series, manual tool change with HSK-C 25 holders; 80 mm; S1 2.2 kW / 8.0 A; 24,000-42,000 rpm versions; liquid cooled; 4.9 kg. Maker (mechatron GmbH, Langgoens) is in liquidation (i. L.) per its imprint."
+    },
+    {
+      "id": "mechatron-hfp-10040-er20",
+      "maker": "Mechatron",
+      "model": "HFP-10040-ER20",
+      "type": "spindle",
+      "power_kw": 4.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 42000,
+      "collet": "ER20",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.512,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "400 V",
+      "sources": [
+        "https://www.mechatron-gmbh.de/en/products/professional-series/",
+        "https://www.mechatron-gmbh.de/wp-content/uploads/2024/11/Datenblatt_HFP-10040-ER20.pdf"
+      ],
+      "notes": "Professional series, manual tool change; 100 mm; S1 4.0 kW / 7.5 A; 24,000/30,000/42,000 rpm versions; liquid cooled; 10.6 kg. 3 kW sibling HFP-10030-ER20 (6.0 A, 8.8 kg). Maker (mechatron GmbH, Langgoens) is in liquidation (i. L.) per its imprint.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "mechatron-hfpac-8022-er25",
+      "maker": "Mechatron",
+      "model": "HFPAC-8022-ER25",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 36000,
+      "collet": "ER25",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.63,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "230 V",
+      "sources": [
+        "https://www.mechatron-gmbh.de/en/products/professional-series/",
+        "https://www.mechatron-gmbh.de/wp-content/uploads/2024/03/Datenblatt_HFPAC-8022-ER25.pdf"
+      ],
+      "notes": "Professional series air-cooled (IP54, passive sealing air), manual tool change; 80 mm; S1 2.2 kW / 8.0 A; 24,000/30,000/36,000 rpm versions; 5.5 kg. Maker (mechatron GmbH, Langgoens) is in liquidation (i. L.) per its imprint.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "mechatron-hfpm-12085-er32",
+      "maker": "Mechatron",
+      "model": "HFPM-12085-ER32",
+      "type": "spindle",
+      "power_kw": 8.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER32",
+      "collet_min_in": 0.079,
+      "collet_max_in": 0.787,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "400 V",
+      "sources": [
+        "https://www.mechatron-gmbh.de/en/products/professional-series/",
+        "https://www.mechatron-gmbh.de/wp-content/uploads/2025/05/Datenblatt_HFPM-12085-ER32.pdf"
+      ],
+      "notes": "Multi series (steel and non-ferrous), manual tool change; 120 mm; S1 8.5 kW / 16.5 A; rated 10,000 rpm, max 24,000 rpm (800 Hz); liquid cooled; 27 kg. Maker (mechatron GmbH, Langgoens) is in liquidation (i. L.) per its imprint.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "mechatron-atc-8022-iso20-v2",
+      "maker": "Mechatron",
+      "model": "ATC-8022-ISO20-V2",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 36000,
+      "collet": "ISO20",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "230 V",
+      "sources": [
+        "https://www.mechatron-gmbh.de/en/products/prochange-series/",
+        "https://www.mechatron-gmbh.de/wp-content/uploads/2023/11/Datenblatt_ATC-8022-ISO20-V2.pdf"
+      ],
+      "notes": "ProChange ATC (pneumatic); 80 mm; S1 2.2 kW / 8.0 A, S6 50% 2.5 kW / 10.0 A; rated 24,000 rpm (400 Hz), 30,000/36,000 rpm versions; liquid cooled; 6.6 kg. HSK25-E version: ATC-8022-HSK25-V2 (to 42,000 rpm). Air-cooled versions ATCAC-8022-ISO20 / -HSK25 (to 36,000 rpm, 6.2 kg). Maker (mechatron GmbH, Langgoens) is in liquidation (i. L.) per its imprint."
+    },
+    {
+      "id": "mechatron-atc-11045-iso30-v2",
+      "maker": "Mechatron",
+      "model": "ATC-11045-ISO30-V2",
+      "type": "spindle",
+      "power_kw": 4.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ISO30",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "400 V",
+      "sources": [
+        "https://www.mechatron-gmbh.de/en/products/prochange-series/",
+        "https://www.mechatron-gmbh.de/wp-content/uploads/2024/09/Datenblatt_ATC-11045-ISO30-V2.pdf"
+      ],
+      "notes": "ProChange ATC (pneumatic); 110 mm; S1 4.5 kW / 9.2 A, S6 50% 4.9 kW / 10.0 A; 24,000 rpm (800 Hz, 4-pole); liquid cooled, IP54; 23 kg. Maker (mechatron GmbH, Langgoens) is in liquidation (i. L.) per its imprint."
+    },
+    {
+      "id": "hiteco-qe-1f-8-12-24-63f-nl-cb-bt",
+      "maker": "Hiteco",
+      "model": "QE-1F 8/12 24 63F NL CB BT (Powertech 300)",
+      "type": "spindle",
+      "power_kw": 8.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "HSK63F",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.cncpd.com/product/qe-1f-8-12-24-63f-nl-cb-bt-hiteco-spindle-motor/"
+      ],
+      "notes": "ATC, long nose, 4-pole; S1 8.2 kW / S6 10.5 kW; rated 12,000 rpm (400 Hz), max 24,000 rpm (800 Hz); 24 V DC electric fan; ceramic bearings. MPN QE.300.A07.00. Specs from CNC Parts Dept reseller page; hiteco.com is an unrelated company."
+    },
+    {
+      "id": "hiteco-qe-1f-8-12-24-i30-nc-cb",
+      "maker": "Hiteco",
+      "model": "QE-1F 8/12 24 I30 NC CB (Powertech 300)",
+      "type": "spindle",
+      "power_kw": 8.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ISO30",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://www.cncpd.com/product/qe-1f-8-12-24-i30-nc-cb-hiteco-spindle-motor/"
+      ],
+      "notes": "ATC, short nose, 4-pole; 8.2 kW; rated 12,000 rpm (400 Hz), max 24,000 rpm (800 Hz); 24 V DC electric fan. MPN QE.300.A02.01. Specs from CNC Parts Dept reseller page; hiteco.com is an unrelated company."
+    },
+    {
+      "id": "hiteco-qe-2-13-12-24-63f-nc-cb",
+      "maker": "Hiteco",
+      "model": "QE-2 13/12 24 63F NC CB (Powertech 400)",
+      "type": "spindle",
+      "power_kw": 13.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "HSK63F",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://www.cncpd.com/product/qe-2-13-12-24-63f-nc-cb-hiteco-spindle-motor/"
+      ],
+      "notes": "ATC, short nose, 4-pole; S1 13 kW / S6 15 kW; rated 12,000 rpm (400 Hz), max 24,000 rpm (800 Hz); liquid cooled. MPN QE.400.L001.00. Specs from CNC Parts Dept reseller page; hiteco.com is an unrelated company."
+    },
+    {
+      "id": "hiteco-qf-1f-13-7-15-63f-nl-pp",
+      "maker": "Hiteco",
+      "model": "QF-1F 13/7 15 63F NL PP (Powertech 500)",
+      "type": "spindle",
+      "power_kw": 13.3,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 15000,
+      "collet": "HSK63F",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://www.cncpd.com/product/qf-1f-13-7-15-63f-nl-pp-hiteco-spindle-motor/"
+      ],
+      "notes": "ATC, long nose, 4-pole; S1 13.3 kW / S6 16 kW; rated 7,000 rpm (233 Hz), max 15,000 rpm (500 Hz); electric fan. Specs from CNC Parts Dept reseller page; hiteco.com is an unrelated company."
+    },
+    {
+      "id": "hiteco-qf-2-18-12-20-63f-nl-pp",
+      "maker": "Hiteco",
+      "model": "QF-2 18/12 20 63F NL PP (Powertech 500)",
+      "type": "spindle",
+      "power_kw": 18.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 20000,
+      "collet": "HSK63F",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://www.cncpd.com/product/qf-2-18-12-20-63f-nl-pp-hiteco-spindle-motor/"
+      ],
+      "notes": "ATC, long nose, 4-pole; 18 kW; rated 12,000 rpm. Reseller lists max 20,000 rpm in its data table (matches the '20' in the model code) but 24,000 rpm / 800 Hz in the text; 20,000 used. Specs from CNC Parts Dept reseller page; hiteco.com is an unrelated company."
+    },
+    {
+      "id": "hiteco-qn-1f-4-18-24-er32-dx",
+      "maker": "Hiteco",
+      "model": "QN-1F 4.5/18 24 ER32 DX (Multitech)",
+      "type": "spindle",
+      "power_kw": 4.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER32",
+      "collet_min_in": 0.079,
+      "collet_max_in": 0.787,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://www.cncpd.com/product/qn-1f-4-18-24-er32-dx-hiteco-spindle-motor/"
+      ],
+      "notes": "Manual tool change, 2-pole; S1 4.5 kW / S6 5.4 kW; 2.3 / 2.9 Nm; 10 / 15 A; rated 18,000 rpm (300 Hz), max 24,000 rpm (400 Hz); electric fan. Specs from CNC Parts Dept reseller page; hiteco.com is an unrelated company.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "hiteco-qn-1f-6-18-24-er32-dx",
+      "maker": "Hiteco",
+      "model": "QN-1F 6.5/18 24 ER32 DX (Multitech)",
+      "type": "spindle",
+      "power_kw": 6.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER32",
+      "collet_min_in": 0.079,
+      "collet_max_in": 0.787,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://www.cncpd.com/product/qn-1f-6-18-24-er32-dx-hiteco-spindle-motor/"
+      ],
+      "notes": "Manual tool change, 2-pole; S1 6.5 kW / S6 7.5 kW; 3.5 / 4 Nm; 13 / 15 A; rated 18,000 rpm (300 Hz), max 24,000 rpm (400 Hz); electric fan. Specs from CNC Parts Dept reseller page; hiteco.com is an unrelated company.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "hiteco-qx-1c-5-12-21-63f-nc",
+      "maker": "Hiteco",
+      "model": "QX-1C 5/12 21 63F NC (Robotech)",
+      "type": "spindle",
+      "power_kw": 5.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 21000,
+      "collet": "HSK63F",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://www.cncpd.com/product/qx-1c-5-12-21-63f-nc-hiteco-spindle-motor/"
+      ],
+      "notes": "ATC, 4-pole, compressed-air cooled; S1 5 kW / S6 7 kW; 21,000 rpm (700 Hz) per the spec text and model code (data table says 24,000; 21,000 used); rated 12,000 rpm. Specs from CNC Parts Dept reseller page; hiteco.com is an unrelated company."
+    },
+    {
+      "id": "hiteco-ue-1f-10-12-24-63f-ch-bt",
+      "maker": "Hiteco",
+      "model": "UE-1F 10/12 24 63F CH BT (Ultratech)",
+      "type": "spindle",
+      "power_kw": 10.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "HSK63F",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "230/380 V",
+      "sources": [
+        "https://www.cncpd.com/product/ue-1f-10-12-24-63f-ch-bt-hiteco-spindle-motor/"
+      ],
+      "notes": "ATC, short nose, 4-pole; 10 kW; rated 12,000 rpm (400 Hz), max 24,000 rpm (800 Hz); electric fan. ISO30 version UE-1F 10/12 24 I30 CH BT. Specs from CNC Parts Dept reseller page; hiteco.com is an unrelated company."
+    },
+    {
+      "id": "hiteco-ue-1f-8-12-24-63f-lh-bt",
+      "maker": "Hiteco",
+      "model": "UE-1F 8/12 24 63F LH BT (Ultratech)",
+      "type": "spindle",
+      "power_kw": 8.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "HSK63F",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "230/380 V",
+      "sources": [
+        "https://www.cncpd.com/product/ue-1f-8-12-24-63f-lh-bt-hiteco-spindle-motor/"
+      ],
+      "notes": "ATC, long nose, 4-pole; 8 kW; rated 12,000 rpm (400 Hz), max 24,000 rpm (800 Hz); electric fan. Specs from CNC Parts Dept reseller page; hiteco.com is an unrelated company."
+    },
+    {
+      "id": "perske-vs31-09-2",
+      "maker": "Perske",
+      "model": "VS 31.09-2",
+      "type": "spindle",
+      "power_kw": 1.0,
+      "power_hp": 1.35,
+      "rpm_min": null,
+      "rpm_max": 30000,
+      "collet": "OZ 1831 / EOC 8 (DIN 6388)",
+      "collet_min_in": null,
+      "collet_max_in": 0.3125,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://www.cncpd.com/product/perske-vs-31-09-2-spindle-motor-220v/"
+      ],
+      "notes": "Manual tool change, single bearing, 2-pole; 1 kW (1.35 hp); 30,000 rpm (500 Hz); integrated fan, IP54. Max tool shank 5/16\". Specs from CNC Parts Dept reseller page."
+    },
+    {
+      "id": "perske-vs50-09-2",
+      "maker": "Perske",
+      "model": "VS 50.09-2",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 21100,
+      "collet": "SYOZ 20 / EOC 12 / OZ 1833",
+      "collet_min_in": null,
+      "collet_max_in": 0.5,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "230 V",
+      "sources": [
+        "https://www.cncpd.com/product/perske-vs50-09-2-spindle-motor/"
+      ],
+      "notes": "Manual tool change, single bearing, 2-pole; 2.2 kW; rated 18,000 rpm (300 Hz), max 21,100 rpm per page text (360 Hz). Max shank 1/2\". Specs from CNC Parts Dept reseller page."
+    },
+    {
+      "id": "perske-vs60-11-2",
+      "maker": "Perske",
+      "model": "VS 60.11-2",
+      "type": "spindle",
+      "power_kw": 4.1,
+      "power_hp": 5.5,
+      "rpm_min": null,
+      "rpm_max": 21600,
+      "collet": "SYOZ 20 / EOC 12 / OZ 1833",
+      "collet_min_in": null,
+      "collet_max_in": 0.5,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.cncpd.com/product/perske-vs-60-11-2-5hp-spindle-motor/"
+      ],
+      "notes": "Manual tool change, single bearing, 2-pole; 4.1 kW (5.5 hp); rated 18,000 rpm (300 Hz), max 21,600 rpm (360 Hz); fan cooled, IP54. Max shank 1/2\". Specs from CNC Parts Dept reseller page."
+    },
+    {
+      "id": "perske-krs35-5-2d",
+      "maker": "Perske",
+      "model": "KRS 35.5-2 D",
+      "type": "spindle",
+      "power_kw": 0.7,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 18000,
+      "collet": "ER20",
+      "collet_min_in": null,
+      "collet_max_in": 0.5,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.cncpd.com/product/krs-35-5-2d-perske-spindle-motor/"
+      ],
+      "notes": "Manual tool change, double bearing, 2-pole; 0.7 kW; 18,000 rpm (300 Hz); fan cooled, IP54. Page states 1/2\" max collet. Specs from CNC Parts Dept reseller page.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "perske-krs50-11-2d",
+      "maker": "Perske",
+      "model": "KRS 50.11-2 D",
+      "type": "spindle",
+      "power_kw": 2.9,
+      "power_hp": 4.0,
+      "rpm_min": null,
+      "rpm_max": 18000,
+      "collet": "SYOZ 20 / EOC 12 / OZ 1833",
+      "collet_min_in": null,
+      "collet_max_in": 0.5,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.cncpd.com/product/perske-krs-50-11-2d-spindle-motor/"
+      ],
+      "notes": "Manual tool change, double bearing, 2-pole; 2.9 kW (4 hp); 18,000 rpm (300 Hz); shaft fan, IP54. Max shank 1/2\". Specs from CNC Parts Dept reseller page."
+    },
+    {
+      "id": "perske-krsv51-14-2d",
+      "maker": "Perske",
+      "model": "KRSV 51.14-2 D",
+      "type": "spindle",
+      "power_kw": 4.1,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 18000,
+      "collet": "SYOZ 25 / OZ 1836 (DIN 6388)",
+      "collet_min_in": null,
+      "collet_max_in": 1.0,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.cncpd.com/product/perske-krsv-51-14-2d-spindle-motor/"
+      ],
+      "notes": "Manual tool change, double bearing, 2-pole; S1 4.1 kW / S6 5.1 kW; 18,000 rpm (300 Hz); fan cooled, IP54. Max tool 1\". Specs from CNC Parts Dept reseller page."
+    },
+    {
+      "id": "perske-kns23-10-2",
+      "maker": "Perske",
+      "model": "KNS 23.10-2",
+      "type": "spindle",
+      "power_kw": 0.6,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 21600,
+      "collet": "OZ 1831 / EOC 8 (DIN 6388)",
+      "collet_min_in": null,
+      "collet_max_in": 0.3125,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.cncpd.com/product/perske-kns-23-10-2-spindle-motor/"
+      ],
+      "notes": "Manual tool change, 2-pole; 0.6 kW; rated 18,000 rpm (300 Hz), max 21,600 rpm (360 Hz); integrated fan, IP54. Max shank 5/16\". Specs from CNC Parts Dept reseller page."
+    },
+    {
+      "id": "perske-kns61-13-2ds",
+      "maker": "Perske",
+      "model": "KNS 61.13-2 DS",
+      "type": "spindle",
+      "power_kw": 5.2,
+      "power_hp": 7.0,
+      "rpm_min": null,
+      "rpm_max": 18000,
+      "collet": "SYOZ 20 / EOC 12 / OZ 1833",
+      "collet_min_in": null,
+      "collet_max_in": 0.5,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.cncpd.com/product/perske-kns-61-13-2ds-spindle-motor/"
+      ],
+      "notes": "Manual tool change, 2-pole; 5.2 kW (7 hp); 18,000 rpm (300 Hz); integrated fan. Max shank 1/2\". Specs from CNC Parts Dept reseller page."
+    },
+    {
+      "id": "perske-knos71-16-2d",
+      "maker": "Perske",
+      "model": "KNOS 71.16-2 D",
+      "type": "spindle",
+      "power_kw": 10.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 18000,
+      "collet": "SYOZ 25 / OZ 1836 (DIN 6388)",
+      "collet_min_in": null,
+      "collet_max_in": 1.0,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.cncpd.com/product/perske-knos-71-16-2d-spindle-motor/"
+      ],
+      "notes": "Manual tool change, double bearing, 2-pole; 10 kW; 18,000 rpm (300 Hz); 17.5 A; integrated fan, IP54. Max tool 1\". Specs from CNC Parts Dept reseller page."
+    },
+    {
+      "id": "perske-knos71-20-2d",
+      "maker": "Perske",
+      "model": "KNOS 71.20-2 D-0063",
+      "type": "spindle",
+      "power_kw": 11.0,
+      "power_hp": 15.0,
+      "rpm_min": null,
+      "rpm_max": 18000,
+      "collet": "SYOZ 25 / OZ 1836 (DIN 6388)",
+      "collet_min_in": null,
+      "collet_max_in": 1.0,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "230/460 V",
+      "sources": [
+        "https://www.cncpd.com/product/knos-71-20-2d-0063-perske-spindle-motor/"
+      ],
+      "notes": "Manual tool change, double bearing, 2-pole; 11 kW (15 hp); 18,000 rpm (300 Hz); integrated fan. Max tool 1\". Specs from CNC Parts Dept reseller page."
+    },
+    {
+      "id": "perske-frl90-14-2",
+      "maker": "Perske",
+      "model": "FRL 90.14-2",
+      "type": "spindle",
+      "power_kw": 9.0,
+      "power_hp": 12.0,
+      "rpm_min": null,
+      "rpm_max": 18000,
+      "collet": "SYOZ 25 / OZ 1836 (DIN 6388)",
+      "collet_min_in": null,
+      "collet_max_in": 1.0,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://www.cncpd.com/product/perske-frl-90-14-2-spindle-motor/"
+      ],
+      "notes": "Manual tool change, 2-pole, TEFC; 9 kW (12 hp); 18,000 rpm (300 Hz). Max tool 1\". Specs from CNC Parts Dept reseller page."
+    },
+    {
+      "id": "colombo-rc73-22-iso20",
+      "maker": "Colombo",
+      "model": "RC 73/22 25 FP1 ISO 20 (828-073-C101)",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 40000,
+      "collet": "ISO20",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "230 V",
+      "sources": [
+        "https://www.cncpd.com/product/rc-73-22-colombo-spindle-motor-828-073-c101/"
+      ],
+      "notes": "ATC, 2-pole, compressed-air cooled; 2.2 kW (3 hp); rated 24,000 rpm (400 Hz), max 40,000 rpm (667 Hz). Specs from CNC Parts Dept reseller page."
+    },
+    {
+      "id": "colombo-rv90-22-iso25",
+      "maker": "Colombo",
+      "model": "RV 90/22 35 FP1 ISO 25 (828-090-V100)",
+      "type": "spindle",
+      "power_kw": 3.7,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ISO25",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.cncpd.com/product/rv-90-22-colombo-spindle-motor-828-090-v100/"
+      ],
+      "notes": "ATC, 2-pole, fan cooled; 3.7 kW (5 hp); rated 18,000 rpm (300 Hz), max 24,000 rpm (400 Hz); 15.5 / 9 A. Specs from CNC Parts Dept reseller page."
+    },
+    {
+      "id": "colombo-ra-rc90-22-iso25",
+      "maker": "Colombo",
+      "model": "RA/RC 90/22 35 FP1 ISO 25 (828-090-AC100)",
+      "type": "spindle",
+      "power_kw": 4.1,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 32000,
+      "collet": "ISO25",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": null,
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.cncpd.com/product/ra-rc-90-22-colombo-spindle-motor-828-090-ac100/"
+      ],
+      "notes": "ATC, 2-pole; 4.1 kW (5.5 hp); 32,000 rpm (533 Hz); liquid or compressed-air cooling. Specs from CNC Parts Dept reseller page."
+    },
+    {
+      "id": "colombo-rv110-22-atc",
+      "maker": "Colombo",
+      "model": "RV 110/22 (828-110-V100)",
+      "type": "spindle",
+      "power_kw": 7.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": null,
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "460 V",
+      "sources": [
+        "https://www.cncpd.com/product/828-110-v100-rv-110-22-colombo-spindle-motor/"
+      ],
+      "notes": "ATC, 2-pole, fan/compressed air; 7.5 kW (10 hp); rated 12,000 rpm per page (300 Hz), max 24,000 rpm (400 Hz). Tool interface not stated. Specs from CNC Parts Dept reseller page."
+    },
+    {
+      "id": "colombo-rc110-22",
+      "maker": "Colombo",
+      "model": "RC 110/22 double-ended (824-110-C108)",
+      "type": "spindle",
+      "power_kw": null,
+      "power_hp": 10.0,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": null,
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://www.cncpd.com/product/824-110-c108-colombo-spindle-motor-rc-110-22/"
+      ],
+      "notes": "Manual tool change, double-ended; 10 hp; 28.5 A; rated 18,000 rpm (300 Hz), max 24,000 rpm (400 Hz); electric fan. Specs from CNC Parts Dept reseller page."
+    },
+    {
+      "id": "colombo-rce110-22-er32",
+      "maker": "Colombo",
+      "model": "RCE 110/22 40 FP1 BI SB CPE 32 (824-110-C105-BI)",
+      "type": "spindle",
+      "power_kw": 7.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 18000,
+      "collet": "ER32",
+      "collet_min_in": 0.079,
+      "collet_max_in": 0.787,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://www.cncpd.com/product/824-110-c105-bi-colombo-spindle-motor-rce-110-22/"
+      ],
+      "notes": "Manual tool change, 2-pole; 7.5 kW (10 hp); 18,000 rpm (300 Hz); 15.6 A; electric fan. Collet from the CPE 32 model code. Specs from CNC Parts Dept reseller page.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "colombo-rv116-22-er40",
+      "maker": "Colombo",
+      "model": "RV 116/22 50 FB3 CPE 40 (824-116-V100)",
+      "type": "spindle",
+      "power_kw": 7.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER40",
+      "collet_min_in": 0.118,
+      "collet_max_in": 1.024,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/440 V",
+      "sources": [
+        "https://www.cncpd.com/product/rv-116-22-colombo-spindle-motor-824-116-v100/"
+      ],
+      "notes": "Manual tool change, 2-pole, fan cooled; 7.5 kW (10 hp); rated 18,000 rpm (300 Hz), max 24,000 rpm (400 Hz). Specs from CNC Parts Dept reseller page.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "colombo-rv135-22-er40",
+      "maker": "Colombo",
+      "model": "RV 135/22 50 FP1 SB CPE 40 DX (824-135-V103)",
+      "type": "spindle",
+      "power_kw": 9.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 18000,
+      "collet": "ER40",
+      "collet_min_in": 0.118,
+      "collet_max_in": 1.024,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.cncpd.com/product/rv-135-22-colombo-spindle-motor-824-135-v103/"
+      ],
+      "notes": "Manual tool change, 2-pole, shaft fan; 9 kW (12 hp); 18,000 rpm (300 Hz); 36.5 / 21 A. Specs from CNC Parts Dept reseller page.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "colombo-rv170-22-er32",
+      "maker": "Colombo",
+      "model": "RV 170/22 (824-170-V100)",
+      "type": "spindle",
+      "power_kw": 11.9,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER32",
+      "collet_min_in": 0.079,
+      "collet_max_in": 0.787,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://www.cncpd.com/product/824-170-v100-rv-170-22-colombo-spindle-motor/"
+      ],
+      "notes": "Manual tool change, 2-pole; 11.9 kW (16 hp); rated 18,000 rpm (300 Hz), max 24,000 rpm (400 Hz); 28 A. Cooling: page section is 'fan cooled' RV line. Specs from CNC Parts Dept reseller page.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "teknomotor-nc35-a-sb-p-er16",
+      "maker": "Teknomotor",
+      "model": "NC35-A-SB-P-ER16-RH",
+      "type": "spindle",
+      "power_kw": 0.22,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 18000,
+      "collet": "ER16",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.394,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/nc35-a-sb-p-er16-rh/",
+        "https://web.archive.org/web/2024/https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/nc35-a-sb-p-er16-rh/"
+      ],
+      "notes": "Manual tool change; S1 0.22 kW, 0.18 Nm; nominal 12,000 / max 18,000 rpm; 2.42 kg; COMNC350334. NC35 series spans 6,000-24,000 rpm. Teknomotor blocks scripted access; archive copy used.",
+      "estimated": {
+        "cooling": "Teknomotor fan/self-ventilated range; page does not state cooling",
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "teknomotor-nc35-c-db-p-er16",
+      "maker": "Teknomotor",
+      "model": "NC35-C-DB-P-ER16-RH",
+      "type": "spindle",
+      "power_kw": 0.55,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER16",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.394,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/nc35-c-db-p-er16-rh/",
+        "https://web.archive.org/web/2024/https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/nc35-c-db-p-er16-rh/"
+      ],
+      "notes": "Manual tool change; S1 0.55 kW, 0.44 Nm; nominal 12,000 / max 24,000 rpm; 3.45 kg; COMNC350440. Teknomotor blocks scripted access; archive copy used.",
+      "estimated": {
+        "cooling": "Teknomotor fan/self-ventilated range; page does not state cooling",
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "teknomotor-3140-b-dbs-p-er20",
+      "maker": "Teknomotor",
+      "model": "3140-B-DBS-P-ER20-RH (C31)",
+      "type": "spindle",
+      "power_kw": 0.37,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER20",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.512,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/3140-b-dbs-p-er20-rh/",
+        "https://web.archive.org/web/2024/https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/3140-b-dbs-p-er20-rh/"
+      ],
+      "notes": "Manual tool change; S1 0.37 kW, 0.29 Nm; nominal 12,000 / max 24,000 rpm; 3.66 kg; COM31400339. Teknomotor blocks scripted access; archive copy used.",
+      "estimated": {
+        "cooling": "Teknomotor fan/self-ventilated range; page does not state cooling",
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "teknomotor-3140-d-dbs-p-er20",
+      "maker": "Teknomotor",
+      "model": "3140-D-DBS-P-ER20-RH (C31)",
+      "type": "spindle",
+      "power_kw": 0.75,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER20",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.512,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/3140-d-dbs-p-er20-rh/",
+        "https://web.archive.org/web/2024/https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/3140-d-dbs-p-er20-rh/"
+      ],
+      "notes": "Manual tool change; S1 0.75 kW, 0.60 Nm; nominal 12,000 / max 24,000 rpm; 4.42 kg; COM31400313. Teknomotor blocks scripted access; archive copy used.",
+      "estimated": {
+        "cooling": "Teknomotor fan/self-ventilated range; page does not state cooling",
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "teknomotor-4147-b-db-p-er25",
+      "maker": "Teknomotor",
+      "model": "4147-B-DB-P-ER25-RH (C41)",
+      "type": "spindle",
+      "power_kw": 1.1,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 18000,
+      "collet": "ER25",
+      "collet_min_in": 0.079,
+      "collet_max_in": 0.63,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/4147-b-db-p-er25-rh/",
+        "https://web.archive.org/web/2024/https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/4147-b-db-p-er25-rh/"
+      ],
+      "notes": "Manual tool change; S1 1.1 kW, 0.88 Nm; nominal 12,000 / max 18,000 rpm; 7.36 kg; COM41470271. Teknomotor blocks scripted access; archive copy used.",
+      "estimated": {
+        "collet_min_in": "converted from Teknomotor FAQ: P-ER25 shaft takes 2-16 mm",
+        "collet_max_in": "converted from Teknomotor FAQ: P-ER25 shaft takes 2-16 mm",
+        "cooling": "Teknomotor fan/self-ventilated range; page does not state cooling"
+      }
+    },
+    {
+      "id": "teknomotor-4147-d-db-p-er25",
+      "maker": "Teknomotor",
+      "model": "4147-D-DB-P-ER25-RH (C41)",
+      "type": "spindle",
+      "power_kw": 1.8,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 18000,
+      "collet": "ER25",
+      "collet_min_in": 0.079,
+      "collet_max_in": 0.63,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/4147-d-db-p-er25-rh/",
+        "https://web.archive.org/web/2024/https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/4147-d-db-p-er25-rh/"
+      ],
+      "notes": "Manual tool change; S1 1.8 kW, 1.43 Nm; nominal 12,000 / max 18,000 rpm; 9.04 kg; COM41470206. Teknomotor blocks scripted access; archive copy used.",
+      "estimated": {
+        "collet_min_in": "converted from Teknomotor FAQ: P-ER25 shaft takes 2-16 mm",
+        "collet_max_in": "converted from Teknomotor FAQ: P-ER25 shaft takes 2-16 mm",
+        "cooling": "Teknomotor fan/self-ventilated range; page does not state cooling"
+      }
+    },
+    {
+      "id": "teknomotor-5160-a-db-p-er32",
+      "maker": "Teknomotor",
+      "model": "5160-A-DB-P-ER32-RH (C51)",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 18000,
+      "collet": "ER32",
+      "collet_min_in": 0.079,
+      "collet_max_in": 0.787,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/5160-a-db-p-er32-rh/",
+        "https://web.archive.org/web/2024/https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/5160-a-db-p-er32-rh/"
+      ],
+      "notes": "Manual tool change; S1 2.2 kW, 1.75 Nm; nominal 12,000 / max 18,000 rpm; 12.62 kg; COM51600145. Teknomotor blocks scripted access; archive copy used.",
+      "estimated": {
+        "cooling": "Teknomotor fan/self-ventilated range; page does not state cooling",
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "teknomotor-5160-d-db-p-er32",
+      "maker": "Teknomotor",
+      "model": "5160-D-DB-P-ER32-RH (C51, low speed)",
+      "type": "spindle",
+      "power_kw": 1.1,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 9000,
+      "collet": "ER32",
+      "collet_min_in": 0.079,
+      "collet_max_in": 0.787,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/5160-d-db-p-er32-rh/",
+        "https://web.archive.org/web/2024/https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/5160-d-db-p-er32-rh/"
+      ],
+      "notes": "Manual tool change; S1 1.1 kW, 3.50 Nm; nominal 3,000 / max 9,000 rpm (high-torque winding); 14.93 kg; COM51600208. Teknomotor blocks scripted access; archive copy used.",
+      "estimated": {
+        "cooling": "Teknomotor fan/self-ventilated range; page does not state cooling",
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "teknomotor-6067-a-db-p-er32",
+      "maker": "Teknomotor",
+      "model": "6067-A-DB-P-ER32-RH (C60)",
+      "type": "spindle",
+      "power_kw": 4.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 18000,
+      "collet": "ER32",
+      "collet_min_in": 0.079,
+      "collet_max_in": 0.787,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/6067-a-db-p-er32-rh/",
+        "https://web.archive.org/web/2024/https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/6067-a-db-p-er32-rh/"
+      ],
+      "notes": "Manual tool change; S1 4.5 kW, 2.39 Nm; nominal = max 18,000 rpm; 17.87 kg; COM60670010. Teknomotor blocks scripted access; archive copy used.",
+      "estimated": {
+        "cooling": "Teknomotor fan/self-ventilated range; page does not state cooling",
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "teknomotor-c041-a-dbs-hsk25c-sv",
+      "maker": "Teknomotor",
+      "model": "C041-A-DBS-HSK25C-SV (QTCE quick change)",
+      "type": "spindle",
+      "power_kw": 1.1,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "HSK25C",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220/380 V",
+      "sources": [
+        "https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/c041-a-dbs-hsk25c-sv/",
+        "https://web.archive.org/web/2024/https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/c041-a-dbs-hsk25c-sv/"
+      ],
+      "notes": "Quick tool change (HSK25C); 1.1 kW at S6 60%, 0.58 Nm; nominal 18,000 / max 24,000 rpm; 4.90 kg; COMC0410007. Teknomotor blocks scripted access; archive copy used.",
+      "estimated": {
+        "cooling": "Teknomotor fan/self-ventilated range; page does not state cooling"
+      }
+    },
+    {
+      "id": "teknomotor-atc41-a-db-iso20-sn",
+      "maker": "Teknomotor",
+      "model": "ATC41-A-DB-ISO20-SN",
+      "type": "spindle",
+      "power_kw": 1.1,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ISO20",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/atc41-a-db-iso20-sn/",
+        "https://web.archive.org/web/2024/https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/atc41-a-db-iso20-sn/"
+      ],
+      "notes": "ATC, short nose; S1 1.1 kW, 0.58 Nm; nominal 18,000 / max 24,000 rpm; 5.79 kg; COMTC410001. Teknomotor blocks scripted access; archive copy used.",
+      "estimated": {
+        "cooling": "Teknomotor fan/self-ventilated range; page does not state cooling"
+      }
+    },
+    {
+      "id": "teknomotor-atc41-c-2db-iso20-sn-hy",
+      "maker": "Teknomotor",
+      "model": "ATC41-C-2DB-ISO20-SN-HY",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 30000,
+      "collet": "ISO20",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/atc41-c-2db-iso20-sn-hy/",
+        "https://web.archive.org/web/2024/https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/atc41-c-2db-iso20-sn-hy/"
+      ],
+      "notes": "ATC, short nose, hybrid bearings; S1 2.2 kW, 0.88 Nm; nominal 24,000 / max 30,000 rpm; 6.80 kg; COMTC410006. Teknomotor blocks scripted access; archive copy used.",
+      "estimated": {
+        "cooling": "Teknomotor fan/self-ventilated range; page does not state cooling"
+      }
+    },
+    {
+      "id": "teknomotor-atc71-c-iso30-sn-4p",
+      "maker": "Teknomotor",
+      "model": "ATC71-C-ISO30-SN-4P",
+      "type": "spindle",
+      "power_kw": 12.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ISO30",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/atc71-c-iso30-sn-4p/",
+        "https://web.archive.org/web/2024/https://www.teknomotor.com/product/applications/spindles-for-cnc-router-machine-applications/atc71-c-iso30-sn-4p/"
+      ],
+      "notes": "ATC, short nose, 4-pole; 12 kW is the S6 60% rating, 9.55 Nm; nominal 12,000 / max 24,000 rpm; 23.28 kg; COMTC710024. Teknomotor blocks scripted access; archive copy used.",
+      "estimated": {
+        "cooling": "Teknomotor fan/self-ventilated range; page does not state cooling"
+      }
+    },
+    {
+      "id": "elte-tmpe4-14-2",
+      "maker": "Elte",
+      "model": "TMPE4 (AXYZ 6000393 / 6000392)",
+      "type": "spindle",
+      "power_kw": 3.3,
+      "power_hp": 5.0,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER32",
+      "collet_min_in": 0.079,
+      "collet_max_in": 0.787,
+      "cooling": null,
+      "vfd": true,
+      "voltage": "380 V or 220 V",
+      "sources": [
+        "https://cncshop.com/products/6000393-5-hp-elte-spindle-tmpe4-380v",
+        "https://cncshop.com/products/6000392-5-hp-elte-spindle-tmpe4-220v"
+      ],
+      "notes": "Manual tool change; AXYZ sells it as '5 hp' but rates it 3.3 kW; PF 0.8; 380 V 7.9 A (6000393) or 220 V 13.7 A (6000392); 11.5 kg. AXYZ CNCShop listing; elte.it blocks scripted access.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "elte-tmpe5-14-2",
+      "maker": "Elte",
+      "model": "TMPE5 14/2 (AXYZ 6000395 / 6000394)",
+      "type": "spindle",
+      "power_kw": 7.0,
+      "power_hp": 10.0,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER32",
+      "collet_min_in": 0.079,
+      "collet_max_in": 0.787,
+      "cooling": null,
+      "vfd": true,
+      "voltage": "380 V or 220 V",
+      "sources": [
+        "https://cncshop.com/products/020737-380v-10hp-elte-spindle-tmpe5-14-2-380v"
+      ],
+      "notes": "Manual tool change; 7.0 kW (10 hp); PF 0.8; 380 V 14.5 A (6000395), 220 V 25 A (6000394); 19.5 kg. AXYZ CNCShop listing.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "nakanishi-emsf-3060k",
+      "maker": "Nakanishi",
+      "model": "EMSF-3060K (E3000)",
+      "type": "spindle",
+      "power_kw": 0.35,
+      "power_hp": null,
+      "rpm_min": 1000,
+      "rpm_max": 60000,
+      "collet": "CHK (0.5-6.35 mm)",
+      "collet_min_in": 0.02,
+      "collet_max_in": 0.25,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": null,
+      "sources": [
+        "https://en.nakanishi-spindle.com/product/emsf-3060k/",
+        "https://en.nakanishi-spindle.com/wp-content/uploads/e3000-1.pdf"
+      ],
+      "notes": "30 mm flanged motor spindle for mounting on a machine; max 350 W; runout within 1 um; 620 g; brushless, needs the E3000 controller (not a VFD). Speed range 1,000-60,000 rpm per E3000 catalog (EM-3060 motor). Air purge, no liquid cooling.",
+      "estimated": {
+        "collet_min_in": "converted from 0.5 mm",
+        "collet_max_in": "converted from 6.35 mm"
+      }
+    },
+    {
+      "id": "jianken-jgd-62-0-8",
+      "maker": "Jianken",
+      "model": "JGD-62/0.8",
+      "type": "spindle",
+      "power_kw": 0.8,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 30000,
+      "collet": "ER11",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.276,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGD constant-torque spindle, manual tool change; max 30000 rpm, 400-500 Hz, 2.2 A, 3.5 kg. Jianken 2019 operation manual (copy on the LinuxCNC forum); no minimum speed stated.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "jianken-jgd-80-0-75",
+      "maker": "Jianken",
+      "model": "JGD-80/0.75",
+      "type": "spindle",
+      "power_kw": 0.75,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER16",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.394,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGD constant-torque spindle, manual tool change; max 24000 rpm, 400 Hz, 2 A, 5.5 kg. Jianken 2019 operation manual (copy on the LinuxCNC forum); no minimum speed stated. Cooling 'self' (own fan).",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "jianken-jgd-80-1-5r24",
+      "maker": "Jianken",
+      "model": "JGD-80/1.5R24",
+      "type": "spindle",
+      "power_kw": 1.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER16",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.394,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGD constant-torque spindle, manual tool change; max 24000 rpm, 400 Hz, 4.2 A, 7.5 kg. Jianken 2019 operation manual (copy on the LinuxCNC forum); no minimum speed stated.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "jianken-jgd-80-1-5r40",
+      "maker": "Jianken",
+      "model": "JGD-80/1.5R40",
+      "type": "spindle",
+      "power_kw": 1.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 40000,
+      "collet": "ER16",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.394,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGD constant-torque spindle, manual tool change; max 40000 rpm, 666 Hz, 4.2 A, 7.5 kg. Jianken 2019 operation manual (copy on the LinuxCNC forum); no minimum speed stated.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "jianken-jgd-80-2-2",
+      "maker": "Jianken",
+      "model": "JGD-80/2.2",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER20",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.512,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGD constant-torque spindle, manual tool change; max 24000 rpm, 400 Hz, 3.5 A, 8.2 kg. Jianken 2019 operation manual (copy on the LinuxCNC forum); no minimum speed stated.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "jianken-jgd-80-2-5r40",
+      "maker": "Jianken",
+      "model": "JGD-80/2.5R40",
+      "type": "spindle",
+      "power_kw": 2.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 40000,
+      "collet": "ER20",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.512,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGD constant-torque spindle, manual tool change; max 40000 rpm, 666 Hz, 6.5 A, 8.5 kg. Jianken 2019 operation manual (copy on the LinuxCNC forum); no minimum speed stated.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "jianken-jgd-85-1-5",
+      "maker": "Jianken",
+      "model": "JGD-85/1.5",
+      "type": "spindle",
+      "power_kw": 1.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER16",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.394,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGD constant-torque spindle, manual tool change; max 24000 rpm, 400 Hz, 4.2 A, 8 kg. Jianken 2019 operation manual (copy on the LinuxCNC forum); no minimum speed stated.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "jianken-jgd-85-2-2",
+      "maker": "Jianken",
+      "model": "JGD-85/2.2",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER20",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.512,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGD constant-torque spindle, manual tool change; max 24000 rpm, 400 Hz, 3.5 A, 8.5 kg. Jianken 2019 operation manual (copy on the LinuxCNC forum); no minimum speed stated.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "jianken-jgd-105-2-2",
+      "maker": "Jianken",
+      "model": "JGD-105/2.2",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER20",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.512,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGD constant-torque spindle, manual tool change; max 24000 rpm, 350 Hz, 6 A, 14 kg. Jianken 2019 operation manual (copy on the LinuxCNC forum); no minimum speed stated.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "jianken-jgd-105-3-0",
+      "maker": "Jianken",
+      "model": "JGD-105/3.0",
+      "type": "spindle",
+      "power_kw": 3.0,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER20",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.512,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGD constant-torque spindle, manual tool change; max 24000 rpm, 350 Hz, 5 A, 15.5 kg. Jianken 2019 operation manual (copy on the LinuxCNC forum); no minimum speed stated. Manual lists this model as 3.2 kW in the dimension table title, 3 kW in the spec table.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "jianken-jgd-125-4-2",
+      "maker": "Jianken",
+      "model": "JGD-125/4.2",
+      "type": "spindle",
+      "power_kw": 4.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER25",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.63,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGD constant-torque spindle, manual tool change; max 24000 rpm, 350 Hz, 7.5 A, 23 kg. Jianken 2019 operation manual (copy on the LinuxCNC forum); no minimum speed stated.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "jianken-jgd-125-5-5",
+      "maker": "Jianken",
+      "model": "JGD-125/5.5",
+      "type": "spindle",
+      "power_kw": 5.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ER25",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.63,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGD constant-torque spindle, manual tool change; max 24000 rpm, 400 Hz, 11 A, 26 kg. Jianken 2019 operation manual (copy on the LinuxCNC forum); no minimum speed stated.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "jianken-jgd-150-13",
+      "maker": "Jianken",
+      "model": "JGD-150/13",
+      "type": "spindle",
+      "power_kw": 13,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 15000,
+      "collet": "ER32",
+      "collet_min_in": 0.079,
+      "collet_max_in": 0.787,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGD constant-torque spindle, manual tool change; max 15000 rpm, 250 Hz, 20 A, 48 kg. Jianken 2019 operation manual (copy on the LinuxCNC forum); no minimum speed stated.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "jianken-jgh-80-1-5",
+      "maker": "Jianken",
+      "model": "JGH-80/1.5",
+      "type": "spindle",
+      "power_kw": 1.5,
+      "power_hp": null,
+      "rpm_min": 12000,
+      "rpm_max": 24000,
+      "collet": "ER16",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.394,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGH constant-power spindle, manual tool change; speed range 12000-24000 rpm (400-800 Hz) is the manual's rated constant-power range, 4.2 A, 7.2 kg. Jianken 2019 operation manual (copy on the LinuxCNC forum).",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "jianken-jgh-85-1-8",
+      "maker": "Jianken",
+      "model": "JGH-85/1.8",
+      "type": "spindle",
+      "power_kw": 1.8,
+      "power_hp": null,
+      "rpm_min": 18000,
+      "rpm_max": 24000,
+      "collet": "ER20",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.512,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGH constant-power spindle, manual tool change; speed range 18000-24000 rpm (600-800 Hz) is the manual's rated constant-power range, 5 A, 8.5 kg. Jianken 2019 operation manual (copy on the LinuxCNC forum).",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "jianken-jgh-105-2-2",
+      "maker": "Jianken",
+      "model": "JGH-105/2.2",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": 12000,
+      "rpm_max": 21000,
+      "collet": "ER20",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.512,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGH constant-power spindle, manual tool change; speed range 12000-21000 rpm (400-700 Hz) is the manual's rated constant-power range, 5.9 A, 12 kg. Jianken 2019 operation manual (copy on the LinuxCNC forum).",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "jianken-jgh-105-3-0",
+      "maker": "Jianken",
+      "model": "JGH-105/3.0",
+      "type": "spindle",
+      "power_kw": 3.0,
+      "power_hp": null,
+      "rpm_min": 12000,
+      "rpm_max": 21000,
+      "collet": "ER20",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.512,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGH constant-power spindle, manual tool change; speed range 12000-21000 rpm (400-700 Hz) is the manual's rated constant-power range, 5 A, 16 kg. Jianken 2019 operation manual (copy on the LinuxCNC forum).",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "jianken-jgh-125-4-2",
+      "maker": "Jianken",
+      "model": "JGH-125/4.2",
+      "type": "spindle",
+      "power_kw": 4.2,
+      "power_hp": null,
+      "rpm_min": 12000,
+      "rpm_max": 21000,
+      "collet": "ER25",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.63,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGH constant-power spindle, manual tool change; speed range 12000-21000 rpm (400-700 Hz) is the manual's rated constant-power range, 6.2 A, 23 kg. Jianken 2019 operation manual (copy on the LinuxCNC forum).",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "jianken-jgh-125-5-5",
+      "maker": "Jianken",
+      "model": "JGH-125/5.5",
+      "type": "spindle",
+      "power_kw": 5.5,
+      "power_hp": null,
+      "rpm_min": 12000,
+      "rpm_max": 18000,
+      "collet": "ER25",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.63,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGH constant-power spindle, manual tool change; speed range 12000-18000 rpm (400-600 Hz) is the manual's rated constant-power range, 7.6 A, 26 kg. Jianken 2019 operation manual (copy on the LinuxCNC forum).",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "jianken-jgh-136-5-5",
+      "maker": "Jianken",
+      "model": "JGH-136/5.5",
+      "type": "spindle",
+      "power_kw": 5.5,
+      "power_hp": null,
+      "rpm_min": 7500,
+      "rpm_max": 15000,
+      "collet": "ER32",
+      "collet_min_in": 0.079,
+      "collet_max_in": 0.787,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGH constant-power spindle, manual tool change; speed range 7500-15000 rpm (250-500 Hz) is the manual's rated constant-power range, 9 A, 35 kg. Jianken 2019 operation manual (copy on the LinuxCNC forum).",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "jianken-jgh-136-7-5",
+      "maker": "Jianken",
+      "model": "JGH-136/7.5",
+      "type": "spindle",
+      "power_kw": 7.5,
+      "power_hp": null,
+      "rpm_min": 12000,
+      "rpm_max": 15000,
+      "collet": "ER32",
+      "collet_min_in": 0.079,
+      "collet_max_in": 0.787,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGH constant-power spindle, manual tool change; speed range 12000-15000 rpm (400-500 Hz) is the manual's rated constant-power range, 13 A, 35 kg. Jianken 2019 operation manual (copy on the LinuxCNC forum).",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "jianken-jgh-150-11",
+      "maker": "Jianken",
+      "model": "JGH-150/11",
+      "type": "spindle",
+      "power_kw": 11,
+      "power_hp": null,
+      "rpm_min": 9000,
+      "rpm_max": 12000,
+      "collet": "ER40",
+      "collet_min_in": 0.118,
+      "collet_max_in": 1.024,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGH constant-power spindle, manual tool change; speed range 9000-12000 rpm (300-400 Hz) is the manual's rated constant-power range, 13 A, 53 kg. Jianken 2019 operation manual (copy on the LinuxCNC forum).",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    },
+    {
+      "id": "jianken-jgl-80-1-5r24-20",
+      "maker": "Jianken",
+      "model": "JGL-80/1.5R24-20",
+      "type": "spindle",
+      "power_kw": 1.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ISO20",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGL pneumatic automatic-tool-change spindle, ISO20 holders, clamp/unclamp sensor; max 24000 rpm, 400 Hz, 4.2 A, grease bearings. Jianken 2019 operation manual (copy on the LinuxCNC forum); no minimum speed stated."
+    },
+    {
+      "id": "jianken-jgl-80-2-2r24-20",
+      "maker": "Jianken",
+      "model": "JGL-80/2.2R24-20",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ISO20",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGL pneumatic automatic-tool-change spindle, ISO20 holders, clamp/unclamp sensor; max 24000 rpm, 400 Hz, 6 A, grease bearings. Jianken 2019 operation manual (copy on the LinuxCNC forum); no minimum speed stated."
+    },
+    {
+      "id": "jianken-jgl-80-2-2r30-20",
+      "maker": "Jianken",
+      "model": "JGL-80/2.2R30-20",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 30000,
+      "collet": "ISO20",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGL pneumatic automatic-tool-change spindle, ISO20 holders, clamp/unclamp sensor; max 30000 rpm, 500 Hz, 6 A, grease bearings. Jianken 2019 operation manual (copy on the LinuxCNC forum); no minimum speed stated."
+    },
+    {
+      "id": "jianken-jgl-85-1-5r24-20",
+      "maker": "Jianken",
+      "model": "JGL-85/1.5R24-20",
+      "type": "spindle",
+      "power_kw": 1.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ISO20",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "220 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGL pneumatic automatic-tool-change spindle, ISO20 holders, clamp/unclamp sensor; max 24000 rpm, 400 Hz, 4.2 A, grease bearings. Jianken 2019 operation manual (copy on the LinuxCNC forum); no minimum speed stated."
+    },
+    {
+      "id": "jianken-jgl-100-3-2r24-25",
+      "maker": "Jianken",
+      "model": "JGL-100/3.2R24-25",
+      "type": "spindle",
+      "power_kw": 3.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "ISO25",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGL pneumatic automatic-tool-change spindle, ISO25 holders, clamp/unclamp sensor; max 24000 rpm, 800 Hz, 5.2 A, grease bearings. Jianken 2019 operation manual (copy on the LinuxCNC forum); no minimum speed stated."
+    },
+    {
+      "id": "jianken-jgl-110-4-2r24-30",
+      "maker": "Jianken",
+      "model": "JGL-110/4.2R24-30",
+      "type": "spindle",
+      "power_kw": 4.2,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "BT30",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGL pneumatic automatic-tool-change spindle, BT30 holders, clamp/unclamp sensor; max 24000 rpm, 800 Hz, 7.5 A, grease bearings. Jianken 2019 operation manual (copy on the LinuxCNC forum); no minimum speed stated."
+    },
+    {
+      "id": "jianken-jgl-120-5-5r24-30",
+      "maker": "Jianken",
+      "model": "JGL-120/5.5R24-30",
+      "type": "spindle",
+      "power_kw": 5.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "BT30",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGL pneumatic automatic-tool-change spindle, BT30 holders, clamp/unclamp sensor; max 24000 rpm, 9 A, grease bearings. Jianken 2019 operation manual (copy on the LinuxCNC forum); no minimum speed stated."
+    },
+    {
+      "id": "jianken-jgl-120-7-5r24-30",
+      "maker": "Jianken",
+      "model": "JGL-120/7.5R24-30",
+      "type": "spindle",
+      "power_kw": 7.5,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 24000,
+      "collet": "BT30",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGL pneumatic automatic-tool-change spindle, BT30 holders, clamp/unclamp sensor; max 24000 rpm, 13 A, grease bearings. Jianken 2019 operation manual (copy on the LinuxCNC forum); no minimum speed stated."
+    },
+    {
+      "id": "jianken-jgl-150-11r18-40",
+      "maker": "Jianken",
+      "model": "JGL-150/11R18-40",
+      "type": "spindle",
+      "power_kw": 11,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 18000,
+      "collet": "BT40",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGL pneumatic automatic-tool-change spindle, BT40 holders, clamp/unclamp sensor; max 18000 rpm, 600 Hz, 22 A, grease bearings. Jianken 2019 operation manual (copy on the LinuxCNC forum); no minimum speed stated."
+    },
+    {
+      "id": "jianken-jgy-80-3-7r24-iso20",
+      "maker": "Jianken",
+      "model": "JGY-80/3.7R24-ISO20",
+      "type": "spindle",
+      "power_kw": 3.7,
+      "power_hp": null,
+      "rpm_min": 24000,
+      "rpm_max": 30000,
+      "collet": "ISO20",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGY permanent-magnet pneumatic ATC spindle, ISO20; speed range 24000-30000 rpm (800-1200 Hz) as rated in the manual, 6 A. Jianken 2019 operation manual (copy on the LinuxCNC forum)."
+    },
+    {
+      "id": "jianken-jgy-100-5-5r15-24-bt30",
+      "maker": "Jianken",
+      "model": "JGY-100/5.5R15-24-BT30",
+      "type": "spindle",
+      "power_kw": 5.5,
+      "power_hp": null,
+      "rpm_min": 15000,
+      "rpm_max": 24000,
+      "collet": "BT30",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGY permanent-magnet pneumatic ATC spindle, BT30; speed range 15000-24000 rpm (500-800 Hz) as rated in the manual, 10.5 A. Jianken 2019 operation manual (copy on the LinuxCNC forum)."
+    },
+    {
+      "id": "jianken-jgy-110-7-5r12-24-bt30",
+      "maker": "Jianken",
+      "model": "JGY-110/7.5R12-24-BT30",
+      "type": "spindle",
+      "power_kw": 7.5,
+      "power_hp": null,
+      "rpm_min": 12000,
+      "rpm_max": 24000,
+      "collet": "BT30",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGY permanent-magnet pneumatic ATC spindle, BT30; speed range 12000-24000 rpm (400-800 Hz) as rated in the manual, 13 A. Jianken 2019 operation manual (copy on the LinuxCNC forum)."
+    },
+    {
+      "id": "jianken-jgy-120-10r13-24-t30",
+      "maker": "Jianken",
+      "model": "JGY-120/10R13-24-T30",
+      "type": "spindle",
+      "power_kw": 10,
+      "power_hp": null,
+      "rpm_min": 13000,
+      "rpm_max": 24000,
+      "collet": "BT30",
+      "collet_min_in": null,
+      "collet_max_in": null,
+      "cooling": "water",
+      "vfd": true,
+      "voltage": "380 V",
+      "sources": [
+        "https://forum.linuxcnc.org/media/kunena/attachments/27367/OperationManual2019.pdf"
+      ],
+      "notes": "JGY permanent-magnet pneumatic ATC spindle, BT30; speed range 13000-24000 rpm (433-800 Hz) as rated in the manual, 21 A. Jianken 2019 operation manual (copy on the LinuxCNC forum)."
+    },
+    {
+      "id": "makita-rf1101",
+      "maker": "Makita",
+      "model": "RF1101",
+      "type": "router",
+      "power_kw": null,
+      "power_hp": 2.25,
+      "rpm_min": 8000,
+      "rpm_max": 24000,
+      "collet": "1/4\" + 1/2\"",
+      "collet_min_in": 0.25,
+      "collet_max_in": 0.5,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": null,
+      "sources": [
+        "https://www.makitatools.com/products/details/RF1101"
+      ],
+      "notes": "11 A, 2-1/4 HP max; plunge router, 7.2 lb. Full-size body (not 65 mm)."
+    },
+    {
+      "id": "makita-rp2301fc",
+      "maker": "Makita",
+      "model": "RP2301FC",
+      "type": "router",
+      "power_kw": null,
+      "power_hp": 3.25,
+      "rpm_min": 9000,
+      "rpm_max": 22000,
+      "collet": "1/4\" + 1/2\"",
+      "collet_min_in": 0.25,
+      "collet_max_in": 0.5,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": null,
+      "sources": [
+        "https://www.makitatools.com/products/details/RP2301FC"
+      ],
+      "notes": "15 A, 3-1/4 HP max; plunge router, 13.4 lb, electric brake. Full-size body (not 65 mm)."
+    },
+    {
+      "id": "bosch-gkf-600",
+      "maker": "Bosch",
+      "model": "GKF 600 Professional",
+      "type": "router",
+      "power_kw": 0.6,
+      "power_hp": null,
+      "rpm_min": null,
+      "rpm_max": 33000,
+      "collet": "6 mm / 8 mm / 1/4\"",
+      "collet_min_in": 0.236,
+      "collet_max_in": 0.315,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": "240 V (110 V variant)",
+      "sources": [
+        "https://www.bosch-professional.com/gb/en/products/gkf-600-060160A170"
+      ],
+      "notes": "600 W rated input, 1.5 kg; no-load speed 33,000 rpm (no range listed on the page). Compatible collets per Bosch: 6 mm, 8 mm, 1/4\".",
+      "estimated": {
+        "collet_min_in": "converted from 6 mm",
+        "collet_max_in": "converted from 8 mm"
+      }
+    },
+    {
+      "id": "bosch-gof-1600-ce",
+      "maker": "Bosch",
+      "model": "GOF 1600 CE Professional",
+      "type": "router",
+      "power_kw": 1.6,
+      "power_hp": null,
+      "rpm_min": 10000,
+      "rpm_max": 25000,
+      "collet": "1/4\" + 1/2\" (bit holder 8-12.7 mm)",
+      "collet_min_in": 0.25,
+      "collet_max_in": 0.5,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": "240 V / 110 V",
+      "sources": [
+        "https://www.bosch-professional.com/gb/en/products/gof-1600-ce-0601624060"
+      ],
+      "notes": "1600 W rated input, 5.8 kg, 76 mm plunge stroke. Full-size plunge router."
+    },
+    {
+      "id": "milwaukee-2723-20",
+      "maker": "Milwaukee",
+      "model": "M18 FUEL Compact Router 2723-20",
+      "type": "router",
+      "power_kw": null,
+      "power_hp": null,
+      "rpm_min": 10000,
+      "rpm_max": 31000,
+      "collet": "1/4\"",
+      "collet_min_in": 0.25,
+      "collet_max_in": 0.25,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": "18 V battery",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-compact-router/2723-20"
+      ],
+      "notes": "Cordless brushless; Milwaukee compares it to corded 1.25 hp trim routers but publishes no rating. Battery runtime limits CNC use."
+    },
+    {
+      "id": "dewalt-dw618",
+      "maker": "DeWalt",
+      "model": "DW618",
+      "type": "router",
+      "power_kw": null,
+      "power_hp": 2.25,
+      "rpm_min": 8000,
+      "rpm_max": 24000,
+      "collet": "1/4\" + 1/2\"",
+      "collet_min_in": 0.25,
+      "collet_max_in": 0.5,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dw618/2-14-hp-corded-electric-electronic-variable-speed-fixed-base-router-soft-start"
+      ],
+      "notes": "12 A, 2-1/4 HP maximum motor HP; fixed-base router with soft start (DW618M motor). Full-size body; used on some older hobby CNC mounts. No DWE6611 model found on DeWalt's sites."
+    },
+    {
+      "id": "bosch-gkf125cen",
+      "maker": "Bosch",
+      "model": "Colt GKF125CEN",
+      "type": "router",
+      "power_kw": null,
+      "power_hp": 1.25,
+      "rpm_min": 16000,
+      "rpm_max": 35000,
+      "collet": "1/4\"",
+      "collet_min_in": 0.25,
+      "collet_max_in": 0.25,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": "120 V",
+      "sources": [
+        "https://coastaltool.com/products/bosch-gkf125cen-colt-1-25-hp-max-variable-speed-palm-router"
+      ],
+      "notes": "7.0 A, 1.25 HP max, self-releasing 1/4\" collet chuck, 4.4 lb, soft start + constant response. Dealer page reproducing Bosch specs. Bosch's own US page did not render for scripted access."
+    },
+    {
+      "id": "porter-cable-7518",
+      "maker": "Porter-Cable",
+      "model": "7518 Speedmatic",
+      "type": "router",
+      "power_kw": null,
+      "power_hp": 3.25,
+      "rpm_min": 10000,
+      "rpm_max": 21000,
+      "collet": "1/2\" (1/8\"-1/2\" per Stepcraft)",
+      "collet_min_in": 0.125,
+      "collet_max_in": 0.5,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": "110 V",
+      "sources": [
+        "https://shop.stepcraft.us/milling-spindle-comparison"
+      ],
+      "notes": "3-1/4 HP, 5 preset speeds 10,000-21,000 rpm, 14.5 lb. Full-size router; ShopBot's classic router. Specs from Stepcraft USA's spindle comparison table (Porter-Cable site blocks scripted access)."
+    },
+    {
+      "id": "stepcraft-hf-500",
+      "maker": "Stepcraft",
+      "model": "HF-500",
+      "type": "spindle",
+      "power_kw": 0.5,
+      "power_hp": null,
+      "rpm_min": 5000,
+      "rpm_max": 20000,
+      "collet": "ER11 (built-in)",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.315,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": "110 V in, DC out",
+      "sources": [
+        "https://shop.stepcraft.us/milling-spindle-comparison",
+        "https://shop.stepcraft.us/forum/faq-2/what-is-the-collet-range-sizes-that-the-hf-500-spindle-can-accept-51"
+      ],
+      "notes": "500 W high-frequency spindle with its own controller; manual or CNC speed control, 1.4 lb, runout < 0.0004\". ATC tool holder SK10. Stepcraft lists shanks 1/8\"-3/16\"; FAQ says ER11 collets 1-8 mm fit. Collets not included.",
+      "estimated": {
+        "collet_min_in": "converted from Stepcraft FAQ 1-8 mm",
+        "collet_max_in": "converted from Stepcraft FAQ 1-8 mm"
+      }
+    },
+    {
+      "id": "stepcraft-mm-1000",
+      "maker": "Stepcraft",
+      "model": "MM-1000",
+      "type": "router",
+      "power_kw": 1.0,
+      "power_hp": null,
+      "rpm_min": 10000,
+      "rpm_max": 25000,
+      "collet": "ER11",
+      "collet_min_in": 0.125,
+      "collet_max_in": 0.315,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": "110 V",
+      "sources": [
+        "https://shop.stepcraft.us/milling-spindle-comparison"
+      ],
+      "notes": "1000 W milling motor, manual speed dial, 3.5 lb. ATC version uses SK15 tool holders. Shanks 1/8\"-1/4\" and 8 mm.",
+      "estimated": {
+        "collet_max_in": "converted from 8 mm"
+      }
+    },
+    {
+      "id": "stepcraft-mm-1000di",
+      "maker": "Stepcraft",
+      "model": "MM-1000 DI",
+      "type": "router",
+      "power_kw": 1.0,
+      "power_hp": null,
+      "rpm_min": 10000,
+      "rpm_max": 25000,
+      "collet": "ER11",
+      "collet_min_in": 0.125,
+      "collet_max_in": 0.315,
+      "cooling": "air",
+      "vfd": false,
+      "voltage": "110 V",
+      "sources": [
+        "https://shop.stepcraft.us/milling-spindle-comparison"
+      ],
+      "notes": "Digital-interface MM-1000: speed set by the CNC (no VFD) or manually; 1000 W, 3.5 lb, SK15 ATC holders available.",
+      "estimated": {
+        "collet_max_in": "converted from 8 mm"
+      }
+    },
+    {
+      "id": "stepcraft-hfs-2200",
+      "maker": "Stepcraft",
+      "model": "HFS-2200",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": 4000,
+      "rpm_max": 24000,
+      "collet": "ER20",
+      "collet_min_in": 0.125,
+      "collet_max_in": 0.5,
+      "cooling": null,
+      "vfd": true,
+      "voltage": "220 V 1-phase",
+      "sources": [
+        "https://shop.stepcraft.us/milling-spindle-comparison"
+      ],
+      "notes": "2.2 kW spindle with VFD, CNC speed control, 9.9 lb, Q-Series. Shanks 1/8\"-1/2\" per Stepcraft."
+    },
+    {
+      "id": "stepcraft-atc-2200",
+      "maker": "Stepcraft",
+      "model": "ATC-2200",
+      "type": "spindle",
+      "power_kw": 2.2,
+      "power_hp": null,
+      "rpm_min": 2500,
+      "rpm_max": 18000,
+      "collet": "ISO30 holders, ER32",
+      "collet_min_in": 0.125,
+      "collet_max_in": 0.75,
+      "cooling": null,
+      "vfd": true,
+      "voltage": "220 V 1-phase",
+      "sources": [
+        "https://shop.stepcraft.us/milling-spindle-comparison"
+      ],
+      "notes": "2.2 kW automatic-tool-change spindle, ISO30 holders with ER32 collets, 26.4 lb, runout < 0.0003\". Q-Series."
+    },
+    {
+      "id": "inventables-x-carve-pro-1-5kw",
+      "maker": "Inventables",
+      "model": "X-Carve Pro spindle 1.5 kW",
+      "type": "spindle",
+      "power_kw": 1.5,
+      "power_hp": 2.0,
+      "rpm_min": 8000,
+      "rpm_max": 24000,
+      "collet": "ER16-A",
+      "collet_min_in": 0.039,
+      "collet_max_in": 0.394,
+      "cooling": "air",
+      "vfd": true,
+      "voltage": null,
+      "sources": [
+        "https://easel.com/partners/machines/inventables-x-carve-pro"
+      ],
+      "notes": "2 HP (1.5 kW) air-cooled spindle with pre-programmed VFD, integrated in the X-Carve Pro gantry. Source is Inventables' Easel machine page.",
+      "estimated": {
+        "collet_min_in": "standard ER collet range per DIN ISO 15488, not stated by the maker",
+        "collet_max_in": "standard ER collet range per DIN ISO 15488, not stated by the maker"
+      }
+    }
+  ]
+}

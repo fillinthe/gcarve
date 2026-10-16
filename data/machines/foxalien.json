@@ -1,0 +1,1672 @@
+{
+ "maker": "FoxAlien",
+ "website": "https://www.foxalien.com",
+ "machines": [
+  {
+   "id": "foxalien-masuter",
+   "maker": "FoxAlien",
+   "model": "Masuter",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 14.96,
+    "z": 2.16
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 380,
+    "z": 55
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "775 DC motor",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 10000,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL controller (32-bit, offline control)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "MDF spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.foxalien.com/products/cnc-router-machine-masuter"
+   ],
+   "notes": "Discontinued. 775 motor, 10000 RPM; 12 V supply."
+  },
+  {
+   "id": "foxalien-masuter-pro",
+   "maker": "FoxAlien",
+   "model": "Masuter Pro",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 15.75,
+    "z": 2.36
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 400,
+    "z": 60
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "775 DC motor",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 10000,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "300 W spindle kit (option)",
+     "power_kw": 0.3,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL controller (32-bit, offline control)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "MDF spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.foxalien.com/products/cnc-router-masuter-pro",
+    "https://www.foxalien.com/products/cnc-router-masuter-pro-with-300w-spindle-kit"
+   ],
+   "notes": "775 motor 10000 RPM stock; 52/65 mm clamps included."
+  },
+  {
+   "id": "foxalien-masuter-3",
+   "maker": "FoxAlien",
+   "model": "Masuter 3",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 15.75,
+    "z": 3.74
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 400,
+    "z": 95
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "775 DC motor",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 10000,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "FoxAlien FA710 trimmer router",
+     "power_kw": 0.71,
+     "power_hp": 1,
+     "rpm_min": 10000,
+     "rpm_max": 30000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL controller (32-bit, offline control)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "MDF spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.foxalien.com/products/cnc-router-masuter-3",
+    "https://www.foxalien.com/products/foxalien-fa710-trimmer-router"
+   ],
+   "notes": "Belts on metal wheels, Z linear rails. NEMA23 upgrade kit available."
+  },
+  {
+   "id": "foxalien-masuter-3s",
+   "maker": "FoxAlien",
+   "model": "Masuter 3S",
+   "variant": null,
+   "years": "2024-",
+   "class": "hobby",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 15.75,
+    "z": 3.74
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 400,
+    "z": 95
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "400 W DC spindle",
+     "power_kw": 0.4,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "FoxAlien FA710 trimmer router",
+     "power_kw": 0.71,
+     "power_hp": 1,
+     "rpm_min": 10000,
+     "rpm_max": 30000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 393.7,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 10000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL controller (32-bit, offline control)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "MDF spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.foxalien.com/products/cnc-router-masuter-3s",
+    "https://www.foxalien.com/products/foxalien-fa710-trimmer-router"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published 'max moving speed'",
+    "rapid_ipm": "converted from the published mm rapid"
+   },
+   "notes": "Four NEMA23 76 mm closed-loop steppers; 52/65 mm mounts. 8040 X extension kit available."
+  },
+  {
+   "id": "foxalien-masuter-pro-max",
+   "maker": "FoxAlien",
+   "model": "Masuter Pro Max",
+   "variant": "2x2",
+   "years": "2026-",
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 23.62,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 600,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "500 W brushless spindle",
+     "power_kw": 0.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "1.5 kW VFD spindle kit (bundle)",
+     "power_kw": 1.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL controller (32-bit, offline control)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "MDF spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.foxalien.com/products/2026-new-cnc-router-masuter-pro-max-2x2-500w-brushless-spindle",
+    "https://www.foxalien.com/products/2026-new-cnc-router-masuter-pro-max-2x2-with-1-5kw-vfd-spindle-bundle-kit"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the published mm work area"
+   },
+   "notes": "'2 x 2 ft (60x60 cm)' working area, Z not published. NEMA17 stock, NEMA23 closed-loop upgrade kit (Dual Motion Board)."
+  },
+  {
+   "id": "foxalien-4040-xe",
+   "maker": "FoxAlien",
+   "model": "4040-XE",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 15.75,
+    "z": 2.56
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 400,
+    "z": 65
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "300 W spindle",
+     "power_kw": 0.3,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 78.74,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 2000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL controller (32-bit, offline control)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "MDF spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.foxalien.com/products/amazon-returnedcnc-router-machine-4040-xe"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published 'max moving speed'",
+    "rapid_ipm": "converted from the published mm rapid"
+   },
+   "notes": "NEMA23 steppers. Discontinued (only returns listed)."
+  },
+  {
+   "id": "foxalien-xe-pro",
+   "maker": "FoxAlien",
+   "model": "XE-PRO",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 15.8,
+    "y": 15.8,
+    "z": 3.74
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 400,
+    "z": 95
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "400 W DC spindle",
+     "power_kw": 0.4,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "FoxAlien FA710 trimmer router",
+     "power_kw": 0.71,
+     "power_hp": 1,
+     "rpm_min": 10000,
+     "rpm_max": 30000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 196.85,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL controller (32-bit, offline control)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "MDF spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.foxalien.com/products/cnc-router-machine-xe-pro",
+    "https://www.foxalien.com/products/foxalien-fa710-trimmer-router"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published 'max moving speed'",
+    "rapid_ipm": "converted from the published mm rapid"
+   },
+   "notes": "1204 ball screws, XY on steel wheels (linear rail kit optional); 65/69 mm mounts."
+  },
+  {
+   "id": "foxalien-vasto-v2",
+   "maker": "FoxAlien",
+   "model": "Vasto",
+   "variant": "V2",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 15.75,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 400.0,
+    "y": 400.0,
+    "z": 100.0
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "400 W DC spindle",
+     "power_kw": 0.4,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 196.85,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL controller (32-bit, offline control)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot hybrid table",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.foxalien.com/products/2025-new-cnc-router-machine-vasto-v2-closed-loop-stepper-motors"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published 'max moving speed'",
+    "work_area_mm": "converted from the published inch work area",
+    "rapid_ipm": "converted from the published mm rapid"
+   },
+   "notes": "16 mm ball screws XY, 12 mm Z, HG15 rails; NEMA23 closed-loop. Accepts 65/69 mm routers (Makita RT0700C, DeWalt DWP611)."
+  },
+  {
+   "id": "foxalien-vasto-xl-v2",
+   "maker": "FoxAlien",
+   "model": "Vasto XL",
+   "variant": "V2",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 23.62,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 600.0,
+    "y": 600.0,
+    "z": 100.0
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "400 W DC spindle",
+     "power_kw": 0.4,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 196.85,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL controller (32-bit, offline control)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot hybrid table",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.foxalien.com/products/cnc-router-machine-vasto-xl-v2-closed-loop-stepper-motors"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published 'max moving speed'",
+    "work_area_mm": "converted from the published inch work area",
+    "rapid_ipm": "converted from the published mm rapid"
+   },
+   "notes": "Same mechanics as Vasto V2. Accepts 65/69 mm routers (Makita RT0700C, DeWalt DWP611)."
+  },
+  {
+   "id": "foxalien-vasto-xxl",
+   "maker": "FoxAlien",
+   "model": "Vasto XXL",
+   "variant": "V1",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 39.37,
+    "y": 39.37,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 1000.0,
+    "y": 1000.0,
+    "z": 100.0
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "400 W DC spindle",
+     "power_kw": 0.4,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL controller (32-bit, offline control)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot hybrid table",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.foxalien.com/products/cnc-router-machine-vasto-xxl"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the published inch work area"
+   },
+   "notes": "NEMA23 with DM542 drivers (open loop). Accepts 65/69 mm routers (Makita RT0700C, DeWalt DWP611)."
+  },
+  {
+   "id": "foxalien-cl-4x4",
+   "maker": "FoxAlien",
+   "model": "CL-4x4",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 48,
+    "y": 48,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 1220,
+    "y": 1220,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "400 W DC spindle",
+     "power_kw": 0.4,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL controller (32-bit, offline control)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot hybrid table",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.foxalien.com/products/flagship-cnc-router-machine-cl-4x4"
+   ],
+   "notes": "Final sale. NEMA23 60-100 closed-loop (3.5 Nm). Accepts 65/69 mm routers (Makita RT0700C, DeWalt DWP611)."
+  },
+  {
+   "id": "foxalien-xe-ultra",
+   "maker": "FoxAlien",
+   "model": "XE-Ultra",
+   "variant": "8080",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 33.07,
+    "y": 33.07,
+    "z": 4.72
+   },
+   "work_area_mm": {
+    "x": 840,
+    "y": 840,
+    "z": 120
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 196.85,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL controller (32-bit, offline control)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "hybrid table (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.foxalien.com/products/2025-new-cnc-router-machine-xe-ultra",
+    "https://www.foxalien.com/products/2025-new-cnc-router-machine-xe-ultra-with-1-5kw-vfd-spindle-bundle-kit"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published 'max moving speed'",
+    "work_area_in": "converted from the published mm work area",
+    "rapid_ipm": "converted from the published mm rapid"
+   },
+   "notes": "Spindle and spoilboard not included in the base kit (bundles add FA710 router or 1.5 kW VFD spindle). Linear rails + ball screws all axes."
+  },
+  {
+   "id": "foxalien-xe-ultra-core",
+   "maker": "FoxAlien",
+   "model": "XE-Ultra Core",
+   "variant": null,
+   "years": "2026-",
+   "class": "hobby",
+   "work_area_in": {
+    "x": 17.3,
+    "y": 17.3,
+    "z": 4.72
+   },
+   "work_area_mm": {
+    "x": 440,
+    "y": 440,
+    "z": 120
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 196.85,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL controller (32-bit, offline control)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z probe (touch plate)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "hybrid table (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.foxalien.com/products/xe-ultra-core-cnc-router-machine"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published 'max moving speed'",
+    "rapid_ipm": "converted from the published mm rapid"
+   },
+   "notes": "Compact XE-Ultra; spindle and spoilboard not included."
+  },
+  {
+   "id": "foxalien-3018-se-v2",
+   "maker": "FoxAlien",
+   "model": "3018-SE V2",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 10.94,
+    "y": 6.18,
+    "z": 1.3
+   },
+   "work_area_mm": {
+    "x": 278,
+    "y": 157,
+    "z": 33
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "775 DC motor, 60 W",
+     "power_kw": 0.06,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 8000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL controller",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2024/https://www.foxalien.com/products/foxalien-cnc-router-3018-se-v2-transparent-black"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Enclosed (protective case). Optional 300 W spindle and 5/15 W laser modules."
+  },
+  {
+   "id": "foxalien-cl-6560",
+   "maker": "FoxAlien",
+   "model": "CL-6560",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 25.59,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 650,
+    "z": 110
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "400 W DC spindle",
+     "power_kw": 0.4,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "65/69 mm router mount (Makita RT0700C, DeWalt DWP611; not included)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 197,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL controller with 2.4-inch touchscreen (offline)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2024/https://www.foxalien.com/products/cnc-router-machine-cl-6560"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "NEMA23 (57-112) closed-loop steppers, up to 5000 mm/min. 16 mm ball screws X/Y, 12 mm ball screw + linear rails Z."
+  },
+  {
+   "id": "foxalien-wm3020",
+   "maker": "FoxAlien",
+   "model": "WM3020",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.42,
+    "y": 8.66,
+    "z": 2.76
+   },
+   "work_area_mm": {
+    "x": 290,
+    "y": 220,
+    "z": 70
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "300 W spindle",
+     "power_kw": 0.3,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "65/69 mm router mount (Makita RT0700C, DeWalt DWP611; not included)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL controller",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2024/https://www.foxalien.com/products/foxalien-x-woodmads-cnc-router-wm3020"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "FoxAlien x Woodmads. HG-15 linear rails and 12 mm ball screws on every axis, NEMA17 steppers."
+  },
+  {
+   "id": "foxalien-vasto-v1",
+   "maker": "FoxAlien",
+   "model": "Vasto",
+   "variant": "V1",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 15.75,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 400,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "400 W DC spindle",
+     "power_kw": 0.4,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "65/69 mm router mount (Makita RT0700C, DeWalt DWP611; not included)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL controller",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot hybrid table",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.foxalien.com/products/cnc-router-machine-vasto"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   },
+   "notes": "Dual HG-15 linear rails on every axis, 16 mm ball screws X/Y, 12 mm ball screw Z, NEMA23 with DM542 drivers, T-slot hybrid table. All-metal."
+  },
+  {
+   "id": "foxalien-vasto-xl-v1",
+   "maker": "FoxAlien",
+   "model": "Vasto XL",
+   "variant": "V1",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 23.62,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 600,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "400 W DC spindle",
+     "power_kw": 0.4,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "65/69 mm router mount (Makita RT0700C, DeWalt DWP611; not included)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL controller",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot hybrid table",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.foxalien.com/products/cnc-router-machine-vasto-xl"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   },
+   "notes": "Dual HG-15 linear rails on every axis, 16 mm ball screws X/Y, 12 mm ball screw Z, NEMA23 with DM542 drivers, T-slot hybrid table. All-metal."
+  },
+  {
+   "id": "foxalien-xe-pro-8040",
+   "maker": "FoxAlien",
+   "model": "XE-PRO",
+   "variant": "8040 extension",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 31.5,
+    "y": 15.75,
+    "z": 3.74
+   },
+   "work_area_mm": {
+    "x": 800,
+    "y": 400,
+    "z": 95
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "400 W DC spindle",
+     "power_kw": 0.4,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL controller",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.foxalien.com/products/cnc-router-machine-xe-pro-with-8040-extension-bundle-kit"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "XE-PRO with the 8040 X-axis extension kit (base machine 400 x 400 x 95 mm)."
+  },
+  {
+   "id": "foxalien-masuter-pro-4080",
+   "maker": "FoxAlien",
+   "model": "Masuter Pro",
+   "variant": "4080 extension",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 31.5,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 800,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "775 DC motor",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL controller",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.foxalien.com/products/cnc-router-masuter-pro-with-4080-extension-bundle-kit"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Masuter Pro with the 4080 Y-axis extension kit: 400 x 400 mm becomes 400 x 800 mm. Z travel not restated for the extended machine."
+  }
+ ]
+}

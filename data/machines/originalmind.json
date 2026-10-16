@@ -1,0 +1,662 @@
+{
+ "maker": "ORIGINALMIND",
+ "website": "https://www.originalmind.co.jp",
+ "machines": [
+  {
+   "id": "originalmind-kitmill-bs100",
+   "maker": "ORIGINALMIND",
+   "model": "KitMill BS100",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 6.18,
+    "y": 4.21,
+    "z": 2.23
+   },
+   "work_area_mm": {
+    "x": 157,
+    "y": 107,
+    "z": 57
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 W DC spindle motor (belt/pulley, 4800 rpm steps)",
+     "power_kw": 0.012,
+     "power_hp": 0.02,
+     "rpm_min": null,
+     "rpm_max": 4800,
+     "collet": "set-screw chuck (pull-stud collet chuck option)",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 35.43,
+    "z": 35.43
+   },
+   "max_feed_mm_min": {
+    "xy": 900,
+    "z": 900
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "TRX150 + EdingCNC V4 software",
+     "gcarve_post": "eding-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": 1.65
+   },
+   "sources": [
+    "https://www.originalmind.co.jp/products/kitmill_bs/spec"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's mm/min figures"
+   },
+   "notes": "Japanese desktop mill kit for resin, FRP, wood, aluminium alloys, brass. Table 150 x 100 mm. Shanks 3, 3.175, 4 or 6 mm (chosen at purchase). Slide shafts with dry bushings, metric threaded rod. 2-step pulley option (4800/7000 rpm), 30 W spindle option. Max feed 15 mm/s (F900) all axes."
+  },
+  {
+   "id": "originalmind-kitmill-bs200",
+   "maker": "ORIGINALMIND",
+   "model": "KitMill BS200",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 6.18,
+    "y": 8.15,
+    "z": 2.23
+   },
+   "work_area_mm": {
+    "x": 157,
+    "y": 207,
+    "z": 57
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 W DC spindle motor (belt/pulley, 4800 rpm steps)",
+     "power_kw": 0.012,
+     "power_hp": 0.02,
+     "rpm_min": null,
+     "rpm_max": 4800,
+     "collet": "set-screw chuck (pull-stud collet chuck option)",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 35.43,
+    "z": 35.43
+   },
+   "max_feed_mm_min": {
+    "xy": 900,
+    "z": 900
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "TRX150 + EdingCNC V4 software",
+     "gcarve_post": "eding-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": 1.65
+   },
+   "sources": [
+    "https://www.originalmind.co.jp/products/kitmill_bs/spec"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's mm/min figures"
+   },
+   "notes": "Japanese desktop mill kit for resin, FRP, wood, aluminium alloys, brass. Table 150 x 200 mm. Shanks 3, 3.175, 4 or 6 mm (chosen at purchase). Slide shafts with dry bushings, metric threaded rod. 2-step pulley option (4800/7000 rpm), 30 W spindle option. Max feed 15 mm/s (F900) all axes."
+  },
+  {
+   "id": "originalmind-kitmill-cl100",
+   "maker": "ORIGINALMIND",
+   "model": "KitMill CL100",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 8.95,
+    "y": 7.28,
+    "z": 3.17
+   },
+   "work_area_mm": {
+    "x": 227,
+    "y": 185,
+    "z": 80
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 W DC spindle motor (belt/pulley, 4800 rpm steps)",
+     "power_kw": 0.012,
+     "power_hp": 0.02,
+     "rpm_min": null,
+     "rpm_max": 4800,
+     "collet": "set-screw chuck (pull-stud collet chuck option)",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 35.43,
+    "z": 35.43
+   },
+   "max_feed_mm_min": {
+    "xy": 900,
+    "z": 900
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "TRX150 + EdingCNC V4 software",
+     "gcarve_post": "eding-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": 1.65
+   },
+   "sources": [
+    "https://www.originalmind.co.jp/products/kitmill_cl/spec"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's mm/min figures"
+   },
+   "notes": "Japanese desktop mill kit for resin, FRP, wood, aluminium alloys, brass. Table 220 x 180 mm. Shanks 3, 3.175, 4 or 6 mm (chosen at purchase). Linear guides, metric threaded rod, 42 mm steppers; ball-screw option (XY F2100). 2-step pulley and 30 W spindle options."
+  },
+  {
+   "id": "originalmind-kitmill-cl200",
+   "maker": "ORIGINALMIND",
+   "model": "KitMill CL200",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 13.99,
+    "y": 8.06,
+    "z": 3.17
+   },
+   "work_area_mm": {
+    "x": 355,
+    "y": 205,
+    "z": 80
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "35 W DC spindle motor (belt/pulley, 3400/5600/10000 rpm steps)",
+     "power_kw": 0.035,
+     "power_hp": 0.05,
+     "rpm_min": 3400,
+     "rpm_max": 10000,
+     "collet": "set-screw chuck (pull-stud collet chuck option)",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 39.37,
+    "z": 39.37
+   },
+   "max_feed_mm_min": {
+    "xy": 1000,
+    "z": 1000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "TRX150 + EdingCNC V4 software",
+     "gcarve_post": "eding-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": 1.65
+   },
+   "sources": [
+    "https://www.originalmind.co.jp/products/kitmill_cl/spec"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's mm/min figures"
+   },
+   "notes": "Japanese desktop mill kit for resin, FRP, wood, aluminium alloys, brass. Table 350 x 200 mm. Shanks 3, 3.175, 4 or 6 mm (chosen at purchase). Linear guides, trapezoidal screws, 56 mm steppers; ball-screw option (XY F2100)."
+  },
+  {
+   "id": "originalmind-kitmill-cl420",
+   "maker": "ORIGINALMIND",
+   "model": "KitMill CL420",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 13.99,
+    "y": 16.72,
+    "z": 3.17
+   },
+   "work_area_mm": {
+    "x": 355,
+    "y": 425,
+    "z": 80
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "35 W DC spindle motor (belt/pulley, 3400/5600/10000 rpm steps)",
+     "power_kw": 0.035,
+     "power_hp": 0.05,
+     "rpm_min": 3400,
+     "rpm_max": 10000,
+     "collet": "set-screw chuck (pull-stud collet chuck option)",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 39.37,
+    "z": 39.37
+   },
+   "max_feed_mm_min": {
+    "xy": 1000,
+    "z": 1000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "TRX150 + EdingCNC V4 software",
+     "gcarve_post": "eding-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": 1.65
+   },
+   "sources": [
+    "https://www.originalmind.co.jp/products/kitmill_cl/spec"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's mm/min figures"
+   },
+   "notes": "Japanese desktop mill kit for resin, FRP, wood, aluminium alloys, brass. Table 350 x 420 mm. Shanks 3, 3.175, 4 or 6 mm (chosen at purchase). Linear guides, trapezoidal screws, 56 mm steppers; ball-screw option (XY F2100)."
+  },
+  {
+   "id": "originalmind-kitmill-rz300",
+   "maker": "ORIGINALMIND",
+   "model": "KitMill RZ300",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 8.98,
+    "y": 11.97,
+    "z": 2.64
+   },
+   "work_area_mm": {
+    "x": 228,
+    "y": 304,
+    "z": 67
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "35 W DC spindle motor (belt/pulley, 3400/5600/10000 rpm steps)",
+     "power_kw": 0.035,
+     "power_hp": 0.05,
+     "rpm_min": 3400,
+     "rpm_max": 10000,
+     "collet": "set-screw chuck (pull-stud collet chuck option)",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 59.06,
+    "z": 35.43
+   },
+   "max_feed_mm_min": {
+    "xy": 1500,
+    "z": 900
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "TRX150 + EdingCNC V4 software",
+     "gcarve_post": "eding-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": 2.44
+   },
+   "sources": [
+    "https://www.originalmind.co.jp/products/kitmill_rz/spec"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's mm/min figures"
+   },
+   "notes": "Japanese desktop mill kit for resin, FRP, wood, aluminium alloys, brass. Table 220 x 300 mm, cast iron base. Shanks 3, 3.175, 4 or 6 mm (chosen at purchase). Linear guides, 12 mm trapezoidal screws (2 mm lead); ball-screw option XY F3000. 100 W spindle option (17000 rpm, TRX300 controller). Material height 102 mm with extended side frames."
+  },
+  {
+   "id": "originalmind-kitmill-rz420",
+   "maker": "ORIGINALMIND",
+   "model": "KitMill RZ420",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 8.98,
+    "y": 16.69,
+    "z": 2.64
+   },
+   "work_area_mm": {
+    "x": 228,
+    "y": 424,
+    "z": 67
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "35 W DC spindle motor (belt/pulley, 3400/5600/10000 rpm steps)",
+     "power_kw": 0.035,
+     "power_hp": 0.05,
+     "rpm_min": 3400,
+     "rpm_max": 10000,
+     "collet": "set-screw chuck (pull-stud collet chuck option)",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 59.06,
+    "z": 35.43
+   },
+   "max_feed_mm_min": {
+    "xy": 1500,
+    "z": 900
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "TRX150 + EdingCNC V4 software",
+     "gcarve_post": "eding-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": 2.44
+   },
+   "sources": [
+    "https://www.originalmind.co.jp/products/kitmill_rz/spec"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's mm/min figures"
+   },
+   "notes": "Japanese desktop mill kit for resin, FRP, wood, aluminium alloys, brass. Table 220 x 420 mm, cast iron base. Shanks 3, 3.175, 4 or 6 mm (chosen at purchase). Linear guides, 12 mm trapezoidal screws (2 mm lead); ball-screw option XY F3000. 100 W spindle option (17000 rpm, TRX300 controller). Material height 102 mm with extended side frames."
+  },
+  {
+   "id": "originalmind-kitmill-ast200",
+   "maker": "ORIGINALMIND",
+   "model": "KitMill AST200",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 8.46,
+    "y": 4.69,
+    "z": 4.06
+   },
+   "work_area_mm": {
+    "x": 215,
+    "y": 119,
+    "z": 103
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "100 W DC spindle motor (belt/pulley, 5000 rpm steps)",
+     "power_kw": 0.1,
+     "power_hp": 0.13,
+     "rpm_min": null,
+     "rpm_max": 5000,
+     "collet": "collet chuck",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 35.43,
+    "z": 16.54
+   },
+   "max_feed_mm_min": {
+    "xy": 900,
+    "z": 420
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "TRX300 (special) + EdingCNC V4 software",
+     "gcarve_post": "eding-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": 4.32
+   },
+   "sources": [
+    "https://www.originalmind.co.jp/products/kitmill_ast/spec"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's mm/min figures"
+   },
+   "notes": "Japanese desktop mill kit for resin, FRP, wood, aluminium alloys, brass. Table 425.8 x 134 mm. Shanks 3, 3.175, 4 or 6 mm (chosen at purchase). Also cuts steel. Linear guides, 12 mm trapezoidal screws; ball-screw option. High-speed pulley option 8500 rpm."
+  }
+ ]
+}

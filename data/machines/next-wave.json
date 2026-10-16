@@ -1,0 +1,2318 @@
+{
+ "maker": "Next Wave Automation",
+ "website": "https://nextwavecnc.com",
+ "machines": [
+  {
+   "id": "next-wave-shark-hd600-standard",
+   "maker": "Next Wave Automation",
+   "model": "Shark HD600",
+   "variant": "Standard",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 13,
+    "y": 25.75,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 330,
+    "y": 654,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router, 3.5 in barrel (DeWalt 610/616/618, PC 890, Bosch 1617/1618)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2 HP air-cooled spindle, digital control",
+     "power_kw": null,
+     "power_hp": 2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "1/4\" collet",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "3 HP water-cooled spindle, digital control",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "1/4\" + 1/2\" collets",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Next Wave touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nextwavecnc.com/product/shark-hd600-standard-package/"
+   ],
+   "notes": "HD6 series, 16 x 36 in table, interlocking aluminium table, linear rails, anti-backlash lead screws, 36 V controller. Speed figure is the maker's \"speeds up to\" (open loop). Spindle RPM range not published. Router cradle for 3.5 in barrel routers; spindle kits optional.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "rapid_mm_min": "converted from IPM",
+    "rapid_ipm": "maker says \"speeds up to\"; treated as rapid"
+   }
+  },
+  {
+   "id": "next-wave-shark-hd600-plus",
+   "maker": "Next Wave Automation",
+   "model": "Shark HD600",
+   "variant": "Plus",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 13,
+    "y": 25.75,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 330,
+    "y": 654,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2 HP air-cooled spindle, digital control",
+     "power_kw": null,
+     "power_hp": 2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "1/4\" collet",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "3 HP water-cooled spindle, digital control",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "1/4\" + 1/2\" collets",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Next Wave touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nextwavecnc.com/product/shark-hd600plus/"
+   ],
+   "notes": "HD6 series, 16 x 36 in table, interlocking aluminium table, linear rails, anti-backlash lead screws, 36 V controller. Speed figure is the maker's \"speeds up to\" (open loop). Spindle RPM range not published. Includes 10.1 in Android pendant.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "rapid_mm_min": "converted from IPM",
+    "rapid_ipm": "maker says \"speeds up to\"; treated as rapid"
+   }
+  },
+  {
+   "id": "next-wave-shark-hd600-pro",
+   "maker": "Next Wave Automation",
+   "model": "Shark HD600",
+   "variant": "Pro",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 13,
+    "y": 25.75,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 330,
+    "y": 654,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 HP water-cooled spindle, digital control",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "1/4\" + 1/2\" collets",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25400,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Next Wave touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nextwavecnc.com/product/shark-hd600-pro/"
+   ],
+   "notes": "HD6 series, 16 x 36 in table, interlocking aluminium table, linear rails, anti-backlash lead screws, 36 V controller. Speed figure is the maker's \"speeds up to\" (closed-loop encoded motors). Spindle RPM range not published. Includes 10.1 in Android pendant.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "rapid_mm_min": "converted from IPM",
+    "rapid_ipm": "maker says \"speeds up to\"; treated as rapid"
+   }
+  },
+  {
+   "id": "next-wave-shark-hd610-standard",
+   "maker": "Next Wave Automation",
+   "model": "Shark HD610",
+   "variant": "Standard",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 25,
+    "y": 25.75,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 635,
+    "y": 654,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router, 3.5 in barrel (DeWalt 610/616/618, PC 890, Bosch 1617/1618)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2 HP air-cooled spindle, digital control",
+     "power_kw": null,
+     "power_hp": 2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "1/4\" collet",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "3 HP water-cooled spindle, digital control",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "1/4\" + 1/2\" collets",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Next Wave touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nextwavecnc.com/product/shark-hd610-standard-package/"
+   ],
+   "notes": "HD6 series, 28 x 36 in table, interlocking aluminium table, linear rails, anti-backlash lead screws, 36 V controller. Speed figure is the maker's \"speeds up to\" (open loop). Spindle RPM range not published. Router cradle for 3.5 in barrel routers; spindle kits optional.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "rapid_mm_min": "converted from IPM",
+    "rapid_ipm": "maker says \"speeds up to\"; treated as rapid"
+   }
+  },
+  {
+   "id": "next-wave-shark-hd610-plus",
+   "maker": "Next Wave Automation",
+   "model": "Shark HD610",
+   "variant": "Plus",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 25,
+    "y": 25.75,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 635,
+    "y": 654,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2 HP air-cooled spindle, digital control",
+     "power_kw": null,
+     "power_hp": 2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "1/4\" collet",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "3 HP water-cooled spindle, digital control",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "1/4\" + 1/2\" collets",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Next Wave touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nextwavecnc.com/product/shark-hd610-plus/"
+   ],
+   "notes": "HD6 series, 28 x 36 in table, interlocking aluminium table, linear rails, anti-backlash lead screws, 36 V controller. Speed figure is the maker's \"speeds up to\" (open loop). Spindle RPM range not published. Includes 10.1 in Android pendant.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "rapid_mm_min": "converted from IPM",
+    "rapid_ipm": "maker says \"speeds up to\"; treated as rapid"
+   }
+  },
+  {
+   "id": "next-wave-shark-hd610-pro",
+   "maker": "Next Wave Automation",
+   "model": "Shark HD610",
+   "variant": "Pro",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 25,
+    "y": 25.75,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 635,
+    "y": 654,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 HP water-cooled spindle, digital control",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "1/4\" + 1/2\" collets",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25400,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Next Wave touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nextwavecnc.com/product/shark-hd610pro/"
+   ],
+   "notes": "HD6 series, 28 x 36 in table, interlocking aluminium table, linear rails, anti-backlash lead screws, 36 V controller. Speed figure is the maker's \"speeds up to\" (closed-loop encoded motors). Spindle RPM range not published. Includes 10.1 in Android pendant.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "rapid_mm_min": "converted from IPM",
+    "rapid_ipm": "maker says \"speeds up to\"; treated as rapid"
+   }
+  },
+  {
+   "id": "next-wave-shark-hd620-standard",
+   "maker": "Next Wave Automation",
+   "model": "Shark HD620",
+   "variant": "Standard",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 25.75,
+    "y": 50,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 654,
+    "y": 1270,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router, 3.5 in barrel (DeWalt 610/616/618, PC 890, Bosch 1617/1618)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2 HP air-cooled spindle, digital control",
+     "power_kw": null,
+     "power_hp": 2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "1/4\" + 1/8\" collets",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "3 HP water-cooled spindle, digital control",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "1/4\" + 1/2\" collets",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Next Wave touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nextwavecnc.com/product/shark-hd620-standard-package/"
+   ],
+   "notes": "HD6 series, 28 x 63 in table, interlocking aluminium table, linear rails, anti-backlash lead screws, 36 V controller. Speed figure is the maker's \"speeds up to\" (open loop). Spindle RPM range not published. Router cradle for 3.5 in barrel routers; spindle kits optional.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "work_area_in": "published as 50 x 25.75 x 7 in; X/Y ordered like the HD600/HD610 (gantry axis first)",
+    "rapid_mm_min": "converted from IPM",
+    "rapid_ipm": "maker says \"speeds up to\"; treated as rapid"
+   }
+  },
+  {
+   "id": "next-wave-shark-hd620-plus",
+   "maker": "Next Wave Automation",
+   "model": "Shark HD620",
+   "variant": "Plus",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 25.75,
+    "y": 50,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 654,
+    "y": 1270,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2 HP air-cooled spindle, digital control",
+     "power_kw": null,
+     "power_hp": 2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "1/4\" + 1/8\" collets",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "3 HP water-cooled spindle, digital control",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "1/4\" + 1/2\" collets",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Next Wave touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nextwavecnc.com/product/shark-hd620-plus/"
+   ],
+   "notes": "HD6 series, 28 x 63 in table, interlocking aluminium table, linear rails, anti-backlash lead screws, 36 V controller. Speed figure is the maker's \"speeds up to\" (open loop). Spindle RPM range not published. Includes 10.1 in Android pendant.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "work_area_in": "published as 50 x 25.75 x 7 in; X/Y ordered like the HD600/HD610 (gantry axis first)",
+    "rapid_mm_min": "converted from IPM",
+    "rapid_ipm": "maker says \"speeds up to\"; treated as rapid"
+   }
+  },
+  {
+   "id": "next-wave-shark-hd620-pro",
+   "maker": "Next Wave Automation",
+   "model": "Shark HD620",
+   "variant": "Pro",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 25.75,
+    "y": 50,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 654,
+    "y": 1270,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 HP water-cooled spindle, digital control",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "1/4\" + 1/2\" collets",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25400,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Next Wave touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nextwavecnc.com/product/shark-hd620-pro/"
+   ],
+   "notes": "HD6 series, 28 x 63 in table, interlocking aluminium table, linear rails, anti-backlash lead screws, 36 V controller. Speed figure is the maker's \"speeds up to\" (closed-loop encoded motors). Spindle RPM range not published. Includes 10.1 in Android pendant.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "work_area_in": "published as 50 x 25.75 x 7 in; X/Y ordered like the HD600/HD610 (gantry axis first)",
+    "rapid_mm_min": "converted from IPM",
+    "rapid_ipm": "maker says \"speeds up to\"; treated as rapid"
+   }
+  },
+  {
+   "id": "next-wave-shark-hd644-pro",
+   "maker": "Next Wave Automation",
+   "model": "Shark HD644",
+   "variant": "Pro",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 50,
+    "y": 50,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 1270,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 HP water-cooled spindle, digital control",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "1/4\" + 1/2\" collets",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25400,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Next Wave touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nextwavecnc.com/product/shark-hd644pro/"
+   ],
+   "notes": "4 x 4 ft open-base machine, mounts on a customer table (min 64 x 64 in). Closed-loop encoded motors, anti-backlash lead screws, 80 mm spindle cradle. Spindle RPM range not published.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "rapid_mm_min": "converted from IPM",
+    "rapid_ipm": "maker says \"speeds up to\"; treated as rapid"
+   }
+  },
+  {
+   "id": "next-wave-shark-hd500",
+   "maker": "Next Wave Automation",
+   "model": "Shark HD500",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 13,
+    "y": 25,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 330,
+    "y": 635,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router, 3.5 in barrel (DeWalt 610/616/618, PC 890, Bosch 1617/1618)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Next Wave touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nextwavecnc.com/product/shark-hd500-2/"
+   ],
+   "notes": "HD5 series (superseded by HD6), 16 x 36 in table, linear guides, anti-backlash wear-compensated lead screws on all axes, color touchscreen pendant, automatic router on/off. Rockler: \"30% faster than the Shark HD4\".",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "next-wave-shark-hd510",
+   "maker": "Next Wave Automation",
+   "model": "Shark HD510",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 25,
+    "y": 25,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 635,
+    "y": 635,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router, 3.5 in barrel (DeWalt 610/616/618, PC 890, Bosch 1617/1618)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2 HP (1.5 kW) water-cooled spindle kit, 110 V",
+     "power_kw": 1.5,
+     "power_hp": 2,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER11 (1/8\" + 1/4\")",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Next Wave touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nextwavecnc.com/product/shark-hd510-3/",
+    "https://web.archive.org/web/20190916143250/https://www.rockler.com/cnc-shark-hd5",
+    "https://web.archive.org/web/20211016121210/https://www.rockler.com/cnc-shark-hd5-with-water-cooled-spindle"
+   ],
+   "notes": "HD5 series (superseded by HD6), 28 x 36 in table, linear guides, anti-backlash wear-compensated lead screws on all axes, color touchscreen pendant, automatic router on/off. Rockler: \"30% faster than the Shark HD4\".",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "next-wave-shark-hd520",
+   "maker": "Next Wave Automation",
+   "model": "Shark HD520",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 25,
+    "y": 50,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 635,
+    "y": 1270,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router, 3.5 in barrel (DeWalt 610/616/618, PC 890, Bosch 1617/1618)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Next Wave touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nextwavecnc.com/product/shark-hd520-base/"
+   ],
+   "notes": "HD5 series (superseded by HD6), 28 x 63 in table, linear guides, anti-backlash wear-compensated lead screws on all axes, color touchscreen pendant, automatic router on/off. Rockler: \"30% faster than the Shark HD4\".",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "next-wave-shark-hd544",
+   "maker": "Next Wave Automation",
+   "model": "Shark HD544",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 50,
+    "y": 50,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 1270,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 HP water-cooled spindle, digital control",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "1/4\" + 1/2\" collets",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 400,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 10160,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Next Wave touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nextwavecnc.com/product/shark-hd544-2/"
+   ],
+   "notes": "HD5-generation 4 x 4 ft open-base machine (superseded by HD644). 10.1 in pendant, fully closed loop, WiFi, 110 V. \"Speeds up to 400 IPM\".",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "rapid_mm_min": "converted from IPM",
+    "rapid_ipm": "maker says \"speeds up to\"; treated as rapid"
+   }
+  },
+  {
+   "id": "next-wave-shark-sd101",
+   "maker": "Next Wave Automation",
+   "model": "Shark SD101",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 12,
+    "y": 13,
+    "z": 4
+   },
+   "work_area_mm": {
+    "x": 305,
+    "y": 330,
+    "z": 102
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer palm router (Bosch PR20 / Colt, DeWalt 611, Porter-Cable 450)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Next Wave touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nextwavecnc.com/product/shark-sd101/"
+   ],
+   "notes": "15 x 21 in table. Shark Wizard software, MDF T-slot bed that slides fore/aft for board-end work, manual router on/off, PC control (pendant optional).",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "next-wave-shark-sd110",
+   "maker": "Next Wave Automation",
+   "model": "Shark SD110",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 12,
+    "y": 13,
+    "z": 3
+   },
+   "work_area_mm": {
+    "x": 305,
+    "y": 330,
+    "z": 76
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer palm router (Bosch PR20 / Colt, DeWalt 611, Porter-Cable 450)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Next Wave touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nextwavecnc.com/product/shark-sd110/"
+   ],
+   "notes": "12 x 18 in table. Color touchscreen pendant, manual router on/off, Y extends 1 in beyond the bed for board ends. Manual suggests 50-80 IPM feeds for all bits (SD110/120).",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "next-wave-shark-sd120",
+   "maker": "Next Wave Automation",
+   "model": "Shark SD120",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 12,
+    "y": 25,
+    "z": 4
+   },
+   "work_area_mm": {
+    "x": 305,
+    "y": 635,
+    "z": 102
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer palm router (Bosch PR20 / Colt, DeWalt 611, Porter-Cable 450)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Next Wave touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nextwavecnc.com/product/shark-sd120/"
+   ],
+   "notes": "12 x 30 in table. Color touchscreen pendant, software router on/off, Y extends 1 in beyond the bed. Manual suggests 50-80 IPM feeds for all bits (SD110/120).",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "next-wave-shark-sd120-plus",
+   "maker": "Next Wave Automation",
+   "model": "Shark SD120",
+   "variant": "Plus",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 12,
+    "y": 25,
+    "z": 4
+   },
+   "work_area_mm": {
+    "x": 305,
+    "y": 635,
+    "z": 102
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "710 W air-cooled spindle with RPM display",
+     "power_kw": 0.71,
+     "power_hp": null,
+     "rpm_min": 7000,
+     "rpm_max": 30000,
+     "collet": "ER11",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Next Wave touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nextwavecnc.com/product/shark-sd120plus/"
+   ],
+   "notes": "12 x 30 in table. Plus package: 710 W ER11 spindle and 10.1 in Android pendant. Manual suggests 50-80 IPM feeds for all bits (SD110/120).",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "next-wave-piranha-fx",
+   "maker": "Next Wave Automation",
+   "model": "Piranha FX",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 12,
+    "y": 13,
+    "z": 3
+   },
+   "work_area_mm": {
+    "x": 305,
+    "y": 330,
+    "z": 76
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer palm router (Bosch Colt, DeWalt 611)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Next Wave touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nextwavecnc.com/product/piranha-fx-2/"
+   ],
+   "notes": "12 x 18 in slotted aluminium table, anti-backlash wear-compensated lead screws, color LCD pendant. Listed as factory refurbished.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "next-wave-shark-hd4",
+   "maker": "Next Wave Automation",
+   "model": "CNC Shark HD4",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 25,
+    "y": 25,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 635,
+    "y": 635,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router, 3.5 in barrel (DeWalt 610/616/618, PC 890, Bosch 1617/1618)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Next Wave touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20160902142323/http://www.rockler.com/cnc-shark-hd4"
+   ],
+   "notes": "Sold through Rockler. 28 x 36 in table, color touchscreen pendant, auto edge / center / rotation sensing, XY homing, routers up to 2-1/4 HP or water-cooled spindle. Mfr part 10018.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "next-wave-shark-hd4-extended",
+   "maker": "Next Wave Automation",
+   "model": "CNC Shark HD4",
+   "variant": "Extended Bed",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 25,
+    "y": 50,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 635,
+    "y": 1270,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router, 3.5 in barrel (DeWalt 610/616/618, PC 890, Bosch 1617/1618)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Next Wave touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20160910133820/http://www.rockler.com/cnc-shark-hd4-with-extended-bed"
+   ],
+   "notes": "Sold through Rockler. 28 x 63 in table, color touchscreen pendant, auto edge / center / rotation sensing, XY homing, routers up to 2-1/4 HP or water-cooled spindle. Extended bed, mfr part 10019.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "next-wave-shark-ii",
+   "maker": "Next Wave Automation",
+   "model": "CNC Shark II",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 13,
+    "y": 25,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 330,
+    "y": 635,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router, 3.5 in barrel (DeWalt 610/616/618, PC 890, Bosch 1617/1618)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Next Wave touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (accessory)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20171231005330/http://www.rockler.com/cnc-shark-ii"
+   ],
+   "notes": "Sold through Rockler (mfr part 10020). 16 x 36 in table, NEMA 23 steppers, direct-drive anti-backlash lead screws, routers up to 2-1/4 HP. Traverse rate 300 IPM.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "next-wave-shark-hd400",
+   "maker": "Next Wave Automation",
+   "model": "Shark HD400",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 13,
+    "y": 25,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 330,
+    "y": 635,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router, 3.5 in barrel up to 2-1/4 HP (Bosch 1617/1618, PC 690/890, DeWalt 610/616/618)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Next Wave water-cooled spindle (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Next Wave controller box with pendant (USB to PC)",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (option, Virtual Zero)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.grizzly.com/products/next-wave-cnc-cnc-shark-hd400/t30508"
+   ],
+   "notes": "Sold through Grizzly (T30508). 16 x 36 in interlocking aluminum table, anti-backlash wear-compensated lead screws on all axes, supported linear guides on X/Y, adjustable bearings. Router sold separately; optional water-cooled spindle (T30506), laser and 4th axis. Includes VCarve Desktop and Virtual Zero (needs touch plate).",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "next-wave-shark-hd500-plus",
+   "maker": "Next Wave Automation",
+   "model": "Shark HD500 PLUS",
+   "variant": "Plus",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 13,
+    "y": 25,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 330,
+    "y": 635,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2 HP water-cooled brushless spindle + VFD (SKU 20157)",
+     "power_kw": null,
+     "power_hp": 2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Next Wave 10.1 in Android touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (Virtual Zero)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nextwavecnc.com/product/shark-hd500-plus/",
+    "https://www.grizzly.com/products/t32611"
+   ],
+   "notes": "SKU 10042. HD500 with the 2 HP water-cooled spindle kit. 16 x 36 in interlocking slotted aluminum table, overall 24-1/4 W x 36 L x 24-1/2 H in. Anti-backlash wear-compensated lead screws on all axes. Includes VCarve Desktop, Ready2Control, Virtual Zero Unlimited.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "next-wave-shark-hd510-plus",
+   "maker": "Next Wave Automation",
+   "model": "Shark HD510 PLUS",
+   "variant": "Plus",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 25,
+    "y": 25,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 635,
+    "y": 635,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2 HP air-cooled brushless spindle + VFD (SKU 20199)",
+     "power_kw": null,
+     "power_hp": 2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Next Wave 10.1 in Android touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (Virtual Zero)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nextwavecnc.com/product/shark-hd510-plus/"
+   ],
+   "notes": "HD510 with the 2 HP air-cooled spindle kit (SKU 20199). 28 x 36 in table. Includes VCarve Desktop, Ready2Control, Virtual Zero Unlimited.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "next-wave-shark-hd520-plus",
+   "maker": "Next Wave Automation",
+   "model": "Shark HD520 PLUS",
+   "variant": "Plus",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 25,
+    "y": 50,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 635,
+    "y": 1270,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2 HP water-cooled brushless spindle + VFD (SKU 20157)",
+     "power_kw": null,
+     "power_hp": 2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Next Wave 10.1 in Android touchscreen pendant / Ready2Control PC software",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (Virtual Zero)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nextwavecnc.com/product/shark-hd520-plus/"
+   ],
+   "notes": "HD520 with the 2 HP water-cooled spindle kit (SKU 20157). 28 x 63 in interlocking slotted aluminum table, overall 36-1/4 W x 63 L x 24-1/2 H in. Anti-backlash wear-compensated lead screws on all axes, steel-reinforced gantry. Includes VCarve Pro, Ready2Control, Virtual Zero Unlimited.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "next-wave-piranha-xl",
+   "maker": "Next Wave Automation",
+   "model": "Piranha XL",
+   "variant": null,
+   "years": "2017-",
+   "class": "desktop",
+   "work_area_in": {
+    "x": 12,
+    "y": 25,
+    "z": 4
+   },
+   "work_area_mm": {
+    "x": 305,
+    "y": 635,
+    "z": 102
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer palm router (Bosch Colt series, DeWalt 611)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Next Wave color LCD pendant controller (USB to PC)",
+     "gcarve_post": "nextwave-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "touch plate (option)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nextwavecnc.com/product/piranha-xl/",
+    "https://www.woodshopnews.com/tools-machines/next-wave-adds-larger-faster-piranha-xl"
+   ],
+   "notes": "Benchtop, launched 2017 (twice the length of the Piranha FX). 12 x 30 in table, overall 19-1/2 W x 30-1/2 L x 21 H in. Anti-backlash wear-compensated lead screws on all axes. Palm routers (Bosch Colt, DeWalt 611), sold separately. Auto edge and rotation sensing; Virtual Zero needs the optional touch plate.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  }
+ ]
+}

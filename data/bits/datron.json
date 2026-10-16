@@ -1,0 +1,4859 @@
+{
+ "maker": "DATRON",
+ "source_summary": "shop.datron.com product pages (dimensions per article) + DATRON High-Speed Cutting Guide PDF (fz/rpm per article, aluminium and acrylic).",
+ "retrieved": "2026-10-08",
+ "bits": [
+  {
+   "id": "datron-0068173e",
+   "maker": "DATRON",
+   "part_number": "0068173E",
+   "name": "Single flute ball nose 3 mm x 8 mm",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 6.0,
+   "cut_length": 8.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "tip_radius": 1.5,
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068173E Ball Nose 3 mm",
+    "kind": "BallNose",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-ball-nose-end-mill/"
+   ]
+  },
+  {
+   "id": "datron-0068174e",
+   "maker": "DATRON",
+   "part_number": "0068174E",
+   "name": "Single flute ball nose 4 mm x 10 mm",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 4.0,
+   "shank": 6.0,
+   "cut_length": 10.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "tip_radius": 2.0,
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068174E Ball Nose 4 mm",
+    "kind": "BallNose",
+    "diameter": 0.15748,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-ball-nose-end-mill/"
+   ],
+   "notes": "Shop page lists R 3.0 mm, which cannot be right for a 4.0 mm ball; tip_radius set to D/2."
+  },
+  {
+   "id": "datron-0068175e",
+   "maker": "DATRON",
+   "part_number": "0068175E",
+   "name": "Single flute ball nose 5 mm x 12 mm",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 5.0,
+   "shank": 6.0,
+   "cut_length": 12.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "tip_radius": 2.5,
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068175E Ball Nose 5 mm",
+    "kind": "BallNose",
+    "diameter": 0.19685,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-ball-nose-end-mill/"
+   ]
+  },
+  {
+   "id": "datron-0068176e",
+   "maker": "DATRON",
+   "part_number": "0068176E",
+   "name": "Single flute ball nose 6 mm x 14 mm",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 6.0,
+   "shank": 6.0,
+   "cut_length": 14.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "tip_radius": 3.0,
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068176E Ball Nose 6 mm",
+    "kind": "BallNose",
+    "diameter": 0.23622,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-ball-nose-end-mill/"
+   ]
+  },
+  {
+   "id": "datron-0068178e",
+   "maker": "DATRON",
+   "part_number": "0068178E",
+   "name": "Single flute ball nose 8 mm x 14 mm",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 8.0,
+   "shank": 8.0,
+   "cut_length": 14.0,
+   "oal": 60.0,
+   "flutes": 1,
+   "helix": "up",
+   "tip_radius": 4.0,
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068178E Ball Nose 8 mm",
+    "kind": "BallNose",
+    "diameter": 0.31496,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-ball-nose-end-mill/"
+   ]
+  },
+  {
+   "id": "datron-0068179e",
+   "maker": "DATRON",
+   "part_number": "0068179E",
+   "name": "Single flute ball nose 10 mm x 20 mm",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 10.0,
+   "shank": 10.0,
+   "cut_length": 20.0,
+   "oal": 60.0,
+   "flutes": 1,
+   "helix": "up",
+   "tip_radius": 5.0,
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068179E Ball Nose 10 mm",
+    "kind": "BallNose",
+    "diameter": 0.3937,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-ball-nose-end-mill/"
+   ]
+  },
+  {
+   "id": "datron-0068473e",
+   "maker": "DATRON",
+   "part_number": "0068473E",
+   "name": "Single flute down-cut end mill 3 mm x 8 mm",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 6.0,
+   "cut_length": 8.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "down",
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068473E Down Spiral 3 mm",
+    "kind": "EndMill",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-down-cut/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (acrylic): fz 0.07 mm/tooth at 32000 rpm (full and partial cut, spindles 1.8-8 kW)."
+  },
+  {
+   "id": "datron-0068080a",
+   "maker": "DATRON",
+   "part_number": "0068080A",
+   "name": "Single flute down-cut end mill 8 mm x 25 mm",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 8.0,
+   "shank": 8.0,
+   "cut_length": 25.0,
+   "oal": 60.0,
+   "flutes": 1,
+   "helix": "down",
+   "rpm": [
+    24000,
+    29000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00197,
+     0.00551
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068080A Down Spiral 8 mm",
+    "kind": "EndMill",
+    "diameter": 0.31496,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-down-cut/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.05/0.06/0.08/0.09/0.1/0.12/0.13/0.14 mm/tooth at 24000/29000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068030e",
+   "maker": "DATRON",
+   "part_number": "0068030E",
+   "name": "Single flute end mill 3 mm x 10 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 3.0,
+   "cut_length": 10.0,
+   "oal": 40.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    48000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00276,
+     0.00394
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068030E Up Spiral 3 mm",
+    "kind": "EndMill",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.07/0.075/0.08/0.09/0.1 mm/tooth at 34000/38000/40000/48000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068030w",
+   "maker": "DATRON",
+   "part_number": "0068030W",
+   "name": "Single flute end mill 3 mm x 15 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 3.0,
+   "cut_length": 15.0,
+   "oal": 65.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    48000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00118,
+     0.00315
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068030W Up Spiral 3 mm",
+    "kind": "EndMill",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.03/0.04/0.045/0.05/0.055/0.06/0.08 mm/tooth at 34000/38000/40000/48000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068030y",
+   "maker": "DATRON",
+   "part_number": "0068030Y",
+   "name": "Single flute end mill 3 mm x 10 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 3.0,
+   "cut_length": 10.0,
+   "oal": 65.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    48000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00118,
+     0.00354
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068030Y Up Spiral 3 mm",
+    "kind": "EndMill",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.03/0.04/0.05/0.055/0.06/0.07/0.08/0.09 mm/tooth at 34000/38000/40000/48000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068030z",
+   "maker": "DATRON",
+   "part_number": "0068030Z",
+   "name": "Single flute end mill 3 mm x 10.5 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 3.0,
+   "cut_length": 10.5,
+   "oal": 40.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    48000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00236,
+     0.00394
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068030Z Up Spiral 3 mm",
+    "kind": "EndMill",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.06/0.07/0.075/0.08/0.085/0.09/0.1 mm/tooth at 34000/38000/40000/48000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068430a",
+   "maker": "DATRON",
+   "part_number": "0068430A",
+   "name": "Single flute end mill 3 mm x 5 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 6.0,
+   "cut_length": 5.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    48000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00276,
+     0.0063
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068430A Up Spiral 3 mm",
+    "kind": "EndMill",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.07/0.09/0.1/0.11/0.12/0.13/0.14/0.16 mm/tooth at 34000/38000/40000/48000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068430e",
+   "maker": "DATRON",
+   "part_number": "0068430E",
+   "name": "Single flute end mill 3 mm x 8 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 6.0,
+   "cut_length": 8.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    48000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00236,
+     0.00551
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068430E Up Spiral 3 mm",
+    "kind": "EndMill",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.06/0.08/0.09/0.1/0.11/0.12/0.13/0.14 mm/tooth at 34000/38000/40000/48000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068430l",
+   "maker": "DATRON",
+   "part_number": "0068430L",
+   "name": "Single flute end mill 3 mm x 12 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 6.0,
+   "cut_length": 12.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    48000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00177,
+     0.00472
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068430L Up Spiral 3 mm",
+    "kind": "EndMill",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.045/0.06/0.07/0.075/0.08/0.1/0.12 mm/tooth at 34000/38000/40000/48000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068430s",
+   "maker": "DATRON",
+   "part_number": "0068430S",
+   "name": "Single flute end mill 3 mm x 10 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 6.0,
+   "cut_length": 10.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    48000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00217,
+     0.00512
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068430S Up Spiral 3 mm",
+    "kind": "EndMill",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.055/0.07/0.08/0.09/0.11/0.12/0.13 mm/tooth at 34000/38000/40000/48000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068430y",
+   "maker": "DATRON",
+   "part_number": "0068430Y",
+   "name": "Single flute end mill 3 mm x 10 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 4.0,
+   "cut_length": 10.0,
+   "oal": 40.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    48000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00177,
+     0.00472
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068430Y Up Spiral 3 mm",
+    "kind": "EndMill",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.045/0.06/0.07/0.075/0.08/0.09/0.1/0.11/0.12 mm/tooth at 34000/38000/40000/48000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068493l",
+   "maker": "DATRON",
+   "part_number": "0068493L",
+   "name": "Single flute end mill 3 mm x 8 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 6.0,
+   "cut_length": 8.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "chip_load": {
+    "aluminum": [
+     0.00236,
+     0.00315
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068493L Up Spiral 3 mm",
+    "kind": "EndMill",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 2.7 mm, usable length L3 21.0 mm. Datron guide (aluminum): fz 0.06/0.08 mm/tooth at 34000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068630e",
+   "maker": "DATRON",
+   "part_number": "0068630E",
+   "name": "Single flute end mill 3 mm x 9 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 3.175,
+   "cut_length": 9.0,
+   "oal": 38.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    48000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00177,
+     0.00433
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068630E Up Spiral 3 mm",
+    "kind": "EndMill",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.045/0.06/0.07/0.08/0.09/0.1/0.11 mm/tooth at 34000/38000/40000/48000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068630f",
+   "maker": "DATRON",
+   "part_number": "0068630F",
+   "name": "Single flute end mill 3 mm x 11.5 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 3.175,
+   "cut_length": 11.5,
+   "oal": 40.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    48000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00157,
+     0.00394
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068630F Up Spiral 3 mm",
+    "kind": "EndMill",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.04/0.05/0.06/0.065/0.07/0.08/0.09/0.1 mm/tooth at 34000/38000/40000/48000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068803a",
+   "maker": "DATRON",
+   "part_number": "0068803A",
+   "name": "Single flute 4-in-1 end mill 3 mm x 5 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 6.0,
+   "cut_length": 5.0,
+   "oal": 40.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    48000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00394,
+     0.0063
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068803A Up Spiral 3 mm",
+    "kind": "EndMill",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.1/0.11/0.12/0.13/0.14/0.16 mm/tooth at 34000/38000/40000/48000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068803e",
+   "maker": "DATRON",
+   "part_number": "0068803E",
+   "name": "Single flute 4-in-1 end mill 3 mm x 9 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 6.0,
+   "cut_length": 9.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    48000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00315,
+     0.00551
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068803E Up Spiral 3 mm",
+    "kind": "EndMill",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 2.8 mm, usable length L3 13.0 mm. Datron guide (aluminum): fz 0.08/0.09/0.1/0.11/0.12/0.14 mm/tooth at 34000/38000/40000/48000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068803k",
+   "maker": "DATRON",
+   "part_number": "0068803K",
+   "name": "Single flute 4-in-1 end mill 3 mm x 9 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 6.0,
+   "cut_length": 9.0,
+   "oal": 45.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    48000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00394,
+     0.00591
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068803K Up Spiral 3 mm",
+    "kind": "EndMill",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.1/0.11/0.12/0.13/0.15 mm/tooth at 34000/38000/40000/48000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068803l",
+   "maker": "DATRON",
+   "part_number": "0068803L",
+   "name": "Single flute 4-in-1 end mill 3 mm x 9 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 6.0,
+   "cut_length": 9.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    48000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00276,
+     0.00472
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068803L Up Spiral 3 mm",
+    "kind": "EndMill",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 2.8 mm, usable length L3 16.0 mm. Datron guide (aluminum): fz 0.07/0.08/0.09/0.1/0.11/0.12 mm/tooth at 34000/38000/40000/48000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068803x",
+   "maker": "DATRON",
+   "part_number": "0068803X",
+   "name": "Single flute 4-in-1 end mill 3 mm x 13 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 6.0,
+   "cut_length": 13.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    48000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00276,
+     0.00433
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068803X Up Spiral 3 mm",
+    "kind": "EndMill",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.07/0.08/0.09/0.1/0.11 mm/tooth at 34000/38000/40000/48000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068930e",
+   "maker": "DATRON",
+   "part_number": "0068930E",
+   "name": "Single flute end mill, ALCRONA coated 3 mm x 8 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "coating": "ALCRONA",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 6.0,
+   "cut_length": 8.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068930E Up Spiral 3 mm",
+    "kind": "EndMill",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/coated-single-flute-end-mill/"
+   ]
+  },
+  {
+   "id": "datron-0068930l",
+   "maker": "DATRON",
+   "part_number": "0068930L",
+   "name": "Single flute end mill, ALCRONA coated 3 mm x 12 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "coating": "ALCRONA",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 6.0,
+   "cut_length": 12.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068930L Up Spiral 3 mm",
+    "kind": "EndMill",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/coated-single-flute-end-mill/"
+   ]
+  },
+  {
+   "id": "datron-0068930s",
+   "maker": "DATRON",
+   "part_number": "0068930S",
+   "name": "Single flute end mill, ALCRONA coated 3 mm x 10 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "coating": "ALCRONA",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 6.0,
+   "cut_length": 10.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068930S Up Spiral 3 mm",
+    "kind": "EndMill",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/coated-single-flute-end-mill/"
+   ]
+  },
+  {
+   "id": "datron-0078330e",
+   "maker": "DATRON",
+   "part_number": "0078330E",
+   "name": "Single flute end mill, polished for acrylic 3 mm x 8 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 6.0,
+   "cut_length": 8.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "acrylic"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0078330E Up Spiral 3 mm",
+    "kind": "EndMill",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-polished/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (acrylic): fz 0.13 mm/tooth at 30000 rpm (full and partial cut, spindles 1.8-8 kW)."
+  },
+  {
+   "id": "datron-0078330l",
+   "maker": "DATRON",
+   "part_number": "0078330L",
+   "name": "Single flute end mill, polished for acrylic 3 mm x 12 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 6.0,
+   "cut_length": 12.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "acrylic"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0078330L Up Spiral 3 mm",
+    "kind": "EndMill",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-polished/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (acrylic): fz 0.12 mm/tooth at 30000 rpm (full and partial cut, spindles 1.8-8 kW)."
+  },
+  {
+   "id": "datron-0078430e",
+   "maker": "DATRON",
+   "part_number": "0078430E",
+   "name": "Single flute end mill 3 mm x 8 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 6.0,
+   "cut_length": 8.0,
+   "oal": 58.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    48000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00276,
+     0.00472
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0078430E Up Spiral 3 mm",
+    "kind": "EndMill",
+    "diameter": 0.11811,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.07/0.09/0.1/0.11/0.12 mm/tooth at 34000/38000/40000/48000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068434a",
+   "maker": "DATRON",
+   "part_number": "0068434A",
+   "name": "Single flute end mill 4 mm x 5 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 4.0,
+   "shank": 6.0,
+   "cut_length": 5.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    47000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00394,
+     0.00709
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068434A Up Spiral 4 mm",
+    "kind": "EndMill",
+    "diameter": 0.15748,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.1/0.12/0.14/0.15/0.16/0.18 mm/tooth at 34000/37000/38000/47000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068434b",
+   "maker": "DATRON",
+   "part_number": "0068434B",
+   "name": "Single flute end mill 4 mm x 7 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 4.0,
+   "shank": 6.0,
+   "cut_length": 7.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    47000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00354,
+     0.00669
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068434B Up Spiral 4 mm",
+    "kind": "EndMill",
+    "diameter": 0.15748,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.09/0.1/0.12/0.13/0.14/0.17 mm/tooth at 34000/37000/38000/47000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068434e",
+   "maker": "DATRON",
+   "part_number": "0068434E",
+   "name": "Single flute end mill 4 mm x 10 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 4.0,
+   "shank": 6.0,
+   "cut_length": 10.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    47000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00315,
+     0.0063
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068434E Up Spiral 4 mm",
+    "kind": "EndMill",
+    "diameter": 0.15748,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.08/0.09/0.1/0.11/0.12/0.14/0.15/0.16 mm/tooth at 34000/37000/38000/47000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068434f",
+   "maker": "DATRON",
+   "part_number": "0068434F",
+   "name": "Single flute end mill 4 mm x 20 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 4.0,
+   "shank": 6.0,
+   "cut_length": 20.0,
+   "oal": 58.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    47000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00118,
+     0.00394
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068434F Up Spiral 4 mm",
+    "kind": "EndMill",
+    "diameter": 0.15748,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.03/0.04/0.05/0.055/0.07/0.08/0.1 mm/tooth at 34000/37000/38000/47000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068434l",
+   "maker": "DATRON",
+   "part_number": "0068434L",
+   "name": "Single flute end mill 4 mm x 12 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 4.0,
+   "shank": 6.0,
+   "cut_length": 12.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    47000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00276,
+     0.00591
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068434L Up Spiral 4 mm",
+    "kind": "EndMill",
+    "diameter": 0.15748,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.07/0.08/0.09/0.1/0.11/0.15 mm/tooth at 34000/37000/38000/47000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068434s",
+   "maker": "DATRON",
+   "part_number": "0068434S",
+   "name": "Single flute end mill 4 mm x 14 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 4.0,
+   "shank": 6.0,
+   "cut_length": 14.0,
+   "oal": 60.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    47000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00236,
+     0.00472
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068434S Up Spiral 4 mm",
+    "kind": "EndMill",
+    "diameter": 0.15748,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.06/0.08/0.09/0.1/0.12 mm/tooth at 34000/37000/38000/47000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068434y",
+   "maker": "DATRON",
+   "part_number": "0068434Y",
+   "name": "Single flute end mill 4 mm x 10 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 4.0,
+   "shank": 4.0,
+   "cut_length": 10.0,
+   "oal": 40.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    47000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00276,
+     0.00512
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068434Y Up Spiral 4 mm",
+    "kind": "EndMill",
+    "diameter": 0.15748,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.07/0.08/0.09/0.1/0.11/0.13 mm/tooth at 34000/37000/38000/47000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068434z",
+   "maker": "DATRON",
+   "part_number": "0068434Z",
+   "name": "Single flute end mill 4 mm x 14 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 4.0,
+   "shank": 6.0,
+   "cut_length": 14.0,
+   "oal": 45.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    47000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00315,
+     0.00512
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068434Z Up Spiral 4 mm",
+    "kind": "EndMill",
+    "diameter": 0.15748,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.08/0.09/0.1/0.11/0.13 mm/tooth at 34000/37000/38000/47000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068474e",
+   "maker": "DATRON",
+   "part_number": "0068474E",
+   "name": "Single flute end mill 4 mm x 10 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 4.0,
+   "shank": 6.0,
+   "cut_length": 10.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068474E Up Spiral 4 mm",
+    "kind": "EndMill",
+    "diameter": 0.15748,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (acrylic): fz 0.08 mm/tooth at 30000 rpm (full and partial cut, spindles 1.8-8 kW)."
+  },
+  {
+   "id": "datron-0068804a",
+   "maker": "DATRON",
+   "part_number": "0068804A",
+   "name": "Single flute 4-in-1 end mill 4 mm x 5 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 4.0,
+   "shank": 6.0,
+   "cut_length": 5.0,
+   "oal": 40.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    47000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00433,
+     0.00669
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068804A Up Spiral 4 mm",
+    "kind": "EndMill",
+    "diameter": 0.15748,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.11/0.12/0.13/0.14/0.15/0.17 mm/tooth at 34000/37000/38000/47000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068804e",
+   "maker": "DATRON",
+   "part_number": "0068804E",
+   "name": "Single flute 4-in-1 end mill 4 mm x 9 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 4.0,
+   "shank": 6.0,
+   "cut_length": 9.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    47000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00354,
+     0.00591
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068804E Up Spiral 4 mm",
+    "kind": "EndMill",
+    "diameter": 0.15748,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 3.7 mm, usable length L3 16.0 mm. Datron guide (aluminum): fz 0.09/0.1/0.11/0.12/0.13/0.15 mm/tooth at 34000/37000/38000/47000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068804k",
+   "maker": "DATRON",
+   "part_number": "0068804K",
+   "name": "Single flute 4-in-1 end mill 4 mm x 9 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 4.0,
+   "shank": 6.0,
+   "cut_length": 9.0,
+   "oal": 45.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    47000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00433,
+     0.0063
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068804K Up Spiral 4 mm",
+    "kind": "EndMill",
+    "diameter": 0.15748,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.11/0.12/0.13/0.14/0.16 mm/tooth at 34000/37000/38000/47000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068804l",
+   "maker": "DATRON",
+   "part_number": "0068804L",
+   "name": "Single flute 4-in-1 end mill 4 mm x 9 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 4.0,
+   "shank": 6.0,
+   "cut_length": 9.0,
+   "oal": 55.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    47000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00315,
+     0.00512
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068804L Up Spiral 4 mm",
+    "kind": "EndMill",
+    "diameter": 0.15748,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 3.7 mm, usable length L3 21.0 mm. Datron guide (aluminum): fz 0.08/0.09/0.1/0.11/0.12/0.13 mm/tooth at 34000/37000/38000/47000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068804x",
+   "maker": "DATRON",
+   "part_number": "0068804X",
+   "name": "Single flute 4-in-1 end mill 4 mm x 16 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 4.0,
+   "shank": 6.0,
+   "cut_length": 16.0,
+   "oal": 55.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    47000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00315,
+     0.00472
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068804X Up Spiral 4 mm",
+    "kind": "EndMill",
+    "diameter": 0.15748,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.08/0.09/0.1/0.11/0.12 mm/tooth at 34000/37000/38000/47000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068934e",
+   "maker": "DATRON",
+   "part_number": "0068934E",
+   "name": "Single flute end mill, ALCRONA coated 4 mm x 10 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "coating": "ALCRONA",
+   "units": "mm",
+   "diameter": 4.0,
+   "shank": 6.0,
+   "cut_length": 10.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068934E Up Spiral 4 mm",
+    "kind": "EndMill",
+    "diameter": 0.15748,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/coated-single-flute-end-mill/"
+   ]
+  },
+  {
+   "id": "datron-0068934s",
+   "maker": "DATRON",
+   "part_number": "0068934S",
+   "name": "Single flute end mill, ALCRONA coated 4 mm x 14 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "coating": "ALCRONA",
+   "units": "mm",
+   "diameter": 4.0,
+   "shank": 6.0,
+   "cut_length": 14.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068934S Up Spiral 4 mm",
+    "kind": "EndMill",
+    "diameter": 0.15748,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/coated-single-flute-end-mill/"
+   ]
+  },
+  {
+   "id": "datron-0078334e",
+   "maker": "DATRON",
+   "part_number": "0078334E",
+   "name": "Single flute end mill, polished for acrylic 4 mm x 10 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 4.0,
+   "shank": 6.0,
+   "cut_length": 10.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "acrylic"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0078334E Up Spiral 4 mm",
+    "kind": "EndMill",
+    "diameter": 0.15748,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-polished/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (acrylic): fz 0.14 mm/tooth at 28000 rpm (full and partial cut, spindles 1.8-8 kW)."
+  },
+  {
+   "id": "datron-0078334l",
+   "maker": "DATRON",
+   "part_number": "0078334L",
+   "name": "Single flute end mill, polished for acrylic 4 mm x 22 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 4.0,
+   "shank": 6.0,
+   "cut_length": 22.0,
+   "oal": 60.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "acrylic"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0078334L Up Spiral 4 mm",
+    "kind": "EndMill",
+    "diameter": 0.15748,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-polished/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (acrylic): fz 0.13 mm/tooth at 28000 rpm (full and partial cut, spindles 1.8-8 kW)."
+  },
+  {
+   "id": "datron-0078440l",
+   "maker": "DATRON",
+   "part_number": "0078440L",
+   "name": "Single flute end mill 4 mm x 18 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 4.0,
+   "shank": 6.0,
+   "cut_length": 18.0,
+   "oal": 58.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    47000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00138,
+     0.00472
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0078440L Up Spiral 4 mm",
+    "kind": "EndMill",
+    "diameter": 0.15748,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.035/0.05/0.06/0.065/0.07/0.08/0.09/0.12 mm/tooth at 34000/37000/38000/47000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068085e",
+   "maker": "DATRON",
+   "part_number": "0068085E",
+   "name": "Single flute end mill, balanced 5 mm x 8.75 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 5.0,
+   "shank": 6.0,
+   "cut_length": 8.75,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    46000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00315,
+     0.0063
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068085E Up Spiral 5 mm",
+    "kind": "EndMill",
+    "diameter": 0.19685,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-specially-balanced/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 4.8 mm, usable length L3 13.5 mm. Datron guide (aluminum): fz 0.08/0.12/0.14/0.16 mm/tooth at 34000/36000/46000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068435b",
+   "maker": "DATRON",
+   "part_number": "0068435B",
+   "name": "Single flute end mill 5 mm x 8 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 5.0,
+   "shank": 6.0,
+   "cut_length": 8.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    26000,
+    31000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00433,
+     0.00709
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068435B Up Spiral 5 mm",
+    "kind": "EndMill",
+    "diameter": 0.19685,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.11/0.12/0.14/0.15/0.16/0.18 mm/tooth at 26000/31000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068435e",
+   "maker": "DATRON",
+   "part_number": "0068435E",
+   "name": "Single flute end mill 5 mm x 12 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 5.0,
+   "shank": 6.0,
+   "cut_length": 12.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    26000,
+    31000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00354,
+     0.0063
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068435E Up Spiral 5 mm",
+    "kind": "EndMill",
+    "diameter": 0.19685,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.09/0.1/0.12/0.13/0.14/0.15/0.16 mm/tooth at 26000/31000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068435l",
+   "maker": "DATRON",
+   "part_number": "0068435L",
+   "name": "Single flute end mill 5 mm x 22 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 5.0,
+   "shank": 6.0,
+   "cut_length": 22.0,
+   "oal": 58.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    26000,
+    31000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00157,
+     0.00512
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068435L Up Spiral 5 mm",
+    "kind": "EndMill",
+    "diameter": 0.19685,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.04/0.05/0.06/0.07/0.1/0.12/0.13 mm/tooth at 26000/31000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068805a",
+   "maker": "DATRON",
+   "part_number": "0068805A",
+   "name": "Single flute 4-in-1 end mill 5 mm x 7 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 5.0,
+   "shank": 6.0,
+   "cut_length": 7.0,
+   "oal": 45.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    46000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00472,
+     0.00748
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068805A Up Spiral 5 mm",
+    "kind": "EndMill",
+    "diameter": 0.19685,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.12/0.13/0.14/0.15/0.16/0.19 mm/tooth at 34000/36000/46000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068805e",
+   "maker": "DATRON",
+   "part_number": "0068805E",
+   "name": "Single flute 4-in-1 end mill 5 mm x 11 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 5.0,
+   "shank": 6.0,
+   "cut_length": 11.0,
+   "oal": 60.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    46000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00394,
+     0.0063
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068805E Up Spiral 5 mm",
+    "kind": "EndMill",
+    "diameter": 0.19685,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 4.6 mm, usable length L3 21.0 mm. Datron guide (aluminum): fz 0.1/0.11/0.12/0.13/0.14/0.16 mm/tooth at 34000/36000/46000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068805k",
+   "maker": "DATRON",
+   "part_number": "0068805K",
+   "name": "Single flute 4-in-1 end mill 5 mm x 11 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 5.0,
+   "shank": 6.0,
+   "cut_length": 11.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    46000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00472,
+     0.00709
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068805K Up Spiral 5 mm",
+    "kind": "EndMill",
+    "diameter": 0.19685,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.12/0.13/0.14/0.15/0.18 mm/tooth at 34000/36000/46000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068805l",
+   "maker": "DATRON",
+   "part_number": "0068805L",
+   "name": "Single flute 4-in-1 end mill 5 mm x 11 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 5.0,
+   "shank": 6.0,
+   "cut_length": 11.0,
+   "oal": 60.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    46000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00354,
+     0.00551
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068805L Up Spiral 5 mm",
+    "kind": "EndMill",
+    "diameter": 0.19685,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 4.6 mm, usable length L3 26.0 mm. Datron guide (aluminum): fz 0.09/0.1/0.11/0.12/0.13/0.14 mm/tooth at 34000/36000/46000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068805x",
+   "maker": "DATRON",
+   "part_number": "0068805X",
+   "name": "Single flute 4-in-1 end mill 5 mm x 16 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 5.0,
+   "shank": 6.0,
+   "cut_length": 16.0,
+   "oal": 55.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    34000,
+    46000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00354,
+     0.00512
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068805X Up Spiral 5 mm",
+    "kind": "EndMill",
+    "diameter": 0.19685,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.09/0.1/0.11/0.12/0.13 mm/tooth at 34000/36000/46000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068935e",
+   "maker": "DATRON",
+   "part_number": "0068935E",
+   "name": "Single flute end mill, ALCRONA coated 5 mm x 12 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "coating": "ALCRONA",
+   "units": "mm",
+   "diameter": 5.0,
+   "shank": 6.0,
+   "cut_length": 12.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068935E Up Spiral 5 mm",
+    "kind": "EndMill",
+    "diameter": 0.19685,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/coated-single-flute-end-mill/"
+   ]
+  },
+  {
+   "id": "datron-0068935l",
+   "maker": "DATRON",
+   "part_number": "0068935L",
+   "name": "Single flute end mill, ALCRONA coated 5 mm x 22 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "coating": "ALCRONA",
+   "units": "mm",
+   "diameter": 5.0,
+   "shank": 6.0,
+   "cut_length": 22.0,
+   "oal": 58.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068935L Up Spiral 5 mm",
+    "kind": "EndMill",
+    "diameter": 0.19685,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/coated-single-flute-end-mill/"
+   ]
+  },
+  {
+   "id": "datron-0078335l",
+   "maker": "DATRON",
+   "part_number": "0078335L",
+   "name": "Single flute end mill, polished for acrylic 5 mm x 22 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 5.0,
+   "shank": 6.0,
+   "cut_length": 22.0,
+   "oal": 60.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "acrylic"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0078335L Up Spiral 5 mm",
+    "kind": "EndMill",
+    "diameter": 0.19685,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-polished/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (acrylic): fz 0.14 mm/tooth at 27000 rpm (full and partial cut, spindles 1.8-8 kW)."
+  },
+  {
+   "id": "datron-0068086e",
+   "maker": "DATRON",
+   "part_number": "0068086E",
+   "name": "Single flute end mill, balanced 6 mm x 10.5 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 6.0,
+   "shank": 6.0,
+   "cut_length": 10.5,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    33000,
+    45000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00394,
+     0.00709
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068086E Up Spiral 6 mm",
+    "kind": "EndMill",
+    "diameter": 0.23622,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-specially-balanced/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 5.5 mm, usable length L3 16.5 mm. Datron guide (aluminum): fz 0.1/0.12/0.14/0.16/0.17/0.18 mm/tooth at 33000/35000/45000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068086l",
+   "maker": "DATRON",
+   "part_number": "0068086L",
+   "name": "Single flute end mill, balanced 6 mm x 16 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 6.0,
+   "shank": 6.0,
+   "cut_length": 16.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    33000,
+    45000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00394,
+     0.0063
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068086L Up Spiral 6 mm",
+    "kind": "EndMill",
+    "diameter": 0.23622,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-specially-balanced/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 5.5 mm, usable length L3 23.5 mm. Datron guide (aluminum): fz 0.1/0.11/0.12/0.13/0.14/0.15/0.16 mm/tooth at 33000/35000/45000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068086x",
+   "maker": "DATRON",
+   "part_number": "0068086X",
+   "name": "Single flute end mill, balanced 6 mm x 21 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 6.0,
+   "shank": 6.0,
+   "cut_length": 21.0,
+   "oal": 55.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    33000,
+    45000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00236,
+     0.00551
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068086X Up Spiral 6 mm",
+    "kind": "EndMill",
+    "diameter": 0.23622,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-specially-balanced/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 5.5 mm, usable length L3 27.0 mm. Datron guide (aluminum): fz 0.06/0.09/0.1/0.11/0.12/0.13/0.14 mm/tooth at 33000/35000/45000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068460a",
+   "maker": "DATRON",
+   "part_number": "0068460A",
+   "name": "Single flute end mill 6 mm x 25 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 6.0,
+   "shank": 6.0,
+   "cut_length": 25.0,
+   "oal": 58.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    25000,
+    30000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00157,
+     0.00472
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068460A Up Spiral 6 mm",
+    "kind": "EndMill",
+    "diameter": 0.23622,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.04/0.05/0.06/0.07/0.1/0.12 mm/tooth at 25000/30000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068460b",
+   "maker": "DATRON",
+   "part_number": "0068460B",
+   "name": "Single flute end mill 6 mm x 30 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 6.0,
+   "shank": 6.0,
+   "cut_length": 30.0,
+   "oal": 65.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    25000,
+    30000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00098,
+     0.00394
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068460B Up Spiral 6 mm",
+    "kind": "EndMill",
+    "diameter": 0.23622,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.025/0.03/0.04/0.05/0.06/0.08/0.1 mm/tooth at 25000/30000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068460c",
+   "maker": "DATRON",
+   "part_number": "0068460C",
+   "name": "Single flute end mill 6 mm x 8 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 6.0,
+   "shank": 6.0,
+   "cut_length": 8.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    25000,
+    30000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00472,
+     0.00787
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068460C Up Spiral 6 mm",
+    "kind": "EndMill",
+    "diameter": 0.23622,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.12/0.14/0.16/0.18/0.2 mm/tooth at 25000/30000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068460e",
+   "maker": "DATRON",
+   "part_number": "0068460E",
+   "name": "Single flute end mill 6 mm x 14 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 6.0,
+   "shank": 6.0,
+   "cut_length": 14.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    25000,
+    30000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00433,
+     0.0063
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068460E Up Spiral 6 mm",
+    "kind": "EndMill",
+    "diameter": 0.23622,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.11/0.12/0.14/0.16 mm/tooth at 25000/30000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068460l",
+   "maker": "DATRON",
+   "part_number": "0068460L",
+   "name": "Single flute end mill 6 mm x 20 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 6.0,
+   "shank": 6.0,
+   "cut_length": 20.0,
+   "oal": 60.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    25000,
+    30000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00276,
+     0.00591
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068460L Up Spiral 6 mm",
+    "kind": "EndMill",
+    "diameter": 0.23622,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.07/0.08/0.1/0.11/0.12/0.14/0.15 mm/tooth at 25000/30000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068806a",
+   "maker": "DATRON",
+   "part_number": "0068806A",
+   "name": "Single flute 4-in-1 end mill 6 mm x 7 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 6.0,
+   "shank": 6.0,
+   "cut_length": 7.0,
+   "oal": 45.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    33000,
+    45000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00512,
+     0.00787
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068806A Up Spiral 6 mm",
+    "kind": "EndMill",
+    "diameter": 0.23622,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.13/0.14/0.15/0.16/0.17/0.2 mm/tooth at 33000/35000/45000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068806e",
+   "maker": "DATRON",
+   "part_number": "0068806E",
+   "name": "Single flute 4-in-1 end mill 6 mm x 13 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 6.0,
+   "shank": 6.0,
+   "cut_length": 13.0,
+   "oal": 60.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    33000,
+    45000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00433,
+     0.00669
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068806E Up Spiral 6 mm",
+    "kind": "EndMill",
+    "diameter": 0.23622,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 5.5 mm, usable length L3 26.0 mm. Datron guide (aluminum): fz 0.11/0.12/0.13/0.14/0.15/0.17 mm/tooth at 33000/35000/45000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068806k",
+   "maker": "DATRON",
+   "part_number": "0068806K",
+   "name": "Single flute 4-in-1 end mill 6 mm x 13 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 6.0,
+   "shank": 6.0,
+   "cut_length": 13.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    33000,
+    45000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00512,
+     0.00748
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068806K Up Spiral 6 mm",
+    "kind": "EndMill",
+    "diameter": 0.23622,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.13/0.14/0.15/0.16/0.19 mm/tooth at 33000/35000/45000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068806l",
+   "maker": "DATRON",
+   "part_number": "0068806L",
+   "name": "Single flute 4-in-1 end mill 6 mm x 13 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 6.0,
+   "shank": 6.0,
+   "cut_length": 13.0,
+   "oal": 65.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    33000,
+    45000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00394,
+     0.00591
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068806L Up Spiral 6 mm",
+    "kind": "EndMill",
+    "diameter": 0.23622,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 5.5 mm, usable length L3 31.0 mm. Datron guide (aluminum): fz 0.1/0.11/0.12/0.13/0.14/0.15 mm/tooth at 33000/35000/45000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068806x",
+   "maker": "DATRON",
+   "part_number": "0068806X",
+   "name": "Single flute 4-in-1 end mill 6 mm x 21 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 6.0,
+   "shank": 6.0,
+   "cut_length": 21.0,
+   "oal": 55.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    33000,
+    45000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00394,
+     0.00551
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068806X Up Spiral 6 mm",
+    "kind": "EndMill",
+    "diameter": 0.23622,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.1/0.11/0.12/0.13/0.14 mm/tooth at 33000/35000/45000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068960e",
+   "maker": "DATRON",
+   "part_number": "0068960E",
+   "name": "Single flute end mill, ALCRONA coated 6 mm x 14 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "coating": "ALCRONA",
+   "units": "mm",
+   "diameter": 6.0,
+   "shank": 6.0,
+   "cut_length": 14.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068960E Up Spiral 6 mm",
+    "kind": "EndMill",
+    "diameter": 0.23622,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/coated-single-flute-end-mill/"
+   ]
+  },
+  {
+   "id": "datron-0068960l",
+   "maker": "DATRON",
+   "part_number": "0068960L",
+   "name": "Single flute end mill, ALCRONA coated 6 mm x 20 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "coating": "ALCRONA",
+   "units": "mm",
+   "diameter": 6.0,
+   "shank": 6.0,
+   "cut_length": 20.0,
+   "oal": 58.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068960L Up Spiral 6 mm",
+    "kind": "EndMill",
+    "diameter": 0.23622,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/coated-single-flute-end-mill/"
+   ]
+  },
+  {
+   "id": "datron-0078360e",
+   "maker": "DATRON",
+   "part_number": "0078360E",
+   "name": "Single flute end mill, polished for acrylic 6 mm x 14 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 6.0,
+   "shank": 6.0,
+   "cut_length": 14.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "acrylic"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0078360E Up Spiral 6 mm",
+    "kind": "EndMill",
+    "diameter": 0.23622,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-polished/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (acrylic): fz 0.16 mm/tooth at 26000 rpm (full and partial cut, spindles 1.8-8 kW)."
+  },
+  {
+   "id": "datron-0078360l",
+   "maker": "DATRON",
+   "part_number": "0078360L",
+   "name": "Single flute end mill, polished for acrylic 6 mm x 22 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 6.0,
+   "shank": 6.0,
+   "cut_length": 22.0,
+   "oal": 60.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "acrylic"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0078360L Up Spiral 6 mm",
+    "kind": "EndMill",
+    "diameter": 0.23622,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-polished/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (acrylic): fz 0.15 mm/tooth at 26000 rpm (full and partial cut, spindles 1.8-8 kW)."
+  },
+  {
+   "id": "datron-0068079e",
+   "maker": "DATRON",
+   "part_number": "0068079E",
+   "name": "Single flute end mill 7 mm x 14 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 7.0,
+   "shank": 8.0,
+   "cut_length": 14.0,
+   "oal": 60.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    24000,
+    29000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00472,
+     0.00709
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068079E Up Spiral 7 mm",
+    "kind": "EndMill",
+    "diameter": 0.27559,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.12/0.14/0.16/0.18 mm/tooth at 24000/29000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068080b",
+   "maker": "DATRON",
+   "part_number": "0068080B",
+   "name": "Single flute end mill 8 mm x 32 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 8.0,
+   "shank": 8.0,
+   "cut_length": 32.0,
+   "oal": 80.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    24000,
+    29000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00157,
+     0.00512
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068080B Up Spiral 8 mm",
+    "kind": "EndMill",
+    "diameter": 0.31496,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.04/0.05/0.06/0.07/0.1/0.12/0.13 mm/tooth at 24000/29000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068080d",
+   "maker": "DATRON",
+   "part_number": "0068080D",
+   "name": "Single flute end mill, balanced 8 mm x 14 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 8.0,
+   "shank": 8.0,
+   "cut_length": 14.0,
+   "oal": 70.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    32000,
+    44000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00315,
+     0.00551
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068080D Up Spiral 8 mm",
+    "kind": "EndMill",
+    "diameter": 0.31496,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-specially-balanced/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 7.4 mm, usable length L3 43.0 mm. Datron guide (aluminum): fz 0.08/0.1/0.12/0.13/0.14 mm/tooth at 32000/34000/44000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068080e",
+   "maker": "DATRON",
+   "part_number": "0068080E",
+   "name": "Single flute end mill 8 mm x 14 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 8.0,
+   "shank": 8.0,
+   "cut_length": 14.0,
+   "oal": 60.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    24000,
+    29000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00512,
+     0.00709
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068080E Up Spiral 8 mm",
+    "kind": "EndMill",
+    "diameter": 0.31496,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.13/0.14/0.15/0.16/0.18 mm/tooth at 24000/29000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068080l",
+   "maker": "DATRON",
+   "part_number": "0068080L",
+   "name": "Single flute end mill 8 mm x 20 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 8.0,
+   "shank": 8.0,
+   "cut_length": 20.0,
+   "oal": 60.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    24000,
+    29000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00394,
+     0.0063
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068080L Up Spiral 8 mm",
+    "kind": "EndMill",
+    "diameter": 0.31496,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.1/0.12/0.14/0.15/0.16 mm/tooth at 24000/29000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068088e",
+   "maker": "DATRON",
+   "part_number": "0068088E",
+   "name": "Single flute end mill, balanced 8 mm x 14 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 8.0,
+   "shank": 8.0,
+   "cut_length": 14.0,
+   "oal": 60.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    32000,
+    44000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00433,
+     0.00709
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068088E Up Spiral 8 mm",
+    "kind": "EndMill",
+    "diameter": 0.31496,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-specially-balanced/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 7.4 mm, usable length L3 26.0 mm. Datron guide (aluminum): fz 0.11/0.12/0.14/0.16/0.17/0.18 mm/tooth at 32000/34000/44000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068088k",
+   "maker": "DATRON",
+   "part_number": "0068088K",
+   "name": "Single flute end mill, balanced 8 mm x 8 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 8.0,
+   "shank": 8.0,
+   "cut_length": 8.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    32000,
+    44000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00472,
+     0.00787
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068088K Up Spiral 8 mm",
+    "kind": "EndMill",
+    "diameter": 0.31496,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-specially-balanced/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 7.4 mm, usable length L3 12.5 mm. Datron guide (aluminum): fz 0.12/0.14/0.15/0.16/0.18/0.2 mm/tooth at 32000/34000/44000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068088l",
+   "maker": "DATRON",
+   "part_number": "0068088L",
+   "name": "Single flute end mill 8 mm x 26 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 8.0,
+   "shank": 8.0,
+   "cut_length": 26.0,
+   "oal": 60.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    32000,
+    44000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00315,
+     0.0063
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068088L Up Spiral 8 mm",
+    "kind": "EndMill",
+    "diameter": 0.31496,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 7.4 mm, usable length L3 34.0 mm. Datron guide (aluminum): fz 0.08/0.1/0.12/0.14/0.15/0.16 mm/tooth at 32000/34000/44000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068088s",
+   "maker": "DATRON",
+   "part_number": "0068088S",
+   "name": "Single flute end mill, balanced 8 mm x 21 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 8.0,
+   "shank": 8.0,
+   "cut_length": 21.0,
+   "oal": 60.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    32000,
+    44000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00394,
+     0.0063
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068088S Up Spiral 8 mm",
+    "kind": "EndMill",
+    "diameter": 0.31496,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-specially-balanced/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 7.4 mm, usable length L3 31.0 mm. Datron guide (aluminum): fz 0.1/0.11/0.12/0.13/0.14/0.15/0.16 mm/tooth at 32000/34000/44000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068088x",
+   "maker": "DATRON",
+   "part_number": "0068088X",
+   "name": "Single flute end mill, balanced 8 mm x 31 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 8.0,
+   "shank": 8.0,
+   "cut_length": 31.0,
+   "oal": 70.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    32000,
+    44000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00236,
+     0.00551
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068088X Up Spiral 8 mm",
+    "kind": "EndMill",
+    "diameter": 0.31496,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-specially-balanced/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 7.4 mm, usable length L3 42.0 mm. Datron guide (aluminum): fz 0.06/0.07/0.08/0.09/0.1/0.11/0.12/0.13/0.14 mm/tooth at 32000/34000/44000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068808a",
+   "maker": "DATRON",
+   "part_number": "0068808A",
+   "name": "Single flute 4-in-1 end mill 8 mm x 9 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 8.0,
+   "shank": 8.0,
+   "cut_length": 9.0,
+   "oal": 45.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    32000,
+    44000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00551,
+     0.00787
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068808A Up Spiral 8 mm",
+    "kind": "EndMill",
+    "diameter": 0.31496,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.14/0.15/0.16/0.17/0.2 mm/tooth at 32000/34000/44000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068808e",
+   "maker": "DATRON",
+   "part_number": "0068808E",
+   "name": "Single flute 4-in-1 end mill 8 mm x 17 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 8.0,
+   "shank": 8.0,
+   "cut_length": 17.0,
+   "oal": 65.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    32000,
+    44000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00472,
+     0.00669
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068808E Up Spiral 8 mm",
+    "kind": "EndMill",
+    "diameter": 0.31496,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 7.4 mm, usable length L3 31.0 mm. Datron guide (aluminum): fz 0.12/0.13/0.14/0.15/0.16/0.17 mm/tooth at 32000/34000/44000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068808k",
+   "maker": "DATRON",
+   "part_number": "0068808K",
+   "name": "Single flute 4-in-1 end mill 8 mm x 17 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 8.0,
+   "shank": 8.0,
+   "cut_length": 17.0,
+   "oal": 55.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    32000,
+    44000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00512,
+     0.00748
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068808K Up Spiral 8 mm",
+    "kind": "EndMill",
+    "diameter": 0.31496,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.13/0.14/0.15/0.16/0.17/0.19 mm/tooth at 32000/34000/44000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068808l",
+   "maker": "DATRON",
+   "part_number": "0068808L",
+   "name": "Single flute 4-in-1 end mill 8 mm x 17 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 8.0,
+   "shank": 8.0,
+   "cut_length": 17.0,
+   "oal": 75.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    32000,
+    44000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00394,
+     0.00591
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068808L Up Spiral 8 mm",
+    "kind": "EndMill",
+    "diameter": 0.31496,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 7.4 mm, usable length L3 41.0 mm. Datron guide (aluminum): fz 0.1/0.11/0.12/0.13/0.14/0.15 mm/tooth at 32000/34000/44000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068808x",
+   "maker": "DATRON",
+   "part_number": "0068808X",
+   "name": "Single flute 4-in-1 end mill 8 mm x 26 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 8.0,
+   "shank": 8.0,
+   "cut_length": 26.0,
+   "oal": 65.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    32000,
+    44000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00394,
+     0.00591
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068808X Up Spiral 8 mm",
+    "kind": "EndMill",
+    "diameter": 0.31496,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.1/0.11/0.12/0.13/0.14/0.15 mm/tooth at 32000/34000/44000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0078338e",
+   "maker": "DATRON",
+   "part_number": "0078338E",
+   "name": "Single flute end mill, polished for acrylic 8 mm x 22 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 8.0,
+   "shank": 8.0,
+   "cut_length": 22.0,
+   "oal": 60.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "acrylic"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0078338E Up Spiral 8 mm",
+    "kind": "EndMill",
+    "diameter": 0.31496,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-polished/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (acrylic): fz 0.17 mm/tooth at 24000 rpm (full and partial cut, spindles 1.8-8 kW)."
+  },
+  {
+   "id": "datron-0068090e",
+   "maker": "DATRON",
+   "part_number": "0068090E",
+   "name": "Single flute end mill, balanced 10 mm x 17.5 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 10.0,
+   "shank": 10.0,
+   "cut_length": 17.5,
+   "oal": 60.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    31000,
+    32000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.0063,
+     0.00787
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068090E Up Spiral 10 mm",
+    "kind": "EndMill",
+    "diameter": 0.3937,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-specially-balanced/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 9.2 mm, usable length L3 27.5 mm. Datron guide (aluminum): fz 0.16/0.17/0.18/0.19/0.2 mm/tooth at 31000/32000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068090k",
+   "maker": "DATRON",
+   "part_number": "0068090K",
+   "name": "Single flute end mill, balanced 10 mm x 10 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 10.0,
+   "shank": 10.0,
+   "cut_length": 10.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    31000,
+    32000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00709,
+     0.00866
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068090K Up Spiral 10 mm",
+    "kind": "EndMill",
+    "diameter": 0.3937,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-specially-balanced/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 9.2 mm, usable length L3 15.6 mm. Datron guide (aluminum): fz 0.18/0.2/0.22 mm/tooth at 31000/32000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068090l",
+   "maker": "DATRON",
+   "part_number": "0068090L",
+   "name": "Single flute end mill, balanced 10 mm x 26 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 10.0,
+   "shank": 10.0,
+   "cut_length": 26.0,
+   "oal": 60.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    31000,
+    32000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00551,
+     0.00709
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068090L Up Spiral 10 mm",
+    "kind": "EndMill",
+    "diameter": 0.3937,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-specially-balanced/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 9.2 mm, usable length L3 34.0 mm. Datron guide (aluminum): fz 0.14/0.15/0.16/0.17/0.18 mm/tooth at 31000/32000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068090s",
+   "maker": "DATRON",
+   "part_number": "0068090S",
+   "name": "Single flute end mill, balanced 10 mm x 17.5 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 10.0,
+   "shank": 10.0,
+   "cut_length": 17.5,
+   "oal": 80.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    31000,
+    32000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00394,
+     0.0063
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068090S Up Spiral 10 mm",
+    "kind": "EndMill",
+    "diameter": 0.3937,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-specially-balanced/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 9.2 mm, usable length L3 52.0 mm. Datron guide (aluminum): fz 0.1/0.12/0.13/0.14/0.16 mm/tooth at 31000/32000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068090x",
+   "maker": "DATRON",
+   "part_number": "0068090X",
+   "name": "Single flute end mill, balanced 10 mm x 32.5 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 10.0,
+   "shank": 10.0,
+   "cut_length": 32.5,
+   "oal": 70.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    31000,
+    32000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00472,
+     0.0063
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068090X Up Spiral 10 mm",
+    "kind": "EndMill",
+    "diameter": 0.3937,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-specially-balanced/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 9.2 mm, usable length L3 42.5 mm. Datron guide (aluminum): fz 0.12/0.14/0.15/0.16 mm/tooth at 31000/32000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068090z",
+   "maker": "DATRON",
+   "part_number": "0068090Z",
+   "name": "Single flute end mill, balanced 10 mm x 26.25 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 10.0,
+   "shank": 10.0,
+   "cut_length": 26.25,
+   "oal": 125.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068090Z Up Spiral 10 mm",
+    "kind": "EndMill",
+    "diameter": 0.3937,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-specially-balanced/"
+   ],
+   "notes": "Reduced neck D3 9.2 mm, usable length L3 85.0 mm."
+  },
+  {
+   "id": "datron-0068470e",
+   "maker": "DATRON",
+   "part_number": "0068470E",
+   "name": "Single flute end mill 10 mm x 20 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 10.0,
+   "shank": 10.0,
+   "cut_length": 20.0,
+   "oal": 60.0,
+   "flutes": 1,
+   "helix": "up",
+   "chip_load": {
+    "aluminum": [
+     0.0063,
+     0.00787
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068470E Up Spiral 10 mm",
+    "kind": "EndMill",
+    "diameter": 0.3937,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.16/0.18/0.2 mm/tooth at 22000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068470l",
+   "maker": "DATRON",
+   "part_number": "0068470L",
+   "name": "Single flute end mill 10 mm x 40 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 10.0,
+   "shank": 10.0,
+   "cut_length": 40.0,
+   "oal": 100.0,
+   "flutes": 1,
+   "helix": "up",
+   "chip_load": {
+    "aluminum": [
+     0.00197,
+     0.0063
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068470L Up Spiral 10 mm",
+    "kind": "EndMill",
+    "diameter": 0.3937,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mills/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.05/0.06/0.14/0.16 mm/tooth at 22000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068810a",
+   "maker": "DATRON",
+   "part_number": "0068810A",
+   "name": "Single flute 4-in-1 end mill 10 mm x 11 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 10.0,
+   "shank": 10.0,
+   "cut_length": 11.0,
+   "oal": 50.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    31000,
+    32000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00669,
+     0.00866
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068810A Up Spiral 10 mm",
+    "kind": "EndMill",
+    "diameter": 0.3937,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.17/0.18/0.19/0.22 mm/tooth at 31000/32000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068810e",
+   "maker": "DATRON",
+   "part_number": "0068810E",
+   "name": "Single flute 4-in-1 end mill 10 mm x 21 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 10.0,
+   "shank": 10.0,
+   "cut_length": 21.0,
+   "oal": 75.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    31000,
+    32000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00591,
+     0.00748
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068810E Up Spiral 10 mm",
+    "kind": "EndMill",
+    "diameter": 0.3937,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 9.2 mm, usable length L3 41.0 mm. Datron guide (aluminum): fz 0.15/0.16/0.17/0.18/0.19 mm/tooth at 31000/32000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068810k",
+   "maker": "DATRON",
+   "part_number": "0068810K",
+   "name": "Single flute 4-in-1 end mill 10 mm x 21 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 10.0,
+   "shank": 10.0,
+   "cut_length": 21.0,
+   "oal": 60.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    31000,
+    32000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.0063,
+     0.00827
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068810K Up Spiral 10 mm",
+    "kind": "EndMill",
+    "diameter": 0.3937,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.16/0.17/0.18/0.19/0.21 mm/tooth at 31000/32000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068810l",
+   "maker": "DATRON",
+   "part_number": "0068810L",
+   "name": "Single flute 4-in-1 end mill 10 mm x 21 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 10.0,
+   "shank": 10.0,
+   "cut_length": 21.0,
+   "oal": 85.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    31000,
+    32000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00512,
+     0.00669
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068810L Up Spiral 10 mm",
+    "kind": "EndMill",
+    "diameter": 0.3937,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 9.2 mm, usable length L3 51.0 mm. Datron guide (aluminum): fz 0.13/0.14/0.15/0.16/0.17 mm/tooth at 31000/32000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068810x",
+   "maker": "DATRON",
+   "part_number": "0068810X",
+   "name": "Single flute 4-in-1 end mill 10 mm x 32 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 10.0,
+   "shank": 10.0,
+   "cut_length": 32.0,
+   "oal": 70.0,
+   "flutes": 1,
+   "helix": "up",
+   "rpm": [
+    31000,
+    32000
+   ],
+   "chip_load": {
+    "aluminum": [
+     0.00512,
+     0.00669
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068810X Up Spiral 10 mm",
+    "kind": "EndMill",
+    "diameter": 0.3937,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.13/0.14/0.16/0.17 mm/tooth at 31000/32000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0078339e",
+   "maker": "DATRON",
+   "part_number": "0078339E",
+   "name": "Single flute end mill, polished for acrylic 10 mm x 32 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 10.0,
+   "shank": 10.0,
+   "cut_length": 32.0,
+   "oal": 75.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "acrylic"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0078339E Up Spiral 10 mm",
+    "kind": "EndMill",
+    "diameter": 0.3937,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/single-flute-end-mill-polished/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (acrylic): fz 0.18 mm/tooth at 22000 rpm (full and partial cut, spindles 1.8-8 kW)."
+  },
+  {
+   "id": "datron-0068812a",
+   "maker": "DATRON",
+   "part_number": "0068812A",
+   "name": "Single flute 4-in-1 end mill 12 mm x 14 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 12.0,
+   "shank": 12.0,
+   "cut_length": 14.0,
+   "oal": 55.0,
+   "flutes": 1,
+   "helix": "up",
+   "chip_load": {
+    "aluminum": [
+     0.00827,
+     0.00866
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068812A Up Spiral 12 mm",
+    "kind": "EndMill",
+    "diameter": 0.47244,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.21/0.22 mm/tooth at 30000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068812e",
+   "maker": "DATRON",
+   "part_number": "0068812E",
+   "name": "Single flute 4-in-1 end mill 12 mm x 26 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 12.0,
+   "shank": 12.0,
+   "cut_length": 26.0,
+   "oal": 85.0,
+   "flutes": 1,
+   "helix": "up",
+   "chip_load": {
+    "aluminum": [
+     0.00748,
+     0.00787
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068812E Up Spiral 12 mm",
+    "kind": "EndMill",
+    "diameter": 0.47244,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Reduced neck D3 11.0 mm, usable length L3 51.0 mm. Datron guide (aluminum): fz 0.19/0.2 mm/tooth at 30000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  },
+  {
+   "id": "datron-0068812k",
+   "maker": "DATRON",
+   "part_number": "0068812K",
+   "name": "Single flute 4-in-1 end mill 12 mm x 26 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 12.0,
+   "shank": 12.0,
+   "cut_length": 26.0,
+   "oal": 65.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068812K Up Spiral 12 mm",
+    "kind": "EndMill",
+    "diameter": 0.47244,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.21 mm/tooth at 30000 rpm (full and partial cut, spindles 1.8-8 kW)."
+  },
+  {
+   "id": "datron-0068812x",
+   "maker": "DATRON",
+   "part_number": "0068812X",
+   "name": "Single flute 4-in-1 end mill 12 mm x 36 mm",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 12.0,
+   "shank": 12.0,
+   "cut_length": 36.0,
+   "oal": 75.0,
+   "flutes": 1,
+   "helix": "up",
+   "chip_load": {
+    "aluminum": [
+     0.0063,
+     0.00748
+    ]
+   },
+   "materials": [
+    "aluminum",
+    "brass",
+    "copper",
+    "plastics"
+   ],
+   "applications": [
+    "roughing",
+    "profiling"
+   ],
+   "gcarve_tool": {
+    "name": "DATRON 0068812X Up Spiral 12 mm",
+    "kind": "EndMill",
+    "diameter": 0.47244,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.datron.com/product/4-in-1-single-flute-end-mill/",
+    "https://shop.datron.com/wp-content/uploads/2020/03/DATRON-High-Speed-Cutting-Guide.pdf"
+   ],
+   "notes": "Datron guide (aluminum): fz 0.16/0.19 mm/tooth at 30000 rpm (full and partial cut, spindles 1.8-8 kW). chip_load converted from mm/tooth (÷25.4)."
+  }
+ ]
+}

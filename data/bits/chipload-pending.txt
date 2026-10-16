@@ -1,0 +1,2 @@
+Chip-load tables referenced by research but not yet transcribed from the maker charts (bits use GCarve's generic chip loads until added):
+  (none: all 146 transcribed 2026-10-09)

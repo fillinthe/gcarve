@@ -1,0 +1,390 @@
+{
+ "maker": "YoraHome",
+ "website": "https://yorahome.com",
+ "machines": [
+  {
+   "id": "yorahome-3018-pro",
+   "maker": "YoraHome",
+   "model": "CNC Router 3018-Pro",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 7.09,
+    "z": 1.57
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 180,
+    "z": 40
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "775 DC spindle motor",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL (Arduino Nano ATmega328P)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://yorahome.com/products/cnc-router-3018-pro",
+    "https://easel.com/partners/machines/yorahome-3018-pro/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "DIY kit."
+  },
+  {
+   "id": "yorahome-crossriver-6060",
+   "maker": "YoraHome",
+   "model": "CrossRiver 6060",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 23.62,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 600,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "500 W air-cooled spindle",
+     "power_kw": 0.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL (Arduino)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://yorahome.com/products/crossriver-benchtop-cnc-router-6060",
+    "https://easel.com/partners/machines/yorahome-crossriver-6060/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Linear rails + ball screws, NEMA23 closed-loop."
+  },
+  {
+   "id": "yorahome-silverback-6060",
+   "maker": "YoraHome",
+   "model": "SilverBack 6060",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 23.62,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 600,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "500 W air-cooled spindle",
+     "power_kw": 0.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER11",
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 (Arduino)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://yorahome.com/products/silverback-benchtop-cnc-router-6060",
+    "https://easel.com/partners/machines/yorahome-silverback-6060/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Acme lead screws, NEMA23 + DM542 drivers."
+  },
+  {
+   "id": "yorahome-silverback-1x1m",
+   "maker": "YoraHome",
+   "model": "SilverBack 1X1M",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 39.37,
+    "y": 39.37,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 1000,
+    "y": 1000,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "500 W spindle (52 mm mount)",
+     "power_kw": 0.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL (Arduino)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://yorahome.com/products/silverback-benchtop-cnc-router-1x1m",
+    "https://easel.com/partners/machines/yorahome-silverback-1x1m/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": null
+  },
+  {
+   "id": "yorahome-mandrill-3036",
+   "maker": "YoraHome",
+   "model": "Mandrill 3036",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 14.17,
+    "z": 1.97
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 360,
+    "z": 50
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "300 W air-cooled spindle",
+     "power_kw": 0.3,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER11",
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL (Arduino)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://easel.com/partners/machines/yorahome-mandrill-3036/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "No longer sold (Easel). Acme lead screws, DM542 drivers."
+  }
+ ]
+}

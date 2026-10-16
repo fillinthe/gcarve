@@ -1,0 +1,289 @@
+{
+ "maker": "Diablo (Freud)",
+ "source_summary": "diablotools.com product data (the site's /api/v2/products/search/multi product index, category 'Router Bits': specs D, H, overall length, shank, number of cutters, max RPM, angles). The US Diablo router bit line is 35 hand-router bits; bearing-guided, pilot, sets and edge-profile bits are left out.",
+ "retrieved": "2026-10-09",
+ "bits": [
+  {
+   "id": "diablo-dr22104",
+   "maker": "Diablo (Freud)",
+   "part_number": "DR22104",
+   "name": "1/2\" x 1/2\" Dovetail Router Bit",
+   "family": "dovetail",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "oal": 1.875,
+   "flutes": 2,
+   "angle_deg": 28.0,
+   "max_rpm": 24000,
+   "gcarve_tool": {
+    "name": "Diablo (Freud) DR22104 Dovetail 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://diablotools.com/products/DR22104",
+    "https://diablotools.com/api/v2/products/search/multi"
+   ],
+   "notes": "Diablo lists 14 deg (per side); angle_deg is the included angle"
+  },
+  {
+   "id": "diablo-dr70104",
+   "maker": "Diablo (Freud)",
+   "part_number": "DR70104",
+   "name": "25/64\" Specialty Key Hole Bit",
+   "family": "keyhole",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.390625,
+   "shank": 0.25,
+   "cut_length": 0.4375,
+   "oal": 1.625,
+   "flutes": 2,
+   "max_rpm": 24000,
+   "gcarve_tool": {
+    "name": "Diablo (Freud) DR70104 Keyhole 25/64 in",
+    "kind": "EndMill",
+    "diameter": 0.39062,
+    "flutes": 2
+   },
+   "sources": [
+    "https://diablotools.com/products/DR70104",
+    "https://diablotools.com/api/v2/products/search/multi"
+   ],
+   "notes": "Neck diameter 3/16\", minor height 1/4\""
+  },
+  {
+   "id": "diablo-dr18106",
+   "maker": "Diablo (Freud)",
+   "part_number": "DR18106",
+   "name": "3/16\" Round Nose Router Bit",
+   "family": "ball-nose",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.25,
+   "cut_length": 0.375,
+   "oal": 1.8125,
+   "flutes": 2,
+   "tip_radius": 0.1875,
+   "max_rpm": 24000,
+   "gcarve_tool": {
+    "name": "Diablo (Freud) DR18106 Ball Nose 3/8 in",
+    "kind": "BallNose",
+    "diameter": 0.375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://diablotools.com/products/DR18106",
+    "https://diablotools.com/api/v2/products/search/multi"
+   ]
+  },
+  {
+   "id": "diablo-dr04132",
+   "maker": "Diablo (Freud)",
+   "part_number": "DR04132",
+   "name": "1/2\" Double Flute Straight Router Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "oal": 2.125,
+   "flutes": 2,
+   "max_rpm": 24000,
+   "gcarve_tool": {
+    "name": "Diablo (Freud) DR04132 Straight 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://diablotools.com/products/DR04132",
+    "https://diablotools.com/api/v2/products/search/multi"
+   ]
+  },
+  {
+   "id": "diablo-dr12128",
+   "maker": "Diablo (Freud)",
+   "part_number": "DR12128",
+   "name": "1/2\" Double Flute Straight Router Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 2.0,
+   "oal": 4.125,
+   "flutes": 2,
+   "max_rpm": 24000,
+   "gcarve_tool": {
+    "name": "Diablo (Freud) DR12128 Straight 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://diablotools.com/products/DR12128",
+    "https://diablotools.com/api/v2/products/search/multi"
+   ]
+  },
+  {
+   "id": "diablo-dr20104",
+   "maker": "Diablo (Freud)",
+   "part_number": "DR20104",
+   "name": "1/2\" V Groove Router Bit",
+   "family": "v-bit",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.25,
+   "cut_length": 0.4375,
+   "oal": 1.75,
+   "flutes": 2,
+   "angle_deg": 90.0,
+   "max_rpm": 24000,
+   "gcarve_tool": {
+    "name": "Diablo (Freud) DR20104 V-Bit 1/2 in 90\u00b0",
+    "kind": "VBit",
+    "diameter": 0.5,
+    "angle": 90.0,
+    "flutes": 2
+   },
+   "sources": [
+    "https://diablotools.com/products/DR20104",
+    "https://diablotools.com/api/v2/products/search/multi"
+   ]
+  },
+  {
+   "id": "diablo-dr04124",
+   "maker": "Diablo (Freud)",
+   "part_number": "DR04124",
+   "name": "3/8\" Double Flute Straight Router Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "oal": 2.5,
+   "flutes": 2,
+   "max_rpm": 24000,
+   "gcarve_tool": {
+    "name": "Diablo (Freud) DR04124 Straight 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://diablotools.com/products/DR04124",
+    "https://diablotools.com/api/v2/products/search/multi"
+   ]
+  },
+  {
+   "id": "diablo-dr04108",
+   "maker": "Diablo (Freud)",
+   "part_number": "DR04108",
+   "name": "1/4\" Double Flute Straight Router Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "oal": 2.5,
+   "flutes": 2,
+   "max_rpm": 24000,
+   "gcarve_tool": {
+    "name": "Diablo (Freud) DR04108 Straight 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://diablotools.com/products/DR04108",
+    "https://diablotools.com/api/v2/products/search/multi"
+   ]
+  },
+  {
+   "id": "diablo-dr18112",
+   "maker": "Diablo (Freud)",
+   "part_number": "DR18112",
+   "name": "3/8\" Round Nose Router Bit",
+   "family": "ball-nose",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.75,
+   "shank": 0.25,
+   "cut_length": 0.4375,
+   "oal": 2.0,
+   "flutes": 2,
+   "tip_radius": 0.375,
+   "max_rpm": 24000,
+   "gcarve_tool": {
+    "name": "Diablo (Freud) DR18112 Ball Nose 3/4 in",
+    "kind": "BallNose",
+    "diameter": 0.75,
+    "flutes": 2
+   },
+   "sources": [
+    "https://diablotools.com/products/DR18112",
+    "https://diablotools.com/api/v2/products/search/multi"
+   ]
+  },
+  {
+   "id": "diablo-dr16104",
+   "maker": "Diablo (Freud)",
+   "part_number": "DR16104",
+   "name": "3/4\" Mortising Router Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.75,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "oal": 2.0,
+   "flutes": 2,
+   "max_rpm": 24000,
+   "gcarve_tool": {
+    "name": "Diablo (Freud) DR16104 Straight 3/4 in",
+    "kind": "EndMill",
+    "diameter": 0.75,
+    "flutes": 2
+   },
+   "sources": [
+    "https://diablotools.com/products/DR16104",
+    "https://diablotools.com/api/v2/products/search/multi"
+   ]
+  },
+  {
+   "id": "diablo-dr16100",
+   "maker": "Diablo (Freud)",
+   "part_number": "DR16100",
+   "name": "1/2\" Mortising Router Bit",
+   "family": "straight",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "oal": 2.0,
+   "flutes": 2,
+   "max_rpm": 24000,
+   "gcarve_tool": {
+    "name": "Diablo (Freud) DR16100 Straight 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://diablotools.com/products/DR16100",
+    "https://diablotools.com/api/v2/products/search/multi"
+   ]
+  }
+ ]
+}

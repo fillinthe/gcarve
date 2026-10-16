@@ -1,0 +1,1613 @@
+{
+ "maker": "AXYZ",
+ "website": "https://www.axyz.com",
+ "machines": [
+  {
+   "id": "axyz-innovator-4x4",
+   "maker": "AXYZ",
+   "model": "Innovator",
+   "variant": "4x4",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48,
+    "y": 49,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 1244,
+    "z": null
+   },
+   "gantry_clearance_in": 6,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "AXYZ A2MC (Smart Console)",
+     "gcarve_post": "axyz-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 3-position automatic tool changer"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.axyz.com/us/en/routers/innovator/"
+   ],
+   "notes": "Published width x length (likely table/process size). Helical rack and pinion, integrated servos, welded steel frame. Options: vision system, knife cutters, spray mister."
+  },
+  {
+   "id": "axyz-innovator-5x8",
+   "maker": "AXYZ",
+   "model": "Innovator",
+   "variant": "5x8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 96,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 2438,
+    "z": null
+   },
+   "gantry_clearance_in": 6,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "AXYZ A2MC (Smart Console)",
+     "gcarve_post": "axyz-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 3-position automatic tool changer"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.axyz.com/us/en/routers/innovator/"
+   ],
+   "notes": "Published width x length (likely table/process size). Helical rack and pinion, integrated servos, welded steel frame. Options: vision system, knife cutters, spray mister."
+  },
+  {
+   "id": "axyz-innovator-5x10",
+   "maker": "AXYZ",
+   "model": "Innovator",
+   "variant": "5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3050,
+    "z": null
+   },
+   "gantry_clearance_in": 6,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "AXYZ A2MC (Smart Console)",
+     "gcarve_post": "axyz-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 3-position automatic tool changer"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.axyz.com/us/en/routers/innovator/"
+   ],
+   "notes": "Published width x length (likely table/process size). Helical rack and pinion, integrated servos, welded steel frame. Options: vision system, knife cutters, spray mister."
+  },
+  {
+   "id": "axyz-infinite-4000",
+   "maker": "AXYZ",
+   "model": "Infinite",
+   "variant": "4000 Series",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": null,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": null,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "AXYZ A2MC (Smart Console)",
+     "gcarve_post": "axyz-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: ATC with 7, 10, 14 or 21 positions; twin-head option"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.axyz.com/us/en/routers/infinite/",
+    "https://www.axyz.com/us/en/router-accessories/"
+   ],
+   "notes": "Width 60 in, length 4-50 ft; gantry clearance 6-18 in. Other widths: 2000 (28 in), 5000 (72.5), 6000 (85), 8000 (103), 10000 (128 in). Spindles 5-15 HP. Standard multi-zone aluminum vacuum deck."
+  },
+  {
+   "id": "axyz-infinite-hd",
+   "maker": "AXYZ",
+   "model": "Infinite HD",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 75000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "AAG MOVE CNC",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.axyz.com/us/en/routers/infinite-hd/"
+   ],
+   "notes": "'Top speeds of 3,000 IPM'. Helical racks, servos with absolute encoders, stress-relieved gantry; aimed at aluminum/non-ferrous. Sizes not published; spindle options up to 40K RPM."
+  },
+  {
+   "id": "axyz-trident-4000",
+   "maker": "AXYZ",
+   "model": "Trident",
+   "variant": "4000 Series",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": null,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": null,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2200,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 55000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "AXYZ A2MC (Smart Console)",
+     "gcarve_post": "axyz-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": 3,
+    "notes": "Standard 3 devices: spindle, tangential knife, oscillating knife; ATC available"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool tip sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.axyz.com/us/en/routers/trident/"
+   ],
+   "notes": "Width 60 in, length 8-24 ft (5000: 72.5 in, 6000: 85 in). Knife-head Z traverses at 1,000 IPM. Vision system (AVS) and knife calibrator."
+  },
+  {
+   "id": "axyz-infinite-2000",
+   "maker": "AXYZ",
+   "model": "Infinite",
+   "variant": "2000 Series",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 28.0,
+    "y": null,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 710,
+    "y": null,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "AXYZ A2MC (Smart Console)",
+     "gcarve_post": "axyz-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: automatic tool changer; twin-head option"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.axyz.com/us/en/routers/infinite/"
+   ],
+   "notes": "Published width 28 in (710 mm); length 4 ft to 50 ft (custom). Gantry clearance 6-18 in. Spindles 5-15 HP; tangential or oscillating knife options. Width/length are the maker's machine size figures (cutting travel not published separately).",
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   }
+  },
+  {
+   "id": "axyz-infinite-5000",
+   "maker": "AXYZ",
+   "model": "Infinite",
+   "variant": "5000 Series",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 72.4,
+    "y": null,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1840,
+    "y": null,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "AXYZ A2MC (Smart Console)",
+     "gcarve_post": "axyz-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: automatic tool changer; twin-head option"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.axyz.com/us/en/routers/infinite/"
+   ],
+   "notes": "Published width 72.5 in (1840 mm); length 10 ft to 50 ft (custom). Gantry clearance 6-18 in. Spindles 5-15 HP; tangential or oscillating knife options. Width/length are the maker's machine size figures (cutting travel not published separately).",
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   }
+  },
+  {
+   "id": "axyz-infinite-6000",
+   "maker": "AXYZ",
+   "model": "Infinite",
+   "variant": "6000 Series",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 85.0,
+    "y": null,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2159,
+    "y": null,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "AXYZ A2MC (Smart Console)",
+     "gcarve_post": "axyz-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: automatic tool changer; twin-head option"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.axyz.com/us/en/routers/infinite/"
+   ],
+   "notes": "Published width 85 in (2159 mm); length 10 ft to 50 ft (custom). Gantry clearance 6-18 in. Spindles 5-15 HP; tangential or oscillating knife options. Width/length are the maker's machine size figures (cutting travel not published separately).",
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   }
+  },
+  {
+   "id": "axyz-infinite-8000",
+   "maker": "AXYZ",
+   "model": "Infinite",
+   "variant": "8000 Series",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 103.0,
+    "y": null,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2616,
+    "y": null,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "AXYZ A2MC (Smart Console)",
+     "gcarve_post": "axyz-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: automatic tool changer; twin-head option"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.axyz.com/us/en/routers/infinite/"
+   ],
+   "notes": "Published width 103 in (2616 mm); length 10 ft to 50 ft (custom). Gantry clearance 6-18 in. Spindles 5-15 HP; tangential or oscillating knife options. Width/length are the maker's machine size figures (cutting travel not published separately).",
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   }
+  },
+  {
+   "id": "axyz-infinite-10000",
+   "maker": "AXYZ",
+   "model": "Infinite",
+   "variant": "10000 Series",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 128.0,
+    "y": null,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3251,
+    "y": null,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "AXYZ A2MC (Smart Console)",
+     "gcarve_post": "axyz-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: automatic tool changer; twin-head option"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.axyz.com/us/en/routers/infinite/"
+   ],
+   "notes": "Published width 128 in (3251 mm); length 10 ft to 50 ft (custom). Gantry clearance 6-18 in. Spindles 5-15 HP; tangential or oscillating knife options. Width/length are the maker's machine size figures (cutting travel not published separately).",
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   }
+  },
+  {
+   "id": "axyz-trident-5000",
+   "maker": "AXYZ",
+   "model": "Trident",
+   "variant": "5000 Series",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 72.4,
+    "y": null,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1840,
+    "y": null,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2200,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 55880,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "AXYZ A2MC (Smart Console)",
+     "gcarve_post": "axyz-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Standard 3-device head: spindle + tangential knife + oscillating knife; automatic tool changing"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool tip sensor / knife calibrator"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.axyz.com/us/en/routers/trident/"
+   ],
+   "notes": "Published width 72.5 in (1840 mm), length 10-24 ft. X/Y traverse 2200 IPM; knife-head Z 1000 IPM. AXYZ Vision System for print registration. Helical rack and pinion.",
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "axyz-trident-6000",
+   "maker": "AXYZ",
+   "model": "Trident",
+   "variant": "6000 Series",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 85.0,
+    "y": null,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2159,
+    "y": null,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2200,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 55880,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "AXYZ A2MC (Smart Console)",
+     "gcarve_post": "axyz-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Standard 3-device head: spindle + tangential knife + oscillating knife; automatic tool changing"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool tip sensor / knife calibrator"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.axyz.com/us/en/routers/trident/"
+   ],
+   "notes": "Published width 85 in (2159 mm), length 10-24 ft. X/Y traverse 2200 IPM; knife-head Z 1000 IPM. AXYZ Vision System for print registration. Helical rack and pinion.",
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "axyz-panelbuilder-5000",
+   "maker": "AXYZ",
+   "model": "PANELBuilder",
+   "variant": "5000 Series",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 72.4,
+    "y": null,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1840,
+    "y": null,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50800,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "AXYZ A2MC (Smart Console)",
+     "gcarve_post": "axyz-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "automatic tool changing (positions not published); saw option"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.axyz.com/us/en/routers/panelbuilder/"
+   ],
+   "notes": "Cladding/ACM panel router. Published width 72.5 in (1840 mm), length 10-50 ft. Traverse 2000 IPM, helical rack and pinion, pendulum processing, optional stud welder.",
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "axyz-panelbuilder-6000",
+   "maker": "AXYZ",
+   "model": "PANELBuilder",
+   "variant": "6000 Series",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 85.0,
+    "y": null,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2159,
+    "y": null,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50800,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "AXYZ A2MC (Smart Console)",
+     "gcarve_post": "axyz-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "automatic tool changing (positions not published); saw option"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.axyz.com/us/en/routers/panelbuilder/"
+   ],
+   "notes": "Cladding/ACM panel router. Published width 85 in (2159 mm), length 10-50 ft. Traverse 2000 IPM, helical rack and pinion, pendulum processing, optional stud welder.",
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "axyz-panelbuilder-8000",
+   "maker": "AXYZ",
+   "model": "PANELBuilder",
+   "variant": "8000 Series",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 103.0,
+    "y": null,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2616,
+    "y": null,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50800,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "AXYZ A2MC (Smart Console)",
+     "gcarve_post": "axyz-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "automatic tool changing (positions not published); saw option"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.axyz.com/us/en/routers/panelbuilder/"
+   ],
+   "notes": "Cladding/ACM panel router. Published width 103 in (2616 mm), length 10-50 ft. Traverse 2000 IPM, helical rack and pinion, pendulum processing, optional stud welder.",
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "axyz-woodworker-4000-10ft",
+   "maker": "AXYZ",
+   "model": "WoodWorker",
+   "variant": "4000 Series 10 ft",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60.0,
+    "y": 120.0,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": 10,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "15 HP HSK spindle (option)",
+     "power_kw": null,
+     "power_hp": 15,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "AXYZ A2MC (Smart Console)",
+     "gcarve_post": "axyz-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC; multi-head configuration with optional 9-position drill block"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.axyz.com/us/en/routers/woodworker/"
+   ],
+   "notes": "Published width 60 in x length 10 ft (1524 x 3048 mm). Standard 10 in (254 mm) gantry clearance, multi-zone aluminium vacuum deck, servo motors with direct drive and helical racks; drill banks, label printer, rotary axis and aggregates optional.",
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   }
+  },
+  {
+   "id": "axyz-woodworker-4000-12ft",
+   "maker": "AXYZ",
+   "model": "WoodWorker",
+   "variant": "4000 Series 12 ft",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60.0,
+    "y": 144.0,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3657,
+    "z": null
+   },
+   "gantry_clearance_in": 10,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "15 HP HSK spindle (option)",
+     "power_kw": null,
+     "power_hp": 15,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "AXYZ A2MC (Smart Console)",
+     "gcarve_post": "axyz-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC; multi-head configuration with optional 9-position drill block"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.axyz.com/us/en/routers/woodworker/"
+   ],
+   "notes": "Published width 60 in x length 12 ft (1524 x 3657 mm). Standard 10 in (254 mm) gantry clearance, multi-zone aluminium vacuum deck, servo motors with direct drive and helical racks; drill banks, label printer, rotary axis and aggregates optional.",
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   }
+  },
+  {
+   "id": "axyz-woodworker-5000-10ft",
+   "maker": "AXYZ",
+   "model": "WoodWorker",
+   "variant": "5000 Series 10 ft",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 72.4,
+    "y": 120.0,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1840,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": 10,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "15 HP HSK spindle (option)",
+     "power_kw": null,
+     "power_hp": 15,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "AXYZ A2MC (Smart Console)",
+     "gcarve_post": "axyz-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC; multi-head configuration with optional 9-position drill block"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.axyz.com/us/en/routers/woodworker/"
+   ],
+   "notes": "Published width 72.5 in x length 10 ft (1840 x 3048 mm). Standard 10 in (254 mm) gantry clearance, multi-zone aluminium vacuum deck, servo motors with direct drive and helical racks; drill banks, label printer, rotary axis and aggregates optional.",
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   }
+  },
+  {
+   "id": "axyz-woodworker-5000-12ft",
+   "maker": "AXYZ",
+   "model": "WoodWorker",
+   "variant": "5000 Series 12 ft",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 72.4,
+    "y": 144.0,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1840,
+    "y": 3657,
+    "z": null
+   },
+   "gantry_clearance_in": 10,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "15 HP HSK spindle (option)",
+     "power_kw": null,
+     "power_hp": 15,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "AXYZ A2MC (Smart Console)",
+     "gcarve_post": "axyz-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC; multi-head configuration with optional 9-position drill block"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.axyz.com/us/en/routers/woodworker/"
+   ],
+   "notes": "Published width 72.5 in x length 12 ft (1840 x 3657 mm). Standard 10 in (254 mm) gantry clearance, multi-zone aluminium vacuum deck, servo motors with direct drive and helical racks; drill banks, label printer, rotary axis and aggregates optional.",
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   }
+  },
+  {
+   "id": "axyz-woodworker-5000-22ft",
+   "maker": "AXYZ",
+   "model": "WoodWorker",
+   "variant": "5000 Series 22 ft",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 72.4,
+    "y": 264.0,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1840,
+    "y": 6706,
+    "z": null
+   },
+   "gantry_clearance_in": 10,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "15 HP HSK spindle (option)",
+     "power_kw": null,
+     "power_hp": 15,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "AXYZ A2MC (Smart Console)",
+     "gcarve_post": "axyz-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC; multi-head configuration with optional 9-position drill block"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.axyz.com/us/en/routers/woodworker/"
+   ],
+   "notes": "Published width 72.5 in x length 22 ft (1840 x 6706 mm). Standard 10 in (254 mm) gantry clearance, multi-zone aluminium vacuum deck, servo motors with direct drive and helical racks; drill banks, label printer, rotary axis and aggregates optional.",
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   }
+  },
+  {
+   "id": "axyz-woodworker-6000-10ft",
+   "maker": "AXYZ",
+   "model": "WoodWorker",
+   "variant": "6000 Series 10 ft",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 85.0,
+    "y": 120.0,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2159,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": 10,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "15 HP HSK spindle (option)",
+     "power_kw": null,
+     "power_hp": 15,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "AXYZ A2MC (Smart Console)",
+     "gcarve_post": "axyz-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC; multi-head configuration with optional 9-position drill block"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.axyz.com/us/en/routers/woodworker/"
+   ],
+   "notes": "Published width 85 in x length 10 ft (2159 x 3048 mm). Standard 10 in (254 mm) gantry clearance, multi-zone aluminium vacuum deck, servo motors with direct drive and helical racks; drill banks, label printer, rotary axis and aggregates optional.",
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   }
+  },
+  {
+   "id": "axyz-woodworker-6000-20ft",
+   "maker": "AXYZ",
+   "model": "WoodWorker",
+   "variant": "6000 Series 20 ft",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 85.0,
+    "y": 240.0,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2159,
+    "y": 6096,
+    "z": null
+   },
+   "gantry_clearance_in": 10,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "15 HP HSK spindle (option)",
+     "power_kw": null,
+     "power_hp": 15,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "AXYZ A2MC (Smart Console)",
+     "gcarve_post": "axyz-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC; multi-head configuration with optional 9-position drill block"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.axyz.com/us/en/routers/woodworker/"
+   ],
+   "notes": "Published width 85 in x length 20 ft (2159 x 6096 mm). Standard 10 in (254 mm) gantry clearance, multi-zone aluminium vacuum deck, servo motors with direct drive and helical racks; drill banks, label printer, rotary axis and aggregates optional.",
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   }
+  },
+  {
+   "id": "axyz-woodworker-6000-22ft",
+   "maker": "AXYZ",
+   "model": "WoodWorker",
+   "variant": "6000 Series 22 ft",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 85.0,
+    "y": 264.0,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2159,
+    "y": 6706,
+    "z": null
+   },
+   "gantry_clearance_in": 10,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "15 HP HSK spindle (option)",
+     "power_kw": null,
+     "power_hp": 15,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "AXYZ A2MC (Smart Console)",
+     "gcarve_post": "axyz-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC; multi-head configuration with optional 9-position drill block"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.axyz.com/us/en/routers/woodworker/"
+   ],
+   "notes": "Published width 85 in x length 22 ft (2159 x 6706 mm). Standard 10 in (254 mm) gantry clearance, multi-zone aluminium vacuum deck, servo motors with direct drive and helical racks; drill banks, label printer, rotary axis and aggregates optional.",
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   }
+  }
+ ]
+}

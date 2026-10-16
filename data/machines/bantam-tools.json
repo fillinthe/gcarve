@@ -1,0 +1,338 @@
+{
+ "maker": "Bantam Tools",
+ "website": "https://bantamtools.com",
+ "machines": [
+  {
+   "id": "bantam-tools-desktop-cnc",
+   "maker": "Bantam Tools",
+   "model": "Desktop CNC Milling Machine",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 7,
+    "y": 9,
+    "z": 3.3
+   },
+   "work_area_mm": {
+    "x": 178,
+    "y": 229,
+    "z": 83.8
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "250 W integrated spindle",
+     "power_kw": 0.25,
+     "power_hp": null,
+     "rpm_min": 10000,
+     "rpm_max": 28000,
+     "collet": "ER11 (to 1/4\")",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 250,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 6350,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Bantam Tools Milling Machine Software (USB)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool probing (built in)"
+   },
+   "z_zero": [
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "double-sided tape",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.bantamtools.com/products/bantam-tools-desktop-cnc-milling-machine",
+    "https://designlabs.lehigh.edu/bantam-cnc-mill"
+   ],
+   "notes": "Enclosed desktop mill with interlocks (overall 19.8 x 20.0 x 19.4 in). Max traverse 250 in/min (6350 mm/min), repeatability +/- 0.001 in, 1/4 in max shank. Build volume 7 x 9 x 3.3 in (178 x 229 x 83 mm, maker figure). Some lab pages list 3.5 in Z.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "bantam-tools-explorer",
+   "maker": "Bantam Tools",
+   "model": "Explorer CNC Milling Machine",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 6,
+    "y": 4,
+    "z": 2.75
+   },
+   "work_area_mm": {
+    "x": 152,
+    "y": 102,
+    "z": 69.8
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "200 W integrated spindle",
+     "power_kw": 0.2,
+     "power_hp": null,
+     "rpm_min": 10000,
+     "rpm_max": 23000,
+     "collet": "ER11 (to 1/4\")",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 120,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 3048,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Bantam Tools Milling Machine Software (USB)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool probing (built in)"
+   },
+   "z_zero": [
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "double-sided tape",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://bantamtools.com/products/bantam-tools-explorer-cnc-milling-machine"
+   ],
+   "notes": "Build volume 6 x 4 x 2.75 in (153 x 102 x 70 mm). Max traverse 120 in/min (3049 mm/min), repeatability +/- 0.001 in, 1/4 in max shank, 42 lb, 15.75 x 10.25 x 15.25 in.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "bantam-tools-othermill-v2",
+   "maker": "Bantam Tools",
+   "model": "Othermill",
+   "variant": "V2",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 5.5,
+    "y": 4.5,
+    "z": 1.6
+   },
+   "work_area_mm": {
+    "x": 140,
+    "y": 114,
+    "z": 40.6
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "integrated spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 10500,
+     "rpm_max": 16400,
+     "collet": "ER11",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 60,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 1524,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Otherplan / Bantam Tools software (USB)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool probing (built in)"
+   },
+   "z_zero": [
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "double-sided tape"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://designlabs.lehigh.edu/othermill-cnc-mill",
+    "https://develop3d.com/features/compact-cnc-machines/"
+   ],
+   "notes": "Other Machine Co. (later Bantam Tools) desktop PCB/precision mill, $2,199. Working volume 5.5 x 4.5 x 1.6 in with the spoilboard removed (1.35 in Z with it). Max XYZ traverse 60 in/min, resolution 0.001 in. Software Otherplan (later Bantam Tools software).",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "bantam-tools-othermill-pro",
+   "maker": "Bantam Tools",
+   "model": "Othermill Pro",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": null,
+    "y": null,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": null,
+    "y": null,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "integrated spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 8500,
+     "rpm_max": 26000,
+     "collet": "ER11, 1/8\" (included)",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 100,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 2540,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Otherplan / Bantam Tools software (USB)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool probing (built in)"
+   },
+   "z_zero": [
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "double-sided tape"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.adafruit.com/product/2323",
+    "https://www.autodesk.com/products/fusion-360/blog/new-cnc-mill-scene-othermill-pro/"
+   ],
+   "notes": "Successor to the Othermill (higher spindle speed, faster rapids, stiffer build); predecessor of the Bantam Tools Desktop PCB Milling Machine. Max XYZ traverse 100 in/min (2,600 mm/min), accuracy < 0.003 in per 6 in, frame 10.25 x 10 x 12.75 in, USB 2.0, Otherplan software. Working volume not on the fetched pages (lab pages quote 5.5 x 4.5 x 1.6 in, same as the Othermill).",
+   "estimated": {
+    "rapid_mm_min": "converted from IPM"
+   }
+  }
+ ]
+}

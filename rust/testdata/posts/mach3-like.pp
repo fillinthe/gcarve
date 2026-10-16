@@ -1,0 +1,39 @@
+POST_NAME = "Mach3-like (mm)(*.txt)"
+FILE_EXTENSION = "txt"
+UNITS = "MM"
+SUBSTITUTE = "({)}"
+LINE_NUMBER_START = 100
+LINE_NUMBER_INCREMENT = 5
+VAR LINE_NUMBER = [N|A|N|1.0]
+VAR X_POSITION = [X|C|X|1.3]
+VAR Y_POSITION = [Y|C|Y|1.3]
+VAR Z_POSITION = [Z|C|Z|1.3]
+VAR ARC_CENTRE_I_INC_POSITION = [I|A|I|1.3]
+VAR ARC_CENTRE_J_INC_POSITION = [J|A|J|1.3]
+VAR FEED_RATE = [F|A|F|1.1]
+VAR SPINDLE_SPEED = [S|A|S|1.0]
+VAR X_HOME_POSITION = [XH|A|X|1.3]
+begin HEADER
+"[N]([TOOL_NAME])"
+"[N]G21 G90"
+"[N]M3[S]"
+end
+begin RAPID_MOVE
+"[N]G0[X][Y][Z]"
+end
+begin FIRST_FEED_MOVE
+"[N]G1[X][Y][Z][F]"
+end
+begin FEED_MOVE
+"[N]G1[X][Y][Z]"
+end
+begin PLUNGE_MOVE
+"[N]G1[Z][F]"
+end
+begin FEED_RATE_CHANGE
+"[N][F]"
+end
+begin FOOTER
+"[N]G0[XH]"
+"[N]M30"
+end

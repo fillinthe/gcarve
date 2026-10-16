@@ -1,0 +1,85 @@
+{
+ "maker": "Langmuir Systems",
+ "website": "https://www.langmuirsystems.com",
+ "machines": [
+  {
+   "id": "langmuir-mr-1",
+   "maker": "Langmuir Systems",
+   "model": "MR-1 Gantry Mill",
+   "variant": null,
+   "years": "2022-",
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 23.0,
+    "y": 21.8,
+    "z": 6.1
+   },
+   "work_area_mm": {
+    "x": 584,
+    "y": 554,
+    "z": 155
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "MR-1 spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 8000,
+     "collet": "ER20",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Langmuir MR-1 controller (optional touchscreen control PC)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic probing (option)"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vise"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://biodevicefoundry.bme.ubc.ca/equipment/langmuir-mr1/",
+    "https://store.langmuirsystems.com/products/mr-1-cnc-gantry-mill",
+    "https://toolguyd.com/langmuir-mr1-cnc-mill/",
+    "https://assets.langmuirsystems.com/img/mr1/MR1_Brochure.pdf"
+   ],
+   "notes": "Steel gantry-style 3-axis CNC mill for aluminum, steel and titanium (also plastics/wood), launched about 2022, $4,495 base. 20 x 20.25 in table, travels 23.0 x 21.8 x 6.1 in (lab listing; Langmuir pages were behind a bot check). About 100 IPM cutting per review. Options: touchscreen control PC, higher-power drive motors, automatic probing. Langmuir's CrossFire tables are plasma (not included).",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  }
+ ]
+}

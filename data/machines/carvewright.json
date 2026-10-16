@@ -1,0 +1,97 @@
+{
+ "maker": "CarveWright",
+ "website": "https://carvewright.com",
+ "machines": [
+  {
+   "id": "carvewright-raven",
+   "maker": "CarveWright",
+   "model": "Raven CNC",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 15.5,
+    "y": 144,
+    "z": 5.5
+   },
+   "work_area_mm": {
+    "x": 394,
+    "y": 3658,
+    "z": 140
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Raven brushless spindle motor (675 W continuous)",
+     "power_kw": 0.675,
+     "power_hp": 0.91,
+     "rpm_min": 3000,
+     "rpm_max": 22000,
+     "collet": "CarveTight chuck",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 360,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 9144,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 558,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 14173,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "ServoSmart 2 (proprietary, projects compiled in CarveWright Designer to USB)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "feed-through rollers (AccuTrack)"
+    ],
+    "max_material_thickness_in": 5.5
+   },
+   "sources": [
+    "https://carvewright.com/meet-raven/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "max_feed_ipm": "maker gives carving speed 6 in/s",
+    "rapid_ipm": "maker gives jogging speed 9.3 in/s"
+   },
+   "notes": "Feed-through tabletop carver: board width 15.5 in, thickness 5.5 in, length up to 12 ft (Y = board length). Runs only CarveWright Designer jobs; no G-code input, so no GCarve post. Servo motors (Mabuchi) with encoder feedback."
+  }
+ ]
+}

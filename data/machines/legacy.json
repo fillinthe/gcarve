@@ -1,0 +1,517 @@
+{
+ "maker": "Legacy Woodworking Machinery",
+ "website": "https://legacywoodworking.com",
+ "machines": [
+  {
+   "id": "legacy-maverick-4x4",
+   "maker": "Legacy Woodworking Machinery",
+   "model": "Maverick",
+   "variant": "4x4",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 50,
+    "y": 50,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 1270,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 HP (4.5 kW) air-cooled spindle",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "6 HP (4.5 kW) ATC spindle (ISO30, ER32)",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30 / ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1800,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 45720,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Legacy CNC controller (Delta CNC controller; horizontal, vertical and turning stations under one interface)",
+     "gcarve_post": "delta-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "ATC spindle option with 7 tool holders: see legacy-maverick-4x4-atc"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Smart Tool zeroing pad (touch-off, tool length library)"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://legacywoodworking.com/cnc-systems/maverick-4x4/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Multi-station machine: horizontal (3-axis table), Y-axis and X-axis vertical stations (joinery, 0-90 deg table) and a turning station (4th axis). Horizontal work area 50 x 50 in; turning station 48 in long, 10 in swing; vertical station 11 x 28 x 44 in. Feed rates up to 1800 in/min. Z travel, drives and motors not published. 220 V 50 A single phase."
+  },
+  {
+   "id": "legacy-maverick-4x4-atc",
+   "maker": "Legacy Woodworking Machinery",
+   "model": "Maverick ATC",
+   "variant": "4x4",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 50,
+    "y": 50,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 1270,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 HP (4.5 kW) ATC spindle (ISO30, ER32)",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30 / ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1800,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 45720,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Legacy CNC controller (Delta CNC controller; horizontal, vertical and turning stations under one interface)",
+     "gcarve_post": "delta-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 7,
+    "notes": "7 tool holders"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Smart Tool zeroing pad (touch-off, tool length library)"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://legacywoodworking.com/cnc-systems/maverick-4x4/"
+   ],
+   "estimated": {
+    "tool_change.kind": "magazine type not stated; linear assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Multi-station machine: horizontal (3-axis table), Y-axis and X-axis vertical stations (joinery, 0-90 deg table) and a turning station (4th axis). Maverick 4x4 with the optional ATC spindle. Feed rates up to 1800 in/min."
+  },
+  {
+   "id": "legacy-maverick-4x8-atc",
+   "maker": "Legacy Woodworking Machinery",
+   "model": "Maverick ATC",
+   "variant": "4x8",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 50,
+    "y": 98,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 2489,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 HP (4.5 kW) ATC spindle (ISO30, ER32)",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30 / ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1800,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 45720,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Legacy CNC controller (Delta CNC controller; horizontal, vertical and turning stations under one interface)",
+     "gcarve_post": "delta-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 7,
+    "notes": "7 tool positions, programs up to 12 tools"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Smart Tool zeroing pad (touch-off, tool length library)"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://legacywoodworking.com/cnc-systems/maverick-4x8/"
+   ],
+   "estimated": {
+    "tool_change.kind": "magazine type not stated; linear assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Multi-station machine: horizontal (3-axis table), Y-axis and X-axis vertical stations (joinery, 0-90 deg table) and a turning station (4th axis). Horizontal work area 50 x 98 in; turning station 79 in long, 10 in swing; X-axis vertical 2 x 96 x 10 in. 4-zone vacuum (four regenerative blowers), pin locating. 220 V 50 A single phase."
+  },
+  {
+   "id": "legacy-renegade-5x10-atc",
+   "maker": "Legacy Woodworking Machinery",
+   "model": "Renegade ATC",
+   "variant": "5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 62,
+    "y": 122,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1575,
+    "y": 3099,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "11 HP (6.5 kW) ATC spindle (ISO30, ER32), 220 V 3-phase",
+     "power_kw": 6.5,
+     "power_hp": 11,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30 / ER32",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "6 HP (4.5 kW) ATC spindle (ISO30, ER32), 220 V 1-phase",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30 / ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1800,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 45720,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Legacy CNC controller (Delta CNC controller; horizontal, vertical and turning stations under one interface)",
+     "gcarve_post": "delta-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 9,
+    "notes": "9 tool holders"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Smart Tool zeroing pad (touch-off, tool length library)"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://legacywoodworking.com/cnc-systems/renegade-5x10/"
+   ],
+   "estimated": {
+    "tool_change.kind": "magazine type not stated; linear assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Multi-station machine: horizontal (3-axis table), Y-axis and X-axis vertical stations (joinery, 0-90 deg table) and a turning station (4th axis). Horizontal work area 62 x 122 in, welded frame, 5-zone vacuum; turning station 79 in long, 15 in swing (CNC bed angle). Feed rates up to 1800 in/min."
+  },
+  {
+   "id": "legacy-rogue-15x72-atc",
+   "maker": "Legacy Woodworking Machinery",
+   "model": "Rogue ATC",
+   "variant": "15x72",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": null,
+   "work_area_mm": null,
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "11 HP (6.5 kW) ATC spindle (ISO30, ER32), 220 V 3-phase",
+     "power_kw": 6.5,
+     "power_hp": 11,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30 / ER32",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "6 HP (4.5 kW) ATC spindle (ISO30, ER32), 220 V 1-phase",
+     "power_kw": 4.5,
+     "power_hp": 6,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ISO30 / ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Legacy CNC controller (Delta CNC controller; horizontal, vertical and turning stations under one interface)",
+     "gcarve_post": "delta-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 9,
+    "notes": "9 tool holders"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://legacywoodworking.com/cnc-systems/rogue-72/"
+   ],
+   "estimated": {
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   },
+   "notes": "Turning-focused machine: turning workstation 72 in long, 15 in swing, CNC bed angle 0-3.9 deg. Work area, footprint and speeds not published (page lists '?'); the page also swaps single/three phase between spindles."
+  },
+  {
+   "id": "legacy-roby1",
+   "maker": "Legacy Woodworking Machinery",
+   "model": "Roby1",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 27,
+    "y": 60,
+    "z": 5
+   },
+   "work_area_mm": {
+    "x": 686,
+    "y": 1524,
+    "z": 127
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled spindle",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 0,
+     "rpm_max": 18000,
+     "collet": "ER20",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "PC-based Mach3 motion control",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://legacywoodworking.com/cnc-systems/roby1/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "Compact multi-station machine: horizontal table 27 x 60 x 5 in, rotary turning 10.4 in dia x 52 in, vertical joinery 20 x 34 x 6 in. 20 mm profile rails, 16 mm ball screws, micro-stepping motors. The page's lower spec sheet (6 HP spindle, 50 x 50 in, Delta controller) appears copied from the Maverick; the feature section is used here."
+  }
+ ]
+}

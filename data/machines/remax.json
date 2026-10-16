@@ -1,0 +1,2248 @@
+{
+ "maker": "Jinan Remax Machinery",
+ "website": "https://www.remaxcnc.com",
+ "machines": [
+  {
+   "id": "remax-3030",
+   "maker": "Jinan Remax Machinery",
+   "model": "3030",
+   "variant": "mini, cast iron",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 11.81,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 300,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "1.5 kW water-cooled spindle",
+     "power_kw": 1.5,
+     "power_hp": 2.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 472.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    },
+    {
+     "name": "Mach3 (option)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    },
+    {
+     "name": "Weihong NcStudio (option)",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.remaxcnc.com/3030-Mini-Cnc-Router-Machine-pd41495363.html"
+   ],
+   "notes": "Whole machine cast iron; 2.2/3.2 kW spindle options.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "remax-4040",
+   "maker": "Jinan Remax Machinery",
+   "model": "4040",
+   "variant": "cast iron",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 14.96,
+    "y": 14.96,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 380,
+    "y": 380,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 472.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    },
+    {
+     "name": "Mach3 (option)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    },
+    {
+     "name": "Weihong NcStudio (option)",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.remaxcnc.com/4040-Small-Cnc-Machines-pd42672363.html"
+   ],
+   "notes": "Model 4040 has a 380 x 380 x 200 mm working area.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "remax-4040-mini",
+   "maker": "Jinan Remax Machinery",
+   "model": "4040 mini",
+   "variant": "table moving",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 15.75,
+    "z": 5.91
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 400,
+    "z": 150
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "1.5 kW water-cooled spindle",
+     "power_kw": 1.5,
+     "power_hp": 2.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.remaxcnc.com/Remax-4040-Mini-Metal-Engraving-Machinery-pd784268388.html"
+   ],
+   "notes": "Moving-table desktop metal engraver.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "remax-6060",
+   "maker": "Jinan Remax Machinery",
+   "model": "6060",
+   "variant": "cast iron",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 23.62,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 600,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 472.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    },
+    {
+     "name": "Mach3 (option)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    },
+    {
+     "name": "Weihong NcStudio (option)",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.remaxcnc.com/6060-3-Axis-CNC-Router-Machine-pd43318253.html"
+   ],
+   "notes": null,
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "remax-6060-table-moving",
+   "maker": "Jinan Remax Machinery",
+   "model": "6060",
+   "variant": "table moving metal",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 23.62,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 600,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "1.5 kW water-cooled spindle",
+     "power_kw": 1.5,
+     "power_hp": 2.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "3 kW water-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 394.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 10000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 630.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 16000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    },
+    {
+     "name": "Mach3 (option)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    },
+    {
+     "name": "Weihong NcStudio (option)",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.remaxcnc.com/small-6060-metal-engraving-machinery-cnc-router-machine-pd773756088.html"
+   ],
+   "notes": null,
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "remax-6090",
+   "maker": "Jinan Remax Machinery",
+   "model": "6090",
+   "variant": "cast iron",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 35.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 900,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW water-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 472.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    },
+    {
+     "name": "Mach3 (option)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    },
+    {
+     "name": "Weihong NcStudio (option)",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.remaxcnc.com/6090-Cnc-Engraving-Machine-For-Metal-pd44107253.html"
+   ],
+   "notes": null,
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "remax-6090-cast-iron-ncstudio",
+   "maker": "Jinan Remax Machinery",
+   "model": "6090",
+   "variant": "whole machine cast iron",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 35.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 900,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3.2 kW water-cooled spindle",
+     "power_kw": 3.2,
+     "power_hp": 4.3,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Weihong NcStudio",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Mach3 (option)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.remaxcnc.com/6090-Whole-Machine-Cast-by-Iron-Metal-CNC-Router-Machine-pd776555088.html"
+   ],
+   "notes": "Iron T-slot moving table; Leadshine hybrid servo.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "remax-6090-4-axis",
+   "maker": "Jinan Remax Machinery",
+   "model": "6090 4 axis",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 35.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 900,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "3.2 kW water-cooled spindle",
+     "power_kw": 3.2,
+     "power_hp": 4.3,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "RichAuto DSP A18",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.remaxcnc.com/Remax-6090-4-Axis-Wood-Cnc-Router-Machine-pd561827358.html"
+   ],
+   "notes": "Z 200 or 300 mm; 4th rotary 100/200 mm.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "remax-6012-4-axis",
+   "maker": "Jinan Remax Machinery",
+   "model": "6012",
+   "variant": "4-axis cast iron",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 47.24,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 1200,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4.5 kW air-cooled spindle",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 787.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 984.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A18",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    },
+    {
+     "name": "Mach3 (option)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    },
+    {
+     "name": "Weihong NcStudio (option)",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.remaxcnc.com/600x1200mm-4-Axis-Cnc-Router-Machine-with-Rotary-Axis-pd40618253.html"
+   ],
+   "notes": "Cast-iron bed; Yaskawa servos; rotary axis 200 x 1200 mm.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "remax-6090-atc",
+   "maker": "Jinan Remax Machinery",
+   "model": "6090 ATC",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 35.43,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 900,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "5.5 kW water-cooled spindle",
+     "power_kw": 5.5,
+     "power_hp": 7.4,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "BT30",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 787.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1575.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "DSP A57",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Mach3 (option)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    },
+    {
+     "name": "Weihong NcStudio (option)",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 5,
+    "notes": "5-tool ATC"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.remaxcnc.com/Small-CNC-Router-6090-with-ATC-System-pd48407143.html"
+   ],
+   "notes": "Leadshine servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "remax-9014-atc",
+   "maker": "Jinan Remax Machinery",
+   "model": "9014",
+   "variant": "linear ATC",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 35.43,
+    "y": 55.12,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 900,
+    "y": 1400,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "5.5 kW water-cooled spindle",
+     "power_kw": 5.5,
+     "power_hp": 7.4,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "BT30",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1181.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2362.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "DSP A57",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Mach3 (option)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    },
+    {
+     "name": "Weihong NcStudio (option)",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 6,
+    "notes": "Linear ATC, 6 tools"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.remaxcnc.com/9014-Linear-Atc-Cnc-Wood-Router-Machine-pd40497143.html"
+   ],
+   "notes": "Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "remax-1212",
+   "maker": "Jinan Remax Machinery",
+   "model": "1212",
+   "variant": "wood carving",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 47.24,
+    "y": 47.24,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1200,
+    "y": 1200,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4.5 kW air-cooled spindle",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER25",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 709.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 18000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 984.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    },
+    {
+     "name": "Mach3 (option)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    },
+    {
+     "name": "Weihong NcStudio (option)",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.remaxcnc.com/1200x1200mm-Cnc-Wood-Carving-Machine-pd40854924.html"
+   ],
+   "notes": null,
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "remax-1325",
+   "maker": "Jinan Remax Machinery",
+   "model": "1325",
+   "variant": "wood router",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4.5 kW air-cooled spindle",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER25",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 709.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 18000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 984.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Weihong NK105",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Mach3 (option)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.remaxcnc.com/1300x2500mm-Wood-Cnc-Router-Machine-pd46395204.html"
+   ],
+   "notes": "Product summary says NK105 with Leadshine servo; spec table says DSP (NcStudio/Mach3 options) and stepper motors.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "remax-2030",
+   "maker": "Jinan Remax Machinery",
+   "model": "2030",
+   "variant": "woodworking",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3.2 kW water-cooled spindle",
+     "power_kw": 3.2,
+     "power_hp": 4.3,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 709.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 18000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 984.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "DSP (make not stated)",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Mach3 (option)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    },
+    {
+     "name": "Weihong NcStudio (option)",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.remaxcnc.com/2000x3000mm-Woodworking-Cnc-Router-Machine-pd47003204.html"
+   ],
+   "notes": null,
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "remax-2040",
+   "maker": "Jinan Remax Machinery",
+   "model": "2040",
+   "variant": "3D wood",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3.2 kW water-cooled spindle",
+     "power_kw": 3.2,
+     "power_hp": 4.3,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 709.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 18000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 984.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    },
+    {
+     "name": "Mach3 (option)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    },
+    {
+     "name": "Weihong NcStudio (option)",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.remaxcnc.com/2000x4000mm-3d-Wood-Cnc-Router-Machine-pd47682204.html"
+   ],
+   "notes": null,
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "remax-1325-disc-atc",
+   "maker": "Jinan Remax Machinery",
+   "model": "1325 ATC",
+   "variant": "disc",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1181.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "Disc ATC (slots not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.remaxcnc.com/1325-Disc-Type-ATC-Wood-Cnc-Router-Machine-pd40876143.html"
+   ],
+   "notes": "Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "remax-2030-atc",
+   "maker": "Jinan Remax Machinery",
+   "model": "2030 ATC",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1181.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Weihong NK260",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-tool ATC"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.remaxcnc.com/2030-ATC-CNC-Wood-Carving-Machine-pd41366143.html"
+   ],
+   "notes": "Delta servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "remax-1020-4-axis-atc",
+   "maker": "Jinan Remax Machinery",
+   "model": "1020 4 axis ATC",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 39.37,
+    "y": 78.74,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 1000,
+    "y": 2000,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1181.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Weihong NK280",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (slots not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.remaxcnc.com/1000x2000mm-4-Axis-ATC-Cnc-Wood-Router-Machine-pd47548533.html"
+   ],
+   "notes": "Spindle rotates 270 deg; Delta servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated"
+   }
+  },
+  {
+   "id": "remax-2060-4-axis-atc",
+   "maker": "Jinan Remax Machinery",
+   "model": "2060 4 axis ATC",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 236.22,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 6000,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "5.5 kW water-cooled spindle",
+     "power_kw": 5.5,
+     "power_hp": 7.4,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "BT30",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1181.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Weihong NK280",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (slots not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.remaxcnc.com/2060-ATC-4-Axis-Cnc-Router-Machine-for-Wood-pd48628533.html"
+   ],
+   "notes": "Spindle rotates 270 deg; Delta servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated"
+   }
+  },
+  {
+   "id": "remax-8080-4-axis-atc",
+   "maker": "Jinan Remax Machinery",
+   "model": "8080 4 axis ATC",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 31.5,
+    "y": 31.5,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 800,
+    "y": 800,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ISO30",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1181.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Weihong NK280",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (slots not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.remaxcnc.com/8080-ATC-4-Axis-Wood-Cnc-Router-Machine-pd49038533.html"
+   ],
+   "notes": "Spindle rotates 270 deg; Delta servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated"
+   }
+  },
+  {
+   "id": "remax-1530-atc-angle-head",
+   "maker": "Jinan Remax Machinery",
+   "model": "1530 ATC",
+   "variant": "angle head",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW ATC spindle with angle head",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 787.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Weihong NK280B",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Mach3 (option)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 5,
+    "notes": "Linear tool holder, 5 sets"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.remaxcnc.com/1530-ATC-Angel-Head-CNC-Woodworking-Machine-pd768148388.html"
+   ],
+   "notes": "Angle head rotates 360 deg; Leadshine 750 W servos; Hiwin 25 rails.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "remax-1530-4-axis-foam",
+   "maker": "Jinan Remax Machinery",
+   "model": "1530 4 axis",
+   "variant": "foam",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 118.11,
+    "y": 59.06,
+    "z": 59.06
+   },
+   "work_area_mm": {
+    "x": 3000,
+    "y": 1500,
+    "z": 1500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 kW air-cooled spindle",
+     "power_kw": 6,
+     "power_hp": 8.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A18",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    },
+    {
+     "name": "Mach3 (option)",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    },
+    {
+     "name": "Weihong NK280 (option)",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.remaxcnc.com/Remax-1530-4-axis-Foam-Engraving-CNC-Router-Machine-pd780179088.html"
+   ],
+   "notes": "EPS/foam router; working area listed 3000 x 1500 x 1500 mm; rotary axis 1400 x 2500 mm; Leadshine 1500 W servos. Spec table spindle speed '0-1800' is a typo; text says 0-18000.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "remax-1325-atc-5-axis",
+   "maker": "Jinan Remax Machinery",
+   "model": "1325 ATC 5 axis",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 27.56
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 700
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco 10 kW water-cooled spindle",
+     "power_kw": 10,
+     "power_hp": 13.4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Weihong NK300",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "Disc ATC (slots not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.remaxcnc.com/1325-ATC-5-Axis-Wood-Cnc-Machine-pd553886948.html"
+   ],
+   "notes": null,
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "remax-1325-5-axis",
+   "maker": "Jinan Remax Machinery",
+   "model": "1325 5 axis",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 39.37
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 1000
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco 15 kW air-cooled spindle, AKEMDE 5-axis head",
+     "power_kw": 15,
+     "power_hp": 20.1,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Weihong NK300",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.remaxcnc.com/1325-5-Axis-Cnc-Milling-Machine-pd757750888.html"
+   ],
+   "notes": "Delta servos; Hiwin rails, TBI ball screw.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  }
+ ]
+}

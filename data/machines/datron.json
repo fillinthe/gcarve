@@ -1,0 +1,594 @@
+{
+ "maker": "DATRON",
+ "website": "https://www.datron.com",
+ "machines": [
+  {
+   "id": "datron-neo-entry",
+   "maker": "DATRON",
+   "model": "neo",
+   "variant": "neo Entry",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 19.5,
+    "y": 16,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 495.3,
+    "y": 406.4,
+    "z": 177.8
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DATRON 1 kW",
+     "power_kw": 1,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 27000,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "DATRON next (touchscreen control)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "12-tool capacity; magazine type not stated"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum (DATRON vacuum table option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.datron.com/which-datron-model-is-the-right-fit-for-you/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "\"feed rates up to 12 m/min\"",
+    "tool_change.kind": "magazine type not published",
+    "work_area_mm": "converted from inches",
+    "max_feed_ipm": "converted from mm/min"
+   },
+   "notes": "Polymer-concrete base, moving aluminium table, 230 V single phase, approx. 1,600 lb. Positional accuracy +/-0.0006 in. No 4th axis."
+  },
+  {
+   "id": "datron-neo",
+   "maker": "DATRON",
+   "model": "neo",
+   "variant": "neo",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 19.5,
+    "y": 16,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 495.3,
+    "y": 406.4,
+    "z": 177.8
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DATRON 2 kW (chilled)",
+     "power_kw": 2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 40000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1102.4,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 28000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "DATRON next (touchscreen control)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 24,
+    "notes": "24-tool ATC; magazine type not stated"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length measurement; camera + XYZ touch probe"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum (DATRON vacuum table option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.datron.com/which-datron-model-is-the-right-fit-for-you/"
+   ],
+   "estimated": {
+    "tool_change.kind": "magazine type not published",
+    "spindles": "chiller-cooled; cooling medium assumed water",
+    "work_area_mm": "converted from inches",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Polymer-concrete base, moving aluminium table, 230 V single phase, approx. 1,600 lb. Positional accuracy +/-0.0006 in."
+  },
+  {
+   "id": "datron-neo-pro",
+   "maker": "DATRON",
+   "model": "neo",
+   "variant": "neo Pro",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 19.5,
+    "y": 16,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 495.3,
+    "y": 406.4,
+    "z": 177.8
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DATRON 2 kW (chilled)",
+     "power_kw": 2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 40000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1102.4,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 28000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "DATRON next (touchscreen control)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 24,
+    "notes": "24-tool ATC; magazine type not stated"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length measurement; camera + XYZ touch probe"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum (DATRON vacuum table option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.datron.com/which-datron-model-is-the-right-fit-for-you/"
+   ],
+   "estimated": {
+    "tool_change.kind": "magazine type not published",
+    "spindles": "chiller-cooled; cooling medium assumed water",
+    "work_area_mm": "converted from inches",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Polymer-concrete base, moving aluminium table, 230 V single phase, approx. 1,600 lb. Positional accuracy +/-0.0003 in X/Y (linear scales X/Y/Z)."
+  },
+  {
+   "id": "datron-m8cube",
+   "maker": "DATRON",
+   "model": "M8Cube",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 40,
+    "y": 33,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1016.0,
+    "y": 838.2,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DATRON HSK-25, 2-4 kW",
+     "power_kw": 4,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 60000,
+     "collet": "HSK-25",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "DATRON next (touchscreen control)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "up to 143 tools"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum (DATRON vacuum table option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.datron.com/which-datron-model-is-the-right-fit-for-you/"
+   ],
+   "estimated": {
+    "tool_change.kind": "magazine type not published",
+    "work_area_in.z": "Z travel not published on the source",
+    "work_area_mm": "converted from inches"
+   },
+   "notes": "Footprint 69 x 69 in, 3-phase. Spindles 2-4 kW up to 60,000 rpm (HSK-25); 4th/5th axis trunnion optional; +/-0.0006 in (linear scales optional)."
+  },
+  {
+   "id": "datron-mlcube",
+   "maker": "DATRON",
+   "model": "MLCube",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 45,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524.0,
+    "y": 1143.0,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DATRON HSK-25, 2-4 kW",
+     "power_kw": 4,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 60000,
+     "collet": "HSK-25",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "DATRON next (touchscreen control)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "up to 143 tools"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum (DATRON vacuum table option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.datron.com/which-datron-model-is-the-right-fit-for-you/"
+   ],
+   "estimated": {
+    "tool_change.kind": "magazine type not published",
+    "work_area_in.z": "Z travel not published on the source",
+    "work_area_mm": "converted from inches"
+   },
+   "notes": "Footprint 95 x 90 in. Same spindles as M8Cube; +/-0.0015 in standard, +/-0.0006 in with linear scales."
+  },
+  {
+   "id": "datron-mlcube-pro",
+   "maker": "DATRON",
+   "model": "MLCube Pro",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 45,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524.0,
+    "y": 1143.0,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DATRON HSK-25, 2-4 kW",
+     "power_kw": 4,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 60000,
+     "collet": "HSK-25",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "DATRON next (touchscreen control)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "up to 143 tools"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum (DATRON vacuum table option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.datron.com/which-datron-model-is-the-right-fit-for-you/"
+   ],
+   "estimated": {
+    "tool_change.kind": "magazine type not published",
+    "work_area_in.z": "Z travel not published on the source",
+    "work_area_mm": "converted from inches"
+   },
+   "notes": "MLCube for automation: motorized sliding door, open top for crane loading, chip conveyor, robot-ready; no front 4th/5th axis."
+  },
+  {
+   "id": "datron-mxcube",
+   "maker": "DATRON",
+   "model": "MXCube",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 39,
+    "y": 27.5,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 990.6,
+    "y": 698.5,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DATRON 4 kW HSK-25",
+     "power_kw": 4,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 40000,
+     "collet": "HSK-25",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "DATRON 8 kW HSK-32",
+     "power_kw": 8,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 34000,
+     "collet": "HSK-32",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 38100,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "DATRON next (touchscreen control)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "up to 143 tools"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum (DATRON vacuum table option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.datron.com/which-datron-model-is-the-right-fit-for-you/"
+   ],
+   "estimated": {
+    "tool_change.kind": "magazine type not published",
+    "work_area_in.z": "Z travel not published on the source",
+    "work_area_mm": "converted from inches",
+    "rapid_mm_min": "converted from in/min"
+   },
+   "notes": "Gantry design, standard linear scales, +/-0.0002 in X/Y; footprint 106 x 73 in; motorized door, open top, chip evacuation."
+  }
+ ]
+}

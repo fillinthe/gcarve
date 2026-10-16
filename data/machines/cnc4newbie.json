@@ -1,0 +1,2008 @@
+{
+ "maker": "CNC4Newbie",
+ "website": "https://cnc4newbie.com",
+ "machines": [
+  {
+   "id": "cnc4newbie-c4n4824",
+   "maker": "CNC4Newbie",
+   "model": "C4N48xx",
+   "variant": "4824",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 50,
+    "y": 26,
+    "z": 6
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 660,
+    "z": 152
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router or spindle (65-89 mm mounts)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 5080,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCcnc + UC100 + Gecko G540 (C4N package)",
+     "gcarve_post": "uccnc-in",
+     "default": true
+    },
+    {
+     "name": "MASSO G3 Touch (closed loop option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cnc4newbie.com/store/en/c4n48xx-build-it-like-your-needs-p108/",
+    "https://easel.com/partners/machines/cnc4newbie-c4n4824tk"
+   ],
+   "notes": "All kits take a 48 in wide sheet. 12 mm lead screws (12 mm/turn) on X/Y/Z with adjustable brass anti-backlash nuts, square linear bearings, 4 in wide HD Z, aluminum extrusion/plate. Cutting speed 200 IPM with the G540 package. Turnkey kit (TK) adds controller, legs and router mount. Footprint 60 x 34 x 22 in.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "cnc4newbie-c4n4836",
+   "maker": "CNC4Newbie",
+   "model": "C4N48xx",
+   "variant": "4836",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 50,
+    "y": 38,
+    "z": 6
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 965,
+    "z": 152
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router or spindle (65-89 mm mounts)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 5080,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCcnc + UC100 + Gecko G540 (C4N package)",
+     "gcarve_post": "uccnc-in",
+     "default": true
+    },
+    {
+     "name": "MASSO G3 Touch (closed loop option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cnc4newbie.com/store/en/c4n48xx-build-it-like-your-needs-p108/",
+    "https://easel.com/partners/machines/cnc4newbie-c4n4836tk"
+   ],
+   "notes": "All kits take a 48 in wide sheet. 12 mm lead screws (12 mm/turn) on X/Y/Z with adjustable brass anti-backlash nuts, square linear bearings, 4 in wide HD Z, aluminum extrusion/plate. Cutting speed 200 IPM with the G540 package. Turnkey kit (TK) adds controller, legs and router mount. Footprint 60 x 46 x 22 in.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "cnc4newbie-c4n4848",
+   "maker": "CNC4Newbie",
+   "model": "C4N48xx",
+   "variant": "4848",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 50,
+    "y": 50,
+    "z": 6
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 1270,
+    "z": 152
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router or spindle (65-89 mm mounts)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 5080,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCcnc + UC100 + Gecko G540 (C4N package)",
+     "gcarve_post": "uccnc-in",
+     "default": true
+    },
+    {
+     "name": "MASSO G3 Touch (closed loop option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cnc4newbie.com/store/en/c4n48xx-build-it-like-your-needs-p108/",
+    "https://easel.com/partners/machines/cnc4newbie-c4n4848tk"
+   ],
+   "notes": "All kits take a 48 in wide sheet. 12 mm lead screws (12 mm/turn) on X/Y/Z with adjustable brass anti-backlash nuts, square linear bearings, 4 in wide HD Z, aluminum extrusion/plate. Cutting speed 200 IPM with the G540 package. Turnkey kit (TK) adds controller, legs and router mount. Footprint 60 x 58 x 22 in.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "cnc4newbie-c4nmini",
+   "maker": "CNC4Newbie",
+   "model": "C4Nmini",
+   "variant": "TK",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.125,
+    "y": 12,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 283,
+    "y": 305,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router or spindle (65-89 mm mounts)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCcnc + UC100 + Gecko G540 (C4N package)",
+     "gcarve_post": "uccnc-in",
+     "default": true
+    },
+    {
+     "name": "Demon controller (GRBL, designsbyphil.com)",
+     "gcarve_post": "grbl-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://easel.com/partners/machines/cnc4newbie-c4nminitk"
+   ],
+   "notes": "Discontinued compact turnkey kit. 8 mm lead screws (8 mm/turn) all axes, square linear bearings, same Z as the New-Carve, 4 x 178 oz-in steppers. UCcnc/G540 by default; third-party GRBL 'Demon' controller option.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "cnc4newbie-hsnc2424rp",
+   "maker": "CNC4Newbie",
+   "model": "HSNCxxxxRP",
+   "variant": "2424",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 26,
+    "y": 26,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 660,
+    "y": 660,
+    "z": 178
+   },
+   "gantry_clearance_in": 4.5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router or spindle (65-89 mm mounts)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12700,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCcnc + UC100 + Gecko G540 (C4N package)",
+     "gcarve_post": "uccnc-in",
+     "default": true
+    },
+    {
+     "name": "MASSO G3 Touch (closed loop option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cnc4newbie.com/store/en/hsncxxxxrp-p138/",
+    "https://easel.com/partners/machines/cnc4newbie-hsncxxxxrp"
+   ],
+   "notes": "Rack-and-pinion version of the New-Carve. 15 mm rack and pinion X/Y, 8 mm lead screw Z, 15 mm square linear bearings, 4 steppers, 4.5 in clearance under the gantry (3/4 in MDF wasteboard). Cutting 300 IPM, rapids 500 IPM with the UCcnc controller. Round-body spindle up to 2.2 kW (not included).",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "cnc4newbie-hsnc3636rp",
+   "maker": "CNC4Newbie",
+   "model": "HSNCxxxxRP",
+   "variant": "3636",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 38,
+    "y": 38,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 965,
+    "y": 965,
+    "z": 178
+   },
+   "gantry_clearance_in": 4.5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router or spindle (65-89 mm mounts)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12700,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCcnc + UC100 + Gecko G540 (C4N package)",
+     "gcarve_post": "uccnc-in",
+     "default": true
+    },
+    {
+     "name": "MASSO G3 Touch (closed loop option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cnc4newbie.com/store/en/hsncxxxxrp-p138/",
+    "https://easel.com/partners/machines/cnc4newbie-hsncxxxxrp"
+   ],
+   "notes": "Rack-and-pinion version of the New-Carve. 15 mm rack and pinion X/Y, 8 mm lead screw Z, 15 mm square linear bearings, 4 steppers, 4.5 in clearance under the gantry (3/4 in MDF wasteboard). Cutting 300 IPM, rapids 500 IPM with the UCcnc controller. Round-body spindle up to 2.2 kW (not included).",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "cnc4newbie-hsnc4824rp",
+   "maker": "CNC4Newbie",
+   "model": "HSNCxxxxRP",
+   "variant": "4824",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 50,
+    "y": 26,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 660,
+    "z": 178
+   },
+   "gantry_clearance_in": 4.5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router or spindle (65-89 mm mounts)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12700,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCcnc + UC100 + Gecko G540 (C4N package)",
+     "gcarve_post": "uccnc-in",
+     "default": true
+    },
+    {
+     "name": "MASSO G3 Touch (closed loop option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cnc4newbie.com/store/en/hsncxxxxrp-p138/",
+    "https://easel.com/partners/machines/cnc4newbie-hsncxxxxrp"
+   ],
+   "notes": "Rack-and-pinion version of the New-Carve. 15 mm rack and pinion X/Y, 8 mm lead screw Z, 15 mm square linear bearings, 4 steppers, 4.5 in clearance under the gantry (3/4 in MDF wasteboard). Cutting 300 IPM, rapids 500 IPM with the UCcnc controller. Round-body spindle up to 2.2 kW (not included).",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "cnc4newbie-hsnc4836rp",
+   "maker": "CNC4Newbie",
+   "model": "HSNCxxxxRP",
+   "variant": "4836",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 50,
+    "y": 38,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 965,
+    "z": 178
+   },
+   "gantry_clearance_in": 4.5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router or spindle (65-89 mm mounts)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12700,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCcnc + UC100 + Gecko G540 (C4N package)",
+     "gcarve_post": "uccnc-in",
+     "default": true
+    },
+    {
+     "name": "MASSO G3 Touch (closed loop option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cnc4newbie.com/store/en/hsncxxxxrp-p138/",
+    "https://easel.com/partners/machines/cnc4newbie-hsncxxxxrp"
+   ],
+   "notes": "Rack-and-pinion version of the New-Carve. 15 mm rack and pinion X/Y, 8 mm lead screw Z, 15 mm square linear bearings, 4 steppers, 4.5 in clearance under the gantry (3/4 in MDF wasteboard). Cutting 300 IPM, rapids 500 IPM with the UCcnc controller. Round-body spindle up to 2.2 kW (not included).",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "cnc4newbie-hsnc4848rp",
+   "maker": "CNC4Newbie",
+   "model": "HSNCxxxxRP",
+   "variant": "4848",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 50,
+    "y": 50,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 1270,
+    "z": 178
+   },
+   "gantry_clearance_in": 4.5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router or spindle (65-89 mm mounts)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12700,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCcnc + UC100 + Gecko G540 (C4N package)",
+     "gcarve_post": "uccnc-in",
+     "default": true
+    },
+    {
+     "name": "MASSO G3 Touch (closed loop option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cnc4newbie.com/store/en/hsncxxxxrp-p138/",
+    "https://easel.com/partners/machines/cnc4newbie-hsncxxxxrp"
+   ],
+   "notes": "Rack-and-pinion version of the New-Carve. 15 mm rack and pinion X/Y, 8 mm lead screw Z, 15 mm square linear bearings, 4 steppers, 4.5 in clearance under the gantry (3/4 in MDF wasteboard). Cutting 300 IPM, rapids 500 IPM with the UCcnc controller. Round-body spindle up to 2.2 kW (not included).",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "cnc4newbie-hsnc4896rp",
+   "maker": "CNC4Newbie",
+   "model": "HSNCxxxxRP",
+   "variant": "4896",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 50,
+    "y": 98,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 2489,
+    "z": 178
+   },
+   "gantry_clearance_in": 4.5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router or spindle (65-89 mm mounts)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12700,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCcnc + UC100 + Gecko G540 (C4N package)",
+     "gcarve_post": "uccnc-in",
+     "default": true
+    },
+    {
+     "name": "MASSO G3 Touch (closed loop option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cnc4newbie.com/store/en/hsncxxxxrp-p138/",
+    "https://easel.com/partners/machines/cnc4newbie-hsncxxxxrp"
+   ],
+   "notes": "Rack-and-pinion version of the New-Carve. 15 mm rack and pinion X/Y, 8 mm lead screw Z, 15 mm square linear bearings, 4 steppers, 4.5 in clearance under the gantry (3/4 in MDF wasteboard). Cutting 300 IPM, rapids 500 IPM with the UCcnc controller. Round-body spindle up to 2.2 kW (not included).",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "cnc4newbie-new-carve-500",
+   "maker": "CNC4Newbie",
+   "model": "New-Carve",
+   "variant": "500",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 14.5,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 368,
+    "z": 178
+   },
+   "gantry_clearance_in": 4.5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router or spindle (65-89 mm mounts)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "any GRBL controller (GRBL settings guide by C4N)",
+     "gcarve_post": "grbl-in",
+     "default": true
+    },
+    {
+     "name": "C4N controller (UCcnc)",
+     "gcarve_post": "uccnc-in",
+     "default": false
+    },
+    {
+     "name": "MASSO G3 Touch (closed loop option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cnc4newbie.com/store/en/new-carve-cnc-p104/",
+    "https://easel.com/partners/machines/cnc4newbie-new-carve"
+   ],
+   "notes": "Pre-assembled mechanical kit (from $1,439 for the 500). 4.5 in clearance under the X carriage, 15 mm square linear bearings, 12 mm lead screws with adjustable brass anti-backlash nuts on X/Y (direct drive, no belts), square linear Z, 1/2 in 6061 plates, 2040 extrusion base. Motors/electronics optional: any GRBL controller, C4N UCcnc package or MASSO G3. Sizes from Easel's listing of the maker sizes.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "cnc4newbie-new-carve-750",
+   "maker": "CNC4Newbie",
+   "model": "New-Carve",
+   "variant": "750",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 25.75,
+    "y": 24.25,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 654,
+    "y": 616,
+    "z": 178
+   },
+   "gantry_clearance_in": 4.5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router or spindle (65-89 mm mounts)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "any GRBL controller (GRBL settings guide by C4N)",
+     "gcarve_post": "grbl-in",
+     "default": true
+    },
+    {
+     "name": "C4N controller (UCcnc)",
+     "gcarve_post": "uccnc-in",
+     "default": false
+    },
+    {
+     "name": "MASSO G3 Touch (closed loop option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cnc4newbie.com/store/en/new-carve-cnc-p104/",
+    "https://easel.com/partners/machines/cnc4newbie-new-carve"
+   ],
+   "notes": "Pre-assembled mechanical kit (from $1,439 for the 500). 4.5 in clearance under the X carriage, 15 mm square linear bearings, 12 mm lead screws with adjustable brass anti-backlash nuts on X/Y (direct drive, no belts), square linear Z, 1/2 in 6061 plates, 2040 extrusion base. Motors/electronics optional: any GRBL controller, C4N UCcnc package or MASSO G3. Sizes from Easel's listing of the maker sizes.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "cnc4newbie-new-carve-1000",
+   "maker": "CNC4Newbie",
+   "model": "New-Carve",
+   "variant": "1000",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 35.5,
+    "y": 34,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 902,
+    "y": 864,
+    "z": 178
+   },
+   "gantry_clearance_in": 4.5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router or spindle (65-89 mm mounts)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "any GRBL controller (GRBL settings guide by C4N)",
+     "gcarve_post": "grbl-in",
+     "default": true
+    },
+    {
+     "name": "C4N controller (UCcnc)",
+     "gcarve_post": "uccnc-in",
+     "default": false
+    },
+    {
+     "name": "MASSO G3 Touch (closed loop option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cnc4newbie.com/store/en/new-carve-cnc-p104/",
+    "https://easel.com/partners/machines/cnc4newbie-new-carve"
+   ],
+   "notes": "Pre-assembled mechanical kit (from $1,439 for the 500). 4.5 in clearance under the X carriage, 15 mm square linear bearings, 12 mm lead screws with adjustable brass anti-backlash nuts on X/Y (direct drive, no belts), square linear Z, 1/2 in 6061 plates, 2040 extrusion base. Motors/electronics optional: any GRBL controller, C4N UCcnc package or MASSO G3. Sizes from Easel's listing of the maker sizes.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "cnc4newbie-new-carve-1045",
+   "maker": "CNC4Newbie",
+   "model": "New-Carve",
+   "variant": "1045",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 35.5,
+    "y": 52,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 902,
+    "y": 1321,
+    "z": 178
+   },
+   "gantry_clearance_in": 4.5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router or spindle (65-89 mm mounts)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "any GRBL controller (GRBL settings guide by C4N)",
+     "gcarve_post": "grbl-in",
+     "default": true
+    },
+    {
+     "name": "C4N controller (UCcnc)",
+     "gcarve_post": "uccnc-in",
+     "default": false
+    },
+    {
+     "name": "MASSO G3 Touch (closed loop option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cnc4newbie.com/store/en/new-carve-cnc-p104/",
+    "https://easel.com/partners/machines/cnc4newbie-new-carve"
+   ],
+   "notes": "Pre-assembled mechanical kit (from $1,439 for the 500). 4.5 in clearance under the X carriage, 15 mm square linear bearings, 12 mm lead screws with adjustable brass anti-backlash nuts on X/Y (direct drive, no belts), square linear Z, 1/2 in 6061 plates, 2040 extrusion base. Motors/electronics optional: any GRBL controller, C4N UCcnc package or MASSO G3. Sizes from Easel's listing of the maker sizes.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "cnc4newbie-new-carve-4545",
+   "maker": "CNC4Newbie",
+   "model": "New-Carve",
+   "variant": "4545",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 51,
+    "y": 52,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 1295,
+    "y": 1321,
+    "z": 178
+   },
+   "gantry_clearance_in": 4.5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router or spindle (65-89 mm mounts)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "any GRBL controller (GRBL settings guide by C4N)",
+     "gcarve_post": "grbl-in",
+     "default": true
+    },
+    {
+     "name": "C4N controller (UCcnc)",
+     "gcarve_post": "uccnc-in",
+     "default": false
+    },
+    {
+     "name": "MASSO G3 Touch (closed loop option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cnc4newbie.com/store/en/new-carve-cnc-p104/",
+    "https://easel.com/partners/machines/cnc4newbie-new-carve"
+   ],
+   "notes": "Pre-assembled mechanical kit (from $1,439 for the 500). 4.5 in clearance under the X carriage, 15 mm square linear bearings, 12 mm lead screws with adjustable brass anti-backlash nuts on X/Y (direct drive, no belts), square linear Z, 1/2 in 6061 plates, 2040 extrusion base. Motors/electronics optional: any GRBL controller, C4N UCcnc package or MASSO G3. Sizes from Easel's listing of the maker sizes.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "cnc4newbie-pro4848bl",
+   "maker": "CNC4Newbie",
+   "model": "PRO4848BL",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 50,
+    "y": 50,
+    "z": 6
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 1270,
+    "z": 152
+   },
+   "gantry_clearance_in": 5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router or spindle (65-89 mm mounts)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 5080,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCcnc + UC100 + Gecko G540 (C4N package)",
+     "gcarve_post": "uccnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cnc4newbie.com/store/en/pro4848bl-p136/",
+    "https://easel.com/partners/machines/cnc4newbie-pro4848bl"
+   ],
+   "notes": "Ball screws on every axis: 20 mm X/Y (dual Y), 12 mm Z; 15 mm square bearings, 3/4 in 6061 X sides, 3 x 5 in C-beam, 6 in wide HD Z. Clearance under gantry 5 in. Cutting 200 IPM, repeatability +/- 0.002 in, accuracy +/- 0.005 in (UCcnc/UC100/G540). Footprint 61 x 64 x 54 in.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "cnc4newbie-pro4824rp",
+   "maker": "CNC4Newbie",
+   "model": "PRO48xxRP",
+   "variant": "4824",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 50,
+    "y": 25,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 635,
+    "z": 203
+   },
+   "gantry_clearance_in": 8,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router or spindle (65-89 mm mounts)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12700,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCcnc + UC100 + Gecko G540 (C4N package)",
+     "gcarve_post": "uccnc-in",
+     "default": true
+    },
+    {
+     "name": "MASSO G3 Touch (closed loop option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cnc4newbie.com/store/en/pro48xxrp-p135/",
+    "https://easel.com/partners/machines/cnc4newbie-pro48xxrp"
+   ],
+   "notes": "Cabinet-oriented kit, takes a 4 ft sheet between the X sides. Rack and pinion with belt reduction box X/Y, HD 6 in wide ball screw Z (standard), 15 mm square bearings, 8 in clearance under gantry. Cutting 300 IPM, rapids 500 IPM (G540 packages). Leg kit included; spindle up to 3 kW not included.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "cnc4newbie-pro4836rp",
+   "maker": "CNC4Newbie",
+   "model": "PRO48xxRP",
+   "variant": "4836",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 50,
+    "y": 37,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 940,
+    "z": 203
+   },
+   "gantry_clearance_in": 8,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router or spindle (65-89 mm mounts)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12700,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCcnc + UC100 + Gecko G540 (C4N package)",
+     "gcarve_post": "uccnc-in",
+     "default": true
+    },
+    {
+     "name": "MASSO G3 Touch (closed loop option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cnc4newbie.com/store/en/pro48xxrp-p135/",
+    "https://easel.com/partners/machines/cnc4newbie-pro48xxrp"
+   ],
+   "notes": "Cabinet-oriented kit, takes a 4 ft sheet between the X sides. Rack and pinion with belt reduction box X/Y, HD 6 in wide ball screw Z (standard), 15 mm square bearings, 8 in clearance under gantry. Cutting 300 IPM, rapids 500 IPM (G540 packages). Leg kit included; spindle up to 3 kW not included.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "cnc4newbie-pro4848rp",
+   "maker": "CNC4Newbie",
+   "model": "PRO48xxRP",
+   "variant": "4848",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 50,
+    "y": 49,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 1245,
+    "z": 203
+   },
+   "gantry_clearance_in": 8,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router or spindle (65-89 mm mounts)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12700,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCcnc + UC100 + Gecko G540 (C4N package)",
+     "gcarve_post": "uccnc-in",
+     "default": true
+    },
+    {
+     "name": "MASSO G3 Touch (closed loop option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cnc4newbie.com/store/en/pro48xxrp-p135/",
+    "https://easel.com/partners/machines/cnc4newbie-pro48xxrp"
+   ],
+   "notes": "Cabinet-oriented kit, takes a 4 ft sheet between the X sides. Rack and pinion with belt reduction box X/Y, HD 6 in wide ball screw Z (standard), 15 mm square bearings, 8 in clearance under gantry. Cutting 300 IPM, rapids 500 IPM (G540 packages). Leg kit included; spindle up to 3 kW not included.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "cnc4newbie-pro4896rp",
+   "maker": "CNC4Newbie",
+   "model": "PRO48xxRP",
+   "variant": "4896",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 50,
+    "y": 99,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 2515,
+    "z": 203
+   },
+   "gantry_clearance_in": 8,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router or spindle (65-89 mm mounts)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12700,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCcnc + UC100 + Gecko G540 (C4N package)",
+     "gcarve_post": "uccnc-in",
+     "default": true
+    },
+    {
+     "name": "MASSO G3 Touch (closed loop option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cnc4newbie.com/store/en/pro48xxrp-p135/",
+    "https://easel.com/partners/machines/cnc4newbie-pro48xxrp"
+   ],
+   "notes": "Cabinet-oriented kit, takes a 4 ft sheet between the X sides. Rack and pinion with belt reduction box X/Y, HD 6 in wide ball screw Z (standard), 15 mm square bearings, 8 in clearance under gantry. Cutting 300 IPM, rapids 500 IPM (G540 packages). Leg kit included; spindle up to 3 kW not included.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "cnc4newbie-pro60120rp",
+   "maker": "CNC4Newbie",
+   "model": "PRO 60120RP",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 62,
+    "y": 122,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 1575,
+    "y": 3099,
+    "z": 203
+   },
+   "gantry_clearance_in": 8,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router or spindle (65-89 mm mounts)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 500,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 12700,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25400,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCcnc + UC100 + Gecko G540 (C4N package)",
+     "gcarve_post": "uccnc-in",
+     "default": true
+    },
+    {
+     "name": "UC400ETH + UCcnc, open or closed loop (ATC ready)",
+     "gcarve_post": "uccnc-in",
+     "default": false
+    },
+    {
+     "name": "MASSO G3 Touch (closed loop option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "ATC-ready controller options"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cnc4newbie.com/store/en/cnc-machine-kits/pro-xxxx-series/pro-60120rp-p119c74c97/",
+    "https://easel.com/partners/machines/cnc4newbie-pro60120rp"
+   ],
+   "notes": "Full 5 x 10 ft sheet machine for cabinet work. Rack and pinion with belt reduction X/Y, ball screw Z (6 in wide HD), 8 in clearance under gantry. Cutting 500 IPM, rapids 1000 IPM depending on controller. Controllers: G540 + UC100 (no ATC), 5-axis open/closed-loop UC400ETH (ATC ready), or MASSO G3 Touch. Footprint 76 x 139 x 64 in.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "cnc4newbie-upshot-4896",
+   "maker": "CNC4Newbie",
+   "model": "Upshot Mill",
+   "variant": "4896",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 50,
+    "y": 98,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 2489,
+    "z": 203
+   },
+   "gantry_clearance_in": 8,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router or spindle (65-89 mm mounts)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12700,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCcnc + UC100 + Gecko G540 (C4N package)",
+     "gcarve_post": "uccnc-in",
+     "default": true
+    },
+    {
+     "name": "MASSO G3 Touch (closed loop option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cnc4newbie.com/store/en/cnc-machine-kits/upshot-mill/upshot-mill-p142c74c106/",
+    "https://easel.com/partners/machines/cnc4newbie-upshot-mill"
+   ],
+   "notes": "Largest of the Upshot sizes (2424/3636/4824/4836/4848/4896; the maker gives only the 4896 maximum, 'up to 50 x 98 in'). Rack and pinion X/Y, HD ball screw Z with 8 in travel, 8 in clearance, 15 mm square bearings. Cutting 300 IPM, rapids 500 IPM. Spindle up to 2.2 kW; ATC tool rack and T-tracks optional.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  }
+ ]
+}

@@ -1,0 +1,3985 @@
+{
+ "maker": "STYLECNC",
+ "website": "https://www.stylecnc.com",
+ "machines": [
+  {
+   "id": "stylecnc-stg6090-1-5kw",
+   "maker": "STYLECNC",
+   "model": "STG6090",
+   "variant": "600x900, 1.5 kW",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 35.43,
+    "z": 5.91
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 900,
+    "z": 150
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "1.5 kW spindle",
+     "power_kw": 1.5,
+     "power_hp": 2.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER16",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 157.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 4000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 236.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 6000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew (X) / not stated (Y)",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "DSP / Mach3 / NcStudio (choice)",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/cnc-wood-router/6090-cnc-router.html"
+   ],
+   "notes": "Cast-steel frame; vacuum table. Controller offered as Mach3, DSP or NcStudio.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stg6090-4th-axis",
+   "maker": "STYLECNC",
+   "model": "STG6090",
+   "variant": "600x900 with 4th axis",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 35.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 900,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW spindle",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 157.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 4000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 236.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 6000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew (X) / not stated (Y)",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "DSP",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/cnc-wood-router/6090-mini-desktop-cnc-router-with-4th-axis-rotary.html"
+   ],
+   "notes": "T-slot extrusion table with stainless water tank; 4th-axis rotary; cast-steel frame.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stg6090-small-business",
+   "maker": "STYLECNC",
+   "model": "STG6090",
+   "variant": "600x900 small business",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 35.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 900,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 236.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 6000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew (X) / not stated (Y)",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "DSP controller (make not stated)",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/hobby-cnc-router/mini-cnc-router-for-small-business.html"
+   ],
+   "notes": "Welded steel frame; 2 x 3 ft table.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm6090-4-axis",
+   "maker": "STYLECNC",
+   "model": "STM6090",
+   "variant": "hobby 4-axis",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 35.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 900,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 591.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "DSP",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/hobby-cnc-router/Hobby-4-axis-cnc-router-6090-for-aluminum-wood-MDF.html"
+   ],
+   "notes": "TBI ball screws on X/Y/Z; aimed at aluminium, wood, MDF.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm6090c1",
+   "maker": "STYLECNC",
+   "model": "STM6090C1",
+   "variant": "desktop",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 35.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 900,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 591.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/hobby-cnc-router/small-desktop-cnc-machine.html"
+   ],
+   "notes": "Cast-iron bed; precision 0.01 mm, repeat 0.03 mm.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm6090c-atc",
+   "maker": "STYLECNC",
+   "model": "STM6090C",
+   "variant": "600x900 ATC",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 35.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 900,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 630.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 16000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC; magazine type and slots not stated"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/cnc-wood-router/Small-CNC-router-6090-with-ATC-system.html"
+   ],
+   "notes": "Welded square-tube body; helical rack XY, TBI ball screw Z; vacuum table + 7.5 kW pump.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "stylecnc-stm6060",
+   "maker": "STYLECNC",
+   "model": "STM6060",
+   "variant": "2x2",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 23.62,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 600,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4.5 kW water-cooled spindle",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 118.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 197.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/hobby-cnc-router/2x2-cnc-router.html"
+   ],
+   "notes": "Ball screws on all axes.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stg6012",
+   "maker": "STYLECNC",
+   "model": "STG6012",
+   "variant": "2x4 benchtop",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 47.24,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 1200,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "3.0 kW water-cooled spindle",
+     "power_kw": 3.0,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Mach3 / DSP (choice)",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/hobby-cnc-router/2x4-benchtop-cnc-router.html"
+   ],
+   "notes": "Listed as table size 600 x 1200 x 200 mm; cutting thickness 0-40 mm depending on material. 220 V.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stg1212",
+   "maker": "STYLECNC",
+   "model": "STG1212",
+   "variant": "4x4",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 47.24,
+    "y": 47.24,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1200,
+    "y": 1200,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 236.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 6000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 591.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew (X) / not stated (Y)",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto A11 DSP",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/hobby-cnc-router/Low-cost-3-axis-cnc-router-1212.html"
+   ],
+   "notes": "Welded steel frame.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stg1212c",
+   "maker": "STYLECNC",
+   "model": "STG1212C",
+   "variant": "4x4 table moving",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 47.24,
+    "y": 47.24,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1200,
+    "y": 1200,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 118.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 197.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/hobby-cnc-router/High-precision-small-cnc-router-with-table-moving.html"
+   ],
+   "notes": "Moving-table design, ball screws on all axes.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stg1212-4",
+   "maker": "STYLECNC",
+   "model": "STG1212-4",
+   "variant": "4x4 four spindles",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 47.24,
+    "y": 47.24,
+    "z": 4.72
+   },
+   "work_area_mm": {
+    "x": 1200,
+    "y": 1200,
+    "z": 120
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle (x4)",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 709.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 18000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "DSP or NcStudio",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": 4,
+    "notes": "Four spindles"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/hobby-cnc-router/4x4-cnc-router-1212-with-4-spindles.html"
+   ],
+   "notes": "Table 1340 x 1545 mm; ball screws with shaft linear bearings.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stg1218",
+   "maker": "STYLECNC",
+   "model": "STG1218",
+   "variant": "4x6",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 47.24,
+    "y": 70.87,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1200,
+    "y": 1800,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 315.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1181.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "DSP controller (make not stated)",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/hobby-cnc-router/cheap-cnc-router-machine.html"
+   ],
+   "notes": "Cast-iron body; vacuum table optional.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm1212-4",
+   "maker": "STYLECNC",
+   "model": "STM1212-4",
+   "variant": "4 heads",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 47.24,
+    "y": 47.24,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1200,
+    "y": 1200,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW water-cooled spindle (x4)",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1299.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 33000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "DSP controller (make not stated)",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": 4,
+    "notes": "Four heads"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/cnc-wood-router/4-heads-cnc-woodworking-machine.html"
+   ],
+   "notes": null,
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm1325",
+   "maker": "STYLECNC",
+   "model": "STM1325",
+   "variant": "4x8",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3.0 kW spindle",
+     "power_kw": 3.0,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20 / ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "6.0 kW spindle",
+     "power_kw": 6.0,
+     "power_hp": 8.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 591.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 787.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "DSP controller (make not stated)",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/cnc-wood-router/Wood-cnc-router-machine-STM1325-price.html"
+   ],
+   "notes": "Welded frame; DSP control, Mach3 option; 1100 kg.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm1325-a11",
+   "maker": "STYLECNC",
+   "model": "STM1325",
+   "variant": "4x8 RichAuto A11",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW water-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 394.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 10000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 591.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto A11 DSP",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/hobby-cnc-router/affordable-cnc-router-table.html"
+   ],
+   "notes": "Affordable 4x8 router table.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm1325-2",
+   "maker": "STYLECNC",
+   "model": "STM1325-2",
+   "variant": "4x8",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "4.5 kW spindle",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "5.5 kW spindle",
+     "power_kw": 5.5,
+     "power_hp": 7.4,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 787.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1260.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 32000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "DSP controller (make not stated)",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/cnc-wood-router/4x8-wood-cnc-machine.html"
+   ],
+   "notes": "Spindle 3/4.5/5.5 kW choice; servo option; Z ball screw (gear option).",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm1325-r3",
+   "maker": "STYLECNC",
+   "model": "STM1325-R3",
+   "variant": "4x8",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3.0 kW spindle",
+     "power_kw": 3.0,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1299.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 33000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "DSP controller (make not stated)",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    },
+    {
+     "name": "Weihong NcStudio",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/cnc-wood-router/4x8ft-wood-cnc-router-for-sale.html",
+    "https://www.stylecnc.com/cnc-wood-router/STYLECNC-1325-CNC-router-with-4-axis-rotary.html"
+   ],
+   "notes": "The 4-axis rotary page lists the same model at 20000 mm/min rapid / 15000 working with a Leadshine drive and optional HSD spindle; values here are from the 4x8 page.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm1325-r1",
+   "maker": "STYLECNC",
+   "model": "STM1325-R1",
+   "variant": "4x8 with rotary",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3.0 kW spindle",
+     "power_kw": 3.0,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1299.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 33000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP 4-axis",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/cnc-wood-router/4-Axis-Rotary-CNC-Router-Machine.html"
+   ],
+   "notes": "Rotary axis 80-300 mm diameter, 2000 mm length; 1200 kg.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm1325-4r",
+   "maker": "STYLECNC",
+   "model": "STM1325-4R",
+   "variant": "rotary in table",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW water-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1299.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 33000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/cnc-wood-router/4-axis-cnc-router-with-rotary-fixed-into-working-table.html"
+   ],
+   "notes": "Rotary axis built into the table.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm1325-4",
+   "maker": "STYLECNC",
+   "model": "STM1325-4",
+   "variant": "3D with 4 rotary",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "1.5 kW water-cooled spindle",
+     "power_kw": 1.5,
+     "power_hp": 2.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 787.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1260.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 32000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "RichAuto DSP",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/3d-cnc-router/1325-3D-CNC-router-machine-with-4-rotary.html"
+   ],
+   "notes": "Hybrid servo; table 1450 x 2780 mm; four rotary attachments.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm1325-3ta",
+   "maker": "STYLECNC",
+   "model": "STM1325-3TA",
+   "variant": "4x8 three-spindle",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 kW spindle",
+     "power_kw": 6,
+     "power_hp": 8.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1299.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 33000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LNC (Taiwan)",
+     "gcarve_post": "fanuc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/cnc-wood-router/3-Axis-CNC-Router.html",
+    "https://www.stylecnc.com/cnc-wood-router/4x8-cnc-router-for-sale.html"
+   ],
+   "notes": "Same spec table is published as model S1-IV (double-layer vacuum table); 2000 kg.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm1325-3t",
+   "maker": "STYLECNC",
+   "model": "STM1325-3T",
+   "variant": "economic ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 kW air-cooled spindle (x3)",
+     "power_kw": 6,
+     "power_hp": 8.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "LNC (Taiwan)",
+     "gcarve_post": "fanuc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": 3,
+    "notes": "Three spindles used one by one (pneumatic)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/cnc-wood-router/Economic-auto-tool-changer-cnc-router-for-sale.html"
+   ],
+   "notes": "Hybrid servo; 7.5 kW vacuum pump. Page lists max idling speed as 2 m/min (probably a typo), so not recorded.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-s1-iii",
+   "maker": "STYLECNC",
+   "model": "S1-III",
+   "variant": "cabinet door",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 kW air-cooled spindle",
+     "power_kw": 6,
+     "power_hp": 8.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LNC (Taiwan)",
+     "gcarve_post": "fanuc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": null,
+    "notes": "Auto tool changer (spindle count not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/furniture-production-line/cnc-router-cabinets-door-making.html"
+   ],
+   "notes": "Leadshine 1500 W servos; 7.5 kW water-cooled vacuum pump; 380 V 3-phase (220 V option).",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "type not stated"
+   }
+  },
+  {
+   "id": "stylecnc-s1-iv-2130",
+   "maker": "STYLECNC",
+   "model": "S1-IV",
+   "variant": "2130 four spindles",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 82.68,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2100,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4.5 kW air-cooled spindle (x2)",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "3.5 kW air-cooled spindle (x2)",
+     "power_kw": 3.5,
+     "power_hp": 4.7,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1181.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec (Taiwan)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": 4,
+    "notes": "Four spindles"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/furniture-production-line/Economical-4-spindles-simple-atc-CNC-router-machine.html"
+   ],
+   "notes": "Listed as table size 2100 x 3000 x 200 mm; Yaskawa 750 W servos; 1700 kg.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm1325c",
+   "maker": "STYLECNC",
+   "model": "STM1325C",
+   "variant": "linear ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW ATC spindle (HSK63F)",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1181.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1969.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LNC (Taiwan)",
+     "gcarve_post": "fanuc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Linear ATC (slots not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/cnc-wood-router/linear-atc-cnc-router-auto-tool-changer.html"
+   ],
+   "notes": "1500 W servos; 7.5 kW water-cooled vacuum pump.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm1325ch",
+   "maker": "STYLECNC",
+   "model": "STM1325CH",
+   "variant": "linear ATC + horizontal spindle",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "3.5 kW horizontal spindle",
+     "power_kw": 3.5,
+     "power_hp": 4.7,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1969.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Not stated",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "Linear magazine, 12 tools"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/cnc-wood-router/linear-atc-cnc-wood-router.html"
+   ],
+   "notes": "Leadshine 1500 W servos; tool shank 3.175-12.7 mm.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm1325d",
+   "maker": "STYLECNC",
+   "model": "STM1325D",
+   "variant": "carousel ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LNC (Taiwan)",
+     "gcarve_post": "fanuc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "Rotary ATC, 12 tools"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/cnc-wood-router/Automatic-tool-changer-cnc-router-with-carousel-ATC-system.html"
+   ],
+   "notes": "Leadshine servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-st1325c-r1",
+   "maker": "STYLECNC",
+   "model": "ST1325C-R1",
+   "variant": "disc ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1969.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LNC (Taiwan)",
+     "gcarve_post": "fanuc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "Disc magazine, 12 tools"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/cnc-wood-router/Disc-auto-tool-changer-cnc-router-STM1325D-ATC.html"
+   ],
+   "notes": "Leadshine 1500 W servos. Page lists max working speed as 3 m/min (not recorded).",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm1325d2-4a",
+   "maker": "STYLECNC",
+   "model": "STM1325D2-4A",
+   "variant": "4-axis ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER32",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1181.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1772.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 45000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec (Taiwan)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "ATC (magazine not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/cnc-wood-router/4-axis-ATC-cnc-wood-router-STM1325-4-axis.html"
+   ],
+   "notes": "4th axis = spindle swings 180 deg; table 1450 x 2940 mm; 2100 kg.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; carousel assumed"
+   }
+  },
+  {
+   "id": "stylecnc-stm1325c-4a",
+   "maker": "STYLECNC",
+   "model": "STM1325C-4A",
+   "variant": "4-axis ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER32",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1181.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1969.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LNC (Taiwan)",
+     "gcarve_post": "fanuc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (magazine not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/cnc-wood-router/4-axis-cnc-router.html"
+   ],
+   "notes": "Spindle tilts +/-90 deg (4th axis); Leadshine 1500 W servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed (C series)"
+   }
+  },
+  {
+   "id": "stylecnc-stm1530c",
+   "maker": "STYLECNC",
+   "model": "STM1530C",
+   "variant": "5x10 ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1181.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1969.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LNC (Taiwan)",
+     "gcarve_post": "fanuc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (magazine not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/cnc-wood-router/Automatic-tool-changer-CNC-router-machine.html"
+   ],
+   "notes": "Leadshine 1500 W servos + reducer.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed (C series)"
+   }
+  },
+  {
+   "id": "stylecnc-stm1530d2",
+   "maker": "STYLECNC",
+   "model": "STM1530D2",
+   "variant": "5x10 drum ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW air-cooled ATC spindle (ISO30)",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LNC (Taiwan)",
+     "gcarve_post": "fanuc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-drum",
+    "slots": 24,
+    "notes": "Drum ATC, 24 tools"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/cnc-wood-router/3-axis-wood-working-cnc-machining-center-with-ATC-system.html"
+   ],
+   "notes": "Leadshine 1500 W AC servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm1625d-r1",
+   "maker": "STYLECNC",
+   "model": "STM1625D-R1",
+   "variant": "1625 ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 62.99,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1600,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER32",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1575.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2362.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec (Taiwan)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "ATC (magazine not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/cnc-wood-router/cnc-wood-carving-machine-furnitures-tables-chairs-doors.html"
+   ],
+   "notes": "1500 W servos; for furniture, tables, chairs, doors.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; carousel assumed (D series)"
+   }
+  },
+  {
+   "id": "stylecnc-stm2030",
+   "maker": "STYLECNC",
+   "model": "STM2030",
+   "variant": "2030",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW water-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 787.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1260.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 32000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "DSP controller (make not stated)",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/cnc-wood-router/2030-CNC-Router-Machine.html"
+   ],
+   "notes": "Repeatability +/-0.01 mm.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm2030co",
+   "maker": "STYLECNC",
+   "model": "STM2030CO",
+   "variant": "ATC + oscillating knife",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "STYLECNC CNC control",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC spindle + oscillating knife, CCD camera"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/cnc-wood-router/atc-cnc-router-oscillating-knife-cutting-system.html"
+   ],
+   "notes": "Knife options: V-cut, crease wheel, pneumatic, round knife.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated"
+   }
+  },
+  {
+   "id": "stylecnc-stm2130c",
+   "maker": "STYLECNC",
+   "model": "STM2130C",
+   "variant": "nesting",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 82.68,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2100,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec (Taiwan)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "ATC + 5+4 drill bank (magazine not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/furniture-production-line/intelligent-nesting-cnc-router-for-cabinet-making.html"
+   ],
+   "notes": "Nesting cell for cabinets; 7.5 kW vacuum pump; 380 V 3-phase.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated"
+   }
+  },
+  {
+   "id": "stylecnc-stm2130c-s4",
+   "maker": "STYLECNC",
+   "model": "STM2130C-S4",
+   "variant": "auto nesting",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 82.68,
+    "y": 118.11,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2100,
+    "y": 3000,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1969.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec (Taiwan)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "ATC (magazine not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/furniture-production-line/auto-nesting-cnc-wood-router-machine-for-sale.html"
+   ],
+   "notes": "Table 2100 x 3000 mm; repeat +/-0.05 mm.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated"
+   }
+  },
+  {
+   "id": "stylecnc-s4",
+   "maker": "STYLECNC",
+   "model": "S4",
+   "variant": "1325 nesting",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW ATC spindle (option)",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK-F63 / ISO30",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1181.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1969.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec (Taiwan)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "Weihong",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "Linear 12 tools (disc 12-tool option) + 5+4 drill bank"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/furniture-production-line/Automatic-nesting-cnc-router-machine.html",
+    "https://www.stylecnc.com/3d-cnc-router/atc-cnc-router.html"
+   ],
+   "notes": "Pressure rollers; light curtain; automatic loading/unloading; Leadshine 1500 W or Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm1325cs",
+   "maker": "STYLECNC",
+   "model": "STM1325CS",
+   "variant": "ATC + saw",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1181.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1969.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Not stated",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "Linear 12 tools + 7.5 kW saw unit"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/furniture-production-line/Multi-Heads-CNC-Router-Machine.html"
+   ],
+   "notes": null,
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-1328-nesting-line",
+   "maker": "STYLECNC",
+   "model": "Customized furniture CNC router with auto nesting",
+   "variant": "1300x2800",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 110.24,
+    "z": 5.91
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2800,
+    "z": 150
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec (Taiwan)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 16,
+    "notes": "Linear magazine, 16 tools"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/furniture-production-line/Customized-furniture-CNC-router-with-auto-nesting-software.html"
+   ],
+   "notes": "Line with hydraulic lift table (3000 kg) and Honeywell labeller; 2 x 7.5 kW pumps.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm1325-5a",
+   "maker": "STYLECNC",
+   "model": "STM1325-5A",
+   "variant": "5-axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 37.4
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 950
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD HS655 10 kW 5-axis head",
+     "power_kw": 10,
+     "power_hp": 13.4,
+     "rpm_min": null,
+     "rpm_max": 22000,
+     "collet": "HSK63F / ER40",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1969.0,
+    "z": 394.0
+   },
+   "rapid_mm_min": {
+    "xy": 50000,
+    "z": 10000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec (Taiwan)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "Rotary magazine, 12 tools"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/5-axis-cnc-machine/5-axis-cnc-router.html"
+   ],
+   "notes": "C +/-210 deg, A +/-120 deg; rapids X 50, Y 60, Z 10 m/min (xy = X); Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm2040-5a",
+   "maker": "STYLECNC",
+   "model": "STM2040-5A",
+   "variant": "5-axis, HS655 10 kW",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": 35.43
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": 900
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD HS655 10 kW 5-axis head",
+     "power_kw": 10,
+     "power_hp": 13.4,
+     "rpm_min": null,
+     "rpm_max": 22000,
+     "collet": "HSK F63",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1575.0,
+    "z": 787.0
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec (Taiwan)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "OSAI",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "Rotary magazine, 8 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/5-axis-cnc-machine/5-axis-cnc-machine.html"
+   ],
+   "notes": "Moving gantry; C +/-213 deg, A +/-120 deg; beam spacing 2750 mm, beam height 1500 mm; aluminium profile table.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm2040-5a-12kw",
+   "maker": "STYLECNC",
+   "model": "STM2040-5A",
+   "variant": "5-axis, 12 kW liquid-cooled",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": 43.31
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": 1100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 12 kW liquid-cooled 5-axis head",
+     "power_kw": 12,
+     "power_hp": 16.1,
+     "rpm_min": null,
+     "rpm_max": 22000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1575.0,
+    "z": 1575.0
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": 40000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec (Taiwan)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "Linear tool rack, 8 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/5-axis-cnc-machine/5-axis-cnc-router-machine-3d-milling-carving.html"
+   ],
+   "notes": "Moving gantry; C +/-213 deg, A +/-112 deg; cast steel T-slot table option.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm1212e2-5a",
+   "maker": "STYLECNC",
+   "model": "STM1212E2-5A",
+   "variant": "5-axis twin table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48.03,
+    "y": 48.03,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 1220,
+    "y": 1220,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 7 kW 5-axis head",
+     "power_kw": 7,
+     "power_hp": 9.4,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "HSK F63",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1575.0,
+    "z": 787.0
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec (Taiwan)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "Rotary magazine, 8 positions"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/5-axis-cnc-machine/5-axis-cnc-milling-machine.html"
+   ],
+   "notes": "Moving table, two 1230 x 1220 mm tables; C +/-220 deg, A +100/-40 deg.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "stylecnc-stm1212e-5a",
+   "maker": "STYLECNC",
+   "model": "STM1212E-5A",
+   "variant": "small 5-axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48.03,
+    "y": 48.03,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 1220,
+    "y": 1220,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 7 kW 5-axis head",
+     "power_kw": 7,
+     "power_hp": 9.4,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 787.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew (X) / rack-pinion (Y)",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec (Taiwan)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "OSAI",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "Carousel, 8 tools"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stylecnc.com/5-axis-cnc-machine/Small-5-axis-cnc-machining-center.html"
+   ],
+   "notes": "Axis travel 1720 x 1820 x 750 mm, working size 1220 x 1220 x 500 mm; A +40/-100, C +400/-40 deg; Yaskawa 1.3 kW servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  }
+ ]
+}

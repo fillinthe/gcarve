@@ -1,0 +1,3379 @@
+{
+ "maker": "CMT",
+ "source_summary": "CMT Orange Tools USA catalog 2026 (PDF): CNC solid carbide spirals (190/191/192/195/196/198/812, DLCS-coated .41 versions), 152 tapered ball nose, 199 ball nose, 140 PCD compression, 178/663 spoilboard surfacing, 663.1 V-groove insert cutters, and router-section V-groove (815, 858, 849, 665) and bowl (851) bits without bearings. CMT publishes no chip-load chart; the only cutting data is one test (1/2 in compression, 18,000 RPM, 20 m/min in 19 mm melamine chipboard). Bearing-guided (B) versions and solid-surface bits without a flute count were left out.",
+ "retrieved": "2026-10-08",
+ "bits": [
+  {
+   "id": "cmt-199-001-11",
+   "maker": "CMT",
+   "part_number": "199.001.11",
+   "name": "1/8 upcut ball nose spiral",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "oal": 2.0,
+   "flutes": 2,
+   "helix": "up",
+   "tip_radius": 0.0625,
+   "materials": [
+    "wood",
+    "plastics",
+    "aluminum",
+    "foam",
+    "solid surface"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 199.001.11 Ball Nose 1/8 in",
+    "kind": "BallNose",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ]
+  },
+  {
+   "id": "cmt-199-008-11",
+   "maker": "CMT",
+   "part_number": "199.008.11",
+   "name": "1/4 upcut ball nose spiral",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "oal": 2.5,
+   "flutes": 2,
+   "helix": "up",
+   "tip_radius": 0.125,
+   "materials": [
+    "wood",
+    "plastics",
+    "aluminum",
+    "foam",
+    "solid surface"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 199.008.11 Ball Nose 1/4 in",
+    "kind": "BallNose",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ]
+  },
+  {
+   "id": "cmt-199-504-11",
+   "maker": "CMT",
+   "part_number": "199.504.11",
+   "name": "3/8 upcut ball nose spiral",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.375,
+   "cut_length": 1.125,
+   "oal": 3.0,
+   "flutes": 2,
+   "helix": "up",
+   "tip_radius": 0.1875,
+   "materials": [
+    "wood",
+    "plastics",
+    "aluminum",
+    "foam",
+    "solid surface"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 199.504.11 Ball Nose 3/8 in",
+    "kind": "BallNose",
+    "diameter": 0.375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ]
+  },
+  {
+   "id": "cmt-199-505-11",
+   "maker": "CMT",
+   "part_number": "199.505.11",
+   "name": "1/2 upcut ball nose spiral",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "oal": 3.0,
+   "flutes": 2,
+   "helix": "up",
+   "tip_radius": 0.25,
+   "materials": [
+    "wood",
+    "plastics",
+    "aluminum",
+    "foam",
+    "solid surface"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 199.505.11 Ball Nose 1/2 in",
+    "kind": "BallNose",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ]
+  },
+  {
+   "id": "cmt-199-509-11",
+   "maker": "CMT",
+   "part_number": "199.509.11",
+   "name": "5/8 upcut ball nose spiral",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.625,
+   "shank": 0.625,
+   "cut_length": 2.25,
+   "oal": 4.3125,
+   "flutes": 2,
+   "helix": "up",
+   "tip_radius": 0.3125,
+   "materials": [
+    "wood",
+    "plastics",
+    "aluminum",
+    "foam",
+    "solid surface"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 199.509.11 Ball Nose 5/8 in",
+    "kind": "BallNose",
+    "diameter": 0.625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ]
+  },
+  {
+   "id": "cmt-199-511-11",
+   "maker": "CMT",
+   "part_number": "199.511.11",
+   "name": "3/4 upcut ball nose spiral",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.75,
+   "shank": 0.75,
+   "cut_length": 2.25,
+   "oal": 4.3125,
+   "flutes": 2,
+   "helix": "up",
+   "tip_radius": 0.375,
+   "materials": [
+    "wood",
+    "plastics",
+    "aluminum",
+    "foam",
+    "solid surface"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 199.511.11 Ball Nose 3/4 in",
+    "kind": "BallNose",
+    "diameter": 0.75,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ]
+  },
+  {
+   "id": "cmt-851-001-11",
+   "maker": "CMT",
+   "part_number": "851.001.11",
+   "name": "7/16 bowl & tray bit",
+   "family": "bowl",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.4375,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "oal": 1.79688,
+   "flutes": 2,
+   "corner_radius": 0.125,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 851.001.11 Bowl 7/16 in",
+    "kind": "EndMill",
+    "diameter": 0.4375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ],
+   "notes": "Shank from the catalog column (1/4\" vs 1/2\" shank order numbers)."
+  },
+  {
+   "id": "cmt-851-002-11",
+   "maker": "CMT",
+   "part_number": "851.002.11",
+   "name": "3/4 bowl & tray bit",
+   "family": "bowl",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.75,
+   "shank": 0.25,
+   "cut_length": 0.625,
+   "oal": 2.125,
+   "flutes": 2,
+   "corner_radius": 0.25,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 851.002.11 Bowl 3/4 in",
+    "kind": "EndMill",
+    "diameter": 0.75,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ],
+   "notes": "Shank from the catalog column (1/4\" vs 1/2\" shank order numbers)."
+  },
+  {
+   "id": "cmt-851-501-11",
+   "maker": "CMT",
+   "part_number": "851.501.11",
+   "name": "3/4 bowl & tray bit",
+   "family": "bowl",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.75,
+   "shank": 0.5,
+   "cut_length": 0.625,
+   "oal": 2.375,
+   "flutes": 2,
+   "corner_radius": 0.25,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 851.501.11 Bowl 3/4 in",
+    "kind": "EndMill",
+    "diameter": 0.75,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ],
+   "notes": "Shank from the catalog column (1/4\" vs 1/2\" shank order numbers)."
+  },
+  {
+   "id": "cmt-851-502-11",
+   "maker": "CMT",
+   "part_number": "851.502.11",
+   "name": "1-1/4 bowl & tray bit",
+   "family": "bowl",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 1.25,
+   "shank": 0.5,
+   "cut_length": 0.625,
+   "oal": 2.375,
+   "flutes": 2,
+   "corner_radius": 0.25,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 851.502.11 Bowl 1-1/4 in",
+    "kind": "EndMill",
+    "diameter": 1.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ],
+   "notes": "Shank from the catalog column (1/4\" vs 1/2\" shank order numbers)."
+  },
+  {
+   "id": "cmt-195-506-11",
+   "maker": "CMT",
+   "part_number": "195.506.11",
+   "name": "1/2 upcut spiral with chipbreaker",
+   "family": "chipbreaker",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.5,
+   "oal": 3.5,
+   "flutes": 3,
+   "helix": "up",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 195.506.11 Chipbreaker 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-196-506-11",
+   "maker": "CMT",
+   "part_number": "196.506.11",
+   "name": "1/2 downcut spiral with chipbreaker",
+   "family": "chipbreaker",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.5,
+   "oal": 3.5,
+   "flutes": 3,
+   "helix": "down",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 196.506.11 Chipbreaker 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-190-008-11",
+   "maker": "CMT",
+   "part_number": "190.008.11",
+   "name": "1/4 compression spiral",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.875,
+   "up_cut_length": 0.28125,
+   "oal": 2.5,
+   "flutes": 2,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 190.008.11 Compression 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "T2+2 compression."
+  },
+  {
+   "id": "cmt-190-504-11",
+   "maker": "CMT",
+   "part_number": "190.504.11",
+   "name": "3/8 compression spiral",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.375,
+   "cut_length": 1.125,
+   "up_cut_length": 0.28125,
+   "oal": 3.0,
+   "flutes": 2,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 190.504.11 Compression 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "T2+2 compression."
+  },
+  {
+   "id": "cmt-190-504-41",
+   "maker": "CMT",
+   "part_number": "190.504.41",
+   "name": "3/8 compression spiral",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "coating": "DLCS chrome",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.375,
+   "cut_length": 1.125,
+   "up_cut_length": 0.28125,
+   "oal": 3.0,
+   "flutes": 2,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 190.504.41 Compression 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "T2+2 compression."
+  },
+  {
+   "id": "cmt-140-127-61",
+   "maker": "CMT",
+   "part_number": "140.127.61",
+   "name": "1/2 diamond (PCD) compression bit",
+   "family": "compression",
+   "tool_material": "PCD",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.0625,
+   "oal": 2.95312,
+   "flutes": 1,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 140.127.61 Compression 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "Diamond compression, T1+1 with carbide plunge tip ((3DP+1TCT))."
+  },
+  {
+   "id": "cmt-140-128-61",
+   "maker": "CMT",
+   "part_number": "140.128.61",
+   "name": "1/2 diamond (PCD) compression bit",
+   "family": "compression",
+   "tool_material": "PCD",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.375,
+   "oal": 3.34375,
+   "flutes": 1,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 140.128.61 Compression 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "Diamond compression, T1+1 with carbide plunge tip ((4DP+1TCT))."
+  },
+  {
+   "id": "cmt-190-505-11",
+   "maker": "CMT",
+   "part_number": "190.505.11",
+   "name": "1/2 compression spiral",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.0,
+   "up_cut_length": 0.46875,
+   "oal": 3.0,
+   "flutes": 2,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 190.505.11 Compression 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "T2+2 compression."
+  },
+  {
+   "id": "cmt-190-505-41",
+   "maker": "CMT",
+   "part_number": "190.505.41",
+   "name": "1/2 compression spiral",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "coating": "DLCS chrome",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.0,
+   "up_cut_length": 0.46875,
+   "oal": 3.0,
+   "flutes": 2,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 190.505.41 Compression 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "T2+2 compression."
+  },
+  {
+   "id": "cmt-190-506-11",
+   "maker": "CMT",
+   "part_number": "190.506.11",
+   "name": "1/2 compression spiral",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.125,
+   "up_cut_length": 0.46875,
+   "oal": 3.0,
+   "flutes": 2,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 190.506.11 Compression 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "T2+2 compression."
+  },
+  {
+   "id": "cmt-190-506-41",
+   "maker": "CMT",
+   "part_number": "190.506.41",
+   "name": "1/2 compression spiral",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "coating": "DLCS chrome",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.125,
+   "up_cut_length": 0.46875,
+   "oal": 3.0,
+   "flutes": 2,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 190.506.41 Compression 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "T2+2 compression."
+  },
+  {
+   "id": "cmt-190-507-11",
+   "maker": "CMT",
+   "part_number": "190.507.11",
+   "name": "1/2 compression spiral",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.375,
+   "up_cut_length": 0.46875,
+   "oal": 3.5,
+   "flutes": 2,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 190.507.11 Compression 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "T2+2 compression."
+  },
+  {
+   "id": "cmt-190-507-41",
+   "maker": "CMT",
+   "part_number": "190.507.41",
+   "name": "1/2 compression spiral",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "coating": "DLCS chrome",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.375,
+   "up_cut_length": 0.46875,
+   "oal": 3.5,
+   "flutes": 2,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 190.507.41 Compression 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "T2+2 compression."
+  },
+  {
+   "id": "cmt-190-508-11",
+   "maker": "CMT",
+   "part_number": "190.508.11",
+   "name": "1/2 compression spiral",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.625,
+   "up_cut_length": 0.46875,
+   "oal": 4.0,
+   "flutes": 2,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 190.508.11 Compression 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "T2+2 compression."
+  },
+  {
+   "id": "cmt-190-508-41",
+   "maker": "CMT",
+   "part_number": "190.508.41",
+   "name": "1/2 compression spiral",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "coating": "DLCS chrome",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.625,
+   "up_cut_length": 0.46875,
+   "oal": 4.0,
+   "flutes": 2,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 190.508.41 Compression 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "T2+2 compression."
+  },
+  {
+   "id": "cmt-140-158-61",
+   "maker": "CMT",
+   "part_number": "140.158.61",
+   "name": "5/8 diamond (PCD) compression bit",
+   "family": "compression",
+   "tool_material": "PCD",
+   "units": "in",
+   "diameter": 0.625,
+   "shank": 0.625,
+   "cut_length": 1.0625,
+   "oal": 3.34375,
+   "flutes": 1,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 140.158.61 Compression 5/8 in",
+    "kind": "EndMill",
+    "diameter": 0.625,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "Diamond compression, T1+1 with carbide plunge tip ((3DP+1TCT))."
+  },
+  {
+   "id": "cmt-140-159-61",
+   "maker": "CMT",
+   "part_number": "140.159.61",
+   "name": "5/8 diamond (PCD) compression bit",
+   "family": "compression",
+   "tool_material": "PCD",
+   "units": "in",
+   "diameter": 0.625,
+   "shank": 0.625,
+   "cut_length": 1.76562,
+   "oal": 4.0625,
+   "flutes": 1,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 140.159.61 Compression 5/8 in",
+    "kind": "EndMill",
+    "diameter": 0.625,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "Diamond compression, T1+1 with carbide plunge tip ((5DP+1TCT))."
+  },
+  {
+   "id": "cmt-140-190-61",
+   "maker": "CMT",
+   "part_number": "140.190.61",
+   "name": "3/4 diamond (PCD) compression bit",
+   "family": "compression",
+   "tool_material": "PCD",
+   "units": "in",
+   "diameter": 0.75,
+   "shank": 0.75,
+   "cut_length": 1.0625,
+   "oal": 3.34375,
+   "flutes": 1,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 140.190.61 Compression 3/4 in",
+    "kind": "EndMill",
+    "diameter": 0.75,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "Diamond compression, T1+1 with carbide plunge tip ((3DP+1TCT))."
+  },
+  {
+   "id": "cmt-140-192-61",
+   "maker": "CMT",
+   "part_number": "140.192.61",
+   "name": "3/4 diamond (PCD) compression bit",
+   "family": "compression",
+   "tool_material": "PCD",
+   "units": "in",
+   "diameter": 0.75,
+   "shank": 0.75,
+   "cut_length": 1.76562,
+   "oal": 4.125,
+   "flutes": 1,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 140.192.61 Compression 3/4 in",
+    "kind": "EndMill",
+    "diameter": 0.75,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "Diamond compression, T1+1 with carbide plunge tip ((5DP+1TCT))."
+  },
+  {
+   "id": "cmt-192-001-11",
+   "maker": "CMT",
+   "part_number": "192.001.11",
+   "name": "1/8 downcut spiral",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "oal": 2.0,
+   "flutes": 2,
+   "helix": "down",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 192.001.11 Down Spiral 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-192-003-11",
+   "maker": "CMT",
+   "part_number": "192.003.11",
+   "name": "5/32 downcut spiral",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.15625,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "oal": 2.0,
+   "flutes": 2,
+   "helix": "down",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 192.003.11 Down Spiral 5/32 in",
+    "kind": "EndMill",
+    "diameter": 0.15625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-192-005-11",
+   "maker": "CMT",
+   "part_number": "192.005.11",
+   "name": "3/16 downcut spiral",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.1875,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "oal": 2.0,
+   "flutes": 2,
+   "helix": "down",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 192.005.11 Down Spiral 3/16 in",
+    "kind": "EndMill",
+    "diameter": 0.1875,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-192-007-11",
+   "maker": "CMT",
+   "part_number": "192.007.11",
+   "name": "1/4 downcut spiral",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "oal": 2.0,
+   "flutes": 2,
+   "helix": "down",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 192.007.11 Down Spiral 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-192-007-41",
+   "maker": "CMT",
+   "part_number": "192.007.41",
+   "name": "1/4 downcut spiral",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "coating": "DLCS chrome",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "oal": 2.0,
+   "flutes": 2,
+   "helix": "down",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 192.007.41 Down Spiral 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-192-008-11",
+   "maker": "CMT",
+   "part_number": "192.008.11",
+   "name": "1/4 downcut spiral",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "oal": 2.5,
+   "flutes": 2,
+   "helix": "down",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 192.008.11 Down Spiral 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-192-008-41",
+   "maker": "CMT",
+   "part_number": "192.008.41",
+   "name": "1/4 downcut spiral",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "coating": "DLCS chrome",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "oal": 2.5,
+   "flutes": 2,
+   "helix": "down",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 192.008.41 Down Spiral 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-192-501-11",
+   "maker": "CMT",
+   "part_number": "192.501.11",
+   "name": "5/16 downcut spiral",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.3125,
+   "shank": 0.5,
+   "cut_length": 1.0,
+   "oal": 3.0,
+   "flutes": 2,
+   "helix": "down",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 192.501.11 Down Spiral 5/16 in",
+    "kind": "EndMill",
+    "diameter": 0.3125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-192-503-11",
+   "maker": "CMT",
+   "part_number": "192.503.11",
+   "name": "3/8 downcut spiral",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "oal": 3.25,
+   "flutes": 2,
+   "helix": "down",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 192.503.11 Down Spiral 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-192-503-41",
+   "maker": "CMT",
+   "part_number": "192.503.41",
+   "name": "3/8 downcut spiral",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "coating": "DLCS chrome",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "oal": 3.25,
+   "flutes": 2,
+   "helix": "down",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 192.503.41 Down Spiral 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-192-505-11",
+   "maker": "CMT",
+   "part_number": "192.505.11",
+   "name": "1/2 downcut spiral",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "oal": 3.0,
+   "flutes": 2,
+   "helix": "down",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 192.505.11 Down Spiral 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-192-505-41",
+   "maker": "CMT",
+   "part_number": "192.505.41",
+   "name": "1/2 downcut spiral",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "coating": "DLCS chrome",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "oal": 3.0,
+   "flutes": 2,
+   "helix": "down",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 192.505.41 Down Spiral 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-192-506-11",
+   "maker": "CMT",
+   "part_number": "192.506.11",
+   "name": "1/2 downcut spiral",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.5,
+   "oal": 3.5,
+   "flutes": 2,
+   "helix": "down",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 192.506.11 Down Spiral 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-192-506-41",
+   "maker": "CMT",
+   "part_number": "192.506.41",
+   "name": "1/2 downcut spiral",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "coating": "DLCS chrome",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.5,
+   "oal": 3.5,
+   "flutes": 2,
+   "helix": "down",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 192.506.41 Down Spiral 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-192-507-11",
+   "maker": "CMT",
+   "part_number": "192.507.11",
+   "name": "1/2 downcut spiral",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 2.0,
+   "oal": 4.0,
+   "flutes": 2,
+   "helix": "down",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 192.507.11 Down Spiral 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-192-507-41",
+   "maker": "CMT",
+   "part_number": "192.507.41",
+   "name": "1/2 downcut spiral",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "coating": "DLCS chrome",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 2.0,
+   "oal": 4.0,
+   "flutes": 2,
+   "helix": "down",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 192.507.41 Down Spiral 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-191-001-11",
+   "maker": "CMT",
+   "part_number": "191.001.11",
+   "name": "1/8 upcut spiral",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "oal": 2.0,
+   "flutes": 2,
+   "helix": "up",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 191.001.11 Up Spiral 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-198-001-11",
+   "maker": "CMT",
+   "part_number": "198.001.11",
+   "name": "1/8 upcut 1-edge spiral",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "oal": 2.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 198.001.11 Up Spiral 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-191-003-11",
+   "maker": "CMT",
+   "part_number": "191.003.11",
+   "name": "5/32 upcut spiral",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.15625,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "oal": 2.0,
+   "flutes": 2,
+   "helix": "up",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 191.003.11 Up Spiral 5/32 in",
+    "kind": "EndMill",
+    "diameter": 0.15625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-191-005-11",
+   "maker": "CMT",
+   "part_number": "191.005.11",
+   "name": "3/16 upcut spiral",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.1875,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "oal": 2.0,
+   "flutes": 2,
+   "helix": "up",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 191.005.11 Up Spiral 3/16 in",
+    "kind": "EndMill",
+    "diameter": 0.1875,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-198-005-11",
+   "maker": "CMT",
+   "part_number": "198.005.11",
+   "name": "3/16 upcut 1-edge spiral",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.1875,
+   "shank": 0.25,
+   "cut_length": 0.625,
+   "oal": 2.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 198.005.11 Up Spiral 3/16 in",
+    "kind": "EndMill",
+    "diameter": 0.1875,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-191-007-11",
+   "maker": "CMT",
+   "part_number": "191.007.11",
+   "name": "1/4 upcut spiral",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "oal": 2.0,
+   "flutes": 2,
+   "helix": "up",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 191.007.11 Up Spiral 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-191-008-11",
+   "maker": "CMT",
+   "part_number": "191.008.11",
+   "name": "1/4 upcut spiral",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "oal": 2.5,
+   "flutes": 2,
+   "helix": "up",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 191.008.11 Up Spiral 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-198-007-11",
+   "maker": "CMT",
+   "part_number": "198.007.11",
+   "name": "1/4 upcut 1-edge spiral",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "oal": 2.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 198.007.11 Up Spiral 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-198-008-11",
+   "maker": "CMT",
+   "part_number": "198.008.11",
+   "name": "1/4 upcut 1-edge spiral",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "oal": 2.5,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 198.008.11 Up Spiral 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-191-501-11",
+   "maker": "CMT",
+   "part_number": "191.501.11",
+   "name": "5/16 upcut spiral",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.3125,
+   "shank": 0.5,
+   "cut_length": 1.0,
+   "oal": 3.0,
+   "flutes": 2,
+   "helix": "up",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 191.501.11 Up Spiral 5/16 in",
+    "kind": "EndMill",
+    "diameter": 0.3125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-191-503-11",
+   "maker": "CMT",
+   "part_number": "191.503.11",
+   "name": "3/8 upcut spiral",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "oal": 3.25,
+   "flutes": 2,
+   "helix": "up",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 191.503.11 Up Spiral 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-198-504-11",
+   "maker": "CMT",
+   "part_number": "198.504.11",
+   "name": "3/8 upcut 1-edge spiral",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.375,
+   "cut_length": 1.125,
+   "oal": 3.0,
+   "flutes": 1,
+   "helix": "up",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 198.504.11 Up Spiral 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 1
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-191-505-11",
+   "maker": "CMT",
+   "part_number": "191.505.11",
+   "name": "1/2 upcut spiral",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "oal": 3.0,
+   "flutes": 2,
+   "helix": "up",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 191.505.11 Up Spiral 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-191-506-11",
+   "maker": "CMT",
+   "part_number": "191.506.11",
+   "name": "1/2 upcut spiral",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.5,
+   "oal": 3.5,
+   "flutes": 2,
+   "helix": "up",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 191.506.11 Up Spiral 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-191-507-11",
+   "maker": "CMT",
+   "part_number": "191.507.11",
+   "name": "1/2 upcut spiral",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 2.0,
+   "oal": 4.0,
+   "flutes": 2,
+   "helix": "up",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 191.507.11 Up Spiral 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-858-002-11",
+   "maker": "CMT",
+   "part_number": "858.002.11",
+   "name": "1/4 engraving / V-groove bit",
+   "family": "engraving",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.375,
+   "oal": 2.0,
+   "flutes": 1,
+   "angle_deg": 35.0,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 858.002.11 Engraver 35° 1/4 in",
+    "kind": "VBit",
+    "diameter": 0.25,
+    "flutes": 1,
+    "angle": 35.0
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ],
+   "notes": "Shank from the catalog column (1/4\" vs 1/2\" shank order numbers)."
+  },
+  {
+   "id": "cmt-858-001-11",
+   "maker": "CMT",
+   "part_number": "858.001.11",
+   "name": "1/2 engraving / V-groove bit",
+   "family": "engraving",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.25,
+   "cut_length": 0.4375,
+   "oal": 2.25,
+   "flutes": 3,
+   "angle_deg": 60.0,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 858.001.11 Engraver 60° 1/2 in",
+    "kind": "VBit",
+    "diameter": 0.5,
+    "flutes": 3,
+    "angle": 60.0
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ],
+   "notes": "Shank from the catalog column (1/4\" vs 1/2\" shank order numbers)."
+  },
+  {
+   "id": "cmt-858-003-11",
+   "maker": "CMT",
+   "part_number": "858.003.11",
+   "name": "1/2 engraving / V-groove bit",
+   "family": "engraving",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.25,
+   "cut_length": 0.39062,
+   "oal": 2.0,
+   "flutes": 2,
+   "angle_deg": 60.0,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 858.003.11 Engraver 60° 1/2 in",
+    "kind": "VBit",
+    "diameter": 0.5,
+    "flutes": 2,
+    "angle": 60.0
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ],
+   "notes": "Shank from the catalog column (1/4\" vs 1/2\" shank order numbers)."
+  },
+  {
+   "id": "cmt-858-501-11",
+   "maker": "CMT",
+   "part_number": "858.501.11",
+   "name": "1/2 engraving / V-groove bit",
+   "family": "engraving",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 0.4375,
+   "oal": 2.375,
+   "flutes": 3,
+   "angle_deg": 60.0,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 858.501.11 Engraver 60° 1/2 in",
+    "kind": "VBit",
+    "diameter": 0.5,
+    "flutes": 3,
+    "angle": 60.0
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ],
+   "notes": "Shank from the catalog column (1/4\" vs 1/2\" shank order numbers)."
+  },
+  {
+   "id": "cmt-190-513-11",
+   "maker": "CMT",
+   "part_number": "190.513.11",
+   "name": "3/8 compression spiral",
+   "family": "mortise-compression",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.375,
+   "cut_length": 0.875,
+   "up_cut_length": 0.1875,
+   "oal": 3.0,
+   "flutes": 2,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 190.513.11 Mortise Compression 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "T2+2 compression."
+  },
+  {
+   "id": "cmt-190-513-41",
+   "maker": "CMT",
+   "part_number": "190.513.41",
+   "name": "3/8 compression spiral",
+   "family": "mortise-compression",
+   "tool_material": "solid carbide",
+   "coating": "DLCS chrome",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.375,
+   "cut_length": 0.875,
+   "up_cut_length": 0.1875,
+   "oal": 3.0,
+   "flutes": 2,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 190.513.41 Mortise Compression 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "T2+2 compression."
+  },
+  {
+   "id": "cmt-190-813-11",
+   "maker": "CMT",
+   "part_number": "190.813.11",
+   "name": "3/8 compression spiral",
+   "family": "mortise-compression",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.375,
+   "cut_length": 1.0,
+   "up_cut_length": 0.20312,
+   "oal": 3.0,
+   "flutes": 3,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 190.813.11 Mortise Compression 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "T3+3 compression."
+  },
+  {
+   "id": "cmt-190-813-41",
+   "maker": "CMT",
+   "part_number": "190.813.41",
+   "name": "3/8 compression spiral",
+   "family": "mortise-compression",
+   "tool_material": "solid carbide",
+   "coating": "DLCS chrome",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.375,
+   "cut_length": 1.0,
+   "up_cut_length": 0.20312,
+   "oal": 3.0,
+   "flutes": 3,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 190.813.41 Mortise Compression 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "T3+3 compression."
+  },
+  {
+   "id": "cmt-190-515-11",
+   "maker": "CMT",
+   "part_number": "190.515.11",
+   "name": "1/2 compression spiral",
+   "family": "mortise-compression",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 0.875,
+   "up_cut_length": 0.20312,
+   "oal": 3.0,
+   "flutes": 2,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 190.515.11 Mortise Compression 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "T2+2 compression."
+  },
+  {
+   "id": "cmt-190-515-41",
+   "maker": "CMT",
+   "part_number": "190.515.41",
+   "name": "1/2 compression spiral",
+   "family": "mortise-compression",
+   "tool_material": "solid carbide",
+   "coating": "DLCS chrome",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 0.875,
+   "up_cut_length": 0.20312,
+   "oal": 3.0,
+   "flutes": 2,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 190.515.41 Mortise Compression 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "T2+2 compression."
+  },
+  {
+   "id": "cmt-190-517-11",
+   "maker": "CMT",
+   "part_number": "190.517.11",
+   "name": "1/2 compression spiral",
+   "family": "mortise-compression",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.375,
+   "up_cut_length": 0.20312,
+   "oal": 3.5,
+   "flutes": 2,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 190.517.11 Mortise Compression 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "T2+2 compression."
+  },
+  {
+   "id": "cmt-190-517-41",
+   "maker": "CMT",
+   "part_number": "190.517.41",
+   "name": "1/2 compression spiral",
+   "family": "mortise-compression",
+   "tool_material": "solid carbide",
+   "coating": "DLCS chrome",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.375,
+   "up_cut_length": 0.20312,
+   "oal": 3.5,
+   "flutes": 2,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 190.517.41 Mortise Compression 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "T2+2 compression."
+  },
+  {
+   "id": "cmt-190-815-11",
+   "maker": "CMT",
+   "part_number": "190.815.11",
+   "name": "1/2 compression spiral",
+   "family": "mortise-compression",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.125,
+   "up_cut_length": 0.25,
+   "oal": 3.0,
+   "flutes": 3,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 190.815.11 Mortise Compression 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "T3+3 compression."
+  },
+  {
+   "id": "cmt-190-815-41",
+   "maker": "CMT",
+   "part_number": "190.815.41",
+   "name": "1/2 compression spiral",
+   "family": "mortise-compression",
+   "tool_material": "solid carbide",
+   "coating": "DLCS chrome",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.125,
+   "up_cut_length": 0.25,
+   "oal": 3.0,
+   "flutes": 3,
+   "helix": "compression",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 190.815.41 Mortise Compression 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "T3+3 compression."
+  },
+  {
+   "id": "cmt-812-564-11",
+   "maker": "CMT",
+   "part_number": "812.564.11",
+   "name": "1/4 straight nesting bit",
+   "family": "straight",
+   "tool_material": "solid carbide",
+   "coating": "DLCS chrome",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.5,
+   "cut_length": 1.0,
+   "oal": 2.875,
+   "flutes": 3,
+   "helix": "straight",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 812.564.11 Straight 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-812-581-11",
+   "maker": "CMT",
+   "part_number": "812.581.11",
+   "name": "5/16 straight nesting bit",
+   "family": "straight",
+   "tool_material": "solid carbide",
+   "coating": "DLCS chrome",
+   "units": "in",
+   "diameter": 0.3125,
+   "shank": 0.5,
+   "cut_length": 1.125,
+   "oal": 3.0,
+   "flutes": 3,
+   "helix": "straight",
+   "materials": [
+    "solid wood",
+    "wood composites",
+    "plastics",
+    "laminates"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 812.581.11 Straight 5/16 in",
+    "kind": "EndMill",
+    "diameter": 0.3125,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-178-701-11",
+   "maker": "CMT",
+   "part_number": "178.701.11",
+   "name": "1 spoilboard surfacing cutter",
+   "family": "surfacing",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 1.0,
+   "shank": 0.25,
+   "cut_length": 0.25,
+   "oal": 1.625,
+   "flutes": 3,
+   "materials": [
+    "spoilboard",
+    "wood"
+   ],
+   "applications": [
+    "spoilboard surfacing",
+    "planing"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 178.701.11 Surfacing 1 in",
+    "kind": "EndMill",
+    "diameter": 1.0,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-663-005-11",
+   "maker": "CMT",
+   "part_number": "663.005.11",
+   "name": "38mm spoilboard surfacing cutter, insert knives",
+   "family": "surfacing",
+   "tool_material": "carbide insert",
+   "units": "mm",
+   "diameter": 38.0,
+   "shank": 12.0,
+   "cut_length": 12.0,
+   "oal": 60.0,
+   "flutes": 3,
+   "materials": [
+    "spoilboard",
+    "wood"
+   ],
+   "applications": [
+    "spoilboard surfacing",
+    "planing"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 663.005.11 Surfacing 38 mm",
+    "kind": "EndMill",
+    "diameter": 1.49606,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "Shank given as diameter x length (12x35 mm)."
+  },
+  {
+   "id": "cmt-663-015-11",
+   "maker": "CMT",
+   "part_number": "663.015.11",
+   "name": "38mm spoilboard surfacing cutter, insert knives",
+   "family": "surfacing",
+   "tool_material": "carbide insert",
+   "units": "mm",
+   "diameter": 38.0,
+   "shank": 12.7,
+   "cut_length": 12.0,
+   "oal": 60.0,
+   "flutes": 3,
+   "materials": [
+    "spoilboard",
+    "wood"
+   ],
+   "applications": [
+    "spoilboard surfacing",
+    "planing"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 663.015.11 Surfacing 38 mm",
+    "kind": "EndMill",
+    "diameter": 1.49606,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "Shank given as diameter x length (12.7x35 mm)."
+  },
+  {
+   "id": "cmt-178-704-11",
+   "maker": "CMT",
+   "part_number": "178.704.11",
+   "name": "2 spoilboard surfacing cutter",
+   "family": "surfacing",
+   "tool_material": "carbide tipped",
+   "units": "in",
+   "diameter": 2.0,
+   "shank": 0.5,
+   "cut_length": 0.5,
+   "oal": 2.5,
+   "flutes": 4,
+   "materials": [
+    "spoilboard",
+    "wood"
+   ],
+   "applications": [
+    "spoilboard surfacing",
+    "planing"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 178.704.11 Surfacing 2 in",
+    "kind": "EndMill",
+    "diameter": 2.0,
+    "flutes": 4
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ]
+  },
+  {
+   "id": "cmt-663-004-11",
+   "maker": "CMT",
+   "part_number": "663.004.11",
+   "name": "60mm spoilboard surfacing cutter, insert knives",
+   "family": "surfacing",
+   "tool_material": "carbide insert",
+   "units": "mm",
+   "diameter": 60.0,
+   "shank": 12.0,
+   "cut_length": 12.0,
+   "oal": 80.0,
+   "flutes": 3,
+   "materials": [
+    "spoilboard",
+    "wood"
+   ],
+   "applications": [
+    "spoilboard surfacing",
+    "planing"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 663.004.11 Surfacing 60 mm",
+    "kind": "EndMill",
+    "diameter": 2.3622,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "Shank given as diameter x length (12x50 mm)."
+  },
+  {
+   "id": "cmt-663-014-11",
+   "maker": "CMT",
+   "part_number": "663.014.11",
+   "name": "60mm spoilboard surfacing cutter, insert knives",
+   "family": "surfacing",
+   "tool_material": "carbide insert",
+   "units": "mm",
+   "diameter": 60.0,
+   "shank": 12.7,
+   "cut_length": 12.0,
+   "oal": 80.0,
+   "flutes": 3,
+   "materials": [
+    "spoilboard",
+    "wood"
+   ],
+   "applications": [
+    "spoilboard surfacing",
+    "planing"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 663.014.11 Surfacing 60 mm",
+    "kind": "EndMill",
+    "diameter": 2.3622,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "Shank given as diameter x length (12.7x50 mm)."
+  },
+  {
+   "id": "cmt-663-003-11",
+   "maker": "CMT",
+   "part_number": "663.003.11",
+   "name": "80mm spoilboard surfacing cutter, insert knives",
+   "family": "surfacing",
+   "tool_material": "carbide insert",
+   "units": "mm",
+   "diameter": 80.0,
+   "shank": 20.0,
+   "cut_length": 12.0,
+   "oal": 90.0,
+   "flutes": 3,
+   "materials": [
+    "spoilboard",
+    "wood"
+   ],
+   "applications": [
+    "spoilboard surfacing",
+    "planing"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 663.003.11 Surfacing 80 mm",
+    "kind": "EndMill",
+    "diameter": 3.14961,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "Shank given as diameter x length (20x50 mm)."
+  },
+  {
+   "id": "cmt-663-006-11",
+   "maker": "CMT",
+   "part_number": "663.006.11",
+   "name": "100mm spoilboard surfacing cutter, insert knives",
+   "family": "surfacing",
+   "tool_material": "carbide insert",
+   "units": "mm",
+   "diameter": 100.0,
+   "shank": 20.0,
+   "cut_length": 12.0,
+   "oal": 90.0,
+   "flutes": 4,
+   "materials": [
+    "spoilboard",
+    "wood"
+   ],
+   "applications": [
+    "spoilboard surfacing",
+    "planing"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 663.006.11 Surfacing 100 mm",
+    "kind": "EndMill",
+    "diameter": 3.93701,
+    "flutes": 4
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "Shank given as diameter x length (20x50 mm)."
+  },
+  {
+   "id": "cmt-152-064-082",
+   "maker": "CMT",
+   "part_number": "152.064.082",
+   "name": "1/32 2D/3D carving tapered ball nose spiral",
+   "family": "tapered-ball",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.03125,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "oal": 3.0,
+   "flutes": 3,
+   "helix": "up",
+   "angle_deg": 12.4,
+   "tip_diameter": 0.03125,
+   "tip_radius": 0.01562,
+   "materials": [
+    "wood",
+    "plastics",
+    "aluminum",
+    "foam",
+    "solid surface"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 152.064.082 Tapered Ball 1/32 in",
+    "kind": "BallNose",
+    "diameter": 0.03125,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "Catalog D is the ball (tip) diameter; catalog angle 6.2° is per side (included = 2x)."
+  },
+  {
+   "id": "cmt-152-064-162",
+   "maker": "CMT",
+   "part_number": "152.064.162",
+   "name": "1/16 2D/3D carving tapered ball nose spiral",
+   "family": "tapered-ball",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.0625,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "oal": 3.0,
+   "flutes": 3,
+   "helix": "up",
+   "angle_deg": 10.8,
+   "tip_diameter": 0.0625,
+   "tip_radius": 0.03125,
+   "materials": [
+    "wood",
+    "plastics",
+    "aluminum",
+    "foam",
+    "solid surface"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 152.064.162 Tapered Ball 1/16 in",
+    "kind": "BallNose",
+    "diameter": 0.0625,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "Catalog D is the ball (tip) diameter; catalog angle 5.4° is per side (included = 2x)."
+  },
+  {
+   "id": "cmt-152-064-322",
+   "maker": "CMT",
+   "part_number": "152.064.322",
+   "name": "1/8 2D/3D carving tapered ball nose spiral",
+   "family": "tapered-ball",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "oal": 3.0,
+   "flutes": 3,
+   "helix": "up",
+   "angle_deg": 7.2,
+   "tip_diameter": 0.125,
+   "tip_radius": 0.0625,
+   "materials": [
+    "wood",
+    "plastics",
+    "aluminum",
+    "foam",
+    "solid surface"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 152.064.322 Tapered Ball 1/8 in",
+    "kind": "BallNose",
+    "diameter": 0.125,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "Catalog D is the ball (tip) diameter; catalog angle 3.6° is per side (included = 2x)."
+  },
+  {
+   "id": "cmt-152-127-635",
+   "maker": "CMT",
+   "part_number": "152.127.635",
+   "name": "1/4 2D/3D carving tapered ball nose spiral",
+   "family": "tapered-ball",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.5,
+   "cut_length": 2.0,
+   "oal": 4.0,
+   "flutes": 2,
+   "helix": "up",
+   "angle_deg": 6.0,
+   "tip_diameter": 0.25,
+   "tip_radius": 0.125,
+   "materials": [
+    "wood",
+    "plastics",
+    "aluminum",
+    "foam",
+    "solid surface"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 152.127.635 Tapered Ball 1/4 in",
+    "kind": "BallNose",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "Catalog D is the ball (tip) diameter; catalog angle 3° is per side (included = 2x)."
+  },
+  {
+   "id": "cmt-815-064-11",
+   "maker": "CMT",
+   "part_number": "815.064.11",
+   "name": "1/4 V-groove bit",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.3125,
+   "oal": 1.5,
+   "flutes": 2,
+   "angle_deg": 90.0,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 815.064.11 V-Bit 90° 1/4 in",
+    "kind": "VBit",
+    "diameter": 0.25,
+    "flutes": 2,
+    "angle": 90.0
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ],
+   "notes": "Shank from the catalog column (1/4\" vs 1/2\" shank order numbers)."
+  },
+  {
+   "id": "cmt-815-095-11",
+   "maker": "CMT",
+   "part_number": "815.095.11",
+   "name": "3/8 V-groove bit",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "oal": 1.75,
+   "flutes": 2,
+   "angle_deg": 90.0,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 815.095.11 V-Bit 90° 3/8 in",
+    "kind": "VBit",
+    "diameter": 0.375,
+    "flutes": 2,
+    "angle": 90.0
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ],
+   "notes": "Shank from the catalog column (1/4\" vs 1/2\" shank order numbers)."
+  },
+  {
+   "id": "cmt-815-127-11",
+   "maker": "CMT",
+   "part_number": "815.127.11",
+   "name": "1/2 V-groove bit",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "oal": 1.75,
+   "flutes": 2,
+   "angle_deg": 90.0,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 815.127.11 V-Bit 90° 1/2 in",
+    "kind": "VBit",
+    "diameter": 0.5,
+    "flutes": 2,
+    "angle": 90.0
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ],
+   "notes": "Shank from the catalog column (1/4\" vs 1/2\" shank order numbers)."
+  },
+  {
+   "id": "cmt-815-660-11",
+   "maker": "CMT",
+   "part_number": "815.660.11",
+   "name": "5/8 V-groove bit",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.625,
+   "shank": 0.5,
+   "cut_length": 0.5,
+   "oal": 2.5,
+   "flutes": 2,
+   "angle_deg": 90.0,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 815.660.11 V-Bit 90° 5/8 in",
+    "kind": "VBit",
+    "diameter": 0.625,
+    "flutes": 2,
+    "angle": 90.0
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ],
+   "notes": "Shank from the catalog column (1/4\" vs 1/2\" shank order numbers)."
+  },
+  {
+   "id": "cmt-815-001-11",
+   "maker": "CMT",
+   "part_number": "815.001.11",
+   "name": "45/64 V-groove bit",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.70312,
+   "shank": 0.25,
+   "cut_length": 0.29688,
+   "oal": 2.35938,
+   "flutes": 2,
+   "angle_deg": 90.0,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 815.001.11 V-Bit 90° 45/64 in",
+    "kind": "VBit",
+    "diameter": 0.70312,
+    "flutes": 2,
+    "angle": 90.0
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ],
+   "notes": "Shank from the catalog column (1/4\" vs 1/2\" shank order numbers)."
+  },
+  {
+   "id": "cmt-815-002-11",
+   "maker": "CMT",
+   "part_number": "815.002.11",
+   "name": "45/64 V-groove bit",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.70312,
+   "shank": 0.25,
+   "cut_length": 0.125,
+   "oal": 2.35938,
+   "flutes": 2,
+   "angle_deg": 135.0,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 815.002.11 V-Bit 135° 45/64 in",
+    "kind": "VBit",
+    "diameter": 0.70312,
+    "flutes": 2,
+    "angle": 135.0
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ],
+   "notes": "Shank from the catalog column (1/4\" vs 1/2\" shank order numbers)."
+  },
+  {
+   "id": "cmt-815-690-11",
+   "maker": "CMT",
+   "part_number": "815.690.11",
+   "name": "3/4 V-groove bit",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.75,
+   "shank": 0.5,
+   "cut_length": 0.625,
+   "oal": 2.5,
+   "flutes": 2,
+   "angle_deg": 90.0,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 815.690.11 V-Bit 90° 3/4 in",
+    "kind": "VBit",
+    "diameter": 0.75,
+    "flutes": 2,
+    "angle": 90.0
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ],
+   "notes": "Shank from the catalog column (1/4\" vs 1/2\" shank order numbers)."
+  },
+  {
+   "id": "cmt-665-201-11",
+   "maker": "CMT",
+   "part_number": "665.201.11",
+   "name": "29/32 V-groove signmaking bit, indexable knife",
+   "family": "v-bit",
+   "tool_material": "carbide insert",
+   "units": "in",
+   "diameter": 0.90625,
+   "shank": 0.25,
+   "cut_length": 0.4375,
+   "oal": 2.375,
+   "flutes": 1,
+   "angle_deg": 90.0,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 665.201.11 V-Bit 90° 29/32 in",
+    "kind": "VBit",
+    "diameter": 0.90625,
+    "flutes": 1,
+    "angle": 90.0
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ],
+   "notes": "Steel body with one indexable carbide knife."
+  },
+  {
+   "id": "cmt-849-001-11",
+   "maker": "CMT",
+   "part_number": "849.001.11",
+   "name": "1 lettering bit (flat bottom)",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 1.0,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "oal": 2.0,
+   "flutes": 2,
+   "angle_deg": 60.0,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 849.001.11 V-Bit 60° 1 in",
+    "kind": "VBit",
+    "diameter": 1.0,
+    "flutes": 2,
+    "angle": 60.0
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ],
+   "notes": "Shank from the catalog column (1/4\" vs 1/2\" shank order numbers). Flat-bottom 60 deg lettering bit; flat width not published."
+  },
+  {
+   "id": "cmt-849-501-11",
+   "maker": "CMT",
+   "part_number": "849.501.11",
+   "name": "1-1/8 lettering bit (flat bottom)",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 1.125,
+   "shank": 0.5,
+   "cut_length": 0.75,
+   "oal": 2.5,
+   "flutes": 2,
+   "angle_deg": 60.0,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 849.501.11 V-Bit 60° 1-1/8 in",
+    "kind": "VBit",
+    "diameter": 1.125,
+    "flutes": 2,
+    "angle": 60.0
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ],
+   "notes": "Shank from the catalog column (1/4\" vs 1/2\" shank order numbers). Flat-bottom 60 deg lettering bit; flat width not published."
+  },
+  {
+   "id": "cmt-815-817-11",
+   "maker": "CMT",
+   "part_number": "815.817.11",
+   "name": "1-1/4 V-groove bit",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 1.25,
+   "shank": 0.5,
+   "cut_length": 0.75,
+   "oal": 2.5,
+   "flutes": 2,
+   "angle_deg": 90.0,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 815.817.11 V-Bit 90° 1-1/4 in",
+    "kind": "VBit",
+    "diameter": 1.25,
+    "flutes": 2,
+    "angle": 90.0
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ],
+   "notes": "Shank from the catalog column (1/4\" vs 1/2\" shank order numbers)."
+  },
+  {
+   "id": "cmt-663-103-11",
+   "maker": "CMT",
+   "part_number": "663.103.11",
+   "name": "35mm V-groove / folding / signmaking cutter, insert knives",
+   "family": "v-bit",
+   "tool_material": "carbide insert",
+   "units": "mm",
+   "diameter": 35.0,
+   "shank": 20.0,
+   "cut_length": 42.0,
+   "oal": 125.0,
+   "flutes": 1,
+   "angle_deg": 45.0,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 663.103.11 V-Bit 45° 35 mm",
+    "kind": "VBit",
+    "diameter": 1.37795,
+    "flutes": 1,
+    "angle": 45.0
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "Shank given as diameter x length (20x50 mm)."
+  },
+  {
+   "id": "cmt-815-880-11",
+   "maker": "CMT",
+   "part_number": "815.880.11",
+   "name": "1-1/2 V-groove bit",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 1.5,
+   "shank": 0.5,
+   "cut_length": 1.125,
+   "oal": 2.75,
+   "flutes": 2,
+   "angle_deg": 90.0,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 815.880.11 V-Bit 90° 1-1/2 in",
+    "kind": "VBit",
+    "diameter": 1.5,
+    "flutes": 2,
+    "angle": 90.0
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf"
+   ],
+   "notes": "Shank from the catalog column (1/4\" vs 1/2\" shank order numbers)."
+  },
+  {
+   "id": "cmt-663-102-11",
+   "maker": "CMT",
+   "part_number": "663.102.11",
+   "name": "42mm V-groove / folding / signmaking cutter, insert knives",
+   "family": "v-bit",
+   "tool_material": "carbide insert",
+   "units": "mm",
+   "diameter": 42.0,
+   "shank": 20.0,
+   "cut_length": 35.0,
+   "oal": 115.0,
+   "flutes": 1,
+   "angle_deg": 60.0,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 663.102.11 V-Bit 60° 42 mm",
+    "kind": "VBit",
+    "diameter": 1.65354,
+    "flutes": 1,
+    "angle": 60.0
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "Shank given as diameter x length (20x50 mm)."
+  },
+  {
+   "id": "cmt-663-101-11",
+   "maker": "CMT",
+   "part_number": "663.101.11",
+   "name": "52mm V-groove / folding / signmaking cutter, insert knives",
+   "family": "v-bit",
+   "tool_material": "carbide insert",
+   "units": "mm",
+   "diameter": 52.0,
+   "shank": 20.0,
+   "cut_length": 25.0,
+   "oal": 102.0,
+   "flutes": 1,
+   "angle_deg": 91.0,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 663.101.11 V-Bit 91° 52 mm",
+    "kind": "VBit",
+    "diameter": 2.04724,
+    "flutes": 1,
+    "angle": 91.0
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "Shank given as diameter x length (20x50 mm)."
+  },
+  {
+   "id": "cmt-663-110-11",
+   "maker": "CMT",
+   "part_number": "663.110.11",
+   "name": "60mm V-groove / folding / signmaking cutter, insert knives",
+   "family": "v-bit",
+   "tool_material": "carbide insert",
+   "units": "mm",
+   "diameter": 60.0,
+   "shank": 20.0,
+   "cut_length": 21.0,
+   "oal": 95.0,
+   "flutes": 1,
+   "angle_deg": 110.0,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 663.110.11 V-Bit 110° 60 mm",
+    "kind": "VBit",
+    "diameter": 2.3622,
+    "flutes": 1,
+    "angle": 110.0
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "Shank given as diameter x length (20x60 mm)."
+  },
+  {
+   "id": "cmt-663-120-11",
+   "maker": "CMT",
+   "part_number": "663.120.11",
+   "name": "87mm V-groove / folding / signmaking cutter, insert knives",
+   "family": "v-bit",
+   "tool_material": "carbide insert",
+   "units": "mm",
+   "diameter": 87.0,
+   "shank": 20.0,
+   "cut_length": 24.0,
+   "oal": 95.0,
+   "flutes": 2,
+   "angle_deg": 120.0,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 663.120.11 V-Bit 120° 87 mm",
+    "kind": "VBit",
+    "diameter": 3.4252,
+    "flutes": 2,
+    "angle": 120.0
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "Shank given as diameter x length (20x50 mm)."
+  },
+  {
+   "id": "cmt-663-130-11",
+   "maker": "CMT",
+   "part_number": "663.130.11",
+   "name": "91mm V-groove / folding / signmaking cutter, insert knives",
+   "family": "v-bit",
+   "tool_material": "carbide insert",
+   "units": "mm",
+   "diameter": 91.0,
+   "shank": 20.0,
+   "cut_length": 20.2,
+   "oal": 95.0,
+   "flutes": 2,
+   "angle_deg": 130.0,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 663.130.11 V-Bit 130° 91 mm",
+    "kind": "VBit",
+    "diameter": 3.58268,
+    "flutes": 2,
+    "angle": 130.0
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "Shank given as diameter x length (20x50 mm)."
+  },
+  {
+   "id": "cmt-663-150-11",
+   "maker": "CMT",
+   "part_number": "663.150.11",
+   "name": "96.5mm V-groove / folding / signmaking cutter, insert knives",
+   "family": "v-bit",
+   "tool_material": "carbide insert",
+   "units": "mm",
+   "diameter": 96.5,
+   "shank": 20.0,
+   "cut_length": 12.4,
+   "oal": 95.0,
+   "flutes": 2,
+   "angle_deg": 150.0,
+   "materials": [
+    "wood"
+   ],
+   "gcarve_tool": {
+    "name": "CMT 663.150.11 V-Bit 150° 96.5 mm",
+    "kind": "VBit",
+    "diameter": 3.79921,
+    "flutes": 2,
+    "angle": 150.0
+   },
+   "sources": [
+    "https://www.cmtorangetools.com/downloads/8500/1176/03.60.3012_CAT_CMTUSA_2026.pdf",
+    "https://www.cmtorangetools.com/na-en/router-cutters-chucks-for-cnc"
+   ],
+   "notes": "Shank given as diameter x length (20x50 mm)."
+  }
+ ]
+}

@@ -1,0 +1,1588 @@
+{
+ "maker": "MECANUMERIC",
+ "website": "https://www.mecanumeric.com",
+ "machines": [
+  {
+   "id": "mecanumeric-charly2u",
+   "maker": "MECANUMERIC",
+   "model": "Charly2U",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 16.54,
+    "z": 11.02
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 420,
+    "z": 280
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "High-frequency spindle with integral electronic speed drive",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 236.22,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 6000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Charly Robot control (Mecanumeric software)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mecanumeric.com/produits/1-604/3-axis-cnc-machine/charly4u-charly2u/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "maker max speed 100 mm/s converted to mm/min, recorded as rapid"
+   },
+   "notes": "Educational / prototyping router (Charly Robot line). Fixed gantry, table moves in Y. Table 640 x 680 mm. Options: micro-lubrication, vacuum table, 4th axis, carbon dust protection."
+  },
+  {
+   "id": "mecanumeric-charly4u",
+   "maker": "MECANUMERIC",
+   "model": "Charly4U",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 12.2,
+    "y": 8.66,
+    "z": 6.3
+   },
+   "work_area_mm": {
+    "x": 310,
+    "y": 220,
+    "z": 160
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "High-frequency spindle with integral electronic speed drive",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 236.22,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 6000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Charly Robot control (Mecanumeric software)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mecanumeric.com/produits/1-604/3-axis-cnc-machine/charly4u-charly2u/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "maker max speed 100 mm/s converted to mm/min, recorded as rapid"
+   },
+   "notes": "Educational / prototyping router (Charly Robot line). Fixed gantry, table moves in Y. Table 375 x 320 mm. Options: micro-lubrication, vacuum table, 4th axis, carbon dust protection."
+  },
+  {
+   "id": "mecanumeric-dmc-ii-301",
+   "maker": "MECANUMERIC",
+   "model": "DMC II",
+   "variant": "301/303",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 12.2,
+    "y": 16.93,
+    "z": 4.72
+   },
+   "work_area_mm": {
+    "x": 310,
+    "y": 430,
+    "z": 120
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mecanumeric NC, ISO programming",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Automatic tool changer option (Y stroke then 250 mm)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mecanumeric.com/produits/1-733/3-axis-cnc-machine/dmc-ii/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   },
+   "notes": "Benchtop router. Table 400 x 480 mm, max material width 360 mm. 301 = stepper; 303 = brushless servo. Ball screws. Vacuum table option."
+  },
+  {
+   "id": "mecanumeric-dmc-ii-601",
+   "maker": "MECANUMERIC",
+   "model": "DMC II",
+   "variant": "601/603",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 24.02,
+    "y": 23.62,
+    "z": 4.72
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 600,
+    "z": 120
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mecanumeric NC, ISO programming",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Automatic tool changer option (Y stroke then 420 mm)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mecanumeric.com/produits/1-733/3-axis-cnc-machine/dmc-ii/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   },
+   "notes": "Benchtop router. Table 710 x 640 mm, max material width 670 mm. 601 = stepper; 603 = brushless servo. Ball screws. Vacuum table option."
+  },
+  {
+   "id": "mecanumeric-dmc-ii-6121",
+   "maker": "MECANUMERIC",
+   "model": "DMC II",
+   "variant": "6121/6123",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 24.02,
+    "y": 47.24,
+    "z": 4.72
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 1200,
+    "z": 120
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mecanumeric NC, ISO programming",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Automatic tool changer option (Y stroke then 1060 mm)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mecanumeric.com/produits/1-733/3-axis-cnc-machine/dmc-ii/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   },
+   "notes": "Benchtop router. Table 710 x 1120 mm, max material width 670 mm. 6121 = stepper; 6123 = brushless servo. Ball screws. Vacuum table option."
+  },
+  {
+   "id": "mecanumeric-mecafab-1013-entry",
+   "maker": "MECANUMERIC",
+   "model": "MECAFAB",
+   "variant": "1013 ENTRY",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 41.34,
+    "y": 53.54,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1050,
+    "y": 1360,
+    "z": 200
+   },
+   "gantry_clearance_in": 7.87,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD AT/MT 1090-100 (4.5 kW S1 / 5 kW S6)",
+     "power_kw": 4.5,
+     "power_hp": 6.03,
+     "rpm_min": 0,
+     "rpm_max": 24000,
+     "collet": "ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Mecanumeric NC",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "ER32 collets"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mecanumeric.com/produits/1-751/3-axis-cnc-machine/mecafab/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   },
+   "notes": "Entry router for training / Fablabs. Preloaded ball screws, brushless servos with absolute encoders on all axes. Aluminium table or composite vacuum table. 200 mm under gantry."
+  },
+  {
+   "id": "mecanumeric-mecafab-1013-atc",
+   "maker": "MECANUMERIC",
+   "model": "MECAFAB",
+   "variant": "1013 ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 41.34,
+    "y": 53.54,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1050,
+    "y": 1360,
+    "z": 200
+   },
+   "gantry_clearance_in": 7.87,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD ES 950-H6161H (3.8 kW S1 / 5 kW S6)",
+     "power_kw": 3.8,
+     "power_hp": 5.1,
+     "rpm_min": 0,
+     "rpm_max": 24000,
+     "collet": "ISO30 + ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Mecanumeric NC",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ISO30 automatic tool change; magazine not described"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mecanumeric.com/produits/1-751/3-axis-cnc-machine/mecafab/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "tool_change.kind": "magazine type not published"
+   },
+   "notes": "Entry router for training / Fablabs. Preloaded ball screws, brushless servos with absolute encoders on all axes. Aluminium table or composite vacuum table. 200 mm under gantry."
+  },
+  {
+   "id": "mecanumeric-mecafab-2513-entry",
+   "maker": "MECANUMERIC",
+   "model": "MECAFAB",
+   "variant": "2513 ENTRY",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 100.39,
+    "y": 53.54,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2550,
+    "y": 1360,
+    "z": 200
+   },
+   "gantry_clearance_in": 7.87,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD AT/MT 1090-100 (4.5 kW S1 / 5 kW S6)",
+     "power_kw": 4.5,
+     "power_hp": 6.03,
+     "rpm_min": 0,
+     "rpm_max": 24000,
+     "collet": "ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Mecanumeric NC",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "ER32 collets"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mecanumeric.com/produits/1-751/3-axis-cnc-machine/mecafab/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   },
+   "notes": "Entry router for training / Fablabs. Preloaded ball screws, brushless servos with absolute encoders on all axes. Aluminium table or composite vacuum table. 200 mm under gantry."
+  },
+  {
+   "id": "mecanumeric-mecafab-2513-atc",
+   "maker": "MECANUMERIC",
+   "model": "MECAFAB",
+   "variant": "2513 ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 100.39,
+    "y": 53.54,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2550,
+    "y": 1360,
+    "z": 200
+   },
+   "gantry_clearance_in": 7.87,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD ES 950-H6161H (3.8 kW S1 / 5 kW S6)",
+     "power_kw": 3.8,
+     "power_hp": 5.1,
+     "rpm_min": 0,
+     "rpm_max": 24000,
+     "collet": "ISO30 + ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Mecanumeric NC",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ISO30 automatic tool change; magazine not described"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mecanumeric.com/produits/1-751/3-axis-cnc-machine/mecafab/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "tool_change.kind": "magazine type not published"
+   },
+   "notes": "Entry router for training / Fablabs. Preloaded ball screws, brushless servos with absolute encoders on all axes. Aluminium table or composite vacuum table. 200 mm under gantry."
+  },
+  {
+   "id": "mecanumeric-mecaeasy-0507",
+   "maker": "MECANUMERIC",
+   "model": "MECAEASY",
+   "variant": "ME 0507",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 20.47,
+    "y": 29.53,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 520,
+    "y": 750,
+    "z": 200
+   },
+   "gantry_clearance_in": 8.27,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 708.66,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 18000,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Mecanumeric CN7000 (colour touch screen)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Automatic tool changer option"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mecanumeric.com/produits/1-632/3-axis-cnc-machine/mecaeasy/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's mm/min figures"
+   },
+   "notes": "Z stroke 200 mm (350 mm option, 360 mm under gantry). Max material width 900 mm. Milling speed up to 18 m/min. Ball screws, brushless servos. Options: HF spindle, engraving spindle with nose follower, 4th axis, camera, knife head."
+  },
+  {
+   "id": "mecanumeric-mecaeasy-0710",
+   "maker": "MECANUMERIC",
+   "model": "MECAEASY",
+   "variant": "ME 0710",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 28.35,
+    "y": 40.16,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 720,
+    "y": 1020,
+    "z": 200
+   },
+   "gantry_clearance_in": 8.27,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 708.66,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 18000,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Mecanumeric CN7000 (colour touch screen)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Automatic tool changer option"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mecanumeric.com/produits/1-632/3-axis-cnc-machine/mecaeasy/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's mm/min figures"
+   },
+   "notes": "Z stroke 200 mm (350 mm option, 360 mm under gantry). Max material width 1250 mm. Milling speed up to 18 m/min. Ball screws, brushless servos. Options: HF spindle, engraving spindle with nose follower, 4th axis, camera, knife head."
+  },
+  {
+   "id": "mecanumeric-mecaeasy-1007",
+   "maker": "MECANUMERIC",
+   "model": "MECAEASY",
+   "variant": "ME 1007",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 41.34,
+    "y": 29.53,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1050,
+    "y": 750,
+    "z": 200
+   },
+   "gantry_clearance_in": 8.27,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 708.66,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 18000,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Mecanumeric CN7000 (colour touch screen)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Automatic tool changer option"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mecanumeric.com/produits/1-632/3-axis-cnc-machine/mecaeasy/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's mm/min figures"
+   },
+   "notes": "Z stroke 200 mm (350 mm option, 360 mm under gantry). Max material width 900 mm. Milling speed up to 18 m/min. Ball screws, brushless servos. Options: HF spindle, engraving spindle with nose follower, 4th axis, camera, knife head."
+  },
+  {
+   "id": "mecanumeric-mecaeasy-1510",
+   "maker": "MECANUMERIC",
+   "model": "MECAEASY",
+   "variant": "ME 1510",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.84,
+    "y": 41.34,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1520,
+    "y": 1050,
+    "z": 200
+   },
+   "gantry_clearance_in": 8.27,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 708.66,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 18000,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Mecanumeric CN7000 (colour touch screen)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Automatic tool changer option"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mecanumeric.com/produits/1-632/3-axis-cnc-machine/mecaeasy/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's mm/min figures"
+   },
+   "notes": "Z stroke 200 mm (350 mm option, 360 mm under gantry). Max material width 1250 mm. Milling speed up to 18 m/min. Ball screws, brushless servos. Options: HF spindle, engraving spindle with nose follower, 4th axis, camera, knife head."
+  },
+  {
+   "id": "mecanumeric-mecaeasy-3015",
+   "maker": "MECANUMERIC",
+   "model": "MECAEASY",
+   "variant": "ME 3015",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 118.9,
+    "y": 59.84,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 3020,
+    "y": 1520,
+    "z": 200
+   },
+   "gantry_clearance_in": 8.27,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 708.66,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 18000,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Mecanumeric CN7000 (colour touch screen)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Automatic tool changer option"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mecanumeric.com/produits/1-632/3-axis-cnc-machine/mecaeasy/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's mm/min figures"
+   },
+   "notes": "Z stroke 200 mm (350 mm option, 360 mm under gantry). Max material width 1650 mm. Milling speed up to 18 m/min. Ball screws, brushless servos. Options: HF spindle, engraving spindle with nose follower, 4th axis, camera, knife head."
+  },
+  {
+   "id": "mecanumeric-mecasign-nl-3121",
+   "maker": "MECANUMERIC",
+   "model": "MECASIGN NL",
+   "variant": "3121",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 121.46,
+    "y": 81.5,
+    "z": 9.65
+   },
+   "work_area_mm": {
+    "x": 3085,
+    "y": 2070,
+    "z": 245
+   },
+   "gantry_clearance_in": 12.6,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 951-SM (8 kW S1 / 9.6 kW S6)",
+     "power_kw": 8,
+     "power_hp": 10.73,
+     "rpm_min": 0,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Mecanumeric NC, 21 in touch screen mobile panel",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 15,
+    "notes": "10 to 15 ISO30 slots incl. special heads"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mecanumeric.com/produits/1-777/3-axis-cnc-machine/mecasign-nl/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "tool_change.kind": "magazine type not published",
+    "work_area_mm.z": "page labels the third row 'Y axis travel' (245 mm); taken as Z"
+   },
+   "notes": "Sign router, aluminium vacuum table with independent zones. Two ball screws and two motors on X, brushless absolute-encoder servos."
+  },
+  {
+   "id": "mecanumeric-mecasign-nl-4121",
+   "maker": "MECANUMERIC",
+   "model": "MECASIGN NL",
+   "variant": "4121",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 160.83,
+    "y": 81.5,
+    "z": 9.65
+   },
+   "work_area_mm": {
+    "x": 4085,
+    "y": 2070,
+    "z": 245
+   },
+   "gantry_clearance_in": 12.6,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 951-SM (8 kW S1 / 9.6 kW S6)",
+     "power_kw": 8,
+     "power_hp": 10.73,
+     "rpm_min": 0,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Mecanumeric NC, 21 in touch screen mobile panel",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 15,
+    "notes": "10 to 15 ISO30 slots incl. special heads"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mecanumeric.com/produits/1-777/3-axis-cnc-machine/mecasign-nl/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "tool_change.kind": "magazine type not published",
+    "work_area_mm.z": "page labels the third row 'Y axis travel' (245 mm); taken as Z"
+   },
+   "notes": "Sign router, aluminium vacuum table with independent zones. Two ball screws and two motors on X, brushless absolute-encoder servos."
+  },
+  {
+   "id": "mecanumeric-mecapro-nl-1621",
+   "maker": "MECANUMERIC",
+   "model": "MECAPRO NL",
+   "variant": "1621",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 62.99,
+    "y": 82.68,
+    "z": 12.8
+   },
+   "work_area_mm": {
+    "x": 1600,
+    "y": 2100,
+    "z": 325
+   },
+   "gantry_clearance_in": 14.96,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 951-SM-A8 (8 kW S1, air)",
+     "power_kw": 8,
+     "power_hp": 10.73,
+     "rpm_min": 0,
+     "rpm_max": 28000,
+     "collet": "HSK-F63",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 951-SM-W12 (12 kW S1, water)",
+     "power_kw": 12,
+     "power_hp": 16.09,
+     "rpm_min": 0,
+     "rpm_max": 28000,
+     "collet": "HSK-F63",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Mecanumeric NC, 21 in touch screen mobile panel",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 6,
+    "notes": "4 to 6 combined positions for tools and heads"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "laser tool length/diameter sensor"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mecanumeric.com/produits/1-748/3-axis-cnc-machine/mecapro-nl/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "tool_change.kind": "magazine type not published"
+   },
+   "notes": "High-speed router for plastics/composites, working width 1600 or 2100 mm. Two ball screws/motors on X. Pre-installed functions for tangential knife, creasing wheel, rigid tapping; variable-power vacuum table."
+  },
+  {
+   "id": "mecanumeric-mecapro-nl-3116",
+   "maker": "MECANUMERIC",
+   "model": "MECAPRO NL",
+   "variant": "3116",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.05,
+    "y": 62.99,
+    "z": 12.8
+   },
+   "work_area_mm": {
+    "x": 3100,
+    "y": 1600,
+    "z": 325
+   },
+   "gantry_clearance_in": 14.96,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 951-SM-A8 (8 kW S1, air)",
+     "power_kw": 8,
+     "power_hp": 10.73,
+     "rpm_min": 0,
+     "rpm_max": 28000,
+     "collet": "HSK-F63",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 951-SM-W12 (12 kW S1, water)",
+     "power_kw": 12,
+     "power_hp": 16.09,
+     "rpm_min": 0,
+     "rpm_max": 28000,
+     "collet": "HSK-F63",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Mecanumeric NC, 21 in touch screen mobile panel",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 6,
+    "notes": "4 to 6 combined positions for tools and heads"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "laser tool length/diameter sensor"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mecanumeric.com/produits/1-748/3-axis-cnc-machine/mecapro-nl/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "tool_change.kind": "magazine type not published"
+   },
+   "notes": "High-speed router for plastics/composites, working width 1600 or 2100 mm. Two ball screws/motors on X. Pre-installed functions for tangential knife, creasing wheel, rigid tapping; variable-power vacuum table."
+  },
+  {
+   "id": "mecanumeric-mecapro-nl-3121",
+   "maker": "MECANUMERIC",
+   "model": "MECAPRO NL",
+   "variant": "3121",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.05,
+    "y": 82.68,
+    "z": 12.8
+   },
+   "work_area_mm": {
+    "x": 3100,
+    "y": 2100,
+    "z": 325
+   },
+   "gantry_clearance_in": 14.96,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 951-SM-A8 (8 kW S1, air)",
+     "power_kw": 8,
+     "power_hp": 10.73,
+     "rpm_min": 0,
+     "rpm_max": 28000,
+     "collet": "HSK-F63",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 951-SM-W12 (12 kW S1, water)",
+     "power_kw": 12,
+     "power_hp": 16.09,
+     "rpm_min": 0,
+     "rpm_max": 28000,
+     "collet": "HSK-F63",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Mecanumeric NC, 21 in touch screen mobile panel",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 6,
+    "notes": "4 to 6 combined positions for tools and heads"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "laser tool length/diameter sensor"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mecanumeric.com/produits/1-748/3-axis-cnc-machine/mecapro-nl/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "tool_change.kind": "magazine type not published"
+   },
+   "notes": "High-speed router for plastics/composites, working width 1600 or 2100 mm. Two ball screws/motors on X. Pre-installed functions for tangential knife, creasing wheel, rigid tapping; variable-power vacuum table."
+  },
+  {
+   "id": "mecanumeric-mecapro-nl-4121",
+   "maker": "MECANUMERIC",
+   "model": "MECAPRO NL",
+   "variant": "4121",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 161.42,
+    "y": 82.68,
+    "z": 12.8
+   },
+   "work_area_mm": {
+    "x": 4100,
+    "y": 2100,
+    "z": 325
+   },
+   "gantry_clearance_in": 14.96,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 951-SM-A8 (8 kW S1, air)",
+     "power_kw": 8,
+     "power_hp": 10.73,
+     "rpm_min": 0,
+     "rpm_max": 28000,
+     "collet": "HSK-F63",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 951-SM-W12 (12 kW S1, water)",
+     "power_kw": 12,
+     "power_hp": 16.09,
+     "rpm_min": 0,
+     "rpm_max": 28000,
+     "collet": "HSK-F63",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Mecanumeric NC, 21 in touch screen mobile panel",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 6,
+    "notes": "4 to 6 combined positions for tools and heads"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "laser tool length/diameter sensor"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mecanumeric.com/produits/1-748/3-axis-cnc-machine/mecapro-nl/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "tool_change.kind": "magazine type not published"
+   },
+   "notes": "High-speed router for plastics/composites, working width 1600 or 2100 mm. Two ball screws/motors on X. Pre-installed functions for tangential knife, creasing wheel, rigid tapping; variable-power vacuum table."
+  },
+  {
+   "id": "mecanumeric-mecaplus-hp-4321",
+   "maker": "MECANUMERIC",
+   "model": "MECAPLUS HP",
+   "variant": "4321",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 171.26,
+    "y": 82.68,
+    "z": 14.76
+   },
+   "work_area_mm": {
+    "x": 4350,
+    "y": 2100,
+    "z": 375
+   },
+   "gantry_clearance_in": 23.62,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1417.32,
+    "z": 944.88
+   },
+   "rapid_mm_min": {
+    "xy": 36000,
+    "z": 24000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Siemens or Heidenhain NC",
+     "gcarve_post": "siemens-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 24,
+    "notes": "on-gantry rotating magazine, 24 tools (40 option)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.mecanumeric.com/produits/1-684/3-axis-cnc-machine/mecaplus-hp/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "rapid_ipm": "maker max speed 600/400 mm/s converted"
+   },
+   "notes": "Heavy aerospace / tooling router, double ball screw on X, brushless motors. Repeatability 0.015 mm. Max material width 2150 mm. Vacuum by turbine or pump options."
+  }
+ ]
+}

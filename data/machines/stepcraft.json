@@ -1,0 +1,1313 @@
+{
+ "maker": "Stepcraft",
+ "website": "https://stepcraft.us",
+ "machines": [
+  {
+   "id": "stepcraft-d-420",
+   "maker": "Stepcraft",
+   "model": "D-Series",
+   "variant": "D.420",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.77,
+    "y": 16.37,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 299,
+    "y": 416,
+    "z": 135
+   },
+   "gantry_clearance_in": 5.51,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 233.86,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5940,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCCNC + UC100 (STEPCRAFT OEM package)",
+     "gcarve_post": "uccnc-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table (option)",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stepcraft.us/stepcraft-cnc-machine-comparison",
+    "https://stepcraft.us/d-series/",
+    "https://shop.stepcraft.us/shop/20709-uccnc-control-software-oem-package-140"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "140 mm passage height converted",
+    "rapid_mm_min": "99 mm/s published max speed (diagonal X-Y), converted to mm/min",
+    "rapid_ipm": "converted from the published mm rapid"
+   },
+   "notes": "Ships without a spindle: 43 mm Euro-neck tool holder. Rapid = published max speed 99 mm/s (diagonal X-Y). Interface USB / parallel / RJ-45; controlled by UCCNC (UC100) or WinPC-NC."
+  },
+  {
+   "id": "stepcraft-d-600",
+   "maker": "Stepcraft",
+   "model": "D-Series",
+   "variant": "D.600",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 16.37,
+    "y": 23.46,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 416,
+    "y": 595,
+    "z": 135
+   },
+   "gantry_clearance_in": 5.51,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 233.86,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5940,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCCNC + UC100 (STEPCRAFT OEM package)",
+     "gcarve_post": "uccnc-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table (option)",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stepcraft.us/stepcraft-cnc-machine-comparison",
+    "https://stepcraft.us/d-series/",
+    "https://shop.stepcraft.us/shop/20709-uccnc-control-software-oem-package-140"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "140 mm passage height converted",
+    "rapid_mm_min": "99 mm/s published max speed (diagonal X-Y), converted to mm/min",
+    "rapid_ipm": "converted from the published mm rapid"
+   },
+   "notes": "Ships without a spindle: 43 mm Euro-neck tool holder. Rapid = published max speed 99 mm/s (diagonal X-Y). Interface USB / parallel / RJ-45; controlled by UCCNC (UC100) or WinPC-NC."
+  },
+  {
+   "id": "stepcraft-d-840",
+   "maker": "Stepcraft",
+   "model": "D-Series",
+   "variant": "D.840",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 23.4,
+    "y": 32.8,
+    "z": 5.2
+   },
+   "work_area_mm": {
+    "x": 594,
+    "y": 833,
+    "z": 132
+   },
+   "gantry_clearance_in": 5.51,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "STEPCRAFT MM-1000 milling spindle",
+     "power_kw": 1.0,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "1/8\" + 1/4\" (ER11 on the ATC)",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 233.86,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5940,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCCNC + UC100 (STEPCRAFT OEM package)",
+     "gcarve_post": "uccnc-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Fully-Automated package (discontinued) added an MM-1000 ATC with 6 SK15 holders"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool length sensor (package option)"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table (option)",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stepcraft.us/stepcraft-cnc-machine-comparison",
+    "https://stepcraft.us/d-series/",
+    "https://shop.stepcraft.us/shop/20709-uccnc-control-software-oem-package-140",
+    "https://shop.stepcraft.us/shop/70019-d-840-fully-automated-cnc-package-763"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "140 mm passage height converted",
+    "rapid_mm_min": "99 mm/s published max speed (diagonal X-Y), converted to mm/min",
+    "rapid_ipm": "converted from the published mm rapid"
+   },
+   "notes": "Ships without a spindle: 43 mm Euro-neck tool holder. Rapid = published max speed 99 mm/s (diagonal X-Y). Interface USB / parallel / RJ-45; controlled by UCCNC (UC100) or WinPC-NC. The comparison table gives Z 132 mm for the D.840 (135 mm for the smaller sizes)."
+  },
+  {
+   "id": "stepcraft-m-500",
+   "maker": "Stepcraft",
+   "model": "M-Series",
+   "variant": "M.500",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 13.7,
+    "y": 21.37,
+    "z": 7.63
+   },
+   "work_area_mm": {
+    "x": 348,
+    "y": 543,
+    "z": 194
+   },
+   "gantry_clearance_in": 8.07,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 284,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 7200,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCCNC + UC100 (STEPCRAFT OEM package)",
+     "gcarve_post": "uccnc-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stepcraft.us/stepcraft-cnc-machine-comparison",
+    "https://stepcraft.us/m-series/",
+    "https://shop.stepcraft.us/shop/20709-uccnc-control-software-oem-package-140"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "205 mm (table low) as published",
+    "rapid_mm_min": "120 mm/s published max speed (diagonal X-Y)"
+   },
+   "notes": "Ships without a spindle: 43 mm Euro-neck tool holder. igus dryspin 12x5 lead screws, HIWIN 12x5 ball screws optional. Clearance 135/205 mm depending on table position. Max speed 120 mm/s diagonal X-Y."
+  },
+  {
+   "id": "stepcraft-m-700",
+   "maker": "Stepcraft",
+   "model": "M-Series",
+   "variant": "M.700",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 18.85,
+    "y": 29.25,
+    "z": 7.63
+   },
+   "work_area_mm": {
+    "x": 479,
+    "y": 743,
+    "z": 194
+   },
+   "gantry_clearance_in": 8.07,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 284,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 7200,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCCNC + UC100 (STEPCRAFT OEM package)",
+     "gcarve_post": "uccnc-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stepcraft.us/stepcraft-cnc-machine-comparison",
+    "https://stepcraft.us/m-series/",
+    "https://shop.stepcraft.us/shop/20709-uccnc-control-software-oem-package-140"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "205 mm (table low) as published",
+    "rapid_mm_min": "120 mm/s published max speed (diagonal X-Y)"
+   },
+   "notes": "Ships without a spindle: 43 mm Euro-neck tool holder. igus dryspin 12x5 lead screws, HIWIN 12x5 ball screws optional. Clearance 135/205 mm depending on table position. Max speed 120 mm/s diagonal X-Y."
+  },
+  {
+   "id": "stepcraft-m-1000",
+   "maker": "Stepcraft",
+   "model": "M-Series",
+   "variant": "M.1000",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 26.73,
+    "y": 41.1,
+    "z": 7.64
+   },
+   "work_area_mm": {
+    "x": 679,
+    "y": 1044,
+    "z": 194
+   },
+   "gantry_clearance_in": 8.07,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 284,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 7200,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCCNC + UC100 (STEPCRAFT OEM package)",
+     "gcarve_post": "uccnc-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stepcraft.us/stepcraft-cnc-machine-comparison",
+    "https://stepcraft.us/m-series/",
+    "https://shop.stepcraft.us/shop/20709-uccnc-control-software-oem-package-140"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "205 mm (table low) as published",
+    "rapid_mm_min": "120 mm/s published max speed (diagonal X-Y)",
+    "work_area_in": "converted from mm: the comparison table's inch values for M.1000 and M.1400 are swapped"
+   },
+   "notes": "Ships without a spindle: 43 mm Euro-neck tool holder. igus dryspin 12x5 lead screws, HIWIN 12x5 ball screws optional. Clearance 135/205 mm depending on table position. Max speed 120 mm/s diagonal X-Y."
+  },
+  {
+   "id": "stepcraft-m-1400-ultimate",
+   "maker": "Stepcraft",
+   "model": "M.1400 Ultimate",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 38.5,
+    "y": 56.85,
+    "z": 7.63
+   },
+   "work_area_mm": {
+    "x": 979,
+    "y": 1444,
+    "z": 194
+   },
+   "gantry_clearance_in": 8.07,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 401,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 10200,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "UCCNC + CNC Drive UC100",
+     "gcarve_post": "uccnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "optional automatic tool changer"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://stepcraft.us/m-1400-ultimate-cnc-system/",
+    "https://www.stepcraft.us/stepcraft-cnc-machine-comparison"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from 170 mm/s",
+    "motors": "page says 'Semi-Closed Loop System included' with Sanyo Denki NEMA 23 steppers"
+   },
+   "notes": "HIWIN ball screws (X/Z 12x5, Y 20x20), Bosch Rexroth guides. Table 45x61 in. Ships with a 43 mm tool holder adapter; no spindle listed."
+  },
+  {
+   "id": "stepcraft-q-408",
+   "maker": "Stepcraft",
+   "model": "Q.408",
+   "variant": null,
+   "years": "2024-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.26,
+    "y": 105.12,
+    "z": 9.06
+   },
+   "work_area_mm": {
+    "x": 1302,
+    "y": 2670,
+    "z": 230
+   },
+   "gantry_clearance_in": 10.62,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "ATC spindle, ISO30",
+     "power_kw": null,
+     "power_hp": 7,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1400,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 36000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "UCCNC (Ethernet)",
+     "gcarve_post": "uccnc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 10,
+    "notes": "10-tool rack standard"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://stepcraft.us/q-series/",
+    "https://www.stepcraft.us/stepcraft-cnc-machine-comparison"
+   ],
+   "estimated": {
+    "rapid_mm_min": "600 mm/s from the comparison table",
+    "tool_change.kind": "rack type assumed linear"
+   },
+   "notes": "HIWIN 20x20 ball screws (rotating nuts on Y), NEMA 34 closed-loop steppers, 220-240 V 40 A. Max speed 1400 in/min diagonal XY. Weight given as 1450 lbs on the Q page and 473 kg in the comparison table."
+  },
+  {
+   "id": "stepcraft-d-300",
+   "maker": "Stepcraft",
+   "model": "D-Series",
+   "variant": "D.300",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 8.62,
+    "y": 11.65,
+    "z": 3.74
+   },
+   "work_area_mm": {
+    "x": 219,
+    "y": 296,
+    "z": 95
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 233.9,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5940,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCCNC + UC100 (STEPCRAFT OEM package)",
+     "gcarve_post": "uccnc-mm",
+     "default": false
+    },
+    {
+     "name": "WinPC-NC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.stepcraft.us/stepcraft-cnc-machine-comparison"
+   ],
+   "estimated": {
+    "rapid_mm_min": "99 mm/s published max speed (diagonal X-Y)",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Nanotec NEMA 17 steppers, 10 x 3 mm lead screws. 13.4 kg. Ships without spindle (43 mm Euro-neck holder)."
+  },
+  {
+   "id": "stepcraft-2-210",
+   "maker": "Stepcraft",
+   "model": "STEPCRAFT-2 (2018 D-Series)",
+   "variant": "2/210 (D.210)",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 8.27,
+    "y": 8.27,
+    "z": 3.15
+   },
+   "work_area_mm": {
+    "x": 210,
+    "y": 210,
+    "z": 80
+   },
+   "gantry_clearance_in": 3.74,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 70.9,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 1800,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCCNC + UC100 (STEPCRAFT OEM package)",
+     "gcarve_post": "uccnc-mm",
+     "default": false
+    },
+    {
+     "name": "WinPC-NC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://oldjoomla.stepcraft-systems.com/images/SC-Service/sc_prospekt_2018_online_neu.pdf",
+    "https://oldjoomla.stepcraft-systems.com/en/services/machine-parameters"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "brochure \"maximum speed\"",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 95 mm",
+    "max_feed_ipm": "converted from mm/min"
+   },
+   "notes": "2018 brochure generation (machine-parameter page calls it D2). Round-thread 8 x 2 mm lead screws, aluminium roller-guided profiles, HPL table, 43 mm tool holder, 11.7 kg. Machine parameters list slightly longer travels (soft limits)."
+  },
+  {
+   "id": "stepcraft-2-300",
+   "maker": "Stepcraft",
+   "model": "STEPCRAFT-2 (2018 D-Series)",
+   "variant": "2/300 (D.300)",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 8.27,
+    "y": 11.81,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 210,
+    "y": 300,
+    "z": 100
+   },
+   "gantry_clearance_in": 4.53,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 118.1,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCCNC + UC100 (STEPCRAFT OEM package)",
+     "gcarve_post": "uccnc-mm",
+     "default": false
+    },
+    {
+     "name": "WinPC-NC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://oldjoomla.stepcraft-systems.com/images/SC-Service/sc_prospekt_2018_online_neu.pdf",
+    "https://oldjoomla.stepcraft-systems.com/en/services/machine-parameters"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "brochure \"maximum speed\"",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 115 mm",
+    "max_feed_ipm": "converted from mm/min"
+   },
+   "notes": "2018 brochure generation (machine-parameter page calls it D2). Round-thread 10 x 3 mm lead screws, aluminium roller-guided profiles, HPL table, 43 mm tool holder, 13.4 kg. Machine parameters list slightly longer travels (soft limits)."
+  },
+  {
+   "id": "stepcraft-2-420",
+   "maker": "Stepcraft",
+   "model": "STEPCRAFT-2 (2018 D-Series)",
+   "variant": "2/420 (D.420)",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 16.54,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 420,
+    "z": 140
+   },
+   "gantry_clearance_in": 6.89,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 118.1,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCCNC + UC100 (STEPCRAFT OEM package)",
+     "gcarve_post": "uccnc-mm",
+     "default": false
+    },
+    {
+     "name": "WinPC-NC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://oldjoomla.stepcraft-systems.com/images/SC-Service/sc_prospekt_2018_online_neu.pdf",
+    "https://oldjoomla.stepcraft-systems.com/en/services/machine-parameters"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "brochure \"maximum speed\"",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 175 mm",
+    "max_feed_ipm": "converted from mm/min"
+   },
+   "notes": "2018 brochure generation (machine-parameter page calls it D2). Round-thread 10 x 3 mm lead screws, aluminium roller-guided profiles, HPL table, 43 mm tool holder, 15.3 kg. Machine parameters list slightly longer travels (soft limits)."
+  },
+  {
+   "id": "stepcraft-2-600",
+   "maker": "Stepcraft",
+   "model": "STEPCRAFT-2 (2018 D-Series)",
+   "variant": "2/600 (D.600)",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 16.54,
+    "y": 23.62,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 420,
+    "y": 600,
+    "z": 140
+   },
+   "gantry_clearance_in": 6.89,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 118.1,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCCNC + UC100 (STEPCRAFT OEM package)",
+     "gcarve_post": "uccnc-mm",
+     "default": false
+    },
+    {
+     "name": "WinPC-NC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://oldjoomla.stepcraft-systems.com/images/SC-Service/sc_prospekt_2018_online_neu.pdf",
+    "https://oldjoomla.stepcraft-systems.com/en/services/machine-parameters"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "brochure \"maximum speed\"",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 175 mm",
+    "max_feed_ipm": "converted from mm/min"
+   },
+   "notes": "2018 brochure generation (machine-parameter page calls it D2). Round-thread 10 x 3 mm lead screws, aluminium roller-guided profiles, HPL table, 43 mm tool holder, 19.7 kg. Machine parameters list slightly longer travels (soft limits)."
+  },
+  {
+   "id": "stepcraft-2-840",
+   "maker": "Stepcraft",
+   "model": "STEPCRAFT-2 (2018 D-Series)",
+   "variant": "2/840 (D.840)",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 33.07,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 840,
+    "z": 140
+   },
+   "gantry_clearance_in": 6.89,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 118.1,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCCNC + UC100 (STEPCRAFT OEM package)",
+     "gcarve_post": "uccnc-mm",
+     "default": false
+    },
+    {
+     "name": "WinPC-NC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://oldjoomla.stepcraft-systems.com/images/SC-Service/sc_prospekt_2018_online_neu.pdf",
+    "https://oldjoomla.stepcraft-systems.com/en/services/machine-parameters"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "brochure \"maximum speed\"",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 175 mm",
+    "max_feed_ipm": "converted from mm/min"
+   },
+   "notes": "2018 brochure generation (machine-parameter page calls it D2). Round-thread 10 x 3 mm lead screws, aluminium roller-guided profiles, HPL table, 43 mm tool holder, 31.8 kg. Machine parameters list slightly longer travels (soft limits)."
+  },
+  {
+   "id": "stepcraft-q-204-v1",
+   "maker": "Stepcraft",
+   "model": "Q-Series (2018)",
+   "variant": "Q.204",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 26.18,
+    "y": 49.8,
+    "z": 5.71
+   },
+   "work_area_mm": {
+    "x": 665,
+    "y": 1265,
+    "z": 145
+   },
+   "gantry_clearance_in": 7.68,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 393.7,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 10000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCCNC + UC100 (STEPCRAFT OEM package)",
+     "gcarve_post": "uccnc-mm",
+     "default": false
+    },
+    {
+     "name": "WinPC-NC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://oldjoomla.stepcraft-systems.com/images/SC-Service/SC-Q-Booklet_ANSICHT.pdf"
+   ],
+   "estimated": {
+    "rapid_mm_min": "brochure \"maximum speed\"",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 195 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Original Q-Series booklet: All-Steel Motion System (hardened 20 mm shafts), ball screws with rotating nuts on X/Y, actively cooled steppers, USB/parallel interface, 144.5 kg, clamping surface 800 x 1477 mm. Not the 2024 Q.408 (stepcraft-q-408)."
+  },
+  {
+   "id": "stepcraft-q-404-v1",
+   "maker": "Stepcraft",
+   "model": "Q-Series (2018)",
+   "variant": "Q.404",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 49.8,
+    "y": 49.8,
+    "z": 5.71
+   },
+   "work_area_mm": {
+    "x": 1265,
+    "y": 1265,
+    "z": 145
+   },
+   "gantry_clearance_in": 7.68,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCCNC + UC100 (STEPCRAFT OEM package)",
+     "gcarve_post": "uccnc-mm",
+     "default": false
+    },
+    {
+     "name": "WinPC-NC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://oldjoomla.stepcraft-systems.com/images/SC-Service/SC-Q-Booklet_ANSICHT.pdf"
+   ],
+   "estimated": {
+    "rapid_mm_min": "brochure \"maximum speed\"",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 195 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Original Q-Series booklet: All-Steel Motion System (hardened 20 mm shafts), ball screws with rotating nuts on X/Y, actively cooled steppers, USB/parallel interface, 183.3 kg, clamping surface 1400 x 1477 mm. Not the 2024 Q.408 (stepcraft-q-408)."
+  },
+  {
+   "id": "stepcraft-q-408-v1",
+   "maker": "Stepcraft",
+   "model": "Q-Series (2018)",
+   "variant": "Q.408",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 49.8,
+    "y": 98.03,
+    "z": 5.71
+   },
+   "work_area_mm": {
+    "x": 1265,
+    "y": 2490,
+    "z": 145
+   },
+   "gantry_clearance_in": 7.68,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCCNC + UC100 (STEPCRAFT OEM package)",
+     "gcarve_post": "uccnc-mm",
+     "default": false
+    },
+    {
+     "name": "WinPC-NC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://oldjoomla.stepcraft-systems.com/images/SC-Service/SC-Q-Booklet_ANSICHT.pdf"
+   ],
+   "estimated": {
+    "rapid_mm_min": "brochure \"maximum speed\"",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 195 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Original Q-Series booklet: All-Steel Motion System (hardened 20 mm shafts), ball screws with rotating nuts on X/Y, actively cooled steppers, USB/parallel interface, 275.2 kg, clamping surface 1400 x 2577 mm. Not the 2024 Q.408 (stepcraft-q-408)."
+  }
+ ]
+}

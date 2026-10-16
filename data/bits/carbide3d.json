@@ -1,0 +1,1130 @@
+{
+ "maker": "Carbide 3D",
+ "source_summary": "shop.carbide3d.com product spec tables.",
+ "retrieved": "2026-10-08",
+ "bits": [
+  {
+   "id": "carbide3d-121",
+   "maker": "Carbide 3D",
+   "part_number": "#121",
+   "name": "#121 .0312\" Ball Cutter",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.0312,
+   "shank": 0.125,
+   "cut_length": 0.25,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.0156,
+   "chipload_ref": "amana/spiral-ball-nose-2f",
+   "materials": [
+    "Wood",
+    "Aluminum",
+    "Plastic",
+    "Brass",
+    "Copper"
+   ],
+   "applications": [
+    "3D",
+    "Woodworking",
+    "Milling"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #121 Ball Nose 1/32 in",
+    "kind": "BallNose",
+    "diameter": 0.0312,
+    "flutes": 2
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/121-0312-ball-cutter"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable amana/spiral-ball-nose-2f table."
+  },
+  {
+   "id": "carbide3d-111",
+   "maker": "Carbide 3D",
+   "part_number": "#111",
+   "name": "#111 .0625\" Ball Cutter",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.0625,
+   "shank": 0.125,
+   "cut_length": 0.25,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.03125,
+   "chipload_ref": "amana/spiral-ball-nose-2f",
+   "materials": [
+    "Wood",
+    "Aluminum",
+    "Plastic",
+    "Brass",
+    "Copper"
+   ],
+   "applications": [
+    "3D",
+    "Woodworking",
+    "Milling"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #111 Ball Nose 1/16 in",
+    "kind": "BallNose",
+    "diameter": 0.0625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/111-0625-ball-cutter"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable amana/spiral-ball-nose-2f table."
+  },
+  {
+   "id": "carbide3d-101",
+   "maker": "Carbide 3D",
+   "part_number": "#101",
+   "name": "#101 .125\" Ball Cutter",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 0.5,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.0625,
+   "chipload_ref": "amana/spiral-ball-nose-2f",
+   "materials": [
+    "Wood",
+    "Aluminum",
+    "Plastic",
+    "Brass",
+    "Copper"
+   ],
+   "applications": [
+    "3D",
+    "Woodworking",
+    "Milling"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #101 Ball Nose 1/8 in",
+    "kind": "BallNose",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/101-125-ball-cutter"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable amana/spiral-ball-nose-2f table."
+  },
+  {
+   "id": "carbide3d-202",
+   "maker": "Carbide 3D",
+   "part_number": "#202",
+   "name": "#202 .25\" Ball Cutter",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "oal": 2.5,
+   "flutes": 2,
+   "tip_radius": 0.125,
+   "chipload_ref": "amana/spiral-ball-nose-2f",
+   "materials": [
+    "Wood",
+    "Aluminum",
+    "Plastic",
+    "Brass",
+    "Copper"
+   ],
+   "applications": [
+    "3D",
+    "Woodworking",
+    "Milling"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #202 Ball Nose 1/4 in",
+    "kind": "BallNose",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/202-25-ball-cutter"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable amana/spiral-ball-nose-2f table."
+  },
+  {
+   "id": "carbide3d-212",
+   "maker": "Carbide 3D",
+   "part_number": "#212",
+   "name": "#212 8mm Ball Cutter",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "mm",
+   "diameter": 8.0,
+   "shank": 8.0,
+   "cut_length": 26.0,
+   "oal": 75.0,
+   "flutes": 3,
+   "tip_radius": 4.0,
+   "chipload_ref": "amana/spiral-ball-nose-2f",
+   "materials": [
+    "Wood",
+    "Aluminum",
+    "Plastic",
+    "Brass",
+    "Copper"
+   ],
+   "applications": [
+    "Signs",
+    "Woodworking",
+    "Milling"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #212 Ball Nose 8 mm",
+    "kind": "BallNose",
+    "diameter": 0.31496,
+    "flutes": 3
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/212-8mm-ball-cutter"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable amana/spiral-ball-nose-2f table. \"El Ocho\" 8 mm shank series; the product page prints the metric values in its inch field, so lengths are mm."
+  },
+  {
+   "id": "carbide3d-214",
+   "maker": "Carbide 3D",
+   "part_number": "#214",
+   "name": "#214 8mm Compression Cutter",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "mm",
+   "diameter": 8.0,
+   "shank": 8.0,
+   "cut_length": 26.0,
+   "oal": 75.0,
+   "flutes": 3,
+   "helix": "compression",
+   "chipload_ref": "onsrud/60-100MW",
+   "materials": [
+    "Wood"
+   ],
+   "applications": [
+    "Signs",
+    "Woodworking",
+    "Milling"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #214 Compression 8 mm",
+    "kind": "EndMill",
+    "diameter": 0.31496,
+    "flutes": 3
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/214-8mm-compression-cutter"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable onsrud/60-100MW table. \"El Ocho\" 8 mm shank series; the product page prints the metric values in its inch field, so lengths are mm."
+  },
+  {
+   "id": "carbide3d-251",
+   "maker": "Carbide 3D",
+   "part_number": "#251",
+   "name": "#251 .25\" Downcut Flat Cutter",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "oal": 2.5,
+   "flutes": 2,
+   "helix": "down",
+   "chipload_ref": "onsrud/57-200",
+   "materials": [
+    "Wood",
+    "Plastic"
+   ],
+   "applications": [
+    "Signs",
+    "Woodworking",
+    "Milling"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #251 Down Spiral 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/251-25-downcut-flat-cutter"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable onsrud/57-200 table."
+  },
+  {
+   "id": "carbide3d-122",
+   "maker": "Carbide 3D",
+   "part_number": "#122",
+   "name": "#122 .0312\" Flat Cutter",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.0312,
+   "shank": 0.125,
+   "cut_length": 0.0625,
+   "oal": 1.5,
+   "flutes": 2,
+   "helix": "up",
+   "chipload_ref": "onsrud/52-200",
+   "materials": [
+    "Wood",
+    "Aluminum",
+    "Plastic",
+    "Brass",
+    "Copper"
+   ],
+   "applications": [
+    "Signs",
+    "Woodworking",
+    "Milling"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #122 Up Spiral 1/32 in",
+    "kind": "EndMill",
+    "diameter": 0.0312,
+    "flutes": 2
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/122-0312-end-mill-cutter"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable onsrud/52-200 table."
+  },
+  {
+   "id": "carbide3d-112",
+   "maker": "Carbide 3D",
+   "part_number": "#112",
+   "name": "#112 .0625\" Flat Cutter",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.0625,
+   "shank": 0.125,
+   "cut_length": 0.25,
+   "oal": 1.5,
+   "flutes": 2,
+   "helix": "up",
+   "chipload_ref": "onsrud/52-200",
+   "materials": [
+    "Wood",
+    "Aluminum",
+    "Plastic",
+    "Brass",
+    "Copper"
+   ],
+   "applications": [
+    "Signs",
+    "Woodworking",
+    "Milling"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #112 Up Spiral 1/16 in",
+    "kind": "EndMill",
+    "diameter": 0.0625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/112-0625-end-mill-cutter"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable onsrud/52-200 table."
+  },
+  {
+   "id": "carbide3d-112z",
+   "maker": "Carbide 3D",
+   "part_number": "#112Z",
+   "name": "#112Z .0625\" ZrN Coated Flat Cutter",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "in",
+   "diameter": 0.0625,
+   "shank": 0.125,
+   "cut_length": 0.25,
+   "oal": 1.5,
+   "flutes": 2,
+   "helix": "up",
+   "chipload_ref": "onsrud/52-200",
+   "materials": [
+    "Wood",
+    "Aluminum",
+    "Plastic",
+    "Brass",
+    "Copper"
+   ],
+   "applications": [
+    "Signs",
+    "Woodworking",
+    "Milling"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #112Z Up Spiral 1/16 in",
+    "kind": "EndMill",
+    "diameter": 0.0625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/112z-0625-end-mill-cutter-zrn"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable onsrud/52-200 table."
+  },
+  {
+   "id": "carbide3d-102",
+   "maker": "Carbide 3D",
+   "part_number": "#102",
+   "name": "#102 .125\" Flat Cutter",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 0.5,
+   "oal": 1.5,
+   "flutes": 2,
+   "helix": "up",
+   "chipload_ref": "onsrud/52-200",
+   "materials": [
+    "Wood",
+    "Aluminum",
+    "Plastic",
+    "Brass",
+    "Copper"
+   ],
+   "applications": [
+    "Signs",
+    "Woodworking",
+    "Milling"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #102 Up Spiral 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/102-125-end-mill-cutter"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable onsrud/52-200 table."
+  },
+  {
+   "id": "carbide3d-102e",
+   "maker": "Carbide 3D",
+   "part_number": "#102E",
+   "name": "Essentials #102E .125\" Flat Cutter",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 0.5,
+   "oal": 1.5,
+   "flutes": 2,
+   "helix": "up",
+   "chipload_ref": "onsrud/52-200",
+   "materials": [
+    "Wood",
+    "Aluminum",
+    "Plastic",
+    "Brass",
+    "Copper"
+   ],
+   "applications": [
+    "Signs",
+    "Woodworking",
+    "Milling"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #102E Up Spiral 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/102e-125-end-mill-cutter"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable onsrud/52-200 table."
+  },
+  {
+   "id": "carbide3d-102z",
+   "maker": "Carbide 3D",
+   "part_number": "#102Z",
+   "name": "#102Z .125\" Zrn Coated Flat Cutter",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 0.5,
+   "oal": 1.5,
+   "flutes": 2,
+   "helix": "up",
+   "chipload_ref": "onsrud/52-200",
+   "materials": [
+    "Wood",
+    "Aluminum",
+    "Plastic",
+    "Brass",
+    "Copper"
+   ],
+   "applications": [
+    "Signs",
+    "Woodworking",
+    "Milling"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #102Z Up Spiral 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/102z-125-end-mill-cutter-zrn"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable onsrud/52-200 table."
+  },
+  {
+   "id": "carbide3d-201",
+   "maker": "Carbide 3D",
+   "part_number": "#201",
+   "name": "#201 .25\" Flat Cutter",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "oal": 2.5,
+   "flutes": 3,
+   "helix": "up",
+   "chipload_ref": "onsrud/60-700",
+   "materials": [
+    "Wood",
+    "Aluminum",
+    "Plastic",
+    "Brass",
+    "Copper"
+   ],
+   "applications": [
+    "Signs",
+    "Woodworking",
+    "Milling"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #201 Up Spiral 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 3
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/201-25-end-mill-cutter"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable onsrud/60-700 table."
+  },
+  {
+   "id": "carbide3d-201z",
+   "maker": "Carbide 3D",
+   "part_number": "#201Z",
+   "name": "#201Z .25\" Zrn Coated Flat Cutter",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "oal": 2.5,
+   "flutes": 3,
+   "helix": "up",
+   "chipload_ref": "onsrud/60-700",
+   "materials": [
+    "Wood",
+    "Aluminum",
+    "Plastic",
+    "Brass",
+    "Copper"
+   ],
+   "applications": [
+    "Signs",
+    "Woodworking",
+    "Milling"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #201Z Up Spiral 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 3
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/201z-250-end-mill-cutter-zrn"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable onsrud/60-700 table."
+  },
+  {
+   "id": "carbide3d-203z",
+   "maker": "Carbide 3D",
+   "part_number": "#203Z",
+   "name": "#203Z .25\" ZrN Coated Flat Stub Cutter",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.375,
+   "oal": 2.5,
+   "flutes": 3,
+   "helix": "up",
+   "corner_radius": 0.005,
+   "chipload_ref": "onsrud/60-700",
+   "materials": [
+    "Wood",
+    "Aluminum",
+    "Plastic",
+    "Brass",
+    "Copper"
+   ],
+   "applications": [
+    "Signs",
+    "Woodworking",
+    "Milling"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #203Z Up Spiral 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 3
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/203z-250-end-mill-cutter-zrn"
+   ],
+   "notes": "Stub length. Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable onsrud/60-700 table."
+  },
+  {
+   "id": "carbide3d-205e",
+   "maker": "Carbide 3D",
+   "part_number": "#205E",
+   "name": "Essentials #205E .25\" Flat Cutter",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "oal": 2.5,
+   "flutes": 2,
+   "helix": "up",
+   "chipload_ref": "onsrud/52-200",
+   "materials": [
+    "Wood",
+    "Aluminum",
+    "Plastic",
+    "Brass",
+    "Copper"
+   ],
+   "applications": [
+    "Signs",
+    "Woodworking",
+    "Milling"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #205E Up Spiral 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/205e-250-end-mill-cutter"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable onsrud/52-200 table."
+  },
+  {
+   "id": "carbide3d-211",
+   "maker": "Carbide 3D",
+   "part_number": "#211",
+   "name": "#211 8mm Endmill",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "mm",
+   "diameter": 8.0,
+   "shank": 8.0,
+   "cut_length": 26.0,
+   "oal": 75.0,
+   "flutes": 2,
+   "helix": "up",
+   "chipload_ref": "onsrud/52-200",
+   "materials": [
+    "Wood",
+    "Aluminum",
+    "Plastic",
+    "Brass",
+    "Copper"
+   ],
+   "applications": [
+    "Signs",
+    "Woodworking",
+    "Milling"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #211 Up Spiral 8 mm",
+    "kind": "EndMill",
+    "diameter": 0.31496,
+    "flutes": 2
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/211-8mm-endmill-cutter"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable onsrud/52-200 table. \"El Ocho\" 8 mm shank series; the product page prints the metric values in its inch field, so lengths are mm."
+  },
+  {
+   "id": "carbide3d-213",
+   "maker": "Carbide 3D",
+   "part_number": "#213",
+   "name": "#213 8mm Rougher",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "mm",
+   "diameter": 8.0,
+   "shank": 8.0,
+   "cut_length": 26.0,
+   "oal": 75.0,
+   "flutes": 3,
+   "helix": "up",
+   "chipload_ref": "onsrud/60-700",
+   "materials": [
+    "Wood",
+    "Aluminum",
+    "Plastic"
+   ],
+   "applications": [
+    "Signs",
+    "Woodworking",
+    "Milling"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #213 Up Spiral 8 mm",
+    "kind": "EndMill",
+    "diameter": 0.31496,
+    "flutes": 3
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/213-8mm-roughing-cutter"
+   ],
+   "notes": "Roughing end mill. Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable onsrud/60-700 table. \"El Ocho\" 8 mm shank series; the product page prints the metric values in its inch field, so lengths are mm."
+  },
+  {
+   "id": "carbide3d-501",
+   "maker": "Carbide 3D",
+   "part_number": "#501",
+   "name": "#501 PCB Engraver",
+   "family": "engraving",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "oal": 1.5,
+   "flutes": 2,
+   "angle_deg": 60.0,
+   "tip_diameter": 0.01,
+   "corner_radius": 0.005,
+   "materials": [
+    "Wood",
+    "Plastic",
+    "Aluminum",
+    "Brass",
+    "Copper"
+   ],
+   "applications": [
+    "Engraving",
+    "PCB machining",
+    "V-Carving"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #501 Engraver 60° 1/8 in",
+    "kind": "VBit",
+    "diameter": 0.125,
+    "flutes": 2,
+    "angle": 60.0
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/501-engraving-bit"
+   ],
+   "notes": "PCB engraver; angle from the listed taper angle (x2)."
+  },
+  {
+   "id": "carbide3d-502",
+   "maker": "Carbide 3D",
+   "part_number": "#502",
+   "name": "#502 PCB Engraver",
+   "family": "engraving",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "oal": 1.5,
+   "flutes": 2,
+   "angle_deg": 40.0,
+   "tip_diameter": 0.005,
+   "corner_radius": 0.0025,
+   "materials": [
+    "Wood",
+    "Plastic",
+    "Aluminum",
+    "Brass",
+    "Copper"
+   ],
+   "applications": [
+    "Engraving",
+    "PCB machining",
+    "V-Carving"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #502 Engraver 40° 1/8 in",
+    "kind": "VBit",
+    "diameter": 0.125,
+    "flutes": 2,
+    "angle": 40.0
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/502-engraving-bit"
+   ],
+   "notes": "PCB engraver; angle from the listed taper angle (x2)."
+  },
+  {
+   "id": "carbide3d-282z",
+   "maker": "Carbide 3D",
+   "part_number": "#282Z",
+   "name": "#282Z 2mm Single Flute ZrN",
+   "family": "o-flute",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "in",
+   "diameter": 0.07874,
+   "shank": 0.125,
+   "cut_length": 0.26,
+   "oal": 1.5,
+   "flutes": 1,
+   "helix": "up",
+   "chipload_ref": "onsrud/63-600",
+   "materials": [
+    "Wood",
+    "Aluminum",
+    "Plastic",
+    "Brass",
+    "Copper"
+   ],
+   "applications": [
+    "Signs",
+    "Woodworking",
+    "Milling"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #282Z O-Flute 0.07874 in",
+    "kind": "EndMill",
+    "diameter": 0.07874,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/282z-2mm-single-flute-zrn"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable onsrud/63-600 table."
+  },
+  {
+   "id": "carbide3d-274z",
+   "maker": "Carbide 3D",
+   "part_number": "#274Z",
+   "name": "#274Z .125\" Single Flute ZrN",
+   "family": "o-flute",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 0.5,
+   "oal": 1.5,
+   "flutes": 1,
+   "helix": "up",
+   "chipload_ref": "onsrud/63-600",
+   "materials": [
+    "Wood",
+    "Aluminum",
+    "Plastic",
+    "Brass",
+    "Copper"
+   ],
+   "applications": [
+    "Signs",
+    "Woodworking",
+    "Milling"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #274Z O-Flute 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/274z-125-single-flute-zrn"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable onsrud/63-600 table."
+  },
+  {
+   "id": "carbide3d-278z",
+   "maker": "Carbide 3D",
+   "part_number": "#278Z",
+   "name": "#278Z .25\" Single Flute ZrN",
+   "family": "o-flute",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "oal": 2.5,
+   "flutes": 1,
+   "helix": "up",
+   "chipload_ref": "onsrud/63-600",
+   "materials": [
+    "Wood",
+    "Aluminum",
+    "Plastic",
+    "Brass",
+    "Copper"
+   ],
+   "applications": [
+    "Signs",
+    "Woodworking",
+    "Milling"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #278Z O-Flute 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 1
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/278z-25-single-flute-zrn"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable onsrud/63-600 table."
+  },
+  {
+   "id": "carbide3d-311",
+   "maker": "Carbide 3D",
+   "part_number": "#311",
+   "name": "#311 90 Degree Solid V-bit Cutter",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "mm",
+   "diameter": 12.0,
+   "shank": 8.0,
+   "oal": 65.0,
+   "flutes": 3,
+   "angle_deg": 90.0,
+   "chipload_ref": "amana/v-groove-engraving",
+   "materials": [
+    "Wood"
+   ],
+   "applications": [
+    "Engraving",
+    "V-Carving",
+    "Woodworking"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #311 V-Bit 90° 12 mm",
+    "kind": "VBit",
+    "diameter": 0.47244,
+    "flutes": 3,
+    "angle": 90.0
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/311-90-degree-solid-vee-cutter"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable amana/v-groove-engraving table. \"El Ocho\" 8 mm shank series; the product page prints the metric values in its inch field, so lengths are mm."
+  },
+  {
+   "id": "carbide3d-312",
+   "maker": "Carbide 3D",
+   "part_number": "#312",
+   "name": "#312 60 Degree Solid V-bit Cutter",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "mm",
+   "diameter": 12.0,
+   "shank": 8.0,
+   "oal": 65.0,
+   "flutes": 3,
+   "angle_deg": 60.0,
+   "chipload_ref": "amana/v-groove-engraving",
+   "materials": [
+    "Wood"
+   ],
+   "applications": [
+    "Engraving",
+    "V-Carving",
+    "Woodworking"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #312 V-Bit 60° 12 mm",
+    "kind": "VBit",
+    "diameter": 0.47244,
+    "flutes": 3,
+    "angle": 60.0
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/312-60-degree-solid-vee-cutter"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable amana/v-groove-engraving table. \"El Ocho\" 8 mm shank series; the product page prints the metric values in its inch field, so lengths are mm."
+  },
+  {
+   "id": "carbide3d-301",
+   "maker": "Carbide 3D",
+   "part_number": "#301",
+   "name": "#301 0.50\" V-Bit Cutter - 90° -",
+   "family": "v-bit",
+   "tool_material": "hss core with brazed carbide flutes",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.25,
+   "oal": 2.0,
+   "flutes": 2,
+   "angle_deg": 90.0,
+   "chipload_ref": "amana/v-groove-engraving",
+   "materials": [
+    "Wood"
+   ],
+   "applications": [
+    "Engraving",
+    "V-Carving",
+    "Woodworking"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #301 V-Bit 90° 1/2 in",
+    "kind": "VBit",
+    "diameter": 0.5,
+    "flutes": 2,
+    "angle": 90.0
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/301-v-bit-cutter-90"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable amana/v-groove-engraving table."
+  },
+  {
+   "id": "carbide3d-301e",
+   "maker": "Carbide 3D",
+   "part_number": "#301E",
+   "name": "Essentials #301E 0.50\" V-Bit Cutter - 90° -",
+   "family": "v-bit",
+   "tool_material": "hss core with brazed carbide flutes",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.25,
+   "oal": 2.0,
+   "flutes": 2,
+   "angle_deg": 90.0,
+   "chipload_ref": "amana/v-groove-engraving",
+   "materials": [
+    "Wood"
+   ],
+   "applications": [
+    "Engraving",
+    "V-Carving",
+    "Woodworking"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #301E V-Bit 90° 1/2 in",
+    "kind": "VBit",
+    "diameter": 0.5,
+    "flutes": 2,
+    "angle": 90.0
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/301e-v-bit-cutter-90"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable amana/v-groove-engraving table."
+  },
+  {
+   "id": "carbide3d-302",
+   "maker": "Carbide 3D",
+   "part_number": "#302",
+   "name": "#302 0.50\" V-Bit Cutter - 60° -",
+   "family": "v-bit",
+   "tool_material": "hss core with brazed carbide flutes",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.25,
+   "oal": 2.0,
+   "flutes": 2,
+   "angle_deg": 60.0,
+   "chipload_ref": "amana/v-groove-engraving",
+   "materials": [
+    "Wood"
+   ],
+   "applications": [
+    "Engraving",
+    "V-Carving",
+    "Woodworking"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #302 V-Bit 60° 1/2 in",
+    "kind": "VBit",
+    "diameter": 0.5,
+    "flutes": 2,
+    "angle": 60.0
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/302-v-bit-cutter-60"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable amana/v-groove-engraving table."
+  },
+  {
+   "id": "carbide3d-302e",
+   "maker": "Carbide 3D",
+   "part_number": "#302E",
+   "name": "Essentials #302E 0.50\" V-Bit Cutter - 60° -",
+   "family": "v-bit",
+   "tool_material": "hss core with brazed carbide flutes",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.25,
+   "oal": 2.0,
+   "flutes": 2,
+   "angle_deg": 60.0,
+   "chipload_ref": "amana/v-groove-engraving",
+   "materials": [
+    "Wood"
+   ],
+   "applications": [
+    "Engraving",
+    "V-Carving",
+    "Woodworking"
+   ],
+   "gcarve_tool": {
+    "name": "Carbide 3D #302E V-Bit 60° 1/2 in",
+    "kind": "VBit",
+    "diameter": 0.5,
+    "flutes": 2,
+    "angle": 60.0
+   },
+   "sources": [
+    "https://shop.carbide3d.com/products/302e-v-bit-cutter-60"
+   ],
+   "notes": "Carbide 3D publishes machine-specific feeds charts, not chip-load tables; chipload_ref = comparable amana/v-groove-engraving table."
+  }
+ ]
+}

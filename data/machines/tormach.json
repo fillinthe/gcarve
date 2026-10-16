@@ -1,0 +1,698 @@
+{
+ "maker": "Tormach",
+ "website": "https://tormach.com",
+ "machines": [
+  {
+   "id": "tormach-24r",
+   "maker": "Tormach",
+   "model": "24R",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 24.75,
+    "y": 55.75,
+    "z": 6.7
+   },
+   "work_area_mm": {
+    "x": 625,
+    "y": 1415,
+    "z": 170
+   },
+   "gantry_clearance_in": 6,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "1.5 kW water-cooled electrospindle",
+     "power_kw": 1.5,
+     "power_hp": 2,
+     "rpm_min": 10000,
+     "rpm_max": 24000,
+     "collet": "ER20 (ISO20 with ATC)",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "PathPilot",
+     "gcarve_post": "pathpilot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 10-pocket automatic tool changer (ISO20 holders)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "electronic tool setter (option / package)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://tormach.com/machines/routers/24r-cnc-router.html"
+   ],
+   "notes": "Table 26.5 x 65 in with integrated vacuum table; cast-iron base, aluminum gantry; 115 V single phase. Chiller included."
+  },
+  {
+   "id": "tormach-1100mx",
+   "maker": "Tormach",
+   "model": "1100MX",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 18,
+    "y": 11,
+    "z": 16.25
+   },
+   "work_area_mm": {
+    "x": 457,
+    "y": 279,
+    "z": 413
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2 hp BT30 belt-drive spindle",
+     "power_kw": 1.49,
+     "power_hp": 2,
+     "rpm_min": null,
+     "rpm_max": 10000,
+     "collet": "BT30",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 300,
+    "z": 230
+   },
+   "max_feed_mm_min": {
+    "xy": 7620,
+    "z": 5840
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "PathPilot",
+     "gcarve_post": "pathpilot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 12-pocket automatic tool changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "spindle probe and tool setter (option / package)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vise"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://tormach.com/machines/mills/1100mx.html"
+   ],
+   "notes": "Vertical mill (metal), not a gantry router. Table 34 x 9.5 in, three 5/8 in T-slots; spindle nose to table max 17.25 in. Rigid tapping. 230 V single phase."
+  },
+  {
+   "id": "tormach-770mx",
+   "maker": "Tormach",
+   "model": "770MX",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 14,
+    "y": 7.5,
+    "z": 13.25
+   },
+   "work_area_mm": {
+    "x": 356,
+    "y": 191,
+    "z": 337
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2 hp BT30 spindle (4.5 hp peak)",
+     "power_kw": 1.49,
+     "power_hp": 2,
+     "rpm_min": null,
+     "rpm_max": 10000,
+     "collet": "BT30",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 450,
+    "z": 420
+   },
+   "max_feed_mm_min": {
+    "xy": 11400,
+    "z": 10600
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "PathPilot",
+     "gcarve_post": "pathpilot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 10-pocket automatic tool changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "wireless probe and tool setter (option / package)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vise"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://tormach.com/machines/mills/770mx.html"
+   ],
+   "notes": "Vertical mill (metal), not a gantry router. EtherCAT absolute-encoder servos. Table 26 x 8 in, three 5/8 in T-slots; spindle nose to table max 13.75 in. Peak spindle 3.35 kW. 230 V single phase, air 90-120 psi."
+  },
+  {
+   "id": "tormach-xstech",
+   "maker": "Tormach",
+   "model": "xsTECH",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 8.6,
+    "y": 6.3,
+    "z": 2.4
+   },
+   "work_area_mm": {
+    "x": 220,
+    "y": 160,
+    "z": 61
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "120 W brushless DC spindle",
+     "power_kw": 0.12,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 20000,
+     "collet": "ER11",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "PathPilot",
+     "gcarve_post": "pathpilot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "electronic tool setter (included)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://tormach.com/machines/routers/xstech-router.html"
+   ],
+   "notes": "Enclosed education desktop router; table 12.6 x 5.9 in, max table load 3 kg. Ships with 10.4 in touchscreen PathPilot controller."
+  },
+  {
+   "id": "tormach-xstech-pro",
+   "maker": "Tormach",
+   "model": "xsTECH Pro",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 10.2,
+    "y": 9.3,
+    "z": 6.3
+   },
+   "work_area_mm": {
+    "x": 259,
+    "y": 237,
+    "z": 160
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "350 W spindle",
+     "power_kw": 0.35,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 20000,
+     "collet": "ISO 10",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "PathPilot",
+     "gcarve_post": "pathpilot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 4,
+    "notes": "Four-station ATC (changer layout not stated on the spec page; X travel is 12.3 in without the changer)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://tormach.com/machines/routers/xstech-pro-cnc-router.html"
+   ],
+   "notes": "Enclosed education desktop router; air 90-120 psi; UL/CE. Supports probing and 4th axis."
+  },
+  {
+   "id": "tormach-1500mx",
+   "maker": "Tormach",
+   "model": "1500MX",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 19.69,
+    "y": 13.78,
+    "z": 14.02
+   },
+   "work_area_mm": {
+    "x": 500,
+    "y": 350,
+    "z": 356
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4 hp BT30 spindle (6 hp peak)",
+     "power_kw": 3,
+     "power_hp": 4,
+     "rpm_min": 250,
+     "rpm_max": 10000,
+     "collet": "BT30",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1200,
+    "z": 600
+   },
+   "max_feed_mm_min": {
+    "xy": 30480.0,
+    "z": 15240.0
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "PathPilot",
+     "gcarve_post": "pathpilot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 16-pocket umbrella automatic tool changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool setter / probe (option)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vise"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://tormach.com/machines/mills/1500mx.html"
+   ],
+   "notes": "Vertical mill (metal), not a gantry router. EtherCAT servos with 23-bit absolute encoders. Table 35 x 12.75 in; spindle nose to table 3.7-17.7 in. Published feed figure is the maximum feed rate.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_mm_min": "converted from in/min"
+   }
+  },
+  {
+   "id": "tormach-1100m",
+   "maker": "Tormach",
+   "model": "1100M",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 18,
+    "y": 11,
+    "z": 16.25
+   },
+   "work_area_mm": {
+    "x": 457.0,
+    "y": 279.0,
+    "z": 413.0
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2 hp R8 belt-drive spindle",
+     "power_kw": 1.5,
+     "power_hp": 2,
+     "rpm_min": null,
+     "rpm_max": 7500,
+     "collet": "R8",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 110,
+    "z": 90
+   },
+   "max_feed_mm_min": {
+    "xy": 2794.0,
+    "z": 2286.0
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "PathPilot",
+     "gcarve_post": "pathpilot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 12-pocket automatic tool changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool setter / probe (option)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vise"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://tormach.com/machines/mills/1100m.html"
+   ],
+   "notes": "Vertical mill (metal), not a gantry router. Table 34 x 9.5 in, three 5/8 in T-slots, 500 lb max. 208-240 V single phase.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from in/min"
+   }
+  },
+  {
+   "id": "tormach-770m",
+   "maker": "Tormach",
+   "model": "770M",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 14,
+    "y": 7.5,
+    "z": 13.25
+   },
+   "work_area_mm": {
+    "x": 356.0,
+    "y": 190.0,
+    "z": 337.0
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "1.5 hp R8 belt-drive spindle",
+     "power_kw": 1.12,
+     "power_hp": 1.5,
+     "rpm_min": null,
+     "rpm_max": 10000,
+     "collet": "R8",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 135,
+    "z": 110
+   },
+   "max_feed_mm_min": {
+    "xy": 3429.0,
+    "z": 2794.0
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "PathPilot",
+     "gcarve_post": "pathpilot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 10-pocket automatic tool changer (in Premium package)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool setter / probe (option)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vise"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://tormach.com/machines/mills/770m.html"
+   ],
+   "notes": "Vertical mill (metal), not a gantry router. Table 26 x 8 in, three 5/8 in T-slots.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from in/min"
+   }
+  },
+  {
+   "id": "tormach-pcnc-440",
+   "maker": "Tormach",
+   "model": "PCNC 440",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 10,
+    "y": 6.25,
+    "z": 10
+   },
+   "work_area_mm": {
+    "x": 254.0,
+    "y": 159.0,
+    "z": 254.0
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "0.75 hp R8 belt-drive spindle",
+     "power_kw": 0.56,
+     "power_hp": 0.75,
+     "rpm_min": null,
+     "rpm_max": 10000,
+     "collet": "R8",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 135,
+    "z": 110
+   },
+   "max_feed_mm_min": {
+    "xy": 3429.0,
+    "z": 2794.0
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "PathPilot",
+     "gcarve_post": "pathpilot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 8-pocket automatic tool changer (Premium package)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool setter / probe (option)"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vise"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://tormach.com/machines/mills/pcnc-440.html"
+   ],
+   "notes": "Benchtop vertical mill (metal), not a gantry router. Table 18 x 6.3 in, three 3/8 in T-slots.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from in/min"
+   }
+  }
+ ]
+}
