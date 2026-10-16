@@ -1,0 +1,936 @@
+{
+ "maker": "LUNYEE",
+ "website": "https://www.lunyeecnc.com",
+ "machines": [
+  {
+   "id": "lunyee-3018-pro-max",
+   "maker": "LUNYEE",
+   "model": "3018 Pro Max",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 7.09,
+    "z": 3.15
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 180,
+    "z": 80
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "500 W spindle",
+     "power_kw": 0.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 10000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 79,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 2000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 197,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1f (32-bit ARM board)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.lunyeecnc.com/products/3018-pro-max-cnc-machine-with-5-5w-laser-500w-all-metal-cnc-router-machine",
+    "https://easel.com/partners/machines/lunyee-3018-pro-max/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Published max speed 5000 mm/min, max cutting speed 2000 mm/min. T8 lead screws, 12 mm rods, NEMA17. Machine 485x415x374 mm."
+  },
+  {
+   "id": "lunyee-3018-pro-ultra",
+   "maker": "LUNYEE",
+   "model": "3018 Pro Ultra",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 7.09,
+    "z": 3.15
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 180,
+    "z": 80
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "500 W spindle",
+     "power_kw": 0.5,
+     "power_hp": null,
+     "rpm_min": 0,
+     "rpm_max": 12000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 79,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 2000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 197,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": "200 mm/s²",
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1f (32-bit ARM board)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool setter (optional)"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.lunyeecnc.com/products/3018-pro-ultra-cnc-machine-with-5-5w-laser-500w-all-metal-cnc-router-machine",
+    "https://easel.com/partners/machines/lunyee-3018-pro-ultra/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "X: HGH15 linear guide + T8 screw; Y/Z: optical axis + T8 screw. A4988 drivers, NEMA17. 15 kg."
+  },
+  {
+   "id": "lunyee-3020-nova",
+   "maker": "LUNYEE",
+   "model": "3020 Nova",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 7.87,
+    "z": 3.15
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 200,
+    "z": 80
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "710 W trim router (6-speed)",
+     "power_kw": 0.71,
+     "power_hp": null,
+     "rpm_min": 6000,
+     "rpm_max": 30000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 197,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL (32-bit MCU)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.lunyeecnc.com/products/lunyee-3020-nova-cnc-router"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Dual HG15 linear guides + 1204 ball screws, NEMA17 60 mm 0.89 N·m. Max working speed 5000 mm/min. 19.2 kg."
+  },
+  {
+   "id": "lunyee-4040-pro",
+   "maker": "LUNYEE",
+   "model": "4040 Pro",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 15.75,
+    "z": 3.54
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 400,
+    "z": 90
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "100 W spindle",
+     "power_kw": 0.1,
+     "power_hp": null,
+     "rpm_min": 0,
+     "rpm_max": 10000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 197,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1f (32-bit ARM board)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.lunyeecnc.com/products/lunyee-4040-pro-cnc-router-machine-upgraded-3-axis-engraving-all-metal-cnc-machine",
+    "https://easel.com/partners/machines/lunyee-4040-pro-cnc/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Z: dual HG15 guides + 1204 ball screw. NEMA17 0.55 N·m. 52/65/69 mm mounts. 17 kg."
+  },
+  {
+   "id": "lunyee-4040-pro-max",
+   "maker": "LUNYEE",
+   "model": "4040 Pro Max",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 15.75,
+    "z": 3.54
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 400,
+    "z": 90
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "710 W trim router",
+     "power_kw": 0.71,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1f (4-axis 5.0 board)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.lunyeecnc.com/products/lunyee-4040-pro-max-cnc-router-machine-710w-trimmer"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "40x60 mm X profile; Z dual HG-15 rails + 1204 ball screw. Magnetic acrylic dust baffles allow pass-through."
+  },
+  {
+   "id": "lunyee-4040-turbo",
+   "maker": "LUNYEE",
+   "model": "4040 Turbo",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 15.75,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 400,
+    "z": 110
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "500 W spindle",
+     "power_kw": 0.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "1.5-2.2 kW water-cooled spindle (optional)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 197,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1f (4-axis 5.0 board)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.lunyeecnc.com/products/lunyee-4040-turbo-cnc-router-machine-for-wood-metal-all-metal-milling-cutting-machine",
+    "https://easel.com/partners/machines/lunyee-4040-turbo-cnc/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Optical axis guides + lead screws on X/Y/Z, NEMA23. 37 kg. Spec table says 400x400x110 mm (one paragraph on the page says 400x300x110)."
+  },
+  {
+   "id": "lunyee-4040-nova",
+   "maker": "LUNYEE",
+   "model": "4040 Nova",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 15.75,
+    "z": 5.12
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 400,
+    "z": 130
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "710 W trim router (6-speed)",
+     "power_kw": 0.71,
+     "power_hp": null,
+     "rpm_min": 10000,
+     "rpm_max": 30000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 197,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL (32-bit MCU)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.lunyeecnc.com/products/lunyee-4040-nova-cnc-router-machine"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Dual HG15 guides + 1204 ball screws, NEMA23 2.8 A 1.21 N·m. 40.2 kg. Mounts 52/65/69/80 mm."
+  },
+  {
+   "id": "lunyee-4040-titan",
+   "maker": "LUNYEE",
+   "model": "4040 Titan",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 15.75,
+    "z": 3.74
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 400,
+    "z": 95
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "500 W brushless spindle",
+     "power_kw": 0.5,
+     "power_hp": null,
+     "rpm_min": 0,
+     "rpm_max": 12000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 197,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL + offline controller",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.lunyeecnc.com/products/lunyee-4040-titan-cnc-router-machine"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Dual HG15 guides + 1204 ball screws, NEMA23-57 closed-loop steppers 1.5 N·m."
+  },
+  {
+   "id": "lunyee-4040-evo",
+   "maker": "LUNYEE",
+   "model": "4040 Evo",
+   "variant": null,
+   "years": "2026-",
+   "class": "desktop",
+   "work_area_in": {
+    "x": 16.54,
+    "y": 16.54,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 420,
+    "y": 420,
+    "z": 110
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "800 W trim router (6-speed)",
+     "power_kw": 0.8,
+     "power_hp": null,
+     "rpm_min": 6000,
+     "rpm_max": 30000,
+     "collet": "ER11",
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL (offline + PC)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.lunyeecnc.com/products/lunyee-4040-evo-cnc-router-machine-800w-spindle"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "EG15 rails + T8 lead screws on X/Z; dual 20 mm optical axes + T12 lead screw on Y. Pre-order (Oct 2026). Supports 2.2 kW VFD spindle start/stop."
+  },
+  {
+   "id": "lunyee-8080-pro-max",
+   "maker": "LUNYEE",
+   "model": "8080 Pro Max",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 31.5,
+    "y": 31.5,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 800,
+    "y": 800,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "710 W trim router (6-speed)",
+     "power_kw": 0.71,
+     "power_hp": null,
+     "rpm_min": 6000,
+     "rpm_max": 30000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 197,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1f (32-bit ARM board)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.lunyeecnc.com/products/lunyee-8080-pro-max-cnc-router-machine"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Z dual HG15 + 1204 ball screw, NEMA23 2.8 A 1.8 N·m, 40x60 mm X profile. 28 kg."
+  },
+  {
+   "id": "lunyee-cnc-1325-pro",
+   "maker": "LUNYEE",
+   "model": "CNC 1325 Pro",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 / 3 / 5.5 kW water-cooled spindle",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 0,
+     "rpm_max": 24000,
+     "collet": "1-7 mm / 1-13 mm",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 394,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 10000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3 (USB)",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.lunyeecnc.com/products/cnc-1325-pro-engraving-machine-fully-automatic-machine",
+    "https://easel.com/partners/machines/lunyee-cnc-1325-pro/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "86-frame steppers. Processing speed published as 0-5000/10000 mm/min. Frame 2956x1691x1900 mm, 350 kg. Spindle power options 2.2/3/5.5 kW."
+  }
+ ]
+}

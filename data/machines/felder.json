@@ -1,0 +1,1062 @@
+{
+ "maker": "Felder Group",
+ "website": "https://www.felder-group.com",
+ "machines": [
+  {
+   "id": "felder-format4-profit-h08-13-25",
+   "maker": "Felder Group",
+   "model": "Format4 profit H08",
+   "variant": "13.25",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 98.43,
+    "y": 49.21,
+    "z": 3.35
+   },
+   "work_area_mm": {
+    "x": 2500,
+    "y": 1250,
+    "z": 85
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Main spindle 12 kW",
+     "power_kw": 12,
+     "power_hp": 16.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK-F63",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Main spindle 10 kW",
+     "power_kw": 10,
+     "power_hp": 13.4,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK-F63",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Format4 Compact-control (ISO code) / Woodflash-control",
+     "gcarve_post": "format4-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 15,
+    "notes": "15 tool slots in the basic version"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length measuring system"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.felder-group.com/en-gb/products/cnc-machines-c1953/nesting-cnc-machining-centre-profit-h08-p144268",
+    "https://www.felder-group.com/en-gb/downloadbrochure/3201/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   },
+   "notes": "Nesting CNC. Working area X-Y-Z from the maker page/brochure (Z = 85 mm). Basic version 15 tool slots, 8-spindle drilling head (DH12/DH16 options), phenolic grid vacuum table 60x60 mm (30x30 option), 6 (13.25) or 8 (16.31) vacuum fields. Ground ball screws on Z. Controls: 'Compact-control' (runs ISO code from external CAM) or 'Woodflash-control'. Automatic tool length measuring."
+  },
+  {
+   "id": "felder-format4-profit-h08-16-31",
+   "maker": "Felder Group",
+   "model": "Format4 profit H08",
+   "variant": "16.31",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 121.65,
+    "y": 60.24,
+    "z": 3.35
+   },
+   "work_area_mm": {
+    "x": 3090,
+    "y": 1530,
+    "z": 85
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Main spindle 12 kW",
+     "power_kw": 12,
+     "power_hp": 16.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK-F63",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Main spindle 10 kW",
+     "power_kw": 10,
+     "power_hp": 13.4,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK-F63",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Format4 Compact-control (ISO code) / Woodflash-control",
+     "gcarve_post": "format4-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 15,
+    "notes": "15 tool slots in the basic version"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length measuring system"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.felder-group.com/en-gb/products/cnc-machines-c1953/nesting-cnc-machining-centre-profit-h08-p144268",
+    "https://www.felder-group.com/en-gb/downloadbrochure/3201/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   },
+   "notes": "Nesting CNC. Working area X-Y-Z from the maker page/brochure (Z = 85 mm). Basic version 15 tool slots, 8-spindle drilling head (DH12/DH16 options), phenolic grid vacuum table 60x60 mm (30x30 option), 6 (13.25) or 8 (16.31) vacuum fields. Ground ball screws on Z. Controls: 'Compact-control' (runs ISO code from external CAM) or 'Woodflash-control'. Automatic tool length measuring."
+  },
+  {
+   "id": "felder-format4-profit-h08-21-31",
+   "maker": "Felder Group",
+   "model": "Format4 profit H08",
+   "variant": "21.31",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 121.65,
+    "y": 82.68,
+    "z": 3.35
+   },
+   "work_area_mm": {
+    "x": 3090,
+    "y": 2100,
+    "z": 85
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Main spindle 12 kW",
+     "power_kw": 12,
+     "power_hp": 16.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK-F63",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "Main spindle 10 kW",
+     "power_kw": 10,
+     "power_hp": 13.4,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK-F63",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Format4 Compact-control (ISO code) / Woodflash-control",
+     "gcarve_post": "format4-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 15,
+    "notes": "15 tool slots in the basic version"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length measuring system"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.felder-group.com/en-gb/products/cnc-machines-c1953/nesting-cnc-machining-centre-profit-h08-p144268",
+    "https://www.felder-group.com/en-gb/downloadbrochure/3201/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   },
+   "notes": "Nesting CNC. Working area X-Y-Z from the maker page/brochure (Z = 85 mm). Basic version 15 tool slots, 8-spindle drilling head (DH12/DH16 options), phenolic grid vacuum table 60x60 mm (30x30 option), 6 (13.25) or 8 (16.31) vacuum fields. Ground ball screws on Z. Controls: 'Compact-control' (runs ISO code from external CAM) or 'Woodflash-control'. Automatic tool length measuring."
+  },
+  {
+   "id": "felder-format4-profit-h200",
+   "maker": "Felder Group",
+   "model": "Format4 profit H200",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 129.92,
+    "y": 50.39,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 3300,
+    "y": 1280,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Main spindle 12-15 kW",
+     "power_kw": 15,
+     "power_hp": 20.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK-F63",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Format4 F4Integrate control (proprietary; ISO G-code import)",
+     "gcarve_post": "format4-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "12-position tool changer; 18-position rotary changer on the gantry (option)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.felder-group.com/en-gb/products/cnc-machines-c1953/cnc-machining-centre-profit-h200r-p580907"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   },
+   "notes": "Panel machining centre with consoles and suction cups (Format4 profit H-R series), HSK F63 spindle, inverter drilling head up to 7,500 rpm. Working area X-Y-Z from the maker page; Z = passage height from console height."
+  },
+  {
+   "id": "felder-format4-profit-h300-16-33",
+   "maker": "Felder Group",
+   "model": "Format4 profit H300",
+   "variant": "16.33",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 129.92,
+    "y": 62.2,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 3300,
+    "y": 1580,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Main spindle 12-15 kW",
+     "power_kw": 15,
+     "power_hp": 20.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK-F63",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Format4 F4Integrate control (proprietary; ISO G-code import)",
+     "gcarve_post": "format4-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "12-position tool changer; 18-position rotary changer on the gantry (option)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.felder-group.com/en-gb/products/cnc-machines-c1953/cnc-machining-centre-profit-h300r-p580908"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   },
+   "notes": "Panel machining centre with consoles and suction cups (Format4 profit H-R series), HSK F63 spindle, inverter drilling head up to 7,500 rpm. Working area X-Y-Z from the maker page; Z = passage height from console height. Horizontal spindle motor ER25/ER32 up to 18,000 rpm (option)."
+  },
+  {
+   "id": "felder-format4-profit-h300-16-53",
+   "maker": "Felder Group",
+   "model": "Format4 profit H300",
+   "variant": "16.53",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 208.66,
+    "y": 62.2,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 5300,
+    "y": 1580,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Main spindle 12-15 kW",
+     "power_kw": 15,
+     "power_hp": 20.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK-F63",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Format4 F4Integrate control (proprietary; ISO G-code import)",
+     "gcarve_post": "format4-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "12-position tool changer; 18-position rotary changer on the gantry (option)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.felder-group.com/en-gb/products/cnc-machines-c1953/cnc-machining-centre-profit-h300r-p580908"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   },
+   "notes": "Panel machining centre with consoles and suction cups (Format4 profit H-R series), HSK F63 spindle, inverter drilling head up to 7,500 rpm. Working area X-Y-Z from the maker page; Z = passage height from console height. Horizontal spindle motor ER25/ER32 up to 18,000 rpm (option)."
+  },
+  {
+   "id": "felder-format4-profit-h350-16-30",
+   "maker": "Felder Group",
+   "model": "Format4 profit H350",
+   "variant": "16.30",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 118.11,
+    "y": 62.2,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 3000,
+    "y": 1580,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "5-axis spindle 12 kW (liquid-cooled)",
+     "power_kw": 12,
+     "power_hp": 16.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK-F63",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "5-axis spindle 15 kW (liquid-cooled)",
+     "power_kw": 15,
+     "power_hp": 20.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK-F63",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Format4 F4Integrate control (proprietary; ISO G-code import)",
+     "gcarve_post": "format4-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "18-position rotary tool changer on the outrigger; saw blades up to 350 mm"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.felder-group.com/en-gb/products/cnc-machines-c1953/5-axes-cnc-machining-centre-profit-h350r-p580909"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   },
+   "notes": "Panel machining centre with consoles and suction cups (Format4 profit H-R series), HSK F63 spindle, inverter drilling head up to 7,500 rpm. Working area X-Y-Z from the maker page; Z = passage height from console height. 5-axis head."
+  },
+  {
+   "id": "felder-format4-profit-h350-16-50",
+   "maker": "Felder Group",
+   "model": "Format4 profit H350",
+   "variant": "16.50",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 196.85,
+    "y": 62.2,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 5000,
+    "y": 1580,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "5-axis spindle 12 kW (liquid-cooled)",
+     "power_kw": 12,
+     "power_hp": 16.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK-F63",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "5-axis spindle 15 kW (liquid-cooled)",
+     "power_kw": 15,
+     "power_hp": 20.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK-F63",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Format4 F4Integrate control (proprietary; ISO G-code import)",
+     "gcarve_post": "format4-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "18-position rotary tool changer on the outrigger; saw blades up to 350 mm"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.felder-group.com/en-gb/products/cnc-machines-c1953/5-axes-cnc-machining-centre-profit-h350r-p580909"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   },
+   "notes": "Panel machining centre with consoles and suction cups (Format4 profit H-R series), HSK F63 spindle, inverter drilling head up to 7,500 rpm. Working area X-Y-Z from the maker page; Z = passage height from console height. 5-axis head."
+  },
+  {
+   "id": "felder-format4-profit-h500-16-38",
+   "maker": "Felder Group",
+   "model": "Format4 profit H500",
+   "variant": "16.38",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 147.24,
+    "y": 59.25,
+    "z": 13.78
+   },
+   "work_area_mm": {
+    "x": 3740,
+    "y": 1505,
+    "z": 350
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "5-axis spindle 12 kW (liquid-cooled)",
+     "power_kw": 12,
+     "power_hp": 16.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK-F63",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "5-axis spindle 15 kW (liquid-cooled)",
+     "power_kw": 15,
+     "power_hp": 20.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK-F63",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Format4 F4Integrate control (proprietary; ISO G-code import)",
+     "gcarve_post": "format4-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "12-position linear changer, 24-position rotary changer on the outrigger"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.felder-group.com/en-gb/products/cnc-machines-c1953/5-axes-cnc-machining-centre-profit-h500r-p583526"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   },
+   "notes": "Panel machining centre with consoles and suction cups (Format4 profit H-R series), HSK F63 spindle, inverter drilling head up to 7,500 rpm. Working area X-Y-Z from the maker page; Z = passage height from console height. 5-axis head; X axis rack and pinion ('cog and rail')."
+  },
+  {
+   "id": "felder-format4-profit-h500-16-56",
+   "maker": "Felder Group",
+   "model": "Format4 profit H500",
+   "variant": "16.56",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 218.11,
+    "y": 59.25,
+    "z": 13.78
+   },
+   "work_area_mm": {
+    "x": 5540,
+    "y": 1505,
+    "z": 350
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "5-axis spindle 12 kW (liquid-cooled)",
+     "power_kw": 12,
+     "power_hp": 16.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK-F63",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "5-axis spindle 15 kW (liquid-cooled)",
+     "power_kw": 15,
+     "power_hp": 20.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK-F63",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Format4 F4Integrate control (proprietary; ISO G-code import)",
+     "gcarve_post": "format4-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "12-position linear changer, 24-position rotary changer on the outrigger"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.felder-group.com/en-gb/products/cnc-machines-c1953/5-axes-cnc-machining-centre-profit-h500r-p583526"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   },
+   "notes": "Panel machining centre with consoles and suction cups (Format4 profit H-R series), HSK F63 spindle, inverter drilling head up to 7,500 rpm. Working area X-Y-Z from the maker page; Z = passage height from console height. 5-axis head; X axis rack and pinion ('cog and rail')."
+  },
+  {
+   "id": "felder-hammer-hnc3-825",
+   "maker": "Felder Group",
+   "model": "Hammer HNC3",
+   "variant": "825",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 32.48,
+    "y": 18.86,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 825,
+    "y": 479,
+    "z": null
+   },
+   "gantry_clearance_in": 6.3,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Hammer HFM 1000 router motor 1 kW",
+     "power_kw": 1.0,
+     "power_hp": 1.3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER16 (3-10 mm, 1/8\", 1/4\")",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 kW HF spindle ('perform')",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25 (3-16 mm)",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 276,
+    "z": 197
+   },
+   "max_feed_mm_min": {
+    "xy": 7000,
+    "z": 5000
+   },
+   "rapid_ipm": {
+    "xy": 276,
+    "z": 197
+   },
+   "rapid_mm_min": {
+    "xy": 7000,
+    "z": 5000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Hammer 4-axis controller (USB) with touchscreen software",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "quick-change",
+    "slots": null,
+    "notes": "Tool-free quick-change system for the HFM 1000 router"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.felder-group.com/en-gb/products/cnc-machines-c1953/cnc-portal-milling-machine-hnc3-p1846127"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's m/min figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 160 mm"
+   },
+   "notes": "Hammer (Felder Group) benchtop CNC portal mill for hobby, DIY, schools. Working area 825x479 mm, clamping range 1005x574 mm, passage height 160 mm (stored as gantry clearance; Z stroke not published). Movement speed 7 m/min (Z 5). Ball screws 16x10 on X/Y, trapezoidal 14x6 on Z; X and Z driven by toothed belt from the motor. NEMA 24 2.8 A steppers. Repeatability +/-0.05 mm. 'perform' version = 2.2 kW spindle + 100 mm hood (weight 85/103 kg). Runs its own touchscreen software or other software via 'many postprocessors' (controller type not named; VCarve licences offered as options). Optional 4th axis, laser heads."
+  },
+  {
+   "id": "felder-hammer-hnc3-1300",
+   "maker": "Felder Group",
+   "model": "Hammer HNC3",
+   "variant": "1300",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 30.67,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 779,
+    "z": null
+   },
+   "gantry_clearance_in": 6.3,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Hammer HFM 1000 router motor 1 kW",
+     "power_kw": 1.0,
+     "power_hp": 1.3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER16 (3-10 mm, 1/8\", 1/4\")",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 kW HF spindle ('perform')",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25 (3-16 mm)",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 276,
+    "z": 197
+   },
+   "max_feed_mm_min": {
+    "xy": 7000,
+    "z": 5000
+   },
+   "rapid_ipm": {
+    "xy": 276,
+    "z": 197
+   },
+   "rapid_mm_min": {
+    "xy": 7000,
+    "z": 5000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Hammer 4-axis controller (USB) with touchscreen software",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "quick-change",
+    "slots": null,
+    "notes": "Tool-free quick-change system for the HFM 1000 router"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.felder-group.com/en-gb/products/cnc-machines-c1953/cnc-portal-milling-machine-hnc3-p1846127"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's m/min figures",
+    "rapid_ipm": "converted from the maker's m/min figures",
+    "gantry_clearance_in": "converted from 160 mm"
+   },
+   "notes": "Hammer (Felder Group) benchtop CNC portal mill for hobby, DIY, schools. Working area 1300x779 mm, clamping range 1480x840 mm, passage height 160 mm (stored as gantry clearance; Z stroke not published). Movement speed 7 m/min (Z 5). Ball screws 16x10 on X/Y, trapezoidal 14x6 on Z; X and Z driven by toothed belt from the motor. NEMA 24 2.8 A steppers. Repeatability +/-0.05 mm. 'perform' version = 2.2 kW spindle + 100 mm hood (weight 122/140 kg). Runs its own touchscreen software or other software via 'many postprocessors' (controller type not named; VCarve licences offered as options). Optional 4th axis, laser heads."
+  }
+ ]
+}

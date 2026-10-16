@@ -1,0 +1,6166 @@
+{
+ "maker": "Blue Elephant CNC",
+ "website": "https://www.elephant-cnc.com",
+ "machines": [
+  {
+   "id": "blue-elephant-elecnc1212",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1212",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 47.24,
+    "y": 47.24,
+    "z": 6.3
+   },
+   "work_area_mm": {
+    "x": 1200,
+    "y": 1200,
+    "z": 160
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "JST 2.2 kW water-cooled spindle",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 787,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3 USB (wireless handwheel)",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    },
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "manual tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/1212-advertising-cnc-router/",
+    "https://www.elephant-cnc.com/pro/1212-desktop-advertising-cnc-machine/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min",
+    "controllers": "page lists 'DSP A11' option; A11 is a RichAuto model number"
+   },
+   "notes": "Advertising/sign router. Options: 600x900 and 600x1500 mm tables, Z 200 mm, linear ATC, vacuum table."
+  },
+  {
+   "id": "blue-elephant-elecnc6090",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC6090",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 35.43,
+    "z": 6.3
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 900,
+    "z": 160
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 787,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    },
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "manual tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/ele-6090-mini-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min",
+    "controllers": "page lists 'DSP A11' option; A11 is a RichAuto model number"
+   },
+   "notes": "Options: 1200x1200 / 600x1500 mm, Z 200 mm, linear ATC, vacuum table."
+  },
+  {
+   "id": "blue-elephant-elecnc6090atc",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC-6090ATC",
+   "variant": "linear ATC",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 35.43,
+    "z": 6.3
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 900,
+    "z": 160
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Xuchang water-cooled ATC spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Weihong NK105",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 4,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/the-latest-6090-advertising-cnc-router-with-linear-tool-changer/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Leadshine servos. Option: 9 kW ISO30 ATC spindle."
+  },
+  {
+   "id": "blue-elephant-elecnc1212-r",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1212-R",
+   "variant": "rotary axis",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 47.24,
+    "y": 47.24,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 1200,
+    "y": 1200,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW water-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1575,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Mach3 (4 axis)",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    },
+    {
+     "name": "RichAuto DSP B18",
+     "gcarve_post": "richauto-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "manual tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/1212-mini-rotary-axis-cnc-router-for-carving-wood/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min",
+    "controllers": "'DSP B18' is a RichAuto model number"
+   },
+   "notes": "4th rotary axis. Options: larger tables up to 2000x4000 mm, Z 500/600 mm, ATC."
+  },
+  {
+   "id": "blue-elephant-elecnc1313",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1313",
+   "variant": "rotary axis",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 51.18,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 1300,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 kW water-cooled spindle",
+     "power_kw": 6,
+     "power_hp": 8.0,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1181,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Mach3 (4 axis)",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "manual tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/1313-small-rotary-axis-cnc-router-for-sale/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "4-zone T-slot vacuum table, Leadshine motors. Spec table also lists 'effective working area 1300x1300x500 mm (optional)'."
+  },
+  {
+   "id": "blue-elephant-elecnc1325-r",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1325-R",
+   "variant": "3 axis + rotary, 4.5 kW",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4.5 kW air-cooled spindle",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1575,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "RichAuto DSP B18",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    },
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "manual tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/1325-3-axis-cnc-router-with-rotary-device/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min",
+    "controllers": "'DSP B18' is a RichAuto model number"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc1325-r-4-axis",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1325-R",
+   "variant": "4 axis + rotary, 3 kW",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW water-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "RichAuto DSP B18",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "manual tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/1325-4-axis-cnc-router-with-rotary-device/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min",
+    "controllers": "'DSPB18' is a RichAuto model number"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc1325-r-z300",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1325-R",
+   "variant": "entry-level rotary, Z 300",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW water-cooled spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1575,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "RichAuto DSP B18",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    },
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "manual tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/entry-level-1325-rotary-axis-cnc-router-for-cylinders/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min",
+    "controllers": "'DSP B18' is a RichAuto model number"
+   },
+   "notes": "Rotary axis for cylinders."
+  },
+  {
+   "id": "blue-elephant-elecnc1325-stone",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1325",
+   "variant": "stone, rotary",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4.5 kW water-cooled spindle",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "6 kW water-cooled spindle",
+     "power_kw": 6,
+     "power_hp": 8.0,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 591,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3 (4 axis)",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    },
+    {
+     "name": "RichAuto DSP B18",
+     "gcarve_post": "richauto-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/1325-stone-cnc-router-rotary/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min",
+    "controllers": "'DSP B18' is a RichAuto model number"
+   },
+   "notes": "Stone table with stainless water tank. Second spec table on the page: 6 kW spindle, DSP B18, FL118 steppers."
+  },
+  {
+   "id": "blue-elephant-elecnc1325-engraving",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1325",
+   "variant": "wood engraving, 7 kW",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "7 kW air-cooled spindle",
+     "power_kw": 7,
+     "power_hp": 9.4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 591,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1181,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "NcStudio PM95A",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "DSP",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/1325-wood-engraving-machine/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Z options 300-600 mm; 4.5/6/9 kW spindle options."
+  },
+  {
+   "id": "blue-elephant-elecnc1325-furniture",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1325",
+   "variant": "3 axis, HSD 4.5 kW",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 4.5 kW air-cooled spindle",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 591,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1181,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "manual tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/cnc-router-for-wooden-furniture/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min",
+    "controllers": "'DSP A11' is a RichAuto model number"
+   },
+   "notes": "Independent controller box. Spindle options 3-6 kW water or air."
+  },
+  {
+   "id": "blue-elephant-elecnc1325-4a",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1325-4A",
+   "variant": "4 axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 kW air-cooled spindle",
+     "power_kw": 6,
+     "power_hp": 8.0,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1575,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "LNC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "manual tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/best-4-axis-rotary-cnc-router-4x8-wood-engraving-machine-for-sale/",
+    "https://www.elephant-cnc.com/pro/the-classical-1325-4-axis-cnc-router-for-3d-processing/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Two product pages for this model disagree: one gives 40 m/min travel and manual tool sensor, the other 80 m/min and automatic sensor."
+  },
+  {
+   "id": "blue-elephant-elecnc1325atc-linear",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1325ATC",
+   "variant": "linear ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW ATC air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LNC (MPG handwheel)",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Weihong NK105 G3",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Syntec 50WE",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/1325-linear-atc-cnc-router/",
+    "https://www.elephant-cnc.com/pro/1325-linear-tool-machine/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "1500 W Leadshine servos, Shimpo reducers, 7.5 kW vacuum pump. Second product page lists NK105 G3 (options LNC2200, Syntec 50WE)."
+  },
+  {
+   "id": "blue-elephant-elecnc1325atc-r",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC-1325 ATC-R",
+   "variant": "linear ATC + rotary",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW ATC air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "LNC MW2200 (4 axis)",
+     "gcarve_post": "fanuc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/1325-rotary-axis-atc-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc1325atc-autofeed",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1325ATC",
+   "variant": "auto-feeding nesting",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW ATC air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "option: linear"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/1325-auto-feeding-cnc-furniture-making-machine-nesting-machine-for-sale/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Auto-feeding nesting line for furniture."
+  },
+  {
+   "id": "blue-elephant-elecnc1325atc-ccd",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1325ATC",
+   "variant": "oscillating knife + CCD",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW ATC air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Blue Elephant customized control",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/atc-cnc-cutting-machine-with-an-oscillating-cutter-and-ccd/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   },
+   "notes": "Oscillating knife and CCD camera; 850 W Leadshine servos."
+  },
+  {
+   "id": "blue-elephant-elecnc1325atc-4-ptp",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1325ATC-4",
+   "variant": "PTP table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9.6 kW ATC air-cooled spindle",
+     "power_kw": 9.6,
+     "power_hp": 12.9,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec 6MB",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "option: linear"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "pods (PTP)",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/best-custom-1325-atc-c-and-c-router-with-ptp-table-for-sale-at-affordable-price/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Point-to-point pod table."
+  },
+  {
+   "id": "blue-elephant-elecnc1325atc-4-1224",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1325ATC-4",
+   "variant": "1220x2440, 4 axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48.03,
+    "y": 96.06,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 1220,
+    "y": 2440,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60WE",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/ele-2050-atc-4-axis-woodworking-machine/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not published"
+   },
+   "notes": "1 kW Syntec absolute servos, 4-zone T-slot vacuum table."
+  },
+  {
+   "id": "blue-elephant-elecnc1335atc",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1335ATC",
+   "variant": "oscillating knife",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 137.8,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 3500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW ATC air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "LNC",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "option: carousel"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/elecnc-1335-linear-atc-cnc-router-with-oscillating-knife/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc1325-2s",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1325-2S",
+   "variant": "2 heads",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW water-cooled spindle x2",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 787,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1181,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "RichAuto DSP A15",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Weihong NK105",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": 2,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/multi-head-wood-working-machines/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min",
+    "controllers": "'DSP A15' is a RichAuto model number"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc1325-8s",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1325-8S",
+   "variant": "8 spindles, 1800x2500",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 70.87,
+    "y": 98.43,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1800,
+    "y": 2500,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle x8",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 197,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 591,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "RichAuto DSP B18",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "LNC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": 8,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/multi-spindles-wood-machine/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min",
+    "controllers": "'DSP B18' is a RichAuto model number"
+   },
+   "notes": "8 synchronized spindles; movable T-slot table. Model name says 1325 but travel is 1800x2500 mm."
+  },
+  {
+   "id": "blue-elephant-elecnc1530",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1530",
+   "variant": "entry level",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 6 kW air-cooled spindle",
+     "power_kw": 6,
+     "power_hp": 8.0,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    },
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/entry-level-3-axis-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min",
+    "rapid_mm_min": "published as 70-80 m/min; upper value",
+    "controllers": "'DSP A11' is a RichAuto model number"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc1530atc",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1530ATC",
+   "variant": "3 axis linear ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD ES951 9 kW ATC air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec 60WE",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/1530-3-axis-atc-woodworking-machine/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc1530atc-z300",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1530ATC",
+   "variant": "carousel ATC, Z 300, aggregate head",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW ATC air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "LNC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "option: linear; aggregate head"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/atc-cnc-router-with-aggregate-head-for-sale/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc1530atc-4a",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1530ATC-4A",
+   "variant": "4 axis, Z 400",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW ATC air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "LNC",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Siemens",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "linear or carousel magazine"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/1530-4axis-woodworking-atc-cnc-router/",
+    "https://www.elephant-cnc.com/pro/1530-linear-atc-4-axis-cnc-router-for-woodworking/",
+    "https://www.elephant-cnc.com/pro/1530-4-axis-carousel-tool-changer-cnc-router/",
+    "https://www.elephant-cnc.com/pro/1530-carousel-atc-cnc-router-with-rotary-device/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Four product pages share this model: linear or carousel ATC, Syntec/LNC/Siemens control, optional rotary device. Z options to 700 mm."
+  },
+  {
+   "id": "blue-elephant-elecnc1530atc-4a-z600",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1530ATC-4A",
+   "variant": "4 axis, Z 600, HSK",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 23.62
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 600
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW ATC air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK F63, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "LNC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "option: linear"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/1530-atc-4a-510-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc1530atc-4",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1530ATC-4",
+   "variant": "4 axis, Z 200",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW ATC air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "LNC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "option: linear"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/atc-4-axis-cnc-machine-3d-wood/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc1530atc-r",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1530ATC-R",
+   "variant": "rotary",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW ATC air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 787,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "LNC",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "option: carousel"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/1530atc-r-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc1530-3s-pneumatic",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1530-3S",
+   "variant": "3 pneumatic spindles",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW air-cooled spindle x3",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER20",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1575,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "DSP A123",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": 3,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "manual tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/1530-multi-spindles-cnc-router-with-pneumatic-system/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc1530-3s-horizontal",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1530-3S",
+   "variant": "2 vertical + horizontal spindle",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 3 kW air-cooled spindle x2",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "ChangSheng 3.5 kW water-cooled horizontal spindle",
+     "power_kw": 3.5,
+     "power_hp": 4.7,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1181,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "RichAuto DSP A15",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": 3,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "manual tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/three-head-cnc-machiner-for-furniture/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min",
+    "controllers": "'DSP A15' is a RichAuto model number"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc1530-eps",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1530 EPS",
+   "variant": "foam, Z 1100",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 43.31
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 1100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9.6 kW ATC air-cooled spindle (Italy)",
+     "power_kw": 9.6,
+     "power_hp": 12.9,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 787,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/eps-atc-cnc-engraving-machine/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Foam/EPS machine; 12/14 kW options."
+  },
+  {
+   "id": "blue-elephant-elecnc1632atc",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1632ATC",
+   "variant": "aggregate heads",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 62.99,
+    "y": 125.98,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 1600,
+    "y": 3200,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW ATC air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "linear + carousel magazines"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/1632-atc-wood-cnc-machine-with-aggregate-heads/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc1660-3s",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1660-3S",
+   "variant": "3 heads",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 62.99,
+    "y": 236.22,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1600,
+    "y": 6000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 4.5 kW air-cooled spindle x3",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    },
+    {
+     "name": "LNC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": 3,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "manual tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/1660-big-size-multi-heads-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min",
+    "controllers": "'DSP A11' is a RichAuto model number"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc1824-4",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1824-4",
+   "variant": "foam, 4 axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 70.87,
+    "y": 94.49,
+    "z": 47.24
+   },
+   "work_area_mm": {
+    "x": 1800,
+    "y": 2400,
+    "z": 1200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9.6 kW ATC air-cooled spindle",
+     "power_kw": 9.6,
+     "power_hp": 12.9,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1772,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 45000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec 21MA",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "option: carousel"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "manual tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/1824-4-axis-atc-cnc-router-for-foam/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc1825-eps",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1825 EPS",
+   "variant": "right-angle head",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 70.87,
+    "y": 98.43,
+    "z": 43.31
+   },
+   "work_area_mm": {
+    "x": 1800,
+    "y": 2500,
+    "z": 1100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9.6 kW ATC air-cooled spindle (Italy)",
+     "power_kw": 9.6,
+     "power_hp": 12.9,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 787,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/elecnc-1825-linear-atc-woodworking-carving-machine-with-right-angle-head/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc1815-4s",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1815-4S",
+   "variant": "stone, 4 spindles",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 70.87,
+    "y": 59.06,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1800,
+    "y": 1500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW water-cooled spindle x4",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 787,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    },
+    {
+     "name": "DSP handheld controller",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": 4,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "manual tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/elecnc-1815-multi-head-cnc-router-with-4-spindles/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Stone router with water sink; 4.5-6 kW spindle options."
+  },
+  {
+   "id": "blue-elephant-elecnc1821-8s",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1821",
+   "variant": "8 spindles, 4 axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 71.65,
+    "y": 82.68,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1820,
+    "y": 2100,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle x8",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "NcStudio DSP B18",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    },
+    {
+     "name": "LNC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": 8,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/8-spindles-4-axis-wood-machinery/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc1515-3s-ccd",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC1515-3S",
+   "variant": "CCD camera",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60.04,
+    "y": 60.04,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1525,
+    "y": 1525,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 6 kW spindle",
+     "power_kw": 6,
+     "power_hp": 8.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER32",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HQD 3.5 kW spindle x2",
+     "power_kw": 3.5,
+     "power_hp": 4.7,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1969,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "LNC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": 3,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/multihead-cnc-cutting-machine-with-ccd-camera/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-ek2-1328atc",
+   "maker": "Blue Elephant CNC",
+   "model": "EK2-1328ATC",
+   "variant": "loading/unloading, labeling",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48.03,
+    "y": 110.24,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1220,
+    "y": 2800,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "JST 9 kW ATC air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60CB",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/ek2-1328-atc-loading-unloading-nesting-cnc-machine-with-labeling-function/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   },
+   "notes": "Nesting line, 7-zone vacuum, Leadshine 1.5 kW absolute servos."
+  },
+  {
+   "id": "blue-elephant-ek2-1328-double-head",
+   "maker": "Blue Elephant CNC",
+   "model": "EK2-1328",
+   "variant": "double head",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 110.24,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2800,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "JST 9 kW ATC air-cooled spindle x2",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Delta NC50E-WE (dual channel)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "two ATC heads"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "fixed tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/high-performance-double-head-linear-cnc-machining-center-for-sale/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "linear per product name"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-ek2-1828atc",
+   "maker": "Blue Elephant CNC",
+   "model": "EK2-1828 ATC",
+   "variant": "loading/unloading, labeling",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 72.83,
+    "y": 108.27,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1850,
+    "y": 2750,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "JST 9 kW ATC air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60CB",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 16,
+    "notes": "under the gantry"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/ek2-1828-loading-unloading-nesting-cnc-machine-with-labeling-function/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-ek2-1836atc",
+   "maker": "Blue Elephant CNC",
+   "model": "EK2-1836 ATC",
+   "variant": "loading/unloading",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 70.87,
+    "y": 141.73,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1800,
+    "y": 3600,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "JST 12 kW ATC air-cooled spindle",
+     "power_kw": 12,
+     "power_hp": 16.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ISO30",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60CB",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "under the gantry"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/1836-auto-loading-unloading-linear-atc-cnc-machining-center/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   },
+   "notes": "9-zone full-sheet vacuum table."
+  },
+  {
+   "id": "blue-elephant-ek-2128atc",
+   "maker": "Blue Elephant CNC",
+   "model": "EK-2128 ATC",
+   "variant": "loading/unloading",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 81.5,
+    "y": 110.24,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2070,
+    "y": 2800,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW ATC air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60CB",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "under the gantry"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/2128-atc-nesting-cnc-machine-with-loading-unloading/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc2030atc",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC2030ATC",
+   "variant": "oscillating knife, Z 500",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW ATC air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "LNC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "option: carousel"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/2030-linear-atc-cnc-router-with-eot-3-oscillating-knife/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc2030atc-4a",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC2030ATC-4A",
+   "variant": "4 axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW ATC air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "LNC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "option: carousel"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/4-axis-atc-cnc-wood-cutter-machine/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc2040atc",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC2040ATC",
+   "variant": "linear ATC, HSK",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 12 kW air-cooled spindle",
+     "power_kw": 12,
+     "power_hp": 16.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK F63, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Siemens",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": false
+    },
+    {
+     "name": "LNC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "option: carousel"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/linear-atc-wood-cnc-router-machine/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc2040atc-5axis",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC2040 ATC-5Axis",
+   "variant": "foam 5 axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": 47.24
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": 1200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco 10 kW spindle on 5-axis head",
+     "power_kw": 10,
+     "power_hp": 13.4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30, ER32",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 591,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec 610-E5",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "option: carousel"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/2040-5-axis-foam-machining-center-for-sale/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc2060atc",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC2060ATC",
+   "variant": "3D",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 236.22,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 6000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW ATC air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "LNC",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "option: carousel"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/ele-2060-3d-atc-cnc-router-for-wood/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc2070atc-4",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC2070ATC-4",
+   "variant": "4 axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 275.59,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 7000,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW ATC air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "LNC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "option: linear"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/2070-carousel-4-axis-atc-cnc-router-with-rotary-device/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc2113atc-4a",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC2113ATC-4A",
+   "variant": "stone, rotary",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 82.68,
+    "y": 51.18,
+    "z": 23.62
+   },
+   "work_area_mm": {
+    "x": 2100,
+    "y": 1300,
+    "z": 600
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "5.5 kW ATC water-cooled spindle",
+     "power_kw": 5.5,
+     "power_hp": 7.4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "NBT30, ER32",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 787,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1575,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "LNC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "stainless table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/automatic-tool-change-2113-granite-engraving-machine-for-sale-with-rotary-device/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc2130atc",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC2130 ATC",
+   "variant": "load/unload platform",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 82.68,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2100,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9.6 kW ATC air-cooled spindle",
+     "power_kw": 9.6,
+     "power_hp": 12.9,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec 60WE",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "LNC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "option: linear"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/atc-cnc-machine-unload-platform/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc2133atc",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC2133ATC",
+   "variant": "CCD / oscillating knife",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 82.68,
+    "y": 129.92,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2100,
+    "y": 3300,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW ATC air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "LNC",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "option: linear"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/2133-ccd-atc-cnc-cutting-and-engraving-machine/",
+    "https://www.elephant-cnc.com/pro/elecnc-2133-atc-cnc-router-with-oscillating-knife/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc2137",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC2137",
+   "variant": "3 axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 82.68,
+    "y": 145.67,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2100,
+    "y": 3700,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 6 kW air-cooled spindle",
+     "power_kw": 6,
+     "power_hp": 8.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "RichAuto DSP B57",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/best-2137-3-axis-cnc-router-cnc-wood-router-for-sale/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "controllers": "'DSP B57' is a RichAuto model number",
+    "model": "page has no model row; named from the product title"
+   },
+   "notes": "Yaskawa 850 W servos, 8-zone T-slot vacuum table."
+  },
+  {
+   "id": "blue-elephant-elecnc2137atc-4a",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC2137ATC-4A",
+   "variant": "4 axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 82.68,
+    "y": 145.67,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 2100,
+    "y": 3700,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW ATC air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1575,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "LNC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "manual tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/2137-atc-4-axis-cnc-machine/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc2138atc",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC2138ATC",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 81.5,
+    "y": 149.61,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2070,
+    "y": 3800,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD ES951 9.6 kW ATC air-cooled spindle",
+     "power_kw": 9.6,
+     "power_hp": 12.9,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "LNC",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "NcStudio",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "option: linear"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/best-atc-cnc-machine-for-sale-at-cost-price/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc2646atc-4a",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC2646ATC-4A",
+   "variant": "detachable bed",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 102.36,
+    "y": 181.1,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 2600,
+    "y": 4600,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW ATC air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1575,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "LNC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "manual tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/2646-4-axis-atc-cnc-router-with-detachable-machine-bed/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc3013-8s",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC3013-8S",
+   "variant": "2 heads, 8 spindles",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 118.11,
+    "y": 51.18,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 3000,
+    "y": 1300,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "JST 2.2 kW water-cooled spindle x8",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "LNC 2700",
+     "gcarve_post": "fanuc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": 8,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/3013-two-heads-eight-spindles-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc3076atc",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC3076ATC",
+   "variant": "large format",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 118.11,
+    "y": 299.21,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 3000,
+    "y": 7600,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW ATC air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30, ER32",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    },
+    {
+     "name": "LNC",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "option: linear"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/atc-cnc-router-large-working-size/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-es3-3015",
+   "maker": "Blue Elephant CNC",
+   "model": "ES3-3015",
+   "variant": "quartz stone ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 118.11,
+    "y": 59.06,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 3000,
+    "y": 1500,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Kenturn 7.5 kW water-cooled ATC spindle",
+     "power_kw": 7.5,
+     "power_hp": 10.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "BT40 / BT30 (page conflicts)",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1181,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60WE",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "stone table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/automatic-quartz-stone-cnc-machining-center-for-stone-marble-cutting/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Page gives Z 500 mm in one table and 300 mm in another, and BT40 vs BT30 holders."
+  },
+  {
+   "id": "blue-elephant-ew2-1727",
+   "maker": "Blue Elephant CNC",
+   "model": "EW2-1727",
+   "variant": "dual moving table 5 axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 106.85,
+    "y": 66.14,
+    "z": 47.24
+   },
+   "work_area_mm": {
+    "x": 2714,
+    "y": 1680,
+    "z": 1200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 15-17 kW water-cooled spindle on 5-axis head",
+     "power_kw": 15,
+     "power_hp": 20.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 610 (5 axis RTCP)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "fixed tool setter"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/ew2-1727-dual-5-axis-moving-table-cnc-router/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not published"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-ew3-2040",
+   "maker": "Blue Elephant CNC",
+   "model": "EW3-2040",
+   "variant": "5 axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": 23.62
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": 600
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 12 kW spindle on 5-axis head",
+     "power_kw": 12,
+     "power_hp": 16.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK F63",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LNC 8260 RTCP",
+     "gcarve_post": "fanuc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "fixed tool setter"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/ew3-2040-5-axis-cnc-machining-center-for-sale/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not published"
+   },
+   "notes": "8-zone T-slot vacuum table, Leadshine servos."
+  },
+  {
+   "id": "blue-elephant-elecnc1325-5axis",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC-1325",
+   "variant": "5 axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 39.37
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 1000
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Demas 10 kW 5-axis spindle",
+     "power_kw": 10,
+     "power_hp": 13.4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK F63",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2362,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec 610-E5",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 16,
+    "notes": "HSK F63"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/the-latest-5-axis-cnc-router-for-sale/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-elecnc3050-5axis",
+   "maker": "Blue Elephant CNC",
+   "model": "ELECNC-3050",
+   "variant": "5 axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 118.11,
+    "y": 196.85,
+    "z": 43.31
+   },
+   "work_area_mm": {
+    "x": 3000,
+    "y": 5000,
+    "z": 1100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DMASS 10 kW spindle",
+     "power_kw": 10,
+     "power_hp": 13.4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 984,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec 610MA-E5",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/new-design-3050-5-axis-machine/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": null
+  },
+  {
+   "id": "blue-elephant-omic-ew1",
+   "maker": "Blue Elephant CNC",
+   "model": "Omic EW1",
+   "variant": "5 axis 1212",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 47.24,
+    "y": 47.24,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1200,
+    "y": 1200,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "10-12 kW water-cooled ATC spindle",
+     "power_kw": 10,
+     "power_hp": 13.4,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK F63",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2362,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion/ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec 610-E5",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "8 or 12 positions"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/mini-5-axis-cnc-machining-center-with-two-tables/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Z travel published as 500-700 mm. X rack, Y/Z ground ballscrews. Two tables."
+  },
+  {
+   "id": "blue-elephant-omic-1212f",
+   "maker": "Blue Elephant CNC",
+   "model": "Omic 1212F",
+   "variant": "5 axis 1212",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 47.24,
+    "y": 47.24,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1200,
+    "y": 1200,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "10-12 kW water-cooled ATC spindle",
+     "power_kw": 10,
+     "power_hp": 13.4,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK F63",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 2362,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 60000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion/ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec 610-E5",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "8 or 12 positions"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.elephant-cnc.com/pro/small-5-axis-cnc-machining-center-for-3d-woodworking/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "max_feed_ipm": "converted from m/min",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Z travel published as 500-700 mm. X rack, Y/Z ground ballscrews."
+  }
+ ]
+}

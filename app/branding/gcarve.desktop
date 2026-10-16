@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=GCarve
+Comment=2D CAM for CNC routers: vectors, toolpaths, G-code
+Exec=gcarve %f
+Icon=gcarve
+Terminal=false
+Categories=Graphics;Engineering;
+MimeType=application/x-gcarve-project;image/svg+xml;image/vnd.dxf;

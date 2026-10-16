@@ -1,0 +1,994 @@
+{
+ "maker": "K2CNC",
+ "website": "http://www.k2cnc.com",
+ "machines": [
+  {
+   "id": "k2cnc-kg1414lt",
+   "maker": "K2CNC",
+   "model": "KG1414LT",
+   "variant": "tabletop",
+   "years": "-2015",
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 14,
+    "y": 14,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 356,
+    "y": 356,
+    "z": 178
+   },
+   "gantry_clearance_in": 5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Porter Cable 892 router (standard)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "Porter Cable 7518 router (HD option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 3 HP industrial spindle (HD option)",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 150,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 3810,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 200,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5080,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "K2MC control box (USB, standard G-code)",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20141219233704/http://www.k2cnc.com/product/cnc-router-KG1414LT.html"
+   ],
+   "notes": "K2 Devices Inc., Orange, California (specs from the 2014-15 site). Z travel 7 in, gantry clearance 5 in (8 and 12 in optional). DC servo motors with 1000-line encoders (closed loop), 16 mm x 5 mm ball screws. Standard 5 in model with Porter Cable 892; HD model takes a PC 7518, HSD 3 HP or ATC spindle. Aluminum T-slot top or PVC vacuum table option. Ball screws on all axes. Rapid 200 IPM, cutting 150 IPM, repeatability +/- 0.001 in. Table top 34 x 24 in. From $5,495.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "k2cnc-kg2525lt",
+   "maker": "K2CNC",
+   "model": "KG2525LT",
+   "variant": "tabletop",
+   "years": "-2015",
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 25,
+    "y": 25,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 635,
+    "y": 635,
+    "z": 178
+   },
+   "gantry_clearance_in": 5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Porter Cable 892 router (standard)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "Porter Cable 7518 router (HD option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 3 HP industrial spindle (HD option)",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 150,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 3810,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 200,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5080,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "K2MC control box (USB, standard G-code)",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20141220032147/http://www.k2cnc.com/product/cnc-router-KG2525LT.html"
+   ],
+   "notes": "K2 Devices Inc., Orange, California (specs from the 2014-15 site). Z travel 7 in, gantry clearance 5 in (8 and 12 in optional). DC servo motors with 1000-line encoders (closed loop), 16 mm x 5 mm ball screws. Standard 5 in model with Porter Cable 892; HD model takes a PC 7518, HSD 3 HP or ATC spindle. Aluminum T-slot top or PVC vacuum table option. Ball screws on all axes. Rapid 200 IPM, cutting 150 IPM, repeatability +/- 0.001 in. Table top 34 x 24 in. From $5,995.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "k2cnc-kg3925lt",
+   "maker": "K2CNC",
+   "model": "KG3925LT",
+   "variant": "tabletop",
+   "years": "-2015",
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 39,
+    "y": 25,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 991,
+    "y": 635,
+    "z": 178
+   },
+   "gantry_clearance_in": 5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Porter Cable 892 router (standard)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "Porter Cable 7518 router (HD option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 3 HP industrial spindle (HD option)",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 150,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 3810,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 200,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5080,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "K2MC control box (USB, standard G-code)",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20150109020608/http://www.k2cnc.com/product/cnc-router-KG3925LT.html"
+   ],
+   "notes": "K2 Devices Inc., Orange, California (specs from the 2014-15 site). Z travel 7 in, gantry clearance 5 in (8 and 12 in optional). DC servo motors with 1000-line encoders (closed loop), 16 mm x 5 mm ball screws. Standard 5 in model with Porter Cable 892; HD model takes a PC 7518, HSD 3 HP or ATC spindle. Aluminum T-slot top or PVC vacuum table option. Ball screws on all axes. Rapid 200 IPM, cutting 150 IPM, repeatability +/- 0.001 in. Table top 48 x 24 in. From $6,495.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "k2cnc-kg4925lt",
+   "maker": "K2CNC",
+   "model": "KG4925LT",
+   "variant": "tabletop",
+   "years": "-2015",
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 49,
+    "y": 25,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 635,
+    "z": 178
+   },
+   "gantry_clearance_in": 5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Porter Cable 892 router (standard)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "Porter Cable 7518 router (HD option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 3 HP industrial spindle (HD option)",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 150,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 3810,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 200,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5080,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "K2MC control box (USB, standard G-code)",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20141219103703/http://www.k2cnc.com/product/cnc-router-KG4925LT.html"
+   ],
+   "notes": "K2 Devices Inc., Orange, California (specs from the 2014-15 site). Z travel 7 in, gantry clearance 5 in (8 and 12 in optional). DC servo motors with 1000-line encoders (closed loop), 16 mm x 5 mm ball screws. Standard 5 in model with Porter Cable 892; HD model takes a PC 7518, HSD 3 HP or ATC spindle. Aluminum T-slot top or PVC vacuum table option. Ball screws on all axes. Rapid 200 IPM, cutting 150 IPM, repeatability +/- 0.001 in. Table top 48 x 24 in. From $7,995.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "k2cnc-kg5050rk",
+   "maker": "K2CNC",
+   "model": "KG5050RK",
+   "variant": "HD 4x4",
+   "years": "-2015",
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 50,
+    "y": 50,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 1270,
+    "z": 178
+   },
+   "gantry_clearance_in": 5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Porter Cable 892 router (standard)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "Porter Cable 7518 router (HD option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 3 HP industrial spindle (HD option)",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 5080,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion/ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "K2MC control box (USB, standard G-code)",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20141220054808/http://www.k2cnc.com/product/cnc-router-KG5050RK.html"
+   ],
+   "notes": "K2 Devices Inc., Orange, California (specs from the 2014-15 site). Z travel 7 in, gantry clearance 5 in (8 and 12 in optional). DC servo motors with 1000-line encoders (closed loop), 16 mm x 5 mm ball screws. Standard 5 in model with Porter Cable 892; HD model takes a PC 7518, HSD 3 HP or ATC spindle. Aluminum T-slot top or PVC vacuum table option. Ball screws and rack and pinion. Rapid 600 IPM, cutting 200 IPM, repeatability +/- 0.003 in. From $11,495.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "k2cnc-kg9850rk",
+   "maker": "K2CNC",
+   "model": "KG9850RK",
+   "variant": "HD 4x8",
+   "years": "-2015",
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 98,
+    "y": 50,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 2489,
+    "y": 1270,
+    "z": 178
+   },
+   "gantry_clearance_in": 5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Porter Cable 892 router (standard)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "Porter Cable 7518 router (HD option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 3 HP industrial spindle (HD option)",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 5080,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion/ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "K2MC control box (USB, standard G-code)",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20141220034627/http://www.k2cnc.com/product/cnc-router-KG9850RK.html"
+   ],
+   "notes": "K2 Devices Inc., Orange, California (specs from the 2014-15 site). Z travel 7 in, gantry clearance 5 in (8 and 12 in optional). DC servo motors with 1000-line encoders (closed loop), 16 mm x 5 mm ball screws. Standard 5 in model with Porter Cable 892; HD model takes a PC 7518, HSD 3 HP or ATC spindle. Aluminum T-slot top or PVC vacuum table option. Ball screws and rack and pinion. Rapid 600 IPM, cutting 200 IPM, repeatability +/- 0.003 in. From $14,995.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "k2cnc-kg12062rk",
+   "maker": "K2CNC",
+   "model": "KG12062RK",
+   "variant": "HD 5x10",
+   "years": "-2015",
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 122,
+    "y": 62,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 3099,
+    "y": 1575,
+    "z": 178
+   },
+   "gantry_clearance_in": 5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Porter Cable 892 router (standard)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "Porter Cable 7518 router (HD option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 3 HP industrial spindle (HD option)",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 5080,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion/ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "K2MC control box (USB, standard G-code)",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20141220023141/http://www.k2cnc.com/product/cnc-router-KG12062RK.html"
+   ],
+   "notes": "K2 Devices Inc., Orange, California (specs from the 2014-15 site). Z travel 7 in, gantry clearance 5 in (8 and 12 in optional). DC servo motors with 1000-line encoders (closed loop), 16 mm x 5 mm ball screws. Standard 5 in model with Porter Cable 892; HD model takes a PC 7518, HSD 3 HP or ATC spindle. Aluminum T-slot top or PVC vacuum table option. Ball screws and rack and pinion. Rapid 600 IPM, cutting 200 IPM, repeatability +/- 0.003 in. From $16,495.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "k2cnc-ke9850",
+   "maker": "K2CNC",
+   "model": "KE9850",
+   "variant": "Econoline 4x8",
+   "years": "-2015",
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 98,
+    "y": 50,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 2489,
+    "y": 1270,
+    "z": 178
+   },
+   "gantry_clearance_in": 5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Porter Cable 892 router (standard)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "Porter Cable 7518 router (HD option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 3 HP industrial spindle (HD option)",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 5080,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion/ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "K2MC control box (USB, standard G-code)",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20141221051053/http://www.k2cnc.com/product/cnc-router-KE9850.html"
+   ],
+   "notes": "K2 Devices Inc., Orange, California (specs from the 2014-15 site). Z travel 7 in, gantry clearance 5 in (8 and 12 in optional). DC servo motors with 1000-line encoders (closed loop), 16 mm x 5 mm ball screws. Standard 5 in model with Porter Cable 892; HD model takes a PC 7518, HSD 3 HP or ATC spindle. Aluminum T-slot top or PVC vacuum table option. Ball screws and rack and pinion. Rapid 600 IPM, cutting 200 IPM, repeatability +/- 0.003 in. From $10,995.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "k2cnc-kb2110",
+   "maker": "K2CNC",
+   "model": "KB2110",
+   "variant": "desktop",
+   "years": "-2015",
+   "class": "desktop",
+   "work_area_in": {
+    "x": 21,
+    "y": 10,
+    "z": 3
+   },
+   "work_area_mm": {
+    "x": 533,
+    "y": 254,
+    "z": 76.2
+   },
+   "gantry_clearance_in": 2,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 150,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 3810,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 400,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 10160,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "belt/leadscrew",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "K2MC control box (USB, standard G-code)",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20150125014617/http://www.k2cnc.com/product/cnc-router-KB2110.html"
+   ],
+   "notes": "Desktop model (K2 Devices Inc., Orange, CA). Stepper motors, belt drive and lead screw (page also lists a 16 mm x 5 mm ball screw). Clearance 2 in (8/12 in optional), table top 24 x 12 in, rapid 400 IPM, cutting 150 IPM, repeatability +/- 0.003 in. From $2,990.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  }
+ ]
+}

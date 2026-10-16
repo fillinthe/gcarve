@@ -1,0 +1,344 @@
+{
+ "maker": "Makera",
+ "website": "https://www.makera.com",
+ "machines": [
+  {
+   "id": "makera-carvera",
+   "maker": "Makera",
+   "model": "Carvera",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 14.17,
+    "y": 9.45,
+    "z": 5.51
+   },
+   "work_area_mm": {
+    "x": 360,
+    "y": 240,
+    "z": 140
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Carvera 200 W spindle (closed-loop speed control)",
+     "power_kw": 0.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 15000,
+     "collet": "custom collet, 1/8\" integrated (optional 1/4\", 6 mm, 4 mm, 3 mm)",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 236,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 6000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Makera Controller / Carvera firmware (Smoothieware-based)",
+     "gcarve_post": "smoothie-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 6,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "wireless 3D probe, auto tool length"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "MDF bed",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.makera.com/products/carvera",
+    "https://www.makera.com/products/makera-z1-desktop-cnc"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Enclosed desktop mill. X/Z: 15 mm linear rails + ball screws, Y: 25 mm rods + ball screw. Max travel speed 6000 mm/min. Servo X/Y/Z. Optional 4th axis Ø92 x 240 mm. Integrated laser module. Spindle power 200 W per Makera Z1 FAQ."
+  },
+  {
+   "id": "makera-carvera-air",
+   "maker": "Makera",
+   "model": "Carvera Air",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 7.87,
+    "z": 5.12
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 200,
+    "z": 130
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Carvera Air 200 W spindle (closed-loop speed control)",
+     "power_kw": 0.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 13000,
+     "collet": "custom collet, 1/8\" integrated (optional 1/4\", 6 mm, 4 mm, 3 mm)",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 157,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 4000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Makera Controller / Carvera firmware (Smoothieware-based)",
+     "gcarve_post": "smoothie-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "quick-change",
+    "slots": null,
+    "notes": "quick tool changer (about 10 s per change)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "wired probe, auto probing and leveling"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "MDF bed",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.makera.com/pages/carvera-air",
+    "https://www.makera.com/products/makera-z1-desktop-cnc"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Z: 15 mm linear rails + ball screw, X/Y: 20 mm rods + ball screws. Max travel speed 4000 mm/min. Optional 4th axis Ø92 x 200 mm, optional laser. Spindle power 200 W per Makera Z1 FAQ."
+  },
+  {
+   "id": "makera-z1",
+   "maker": "Makera",
+   "model": "Z1",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 7.87,
+    "y": 7.87,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 200,
+    "y": 200,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Z1 150 W spindle (closed-loop speed control)",
+     "power_kw": 0.15,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 13000,
+     "collet": "custom collet, 1/8\" integrated (optional 1/4\", 6 mm, 4 mm, 3 mm)",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 47,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 1200,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Makera Studio (CAM + controller)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "quick-change",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "3D wired probe, auto probing and leveling"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "MDF bed",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.makera.com/products/makera-z1-desktop-cnc"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "12 mm linear rails + Acme lead screws, NEMA17 steppers. Max travel speed 1200 mm/min. 4th axis option Ø80 x 150 mm. Built-in camera. Firmware not published, no post assigned."
+  },
+  {
+   "id": "makera-z1-pro",
+   "maker": "Makera",
+   "model": "Z1 Pro",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 7.87,
+    "y": 7.87,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 200,
+    "y": 200,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Z1 150 W spindle (closed-loop speed control)",
+     "power_kw": 0.15,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 13000,
+     "collet": "custom collet, 1/8\" integrated (optional 1/4\", 6 mm, 4 mm, 3 mm)",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 79,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 2000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Makera Studio (CAM + controller)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "quick-change",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "3D wired probe, auto probing and leveling"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "MDF bed",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.makera.com/products/makera-z1-desktop-cnc"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "As Z1 with 12 mm linear rails + ball screws; max travel speed 2000 mm/min. Firmware not published, no post assigned."
+  }
+ ]
+}

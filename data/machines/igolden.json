@@ -1,0 +1,2034 @@
+{
+ "maker": "iGolden CNC",
+ "website": "https://www.igoldencnc.com",
+ "machines": [
+  {
+   "id": "igolden-3-axis-1325",
+   "maker": "iGolden CNC",
+   "model": "3 Axis Wood CNC Router",
+   "variant": "1300x2500",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4.5 kW air-cooled spindle",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 787.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1969.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/1325-3-axis-wood-engraving-machine-cnc-router.html"
+   ],
+   "notes": "Single-head 3-axis router; working area 1300 x 2500 x 200 mm; positioning 0.05 mm, repeat 0.02 mm; weight 1400 kg. Spindle listed as 4.5 kW air-cooled (optioned). Controller not stated.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "igolden-3-axis-1525",
+   "maker": "iGolden CNC",
+   "model": "3 Axis Wood CNC Router",
+   "variant": "1500x2500",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4.5 kW air-cooled spindle",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 787.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1969.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/1325-3-axis-wood-engraving-machine-cnc-router.html"
+   ],
+   "notes": "Single-head 3-axis router; working area 1500 x 2500 x 200 mm; positioning 0.05 mm, repeat 0.02 mm; weight 1700 kg. Spindle listed as 4.5 kW air-cooled (optioned). Controller not stated.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "igolden-3-axis-1530",
+   "maker": "iGolden CNC",
+   "model": "3 Axis Wood CNC Router",
+   "variant": "1500x3000",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4.5 kW air-cooled spindle",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 787.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1969.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/1325-3-axis-wood-engraving-machine-cnc-router.html"
+   ],
+   "notes": "Single-head 3-axis router; working area 1500 x 3000 x 200 mm; positioning 0.05 mm, repeat 0.02 mm; weight 1900 kg. Spindle listed as 4.5 kW air-cooled (optioned). Controller not stated.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "igolden-3-axis-2030",
+   "maker": "iGolden CNC",
+   "model": "3 Axis Wood CNC Router",
+   "variant": "2000x3000",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4.5 kW air-cooled spindle",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 787.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1969.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/1325-3-axis-wood-engraving-machine-cnc-router.html"
+   ],
+   "notes": "Single-head 3-axis router; working area 2000 x 3000 x 200 mm; positioning 0.05 mm, repeat 0.02 mm; weight 2200 kg. Spindle listed as 4.5 kW air-cooled (optioned). Controller not stated.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "igolden-3-axis-2040",
+   "maker": "iGolden CNC",
+   "model": "3 Axis Wood CNC Router",
+   "variant": "2000x4000",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4.5 kW air-cooled spindle",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 787.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 20000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1969.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/1325-3-axis-wood-engraving-machine-cnc-router.html"
+   ],
+   "notes": "Single-head 3-axis router; working area 2000 x 4000 x 200 mm; positioning 0.05 mm, repeat 0.02 mm; weight 2500 kg. Spindle listed as 4.5 kW air-cooled (optioned). Controller not stated.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "igolden-1325-atc-lnc",
+   "maker": "iGolden CNC",
+   "model": "1325 Automated Wood Engraving CNC Router",
+   "variant": "1325 ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LNC (Taiwan)",
+     "gcarve_post": "fanuc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "Automatic tool library (magazine type and slots not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/1325-automated-wood-engraving-machine-cnc-router.html"
+   ],
+   "notes": "Dorna 1500 W servos + Shimpo reducers, helical rack XY, TBI 3210 ball screw Z, HIWIN rails; Fuling inverter; 5.5 kW pump; 380 V 3-phase.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; carousel assumed"
+   }
+  },
+  {
+   "id": "igolden-1530-atc-drilling",
+   "maker": "iGolden CNC",
+   "model": "ATC Wood CNC Router with Drilling",
+   "variant": "1530",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER32",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LNC (Taiwan)",
+     "gcarve_post": "fanuc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "ATC (magazine not stated) + 5+4 vertical drilling head"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/1530-atc-wood-cnc-router-for-furniture-making-machine.html"
+   ],
+   "notes": "1500 W servos + Shimpo reducers, helical rack; Fuling 11 kW inverter; 7.5 kW vacuum pump; PDF 25 mm rails.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; carousel assumed"
+   }
+  },
+  {
+   "id": "igolden-2130-atc-rotary",
+   "maker": "iGolden CNC",
+   "model": "2130 4 Axis ATC CNC Router with Rotary Axis",
+   "variant": "2130",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 82.68,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2100,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LNC 4-axis + handwheel",
+     "gcarve_post": "fanuc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "ATC; magazine type and slots not stated"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/3d-wood-engraving-machine-cnc-router.html"
+   ],
+   "notes": "Rotary (4th) axis included; Dorna AC servos; helical rack XY, TBI 3210 ball screw Z; HIWIN 25 rails; oil mist; repeat +/-0.02 mm; 380 V.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; carousel assumed"
+   }
+  },
+  {
+   "id": "igolden-2130-atc-nk280",
+   "maker": "iGolden CNC",
+   "model": "2130 ATC CNC Router",
+   "variant": "2130 NK280",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 82.68,
+    "y": 118.11,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2100,
+    "y": 3000,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle, rotates 180 deg",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Weihong NK280",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "ATC; magazine type and slots not stated"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/four-axis-engraving-machine-with-adsorption-block.html"
+   ],
+   "notes": "Swinging (180 deg) spindle for 4-axis side work; rotary axis optional; Dorna servos; helical rack XY, TBI 3210 Z; Z travel not stated.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; carousel assumed"
+   }
+  },
+  {
+   "id": "igolden-2060-atc",
+   "maker": "iGolden CNC",
+   "model": "2060 ATC CNC Router Wood Board Cutting Machine",
+   "variant": "2060",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 236.22,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 6000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER32",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 6MB",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "Disk magazine, 12 tools"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool sensor"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/cnc-wood-board-cutting-machine.html"
+   ],
+   "notes": "Yaskawa 850 W servos + Shimpo; Taiwan helical rack XY; HIWIN 30 rails; Delta inverter; 3 vacuum pumps; 3+4 positioning cylinders.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "igolden-igc-4ap-1325",
+   "maker": "iGolden CNC",
+   "model": "Double Platform Board Cutting CNC Router",
+   "variant": "iGC-4AP-1325",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 6 kW air-cooled tool-change spindle (x2)",
+     "power_kw": 6,
+     "power_hp": 8.0,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "4.5 kW tool-change spindle (x2)",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "leadscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LNC + wireless handwheel",
+     "gcarve_post": "fanuc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": 4,
+    "notes": "Four spindles (2 x 6 kW + 2 x 4.5 kW)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/double-platform-board-cutting-cnc-router-machine.html"
+   ],
+   "notes": "Two 1300 x 2500 mm stations (alternate loading). Helical rack, HIWIN rails, TBI lead screw, Fuling inverter.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "igolden-igw-1230",
+   "maker": "iGolden CNC",
+   "model": "Double Table 4 Axis ATC CNC Router",
+   "variant": "iGW-1230",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 47.24,
+    "y": 31.5,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 1200,
+    "y": 800,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW spindle, rotates 180 deg",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion/ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec (Taiwan)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "Disc tool changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/double-table-4-axis-atc-cnc-router.html"
+   ],
+   "notes": "X axis ground rack, Y/Z TBI ball screws; Syntec servos; Delta 11 kW inverter; HIWIN 30 rails; double table.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "igolden-1328-saw",
+   "maker": "iGolden CNC",
+   "model": "CNC Wood Board Cutting Machine with Saw Blade",
+   "variant": "1300x2800",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 110.24,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2800,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle + saw blade",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LNC (Taiwan)",
+     "gcarve_post": "fanuc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12-tool magazine (type not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/best-cnc-wood-board-cutting-machine-with-saw-blade.html"
+   ],
+   "notes": "Dongling 1.5 kW servos + Shimpo; double vacuum table + pressure wheel; 380 V 3-phase.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; carousel assumed"
+   }
+  },
+  {
+   "id": "igolden-following-linear-atc-1325",
+   "maker": "iGolden CNC",
+   "model": "Following Linear Type ATC Furniture Making Machine",
+   "variant": "1325 loading/unloading",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1969.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50000,
+    "z": null
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LNC (Taiwan)",
+     "gcarve_post": "fanuc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "Following (gantry-mounted) in-line magazine, 12 tools"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": 2.7559055118110236
+   },
+   "sources": [
+    "https://www.igoldencnc.com/following-linear-type-atc-furniture-making-machine.html"
+   ],
+   "notes": "Effective stroke 2500 x 1300 x 200 mm; max panel 2440 x 1300 x 70 mm; automatic loading/unloading; Dongling 1.5 kW servos + Shimpo.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "table.max_material_thickness_in": "converted from 70 mm"
+   }
+  },
+  {
+   "id": "igolden-1325-4-head",
+   "maker": "iGolden CNC",
+   "model": "3D Woodworking Carving Machine with 4 Heads",
+   "variant": "1325",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3.5 kW spindle (x4)",
+     "power_kw": 3.5,
+     "power_hp": 4.7,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "NcStudio / DSP",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": 4,
+    "notes": "Four spindles cutting simultaneously"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/3d-woodworking-carving-machine-cnc-router-with-4-head.html"
+   ],
+   "notes": "Stepper or servo motors (option); NcStudio or DSP control; 380 V 3-phase.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "igolden-igw-5am-2030",
+   "maker": "iGolden CNC",
+   "model": "Gantry Moving 5 Axis CNC Router",
+   "variant": "iGW-5AM-2030",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 39.37
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 1000
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "AKEMD 5-axis head, 14.4-17 kW",
+     "power_kw": 14.4,
+     "power_hp": 19.3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec (Taiwan)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 tools (magazine type not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/igw-5am-2030-gantry-moving-5-axis-cnc-router.html"
+   ],
+   "notes": "5-axis gantry-moving router; Yaskawa servos; helical rack XY, TBI ball screw Z; #30 rails; cast-iron or welded steel table.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; carousel assumed"
+   }
+  },
+  {
+   "id": "igolden-igw-5am-3012",
+   "maker": "iGolden CNC",
+   "model": "Table Moving 5 Axis CNC Router",
+   "variant": "iGW-5AM-3012",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 118.11,
+    "y": 47.24,
+    "z": 31.5
+   },
+   "work_area_mm": {
+    "x": 3000,
+    "y": 1200,
+    "z": 800
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "AKEMD 5-axis head, 14.4-17 kW",
+     "power_kw": 14.4,
+     "power_hp": 19.3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion/ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec (Taiwan)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 10,
+    "notes": "10 tools, optional double magazine (type not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/igw-5am-3012-table-moving-5-axis-cnc-router.html"
+   ],
+   "notes": "5-axis, double-surface cast-iron moving table; helical rack X, TBI ball screws Y/Z; Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; carousel assumed"
+   }
+  },
+  {
+   "id": "igolden-1730-5-axis",
+   "maker": "iGolden CNC",
+   "model": "1730 5 Axis ATC CNC Router",
+   "variant": "1730",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 67.72,
+    "y": 119.69,
+    "z": 29.53
+   },
+   "work_area_mm": {
+    "x": 1720,
+    "y": 3040,
+    "z": 750
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "SCM 14 kW five-axis spindle with swing head",
+     "power_kw": 14,
+     "power_hp": 18.8,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Syntec (Taiwan)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "8-tool disc changer"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/1730-5-axis-atc-cnc-router.html"
+   ],
+   "notes": "5-axis router; Delta inverter.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "igolden-igc-3ap-1325",
+   "maker": "iGolden CNC",
+   "model": "Nesting CNC Router for Cabinet Making",
+   "variant": "iGC-3AP-1325",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 6 kW air-cooled spindle",
+     "power_kw": 6,
+     "power_hp": 8.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HQD 4.5 kW air-cooled spindle (x2)",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LNC (Taiwan)",
+     "gcarve_post": "fanuc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": 3,
+    "notes": "Three spindles (pneumatic process switching)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/nesting-cnc-router-for-cabinet-making.html"
+   ],
+   "notes": "Yaskawa servos + Shimpo; Delta inverter; PVC vacuum table; positioning 0.05 mm, repeat 0.02 mm; 1700 kg.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "igolden-multifunctional-atc-1325",
+   "maker": "iGolden CNC",
+   "model": "Multifunctional ATC Wood 4 Axis CNC Router",
+   "variant": "1325",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled spindle, swings 180 deg",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LNC 4-axis",
+     "gcarve_post": "fanuc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "ATC; magazine type and slots not stated"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/multifunctional-atc-cnc-router-machine.html"
+   ],
+   "notes": "Dongling 1.5 kW servos X/Y + Shimpo, 1.2 kW Z with brake; Fuling 11 kW; 5.5 kW water-cooled vacuum pump.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; carousel assumed"
+   }
+  },
+  {
+   "id": "igolden-special-offer-1325",
+   "maker": "iGolden CNC",
+   "model": "Affordable Woodworking CNC Router",
+   "variant": "1325",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 4.5 kW air-cooled spindle",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/special-offer-1325-cnc-router.html"
+   ],
+   "notes": "Stepper or servo motors (option); HIWIN rails; 1300 x 2500 mm T-slot table, vacuum pump optional.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "igolden-1325-atc-drilling",
+   "maker": "iGolden CNC",
+   "model": "ATC CNC Nesting Router with Vertical Drilling",
+   "variant": "1325",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle + 9-hole drill block",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3346.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 85000,
+    "z": null
+   },
+   "accel": "3 m/s²",
+   "drive": null,
+   "motors": "servo",
+   "controllers": [],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 tools + 4+5 drill block"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/atc-furniture-cnc-router-with-drilling.html"
+   ],
+   "notes": "Loading/unloading nesting cell; dual Y motors. Sizes customisable (1300x2500, 1500x3000, 2000x3000, 2000x4000 mm). Controller not stated in the spec table.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "rapid_mm_min": "page states speeds up to 85 m/min",
+    "tool_change.kind": "magazine type not stated; carousel assumed"
+   }
+  },
+  {
+   "id": "igolden-linear-atc-1325",
+   "maker": "iGolden CNC",
+   "model": "Linear ATC CNC Nesting Machine",
+   "variant": "1325",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LNC (Taiwan)",
+     "gcarve_post": "fanuc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "12-tool linear magazine"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/linear-atc-cnc-nesting-machine.html"
+   ],
+   "notes": "Dorna servos; double-layer vacuum table, positioning cylinders, pusher. Page text also mentions a Baoyuan (LNC) controller with handle.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "igolden-linear-atc-8-1325",
+   "maker": "iGolden CNC",
+   "model": "ATC CNC Router With Automatic Tool Changer",
+   "variant": "1325 linear 8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Weihong",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-tool linear changer (6/8/10/12 available)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/atc-cnc-router-with-automatic-tool-changer.html"
+   ],
+   "notes": "Weihong control with power-loss resume.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "igolden-4-process-1325",
+   "maker": "iGolden CNC",
+   "model": "Four Process CNC Router for Furniture",
+   "variant": "1325",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LNC (Taiwan)",
+     "gcarve_post": "fanuc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": 4,
+    "notes": "Four pneumatically switched spindles"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/four-process-cnc-router-for-furniture-cabinet-making.html"
+   ],
+   "notes": "Four-spindle (four-process) cabinet router; spindle power not stated in the table.",
+   "estimated": {
+    "work_area_in": "converted from mm"
+   }
+  },
+  {
+   "id": "igolden-igw-atc-p1325",
+   "maker": "iGolden CNC",
+   "model": "4x8 1325 High Quality Linear ATC Woodworking CNC Router",
+   "variant": "iGW-ATC-P1325",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1181.0,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1969.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec (Taiwan)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "Hidden tool magazine (type and slots not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.igoldencnc.com/high-quality-atc-woodworking-cnc-router.html"
+   ],
+   "notes": "Yaskawa servos + Shimpo; HIWIN rails, TBI ball screw; Delta inverter; light-curtain protection; repeat 0.02 mm.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; carousel assumed"
+   }
+  }
+ ]
+}

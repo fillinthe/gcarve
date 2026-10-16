@@ -1,0 +1,11 @@
+4 toolpaths added
+Skipped (no shapes found):
+  Mounting holes: layer "Holes" has no shapes
+  Hanger bore: layer "Holes" has no shapes
+  Flute: no layer "Flutes"
+Tools added:
+  V-Bit (90 deg 0.5")
+  1/8 End Mill (0.125 inch)
+Variables added:
+  pocket-depth
+  hole

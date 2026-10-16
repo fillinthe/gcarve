@@ -1,0 +1,3450 @@
+{
+ "maker": "Komo",
+ "website": "https://komo.com",
+ "machines": [
+  {
+   "id": "komo-mach-iii-508",
+   "maker": "Komo",
+   "model": "Mach III",
+   "variant": "508",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 116,
+    "y": 84,
+    "z": 15
+   },
+   "work_area_mm": {
+    "x": 2946,
+    "y": 2134,
+    "z": 381
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 600
+   },
+   "rapid_mm_min": {
+    "xy": 80010,
+    "z": 15240
+   },
+   "accel": "83 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools standard, optional second 15-station changer (30)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/mach-iii-series/mach-iii/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 60 x 96 in. Moving-table design, more Z than the Fusion XL. Tables also 72 in wide. Rapid/traverse 3150 ipm X and Y, 600 ipm Z. FANUC HVI servos."
+  },
+  {
+   "id": "komo-mach-iii-510",
+   "maker": "Komo",
+   "model": "Mach III",
+   "variant": "510",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 142,
+    "y": 84,
+    "z": 15
+   },
+   "work_area_mm": {
+    "x": 3607,
+    "y": 2134,
+    "z": 381
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 600
+   },
+   "rapid_mm_min": {
+    "xy": 80010,
+    "z": 15240
+   },
+   "accel": "83 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools standard, optional second 15-station changer (30)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/mach-iii-series/mach-iii/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 60 x 120 in. Moving-table design, more Z than the Fusion XL. Tables also 72 in wide. Rapid/traverse 3150 ipm X and Y, 600 ipm Z. FANUC HVI servos."
+  },
+  {
+   "id": "komo-mach-iii-512",
+   "maker": "Komo",
+   "model": "Mach III",
+   "variant": "512",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 164,
+    "y": 84,
+    "z": 15
+   },
+   "work_area_mm": {
+    "x": 4166,
+    "y": 2134,
+    "z": 381
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 600
+   },
+   "rapid_mm_min": {
+    "xy": 80010,
+    "z": 15240
+   },
+   "accel": "83 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools standard, optional second 15-station changer (30)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/mach-iii-series/mach-iii/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 60 x 144 in. Moving-table design, more Z than the Fusion XL. Tables also 72 in wide. Rapid/traverse 3150 ipm X and Y, 600 ipm Z. FANUC HVI servos."
+  },
+  {
+   "id": "komo-mach-iii-gt-525",
+   "maker": "Komo",
+   "model": "Mach III GT",
+   "variant": "525",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 324,
+    "y": 84,
+    "z": 15
+   },
+   "work_area_mm": {
+    "x": 8230,
+    "y": 2134,
+    "z": 381
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2000,
+    "z": 600
+   },
+   "rapid_mm_min": {
+    "xy": 50800,
+    "z": 15240
+   },
+   "accel": "83 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/mach-iii-series/mach-iii-gt/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 60 x 300 in. Traverse X 2000 ipm, Y 3150 ipm, Z 600 ipm (xy field = the slower X). Lengths up to 110 ft in 60 in steps."
+  },
+  {
+   "id": "komo-mach-iii-gt-625",
+   "maker": "Komo",
+   "model": "Mach III GT",
+   "variant": "625",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 324,
+    "y": 84,
+    "z": 15
+   },
+   "work_area_mm": {
+    "x": 8230,
+    "y": 2134,
+    "z": 381
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2000,
+    "z": 600
+   },
+   "rapid_mm_min": {
+    "xy": 50800,
+    "z": 15240
+   },
+   "accel": "83 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/mach-iii-series/mach-iii-gt/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 72 x 300 in. Traverse X 2000 ipm, Y 3150 ipm, Z 600 ipm (xy field = the slower X). Lengths up to 110 ft in 60 in steps."
+  },
+  {
+   "id": "komo-mach-iii-gt-825",
+   "maker": "Komo",
+   "model": "Mach III GT",
+   "variant": "825",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 324,
+    "y": 164,
+    "z": 15
+   },
+   "work_area_mm": {
+    "x": 8230,
+    "y": 4166,
+    "z": 381
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2000,
+    "z": 600
+   },
+   "rapid_mm_min": {
+    "xy": 50800,
+    "z": 15240
+   },
+   "accel": "83 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/mach-iii-series/mach-iii-gt/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 96 x 300 in. Traverse X 2000 ipm, Y 3150 ipm, Z 600 ipm (xy field = the slower X). Lengths up to 110 ft in 60 in steps."
+  },
+  {
+   "id": "komo-mach-iii-gt-1025",
+   "maker": "Komo",
+   "model": "Mach III GT",
+   "variant": "1025",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 324,
+    "y": 164,
+    "z": 15
+   },
+   "work_area_mm": {
+    "x": 8230,
+    "y": 4166,
+    "z": 381
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2000,
+    "z": 600
+   },
+   "rapid_mm_min": {
+    "xy": 50800,
+    "z": 15240
+   },
+   "accel": "83 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/mach-iii-series/mach-iii-gt/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 120 x 300 in. Traverse X 2000 ipm, Y 3150 ipm, Z 600 ipm (xy field = the slower X). Lengths up to 110 ft in 60 in steps."
+  },
+  {
+   "id": "komo-mach-iii-tt-1005tt",
+   "maker": "Komo",
+   "model": "Mach III Twin Table",
+   "variant": "1005TT",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 162,
+    "y": 80,
+    "z": 15
+   },
+   "work_area_mm": {
+    "x": 4115,
+    "y": 2032,
+    "z": 381
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 600
+   },
+   "rapid_mm_min": {
+    "xy": 80010,
+    "z": 15240
+   },
+   "accel": "83 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools per spindle; up to 6 x 8-station or 4 x 15-station heads"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/mach-iii-series/mach-iii-twin-table/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 2 x 60 x 60 in. Twin tables (two stations)."
+  },
+  {
+   "id": "komo-mach-iii-tt-1008tt",
+   "maker": "Komo",
+   "model": "Mach III Twin Table",
+   "variant": "1008TT",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 162,
+    "y": 164,
+    "z": 15
+   },
+   "work_area_mm": {
+    "x": 4115,
+    "y": 4166,
+    "z": 381
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 600
+   },
+   "rapid_mm_min": {
+    "xy": 80010,
+    "z": 15240
+   },
+   "accel": "83 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools per spindle; up to 6 x 8-station or 4 x 15-station heads"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/mach-iii-series/mach-iii-twin-table/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 2 x 60 x 96 in. Twin tables (two stations)."
+  },
+  {
+   "id": "komo-mach-iii-tt-1010tt",
+   "maker": "Komo",
+   "model": "Mach III Twin Table",
+   "variant": "1010TT",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 162,
+    "y": 164,
+    "z": 15
+   },
+   "work_area_mm": {
+    "x": 4115,
+    "y": 4166,
+    "z": 381
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 600
+   },
+   "rapid_mm_min": {
+    "xy": 80010,
+    "z": 15240
+   },
+   "accel": "83 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools per spindle; up to 6 x 8-station or 4 x 15-station heads"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/mach-iii-series/mach-iii-twin-table/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 2 x 60 x 120 in. Twin tables (two stations)."
+  },
+  {
+   "id": "komo-mach-iii-tt-1012tt",
+   "maker": "Komo",
+   "model": "Mach III Twin Table",
+   "variant": "1012TT",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 162,
+    "y": 164,
+    "z": 15
+   },
+   "work_area_mm": {
+    "x": 4115,
+    "y": 4166,
+    "z": 381
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 600
+   },
+   "rapid_mm_min": {
+    "xy": 80010,
+    "z": 15240
+   },
+   "accel": "83 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools per spindle; up to 6 x 8-station or 4 x 15-station heads"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/mach-iii-series/mach-iii-twin-table/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 2 x 60 x 144 in. Twin tables (two stations)."
+  },
+  {
+   "id": "komo-mach-iii-tt-1605tt",
+   "maker": "Komo",
+   "model": "Mach III Twin Table",
+   "variant": "1605TT",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 258,
+    "y": 78,
+    "z": 15
+   },
+   "work_area_mm": {
+    "x": 6553,
+    "y": 1981,
+    "z": 381
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 600
+   },
+   "rapid_mm_min": {
+    "xy": 80010,
+    "z": 15240
+   },
+   "accel": "83 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools per spindle; up to 6 x 8-station or 4 x 15-station heads"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/mach-iii-series/mach-iii-twin-table/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 2 x 96 x 60 in. Twin tables (two stations)."
+  },
+  {
+   "id": "komo-mach-iii-tt-2005tt",
+   "maker": "Komo",
+   "model": "Mach III Twin Table",
+   "variant": "2005TT",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 258,
+    "y": 78,
+    "z": 15
+   },
+   "work_area_mm": {
+    "x": 6553,
+    "y": 1981,
+    "z": 381
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 600
+   },
+   "rapid_mm_min": {
+    "xy": 80010,
+    "z": 15240
+   },
+   "accel": "83 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools per spindle; up to 6 x 8-station or 4 x 15-station heads"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/mach-iii-series/mach-iii-twin-table/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 2 x 120 x 60 in. Twin tables (two stations)."
+  },
+  {
+   "id": "komo-fusion-xl-508",
+   "maker": "Komo",
+   "model": "Fusion XL",
+   "variant": "508",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 116,
+    "y": 86,
+    "z": 12
+   },
+   "work_area_mm": {
+    "x": 2946,
+    "y": 2184,
+    "z": 305
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 900
+   },
+   "rapid_mm_min": {
+    "xy": 80010,
+    "z": 22860
+   },
+   "accel": "205 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools standard, up to 45 with second head and side auxiliary changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/fusion-series/fusion-xl/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 60 x 96 in. Traverse 3150 ipm X/Y, 900 ipm Z. Optional second spindle."
+  },
+  {
+   "id": "komo-fusion-xl-510",
+   "maker": "Komo",
+   "model": "Fusion XL",
+   "variant": "510",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 142,
+    "y": 86,
+    "z": 12
+   },
+   "work_area_mm": {
+    "x": 3607,
+    "y": 2184,
+    "z": 305
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 900
+   },
+   "rapid_mm_min": {
+    "xy": 80010,
+    "z": 22860
+   },
+   "accel": "205 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools standard, up to 45 with second head and side auxiliary changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/fusion-series/fusion-xl/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 60 x 120 in. Traverse 3150 ipm X/Y, 900 ipm Z. Optional second spindle."
+  },
+  {
+   "id": "komo-fusion-xl-512",
+   "maker": "Komo",
+   "model": "Fusion XL",
+   "variant": "512",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 164,
+    "y": 86,
+    "z": 12
+   },
+   "work_area_mm": {
+    "x": 4166,
+    "y": 2184,
+    "z": 305
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 900
+   },
+   "rapid_mm_min": {
+    "xy": 80010,
+    "z": 22860
+   },
+   "accel": "205 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools standard, up to 45 with second head and side auxiliary changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/fusion-series/fusion-xl/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 60 x 144 in. Traverse 3150 ipm X/Y, 900 ipm Z. Optional second spindle."
+  },
+  {
+   "id": "komo-fusion-5-axis-508",
+   "maker": "Komo",
+   "model": "Fusion 5-Axis",
+   "variant": "508",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 116,
+    "y": 86,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 2946,
+    "y": 2184,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "20 HP (15 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 15,
+     "power_hp": 20,
+     "rpm_min": null,
+     "rpm_max": 22000,
+     "collet": "HSK 63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 735
+   },
+   "rapid_mm_min": {
+    "xy": 80010,
+    "z": 18669
+   },
+   "accel": "205 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools standard, optional second 15-station changer (30)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/fusion-series/fusion-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 60 x 96 in. 5-axis; A and C axes 82.5 deg/s."
+  },
+  {
+   "id": "komo-fusion-5-axis-510",
+   "maker": "Komo",
+   "model": "Fusion 5-Axis",
+   "variant": "510",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 144,
+    "y": 86,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 3658,
+    "y": 2184,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "20 HP (15 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 15,
+     "power_hp": 20,
+     "rpm_min": null,
+     "rpm_max": 22000,
+     "collet": "HSK 63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 735
+   },
+   "rapid_mm_min": {
+    "xy": 80010,
+    "z": 18669
+   },
+   "accel": "205 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools standard, optional second 15-station changer (30)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/fusion-series/fusion-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 60 x 120 in. 5-axis; A and C axes 82.5 deg/s."
+  },
+  {
+   "id": "komo-fusion-5-axis-512",
+   "maker": "Komo",
+   "model": "Fusion 5-Axis",
+   "variant": "512",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 168,
+    "y": 86,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 4267,
+    "y": 2184,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "20 HP (15 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 15,
+     "power_hp": 20,
+     "rpm_min": null,
+     "rpm_max": 22000,
+     "collet": "HSK 63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 735
+   },
+   "rapid_mm_min": {
+    "xy": 80010,
+    "z": 18669
+   },
+   "accel": "205 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools standard, optional second 15-station changer (30)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/fusion-series/fusion-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 60 x 144 in. 5-axis; A and C axes 82.5 deg/s."
+  },
+  {
+   "id": "komo-fusion-xl-5-axis-508",
+   "maker": "Komo",
+   "model": "Fusion XL 5-Axis",
+   "variant": "508",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 116,
+    "y": 86,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 2946,
+    "y": 2184,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18.1 HP (13.5 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.5,
+     "power_hp": 18.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 735
+   },
+   "rapid_mm_min": {
+    "xy": 80010,
+    "z": 18669
+   },
+   "accel": "205 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools standard, optional second 15-station changer (30)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/fusion-series/fusion-xl-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 60 x 96 in. 5-axis; A +/-120 deg, C +/-320 deg, 82.5 deg/s."
+  },
+  {
+   "id": "komo-fusion-xl-5-axis-510",
+   "maker": "Komo",
+   "model": "Fusion XL 5-Axis",
+   "variant": "510",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 144,
+    "y": 86,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 3658,
+    "y": 2184,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18.1 HP (13.5 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.5,
+     "power_hp": 18.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 735
+   },
+   "rapid_mm_min": {
+    "xy": 80010,
+    "z": 18669
+   },
+   "accel": "205 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools standard, optional second 15-station changer (30)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/fusion-series/fusion-xl-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 60 x 120 in. 5-axis; A +/-120 deg, C +/-320 deg, 82.5 deg/s."
+  },
+  {
+   "id": "komo-fusion-xl-5-axis-512",
+   "maker": "Komo",
+   "model": "Fusion XL 5-Axis",
+   "variant": "512",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 168,
+    "y": 86,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 4267,
+    "y": 2184,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18.1 HP (13.5 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.5,
+     "power_hp": 18.1,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 735
+   },
+   "rapid_mm_min": {
+    "xy": 80010,
+    "z": 18669
+   },
+   "accel": "205 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools standard, optional second 15-station changer (30)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/fusion-series/fusion-xl-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 60 x 144 in. 5-axis; A +/-120 deg, C +/-320 deg, 82.5 deg/s."
+  },
+  {
+   "id": "komo-fusion-tt-1205",
+   "maker": "Komo",
+   "model": "Fusion Twin Table",
+   "variant": "1205",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 175,
+    "y": 81,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 4445,
+    "y": 2057,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2300,
+    "z": 900
+   },
+   "rapid_mm_min": {
+    "xy": 58420,
+    "z": 22860
+   },
+   "accel": "83 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools per spindle; 30 with optional second head"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/fusion-series/fusion-twin-table/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 2 x 72 x 60 in. Traverse X 3150 ipm, Y 2300 ipm, Z 900 ipm (xy = slower Y). Travels: 175 in gantry x 81 in base x 11 in."
+  },
+  {
+   "id": "komo-fusion-tt-1206",
+   "maker": "Komo",
+   "model": "Fusion Twin Table",
+   "variant": "1206",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 175,
+    "y": 81,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 4445,
+    "y": 2057,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2300,
+    "z": 900
+   },
+   "rapid_mm_min": {
+    "xy": 58420,
+    "z": 22860
+   },
+   "accel": "83 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools per spindle; 30 with optional second head"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/fusion-series/fusion-twin-table/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 2 x 72 x 72 in. Traverse X 3150 ipm, Y 2300 ipm, Z 900 ipm (xy = slower Y). Travels: 175 in gantry x 81 in base x 11 in."
+  },
+  {
+   "id": "komo-solution-wide-812",
+   "maker": "Komo",
+   "model": "Solution Wide",
+   "variant": "812",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 155,
+    "y": 116,
+    "z": 10
+   },
+   "work_area_mm": {
+    "x": 3937,
+    "y": 2946,
+    "z": 254
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2100,
+    "z": 1200
+   },
+   "rapid_mm_min": {
+    "xy": 53340,
+    "z": 30480
+   },
+   "accel": "83.3 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 tools"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/solution-series/solution-wide/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 96 x 144 in. Traverse X 2100, Y 2300, Z 1200 ipm. Optional 17.7 in Z. Up to 144 in x 110 ft."
+  },
+  {
+   "id": "komo-solution-wide-1012",
+   "maker": "Komo",
+   "model": "Solution Wide",
+   "variant": "1012",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 155,
+    "y": 140,
+    "z": 10
+   },
+   "work_area_mm": {
+    "x": 3937,
+    "y": 3556,
+    "z": 254
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2100,
+    "z": 1200
+   },
+   "rapid_mm_min": {
+    "xy": 53340,
+    "z": 30480
+   },
+   "accel": "83.3 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 tools"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/solution-series/solution-wide/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 120 x 144 in. Traverse X 2100, Y 2300, Z 1200 ipm. Optional 17.7 in Z. Up to 144 in x 110 ft."
+  },
+  {
+   "id": "komo-solution-wide-1212",
+   "maker": "Komo",
+   "model": "Solution Wide",
+   "variant": "1212",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 155,
+    "y": 164,
+    "z": 10
+   },
+   "work_area_mm": {
+    "x": 3937,
+    "y": 4166,
+    "z": 254
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2100,
+    "z": 1200
+   },
+   "rapid_mm_min": {
+    "xy": 53340,
+    "z": 30480
+   },
+   "accel": "83.3 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 tools"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/solution-series/solution-wide/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 144 x 144 in. Traverse X 2100, Y 2300, Z 1200 ipm. Optional 17.7 in Z. Up to 144 in x 110 ft."
+  },
+  {
+   "id": "komo-solution-xl-510",
+   "maker": "Komo",
+   "model": "Solution XL",
+   "variant": "510",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 131,
+    "y": 80,
+    "z": 10
+   },
+   "work_area_mm": {
+    "x": 3327,
+    "y": 2032,
+    "z": 254
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2100,
+    "z": 1200
+   },
+   "rapid_mm_min": {
+    "xy": 53340,
+    "z": 30480
+   },
+   "accel": "95 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 tools"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/solution-series/solution-xl/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 60 x 120 in. Traverse X 2100, Y 2300, Z 1200 ipm. Optional 17.7 in Z. Up to 60 in x 110 ft."
+  },
+  {
+   "id": "komo-solution-xl-512",
+   "maker": "Komo",
+   "model": "Solution XL",
+   "variant": "512",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 155,
+    "y": 80,
+    "z": 10
+   },
+   "work_area_mm": {
+    "x": 3937,
+    "y": 2032,
+    "z": 254
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2100,
+    "z": 1200
+   },
+   "rapid_mm_min": {
+    "xy": 53340,
+    "z": 30480
+   },
+   "accel": "95 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 tools"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/solution-series/solution-xl/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 60 x 144 in. Traverse X 2100, Y 2300, Z 1200 ipm. Optional 17.7 in Z. Up to 60 in x 110 ft."
+  },
+  {
+   "id": "komo-solution-xl-524",
+   "maker": "Komo",
+   "model": "Solution XL",
+   "variant": "524",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 299,
+    "y": 80,
+    "z": 10
+   },
+   "work_area_mm": {
+    "x": 7595,
+    "y": 2032,
+    "z": 254
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2100,
+    "z": 1200
+   },
+   "rapid_mm_min": {
+    "xy": 53340,
+    "z": 30480
+   },
+   "accel": "95 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 tools"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/solution-series/solution-xl/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 60 x 288 in. Traverse X 2100, Y 2300, Z 1200 ipm. Optional 17.7 in Z. Up to 60 in x 110 ft."
+  },
+  {
+   "id": "komo-vgm-1206",
+   "maker": "Komo",
+   "model": "VGM",
+   "variant": "1206",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 151,
+    "y": 75.25,
+    "z": 24
+   },
+   "work_area_mm": {
+    "x": 3835,
+    "y": 1911,
+    "z": 610
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "34.8 HP (26 kW) belt-driven spindle, CAT 40",
+     "power_kw": 26,
+     "power_hp": 34.8,
+     "rpm_min": null,
+     "rpm_max": 6000,
+     "collet": "CAT 40",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2000,
+    "z": 730
+   },
+   "rapid_mm_min": {
+    "xy": 50800,
+    "z": 18542
+   },
+   "accel": "83 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 24,
+    "notes": "24 tools standard, up to 120 (5 changers)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/vgm-series/vgm/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 144 x 72 in. Gantry mill for ferrous metal; spindle up to 6000 RPM."
+  },
+  {
+   "id": "komo-xtreme-5-axis-508",
+   "maker": "Komo",
+   "model": "Xtreme 5-Axis",
+   "variant": "508",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 110,
+    "y": 84,
+    "z": 24
+   },
+   "work_area_mm": {
+    "x": 2794,
+    "y": 2134,
+    "z": 610
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13.4 HP (10 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 10,
+     "power_hp": 13.4,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2300,
+    "z": 1200
+   },
+   "rapid_mm_min": {
+    "xy": 58420,
+    "z": 30480
+   },
+   "accel": "130 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 tools standard, 24 with optional second changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/xtreme-series/xtreme-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 60 x 96 in. 5-axis; A and C 74.4 deg/s. Traverse X 3150, Y 2300 ipm. 36 in Z optional (510/512)."
+  },
+  {
+   "id": "komo-xtreme-5-axis-510",
+   "maker": "Komo",
+   "model": "Xtreme 5-Axis",
+   "variant": "510",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 134,
+    "y": 84,
+    "z": 24
+   },
+   "work_area_mm": {
+    "x": 3404,
+    "y": 2134,
+    "z": 610
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13.4 HP (10 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 10,
+     "power_hp": 13.4,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2300,
+    "z": 1200
+   },
+   "rapid_mm_min": {
+    "xy": 58420,
+    "z": 30480
+   },
+   "accel": "130 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 tools standard, 24 with optional second changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/xtreme-series/xtreme-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 60 x 120 in. 5-axis; A and C 74.4 deg/s. Traverse X 3150, Y 2300 ipm. 36 in Z optional (510/512)."
+  },
+  {
+   "id": "komo-xtreme-5-axis-512",
+   "maker": "Komo",
+   "model": "Xtreme 5-Axis",
+   "variant": "512",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 158,
+    "y": 84,
+    "z": 24
+   },
+   "work_area_mm": {
+    "x": 4013,
+    "y": 2134,
+    "z": 610
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13.4 HP (10 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 10,
+     "power_hp": 13.4,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2300,
+    "z": 1200
+   },
+   "rapid_mm_min": {
+    "xy": 58420,
+    "z": 30480
+   },
+   "accel": "130 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 tools standard, 24 with optional second changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/xtreme-series/xtreme-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 60 x 144 in. 5-axis; A and C 74.4 deg/s. Traverse X 3150, Y 2300 ipm. 36 in Z optional (510/512)."
+  },
+  {
+   "id": "komo-xtreme-5-axis-tt-1005",
+   "maker": "Komo",
+   "model": "Xtreme 5-Axis Twin Table",
+   "variant": "1005",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 156,
+    "y": 77,
+    "z": 24
+   },
+   "work_area_mm": {
+    "x": 3962,
+    "y": 1956,
+    "z": 610
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "11.7 HP (8.7 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 8.7,
+     "power_hp": 11.7,
+     "rpm_min": null,
+     "rpm_max": 20000,
+     "collet": "HSK 63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2300,
+    "z": 1200
+   },
+   "rapid_mm_min": {
+    "xy": 58420,
+    "z": 30480
+   },
+   "accel": "130 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 tools standard, 24 optional"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/xtreme-series/xtreme-5-axis-twin-table/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 2 x 60 x 60 in. 5-axis twin table; A and C 74.4 deg/s. A 1006 (2 x 60 x 72 in tables) is also listed without travels."
+  },
+  {
+   "id": "komo-xtreme-5-axis-tt-1008",
+   "maker": "Komo",
+   "model": "Xtreme 5-Axis Twin Table",
+   "variant": "1008",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 156,
+    "y": 118,
+    "z": 24
+   },
+   "work_area_mm": {
+    "x": 3962,
+    "y": 2997,
+    "z": 610
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "11.7 HP (8.7 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 8.7,
+     "power_hp": 11.7,
+     "rpm_min": null,
+     "rpm_max": 20000,
+     "collet": "HSK 63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2300,
+    "z": 1200
+   },
+   "rapid_mm_min": {
+    "xy": 58420,
+    "z": 30480
+   },
+   "accel": "130 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 tools standard, 24 optional"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/xtreme-series/xtreme-5-axis-twin-table/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 2 x 60 x 84 in. 5-axis twin table; A and C 74.4 deg/s. A 1006 (2 x 60 x 72 in tables) is also listed without travels."
+  },
+  {
+   "id": "komo-xtreme-tt-1005tt",
+   "maker": "Komo",
+   "model": "Xtreme Twin Table",
+   "variant": "1005TT",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 156,
+    "y": 77,
+    "z": 10
+   },
+   "work_area_mm": {
+    "x": 3962,
+    "y": 1956,
+    "z": 254
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "16 HP (12 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 12,
+     "power_hp": 16,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2300,
+    "z": 1200
+   },
+   "rapid_mm_min": {
+    "xy": 58420,
+    "z": 30480
+   },
+   "accel": "150 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 tools standard, 24 optional"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/xtreme-series/xtreme-twin-table/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 2 x 60 x 60 in. Traverse X 3150, Y 2300 ipm. Repeatability +/-0.0008 in."
+  },
+  {
+   "id": "komo-xtreme-tt-1008tt",
+   "maker": "Komo",
+   "model": "Xtreme Twin Table",
+   "variant": "1008TT",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 156,
+    "y": 118,
+    "z": 10
+   },
+   "work_area_mm": {
+    "x": 3962,
+    "y": 2997,
+    "z": 254
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "16 HP (12 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 12,
+     "power_hp": 16,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2300,
+    "z": 1200
+   },
+   "rapid_mm_min": {
+    "xy": 58420,
+    "z": 30480
+   },
+   "accel": "150 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 tools standard, 24 optional"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/xtreme-series/xtreme-twin-table/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 2 x 60 x 84 in. Traverse X 3150, Y 2300 ipm. Repeatability +/-0.0008 in."
+  },
+  {
+   "id": "komo-xtreme-xl-508",
+   "maker": "Komo",
+   "model": "Xtreme XL",
+   "variant": "508",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 116,
+    "y": 84,
+    "z": 10
+   },
+   "work_area_mm": {
+    "x": 2946,
+    "y": 2134,
+    "z": 254
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2300,
+    "z": 1200
+   },
+   "rapid_mm_min": {
+    "xy": 58420,
+    "z": 30480
+   },
+   "accel": "150 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 tools standard, 24 optional"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/xtreme-series/xtreme-xl/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 60 x 96 in. Traverse X 3150, Y 2300 ipm."
+  },
+  {
+   "id": "komo-xtreme-xl-510",
+   "maker": "Komo",
+   "model": "Xtreme XL",
+   "variant": "510",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 142,
+    "y": 84,
+    "z": 10
+   },
+   "work_area_mm": {
+    "x": 3607,
+    "y": 2134,
+    "z": 254
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2300,
+    "z": 1200
+   },
+   "rapid_mm_min": {
+    "xy": 58420,
+    "z": 30480
+   },
+   "accel": "150 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 tools standard, 24 optional"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/xtreme-series/xtreme-xl/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 60 x 120 in. Traverse X 3150, Y 2300 ipm."
+  },
+  {
+   "id": "komo-xtreme-xl-512",
+   "maker": "Komo",
+   "model": "Xtreme XL",
+   "variant": "512",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 164,
+    "y": 84,
+    "z": 10
+   },
+   "work_area_mm": {
+    "x": 4166,
+    "y": 2134,
+    "z": 254
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2300,
+    "z": 1200
+   },
+   "rapid_mm_min": {
+    "xy": 58420,
+    "z": 30480
+   },
+   "accel": "150 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 tools standard, 24 optional"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/xtreme-series/xtreme-xl/"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Axis travels X x Y x Z as published (X = long axis). Table 60 x 144 in. Traverse X 3150, Y 2300 ipm."
+  }
+ ]
+}

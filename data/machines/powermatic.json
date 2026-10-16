@@ -1,0 +1,176 @@
+{
+ "maker": "Powermatic",
+ "website": "https://www.powermatic.com",
+ "machines": [
+  {
+   "id": "powermatic-pm-2x2rk",
+   "maker": "Powermatic",
+   "model": "PM-2X2RK",
+   "variant": "2x2 router kit (1797022K)",
+   "years": "2016-",
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 24,
+    "y": 24,
+    "z": 6
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 610,
+    "z": 152
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Customer router in 3-1/2 in universal mount",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 200,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5080,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Handheld DSP controller (USB stick, no PC)",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z zero puck"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.woodworkersjournal.com/powermatic-introduces-two-cnc-routers/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Table 39-1/4 x 28-1/2 in, extruded aluminium with T-slots and MDF spoilboard; 115 V. Handheld DSP pendant (maker does not name the brand); Vectric output recommended. 598 lb."
+  },
+  {
+   "id": "powermatic-pm-2x4spk",
+   "maker": "Powermatic",
+   "model": "PM-2X4SPK",
+   "variant": "2x4 spindle kit (1797024K)",
+   "years": "2016-",
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 24,
+    "y": 48,
+    "z": 6
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 1219,
+    "z": 152
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 HP liquid-cooled electro spindle",
+     "power_kw": 2.24,
+     "power_hp": 3,
+     "rpm_min": 0,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 200,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5080,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Handheld DSP controller (USB stick, no PC)",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z zero puck"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.woodworkersjournal.com/powermatic-introduces-two-cnc-routers/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Table 63 x 28-1/2 in, extruded aluminium with T-slots and MDF spoilboard; 230 V single phase. Handheld DSP pendant (brand not named). 748 lb."
+  }
+ ]
+}

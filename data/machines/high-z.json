@@ -1,0 +1,2271 @@
+{
+ "maker": "CNC-Step",
+ "website": "https://www.cnc-step.de",
+ "machines": [
+  {
+   "id": "cnc-step-high-z-s-400",
+   "maker": "CNC-Step",
+   "model": "High-Z S (Standard)",
+   "variant": "S-400",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 11.81,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 300,
+    "z": 110
+   },
+   "gantry_clearance_in": 4.06,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 118.1,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 157.5,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 4000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Zero3 / Zero4 controller + KinetiC-NC",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "WinPC-NC",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table (option)",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/graviermaschine/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 103 mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "12 mm trapezoidal screws (6 mm pitch), open-bottom frame, Z 200/300 mm optional, 31 kg. Rapid = diagonal X+Y."
+  },
+  {
+   "id": "cnc-step-high-z-s-720",
+   "maker": "CNC-Step",
+   "model": "High-Z S (Standard)",
+   "variant": "S-720",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 28.35,
+    "y": 16.54,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 720,
+    "y": 420,
+    "z": 110
+   },
+   "gantry_clearance_in": 4.06,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 118.1,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 157.5,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 4000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Zero3 / Zero4 controller + KinetiC-NC",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "WinPC-NC",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table (option)",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/graviermaschine/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 103 mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "12 mm trapezoidal screws (6 mm pitch), open-bottom frame, Z 200/300 mm optional, 41 kg. Rapid = diagonal X+Y."
+  },
+  {
+   "id": "cnc-step-high-z-s-1000",
+   "maker": "CNC-Step",
+   "model": "High-Z S (Standard)",
+   "variant": "S-1000",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 39.37,
+    "y": 23.62,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 1000,
+    "y": 600,
+    "z": 110
+   },
+   "gantry_clearance_in": 4.06,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 118.1,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 157.5,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 4000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Zero3 / Zero4 controller + KinetiC-NC",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "WinPC-NC",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table (option)",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/graviermaschine/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 103 mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "12 mm trapezoidal screws (6 mm pitch), open-bottom frame, Z 200/300 mm optional, 51 kg. Rapid = diagonal X+Y."
+  },
+  {
+   "id": "cnc-step-high-z-s-400-t",
+   "maker": "CNC-Step",
+   "model": "High-Z T (ball screw)",
+   "variant": "S-400/T",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 11.81,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 300,
+    "z": 110
+   },
+   "gantry_clearance_in": 4.06,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1338.6,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 34000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Zero3 / Zero4 controller + KinetiC-NC",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "WinPC-NC",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table (option)",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/cnc-fraese/"
+   ],
+   "estimated": {
+    "rapid_mm_min": "diagonal X+Y with KinetiC-NC; 12 m/min with WinPC-NC or Mach3",
+    "max_feed_mm_min": "per axis with KinetiC-NC; 8 m/min with WinPC-NC/Mach3",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 103 mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Ball screws 16/16/12 mm (10/10/5 mm pitch), repeatability 0.01 mm, Zero3 5-channel controller included, 34 kg."
+  },
+  {
+   "id": "cnc-step-high-z-s-720-t",
+   "maker": "CNC-Step",
+   "model": "High-Z T (ball screw)",
+   "variant": "S-720/T",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 28.35,
+    "y": 16.54,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 720,
+    "y": 420,
+    "z": 110
+   },
+   "gantry_clearance_in": 4.06,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1338.6,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 34000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Zero3 / Zero4 controller + KinetiC-NC",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "WinPC-NC",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table (option)",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/cnc-fraese/"
+   ],
+   "estimated": {
+    "rapid_mm_min": "diagonal X+Y with KinetiC-NC; 12 m/min with WinPC-NC or Mach3",
+    "max_feed_mm_min": "per axis with KinetiC-NC; 8 m/min with WinPC-NC/Mach3",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 103 mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Ball screws 16/16/12 mm (10/10/5 mm pitch), repeatability 0.01 mm, Zero3 5-channel controller included, 39.5 kg."
+  },
+  {
+   "id": "cnc-step-high-z-s-1000-t",
+   "maker": "CNC-Step",
+   "model": "High-Z T (ball screw)",
+   "variant": "S-1000/T",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 39.37,
+    "y": 23.62,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 1000,
+    "y": 600,
+    "z": 110
+   },
+   "gantry_clearance_in": 4.06,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1181.1,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Zero3 / Zero4 controller + KinetiC-NC",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "WinPC-NC",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table (option)",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/cnc-fraese/"
+   ],
+   "estimated": {
+    "rapid_mm_min": "diagonal X+Y with KinetiC-NC; 12 m/min with WinPC-NC or Mach3",
+    "max_feed_mm_min": "per axis with KinetiC-NC; 8 m/min with WinPC-NC/Mach3",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 103 mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Ball screws 16/16/12 mm (10/10/5 mm pitch), repeatability 0.01 mm, Zero3 5-channel controller included, 45 kg."
+  },
+  {
+   "id": "cnc-step-high-z-s-1400-t",
+   "maker": "CNC-Step",
+   "model": "High-Z T (ball screw)",
+   "variant": "S-1400/T",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 55.12,
+    "y": 31.5,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 1400,
+    "y": 800,
+    "z": 110
+   },
+   "gantry_clearance_in": 4.09,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1181.1,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Zero3 / Zero4 controller + KinetiC-NC",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "WinPC-NC",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table (option)",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/cnc-fraese/"
+   ],
+   "estimated": {
+    "rapid_mm_min": "diagonal X+Y with KinetiC-NC; 12 m/min with WinPC-NC or Mach3",
+    "max_feed_mm_min": "per axis with KinetiC-NC; 8 m/min with WinPC-NC/Mach3",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 104 mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Ball screws 16/16/12 mm (10/10/5 mm pitch), repeatability 0.01 mm, Zero3 5-channel controller included, 82 kg."
+  },
+  {
+   "id": "cnc-step-high-z-s-1400-105-t",
+   "maker": "CNC-Step",
+   "model": "High-Z T (ball screw)",
+   "variant": "S-1400/T-105",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 55.12,
+    "y": 41.34,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 1400,
+    "y": 1050,
+    "z": 110
+   },
+   "gantry_clearance_in": 4.09,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1181.1,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Zero3 / Zero4 controller + KinetiC-NC",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "WinPC-NC",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table (option)",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/cnc-fraese/"
+   ],
+   "estimated": {
+    "rapid_mm_min": "diagonal X+Y with KinetiC-NC; 12 m/min with WinPC-NC or Mach3",
+    "max_feed_mm_min": "per axis with KinetiC-NC; 8 m/min with WinPC-NC/Mach3",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 104 mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Ball screws 16/16/12 mm (10/10/5 mm pitch), repeatability 0.01 mm, Zero3 5-channel controller included, 89 kg."
+  },
+  {
+   "id": "cnc-step-high-z-s-2100-105-t",
+   "maker": "CNC-Step",
+   "model": "High-Z T (ball screw)",
+   "variant": "S-2100/T-105",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 82.68,
+    "y": 41.34,
+    "z": 4.33
+   },
+   "work_area_mm": {
+    "x": 2100,
+    "y": 1050,
+    "z": 110
+   },
+   "gantry_clearance_in": 4.09,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 472.4,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 12000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1181.1,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Zero3 / Zero4 controller + KinetiC-NC",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "WinPC-NC",
+     "gcarve_post": null,
+     "default": false
+    },
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table (option)",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/cnc-fraese/"
+   ],
+   "estimated": {
+    "rapid_mm_min": "diagonal X+Y with KinetiC-NC; 12 m/min with WinPC-NC or Mach3",
+    "max_feed_mm_min": "per axis with KinetiC-NC; 8 m/min with WinPC-NC/Mach3",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 104 mm",
+    "max_feed_ipm": "converted from mm/min",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Ball screws 16/16/12 mm (10/10/5 mm pitch), repeatability 0.01 mm, Zero3 5-channel controller included, 99 kg."
+  },
+  {
+   "id": "cnc-step-t-rex-0609",
+   "maker": "CNC-Step",
+   "model": "T-Rex V3",
+   "variant": "0609-V3-MTC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 35.43,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 900,
+    "z": 300
+   },
+   "gantry_clearance_in": 7.87,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 787.4,
+    "z": 472.4
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": 12000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Integrated controller + KinetiC-NC LAN (industrial PC)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "MTC = manual change; ATC spindles with 4-12 slot pneumatic magazines optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/portalfraesmaschine/"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Leadshine closed-loop version (diagonal X+Y); servo version 45,000 mm/min",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 200 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Helical rack X/Y, 25 mm profile rails, Z ball screw (5 mm pitch); Leadshine closed-loop steppers or Yaskawa 750 W servos (option). Z 400 mm / 300 mm clearance optional. 380 V, approx. 500 kg."
+  },
+  {
+   "id": "cnc-step-t-rex-0615",
+   "maker": "CNC-Step",
+   "model": "T-Rex V3",
+   "variant": "0615-V3-MTC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 59.06,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 1500,
+    "z": 300
+   },
+   "gantry_clearance_in": 7.87,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 787.4,
+    "z": 472.4
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": 12000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Integrated controller + KinetiC-NC LAN (industrial PC)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "MTC = manual change; ATC spindles with 4-12 slot pneumatic magazines optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/portalfraesmaschine/"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Leadshine closed-loop version (diagonal X+Y); servo version 45,000 mm/min",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 200 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Helical rack X/Y, 25 mm profile rails, Z ball screw (5 mm pitch); Leadshine closed-loop steppers or Yaskawa 750 W servos (option). Z 400 mm / 300 mm clearance optional. 380 V, approx. 650 kg."
+  },
+  {
+   "id": "cnc-step-t-rex-0912",
+   "maker": "CNC-Step",
+   "model": "T-Rex V3",
+   "variant": "0912-V3-MTC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 35.43,
+    "y": 47.24,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 900,
+    "y": 1200,
+    "z": 300
+   },
+   "gantry_clearance_in": 7.87,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 787.4,
+    "z": 472.4
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": 12000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Integrated controller + KinetiC-NC LAN (industrial PC)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "MTC = manual change; ATC spindles with 4-12 slot pneumatic magazines optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/portalfraesmaschine/"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Leadshine closed-loop version (diagonal X+Y); servo version 45,000 mm/min",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 200 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Helical rack X/Y, 25 mm profile rails, Z ball screw (5 mm pitch); Leadshine closed-loop steppers or Yaskawa 750 W servos (option). Z 400 mm / 300 mm clearance optional. 380 V, approx. 700 kg."
+  },
+  {
+   "id": "cnc-step-t-rex-0915",
+   "maker": "CNC-Step",
+   "model": "T-Rex V3",
+   "variant": "0915-V3-MTC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 35.43,
+    "y": 59.06,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 900,
+    "y": 1500,
+    "z": 300
+   },
+   "gantry_clearance_in": 7.87,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 787.4,
+    "z": 472.4
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": 12000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Integrated controller + KinetiC-NC LAN (industrial PC)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "MTC = manual change; ATC spindles with 4-12 slot pneumatic magazines optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/portalfraesmaschine/"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Leadshine closed-loop version (diagonal X+Y); servo version 45,000 mm/min",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 200 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Helical rack X/Y, 25 mm profile rails, Z ball screw (5 mm pitch); Leadshine closed-loop steppers or Yaskawa 750 W servos (option). Z 400 mm / 300 mm clearance optional. 380 V, approx. 750 kg."
+  },
+  {
+   "id": "cnc-step-t-rex-1312",
+   "maker": "CNC-Step",
+   "model": "T-Rex V3",
+   "variant": "1312-V3-MTC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 47.24,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 1200,
+    "z": 300
+   },
+   "gantry_clearance_in": 7.87,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 787.4,
+    "z": 472.4
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": 12000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Integrated controller + KinetiC-NC LAN (industrial PC)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "MTC = manual change; ATC spindles with 4-12 slot pneumatic magazines optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/portalfraesmaschine/"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Leadshine closed-loop version (diagonal X+Y); servo version 45,000 mm/min",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 200 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Helical rack X/Y, 25 mm profile rails, Z ball screw (5 mm pitch); Leadshine closed-loop steppers or Yaskawa 750 W servos (option). Z 400 mm / 300 mm clearance optional. 380 V, approx. 850 kg."
+  },
+  {
+   "id": "cnc-step-t-rex-1318",
+   "maker": "CNC-Step",
+   "model": "T-Rex V3",
+   "variant": "1318-V3-MTC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 70.87,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 1800,
+    "z": 300
+   },
+   "gantry_clearance_in": 7.87,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 787.4,
+    "z": 472.4
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": 12000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Integrated controller + KinetiC-NC LAN (industrial PC)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "MTC = manual change; ATC spindles with 4-12 slot pneumatic magazines optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/portalfraesmaschine/"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Leadshine closed-loop version (diagonal X+Y); servo version 45,000 mm/min",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 200 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Helical rack X/Y, 25 mm profile rails, Z ball screw (5 mm pitch); Leadshine closed-loop steppers or Yaskawa 750 W servos (option). Z 400 mm / 300 mm clearance optional. 380 V, approx. 1150 kg."
+  },
+  {
+   "id": "cnc-step-t-rex-1325",
+   "maker": "CNC-Step",
+   "model": "T-Rex V3",
+   "variant": "1325-V3-MTC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 300
+   },
+   "gantry_clearance_in": 7.87,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 787.4,
+    "z": 472.4
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": 12000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Integrated controller + KinetiC-NC LAN (industrial PC)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "MTC = manual change; ATC spindles with 4-12 slot pneumatic magazines optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/portalfraesmaschine/"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Leadshine closed-loop version (diagonal X+Y); servo version 45,000 mm/min",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 200 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Helical rack X/Y, 25 mm profile rails, Z ball screw (5 mm pitch); Leadshine closed-loop steppers or Yaskawa 750 W servos (option). Z 400 mm / 300 mm clearance optional. 380 V, approx. 1350 kg."
+  },
+  {
+   "id": "cnc-step-t-rex-1531",
+   "maker": "CNC-Step",
+   "model": "T-Rex V3",
+   "variant": "1531-V3-MTC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61.02,
+    "y": 122.05,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1550,
+    "y": 3100,
+    "z": 300
+   },
+   "gantry_clearance_in": 7.87,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 787.4,
+    "z": 472.4
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": 12000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Integrated controller + KinetiC-NC LAN (industrial PC)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "MTC = manual change; ATC spindles with 4-12 slot pneumatic magazines optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/portalfraesmaschine/"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Leadshine closed-loop version (diagonal X+Y); servo version 45,000 mm/min",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 200 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Helical rack X/Y, 25 mm profile rails, Z ball screw (5 mm pitch); Leadshine closed-loop steppers or Yaskawa 750 W servos (option). Z 400 mm / 300 mm clearance optional. 380 V, approx. 1550 kg."
+  },
+  {
+   "id": "cnc-step-t-rex-2131",
+   "maker": "CNC-Step",
+   "model": "T-Rex V3",
+   "variant": "2131-V3-MTC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 82.68,
+    "y": 122.05,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 2100,
+    "y": 3100,
+    "z": 300
+   },
+   "gantry_clearance_in": 7.87,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 787.4,
+    "z": 472.4
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": 12000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Integrated controller + KinetiC-NC LAN (industrial PC)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "MTC = manual change; ATC spindles with 4-12 slot pneumatic magazines optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/portalfraesmaschine/"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Leadshine closed-loop version (diagonal X+Y); servo version 45,000 mm/min",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 200 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Helical rack X/Y, 25 mm profile rails, Z ball screw (5 mm pitch); Leadshine closed-loop steppers or Yaskawa 750 W servos (option). Z 400 mm / 300 mm clearance optional. 380 V, approx. 1650 kg."
+  },
+  {
+   "id": "cnc-step-t-rex-2141",
+   "maker": "CNC-Step",
+   "model": "T-Rex V3",
+   "variant": "2141-V3-MTC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 82.68,
+    "y": 161.42,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 2100,
+    "y": 4100,
+    "z": 300
+   },
+   "gantry_clearance_in": 7.87,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 787.4,
+    "z": 472.4
+   },
+   "rapid_mm_min": {
+    "xy": 20000,
+    "z": 12000
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Integrated controller + KinetiC-NC LAN (industrial PC)",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "MTC = manual change; ATC spindles with 4-12 slot pneumatic magazines optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/portalfraesmaschine/"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Leadshine closed-loop version (diagonal X+Y); servo version 45,000 mm/min",
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 200 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Helical rack X/Y, 25 mm profile rails, Z ball screw (5 mm pitch); Leadshine closed-loop steppers or Yaskawa 750 W servos (option). Z 400 mm / 300 mm clearance optional. 380 V, approx. 1850 kg."
+  },
+  {
+   "id": "cnc-step-acero-duro-50-s50",
+   "maker": "CNC-Step",
+   "model": "AceroDURO",
+   "variant": "50/S50 (RD)",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 19.69,
+    "y": 19.69,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 500,
+    "y": 500,
+    "z": 220
+   },
+   "gantry_clearance_in": 7.87,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 472.4,
+    "z": 283.5
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": 7200
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Integrated controller + KinetiC-NC LAN",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/industrie-fraesmaschine/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 200 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel machine for steel/stainless/aluminium: 16 mm ball screws (10 mm pitch X/Y, 5 mm Z), 20 mm HIWIN rails, Nanotec hybrid steppers (servos optional), enclosure, approx. 360 kg."
+  },
+  {
+   "id": "cnc-step-acero-duro-50-s100",
+   "maker": "CNC-Step",
+   "model": "AceroDURO",
+   "variant": "50/S100 (RD)",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 39.37,
+    "y": 19.69,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 1000,
+    "y": 500,
+    "z": 220
+   },
+   "gantry_clearance_in": 7.87,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 472.4,
+    "z": 283.5
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": 7200
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Integrated controller + KinetiC-NC LAN",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/industrie-fraesmaschine/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 200 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel machine for steel/stainless/aluminium: 16 mm ball screws (10 mm pitch X/Y, 5 mm Z), 20 mm HIWIN rails, Nanotec hybrid steppers (servos optional), enclosure, approx. 420 kg."
+  },
+  {
+   "id": "cnc-step-acero-duro-100-s50",
+   "maker": "CNC-Step",
+   "model": "AceroDURO",
+   "variant": "100/S50 (RD)",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 19.69,
+    "y": 39.37,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 500,
+    "y": 1000,
+    "z": 220
+   },
+   "gantry_clearance_in": 7.87,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 472.4,
+    "z": 283.5
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": 7200
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Integrated controller + KinetiC-NC LAN",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/industrie-fraesmaschine/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 200 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel machine for steel/stainless/aluminium: 16 mm ball screws (10 mm pitch X/Y, 5 mm Z), 20 mm HIWIN rails, Nanotec hybrid steppers (servos optional), enclosure, approx. 430 kg."
+  },
+  {
+   "id": "cnc-step-acero-duro-100-s100",
+   "maker": "CNC-Step",
+   "model": "AceroDURO",
+   "variant": "100/S100 (RD)",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 39.37,
+    "y": 39.37,
+    "z": 8.66
+   },
+   "work_area_mm": {
+    "x": 1000,
+    "y": 1000,
+    "z": 220
+   },
+   "gantry_clearance_in": 7.87,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 472.4,
+    "z": 283.5
+   },
+   "rapid_mm_min": {
+    "xy": 12000,
+    "z": 7200
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Integrated controller + KinetiC-NC LAN",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/industrie-fraesmaschine/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "gantry_clearance_in": "converted from 200 mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel machine for steel/stainless/aluminium: 16 mm ball screws (10 mm pitch X/Y, 5 mm Z), 20 mm HIWIN rails, Nanotec hybrid steppers (servos optional), enclosure, approx. 500 kg."
+  },
+  {
+   "id": "cnc-step-raptorx-sl-1200-s15",
+   "maker": "CNC-Step",
+   "model": "RaptorX-SL",
+   "variant": "1200-S15",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 47.24,
+    "y": 59.45,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1200,
+    "y": 1510,
+    "z": 300
+   },
+   "gantry_clearance_in": 11.81,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1574.8,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "KinetiC-NC / WinPC-NC / Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/fraesmaschinen/"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "150, 300 or 400 mm selectable; 300 mm used",
+    "rapid_mm_min": "up to 40 m/min X+Y with planetary gearboxes",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel portal, height-adjustable table, brushless steppers with planetary gearboxes; 3D feed up to about 10 m/min. Z up to 600 mm on request."
+  },
+  {
+   "id": "cnc-step-raptorx-sl-1200-s20",
+   "maker": "CNC-Step",
+   "model": "RaptorX-SL",
+   "variant": "1200-S20",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 47.24,
+    "y": 79.13,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1200,
+    "y": 2010,
+    "z": 300
+   },
+   "gantry_clearance_in": 11.81,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1574.8,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "KinetiC-NC / WinPC-NC / Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/fraesmaschinen/"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "150, 300 or 400 mm selectable; 300 mm used",
+    "rapid_mm_min": "up to 40 m/min X+Y with planetary gearboxes",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel portal, height-adjustable table, brushless steppers with planetary gearboxes; 3D feed up to about 10 m/min. Z up to 600 mm on request."
+  },
+  {
+   "id": "cnc-step-raptorx-sl-2200-s15",
+   "maker": "CNC-Step",
+   "model": "RaptorX-SL",
+   "variant": "2200-S15",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 86.61,
+    "y": 59.45,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 2200,
+    "y": 1510,
+    "z": 300
+   },
+   "gantry_clearance_in": 11.81,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1574.8,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "KinetiC-NC / WinPC-NC / Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/fraesmaschinen/"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "150, 300 or 400 mm selectable; 300 mm used",
+    "rapid_mm_min": "up to 40 m/min X+Y with planetary gearboxes",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel portal, height-adjustable table, brushless steppers with planetary gearboxes; 3D feed up to about 10 m/min. Z up to 600 mm on request."
+  },
+  {
+   "id": "cnc-step-raptorx-sl-2200-s20",
+   "maker": "CNC-Step",
+   "model": "RaptorX-SL",
+   "variant": "2200-S20",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 86.61,
+    "y": 79.13,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 2200,
+    "y": 2010,
+    "z": 300
+   },
+   "gantry_clearance_in": 11.81,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1574.8,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "KinetiC-NC / WinPC-NC / Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/fraesmaschinen/"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "150, 300 or 400 mm selectable; 300 mm used",
+    "rapid_mm_min": "up to 40 m/min X+Y with planetary gearboxes",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel portal, height-adjustable table, brushless steppers with planetary gearboxes; 3D feed up to about 10 m/min. Z up to 600 mm on request."
+  },
+  {
+   "id": "cnc-step-raptorx-sl-3200-s15",
+   "maker": "CNC-Step",
+   "model": "RaptorX-SL",
+   "variant": "3200-S15",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 125.98,
+    "y": 59.45,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 3200,
+    "y": 1510,
+    "z": 300
+   },
+   "gantry_clearance_in": 11.81,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1574.8,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "KinetiC-NC / WinPC-NC / Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/fraesmaschinen/"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "150, 300 or 400 mm selectable; 300 mm used",
+    "rapid_mm_min": "up to 40 m/min X+Y with planetary gearboxes",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel portal, height-adjustable table, brushless steppers with planetary gearboxes; 3D feed up to about 10 m/min. Z up to 600 mm on request."
+  },
+  {
+   "id": "cnc-step-raptorx-sl-3200-s20",
+   "maker": "CNC-Step",
+   "model": "RaptorX-SL",
+   "variant": "3200-S20",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 125.98,
+    "y": 79.13,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 3200,
+    "y": 2010,
+    "z": 300
+   },
+   "gantry_clearance_in": 11.81,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1574.8,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 40000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "KinetiC-NC / WinPC-NC / Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.cnc-step.de/fraesmaschinen/"
+   ],
+   "estimated": {
+    "gantry_clearance_in": "150, 300 or 400 mm selectable; 300 mm used",
+    "rapid_mm_min": "up to 40 m/min X+Y with planetary gearboxes",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Steel portal, height-adjustable table, brushless steppers with planetary gearboxes; 3D feed up to about 10 m/min. Z up to 600 mm on request."
+  }
+ ]
+}

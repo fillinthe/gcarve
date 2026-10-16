@@ -1,0 +1,1931 @@
+{
+ "maker": "PROBOTIX",
+ "website": "https://www.probotix.com",
+ "machines": [
+  {
+   "id": "probotix-gx2525-comet",
+   "maker": "PROBOTIX",
+   "model": "GX Series",
+   "variant": "GX2525 Comet",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 25,
+    "y": 25,
+    "z": 5
+   },
+   "work_area_mm": {
+    "x": 635,
+    "y": 635,
+    "z": 127
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "80 mm air-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "80 mm water-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "ATC spindle w/ 8-station tool bar (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 400,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 10160,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "LinuxCNC (PROBOTIX control PC)",
+     "gcarve_post": "linuxcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: ATC spindle with 8-station tool bar (EX: rear-mounted pneumatic tool bar that retracts during cutting)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLaS automatic tool length sensor (option); Z touch-off puck (option)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.probotix.com/GX-SERIES-CNC-ROUTER",
+    "https://www.probotix.com/wiki/index.php/Comet"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the inch spec",
+    "rapid_mm_min": "converted from the inch spec"
+   },
+   "notes": "Configurator size (work envelope, in). 'Up to 400 IPM rapids', axis not stated. ACME screws with anti-backlash nuts, supported round rails, tandem Y motors, open T-slot frame. No spindle in the base package; router mounts offered for DeWalt DWP-611, Bosch Colt, Kress, Bosch 1617/PC690/PC892/DW618, Hitachi M12VC, 80 mm. Older Galaxy-series Comet (wiki): 200 IPM rapids, ACME screws, 420 oz-in motors."
+  },
+  {
+   "id": "probotix-gx3725-asteroid",
+   "maker": "PROBOTIX",
+   "model": "GX Series",
+   "variant": "GX3725 Asteroid",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 37,
+    "y": 25,
+    "z": 5
+   },
+   "work_area_mm": {
+    "x": 940,
+    "y": 635,
+    "z": 127
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "80 mm air-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "80 mm water-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "ATC spindle w/ 8-station tool bar (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 400,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 10160,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "LinuxCNC (PROBOTIX control PC)",
+     "gcarve_post": "linuxcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: ATC spindle with 8-station tool bar (EX: rear-mounted pneumatic tool bar that retracts during cutting)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLaS automatic tool length sensor (option); Z touch-off puck (option)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.probotix.com/GX-SERIES-CNC-ROUTER",
+    "https://www.probotix.com/wiki/index.php/Asteroid"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the inch spec",
+    "rapid_mm_min": "converted from the inch spec"
+   },
+   "notes": "Configurator size (work envelope, in). 'Up to 400 IPM rapids', axis not stated. ACME screws with anti-backlash nuts, supported round rails, tandem Y motors, open T-slot frame. No spindle in the base package; router mounts offered for DeWalt DWP-611, Bosch Colt, Kress, Bosch 1617/PC690/PC892/DW618, Hitachi M12VC, 80 mm."
+  },
+  {
+   "id": "probotix-gx3737",
+   "maker": "PROBOTIX",
+   "model": "GX Series",
+   "variant": "GX3737",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 37,
+    "y": 37,
+    "z": 5
+   },
+   "work_area_mm": {
+    "x": 940,
+    "y": 940,
+    "z": 127
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "80 mm air-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "80 mm water-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "ATC spindle w/ 8-station tool bar (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 400,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 10160,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "LinuxCNC (PROBOTIX control PC)",
+     "gcarve_post": "linuxcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: ATC spindle with 8-station tool bar (EX: rear-mounted pneumatic tool bar that retracts during cutting)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLaS automatic tool length sensor (option); Z touch-off puck (option)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.probotix.com/GX-SERIES-CNC-ROUTER"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the inch spec",
+    "rapid_mm_min": "converted from the inch spec"
+   },
+   "notes": "Configurator size (work envelope, in). 'Up to 400 IPM rapids', axis not stated. ACME screws with anti-backlash nuts, supported round rails, tandem Y motors, open T-slot frame. No spindle in the base package; router mounts offered for DeWalt DWP-611, Bosch Colt, Kress, Bosch 1617/PC690/PC892/DW618, Hitachi M12VC, 80 mm."
+  },
+  {
+   "id": "probotix-gx2550-meteor",
+   "maker": "PROBOTIX",
+   "model": "GX Series",
+   "variant": "GX2550 Meteor",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 25,
+    "y": 50,
+    "z": 5
+   },
+   "work_area_mm": {
+    "x": 635,
+    "y": 1270,
+    "z": 127
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "80 mm air-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "80 mm water-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "ATC spindle w/ 8-station tool bar (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 400,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 10160,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "LinuxCNC (PROBOTIX control PC)",
+     "gcarve_post": "linuxcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: ATC spindle with 8-station tool bar (EX: rear-mounted pneumatic tool bar that retracts during cutting)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLaS automatic tool length sensor (option); Z touch-off puck (option)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.probotix.com/GX-SERIES-CNC-ROUTER",
+    "https://www.probotix.com/wiki/index.php/Meteor"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the inch spec",
+    "rapid_mm_min": "converted from the inch spec"
+   },
+   "notes": "Configurator size (work envelope, in). 'Up to 400 IPM rapids', axis not stated. ACME screws with anti-backlash nuts, supported round rails, tandem Y motors, open T-slot frame. No spindle in the base package; router mounts offered for DeWalt DWP-611, Bosch Colt, Kress, Bosch 1617/PC690/PC892/DW618, Hitachi M12VC, 80 mm. Older wiki lists the Meteor as X 50 x Y 25 in with 200 IPM rapids, 2 TPI X/Y and 5 TPI Z screws."
+  },
+  {
+   "id": "probotix-gx3750-nebula",
+   "maker": "PROBOTIX",
+   "model": "GX Series",
+   "variant": "GX3750 Nebula",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 37,
+    "y": 50,
+    "z": 5
+   },
+   "work_area_mm": {
+    "x": 940,
+    "y": 1270,
+    "z": 127
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "80 mm air-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "80 mm water-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "ATC spindle w/ 8-station tool bar (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 400,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 10160,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "LinuxCNC (PROBOTIX control PC)",
+     "gcarve_post": "linuxcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: ATC spindle with 8-station tool bar (EX: rear-mounted pneumatic tool bar that retracts during cutting)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLaS automatic tool length sensor (option); Z touch-off puck (option)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.probotix.com/GX-SERIES-CNC-ROUTER",
+    "https://www.probotix.com/wiki/index.php/Nebula"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the inch spec",
+    "rapid_mm_min": "converted from the inch spec"
+   },
+   "notes": "Configurator size (work envelope, in). 'Up to 400 IPM rapids', axis not stated. ACME screws with anti-backlash nuts, supported round rails, tandem Y motors, open T-slot frame. No spindle in the base package; router mounts offered for DeWalt DWP-611, Bosch Colt, Kress, Bosch 1617/PC690/PC892/DW618, Hitachi M12VC, 80 mm. Formerly called MeteorXL."
+  },
+  {
+   "id": "probotix-gx5050",
+   "maker": "PROBOTIX",
+   "model": "GX Series",
+   "variant": "GX5050",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 50,
+    "y": 50,
+    "z": 5
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 1270,
+    "z": 127
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "80 mm air-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "80 mm water-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "ATC spindle w/ 8-station tool bar (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 400,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 10160,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "LinuxCNC (PROBOTIX control PC)",
+     "gcarve_post": "linuxcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: ATC spindle with 8-station tool bar (EX: rear-mounted pneumatic tool bar that retracts during cutting)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLaS automatic tool length sensor (option); Z touch-off puck (option)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.probotix.com/GX-SERIES-CNC-ROUTER"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the inch spec",
+    "rapid_mm_min": "converted from the inch spec"
+   },
+   "notes": "Configurator size (work envelope, in). 'Up to 400 IPM rapids', axis not stated. ACME screws with anti-backlash nuts, supported round rails, tandem Y motors, open T-slot frame. No spindle in the base package; router mounts offered for DeWalt DWP-611, Bosch Colt, Kress, Bosch 1617/PC690/PC892/DW618, Hitachi M12VC, 80 mm."
+  },
+  {
+   "id": "probotix-ex2525",
+   "maker": "PROBOTIX",
+   "model": "EX Series",
+   "variant": "EX2525",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 25,
+    "y": 25,
+    "z": 7.1
+   },
+   "work_area_mm": {
+    "x": 635,
+    "y": 635,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "80 mm air-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "80 mm water-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "ATC spindle w/ 8-station tool bar (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25400,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LinuxCNC (Unity2S controller + Deltoro control PC)",
+     "gcarve_post": "linuxcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: ATC spindle with 8-station tool bar (EX: rear-mounted pneumatic tool bar that retracts during cutting)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLaS automatic tool length sensor (option); Z touch-off puck (option)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.probotix.com/EX-SERIES-CNC-ROUTER"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the inch spec",
+    "rapid_mm_min": "converted from the inch spec"
+   },
+   "notes": "Max speed 1000 IPM per axis, 1200 IPM combined. C7 ballscrews, 180 W closed-loop servos, Hi-win style rails. No spindle in the base package; router mounts offered for DeWalt DWP-611, Bosch Colt, Kress, Bosch 1617/PC690/PC892/DW618, Hitachi M12VC, 80 mm."
+  },
+  {
+   "id": "probotix-ex3725",
+   "maker": "PROBOTIX",
+   "model": "EX Series",
+   "variant": "EX3725",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 37,
+    "y": 25,
+    "z": 7.1
+   },
+   "work_area_mm": {
+    "x": 940,
+    "y": 635,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "80 mm air-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "80 mm water-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "ATC spindle w/ 8-station tool bar (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25400,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LinuxCNC (Unity2S controller + Deltoro control PC)",
+     "gcarve_post": "linuxcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: ATC spindle with 8-station tool bar (EX: rear-mounted pneumatic tool bar that retracts during cutting)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLaS automatic tool length sensor (option); Z touch-off puck (option)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.probotix.com/EX-SERIES-CNC-ROUTER"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the inch spec",
+    "rapid_mm_min": "converted from the inch spec"
+   },
+   "notes": "Max speed 1000 IPM per axis, 1200 IPM combined. C7 ballscrews, 180 W closed-loop servos, Hi-win style rails. No spindle in the base package; router mounts offered for DeWalt DWP-611, Bosch Colt, Kress, Bosch 1617/PC690/PC892/DW618, Hitachi M12VC, 80 mm."
+  },
+  {
+   "id": "probotix-ex3737",
+   "maker": "PROBOTIX",
+   "model": "EX Series",
+   "variant": "EX3737",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 37,
+    "y": 37,
+    "z": 7.1
+   },
+   "work_area_mm": {
+    "x": 940,
+    "y": 940,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "80 mm air-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "80 mm water-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "ATC spindle w/ 8-station tool bar (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25400,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LinuxCNC (Unity2S controller + Deltoro control PC)",
+     "gcarve_post": "linuxcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: ATC spindle with 8-station tool bar (EX: rear-mounted pneumatic tool bar that retracts during cutting)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLaS automatic tool length sensor (option); Z touch-off puck (option)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.probotix.com/EX-SERIES-CNC-ROUTER"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the inch spec",
+    "rapid_mm_min": "converted from the inch spec"
+   },
+   "notes": "Max speed 1000 IPM per axis, 1200 IPM combined. C7 ballscrews, 180 W closed-loop servos, Hi-win style rails. No spindle in the base package; router mounts offered for DeWalt DWP-611, Bosch Colt, Kress, Bosch 1617/PC690/PC892/DW618, Hitachi M12VC, 80 mm."
+  },
+  {
+   "id": "probotix-ex2550",
+   "maker": "PROBOTIX",
+   "model": "EX Series",
+   "variant": "EX2550",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 25,
+    "y": 50,
+    "z": 7.1
+   },
+   "work_area_mm": {
+    "x": 635,
+    "y": 1270,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "80 mm air-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "80 mm water-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "ATC spindle w/ 8-station tool bar (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25400,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LinuxCNC (Unity2S controller + Deltoro control PC)",
+     "gcarve_post": "linuxcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: ATC spindle with 8-station tool bar (EX: rear-mounted pneumatic tool bar that retracts during cutting)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLaS automatic tool length sensor (option); Z touch-off puck (option)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.probotix.com/EX-SERIES-CNC-ROUTER"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the inch spec",
+    "rapid_mm_min": "converted from the inch spec"
+   },
+   "notes": "Max speed 1000 IPM per axis, 1200 IPM combined. C7 ballscrews, 180 W closed-loop servos, Hi-win style rails. No spindle in the base package; router mounts offered for DeWalt DWP-611, Bosch Colt, Kress, Bosch 1617/PC690/PC892/DW618, Hitachi M12VC, 80 mm."
+  },
+  {
+   "id": "probotix-ex3750",
+   "maker": "PROBOTIX",
+   "model": "EX Series",
+   "variant": "EX3750",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 37,
+    "y": 50,
+    "z": 7.1
+   },
+   "work_area_mm": {
+    "x": 940,
+    "y": 1270,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "80 mm air-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "80 mm water-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "ATC spindle w/ 8-station tool bar (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25400,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LinuxCNC (Unity2S controller + Deltoro control PC)",
+     "gcarve_post": "linuxcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: ATC spindle with 8-station tool bar (EX: rear-mounted pneumatic tool bar that retracts during cutting)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLaS automatic tool length sensor (option); Z touch-off puck (option)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.probotix.com/EX-SERIES-CNC-ROUTER"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the inch spec",
+    "rapid_mm_min": "converted from the inch spec"
+   },
+   "notes": "Max speed 1000 IPM per axis, 1200 IPM combined. C7 ballscrews, 180 W closed-loop servos, Hi-win style rails. No spindle in the base package; router mounts offered for DeWalt DWP-611, Bosch Colt, Kress, Bosch 1617/PC690/PC892/DW618, Hitachi M12VC, 80 mm."
+  },
+  {
+   "id": "probotix-ex5050",
+   "maker": "PROBOTIX",
+   "model": "EX Series",
+   "variant": "EX5050",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 50,
+    "y": 50,
+    "z": 7.1
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 1270,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "80 mm air-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "80 mm water-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "ATC spindle w/ 8-station tool bar (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25400,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "LinuxCNC (Unity2S controller + Deltoro control PC)",
+     "gcarve_post": "linuxcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: ATC spindle with 8-station tool bar (EX: rear-mounted pneumatic tool bar that retracts during cutting)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLaS automatic tool length sensor (option); Z touch-off puck (option)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.probotix.com/EX-SERIES-CNC-ROUTER"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the inch spec",
+    "rapid_mm_min": "converted from the inch spec"
+   },
+   "notes": "Max speed 1000 IPM per axis, 1200 IPM combined. C7 ballscrews, 180 W closed-loop servos, Hi-win style rails. No spindle in the base package; router mounts offered for DeWalt DWP-611, Bosch Colt, Kress, Bosch 1617/PC690/PC892/DW618, Hitachi M12VC, 80 mm."
+  },
+  {
+   "id": "probotix-exr4896",
+   "maker": "PROBOTIX",
+   "model": "EXR Series",
+   "variant": "EXR4896",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 48,
+    "y": 96,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 2438,
+    "z": 203
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "80 mm air-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "80 mm water-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "ATC spindle w/ 8-station tool bar (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25400,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "LinuxCNC (Deltoro control PC, industrial cabinet)",
+     "gcarve_post": "linuxcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: ATC spindle with 8-station tool bar (EX: rear-mounted pneumatic tool bar that retracts during cutting)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLaS automatic tool length sensor (option); Z touch-off puck (option)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.probotix.com/EXR-SERIES-CNC-ROUTER"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the inch spec",
+    "rapid_mm_min": "converted from the inch spec"
+   },
+   "notes": "Max speed 1000 IPM per axis, 1200 IPM combined. 1200 oz-in steppers (servo upgrade available). 220 V 30 A. Configurator also lists an EXR4848 (4'x4') although the spec table says X 48-60 / Y 96-108 in; not included. No spindle in the base package; router mounts offered for DeWalt DWP-611, Bosch Colt, Kress, Bosch 1617/PC690/PC892/DW618, Hitachi M12VC, 80 mm."
+  },
+  {
+   "id": "probotix-exr60108",
+   "maker": "PROBOTIX",
+   "model": "EXR Series",
+   "variant": "EXR60108",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 60,
+    "y": 108,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 2743,
+    "z": 203
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "80 mm air-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "80 mm water-cooled spindle w/ VFD (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "ATC spindle w/ 8-station tool bar (option)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25400,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "LinuxCNC (Deltoro control PC, industrial cabinet)",
+     "gcarve_post": "linuxcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: ATC spindle with 8-station tool bar (EX: rear-mounted pneumatic tool bar that retracts during cutting)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLaS automatic tool length sensor (option); Z touch-off puck (option)"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.probotix.com/EXR-SERIES-CNC-ROUTER"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the inch spec",
+    "rapid_mm_min": "converted from the inch spec"
+   },
+   "notes": "Max speed 1000 IPM per axis, 1200 IPM combined. 1200 oz-in steppers (servo upgrade available). 220 V 30 A. Configurator also lists an EXR4848 (4'x4') although the spec table says X 48-60 / Y 96-108 in; not included. No spindle in the base package; router mounts offered for DeWalt DWP-611, Bosch Colt, Kress, Bosch 1617/PC690/PC892/DW618, Hitachi M12VC, 80 mm."
+  },
+  {
+   "id": "probotix-galaxy-comet",
+   "maker": "PROBOTIX",
+   "model": "Galaxy Series (FireBall)",
+   "variant": "Comet",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 25,
+    "y": 25,
+    "z": 5
+   },
+   "work_area_mm": {
+    "x": 635,
+    "y": 635,
+    "z": 127
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router / spindle (mount options)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 200,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5080,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "LinuxCNC (PROBOTIX control PC)",
+     "gcarve_post": "linuxcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.probotix.com/wiki/index.php/Comet"
+   ],
+   "notes": "Older Galaxy-series FireBall machine (predecessor of the GX series). Fully assembled with pre-installed home/limit switches, spindle relay, cable chain and a LinuxCNC control PC. Supported round rails, ACME lead screws with Delrin anti-backlash nuts, tandem Y motors, aluminum/steel frame; 200 IPM rapids (Comet page). Router/spindle not included.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "probotix-galaxy-asteroid",
+   "maker": "PROBOTIX",
+   "model": "Galaxy Series (FireBall)",
+   "variant": "Asteroid",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 37,
+    "y": 25,
+    "z": 5
+   },
+   "work_area_mm": {
+    "x": 940,
+    "y": 635,
+    "z": 127
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router / spindle (mount options)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 200,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5080,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "LinuxCNC (PROBOTIX control PC)",
+     "gcarve_post": "linuxcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.probotix.com/wiki/index.php/Asteroid",
+    "https://www.probotix.com/wiki/index.php/Comet"
+   ],
+   "notes": "Older Galaxy-series FireBall machine (predecessor of the GX series). Fully assembled with pre-installed home/limit switches, spindle relay, cable chain and a LinuxCNC control PC. Supported round rails, ACME lead screws with Delrin anti-backlash nuts, tandem Y motors, aluminum/steel frame; 200 IPM rapids (Comet page). Router/spindle not included. Rapid figure from the Comet page (same class).",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "probotix-galaxy-meteor",
+   "maker": "PROBOTIX",
+   "model": "Galaxy Series (FireBall)",
+   "variant": "Meteor",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 50,
+    "y": 25,
+    "z": 5
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 635,
+    "z": 127
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router / spindle (mount options)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 200,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5080,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "LinuxCNC (PROBOTIX control PC)",
+     "gcarve_post": "linuxcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.probotix.com/wiki/index.php/Meteor",
+    "https://www.probotix.com/wiki/index.php/Comet"
+   ],
+   "notes": "Older Galaxy-series FireBall machine (predecessor of the GX series). Fully assembled with pre-installed home/limit switches, spindle relay, cable chain and a LinuxCNC control PC. Supported round rails, ACME lead screws with Delrin anti-backlash nuts, tandem Y motors, aluminum/steel frame; 200 IPM rapids (Comet page). Router/spindle not included. Lead screws 2 TPI X/Y, 5 TPI Z. Rapid figure from the Comet page (same class).",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "probotix-galaxy-nebula",
+   "maker": "PROBOTIX",
+   "model": "Galaxy Series (FireBall)",
+   "variant": "Nebula",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 37,
+    "y": 50,
+    "z": 5
+   },
+   "work_area_mm": {
+    "x": 940,
+    "y": 1270,
+    "z": 127
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router / spindle (mount options)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 200,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5080,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "LinuxCNC (PROBOTIX control PC)",
+     "gcarve_post": "linuxcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.probotix.com/wiki/index.php/Nebula",
+    "https://www.probotix.com/wiki/index.php/Comet"
+   ],
+   "notes": "Older Galaxy-series FireBall machine (predecessor of the GX series). Fully assembled with pre-installed home/limit switches, spindle relay, cable chain and a LinuxCNC control PC. Supported round rails, ACME lead screws with Delrin anti-backlash nuts, tandem Y motors, aluminum/steel frame; 200 IPM rapids (Comet page). Router/spindle not included. 80 mm air-cooled spindle option shown. Rapid figure from the Comet page (same class).",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "rapid_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "probotix-fireball-v90",
+   "maker": "PROBOTIX",
+   "model": "FireBall V90",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 18,
+    "y": 12,
+    "z": 3
+   },
+   "work_area_mm": {
+    "x": 457,
+    "y": 305,
+    "z": 76.2
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.probotix.com/wiki/index.php/V90"
+   ],
+   "notes": "Legacy MDF kit ($599 base: mechanical kit only, no motors, electronics, spindle or software; Good/Better/Best motor-drive kits and Ready-to-Run enclosure optional). Travel approx. X 18, Y 12, Z 3 in. Lead screws 5 TPI X/Y, 12 TPI Z. No limit switches included.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  }
+ ]
+}

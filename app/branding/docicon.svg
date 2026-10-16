@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="pg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6f7f9"/><stop offset="1" stop-color="#dfe3e9"/></linearGradient>
+    <linearGradient id="path" gradientUnits="userSpaceOnUse" x1="360" y1="520" x2="680" y2="860"><stop offset="0" stop-color="#ffb347"/><stop offset="1" stop-color="#ff8a1f"/></linearGradient>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#000" flood-opacity="0.35"/></filter>
+  </defs>
+  <g filter="url(#sh)">
+    <path d="M232 96h380l180 180v652a40 40 0 0 1-40 40H232a40 40 0 0 1-40-40V136a40 40 0 0 1 40-40z" fill="url(#pg)"/>
+    <path d="M612 96v140a40 40 0 0 0 40 40h140z" fill="#c3c9d2"/>
+  </g>
+  <rect x="236" y="400" width="552" height="490" rx="28" fill="#1f2124"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path id="g" d="M640 560c-28-42-74-68-126-68-88 0-158 74-158 166s70 166 158 166c52 0 98-26 126-68v-88H530"/>
+    <use href="#g" stroke="#101214" stroke-width="80"/>
+    <use href="#g" stroke="url(#path)" stroke-width="54"/>
+  </g>
+</svg>

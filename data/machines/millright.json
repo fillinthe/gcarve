@@ -1,0 +1,839 @@
+{
+ "maker": "MillRight",
+ "website": "https://millrightcnc.com",
+ "machines": [
+  {
+   "id": "millright-carve-king-2",
+   "maker": "MillRight",
+   "model": "Carve King 2",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 17.25,
+    "y": 17.25,
+    "z": 4
+   },
+   "work_area_mm": {
+    "x": 438.0,
+    "y": 438.0,
+    "z": 102.0
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Makita RT0701C (mount only, router not included)",
+     "power_kw": null,
+     "power_hp": 1.25,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL control system (USB)",
+     "gcarve_post": "millright-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://millrightcnc.com/product/millright-cnc-carve-king-kit-2/",
+    "https://millrightcnc.com/cnc-buyers-guide/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the published inch work area"
+   },
+   "notes": "Kit, NEMA17 steppers with dual Y drive; no options. Drive type not stated on the page."
+  },
+  {
+   "id": "millright-power-route-plus",
+   "maker": "MillRight",
+   "model": "Power Route Plus",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 25,
+    "y": 25,
+    "z": 5.5
+   },
+   "work_area_mm": {
+    "x": 635.0,
+    "y": 635.0,
+    "z": 140.0
+   },
+   "gantry_clearance_in": 5.5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "DeWalt DW618 (mount only)",
+     "power_kw": null,
+     "power_hp": 2.25,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "1.5 kW 120 V spindle + VFD",
+     "power_kw": 1.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER20",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 350,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 8890.0,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 425,
+    "z": 200
+   },
+   "rapid_mm_min": {
+    "xy": 10800,
+    "z": 5080
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL control system (USB)",
+     "gcarve_post": "millright-in",
+     "default": true
+    },
+    {
+     "name": "Masso G3 touch control (option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "precision touch plate (GRBL option); tool setter with Masso"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot aluminum plate"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://millrightcnc.com/product/millright-cnc-power-route-kit-bundle-2/",
+    "https://millrightcnc.com/cnc-buyers-guide/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from 350 ipm; page also prints 8250 mm/min, which does not match",
+    "work_area_mm": "converted from the published inch work area"
+   },
+   "notes": "16 mm ball screws X/Y (dual Y), 12 mm Z; T-plate 835x750 mm. Product page says approx. 25x25x5.5 in, buyer's guide 24x24 in."
+  },
+  {
+   "id": "millright-power-route-max",
+   "maker": "MillRight",
+   "model": "Power Route Max",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 50,
+    "y": 50,
+    "z": 5.5
+   },
+   "work_area_mm": {
+    "x": 1270.0,
+    "y": 1270.0,
+    "z": 140.0
+   },
+   "gantry_clearance_in": 5.5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "DeWalt DW618 / Bosch 1617EVS (mount only)",
+     "power_kw": null,
+     "power_hp": 2.25,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "1.5 kW 120 V spindle + VFD",
+     "power_kw": 1.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER20",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 kW 220 V ATC spindle",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 375,
+    "z": 200
+   },
+   "rapid_mm_min": {
+    "xy": 9525.0,
+    "z": 5080.0
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL control system (USB)",
+     "gcarve_post": "millright-in",
+     "default": true
+    },
+    {
+     "name": "Masso G3 touch control (option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "option: 2.2 kW ATC with auto dust shoe, 4 holders, space for 10"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "precision touch plate (GRBL option); tool setter with Masso"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot aluminum plate"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://millrightcnc.com/product/millright-cnc-power-route-max/",
+    "https://millrightcnc.com/cnc-buyers-guide/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the published inch work area",
+    "rapid_mm_min": "converted from the published inch rapid"
+   },
+   "notes": "16 mm ball screws X/Y (dual Y, auto-squaring), 12 mm Z; coolant mister standard."
+  },
+  {
+   "id": "millright-mega-v-2-standard",
+   "maker": "MillRight",
+   "model": "Mega V 2",
+   "variant": "Standard",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 19,
+    "y": 19,
+    "z": 5.25
+   },
+   "work_area_mm": {
+    "x": 483.0,
+    "y": 483.0,
+    "z": 133.0
+   },
+   "gantry_clearance_in": 5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Makita RT0701C (mount only, router not included)",
+     "power_kw": null,
+     "power_hp": 1.25,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "DeWalt DW618 (mount only)",
+     "power_kw": null,
+     "power_hp": 2.25,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "1.5 kW 120 V spindle + VFD",
+     "power_kw": 1.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER20",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 kW 220 V spindle, ISO20 manual quick change",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO20",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 kW 220 V ATC spindle",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO20",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL control system (USB)",
+     "gcarve_post": "millright-in",
+     "default": true
+    },
+    {
+     "name": "Masso G3 touch control (option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "option: 2.2 kW ATC with 8-position tool trolley (ISO20, 4 holders)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "precision touch plate (GRBL option); tool setter with Masso"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "MDF with panel nuts",
+     "T-slot aluminum plate",
+     "vacuum plenum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://millrightcnc.com/product/mega-v-2-cnc-performance-cnc-routers/",
+    "https://millrightcnc.com/mega-v-2/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the published inch work area",
+    "gantry_clearance_in": "page says 'over 5 inches' for Standard and XL"
+   },
+   "notes": "Steel rack and pinion X/Y, screw-driven Z, 6.25 in Z stroke. Bed options vary by size."
+  },
+  {
+   "id": "millright-mega-v-2-xl",
+   "maker": "MillRight",
+   "model": "Mega V 2",
+   "variant": "XL",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 35,
+    "y": 35,
+    "z": 5.25
+   },
+   "work_area_mm": {
+    "x": 889.0,
+    "y": 889.0,
+    "z": 133.0
+   },
+   "gantry_clearance_in": 5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Makita RT0701C (mount only, router not included)",
+     "power_kw": null,
+     "power_hp": 1.25,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "DeWalt DW618 (mount only)",
+     "power_kw": null,
+     "power_hp": 2.25,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "1.5 kW 120 V spindle + VFD",
+     "power_kw": 1.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER20",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 kW 220 V spindle, ISO20 manual quick change",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO20",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 kW 220 V ATC spindle",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO20",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL control system (USB)",
+     "gcarve_post": "millright-in",
+     "default": true
+    },
+    {
+     "name": "Masso G3 touch control (option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "option: 2.2 kW ATC with 8-position tool trolley (ISO20, 4 holders)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "precision touch plate (GRBL option); tool setter with Masso"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "MDF with panel nuts",
+     "T-slot aluminum plate",
+     "vacuum plenum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://millrightcnc.com/product/mega-v-2-cnc-performance-cnc-routers/",
+    "https://millrightcnc.com/mega-v-2/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the published inch work area",
+    "gantry_clearance_in": "page says 'over 5 inches' for Standard and XL"
+   },
+   "notes": "Steel rack and pinion X/Y, screw-driven Z, 6.25 in Z stroke. Bed options vary by size."
+  },
+  {
+   "id": "millright-mega-v-2-xxl",
+   "maker": "MillRight",
+   "model": "Mega V 2",
+   "variant": "XXL",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 50,
+    "y": 50,
+    "z": 5.25
+   },
+   "work_area_mm": {
+    "x": 1270.0,
+    "y": 1270.0,
+    "z": 133.0
+   },
+   "gantry_clearance_in": 5.75,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Makita RT0701C (mount only, router not included)",
+     "power_kw": null,
+     "power_hp": 1.25,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "DeWalt DW618 (mount only)",
+     "power_kw": null,
+     "power_hp": 2.25,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "1.5 kW 120 V spindle + VFD",
+     "power_kw": 1.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER20",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 kW 220 V spindle, ISO20 manual quick change",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO20",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 kW 220 V ATC spindle",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO20",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL control system (USB)",
+     "gcarve_post": "millright-in",
+     "default": true
+    },
+    {
+     "name": "Masso G3 touch control (option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "option: 2.2 kW ATC with 8-position tool trolley (ISO20, 4 holders)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "precision touch plate (GRBL option); tool setter with Masso"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "MDF with panel nuts",
+     "T-slot aluminum plate",
+     "vacuum plenum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://millrightcnc.com/product/mega-v-2-cnc-performance-cnc-routers/",
+    "https://millrightcnc.com/mega-v-2/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the published inch work area"
+   },
+   "notes": "Steel rack and pinion X/Y, screw-driven Z, 6.25 in Z stroke. Bed options vary by size."
+  },
+  {
+   "id": "millright-mega-v-2-full-sheet",
+   "maker": "MillRight",
+   "model": "Mega V 2",
+   "variant": "Full Sheet",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 97,
+    "y": 50,
+    "z": 5.25
+   },
+   "work_area_mm": {
+    "x": 2464.0,
+    "y": 1270.0,
+    "z": 133.0
+   },
+   "gantry_clearance_in": 5.75,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Makita RT0701C (mount only, router not included)",
+     "power_kw": null,
+     "power_hp": 1.25,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "DeWalt DW618 (mount only)",
+     "power_kw": null,
+     "power_hp": 2.25,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "1.5 kW 120 V spindle + VFD",
+     "power_kw": 1.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER20",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 kW 220 V spindle, ISO20 manual quick change",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO20",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 kW 220 V ATC spindle",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO20",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL control system (USB)",
+     "gcarve_post": "millright-in",
+     "default": true
+    },
+    {
+     "name": "Masso G3 touch control (option)",
+     "gcarve_post": "masso-in",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "option: 2.2 kW ATC with 8-position tool trolley (ISO20, 4 holders)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "precision touch plate (GRBL option); tool setter with Masso"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "MDF with panel nuts",
+     "T-slot aluminum plate",
+     "vacuum plenum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://millrightcnc.com/product/mega-v-2-full-sheet/",
+    "https://millrightcnc.com/mega-v-2/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the published inch work area"
+   },
+   "notes": "Steel rack and pinion X/Y, screw-driven Z, 6.25 in Z stroke. Bed options vary by size."
+  }
+ ]
+}

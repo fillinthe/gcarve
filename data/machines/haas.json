@@ -1,0 +1,204 @@
+{
+ "maker": "Haas Automation",
+ "website": "https://www.haascnc.com",
+ "machines": [
+  {
+   "id": "haas-gr-510",
+   "maker": "Haas Automation",
+   "model": "GR-510",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 121,
+    "y": 61,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 3073.0,
+    "y": 1549.0,
+    "z": 279.0
+   },
+   "gantry_clearance_in": 13.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "15 hp 40-taper belt-drive spindle, 8100 rpm",
+     "power_kw": 11.2,
+     "power_hp": 15,
+     "rpm_min": null,
+     "rpm_max": 8100,
+     "collet": "BT40 or CAT40 (CT40)",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "15 hp 40-taper high-speed spindle, 15000 rpm (option)",
+     "power_kw": 11.2,
+     "power_hp": 15,
+     "rpm_min": null,
+     "rpm_max": 15000,
+     "collet": "BT40 or CAT40 (CT40)",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 800,
+    "z": 800
+   },
+   "max_feed_mm_min": {
+    "xy": 20320.0,
+    "z": 20320.0
+   },
+   "rapid_ipm": {
+    "xy": 800,
+    "z": 1100
+   },
+   "rapid_mm_min": {
+    "xy": 20320.0,
+    "z": 27940.0
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Haas NGC",
+     "gcarve_post": "haas-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 10,
+    "notes": "10-tool carousel, max tool 3.5 in dia, 12 lb"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haas.co.uk/machines/gr-510/"
+   ],
+   "notes": "Gantry machining center/router for aluminium and composites. Table 122 x 53 in, 62 in between columns, 6000 lb max load. Spindle nose to table 2.5-13.5 in. Rapids X 800, Y 2100, Z 1100 in/min (rapid xy = slower X axis). Spindle 65 Nm @ 1500 rpm (8100) / 32.5 Nm @ 3000 rpm (15000).",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from in/min",
+    "rapid_mm_min": "converted from in/min",
+    "rapid_ipm.xy": "X rapid 800 in/min used; Y rapid is 2100 in/min"
+   }
+  },
+  {
+   "id": "haas-gr-712",
+   "maker": "Haas Automation",
+   "model": "GR-712",
+   "variant": null,
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 145,
+    "y": 85,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 3683.0,
+    "y": 2159.0,
+    "z": 279.0
+   },
+   "gantry_clearance_in": 13.5,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "15 hp 40-taper belt-drive spindle, 8100 rpm",
+     "power_kw": 11.2,
+     "power_hp": 15,
+     "rpm_min": null,
+     "rpm_max": 8100,
+     "collet": "BT40 or CAT40 (CT40)",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "15 hp 40-taper high-speed spindle, 15000 rpm (option)",
+     "power_kw": 11.2,
+     "power_hp": 15,
+     "rpm_min": null,
+     "rpm_max": 15000,
+     "collet": "BT40 or CAT40 (CT40)",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 800,
+    "z": 800
+   },
+   "max_feed_mm_min": {
+    "xy": 20320.0,
+    "z": 20320.0
+   },
+   "rapid_ipm": {
+    "xy": 800,
+    "z": 1100
+   },
+   "rapid_mm_min": {
+    "xy": 20320.0,
+    "z": 27940.0
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Haas NGC",
+     "gcarve_post": "haas-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 10,
+    "notes": "10-tool carousel, max tool 3.5 in dia, 12 lb"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haas.co.uk/machines/gr-712/"
+   ],
+   "notes": "Gantry machining center/router for aluminium and composites. Table 144 x 72 x 1 in, 86 in between columns, 6000 lb max load. Spindle nose to table 2.5-13.5 in. Rapids X 800, Y 2100, Z 1100 in/min (rapid xy = slower X axis). Spindle 65 Nm @ 1500 rpm (8100) / 32.5 Nm @ 3000 rpm (15000).",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from in/min",
+    "rapid_mm_min": "converted from in/min",
+    "rapid_ipm.xy": "X rapid 800 in/min used; Y rapid is 2100 in/min"
+   }
+  }
+ ]
+}

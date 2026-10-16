@@ -1,0 +1,5163 @@
+{
+ "maker": "Thermwood",
+ "website": "https://www.thermwood.com",
+ "machines": [
+  {
+   "id": "thermwood-model-43-4x8",
+   "maker": "Thermwood",
+   "model": "Model 43",
+   "variant": "4x8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48,
+    "y": 96,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 2438,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 71120,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 11,
+    "notes": "11-position bar-style ATC standard on 4x8 and 5x10; 21-position option (standard on the work cell)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard",
+     "pop-up pins"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-43.htm",
+    "https://www.thermwood.com/brochures/43CNCCenter_12HP.pdf",
+    "https://www.thermwood.com/brochures/model-43-work-cell-brochure-5-7-26.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (4x8); travels not published. Brochure: tables are 1 in greater in length and width. Moving gantry over fixed steel high-flow vacuum table, 'indexes at 2,800 IPM', Siemens servo drives, THK rails, 3-D laser compensation."
+  },
+  {
+   "id": "thermwood-model-43-5x8-extended",
+   "maker": "Thermwood",
+   "model": "Model 43",
+   "variant": "5x8-extended",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 96,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 2438,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 71120,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 11,
+    "notes": "11-position bar-style ATC standard on 4x8 and 5x10; 21-position option (standard on the work cell)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard",
+     "pop-up pins"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-43.htm",
+    "https://www.thermwood.com/brochures/43CNCCenter_12HP.pdf",
+    "https://www.thermwood.com/brochures/model-43-work-cell-brochure-5-7-26.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x8-extended); travels not published. Brochure: tables are 1 in greater in length and width. Moving gantry over fixed steel high-flow vacuum table, 'indexes at 2,800 IPM', Siemens servo drives, THK rails, 3-D laser compensation."
+  },
+  {
+   "id": "thermwood-model-43-5x10",
+   "maker": "Thermwood",
+   "model": "Model 43",
+   "variant": "5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 71120,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 11,
+    "notes": "11-position bar-style ATC standard on 4x8 and 5x10; 21-position option (standard on the work cell)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard",
+     "pop-up pins"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-43.htm",
+    "https://www.thermwood.com/brochures/43CNCCenter_12HP.pdf",
+    "https://www.thermwood.com/brochures/model-43-work-cell-brochure-5-7-26.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x10); travels not published. Brochure: tables are 1 in greater in length and width. Moving gantry over fixed steel high-flow vacuum table, 'indexes at 2,800 IPM', Siemens servo drives, THK rails, 3-D laser compensation."
+  },
+  {
+   "id": "thermwood-model-43-5x10-extended",
+   "maker": "Thermwood",
+   "model": "Model 43",
+   "variant": "5x10-extended",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 71120,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 11,
+    "notes": "11-position bar-style ATC standard on 4x8 and 5x10; 21-position option (standard on the work cell)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard",
+     "pop-up pins"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-43.htm",
+    "https://www.thermwood.com/brochures/43CNCCenter_12HP.pdf",
+    "https://www.thermwood.com/brochures/model-43-work-cell-brochure-5-7-26.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x10-extended); travels not published. Brochure: tables are 1 in greater in length and width. Moving gantry over fixed steel high-flow vacuum table, 'indexes at 2,800 IPM', Siemens servo drives, THK rails, 3-D laser compensation."
+  },
+  {
+   "id": "thermwood-model-43-5x12",
+   "maker": "Thermwood",
+   "model": "Model 43",
+   "variant": "5x12",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 144,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3658,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 71120,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 11,
+    "notes": "11-position bar-style ATC standard on 4x8 and 5x10; 21-position option (standard on the work cell)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard",
+     "pop-up pins"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-43.htm",
+    "https://www.thermwood.com/brochures/43CNCCenter_12HP.pdf",
+    "https://www.thermwood.com/brochures/model-43-work-cell-brochure-5-7-26.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x12); travels not published. Brochure: tables are 1 in greater in length and width. Moving gantry over fixed steel high-flow vacuum table, 'indexes at 2,800 IPM', Siemens servo drives, THK rails, 3-D laser compensation."
+  },
+  {
+   "id": "thermwood-model-43-5x20",
+   "maker": "Thermwood",
+   "model": "Model 43",
+   "variant": "5x20",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 240,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 6096,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 71120,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 11,
+    "notes": "11-position bar-style ATC standard on 4x8 and 5x10; 21-position option (standard on the work cell)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard",
+     "pop-up pins"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-43.htm",
+    "https://www.thermwood.com/brochures/43CNCCenter_12HP.pdf",
+    "https://www.thermwood.com/brochures/model-43-work-cell-brochure-5-7-26.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x20); travels not published. Brochure: tables are 1 in greater in length and width. Moving gantry over fixed steel high-flow vacuum table, 'indexes at 2,800 IPM', Siemens servo drives, THK rails, 3-D laser compensation."
+  },
+  {
+   "id": "thermwood-model-45-5x5",
+   "maker": "Thermwood",
+   "model": "Model 45",
+   "variant": "5x5",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 60,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 1524,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "18 HP (13 kW) HSD spindle, HSK F63",
+     "power_kw": 13,
+     "power_hp": 18,
+     "rpm_min": 3000,
+     "rpm_max": 20000,
+     "collet": "HSK F63",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 4,
+    "notes": "4-position bar-style ATC standard; 7-position bar, 5-position at-the-head (typewriter) options"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-45.htm",
+    "https://www.thermwood.com/brochures/brochures/45CNCIm_Metric.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x5); travels not published. Heavy-duty 3-axis, fixed steel high-flow table with moving gantry; single or dual spindles, optional rotary axis (8 in dia x 56 in)."
+  },
+  {
+   "id": "thermwood-model-45-5x10",
+   "maker": "Thermwood",
+   "model": "Model 45",
+   "variant": "5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "18 HP (13 kW) HSD spindle, HSK F63",
+     "power_kw": 13,
+     "power_hp": 18,
+     "rpm_min": 3000,
+     "rpm_max": 20000,
+     "collet": "HSK F63",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 4,
+    "notes": "4-position bar-style ATC standard; 7-position bar, 5-position at-the-head (typewriter) options"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-45.htm",
+    "https://www.thermwood.com/brochures/brochures/45CNCIm_Metric.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x10); travels not published. Heavy-duty 3-axis, fixed steel high-flow table with moving gantry; single or dual spindles, optional rotary axis (8 in dia x 56 in)."
+  },
+  {
+   "id": "thermwood-model-45-5x12",
+   "maker": "Thermwood",
+   "model": "Model 45",
+   "variant": "5x12",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 144,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3658,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "18 HP (13 kW) HSD spindle, HSK F63",
+     "power_kw": 13,
+     "power_hp": 18,
+     "rpm_min": 3000,
+     "rpm_max": 20000,
+     "collet": "HSK F63",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 4,
+    "notes": "4-position bar-style ATC standard; 7-position bar, 5-position at-the-head (typewriter) options"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-45.htm",
+    "https://www.thermwood.com/brochures/brochures/45CNCIm_Metric.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x12); travels not published. Heavy-duty 3-axis, fixed steel high-flow table with moving gantry; single or dual spindles, optional rotary axis (8 in dia x 56 in)."
+  },
+  {
+   "id": "thermwood-model-45-6x12",
+   "maker": "Thermwood",
+   "model": "Model 45",
+   "variant": "6x12",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 72,
+    "y": 144,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1829,
+    "y": 3658,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "18 HP (13 kW) HSD spindle, HSK F63",
+     "power_kw": 13,
+     "power_hp": 18,
+     "rpm_min": 3000,
+     "rpm_max": 20000,
+     "collet": "HSK F63",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 4,
+    "notes": "4-position bar-style ATC standard; 7-position bar, 5-position at-the-head (typewriter) options"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-45.htm",
+    "https://www.thermwood.com/brochures/brochures/45CNCIm_Metric.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (6x12); travels not published. Heavy-duty 3-axis, fixed steel high-flow table with moving gantry; single or dual spindles, optional rotary axis (8 in dia x 56 in)."
+  },
+  {
+   "id": "thermwood-model-45-7x12",
+   "maker": "Thermwood",
+   "model": "Model 45",
+   "variant": "7x12",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 84,
+    "y": 144,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2134,
+    "y": 3658,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "18 HP (13 kW) HSD spindle, HSK F63",
+     "power_kw": 13,
+     "power_hp": 18,
+     "rpm_min": 3000,
+     "rpm_max": 20000,
+     "collet": "HSK F63",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 4,
+    "notes": "4-position bar-style ATC standard; 7-position bar, 5-position at-the-head (typewriter) options"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-45.htm",
+    "https://www.thermwood.com/brochures/brochures/45CNCIm_Metric.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (7x12); travels not published. Heavy-duty 3-axis, fixed steel high-flow table with moving gantry; single or dual spindles, optional rotary axis (8 in dia x 56 in)."
+  },
+  {
+   "id": "thermwood-model-42-10x5",
+   "maker": "Thermwood",
+   "model": "Model 42",
+   "variant": "10x5",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 60,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 1524,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 4,
+    "notes": "4-position bar-style ATC standard; 7-position bar or at-the-head ATC options; optional 2nd head"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-42.htm",
+    "https://www.thermwood.com/brochures/42CNCCentersm.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (10x5); travels not published. Fixed gantry, moving solid aluminum table(s); single 10x5 or dual tables."
+  },
+  {
+   "id": "thermwood-model-42-dual-5x5",
+   "maker": "Thermwood",
+   "model": "Model 42",
+   "variant": "dual 5x5",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 60,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 1524,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 4,
+    "notes": "4-position bar-style ATC standard; 7-position bar or at-the-head ATC options; optional 2nd head"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-42.htm",
+    "https://www.thermwood.com/brochures/42CNCCentersm.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal size of each of the two tables as published in feet (dual 5x5); travels not published. Fixed gantry, moving solid aluminum table(s); single 10x5 or dual tables."
+  },
+  {
+   "id": "thermwood-model-42-dual-5x8",
+   "maker": "Thermwood",
+   "model": "Model 42",
+   "variant": "dual 5x8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 96,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 2438,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 4,
+    "notes": "4-position bar-style ATC standard; 7-position bar or at-the-head ATC options; optional 2nd head"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-42.htm",
+    "https://www.thermwood.com/brochures/42CNCCentersm.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal size of each of the two tables as published in feet (dual 5x8); travels not published. Fixed gantry, moving solid aluminum table(s); single 10x5 or dual tables."
+  },
+  {
+   "id": "thermwood-model-42-dual-5x10",
+   "maker": "Thermwood",
+   "model": "Model 42",
+   "variant": "dual 5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 4,
+    "notes": "4-position bar-style ATC standard; 7-position bar or at-the-head ATC options; optional 2nd head"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-42.htm",
+    "https://www.thermwood.com/brochures/42CNCCentersm.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal size of each of the two tables as published in feet (dual 5x10); travels not published. Fixed gantry, moving solid aluminum table(s); single 10x5 or dual tables."
+  },
+  {
+   "id": "thermwood-model-42-dual-5x12",
+   "maker": "Thermwood",
+   "model": "Model 42",
+   "variant": "dual 5x12",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 144,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3658,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 4,
+    "notes": "4-position bar-style ATC standard; 7-position bar or at-the-head ATC options; optional 2nd head"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-42.htm",
+    "https://www.thermwood.com/brochures/42CNCCentersm.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal size of each of the two tables as published in feet (dual 5x12); travels not published. Fixed gantry, moving solid aluminum table(s); single 10x5 or dual tables."
+  },
+  {
+   "id": "thermwood-model-53-5x10",
+   "maker": "Thermwood",
+   "model": "Model 53",
+   "variant": "5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "18 HP (13 kW) HSD spindle, HSK F63",
+     "power_kw": 13,
+     "power_hp": 18,
+     "rpm_min": 3000,
+     "rpm_max": 20000,
+     "collet": "HSK F63",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "roller hold-down (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-53.htm",
+    "https://www.thermwood.com/brochures/one-sheeters/Model53_single%20Flyer.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x10); travels not published. Moving gantry over fixed solid aluminum table for routing and stack machining of large sheets; dual spindle, roller hold-down and load/unload options."
+  },
+  {
+   "id": "thermwood-model-53-5x12",
+   "maker": "Thermwood",
+   "model": "Model 53",
+   "variant": "5x12",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 144,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3658,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "18 HP (13 kW) HSD spindle, HSK F63",
+     "power_kw": 13,
+     "power_hp": 18,
+     "rpm_min": 3000,
+     "rpm_max": 20000,
+     "collet": "HSK F63",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "roller hold-down (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-53.htm",
+    "https://www.thermwood.com/brochures/one-sheeters/Model53_single%20Flyer.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x12); travels not published. Moving gantry over fixed solid aluminum table for routing and stack machining of large sheets; dual spindle, roller hold-down and load/unload options."
+  },
+  {
+   "id": "thermwood-model-53-5x16",
+   "maker": "Thermwood",
+   "model": "Model 53",
+   "variant": "5x16",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 192,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 4877,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "18 HP (13 kW) HSD spindle, HSK F63",
+     "power_kw": 13,
+     "power_hp": 18,
+     "rpm_min": 3000,
+     "rpm_max": 20000,
+     "collet": "HSK F63",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "roller hold-down (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-53.htm",
+    "https://www.thermwood.com/brochures/one-sheeters/Model53_single%20Flyer.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x16); travels not published. Moving gantry over fixed solid aluminum table for routing and stack machining of large sheets; dual spindle, roller hold-down and load/unload options."
+  },
+  {
+   "id": "thermwood-model-53-5x20",
+   "maker": "Thermwood",
+   "model": "Model 53",
+   "variant": "5x20",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 240,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 6096,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "18 HP (13 kW) HSD spindle, HSK F63",
+     "power_kw": 13,
+     "power_hp": 18,
+     "rpm_min": 3000,
+     "rpm_max": 20000,
+     "collet": "HSK F63",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "roller hold-down (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-53.htm",
+    "https://www.thermwood.com/brochures/one-sheeters/Model53_single%20Flyer.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x20); travels not published. Moving gantry over fixed solid aluminum table for routing and stack machining of large sheets; dual spindle, roller hold-down and load/unload options."
+  },
+  {
+   "id": "thermwood-model-63-5x10",
+   "maker": "Thermwood",
+   "model": "Model 63",
+   "variant": "5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": 24
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": 610
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "18 HP (13 kW) HSD spindle, HSK F63",
+     "power_kw": 13,
+     "power_hp": 18,
+     "rpm_min": 3000,
+     "rpm_max": 20000,
+     "collet": "HSK F63",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Automatic tool changer (type and size not published)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-63.htm",
+    "https://www.thermwood.com/brochures/one-sheeters/Model63_single%20Flyer.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x10); travels not published. Large-bed 3-axis, moving bridge over stationary aluminum table, extensions up to 100 ft. Z = 24 in vertical extended Z axis."
+  },
+  {
+   "id": "thermwood-model-63-5x20",
+   "maker": "Thermwood",
+   "model": "Model 63",
+   "variant": "5x20",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 240,
+    "z": 24
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 6096,
+    "z": 610
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "18 HP (13 kW) HSD spindle, HSK F63",
+     "power_kw": 13,
+     "power_hp": 18,
+     "rpm_min": 3000,
+     "rpm_max": 20000,
+     "collet": "HSK F63",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Automatic tool changer (type and size not published)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-63.htm",
+    "https://www.thermwood.com/brochures/one-sheeters/Model63_single%20Flyer.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x20); travels not published. Large-bed 3-axis, moving bridge over stationary aluminum table, extensions up to 100 ft. Z = 24 in vertical extended Z axis."
+  },
+  {
+   "id": "thermwood-model-63-5x40",
+   "maker": "Thermwood",
+   "model": "Model 63",
+   "variant": "5x40",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 480,
+    "z": 24
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 12192,
+    "z": 610
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "18 HP (13 kW) HSD spindle, HSK F63",
+     "power_kw": 13,
+     "power_hp": 18,
+     "rpm_min": 3000,
+     "rpm_max": 20000,
+     "collet": "HSK F63",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Automatic tool changer (type and size not published)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-63.htm",
+    "https://www.thermwood.com/brochures/one-sheeters/Model63_single%20Flyer.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x40); travels not published. Large-bed 3-axis, moving bridge over stationary aluminum table, extensions up to 100 ft. Z = 24 in vertical extended Z axis."
+  },
+  {
+   "id": "thermwood-model-65-5x10",
+   "maker": "Thermwood",
+   "model": "Model 65",
+   "variant": "5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": 24
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": 610
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "18 HP (13 kW) HSD spindle, HSK F63",
+     "power_kw": 13,
+     "power_hp": 18,
+     "rpm_min": 3000,
+     "rpm_max": 20000,
+     "collet": "HSK F63",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Rotary tool changer option"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-65.htm"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x10); travels not published. Large-bed 5-axis, moving bridge over stationary table, lengths up to 100 ft. Z = standard 24 in extended Z axis."
+  },
+  {
+   "id": "thermwood-model-65-5x20",
+   "maker": "Thermwood",
+   "model": "Model 65",
+   "variant": "5x20",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 240,
+    "z": 24
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 6096,
+    "z": 610
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "18 HP (13 kW) HSD spindle, HSK F63",
+     "power_kw": 13,
+     "power_hp": 18,
+     "rpm_min": 3000,
+     "rpm_max": 20000,
+     "collet": "HSK F63",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Rotary tool changer option"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-65.htm"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x20); travels not published. Large-bed 5-axis, moving bridge over stationary table, lengths up to 100 ft. Z = standard 24 in extended Z axis."
+  },
+  {
+   "id": "thermwood-model-65-5x40",
+   "maker": "Thermwood",
+   "model": "Model 65",
+   "variant": "5x40",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 480,
+    "z": 24
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 12192,
+    "z": 610
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "18 HP (13 kW) HSD spindle, HSK F63",
+     "power_kw": 13,
+     "power_hp": 18,
+     "rpm_min": 3000,
+     "rpm_max": 20000,
+     "collet": "HSK F63",
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Rotary tool changer option"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-65.htm"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x40); travels not published. Large-bed 5-axis, moving bridge over stationary table, lengths up to 100 ft. Z = standard 24 in extended Z axis."
+  },
+  {
+   "id": "thermwood-model-67-5x5",
+   "maker": "Thermwood",
+   "model": "Model 67",
+   "variant": "5x5",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 60,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 1524,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP router (web standard)",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "7.5 HP (5.5 kW) dual-end spindle",
+     "power_kw": 5.5,
+     "power_hp": 7.5,
+     "rpm_min": 3000,
+     "rpm_max": 18000,
+     "collet": "3/4 in max",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "12 HP tool-change spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": "3/4 in max",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 6-position bar-style ATC (with 12 HP tool-change spindle)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor / Renishaw TS27R (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "fixtures"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-67.htm",
+    "https://www.thermwood.com/brochures/67.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x5); travels not published. 5-axis moving-table router. Web: 12 HP 24,000 RPM standard, 16 HP option, extended Z 36 or 48 in. 2021 brochure: 7.5 HP dual-end spindle standard; Z stroke given as both 24 and 36 in (inconsistent), so Z left null."
+  },
+  {
+   "id": "thermwood-model-67-5x10",
+   "maker": "Thermwood",
+   "model": "Model 67",
+   "variant": "5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP router (web standard)",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "7.5 HP (5.5 kW) dual-end spindle",
+     "power_kw": 5.5,
+     "power_hp": 7.5,
+     "rpm_min": 3000,
+     "rpm_max": 18000,
+     "collet": "3/4 in max",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "12 HP tool-change spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": "3/4 in max",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 6-position bar-style ATC (with 12 HP tool-change spindle)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor / Renishaw TS27R (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "fixtures"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-67.htm",
+    "https://www.thermwood.com/brochures/67.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x10); travels not published. 5-axis moving-table router. Web: 12 HP 24,000 RPM standard, 16 HP option, extended Z 36 or 48 in. 2021 brochure: 7.5 HP dual-end spindle standard; Z stroke given as both 24 and 36 in (inconsistent), so Z left null."
+  },
+  {
+   "id": "thermwood-model-67-10x5",
+   "maker": "Thermwood",
+   "model": "Model 67",
+   "variant": "10x5",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 60,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 1524,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP router (web standard)",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "7.5 HP (5.5 kW) dual-end spindle",
+     "power_kw": 5.5,
+     "power_hp": 7.5,
+     "rpm_min": 3000,
+     "rpm_max": 18000,
+     "collet": "3/4 in max",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "12 HP tool-change spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": "3/4 in max",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 6-position bar-style ATC (with 12 HP tool-change spindle)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor / Renishaw TS27R (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "fixtures"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-67.htm",
+    "https://www.thermwood.com/brochures/67.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (10x5); travels not published. 5-axis moving-table router. Web: 12 HP 24,000 RPM standard, 16 HP option, extended Z 36 or 48 in. 2021 brochure: 7.5 HP dual-end spindle standard; Z stroke given as both 24 and 36 in (inconsistent), so Z left null."
+  },
+  {
+   "id": "thermwood-model-67-5x12",
+   "maker": "Thermwood",
+   "model": "Model 67",
+   "variant": "5x12",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 144,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3658,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP router (web standard)",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "7.5 HP (5.5 kW) dual-end spindle",
+     "power_kw": 5.5,
+     "power_hp": 7.5,
+     "rpm_min": 3000,
+     "rpm_max": 18000,
+     "collet": "3/4 in max",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "12 HP tool-change spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": "3/4 in max",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 6-position bar-style ATC (with 12 HP tool-change spindle)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor / Renishaw TS27R (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "fixtures"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-67.htm",
+    "https://www.thermwood.com/brochures/67.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x12); travels not published. 5-axis moving-table router. Web: 12 HP 24,000 RPM standard, 16 HP option, extended Z 36 or 48 in. 2021 brochure: 7.5 HP dual-end spindle standard; Z stroke given as both 24 and 36 in (inconsistent), so Z left null."
+  },
+  {
+   "id": "thermwood-model-67-7x10",
+   "maker": "Thermwood",
+   "model": "Model 67",
+   "variant": "7x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 84,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2134,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP router (web standard)",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "7.5 HP (5.5 kW) dual-end spindle",
+     "power_kw": 5.5,
+     "power_hp": 7.5,
+     "rpm_min": 3000,
+     "rpm_max": 18000,
+     "collet": "3/4 in max",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "12 HP tool-change spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": "3/4 in max",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 6-position bar-style ATC (with 12 HP tool-change spindle)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor / Renishaw TS27R (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "fixtures"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-67.htm",
+    "https://www.thermwood.com/brochures/67.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (7x10); travels not published. 5-axis moving-table router. Web: 12 HP 24,000 RPM standard, 16 HP option, extended Z 36 or 48 in. 2021 brochure: 7.5 HP dual-end spindle standard; Z stroke given as both 24 and 36 in (inconsistent), so Z left null."
+  },
+  {
+   "id": "thermwood-model-67-dual-5x5",
+   "maker": "Thermwood",
+   "model": "Model 67",
+   "variant": "dual 5x5",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 60,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 1524,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP router (web standard)",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "7.5 HP (5.5 kW) dual-end spindle",
+     "power_kw": 5.5,
+     "power_hp": 7.5,
+     "rpm_min": 3000,
+     "rpm_max": 18000,
+     "collet": "3/4 in max",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "12 HP tool-change spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": "3/4 in max",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 6-position bar-style ATC (with 12 HP tool-change spindle)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor / Renishaw TS27R (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "fixtures"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-67.htm",
+    "https://www.thermwood.com/brochures/67.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal size of each of the two tables as published in feet (dual 5x5); travels not published. 5-axis moving-table router. Web: 12 HP 24,000 RPM standard, 16 HP option, extended Z 36 or 48 in. 2021 brochure: 7.5 HP dual-end spindle standard; Z stroke given as both 24 and 36 in (inconsistent), so Z left null."
+  },
+  {
+   "id": "thermwood-model-67-dual-5x10",
+   "maker": "Thermwood",
+   "model": "Model 67",
+   "variant": "dual 5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP router (web standard)",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "7.5 HP (5.5 kW) dual-end spindle",
+     "power_kw": 5.5,
+     "power_hp": 7.5,
+     "rpm_min": 3000,
+     "rpm_max": 18000,
+     "collet": "3/4 in max",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "12 HP tool-change spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": "3/4 in max",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 6-position bar-style ATC (with 12 HP tool-change spindle)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor / Renishaw TS27R (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "fixtures"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-67.htm",
+    "https://www.thermwood.com/brochures/67.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal size of each of the two tables as published in feet (dual 5x10); travels not published. 5-axis moving-table router. Web: 12 HP 24,000 RPM standard, 16 HP option, extended Z 36 or 48 in. 2021 brochure: 7.5 HP dual-end spindle standard; Z stroke given as both 24 and 36 in (inconsistent), so Z left null."
+  },
+  {
+   "id": "thermwood-model-67-dual-5x12",
+   "maker": "Thermwood",
+   "model": "Model 67",
+   "variant": "dual 5x12",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 144,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3658,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP router (web standard)",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "7.5 HP (5.5 kW) dual-end spindle",
+     "power_kw": 5.5,
+     "power_hp": 7.5,
+     "rpm_min": 3000,
+     "rpm_max": 18000,
+     "collet": "3/4 in max",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "12 HP tool-change spindle",
+     "power_kw": null,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": "3/4 in max",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Option: 6-position bar-style ATC (with 12 HP tool-change spindle)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor / Renishaw TS27R (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "fixtures"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-67.htm",
+    "https://www.thermwood.com/brochures/67.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal size of each of the two tables as published in feet (dual 5x12); travels not published. 5-axis moving-table router. Web: 12 HP 24,000 RPM standard, 16 HP option, extended Z 36 or 48 in. 2021 brochure: 7.5 HP dual-end spindle standard; Z stroke given as both 24 and 36 in (inconsistent), so Z left null."
+  },
+  {
+   "id": "thermwood-model-70-10x5",
+   "maker": "Thermwood",
+   "model": "Model 70",
+   "variant": "10x5",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 60,
+    "z": 36
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 1524,
+    "z": 914
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP router spindle, 24,000 RPM",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 4,
+    "notes": "4-position automatic tool changing system; bar-style changer optional"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "fixtures",
+     "threaded inserts"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-70.htm",
+    "https://www.thermwood.com/brochures/70Imper_Metric.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (10x5); travels not published. Heavy-duty moving-gantry 5-axis for aerospace/composites with heavy fixtures; 1.5 in solid aluminum table. Z 36 in standard, 48 and 60 in options."
+  },
+  {
+   "id": "thermwood-model-70-10x10",
+   "maker": "Thermwood",
+   "model": "Model 70",
+   "variant": "10x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 120,
+    "z": 36
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 3048,
+    "z": 914
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP router spindle, 24,000 RPM",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 4,
+    "notes": "4-position automatic tool changing system; bar-style changer optional"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "fixtures",
+     "threaded inserts"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-70.htm",
+    "https://www.thermwood.com/brochures/70Imper_Metric.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (10x10); travels not published. Heavy-duty moving-gantry 5-axis for aerospace/composites with heavy fixtures; 1.5 in solid aluminum table. Z 36 in standard, 48 and 60 in options."
+  },
+  {
+   "id": "thermwood-model-70-10x15",
+   "maker": "Thermwood",
+   "model": "Model 70",
+   "variant": "10x15",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 180,
+    "z": 36
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 4572,
+    "z": 914
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP router spindle, 24,000 RPM",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 4,
+    "notes": "4-position automatic tool changing system; bar-style changer optional"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "fixtures",
+     "threaded inserts"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-70.htm",
+    "https://www.thermwood.com/brochures/70Imper_Metric.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (10x15); travels not published. Heavy-duty moving-gantry 5-axis for aerospace/composites with heavy fixtures; 1.5 in solid aluminum table. Z 36 in standard, 48 and 60 in options."
+  },
+  {
+   "id": "thermwood-model-70-10x20",
+   "maker": "Thermwood",
+   "model": "Model 70",
+   "variant": "10x20",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 240,
+    "z": 36
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 6096,
+    "z": 914
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP router spindle, 24,000 RPM",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 4,
+    "notes": "4-position automatic tool changing system; bar-style changer optional"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "fixtures",
+     "threaded inserts"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-70.htm",
+    "https://www.thermwood.com/brochures/70Imper_Metric.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (10x20); travels not published. Heavy-duty moving-gantry 5-axis for aerospace/composites with heavy fixtures; 1.5 in solid aluminum table. Z 36 in standard, 48 and 60 in options."
+  },
+  {
+   "id": "thermwood-model-77-5x10",
+   "maker": "Thermwood",
+   "model": "Model 77",
+   "variant": "5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": 36
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": 914
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP router spindle, 24,000 RPM",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 or 19 HP spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 88900,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 4,
+    "notes": "4-position ATC; 12-position under-gantry bar changer on 10 ft wide machines"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "threaded inserts",
+     "fixtures",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-77.htm",
+    "https://www.thermwood.com/brochures/77Imper_Metric_rv2021.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x10); travels not published. Fully enclosed heavy-duty 5-axis for aerospace and composites; continuous C axis. Rapid 3500 IPM (2021 brochure). Z 36 in standard, 48/60 in options. Lengths in 10 ft steps."
+  },
+  {
+   "id": "thermwood-model-77-10x10",
+   "maker": "Thermwood",
+   "model": "Model 77",
+   "variant": "10x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 120,
+    "z": 36
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 3048,
+    "z": 914
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP router spindle, 24,000 RPM",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 or 19 HP spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 88900,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 4,
+    "notes": "4-position ATC; 12-position under-gantry bar changer on 10 ft wide machines"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "threaded inserts",
+     "fixtures",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-77.htm",
+    "https://www.thermwood.com/brochures/77Imper_Metric_rv2021.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (10x10); travels not published. Fully enclosed heavy-duty 5-axis for aerospace and composites; continuous C axis. Rapid 3500 IPM (2021 brochure). Z 36 in standard, 48/60 in options. Lengths in 10 ft steps."
+  },
+  {
+   "id": "thermwood-model-77-10x20",
+   "maker": "Thermwood",
+   "model": "Model 77",
+   "variant": "10x20",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 240,
+    "z": 36
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 6096,
+    "z": 914
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP router spindle, 24,000 RPM",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 or 19 HP spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 88900,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 4,
+    "notes": "4-position ATC; 12-position under-gantry bar changer on 10 ft wide machines"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "threaded inserts",
+     "fixtures",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-77.htm",
+    "https://www.thermwood.com/brochures/77Imper_Metric_rv2021.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (10x20); travels not published. Fully enclosed heavy-duty 5-axis for aerospace and composites; continuous C axis. Rapid 3500 IPM (2021 brochure). Z 36 in standard, 48/60 in options. Lengths in 10 ft steps."
+  },
+  {
+   "id": "thermwood-model-77-10x30",
+   "maker": "Thermwood",
+   "model": "Model 77",
+   "variant": "10x30",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 360,
+    "z": 36
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 9144,
+    "z": 914
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP router spindle, 24,000 RPM",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 or 19 HP spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 88900,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 4,
+    "notes": "4-position ATC; 12-position under-gantry bar changer on 10 ft wide machines"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "threaded inserts",
+     "fixtures",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-77.htm",
+    "https://www.thermwood.com/brochures/77Imper_Metric_rv2021.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (10x30); travels not published. Fully enclosed heavy-duty 5-axis for aerospace and composites; continuous C axis. Rapid 3500 IPM (2021 brochure). Z 36 in standard, 48/60 in options. Lengths in 10 ft steps."
+  },
+  {
+   "id": "thermwood-model-77-10x40",
+   "maker": "Thermwood",
+   "model": "Model 77",
+   "variant": "10x40",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 480,
+    "z": 36
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 12192,
+    "z": 914
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP router spindle, 24,000 RPM",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 or 19 HP spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 88900,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 4,
+    "notes": "4-position ATC; 12-position under-gantry bar changer on 10 ft wide machines"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "threaded inserts",
+     "fixtures",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-77.htm",
+    "https://www.thermwood.com/brochures/77Imper_Metric_rv2021.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (10x40); travels not published. Fully enclosed heavy-duty 5-axis for aerospace and composites; continuous C axis. Rapid 3500 IPM (2021 brochure). Z 36 in standard, 48/60 in options. Lengths in 10 ft steps."
+  },
+  {
+   "id": "thermwood-model-90-5x5",
+   "maker": "Thermwood",
+   "model": "Model 90",
+   "variant": "5x5",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 60,
+    "z": 24
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 1524,
+    "z": 610
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP router spindle, 24,000 RPM",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Bar-style automatic tool changer option"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "fixtures"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-90.htm",
+    "https://www.thermwood.com/brochures/90Im_met52021.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x5); travels not published. High-speed 5-axis with single or dual moving aluminum tables, for trimming, patterns, molds. Z 24 in standard, up to 60 in."
+  },
+  {
+   "id": "thermwood-model-90-5x10",
+   "maker": "Thermwood",
+   "model": "Model 90",
+   "variant": "5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": 24
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": 610
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP router spindle, 24,000 RPM",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Bar-style automatic tool changer option"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "fixtures"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-90.htm",
+    "https://www.thermwood.com/brochures/90Im_met52021.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x10); travels not published. High-speed 5-axis with single or dual moving aluminum tables, for trimming, patterns, molds. Z 24 in standard, up to 60 in."
+  },
+  {
+   "id": "thermwood-model-90-10x5",
+   "maker": "Thermwood",
+   "model": "Model 90",
+   "variant": "10x5",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 60,
+    "z": 24
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 1524,
+    "z": 610
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP router spindle, 24,000 RPM",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Bar-style automatic tool changer option"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "fixtures"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-90.htm",
+    "https://www.thermwood.com/brochures/90Im_met52021.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (10x5); travels not published. High-speed 5-axis with single or dual moving aluminum tables, for trimming, patterns, molds. Z 24 in standard, up to 60 in."
+  },
+  {
+   "id": "thermwood-model-90-5x12",
+   "maker": "Thermwood",
+   "model": "Model 90",
+   "variant": "5x12",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 144,
+    "z": 24
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3658,
+    "z": 610
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP router spindle, 24,000 RPM",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Bar-style automatic tool changer option"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "fixtures"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-90.htm",
+    "https://www.thermwood.com/brochures/90Im_met52021.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x12); travels not published. High-speed 5-axis with single or dual moving aluminum tables, for trimming, patterns, molds. Z 24 in standard, up to 60 in."
+  },
+  {
+   "id": "thermwood-model-90-dual-5x5",
+   "maker": "Thermwood",
+   "model": "Model 90",
+   "variant": "dual 5x5",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 60,
+    "z": 24
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 1524,
+    "z": 610
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP router spindle, 24,000 RPM",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Bar-style automatic tool changer option"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "fixtures"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-90.htm",
+    "https://www.thermwood.com/brochures/90Im_met52021.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal size of each of the two tables as published in feet (dual 5x5); travels not published. High-speed 5-axis with single or dual moving aluminum tables, for trimming, patterns, molds. Z 24 in standard, up to 60 in."
+  },
+  {
+   "id": "thermwood-model-90-dual-5x10",
+   "maker": "Thermwood",
+   "model": "Model 90",
+   "variant": "dual 5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": 24
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": 610
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP router spindle, 24,000 RPM",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Bar-style automatic tool changer option"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "fixtures"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-90.htm",
+    "https://www.thermwood.com/brochures/90Im_met52021.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal size of each of the two tables as published in feet (dual 5x10); travels not published. High-speed 5-axis with single or dual moving aluminum tables, for trimming, patterns, molds. Z 24 in standard, up to 60 in."
+  },
+  {
+   "id": "thermwood-model-90-dual-5x12",
+   "maker": "Thermwood",
+   "model": "Model 90",
+   "variant": "dual 5x12",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 144,
+    "z": 24
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3658,
+    "z": 610
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP router spindle, 24,000 RPM",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Bar-style automatic tool changer option"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "fixtures"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/model-90.htm",
+    "https://www.thermwood.com/brochures/90Im_met52021.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal size of each of the two tables as published in feet (dual 5x12); travels not published. High-speed 5-axis with single or dual moving aluminum tables, for trimming, patterns, molds. Z 24 in standard, up to 60 in."
+  },
+  {
+   "id": "thermwood-mtr-5x10",
+   "maker": "Thermwood",
+   "model": "MTR",
+   "variant": "5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Large-capacity bar-style automatic tool changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/mtr.htm",
+    "https://www.thermwood.com/brochures/MTRCNCCenter_21sm.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (5x10); travels not published. High-volume 3-axis routing system, single or dual in-line fixed steel high-flow tables, moving gantry."
+  },
+  {
+   "id": "thermwood-mtr-7x12",
+   "maker": "Thermwood",
+   "model": "MTR",
+   "variant": "7x12",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 84,
+    "y": 144,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2134,
+    "y": 3658,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Large-capacity bar-style automatic tool changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/mtr.htm",
+    "https://www.thermwood.com/brochures/MTRCNCCenter_21sm.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (7x12); travels not published. High-volume 3-axis routing system, single or dual in-line fixed steel high-flow tables, moving gantry."
+  },
+  {
+   "id": "thermwood-mtr-7x20",
+   "maker": "Thermwood",
+   "model": "MTR",
+   "variant": "7x20",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 84,
+    "y": 240,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2134,
+    "y": 6096,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Large-capacity bar-style automatic tool changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/mtr.htm",
+    "https://www.thermwood.com/brochures/MTRCNCCenter_21sm.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (7x20); travels not published. High-volume 3-axis routing system, single or dual in-line fixed steel high-flow tables, moving gantry."
+  },
+  {
+   "id": "thermwood-mtr-dual-5x10",
+   "maker": "Thermwood",
+   "model": "MTR",
+   "variant": "dual 5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Large-capacity bar-style automatic tool changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/mtr.htm",
+    "https://www.thermwood.com/brochures/MTRCNCCenter_21sm.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal size of each of the two tables as published in feet (dual 5x10); travels not published. High-volume 3-axis routing system, single or dual in-line fixed steel high-flow tables, moving gantry."
+  },
+  {
+   "id": "thermwood-mtr-dual-5x12",
+   "maker": "Thermwood",
+   "model": "MTR",
+   "variant": "dual 5x12",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 144,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3658,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP (9 kW) HSD spindle",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Large-capacity bar-style automatic tool changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/mtr.htm",
+    "https://www.thermwood.com/brochures/MTRCNCCenter_21sm.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal size of each of the two tables as published in feet (dual 5x12); travels not published. High-volume 3-axis routing system, single or dual in-line fixed steel high-flow tables, moving gantry."
+  },
+  {
+   "id": "thermwood-lfm-10x20",
+   "maker": "Thermwood",
+   "model": "LFM",
+   "variant": "10x20",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 240,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 6096,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 5,
+    "notes": "5-position at-the-head automatic tool changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/lfm.htm"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (10x20); travels not published. Large-format 3-axis, moving bridge over stress-relieved steel table with 5x10 ft vacuum zones."
+  },
+  {
+   "id": "thermwood-lfm-10x30",
+   "maker": "Thermwood",
+   "model": "LFM",
+   "variant": "10x30",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 360,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 9144,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 5,
+    "notes": "5-position at-the-head automatic tool changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/lfm.htm"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (10x30); travels not published. Large-format 3-axis, moving bridge over stress-relieved steel table with 5x10 ft vacuum zones."
+  },
+  {
+   "id": "thermwood-lfm-10x45",
+   "maker": "Thermwood",
+   "model": "LFM",
+   "variant": "10x45",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 540,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 13716,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 5,
+    "notes": "5-position at-the-head automatic tool changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "automatic tool length sensor (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/lfm.htm"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (10x45); travels not published. Large-format 3-axis, moving bridge over stress-relieved steel table with 5x10 ft vacuum zones."
+  },
+  {
+   "id": "thermwood-max5-10x20",
+   "maker": "Thermwood",
+   "model": "MAX5",
+   "variant": "10x20",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 240,
+    "z": 108
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 6096,
+    "z": 2743
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "17 HP (12.7 kW) liquid-cooled spindle",
+     "power_kw": 12.7,
+     "power_hp": 17,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2100,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 53340,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 6,
+    "notes": "6-position under-gantry bar ATC; 18 positions on 15 ft wide machine"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Renishaw TS27R tool setting probe (standard)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "threaded inserts",
+     "fixtures"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/max5.htm",
+    "https://blog.thermwood.com/hubfs/41868/Max5CNCCenter_2025.pdf",
+    "https://www.thermwood.com/brochures/one-sheeters/max5_single-flyer.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (10x20); travels not published. Heavy-duty high-clearance 5-axis; 9 ft vertical Z (10 ft option); lengths extend in 15 or 20 ft steps up to 60 ft. Indexing up to 2100 IPM."
+  },
+  {
+   "id": "thermwood-max5-15x20",
+   "maker": "Thermwood",
+   "model": "MAX5",
+   "variant": "15x20",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 180,
+    "y": 240,
+    "z": 108
+   },
+   "work_area_mm": {
+    "x": 4572,
+    "y": 6096,
+    "z": 2743
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "17 HP (12.7 kW) liquid-cooled spindle",
+     "power_kw": 12.7,
+     "power_hp": 17,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2100,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 53340,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Thermwood SuperControl",
+     "gcarve_post": "thermwood-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 6,
+    "notes": "6-position under-gantry bar ATC; 18 positions on 15 ft wide machine"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Renishaw TS27R tool setting probe (standard)"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "threaded inserts",
+     "fixtures"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.thermwood.com/max5.htm",
+    "https://blog.thermwood.com/hubfs/41868/Max5CNCCenter_2025.pdf",
+    "https://www.thermwood.com/brochures/one-sheeters/max5_single-flyer.pdf"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "X x Y = nominal table as published in feet (15x20); travels not published. Heavy-duty high-clearance 5-axis; 9 ft vertical Z (10 ft option); lengths extend in 15 or 20 ft steps up to 60 ft. Indexing up to 2100 IPM."
+  }
+ ]
+}

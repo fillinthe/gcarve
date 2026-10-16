@@ -1,0 +1,346 @@
+{
+ "maker": "Busellato",
+ "website": "https://www.casadeibusellato.com",
+ "machines": [
+  {
+   "id": "busellato-jet-master-t-13",
+   "maker": "Busellato",
+   "model": "Jet Master T",
+   "variant": "13",
+   "years": "2019",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 146.06,
+    "y": 51.97,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 3710,
+    "y": 1320,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3/4-axis electrospindle 9.5 kW (15 kW option)",
+     "power_kw": 9.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "5-axis electrospindle 10 kW (12 kW option)",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Busellato PC control (CNC make not stated)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 16,
+    "notes": "BT16 on Y carriage; linear option"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/bus_jet_mastert_2019_de_en_fr.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table machining centre (Casadei-Busellato). Z 180 mm standard (250 mm option); max panel Y 1900 mm (2200 option)."
+  },
+  {
+   "id": "busellato-jet-master-t-16",
+   "maker": "Busellato",
+   "model": "Jet Master T",
+   "variant": "16",
+   "years": "2019",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 146.06,
+    "y": 63.78,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 3710,
+    "y": 1620,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3/4-axis electrospindle 9.5 kW (15 kW option)",
+     "power_kw": 9.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "5-axis electrospindle 10 kW (12 kW option)",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Busellato PC control (CNC make not stated)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 16,
+    "notes": "BT16 on Y carriage; linear option"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/bus_jet_mastert_2019_de_en_fr.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table machining centre (Casadei-Busellato). Z 180 mm standard (250 mm option); max panel Y 1900 mm (2200 option)."
+  },
+  {
+   "id": "busellato-jet-master-t-xl-13",
+   "maker": "Busellato",
+   "model": "Jet Master T XL",
+   "variant": "13",
+   "years": "2019",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 216.93,
+    "y": 51.97,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 5510,
+    "y": 1320,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3/4-axis electrospindle 9.5 kW (15 kW option)",
+     "power_kw": 9.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "5-axis electrospindle 10 kW (12 kW option)",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Busellato PC control (CNC make not stated)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 16,
+    "notes": "BT16 on Y carriage; linear option"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/bus_jet_mastert_2019_de_en_fr.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table machining centre (Casadei-Busellato). Z 180 mm standard (250 mm option); max panel Y 1900 mm (2200 option)."
+  },
+  {
+   "id": "busellato-jet-master-t-xl-16",
+   "maker": "Busellato",
+   "model": "Jet Master T XL",
+   "variant": "16",
+   "years": "2019",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 216.93,
+    "y": 63.78,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 5510,
+    "y": 1620,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3/4-axis electrospindle 9.5 kW (15 kW option)",
+     "power_kw": 9.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "5-axis electrospindle 10 kW (12 kW option)",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Busellato PC control (CNC make not stated)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 16,
+    "notes": "BT16 on Y carriage; linear option"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/bus_jet_mastert_2019_de_en_fr.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table machining centre (Casadei-Busellato). Z 180 mm standard (250 mm option); max panel Y 1900 mm (2200 option)."
+  }
+ ]
+}

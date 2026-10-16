@@ -1,0 +1,686 @@
+{
+ "maker": "OpenBuilds",
+ "website": "https://openbuilds.com",
+ "machines": [
+  {
+   "id": "openbuilds-lead-1010",
+   "maker": "OpenBuilds",
+   "model": "LEAD CNC",
+   "variant": "1010",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 29,
+    "y": 32,
+    "z": 4
+   },
+   "work_area_mm": {
+    "x": 730,
+    "y": 810,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "OpenBuilds RoutER11 (ER11 trim router)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER11",
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BlackBox Motion Control System X32 (grblHAL)",
+     "gcarve_post": "openbuilds-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": 2
+   },
+   "sources": [
+    "https://web.archive.org/web/20231129163414/https://openbuildspartstore.com/lead-cnc-machine-1010-fully-loaded/"
+   ],
+   "notes": "C-Beam/V-wheel kit, 8 mm ACME leadscrews, NEMA 23 high-torque steppers. Workable material height 2 in (~47 mm) on a 1/2 in spoilboard stack. Accuracy 0.05-0.10 mm. OpenBuilds Part Store is offline; specs from the archived 'Fully Loaded' page.",
+   "estimated": {
+    "z_zero": "CNC Touch probe listed in the Fully Loaded bundle"
+   }
+  },
+  {
+   "id": "openbuilds-lead-1515",
+   "maker": "OpenBuilds",
+   "model": "LEAD CNC",
+   "variant": "1515",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 46,
+    "y": 49,
+    "z": 3.5
+   },
+   "work_area_mm": {
+    "x": 1170,
+    "y": 1250,
+    "z": 90
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "OpenBuilds RoutER11 (ER11 trim router)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER11",
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BlackBox Motion Control System X32 (grblHAL)",
+     "gcarve_post": "openbuilds-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": 2.5
+   },
+   "sources": [
+    "https://web.archive.org/web/20240222000204/https://openbuildspartstore.com/lead-cnc-machine-1515-fully-loaded/"
+   ],
+   "notes": "Lead-screw driven C-Beam kit. Workable material height 2.5 in (~63 mm) on a 1/2 in spoilboard. Accuracy 0.05-0.10 mm. Specs from the archived 'Fully Loaded' page.",
+   "estimated": {
+    "z_zero": "touch probe offered in the Fully Loaded bundle"
+   }
+  },
+  {
+   "id": "openbuilds-minimill",
+   "maker": "OpenBuilds",
+   "model": "MiniMill",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 4.72,
+    "y": 7.09,
+    "z": 3.15
+   },
+   "work_area_mm": {
+    "x": 120,
+    "y": 180,
+    "z": 80
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "OpenBuilds RoutER11 (ER11 trim router)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER11",
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "BlackBox Motion Control System X32 (grblHAL)",
+     "gcarve_post": "openbuilds-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": 2.5
+   },
+   "sources": [
+    "https://web.archive.org/web/2023/https://openbuildspartstore.com/openbuilds-minimill/"
+   ],
+   "notes": "C-Beam desktop mill, 8 mm ACME leadscrews, 3 NEMA 23 steppers, BlackBox X32. Workable material height 2.5 in (~60 mm) on a 1/2 in spoilboard. Footprint 560 x 406 mm.",
+   "estimated": {
+    "work_area_in": "converted from mm; the page's inch figures (4.5 x 7 x 3 in) do not match its mm figures exactly"
+   }
+  },
+  {
+   "id": "openbuilds-c-beam-machine",
+   "maker": "OpenBuilds",
+   "model": "C-Beam Machine",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 11.02,
+    "z": 1.25
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 280,
+    "z": 31.75
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "65 mm compact router, 710 W (customer supplied)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://easel.com/partners/machines/openbuilds-c-beam-cnc"
+   ],
+   "notes": "Discontinued (OpenBuilds shut down). Lead screw drive on all axes, NEMA 23 steppers; no spindle included (65 mm compact 710 W router recommended).",
+   "estimated": {
+    "work_area_in": "converted from mm"
+   }
+  },
+  {
+   "id": "openbuilds-c-beam-xlarge",
+   "maker": "OpenBuilds",
+   "model": "C-Beam Machine XLarge",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 29.53,
+    "y": 12.99,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 750,
+    "y": 330,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router (71 mm mount, Bosch Colt)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://easel.com/partners/machines/openbuilds-c-beam-xlarge",
+    "https://openbuilds.com/builds/c-beam-machine-xlarge.3675/",
+    "https://openbuildspartstore.com/blog/a-wide-addition-the-cbeam-machine-xlarge/"
+   ],
+   "notes": "Discontinued. Mechanical bundle (motors, controller and spindle not included). Z working height over 2 in, usable depth roughly 25 mm per OpenBuilds. Acme lead screws on X/Y, anti-backlash nut block on Z. Frame about 1000 x 500 mm; router mount 71 mm (Bosch Colt).",
+   "estimated": {
+    "work_area_in": "converted from mm"
+   }
+  },
+  {
+   "id": "openbuilds-sphinx-55",
+   "maker": "OpenBuilds",
+   "model": "Sphinx 55",
+   "variant": "500x500",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 13.11,
+    "y": 12.8,
+    "z": 3.35
+   },
+   "work_area_mm": {
+    "x": 333,
+    "y": 325,
+    "z": 85
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "OpenBuilds BlackBox (GRBL), order-time option",
+     "gcarve_post": "openbuilds-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://easel.com/partners/machines/openbuilds-sphinx-55"
+   ],
+   "notes": "Discontinued. Lead screw drive on all axes. Bundle: motors, BlackBox controller and spindle (DeWalt DWP611 or RoutER11) were order-time add-ons.",
+   "estimated": {
+    "work_area_in": "converted from mm"
+   }
+  },
+  {
+   "id": "openbuilds-sphinx-1050",
+   "maker": "OpenBuilds",
+   "model": "Sphinx 1050",
+   "variant": "500x1000",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 32.81,
+    "y": 12.8,
+    "z": 3.35
+   },
+   "work_area_mm": {
+    "x": 833.5,
+    "y": 325,
+    "z": 85
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt/leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "OpenBuilds BlackBox (GRBL), order-time option",
+     "gcarve_post": "openbuilds-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://easel.com/partners/machines/openbuilds-sphinx-1050"
+   ],
+   "notes": "Discontinued. X on a GT2/3GT timing belt, Y and Z on 8 mm Acme lead screws. Bundle: motors, BlackBox controller and DeWalt DWP611 were order-time add-ons.",
+   "estimated": {
+    "work_area_in": "converted from mm"
+   }
+  },
+  {
+   "id": "openbuilds-workbee-1010",
+   "maker": "OpenBuilds",
+   "model": "WorkBee",
+   "variant": "1010",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 32.44,
+    "y": 30.71,
+    "z": 4.8
+   },
+   "work_area_mm": {
+    "x": 824,
+    "y": 780,
+    "z": 122
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "OpenBuilds BlackBox (GRBL), order-time option",
+     "gcarve_post": "openbuilds-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://easel.com/partners/machines/openbuilds-workbee-1010"
+   ],
+   "notes": "Discontinued OpenBuilds-sold WorkBee (open-source design by Ooznest's Ryan Lock). Lead screws on all axes. Motors, BlackBox and RoutER11 were order-time add-ons.",
+   "estimated": {
+    "work_area_in": "converted from mm"
+   }
+  },
+  {
+   "id": "openbuilds-workbee-1050",
+   "maker": "OpenBuilds",
+   "model": "WorkBee",
+   "variant": "1050",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 12.48,
+    "y": 30,
+    "z": 4.8
+   },
+   "work_area_mm": {
+    "x": 317,
+    "y": 762,
+    "z": 122
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "OpenBuilds BlackBox (GRBL), order-time option",
+     "gcarve_post": "openbuilds-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://easel.com/partners/machines/openbuilds-workbee-1050"
+   ],
+   "notes": "Discontinued OpenBuilds-sold WorkBee. Lead screws on all axes. Motors, BlackBox and DeWalt DWP611 were order-time add-ons.",
+   "estimated": {
+    "work_area_in": "converted from mm"
+   }
+  },
+  {
+   "id": "openbuilds-workbee-1510",
+   "maker": "OpenBuilds",
+   "model": "WorkBee",
+   "variant": "1510",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 32.44,
+    "y": 50.39,
+    "z": 2.99
+   },
+   "work_area_mm": {
+    "x": 824,
+    "y": 1280,
+    "z": 76
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "OpenBuilds BlackBox (GRBL), order-time option",
+     "gcarve_post": "openbuilds-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://easel.com/partners/machines/openbuilds-workbee-1510"
+   ],
+   "notes": "Discontinued OpenBuilds-sold WorkBee. GT3 belts on X/Y, 8 mm Acme lead screw on Z. Motors, BlackBox and RoutER11/DWP611 were order-time add-ons.",
+   "estimated": {
+    "work_area_in": "converted from mm"
+   }
+  }
+ ]
+}

@@ -1,0 +1,695 @@
+{
+ "maker": "Larken Automation",
+ "website": "http://www.larkencnc.com",
+ "machines": [
+  {
+   "id": "larken-system-60",
+   "maker": "Larken Automation",
+   "model": "System 60",
+   "variant": "50 x 60 in",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 50,
+    "y": 60,
+    "z": 10
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 1524,
+    "z": 254
+   },
+   "gantry_clearance_in": 6,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Bosch 1617EVS 2 HP variable speed router",
+     "power_kw": 1.49,
+     "power_hp": 2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "3 HP Porter-Cable router",
+     "power_kw": 2.24,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "5 HP Elte spindle",
+     "power_kw": 3.73,
+     "power_hp": 5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "7.5 HP Colombo high-frequency spindle",
+     "power_kw": 5.59,
+     "power_hp": 7.5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 400,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 10160,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "StarCam / StarCNC Windows controller (Larken)",
+     "gcarve_post": "starcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps",
+     "spoilboard",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://members.storm.ca/~larken/sys60/index.shtml",
+    "https://members.storm.ca/~larken/camtools.htm"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Aluminum-extrusion gantry, Thomson linear bearings, zero-backlash rack and pinion, 650 oz-in Pacific Scientific steppers (DC servo option). Z 10 in stroke (20 in option), 6 in clearance, removable centre table for parts up to 24 in high. Stepper speeds; servo option: 800 in/min cut, 1200 in/min rapid. Table 64 x 78 in. Repeatability +/-0.001 in."
+  },
+  {
+   "id": "larken-system-100",
+   "maker": "Larken Automation",
+   "model": "System 100",
+   "variant": "50 x 100 in",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 50,
+    "y": 100,
+    "z": 10
+   },
+   "work_area_mm": {
+    "x": 1270,
+    "y": 2540,
+    "z": 254
+   },
+   "gantry_clearance_in": 6,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Bosch 1617EVS 2 HP variable speed router",
+     "power_kw": 1.49,
+     "power_hp": 2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "3 HP Porter-Cable router",
+     "power_kw": 2.24,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "5 HP Elte spindle",
+     "power_kw": 3.73,
+     "power_hp": 5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "7.5 HP Colombo high-frequency spindle",
+     "power_kw": 5.59,
+     "power_hp": 7.5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 240,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 6096,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "StarCam / StarCNC Windows controller (Larken)",
+     "gcarve_post": "starcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps",
+     "spoilboard",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://members.storm.ca/~larken/sys100/index.shtml",
+    "https://members.storm.ca/~larken/camtools.htm"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Aluminum-extrusion gantry, Thomson linear bearings, zero-backlash rack and pinion, 650 oz-in Pacific Scientific steppers (DC servo option). Z 10 in stroke (20 in option), 6 in clearance, removable centre table for parts up to 24 in high. Stepper speeds; servo option: 600 in/min cut, 800 in/min rapid. Repeatability +/-0.002 in. Table 64 x 120 in. camtools page lists 50 x 98 in."
+  },
+  {
+   "id": "larken-system-120",
+   "maker": "Larken Automation",
+   "model": "System 120",
+   "variant": "62 x 122 in",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 62,
+    "y": 122,
+    "z": 10
+   },
+   "work_area_mm": {
+    "x": 1575,
+    "y": 3099,
+    "z": 254
+   },
+   "gantry_clearance_in": 6,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Bosch 1617EVS 2 HP variable speed router",
+     "power_kw": 1.49,
+     "power_hp": 2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "3 HP Porter-Cable router",
+     "power_kw": 2.24,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "5 HP Elte spindle",
+     "power_kw": 3.73,
+     "power_hp": 5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "7.5 HP Colombo high-frequency spindle",
+     "power_kw": 5.59,
+     "power_hp": 7.5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 240,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 6096,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "StarCam / StarCNC Windows controller (Larken)",
+     "gcarve_post": "starcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps",
+     "spoilboard",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://members.storm.ca/~larken/sys100/index.shtml",
+    "https://members.storm.ca/~larken/camtools.htm"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Aluminum-extrusion gantry, Thomson linear bearings, zero-backlash rack and pinion, 650 oz-in Pacific Scientific steppers (DC servo option). Z 10 in stroke (20 in option), 6 in clearance, removable centre table for parts up to 24 in high. Stepper speeds; servo option: 600 in/min cut, 800 in/min rapid. Repeatability +/-0.002 in. Table 76 x 144 in."
+  },
+  {
+   "id": "larken-system-150",
+   "maker": "Larken Automation",
+   "model": "System 150",
+   "variant": "76 x 146 in",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 76,
+    "y": 146,
+    "z": 10
+   },
+   "work_area_mm": {
+    "x": 1930,
+    "y": 3708,
+    "z": 254
+   },
+   "gantry_clearance_in": 6,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Bosch 1617EVS 2 HP variable speed router",
+     "power_kw": 1.49,
+     "power_hp": 2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "3 HP Porter-Cable router",
+     "power_kw": 2.24,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "5 HP Elte spindle",
+     "power_kw": 3.73,
+     "power_hp": 5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "7.5 HP Colombo high-frequency spindle",
+     "power_kw": 5.59,
+     "power_hp": 7.5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 240,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 6096,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "StarCam / StarCNC Windows controller (Larken)",
+     "gcarve_post": "starcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps",
+     "spoilboard",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://members.storm.ca/~larken/sys100/index.shtml",
+    "https://members.storm.ca/~larken/camtools.htm"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Aluminum-extrusion gantry, Thomson linear bearings, zero-backlash rack and pinion, 650 oz-in Pacific Scientific steppers (DC servo option). Z 10 in stroke (20 in option), 6 in clearance, removable centre table for parts up to 24 in high. Stepper speeds; servo option: 600 in/min cut, 800 in/min rapid. Repeatability +/-0.002 in. Table size not given."
+  },
+  {
+   "id": "larken-labbot-16",
+   "maker": "Larken Automation",
+   "model": "Lab-Bot",
+   "variant": "16-16",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 16,
+    "y": 16,
+    "z": 4
+   },
+   "work_area_mm": {
+    "x": 406,
+    "y": 406,
+    "z": 102
+   },
+   "gantry_clearance_in": 6,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Bosch 1 HP router, 8000-24000 rpm",
+     "power_kw": 0.75,
+     "power_hp": 1,
+     "rpm_min": 8000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 100,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 2540,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "StarCNC USB Windows controller (Larken)",
+     "gcarve_post": "starcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "threaded inserts",
+     "T-track"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://members.storm.ca/~larken/cam15/index.shtml"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Educational table-top router; drilled and tapped aluminum plate, table space 24 x 30 in."
+  },
+  {
+   "id": "larken-camtool-24-24",
+   "maker": "Larken Automation",
+   "model": "Camtool",
+   "variant": "24-24R",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 24.5,
+    "y": 24.5,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 622,
+    "y": 622,
+    "z": 178
+   },
+   "gantry_clearance_in": 6.5,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Bosch or Hitachi 2 HP variable speed router",
+     "power_kw": 1.49,
+     "power_hp": 2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2.7 HP Teknomotor router spindle with inverter (220 V)",
+     "power_kw": 2.01,
+     "power_hp": 2.7,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 150,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 3810,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "StarCam / StarCNC Windows controller (Larken)",
+     "gcarve_post": "starcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "threaded inserts"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://members.storm.ca/~larken/cam24/index.shtml"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Table-top router, 280 oz-in micro-step steppers, drilled and tapped aluminum plate, footprint 30 x 38 in."
+  }
+ ]
+}

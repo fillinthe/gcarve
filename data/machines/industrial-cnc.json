@@ -1,0 +1,456 @@
+{
+ "maker": "Industrial CNC",
+ "website": "https://www.industrialcnc.com",
+ "machines": [
+  {
+   "id": "industrial-cnc-short-cut-203",
+   "maker": "Industrial CNC",
+   "model": "Short Cut 203",
+   "variant": "2x3",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 25,
+    "y": 37,
+    "z": 12
+   },
+   "work_area_mm": {
+    "x": 635,
+    "y": 940,
+    "z": 305
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "High-frequency liquid-cooled variable-speed spindle with VFD",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 2000,
+     "rpm_max": 24000,
+     "collet": "ER",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Windows PC controller (point-and-click, G-code; software brand not published)",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Hand-held pendant (option)",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "8-station ATC available as an accessory (not on every model)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps",
+     "vacuum"
+    ],
+    "max_material_thickness_in": 12
+   },
+   "sources": [
+    "https://www.industrialcnc.com/CNC-Routers/2X3-Router.html"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "spindles": "rpm range from the VFD spec on the 4x8 page"
+   },
+   "notes": "Pro Series (Ohio). Table 46 x 48 in. Posi-Trac dual drive on the long axis, NEMA 34 steppers through reduction gearing, primary gear micro-precision rack and pinion X/Y, ball screw Z. Gantry clearance 12 in standard, custom up to 60 in. Zoned vacuum bed optional. Spindle kW not published."
+  },
+  {
+   "id": "industrial-cnc-apprentice-404",
+   "maker": "Industrial CNC",
+   "model": "Apprentice 404",
+   "variant": "4x4",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 48,
+    "y": 48,
+    "z": 12
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 1219,
+    "z": 305
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "High-frequency liquid-cooled variable-speed spindle with VFD",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 2000,
+     "rpm_max": 24000,
+     "collet": "ER",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 900,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 22860,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Windows PC controller (point-and-click, G-code; software brand not published)",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Hand-held pendant (option)",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "8-station ATC available as an accessory (not on every model)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps",
+     "vacuum"
+    ],
+    "max_material_thickness_in": 12
+   },
+   "sources": [
+    "https://www.industrialcnc.com/CNC-Routers/4X4-Router.html"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "spindles": "rpm range from the VFD spec on the 4x8 page"
+   },
+   "notes": "Pro Series (Ohio). Table 52 x 52 in. Posi-Trac dual drive on the long axis, NEMA 34 steppers through reduction gearing, primary gear micro-precision rack and pinion X/Y, ball screw Z. Gantry clearance 12 in standard, custom up to 60 in. Zoned vacuum bed optional. Spindle kW not published."
+  },
+  {
+   "id": "industrial-cnc-artisan-408",
+   "maker": "Industrial CNC",
+   "model": "Artisan 408",
+   "variant": "4x8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48,
+    "y": 96,
+    "z": 12
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 2438,
+    "z": 305
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "High-frequency liquid-cooled variable-speed spindle with VFD",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 2000,
+     "rpm_max": 24000,
+     "collet": "ER",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 900,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 22860,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Windows PC controller (point-and-click, G-code; software brand not published)",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Hand-held pendant (option)",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "8-station ATC available as an accessory (not on every model)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps",
+     "vacuum"
+    ],
+    "max_material_thickness_in": 12
+   },
+   "sources": [
+    "https://www.industrialcnc.com/CNC-Routers/4X8-Router.html"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "spindles": "rpm range from the VFD spec on the 4x8 page"
+   },
+   "notes": "Pro Series (Ohio). Table 60 x 110 in. Posi-Trac dual drive on the long axis, NEMA 34 steppers through reduction gearing, primary gear micro-precision rack and pinion X/Y, ball screw Z. Gantry clearance 12 in standard, custom up to 60 in. Zoned vacuum bed optional. Spindle kW not published."
+  },
+  {
+   "id": "industrial-cnc-craftsman-510",
+   "maker": "Industrial CNC",
+   "model": "Craftsman 510",
+   "variant": "5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": 12
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": 305
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "High-frequency liquid-cooled variable-speed spindle with VFD",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 2000,
+     "rpm_max": 24000,
+     "collet": "ER",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 900,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 22860,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Windows PC controller (point-and-click, G-code; software brand not published)",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Hand-held pendant (option)",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "8-station ATC available as an accessory (not on every model)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps",
+     "vacuum"
+    ],
+    "max_material_thickness_in": 12
+   },
+   "sources": [
+    "https://www.industrialcnc.com/CNC-Routers/5X10-Router.html"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "spindles": "rpm range from the VFD spec on the 4x8 page"
+   },
+   "notes": "Pro Series (Ohio). Table 69 x 137 in. Posi-Trac dual drive on the long axis, NEMA 34 steppers through reduction gearing, primary gear micro-precision rack and pinion X/Y, ball screw Z. Gantry clearance 12 in standard, custom up to 60 in. Zoned vacuum bed optional. Spindle kW not published."
+  },
+  {
+   "id": "industrial-cnc-craftmaster-612",
+   "maker": "Industrial CNC",
+   "model": "Craftmaster 612",
+   "variant": "6x12",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 73,
+    "y": 144,
+    "z": 12
+   },
+   "work_area_mm": {
+    "x": 1854,
+    "y": 3658,
+    "z": 305
+   },
+   "gantry_clearance_in": 12,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "High-frequency liquid-cooled variable-speed spindle with VFD",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 2000,
+     "rpm_max": 24000,
+     "collet": "ER",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 900,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 22860,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Windows PC controller (point-and-click, G-code; software brand not published)",
+     "gcarve_post": null,
+     "default": true
+    },
+    {
+     "name": "Hand-held pendant (option)",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "8-station ATC available as an accessory (not on every model)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "clamps",
+     "vacuum"
+    ],
+    "max_material_thickness_in": 12
+   },
+   "sources": [
+    "https://www.industrialcnc.com/CNC-Routers/6X12-Router.html"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "spindles": "rpm range from the VFD spec on the 4x8 page"
+   },
+   "notes": "Pro Series (Ohio). Table 85 x 186 in. Posi-Trac dual drive on the long axis, NEMA 34 steppers through reduction gearing, primary gear micro-precision rack and pinion X/Y, ball screw Z. Gantry clearance 12 in standard, custom up to 60 in. Zoned vacuum bed optional. Spindle kW not published."
+  }
+ ]
+}

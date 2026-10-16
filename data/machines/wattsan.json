@@ -1,0 +1,1464 @@
+{
+ "maker": "Wattsan",
+ "website": "https://wattsan.com",
+ "machines": [
+  {
+   "id": "wattsan-0404-mini",
+   "maker": "Wattsan",
+   "model": "0404 MINI",
+   "variant": "400x400",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 15.75,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 400,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "1.5 kW spindle",
+     "power_kw": 1.5,
+     "power_hp": 2.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 236.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 6000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Weihong NcStudio",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wattsan.com/product/wattsan-0404-mini/",
+    "https://wattsan.com/products/cnc-routers/"
+   ],
+   "notes": "Gearbox: none. Closed-loop steppers optional. Cast-iron gantry supports; Leadshine DMA860H drivers; 220 V. The series comparison table lists DSP A11 and 7000 mm/min instead (product page values used).",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "rapid_mm_min": "published as 'idle speed'"
+   }
+  },
+  {
+   "id": "wattsan-0609-mini",
+   "maker": "Wattsan",
+   "model": "0609 MINI",
+   "variant": "600x900",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 35.43,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 900,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW spindle",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 236.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 6000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wattsan.com/product/wattsan-0609-mini/",
+    "https://wattsan.com/products/cnc-routers/"
+   ],
+   "notes": "Gearbox: none. Closed-loop steppers optional. 220 V. The series comparison table lists 7000 mm/min (product page value used).",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "rapid_mm_min": "published as 'idle speed'"
+   }
+  },
+  {
+   "id": "wattsan-a1-6090",
+   "maker": "Wattsan",
+   "model": "A1 6090",
+   "variant": "600x900",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 35.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 900,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW spindle",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 591.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wattsan.com/product/wattsan-a1-6090/",
+    "https://wattsan.com/products/cnc-routers/"
+   ],
+   "notes": "Gearbox: belt. Closed-loop steppers optional. Welded steel bed; 2 vacuum zones listed with a 5.5 kW pump.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "rapid_mm_min": "published as 'idle speed'"
+   }
+  },
+  {
+   "id": "wattsan-a1-1313",
+   "maker": "Wattsan",
+   "model": "A1 1313",
+   "variant": "1300x1300",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 51.18,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 1300,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW spindle",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 591.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wattsan.com/product/wattsan-a1-1313/",
+    "https://wattsan.com/products/cnc-routers/"
+   ],
+   "notes": "Gearbox: belt. Closed-loop steppers optional. 4 vacuum zones, 5.5 kW pump.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "rapid_mm_min": "published as 'idle speed'"
+   }
+  },
+  {
+   "id": "wattsan-a1-1616",
+   "maker": "Wattsan",
+   "model": "A1 1616",
+   "variant": "1600x1600",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 62.99,
+    "y": 62.99,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1600,
+    "y": 1600,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3.2 kW spindle",
+     "power_kw": 3.2,
+     "power_hp": 4.3,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 591.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wattsan.com/product/wattsan-a1-1616/",
+    "https://wattsan.com/products/cnc-routers/"
+   ],
+   "notes": "Gearbox: belt. Closed-loop steppers optional. 4 vacuum zones, 5.5 kW pump. Idle speed from the series comparison table (not on the product page).",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "rapid_mm_min": "published as 'idle speed'"
+   }
+  },
+  {
+   "id": "wattsan-a1-1325",
+   "maker": "Wattsan",
+   "model": "A1 1325",
+   "variant": "1300x2500",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 591.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wattsan.com/product/wattsan-a1-1325/",
+    "https://wattsan.com/products/cnc-routers/"
+   ],
+   "notes": "Gearbox: belt. Closed-loop steppers optional. 6 vacuum zones, 5.5 kW pump. Comparison table lists 3.2 kW spindle; product page 3 kW.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "rapid_mm_min": "published as 'idle speed'"
+   }
+  },
+  {
+   "id": "wattsan-m1-6090",
+   "maker": "Wattsan",
+   "model": "M1 6090",
+   "variant": "600x900",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 35.43,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 900,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW spindle",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wattsan.com/product/wattsan-m1-6090/",
+    "https://wattsan.com/products/cnc-routers/"
+   ],
+   "notes": "Gearbox: Nidec-Shimpo planetary. Closed-loop steppers optional. ",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "rapid_mm_min": "published as 'idle speed'"
+   }
+  },
+  {
+   "id": "wattsan-m1-1313",
+   "maker": "Wattsan",
+   "model": "M1 1313",
+   "variant": "1300x1300",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 51.18,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 1300,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3 kW spindle",
+     "power_kw": 3,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wattsan.com/product/wattsan-m1-1313/",
+    "https://wattsan.com/products/cnc-routers/"
+   ],
+   "notes": "Gearbox: Nidec-Shimpo planetary. Closed-loop steppers optional. Comparison table lists 3.2 kW spindle; product page 3 kW.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "rapid_mm_min": "published as 'idle speed'"
+   }
+  },
+  {
+   "id": "wattsan-m1-1313-s4",
+   "maker": "Wattsan",
+   "model": "M1 1313 S4",
+   "variant": "1300x1300",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 51.18,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 1300,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4.5 kW spindle",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER32",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wattsan.com/product/wattsan-m1-1313-s4/",
+    "https://wattsan.com/products/cnc-routers/"
+   ],
+   "notes": "Gearbox: Nidec-Shimpo planetary. Closed-loop steppers optional. ",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "rapid_mm_min": "published as 'idle speed'"
+   }
+  },
+  {
+   "id": "wattsan-m1-1325",
+   "maker": "Wattsan",
+   "model": "M1 1325",
+   "variant": "1300x2500",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4.5 kW spindle",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER20",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wattsan.com/product/wattsan-m1-1325/",
+    "https://wattsan.com/products/cnc-routers/"
+   ],
+   "notes": "Gearbox: Nidec-Shimpo planetary. Closed-loop steppers optional. 6 vacuum zones, 5.5 kW pump; 380 V; positioning +/-0.015 mm per maker test report.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "rapid_mm_min": "published as 'idle speed'"
+   }
+  },
+  {
+   "id": "wattsan-m1-1325-rd",
+   "maker": "Wattsan",
+   "model": "M1 1325 RD",
+   "variant": "1300x2500 with rotary",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4.5 kW spindle",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER32",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A18",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wattsan.com/product/wattsan-m1-1325-rd/",
+    "https://wattsan.com/products/cnc-routers/"
+   ],
+   "notes": "Gearbox: Nidec-Shimpo planetary. Closed-loop steppers optional. 4-axis with rotary device; 7.5 kW vacuum pump.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "rapid_mm_min": "published as 'idle speed'"
+   }
+  },
+  {
+   "id": "wattsan-m1-1616",
+   "maker": "Wattsan",
+   "model": "M1 1616",
+   "variant": "1600x1600",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 62.99,
+    "y": 62.99,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1600,
+    "y": 1600,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4.5 kW spindle",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER32",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wattsan.com/product/wattsan-m1-1616/",
+    "https://wattsan.com/products/cnc-routers/"
+   ],
+   "notes": "Gearbox: Nidec-Shimpo planetary. Closed-loop steppers optional. Comparison table lists DSP A18; product page RichAuto A11.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "rapid_mm_min": "published as 'idle speed'"
+   }
+  },
+  {
+   "id": "wattsan-m1-1616-s2-x",
+   "maker": "Wattsan",
+   "model": "M1 1616 S2 X",
+   "variant": "1600x1600 twin spindle",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 62.99,
+    "y": 62.99,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1600,
+    "y": 1600,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4.5 kW spindle (x2)",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER32",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto F7324",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "multi-head",
+    "slots": 2,
+    "notes": "Two spindles"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wattsan.com/product/wattsan-m1-s2-x/",
+    "https://wattsan.com/products/cnc-routers/"
+   ],
+   "notes": "Gearbox: Nidec-Shimpo planetary. Closed-loop steppers optional. Two spindles. Comparison table lists 3.2 kW spindles; product page 4.5 kW x2.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "rapid_mm_min": "published as 'idle speed'"
+   }
+  },
+  {
+   "id": "wattsan-m1-2030",
+   "maker": "Wattsan",
+   "model": "M1 2030",
+   "variant": "2000x3000",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 kW spindle",
+     "power_kw": 6,
+     "power_hp": 8.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER32",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wattsan.com/product/wattsan-m1-2030/",
+    "https://wattsan.com/products/cnc-routers/"
+   ],
+   "notes": "Gearbox: Nidec-Shimpo planetary. Closed-loop steppers optional. 8 vacuum zones.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "rapid_mm_min": "published as 'idle speed'"
+   }
+  },
+  {
+   "id": "wattsan-m1-2040",
+   "maker": "Wattsan",
+   "model": "M1 2040",
+   "variant": "2000x4000",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 kW spindle",
+     "power_kw": 6,
+     "power_hp": 8.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "ER32",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wattsan.com/product/wattsan-m1-2040/",
+    "https://wattsan.com/products/cnc-routers/"
+   ],
+   "notes": "Gearbox: Nidec-Shimpo planetary. Closed-loop steppers optional. 10 vacuum zones, 2 x 7.5 kW pumps.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "rapid_mm_min": "published as 'idle speed'"
+   }
+  },
+  {
+   "id": "wattsan-m2-1616",
+   "maker": "Wattsan",
+   "model": "M2 1616",
+   "variant": "1600x1600",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 62.99,
+    "y": 62.99,
+    "z": 15.75
+   },
+   "work_area_mm": {
+    "x": 1600,
+    "y": 1600,
+    "z": 400
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4.5 kW spindle",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": 15000,
+     "collet": "ER32",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "RichAuto DSP A11",
+     "gcarve_post": "richauto-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wattsan.com/product/wattsan-m2-1616/",
+    "https://wattsan.com/products/cnc-routers/"
+   ],
+   "notes": "Gearbox: Nidec-Shimpo planetary. 0.75 kW servos; automatic lubrication; operator desk.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "rapid_mm_min": "published as 'idle speed'"
+   }
+  },
+  {
+   "id": "wattsan-m3-1325",
+   "maker": "Wattsan",
+   "model": "M3 1325",
+   "variant": "1300x2500 ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4.5 kW air-cooled spindle",
+     "power_kw": 4.5,
+     "power_hp": 6.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": "BT40",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 984.0,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 25000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Weihong NcStudio 8 (PM95A-4A + Lambda4S)",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "Linear tool changer (slots not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wattsan.com/product/wattsan-m3-1325/",
+    "https://wattsan.com/products/cnc-routers/"
+   ],
+   "notes": "Gearbox: Nidec-Shimpo planetary. Linear ATC on standalone machines (turret on conveyor lines); 0.75 kW servos. Series comparison table instead lists 7.5 kW spindle, Syntec and 60000 mm/min (product page values used).",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min",
+    "spindles.power_hp": "converted from kW",
+    "rapid_mm_min": "published as 'idle speed'"
+   }
+  }
+ ]
+}

@@ -1,0 +1,241 @@
+{
+ "maker": "Maslow",
+ "website": "https://www.maslowcnc.com",
+ "machines": [
+  {
+   "id": "maslow-4",
+   "maker": "Maslow",
+   "model": "Maslow 4",
+   "variant": "4.1",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 96,
+    "y": 48,
+    "z": 2.6
+   },
+   "work_area_mm": {
+    "x": 2400,
+    "y": 1200,
+    "z": 65
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "DeWalt DWP611 (D26200 for 240 V), not included",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 98.43,
+    "z": 11.81
+   },
+   "max_feed_mm_min": {
+    "xy": 2500,
+    "z": 300
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "FluidNC (Maslow 5-axis controller)",
+     "gcarve_post": "maslow-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "screws"
+    ],
+    "max_material_thickness_in": 2.75
+   },
+   "sources": [
+    "https://www.maslowcnc.com/about-maslow4",
+    "https://www.maslowcnc.com/faq"
+   ],
+   "estimated": {
+    "max_feed_ipm": "converted from mm/min; the page prints 100 ipm / 11 ipm (300 mm/min is 11.8 ipm)",
+    "work_area_in": "4x8 ft as published (x = 8 ft)",
+    "motors": "belt axes use 24 V gearmotors with planetary gearboxes (encoder type not stated); Z uses two steppers"
+   },
+   "notes": "Hanging/flat belt-positioned sled: four steel-reinforced belts to anchors (frame or floor), automatic calibration. Work area 1.2x2.4 m nominal, scalable by anchor layout; must stay 1 ft from anchors. Z travel listed as 65 mm but text says 50 mm; FAQ gives max material thickness 70 mm. Precision +/-0.5 mm. Typical cutting feed 2000 mm/min."
+  },
+  {
+   "id": "maslow-original",
+   "maker": "Maslow",
+   "model": "Maslow (original kit)",
+   "variant": null,
+   "years": "2017-",
+   "class": "hobby",
+   "work_area_in": {
+    "x": 96,
+    "y": 48,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2438,
+    "y": 1219,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Ridgid R2200 router (recommended, customer supplied)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "roller chain (hanging sled)",
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Arduino Mega + Maslow firmware (Ground Control)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "screws"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://easel.com/partners/machines/maslow-maslow-original",
+    "https://en.wikipedia.org/wiki/Maslow_CNC"
+   ],
+   "notes": "Retired 2017 Kickstarter kit: vertical 4 x 8 ft work space, two #25 roller chains and a triangulation sled instead of a gantry (size changes with chain length). No router included (Ridgid R2200 recommended; AEG MF 1400 KE in the EU); cutting depth limited by the router plunge, about 1.5 in. Z-axis motor kit was an add-on.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "maslow-m2",
+   "maker": "Maslow",
+   "model": "M2 (MakerMade)",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 96,
+    "y": 48,
+    "z": 3.8
+   },
+   "work_area_mm": {
+    "x": 2438,
+    "y": 1219,
+    "z": 96.5
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router (65 mm clamp; 71/91 mm options)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "roller chain (hanging sled)",
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Arduino DUE v1.2 control shield (Maslow/GRBL-style firmware)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "screws"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://easel.com/partners/machines/maslow-m2"
+   ],
+   "notes": "Made by MakerMade as the successor to the original Maslow design. Cutting volume 4 x 8 ft x 3.8 in (1.22 x 2.44 m x 9.65 cm). Industrial drive motors on all three axes, 11 ft chains (15 ft available), all-metal Z, Arduino DUE v1.2 control shield. Router not included (65 mm clamp standard, 71/91 mm available).",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  }
+ ]
+}

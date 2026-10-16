@@ -1,0 +1,3626 @@
+{
+ "maker": "Weeke",
+ "website": "https://www.homag.com",
+ "machines": [
+  {
+   "id": "weeke-venture-05-s",
+   "maker": "Weeke",
+   "model": "Venture 05",
+   "variant": "S",
+   "years": "2009",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 98.82,
+    "y": 49.21,
+    "z": 3.35
+   },
+   "work_area_mm": {
+    "x": 2510,
+    "y": 1250,
+    "z": 85
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 kW ETP routing spindle",
+     "power_kw": 6,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture_05_06_07_08_2009_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC centre; work area = max workpiece size. Vector speed X/Y 80 m/min. 6 kW ETP routing spindle."
+  },
+  {
+   "id": "weeke-venture-05-m",
+   "maker": "Weeke",
+   "model": "Venture 05",
+   "variant": "M",
+   "years": "2009",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 123.23,
+    "y": 49.21,
+    "z": 3.35
+   },
+   "work_area_mm": {
+    "x": 3130,
+    "y": 1250,
+    "z": 85
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 kW ETP routing spindle",
+     "power_kw": 6,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture_05_06_07_08_2009_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC centre; work area = max workpiece size. Vector speed X/Y 80 m/min. 6 kW ETP routing spindle."
+  },
+  {
+   "id": "weeke-venture-06-s",
+   "maker": "Weeke",
+   "model": "Venture 06",
+   "variant": "S",
+   "years": "2009",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 98.82,
+    "y": 49.21,
+    "z": 3.35
+   },
+   "work_area_mm": {
+    "x": 2510,
+    "y": 1250,
+    "z": 85
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK routing spindle",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture_05_06_07_08_2009_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC centre; work area = max workpiece size. Vector speed X/Y 80 m/min. 9 kW HSK routing spindle."
+  },
+  {
+   "id": "weeke-venture-06-m",
+   "maker": "Weeke",
+   "model": "Venture 06",
+   "variant": "M",
+   "years": "2009",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 123.23,
+    "y": 49.21,
+    "z": 3.35
+   },
+   "work_area_mm": {
+    "x": 3130,
+    "y": 1250,
+    "z": 85
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK routing spindle",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture_05_06_07_08_2009_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC centre; work area = max workpiece size. Vector speed X/Y 80 m/min. 9 kW HSK routing spindle."
+  },
+  {
+   "id": "weeke-venture-07-s",
+   "maker": "Weeke",
+   "model": "Venture 07",
+   "variant": "S",
+   "years": "2009",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 98.82,
+    "y": 49.21,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 2510,
+    "y": 1250,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK spindle, 2 x 8-fold changer",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture_05_06_07_08_2009_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC centre; work area = max workpiece size. Vector speed X/Y 80 m/min. 9 kW HSK spindle, 2 x 8-fold changer."
+  },
+  {
+   "id": "weeke-venture-07-m",
+   "maker": "Weeke",
+   "model": "Venture 07",
+   "variant": "M",
+   "years": "2009",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 123.23,
+    "y": 49.21,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 3130,
+    "y": 1250,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK spindle, 2 x 8-fold changer",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture_05_06_07_08_2009_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC centre; work area = max workpiece size. Vector speed X/Y 80 m/min. 9 kW HSK spindle, 2 x 8-fold changer."
+  },
+  {
+   "id": "weeke-venture-08-s",
+   "maker": "Weeke",
+   "model": "Venture 08",
+   "variant": "S",
+   "years": "2009",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 98.82,
+    "y": 49.21,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 2510,
+    "y": 1250,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK spindle, C-axis 360°",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture_05_06_07_08_2009_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC centre; work area = max workpiece size. Vector speed X/Y 80 m/min. 9 kW HSK spindle, C-axis 360°."
+  },
+  {
+   "id": "weeke-venture-08-m",
+   "maker": "Weeke",
+   "model": "Venture 08",
+   "variant": "M",
+   "years": "2009",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 123.23,
+    "y": 49.21,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 3130,
+    "y": 1250,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK spindle, C-axis 360°",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture_05_06_07_08_2009_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC centre; work area = max workpiece size. Vector speed X/Y 80 m/min. 9 kW HSK spindle, C-axis 360°."
+  },
+  {
+   "id": "weeke-venture-1-m",
+   "maker": "Weeke",
+   "model": "Venture 1",
+   "variant": "M",
+   "years": "2009",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 127.95,
+    "y": 49.21,
+    "z": 4.92
+   },
+   "work_area_mm": {
+    "x": 3250,
+    "y": 1250,
+    "z": 125
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK routing spindle",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture1_2_3_4_2009_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC centre; work area = max workpiece size (travel X 3860 mm). Vector speed X/Y 110 m/min. 9 kW HSK routing spindle."
+  },
+  {
+   "id": "weeke-venture-1-l",
+   "maker": "Weeke",
+   "model": "Venture 1",
+   "variant": "L",
+   "years": "2009",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 167.32,
+    "y": 49.21,
+    "z": 4.92
+   },
+   "work_area_mm": {
+    "x": 4250,
+    "y": 1250,
+    "z": 125
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK routing spindle",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture1_2_3_4_2009_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC centre; work area = max workpiece size (travel X 4860 mm). Vector speed X/Y 110 m/min. 9 kW HSK routing spindle."
+  },
+  {
+   "id": "weeke-venture-1-xl",
+   "maker": "Weeke",
+   "model": "Venture 1",
+   "variant": "XL",
+   "years": "2009",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 206.69,
+    "y": 49.21,
+    "z": 4.92
+   },
+   "work_area_mm": {
+    "x": 5250,
+    "y": 1250,
+    "z": 125
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK routing spindle",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture1_2_3_4_2009_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC centre; work area = max workpiece size (travel X 5860 mm). Vector speed X/Y 110 m/min. 9 kW HSK routing spindle."
+  },
+  {
+   "id": "weeke-venture-2-m",
+   "maker": "Weeke",
+   "model": "Venture 2",
+   "variant": "M",
+   "years": "2009",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 127.95,
+    "y": 49.21,
+    "z": 4.92
+   },
+   "work_area_mm": {
+    "x": 3250,
+    "y": 1250,
+    "z": 125
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK spindle, C-axis 360°",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture1_2_3_4_2009_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC centre; work area = max workpiece size (travel X 3860 mm). Vector speed X/Y 110 m/min. 9 kW HSK spindle, C-axis 360°."
+  },
+  {
+   "id": "weeke-venture-2-l",
+   "maker": "Weeke",
+   "model": "Venture 2",
+   "variant": "L",
+   "years": "2009",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 167.32,
+    "y": 49.21,
+    "z": 4.92
+   },
+   "work_area_mm": {
+    "x": 4250,
+    "y": 1250,
+    "z": 125
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK spindle, C-axis 360°",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture1_2_3_4_2009_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC centre; work area = max workpiece size (travel X 4860 mm). Vector speed X/Y 110 m/min. 9 kW HSK spindle, C-axis 360°."
+  },
+  {
+   "id": "weeke-venture-2-xl",
+   "maker": "Weeke",
+   "model": "Venture 2",
+   "variant": "XL",
+   "years": "2009",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 206.69,
+    "y": 49.21,
+    "z": 4.92
+   },
+   "work_area_mm": {
+    "x": 5250,
+    "y": 1250,
+    "z": 125
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK spindle, C-axis 360°",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture1_2_3_4_2009_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC centre; work area = max workpiece size (travel X 5860 mm). Vector speed X/Y 110 m/min. 9 kW HSK spindle, C-axis 360°."
+  },
+  {
+   "id": "weeke-venture-3-m",
+   "maker": "Weeke",
+   "model": "Venture 3",
+   "variant": "M",
+   "years": "2009",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 127.95,
+    "y": 49.21,
+    "z": 4.92
+   },
+   "work_area_mm": {
+    "x": 3250,
+    "y": 1250,
+    "z": 125
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK spindle, interpolating C-axis",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture1_2_3_4_2009_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC centre; work area = max workpiece size (travel X 3860 mm). Vector speed X/Y 110 m/min. 9 kW HSK spindle, interpolating C-axis."
+  },
+  {
+   "id": "weeke-venture-3-l",
+   "maker": "Weeke",
+   "model": "Venture 3",
+   "variant": "L",
+   "years": "2009",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 167.32,
+    "y": 49.21,
+    "z": 4.92
+   },
+   "work_area_mm": {
+    "x": 4250,
+    "y": 1250,
+    "z": 125
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK spindle, interpolating C-axis",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture1_2_3_4_2009_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC centre; work area = max workpiece size (travel X 4860 mm). Vector speed X/Y 110 m/min. 9 kW HSK spindle, interpolating C-axis."
+  },
+  {
+   "id": "weeke-venture-3-xl",
+   "maker": "Weeke",
+   "model": "Venture 3",
+   "variant": "XL",
+   "years": "2009",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 206.69,
+    "y": 49.21,
+    "z": 4.92
+   },
+   "work_area_mm": {
+    "x": 5250,
+    "y": 1250,
+    "z": 125
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK spindle, interpolating C-axis",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture1_2_3_4_2009_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC centre; work area = max workpiece size (travel X 5860 mm). Vector speed X/Y 110 m/min. 9 kW HSK spindle, interpolating C-axis."
+  },
+  {
+   "id": "weeke-venture-4-m",
+   "maker": "Weeke",
+   "model": "Venture 4",
+   "variant": "M",
+   "years": "2009",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 127.95,
+    "y": 49.21,
+    "z": 4.92
+   },
+   "work_area_mm": {
+    "x": 3250,
+    "y": 1250,
+    "z": 125
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 kW HSK spindle, interpolating C-axis",
+     "power_kw": 12,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture1_2_3_4_2009_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC centre; work area = max workpiece size (travel X 3860 mm). Vector speed X/Y 110 m/min. 12 kW HSK spindle, interpolating C-axis."
+  },
+  {
+   "id": "weeke-venture-4-l",
+   "maker": "Weeke",
+   "model": "Venture 4",
+   "variant": "L",
+   "years": "2009",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 167.32,
+    "y": 49.21,
+    "z": 4.92
+   },
+   "work_area_mm": {
+    "x": 4250,
+    "y": 1250,
+    "z": 125
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 kW HSK spindle, interpolating C-axis",
+     "power_kw": 12,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture1_2_3_4_2009_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC centre; work area = max workpiece size (travel X 4860 mm). Vector speed X/Y 110 m/min. 12 kW HSK spindle, interpolating C-axis."
+  },
+  {
+   "id": "weeke-venture-4-xl",
+   "maker": "Weeke",
+   "model": "Venture 4",
+   "variant": "XL",
+   "years": "2009",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 206.69,
+    "y": 49.21,
+    "z": 4.92
+   },
+   "work_area_mm": {
+    "x": 5250,
+    "y": 1250,
+    "z": 125
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 kW HSK spindle, interpolating C-axis",
+     "power_kw": 12,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture1_2_3_4_2009_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC centre; work area = max workpiece size (travel X 5860 mm). Vector speed X/Y 110 m/min. 12 kW HSK spindle, interpolating C-axis."
+  },
+  {
+   "id": "weeke-venture-210-m",
+   "maker": "Weeke",
+   "model": "Venture 210",
+   "variant": "M",
+   "years": "2012",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 127.95,
+    "y": 62.99,
+    "z": 4.92
+   },
+   "work_area_mm": {
+    "x": 3250,
+    "y": 1600,
+    "z": 125
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK routing motor",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "8-fold changer moving in X and Y"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture210__220_230_240_en_2012.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Console-table CNC centre. Working length X 3250, workpiece clearance Y 1600, thickness Z 125 mm. Vector speed X/Y 110, Z 20 m/min."
+  },
+  {
+   "id": "weeke-venture-220-m",
+   "maker": "Weeke",
+   "model": "Venture 220",
+   "variant": "M",
+   "years": "2012",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 127.95,
+    "y": 62.99,
+    "z": 4.92
+   },
+   "work_area_mm": {
+    "x": 3250,
+    "y": 1600,
+    "z": 125
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 kW HSK routing motor",
+     "power_kw": 12,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 14,
+    "notes": "14-fold changer moving in X"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture210__220_230_240_en_2012.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Console-table CNC centre. Working length X 3250, workpiece clearance Y 1600, thickness Z 125 mm. Vector speed X/Y 110, Z 20 m/min."
+  },
+  {
+   "id": "weeke-venture-230-m",
+   "maker": "Weeke",
+   "model": "Venture 230",
+   "variant": "M",
+   "years": "2012",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 127.95,
+    "y": 62.99,
+    "z": 4.92
+   },
+   "work_area_mm": {
+    "x": 3250,
+    "y": 1600,
+    "z": 125
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 kW HSK routing motor",
+     "power_kw": 12,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 14,
+    "notes": "14-fold changer moving in X"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture210__220_230_240_en_2012.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Console-table CNC centre. Working length X 3250, workpiece clearance Y 1600, thickness Z 125 mm. Vector speed X/Y 110, Z 20 m/min."
+  },
+  {
+   "id": "weeke-venture-240-m",
+   "maker": "Weeke",
+   "model": "Venture 240",
+   "variant": "M",
+   "years": "2012",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 127.95,
+    "y": 62.99,
+    "z": 4.92
+   },
+   "work_area_mm": {
+    "x": 3250,
+    "y": 1600,
+    "z": 125
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 kW HSK routing motor",
+     "power_kw": 12,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 14,
+    "notes": "14-fold changer moving in X"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture210__220_230_240_en_2012.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Console-table CNC centre. Working length X 3250, workpiece clearance Y 1600, thickness Z 125 mm. Vector speed X/Y 110, Z 20 m/min."
+  },
+  {
+   "id": "weeke-venture-440-m",
+   "maker": "Weeke",
+   "model": "Venture 440",
+   "variant": "M",
+   "years": "2011",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 129.92,
+    "y": 55.12,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 3300,
+    "y": 1400,
+    "z": 135
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 kW HSK routing spindle",
+     "power_kw": 12,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 14,
+    "notes": "14-fold changer moving in X"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture440_en_2011.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Console-table CNC centre (max workpiece width 1550 mm). Vector speed X/Y 110, Z 20 m/min. 14-fold changer moving in X."
+  },
+  {
+   "id": "weeke-venture-440-l",
+   "maker": "Weeke",
+   "model": "Venture 440",
+   "variant": "L",
+   "years": "2011",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 177.17,
+    "y": 55.12,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 4500,
+    "y": 1400,
+    "z": 135
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 kW HSK routing spindle",
+     "power_kw": 12,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 14,
+    "notes": "14-fold changer moving in X"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture440_en_2011.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Console-table CNC centre (max workpiece width 1550 mm). Vector speed X/Y 110, Z 20 m/min. 14-fold changer moving in X."
+  },
+  {
+   "id": "weeke-venture-440-xxl",
+   "maker": "Weeke",
+   "model": "Venture 440",
+   "variant": "XXL",
+   "years": "2011",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 255.91,
+    "y": 55.12,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 6500,
+    "y": 1400,
+    "z": 135
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 kW HSK routing spindle",
+     "power_kw": 12,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 14,
+    "notes": "14-fold changer moving in X"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_venture440_en_2011.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Console-table CNC centre (max workpiece width 1550 mm). Vector speed X/Y 110, Z 20 m/min. 14-fold changer moving in X."
+  },
+  {
+   "id": "weeke-vantage-100-480",
+   "maker": "Weeke",
+   "model": "Vantage 100",
+   "variant": "480",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 98.43,
+    "y": 49.21,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 2500,
+    "y": 1250,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK routing spindle (12 kW option)",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_vantage_100_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC (gantry). Vector speed X/Y 96, Z 20 m/min. Tool changer 8 places (480/510/512)."
+  },
+  {
+   "id": "weeke-vantage-100-510",
+   "maker": "Weeke",
+   "model": "Vantage 100",
+   "variant": "510",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.05,
+    "y": 61.02,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 3100,
+    "y": 1550,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK routing spindle (12 kW option)",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_vantage_100_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC (gantry). Vector speed X/Y 96, Z 20 m/min. Tool changer 8 places (480/510/512)."
+  },
+  {
+   "id": "weeke-vantage-100-512",
+   "maker": "Weeke",
+   "model": "Vantage 100",
+   "variant": "512",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 145.67,
+    "y": 61.02,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 3700,
+    "y": 1550,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK routing spindle (12 kW option)",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_vantage_100_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC (gantry). Vector speed X/Y 96, Z 20 m/min. Tool changer 8 places (480/510/512)."
+  },
+  {
+   "id": "weeke-vantage-100-610",
+   "maker": "Weeke",
+   "model": "Vantage 100",
+   "variant": "610",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.05,
+    "y": 72.83,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 3100,
+    "y": 1850,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK routing spindle (12 kW option)",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_vantage_100_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC (gantry). Vector speed X/Y 96, Z 20 m/min. Tool changer 8 places (480/510/512)."
+  },
+  {
+   "id": "weeke-vantage-100-612",
+   "maker": "Weeke",
+   "model": "Vantage 100",
+   "variant": "612",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 145.67,
+    "y": 72.83,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 3700,
+    "y": 1850,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK routing spindle (12 kW option)",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_vantage_100_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC (gantry). Vector speed X/Y 96, Z 20 m/min. Tool changer 8 places (480/510/512)."
+  },
+  {
+   "id": "weeke-vantage-100-710",
+   "maker": "Weeke",
+   "model": "Vantage 100",
+   "variant": "710",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.05,
+    "y": 88.58,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 3100,
+    "y": 2250,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK routing spindle (12 kW option)",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_vantage_100_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC (gantry). Vector speed X/Y 96, Z 20 m/min. Tool changer 8 places (480/510/512)."
+  },
+  {
+   "id": "weeke-vantage-100-714",
+   "maker": "Weeke",
+   "model": "Vantage 100",
+   "variant": "714",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 169.29,
+    "y": 88.58,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 4300,
+    "y": 2250,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK routing spindle (12 kW option)",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_vantage_100_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC (gantry). Vector speed X/Y 96, Z 20 m/min. Tool changer 8 places (480/510/512)."
+  },
+  {
+   "id": "weeke-vantage-200-510",
+   "maker": "Weeke",
+   "model": "Vantage 200",
+   "variant": "510",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 123.23,
+    "y": 61.02,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 3130,
+    "y": 1550,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK routing spindle (12 kW option)",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 14,
+    "notes": "14-fold changer moving in X"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_vantage_200_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC (gantry). Vector speed X/Y 130, Z 20 m/min. 14-fold changer moving in X."
+  },
+  {
+   "id": "weeke-vantage-200-512",
+   "maker": "Weeke",
+   "model": "Vantage 200",
+   "variant": "512",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 145.67,
+    "y": 61.02,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 3700,
+    "y": 1550,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK routing spindle (12 kW option)",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 14,
+    "notes": "14-fold changer moving in X"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_vantage_200_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC (gantry). Vector speed X/Y 130, Z 20 m/min. 14-fold changer moving in X."
+  },
+  {
+   "id": "weeke-vantage-200-610",
+   "maker": "Weeke",
+   "model": "Vantage 200",
+   "variant": "610",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 123.23,
+    "y": 74.02,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 3130,
+    "y": 1880,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK routing spindle (12 kW option)",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 14,
+    "notes": "14-fold changer moving in X"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_vantage_200_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC (gantry). Vector speed X/Y 130, Z 20 m/min. 14-fold changer moving in X."
+  },
+  {
+   "id": "weeke-vantage-200-612",
+   "maker": "Weeke",
+   "model": "Vantage 200",
+   "variant": "612",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 145.67,
+    "y": 74.02,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 3700,
+    "y": 1880,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK routing spindle (12 kW option)",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 14,
+    "notes": "14-fold changer moving in X"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_vantage_200_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC (gantry). Vector speed X/Y 130, Z 20 m/min. 14-fold changer moving in X."
+  },
+  {
+   "id": "weeke-vantage-200-710",
+   "maker": "Weeke",
+   "model": "Vantage 200",
+   "variant": "710",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 123.23,
+    "y": 88.58,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 3130,
+    "y": 2250,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK routing spindle (12 kW option)",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 14,
+    "notes": "14-fold changer moving in X"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_vantage_200_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC (gantry). Vector speed X/Y 130, Z 20 m/min. 14-fold changer moving in X."
+  },
+  {
+   "id": "weeke-vantage-200-714",
+   "maker": "Weeke",
+   "model": "Vantage 200",
+   "variant": "714",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 169.29,
+    "y": 88.58,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 4300,
+    "y": 2250,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK routing spindle (12 kW option)",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 14,
+    "notes": "14-fold changer moving in X"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_vantage_200_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC (gantry). Vector speed X/Y 130, Z 20 m/min. 14-fold changer moving in X."
+  },
+  {
+   "id": "weeke-vantage-28-m",
+   "maker": "Weeke",
+   "model": "Vantage 28",
+   "variant": "M",
+   "years": "2010",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.05,
+    "y": 88.58,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 3100,
+    "y": 2250,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK routing spindle",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 984
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 25000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12-fold changer, upgrade to 23 places"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool length control"
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_vantage28_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC. Vector speed X/Y 96, Z 25 m/min. 12-fold changer (up to 23 places)."
+  },
+  {
+   "id": "weeke-vantage-28-l",
+   "maker": "Weeke",
+   "model": "Vantage 28",
+   "variant": "L",
+   "years": "2010",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 169.29,
+    "y": 88.58,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 4300,
+    "y": 2250,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK routing spindle",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 984
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 25000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12-fold changer, upgrade to 23 places"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool length control"
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_vantage28_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC. Vector speed X/Y 96, Z 25 m/min. 12-fold changer (up to 23 places)."
+  },
+  {
+   "id": "weeke-vantage-43-m",
+   "maker": "Weeke",
+   "model": "Vantage 43",
+   "variant": "M",
+   "years": "2009",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 123.23,
+    "y": 49.21,
+    "z": 4.92
+   },
+   "work_area_mm": {
+    "x": 3130,
+    "y": 1250,
+    "z": 125
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW HSK routing spindle",
+     "power_kw": 9,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl PC85 with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_vantage43m_en_2009.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "CNC processing centre. Vector speed X/Y 80, Z 20 m/min."
+  },
+  {
+   "id": "weeke-vantech-480",
+   "maker": "Weeke",
+   "model": "Vantech",
+   "variant": "480",
+   "years": "2016",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 99.21,
+    "y": 49.21,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 2520,
+    "y": 1250,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "10 kW HSK 63 routing spindle (13.2 kW option)",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK 63",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 984
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 25000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_vantech_480_510_512_612_2016_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC. Travel range Z 245 mm. Vector speed X/Y 96, Z 25 m/min."
+  },
+  {
+   "id": "weeke-vantech-510",
+   "maker": "Weeke",
+   "model": "Vantech",
+   "variant": "510",
+   "years": "2016",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.05,
+    "y": 61.02,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 3100,
+    "y": 1550,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "10 kW HSK 63 routing spindle (13.2 kW option)",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK 63",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 984
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 25000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_vantech_480_510_512_612_2016_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC. Travel range Z 245 mm. Vector speed X/Y 96, Z 25 m/min."
+  },
+  {
+   "id": "weeke-vantech-512",
+   "maker": "Weeke",
+   "model": "Vantech",
+   "variant": "512",
+   "years": "2016",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 145.67,
+    "y": 61.02,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 3700,
+    "y": 1550,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "10 kW HSK 63 routing spindle (13.2 kW option)",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK 63",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 984
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 25000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_vantech_480_510_512_612_2016_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC. Travel range Z 245 mm. Vector speed X/Y 96, Z 25 m/min."
+  },
+  {
+   "id": "weeke-vantech-612",
+   "maker": "Weeke",
+   "model": "Vantech",
+   "variant": "612",
+   "years": "2016",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 145.67,
+    "y": 72.83,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 3700,
+    "y": 1850,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "10 kW HSK 63 routing spindle (13.2 kW option)",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK 63",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 984
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 25000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/wee_vantech_480_510_512_612_2016_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC. Travel range Z 245 mm. Vector speed X/Y 96, Z 25 m/min."
+  }
+ ]
+}

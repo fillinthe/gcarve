@@ -1,0 +1,426 @@
+{
+ "maker": "NymoLabs",
+ "website": "https://nymolabs.com",
+ "machines": [
+  {
+   "id": "nymolabs-nbs-6040",
+   "maker": "NymoLabs",
+   "model": "NBS-6040",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 24.02,
+    "y": 16.14,
+    "z": 4.72
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 410,
+    "z": 120
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "NymoLabs SP7AJ 710 W trim router",
+     "power_kw": 0.71,
+     "power_hp": null,
+     "rpm_min": 7000,
+     "rpm_max": 30000,
+     "collet": "ER11 (1-8 mm)",
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 189,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 4800,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 (32-bit board) + 2.8 in TFT offline controller",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nymolabs.com/products/nymolabs-6040-cnc-router-machine",
+    "https://easel.com/partners/machines/nymolabs-nbs-6040/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "HG15 (X/Z) + HG20 (Y) rails, 1605 (X/Y) + 1204 (Z) ball screws, NEMA23 1.89 N·m + DM542. Max speed published as 4800 mm/min. 60 kg."
+  },
+  {
+   "id": "nymolabs-nbx-5040",
+   "maker": "NymoLabs",
+   "model": "NBX-5040",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 20.0,
+    "y": 16.06,
+    "z": 3.82
+   },
+   "work_area_mm": {
+    "x": 508,
+    "y": 408,
+    "z": 97
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "NymoLabs SP7AJ 710 W trim router",
+     "power_kw": 0.71,
+     "power_hp": null,
+     "rpm_min": 7000,
+     "rpm_max": 30000,
+     "collet": "ER11 (1-8 mm)",
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 189,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 4800,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 (32-bit board) + 2.8 in TFT offline controller",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nymolabs.com/products/open-box-nbx-5040-cnc-router-machine-only-ship-to-us",
+    "https://easel.com/partners/machines/nymolabs-nbx-5040/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Y on dual 20 mm HSS tubes, HG15 X/Z; 1605/1204 ball screws; NEMA23 + DM542. Max speed 4800 mm/min. 45 kg."
+  },
+  {
+   "id": "nymolabs-nbs-6050-pro",
+   "maker": "NymoLabs",
+   "model": "NBS-6050 PRO",
+   "variant": null,
+   "years": "2026-",
+   "class": "hobby",
+   "work_area_in": {
+    "x": 24.21,
+    "y": 19.84,
+    "z": 4.61
+   },
+   "work_area_mm": {
+    "x": 615,
+    "y": 504,
+    "z": 117
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "710 W spindle with RPM display",
+     "power_kw": 0.71,
+     "power_hp": null,
+     "rpm_min": 7000,
+     "rpm_max": 30000,
+     "collet": "ER11",
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 236,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 6000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 (32-bit board) + 2.8 in TFT offline controller",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nymolabs.com/products/nbs-6050-pro-cnc-router-machine",
+    "https://easel.com/partners/machines/nymolabs-nbs-6050-pro/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "NEMA24 closed-loop 3.5 N·m IP59; HG15/HG20 rails, 1605/1204 ball screws. ATC-ready (kit sold separately)."
+  },
+  {
+   "id": "nymolabs-nbs-6050-ultra",
+   "maker": "NymoLabs",
+   "model": "NBS-6050 Ultra",
+   "variant": null,
+   "years": "2026-",
+   "class": "hobby",
+   "work_area_in": {
+    "x": 24.21,
+    "y": 19.84,
+    "z": 4.61
+   },
+   "work_area_mm": {
+    "x": 615,
+    "y": 504,
+    "z": 117
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled spindle + HuanYang VFD",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 0,
+     "rpm_max": 18000,
+     "collet": "ER20 (1-13 mm)",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 236,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 6000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL + 7 in 4-axis touch controller",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nymolabs.com/products/nbs-6050-ultra-cnc-router-machine",
+    "https://easel.com/partners/machines/nymolabs-nbs-6050-ultra/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "NEMA24 closed-loop 3.5 N·m; linear rails + ball screws all axes. ATC-ready."
+  },
+  {
+   "id": "nymolabs-nbs-1290-ultra",
+   "maker": "NymoLabs",
+   "model": "NBS-1290 Ultra",
+   "variant": null,
+   "years": "2026-",
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 48.74,
+    "y": 36.54,
+    "z": 4.65
+   },
+   "work_area_mm": {
+    "x": 1238,
+    "y": 928,
+    "z": 118
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled spindle + HuanYang VFD",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 0,
+     "rpm_max": 18000,
+     "collet": "ER20 (1-13 mm)",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 236,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 6000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL + 7 in 4-axis touch controller",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://nymolabs.com/products/nymolabs-nbs-1290-ultra-cnc-router-machine",
+    "https://easel.com/partners/machines/nymolabs-nbs-1290-ultra/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "NEMA24 closed-loop 3.5 N·m; HG15/HG20 rails, 1605/1204 ball screws. ATC-ready."
+  }
+ ]
+}

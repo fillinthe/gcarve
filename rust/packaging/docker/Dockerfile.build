@@ -1,0 +1,17 @@
+# Build image (native arm64 under Colima): Linux arm64 natively, Linux x86_64 with the Debian cross gcc,
+# Windows 7/8 with Debian's mingw-w64 (msvcrt.dll C runtime, unlike Homebrew's UCRT build).
+# Debian 11 = glibc 2.31: the Linux binaries run on Debian 11+, Ubuntu 20.04+, RHEL/Rocky 9+, Mint 20+.
+FROM debian:bullseye
+# bullseye is end-of-life: its packages now live on archive.debian.org
+RUN sed -i -e 's|deb.debian.org|archive.debian.org|g' /etc/apt/sources.list \
+ && apt-get update && apt-get install -y --no-install-recommends \
+      ca-certificates curl gcc libc6-dev gcc-x86-64-linux-gnu libc6-dev-amd64-cross \
+      gcc-mingw-w64-x86-64 gcc-mingw-w64-i686 binutils-mingw-w64 python3 zip binutils \
+ && rm -rf /var/lib/apt/lists/*
+ENV RUSTUP_HOME=/opt/rustup CARGO_HOME=/opt/cargo PATH=/opt/cargo/bin:$PATH
+RUN curl -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain stable \
+ && rustup target add x86_64-unknown-linux-gnu x86_64-pc-windows-gnu \
+ && rustup toolchain install nightly --profile minimal --component rust-src
+ENV CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER=x86_64-linux-gnu-gcc \
+    CC_x86_64_unknown_linux_gnu=x86_64-linux-gnu-gcc \
+    AR_x86_64_unknown_linux_gnu=x86_64-linux-gnu-ar

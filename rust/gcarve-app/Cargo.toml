@@ -1,0 +1,48 @@
+[package]
+name = "gcarve-app"
+description = "GCarve desktop + web app (egui/eframe)"
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[[bin]]
+name = "gcarve"
+path = "src/main.rs"
+
+[features]
+# dev check: GCARVE_SHOT=out.png (optionally GCARVE_SHOT_FRAME=n, default 6) saves a settled frame and exits
+screenshot = ["gcarve-ui/screenshot"]
+# GCarve Control over USB (desktop only; the web build has no serial port)
+serial = ["dep:serialport"]
+# 3Dconnexion SpaceMouse in the 3D view (desktop: hidapi; the web build uses WebHID)
+spacemouse = ["gcarve-ui/spacemouse"]
+default = ["serial", "spacemouse"]
+
+[dependencies]
+gcarve-core = { path = "../gcarve-core" }
+gcarve-ui = { path = "../gcarve-ui" }   # theme, widgets, fonts, icons, store, SpaceMouse (shared with GSketch)
+# glow = OpenGL renderer: runs on old GPUs / old Windows and as WebGL in the browser (no wgpu)
+chrono = "0.4"
+serde = { version = "1", features = ["derive"] }
+crc32fast = "1"      # checksums for the .zip of a web export (already in the tree through png)
+serde_json = "1"   # G-code header timestamp (same wording as the Qt app)
+rfd = "0.17"   # file picker: native dialogs, and the browser's file input on the web
+image = { version = "0.25", default-features = false, features = ["png", "jpeg"] }   # Trace Image (dialogs/trace.rs)
+png = "0.17"   # setup sheet picture (and the dev screenshot)
+eframe = { version = "0.36", default-features = false, features = ["default_fonts", "glow", "accesskit", "wayland", "x11"] }
+ehttp = "0.6.0"
+ttf-parser = { version = "0.25", default-features = false, features = ["std", "opentype-layout"] }   # glyph outlines for the Text tool (assets/LiberationSans-*.ttf, OFL)
+acadrust = "0.6.4"   # AutoCAD .dwg import, converted to DXF text (MPL-2.0, used unmodified: CADCraft does the same)
+egui_extras = { version = "0.36", default-features = false, features = ["svg"] }   # the Qt app's monochrome icons (app/icons/*.svg), tinted
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+serialport = { version = "4.7", default-features = false, optional = true }   # GCarve Control over USB (no libudev: port names only on Linux)
+rusqlite = { version = "0.40", features = ["bundled"] }   # Vectric .vtdb tool databases (SQLite; bundled = no system lib)
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen-futures = "0.4"
+wasm-bindgen = "=0.2.129"   # inline JS for Web Serial (control/webserial.rs); pinned to the Cargo.lock / wasm-bindgen-cli version
+web-sys = { version = "0.3", features = ["console", "Window", "Document", "HtmlCanvasElement", "Element", "HtmlElement", "HtmlAnchorElement", "Blob", "BlobPropertyBag", "Url", "Location", "Storage", "Navigator", "HtmlInputElement", "FileList", "File", "CssStyleDeclaration"] }
+js-sys = "0.3"
+getrandom = { version = "0.3", features = ["wasm_js"] }   # see .cargo/config.toml

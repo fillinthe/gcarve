@@ -1,0 +1,467 @@
+{
+ "maker": "VEVOR",
+ "website": "https://www.vevor.com",
+ "machines": [
+  {
+   "id": "vevor-3018-60w",
+   "maker": "VEVOR",
+   "model": "3018 CNC Router",
+   "variant": "60W",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 7.09,
+    "z": 1.57
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 180,
+    "z": 40
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "60 W DC spindle",
+     "power_kw": 0.06,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 11700,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 (32-bit control board)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.vevor.com/wood-engraving-machine-c_11142/vevor-3018-cnc-router-machine-60w-spindle-3-axis-wood-engraving-milling-machine-with-300-x-180-x-40-mm-working-area-offline-controller-aluminum-alloy-structure-for-wood-acrylic-carving-cutting-p_010104783526",
+    "https://easel.com/partners/machines/vevor-3018-60w/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Model 3018PRO (SKU SKDKJ3018CM4CJ958001V1). Y expandable to 400 mm. Repeatability <=0.07 mm. Candle software included."
+  },
+  {
+   "id": "vevor-3018-pro-max-500w",
+   "maker": "VEVOR",
+   "model": "3018-PRO MAX",
+   "variant": "500W",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 7.09,
+    "z": 3.15
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 180,
+    "z": 80
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "500 W DC spindle",
+     "power_kw": 0.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 12000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 + 1.8 in offline controller",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.vevor.com/wood-engraving-machine-c_11142/vevor-cnc-router-machine-500w-spindle-3-axis-wood-engraving-milling-machine-with-300-x-180-x-80-mm-working-area-offline-controller-limit-switch-e-stop-for-wood-acrylic-plastic-carving-cutting-p_010981168677",
+    "https://easel.com/partners/machines/vevor-3018-500w/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "SKU SKDKJ3018CM8I0SVN001V1. Y expandable to 400 mm, 12 mm linear rods, 6 limit switches, E-stop, XYZ handwheels. Repeatability <=0.06 mm."
+  },
+  {
+   "id": "vevor-s4040-300w",
+   "maker": "VEVOR",
+   "model": "S4040",
+   "variant": "300W",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 15.75,
+    "z": 2.36
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 400,
+    "z": 60
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "300 W DC spindle",
+     "power_kw": 0.3,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 12400,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 + 2.4 in touchscreen offline controller",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.vevor.com/wood-engraving-machine-c_11142/vevor-cnc-router-machine-300w-spindle-3-axis-wood-engraving-milling-machine-with-15-75-x-15-75-x-2-36-in-working-area-offline-controller-aluminum-alloy-structure-for-wood-acrylic-carving-cutting-p_010244635606",
+    "https://easel.com/partners/machines/vevor-300w/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "SKU SKDKJ4040CM04TPDJ002V1. Aluminium frame."
+  },
+  {
+   "id": "vevor-4040pro-100w",
+   "maker": "VEVOR",
+   "model": "4040PRO",
+   "variant": "100W",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 15.75,
+    "z": 3.74
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 400,
+    "z": 95
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "100 W DC spindle",
+     "power_kw": 0.1,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 10000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 (32-bit control board)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.vevor.com/wood-engraving-machine-c_11142/vevor-cnc-router-machine-100w-spindle-3-axis-wood-engraving-milling-machine-with-15-75-x-15-75-x-3-74-in-working-area-linear-rail-aluminum-alloy-structure-for-wood-acrylic-carving-cutting-p_010543661980",
+    "https://easel.com/partners/machines/vevor-4040-100w/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "SKU SKDKJ4040CM6JOPRU001V1. Z-axis linear rail; 52 mm and 65 mm spindle clamps; rotary axis expansion. Repeatability <=0.05 mm."
+  },
+  {
+   "id": "vevor-cnc4040-ss1-500w",
+   "maker": "VEVOR",
+   "model": "CNC4040-SS1",
+   "variant": "500W",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 15.75,
+    "z": 3.74
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 400,
+    "z": 95
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "500 W DC spindle",
+     "power_kw": 0.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 12000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": null
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "GRBL 1.1",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.vevor.com/wood-engraving-machine-c_11142/vevor-cnc-router-machine-500w-spindle-3-axis-wood-engraving-milling-machine-with-dual-linear-rails-ball-screw-15-75-x-15-75-x-3-74-in-working-area-trim-router-for-wood-acrylic-carving-cutting-p_010110225434",
+    "https://easel.com/partners/machines/vevor-4040-500w/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "SKU SKDKJ4040CM9GZSFB001V1. Dual linear rails + ball screw, NEMA23-76 closed-loop steppers, Y expandable to 800 mm, 52/65 mm clamps."
+  },
+  {
+   "id": "vevor-120w",
+   "maker": "VEVOR",
+   "model": "CNC Router Machine",
+   "variant": "120W",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 7.87,
+    "z": 2.83
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 200,
+    "z": 72
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "120 W DC spindle (75 W rated)",
+     "power_kw": 0.075,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 10118,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1 + 2.4 in offline controller",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://easel.com/partners/machines/vevor-120w/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Discontinued (per Easel partner page). Specs from Easel partner listing."
+  }
+ ]
+}

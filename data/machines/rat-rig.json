@@ -1,0 +1,183 @@
+{
+ "maker": "Rat Rig",
+ "website": "https://ratrig.com",
+ "machines": [
+  {
+   "id": "rat-rig-stronghold-one-1250",
+   "maker": "Rat Rig",
+   "model": "StrongHold ONE",
+   "variant": "1250x1250",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 48.98,
+    "y": 49.21,
+    "z": 4.13
+   },
+   "work_area_mm": {
+    "x": 1244,
+    "y": 1250,
+    "z": 105
+   },
+   "gantry_clearance_in": 5.12,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Rat Rig 230 V router, 6 speed settings (Beginner bundle)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "GPenny 2.2 kW 80 mm water-cooled spindle + Huanyang VFD",
+     "power_kw": 2.2,
+     "power_hp": 2.95,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Rat Rig Rodent (BTT, TMC2160) with FluidNC",
+     "gcarve_post": "fluidnc-mm",
+     "default": true
+    },
+    {
+     "name": "Rat Rig Rodent with grblHAL",
+     "gcarve_post": "grblhal-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://ratrig.com/products/stronghold-one-cnc"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   },
+   "notes": "Kit, 40-series extrusion frame, TR8x8 lead screws on all axes, MGN15/HG15 rails, LDO 345 oz-in steppers, inductive endstops. Spoilboard 1364 x 1500 mm. Z clearance 130 mm excluding spoilboard. Intermediate bundle = 2.2 kW spindle."
+  },
+  {
+   "id": "rat-rig-stronghold-pro-1500",
+   "maker": "Rat Rig",
+   "model": "StrongHold PRO",
+   "variant": "1500x1500",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 59.06,
+    "z": 5.12
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 1500,
+    "z": 130
+   },
+   "gantry_clearance_in": 4.92,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "GPenny 2.2 kW 80 mm water-cooled spindle + Huanyang VFD",
+     "power_kw": 2.2,
+     "power_hp": 2.95,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Rat Rig Rodent (BTT, TMC2160) with FluidNC",
+     "gcarve_post": "fluidnc-mm",
+     "default": true
+    },
+    {
+     "name": "Rat Rig Rodent with grblHAL",
+     "gcarve_post": "grblhal-mm",
+     "default": false
+    },
+    {
+     "name": "CNCdrive AXBB-E with UCCNC (Advanced bundle, external DM542T drivers)",
+     "gcarve_post": "uccnc-mm",
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://ratrig.com/products/stronghold-pro-cnc"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures"
+   },
+   "notes": "Kit, 40-series extrusion, HG25 rails X/Y and HG15 Z, ball screws 1610 X/Y and 1204 Z, double 80 mm spindle mount, LDO 345 oz-in steppers. Spoilboard 1550 x 1716 mm. Z clearance 125 mm excluding spoilboard. Cuts aluminium, brass, thin steel."
+  }
+ ]
+}

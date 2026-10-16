@@ -1,0 +1,1017 @@
+{
+ "maker": "Diversified Machine Systems",
+ "website": "https://dmscncrouters.com",
+ "machines": [
+  {
+   "id": "dms-freedom-4",
+   "maker": "Diversified Machine Systems",
+   "model": "Freedom 4",
+   "variant": "48 x 48 in",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48,
+    "y": 48,
+    "z": 12
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 1219,
+    "z": 305
+   },
+   "gantry_clearance_in": 9,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco 10 HP electro spindle",
+     "power_kw": 7.46,
+     "power_hp": 10,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1400,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 35560,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Fagor 8070 OL (17 in LCD)",
+     "gcarve_post": "fagor-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://dmscncrouters.com/freedom-cnc-routers/freedom-4/",
+    "https://dmscncrouters.com/freedom-cnc-routers/freedom-forge/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Freedom series: 3-axis moving gantry, steel frame, recirculating ball screws on all axes, laser-calibrated X/Y, 1 in phenolic table (aluminum optional), rapid up to 1400 IPM, Z 12 in with 9 in under the bridge. 4x4 ft table."
+  },
+  {
+   "id": "dms-freedom-forge",
+   "maker": "Diversified Machine Systems",
+   "model": "Freedom Forge",
+   "variant": "48 x 96 in",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48,
+    "y": 96,
+    "z": 12
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 2438,
+    "z": 305
+   },
+   "gantry_clearance_in": 9,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco 10 HP electro spindle",
+     "power_kw": 7.46,
+     "power_hp": 10,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1400,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 35560,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Fagor 8070 OL (17 in LCD)",
+     "gcarve_post": "fagor-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://dmscncrouters.com/freedom-cnc-routers/freedom-forge/",
+    "https://dmscncrouters.com/freedom-cnc-routers/freedom-forge/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Freedom series: 3-axis moving gantry, steel frame, recirculating ball screws on all axes, laser-calibrated X/Y, 1 in phenolic table (aluminum optional), rapid up to 1400 IPM, Z 12 in with 9 in under the bridge. 4x8 ft; reinforced frame and upgraded rails over the earlier Freedom 8."
+  },
+  {
+   "id": "dms-freedom-10",
+   "maker": "Diversified Machine Systems",
+   "model": "Freedom 10",
+   "variant": "60 x 120 in",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": 12
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": 305
+   },
+   "gantry_clearance_in": 9,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco 10 HP electro spindle",
+     "power_kw": 7.46,
+     "power_hp": 10,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1400,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 35560,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Fagor 8070 OL (17 in LCD)",
+     "gcarve_post": "fagor-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://dmscncrouters.com/freedom-cnc-routers/freedom-10/",
+    "https://dmscncrouters.com/freedom-cnc-routers/freedom-forge/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Freedom series: 3-axis moving gantry, steel frame, recirculating ball screws on all axes, laser-calibrated X/Y, 1 in phenolic table (aluminum optional), rapid up to 1400 IPM, Z 12 in with 9 in under the bridge. 5x10 ft; Becker vacuum pump options 5/10/15 HP."
+  },
+  {
+   "id": "dms-freedom-12",
+   "maker": "Diversified Machine Systems",
+   "model": "Freedom 12",
+   "variant": "60 x 144 in",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 144,
+    "z": 12
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3658,
+    "z": 305
+   },
+   "gantry_clearance_in": 9,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco PowerTech 300 ATC spindle (10.5 HP S1 / 12.5 HP S6)",
+     "power_kw": 7.83,
+     "power_hp": 10.5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK 63F",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1400,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 35560,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Fagor 8070 OL (17 in LCD)",
+     "gcarve_post": "fagor-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 10,
+    "notes": "10-position tool change rack"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "threaded inserts",
+     "pop-up pins",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://dmscncrouters.com/freedom-cnc-routers/freedom-12/",
+    "https://dmscncrouters.com/freedom-cnc-routers/freedom-forge/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Freedom series: 3-axis moving gantry, steel frame, recirculating ball screws on all axes, laser-calibrated X/Y, 1 in phenolic table (aluminum optional), rapid up to 1400 IPM, Z 12 in with 9 in under the bridge. 5x12 ft machined aluminum table with threaded inserts (work area = table size; the page's 'cutting area 48 x 48' line is copied from the Freedom 4). 5+4 drill bank, pop-up pins, HSK-63F tooling."
+  },
+  {
+   "id": "dms-klondike3",
+   "maker": "Diversified Machine Systems",
+   "model": "Klondike3",
+   "variant": "240 x 120 in",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 240,
+    "y": 120,
+    "z": 24
+   },
+   "work_area_mm": {
+    "x": 6096,
+    "y": 3048,
+    "z": 610
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco PT300/PT400 spindle, 10-13 kW S1, 24,000 RPM",
+     "power_kw": 13,
+     "power_hp": 17.43,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1400,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 35560,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Fagor 8065",
+     "gcarve_post": "fagor-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "carousel or manual, max 8"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://dmscncrouters.com/3-axis-cnc-routers/klondike3/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "3-axis twin-table router; strokes X 240, Y 120, Z 24 in (X = bridge axis). Twin tables 5x8/5x10 ft or 6-10 x 5-6 ft. Avg speed 1400 in/min from the comparison table. Accuracy .0025-.005 in."
+  },
+  {
+   "id": "dms-glacier3-4x3",
+   "maker": "Diversified Machine Systems",
+   "model": "Glacier3",
+   "variant": "4x3 ft table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48,
+    "y": 36,
+    "z": 30
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 914,
+    "z": 762
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco spindle up to 18 kW S1 / 21 kW S6, 24,000 RPM",
+     "power_kw": 18,
+     "power_hp": 24.14,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Fagor 8065",
+     "gcarve_post": "fagor-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "rack or manual, 10/12"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://dmscncrouters.com/3-axis-cnc-routers/glacier3/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "Fully enclosed 3-axis; X x Y = nominal table 4x3 ft (travels not published per size); Z 30 in stroke. Spinning ball nut + ball screws, absolute encoders."
+  },
+  {
+   "id": "dms-glacier3-5x5",
+   "maker": "Diversified Machine Systems",
+   "model": "Glacier3",
+   "variant": "5x5 ft table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 60,
+    "z": 30
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 1524,
+    "z": 762
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco spindle up to 18 kW S1 / 21 kW S6, 24,000 RPM",
+     "power_kw": 18,
+     "power_hp": 24.14,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Fagor 8065",
+     "gcarve_post": "fagor-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "rack or manual, 10/12"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://dmscncrouters.com/3-axis-cnc-routers/glacier3/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "Fully enclosed 3-axis; X x Y = nominal table 5x5 ft (travels not published per size); Z 30 in stroke. Spinning ball nut + ball screws, absolute encoders."
+  },
+  {
+   "id": "dms-glacier3-10x5",
+   "maker": "Diversified Machine Systems",
+   "model": "Glacier3",
+   "variant": "10x5 ft table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 60,
+    "z": 30
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 1524,
+    "z": 762
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco spindle up to 18 kW S1 / 21 kW S6, 24,000 RPM",
+     "power_kw": 18,
+     "power_hp": 24.14,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Fagor 8065",
+     "gcarve_post": "fagor-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "rack or manual, 10/12"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://dmscncrouters.com/3-axis-cnc-routers/glacier3/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "Fully enclosed 3-axis; X x Y = nominal table 10x5 ft (travels not published per size); Z 30 in stroke. Spinning ball nut + ball screws, absolute encoders."
+  },
+  {
+   "id": "dms-glacier3-12x3",
+   "maker": "Diversified Machine Systems",
+   "model": "Glacier3",
+   "variant": "12x3 ft table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 144,
+    "y": 36,
+    "z": 30
+   },
+   "work_area_mm": {
+    "x": 3658,
+    "y": 914,
+    "z": 762
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco spindle up to 18 kW S1 / 21 kW S6, 24,000 RPM",
+     "power_kw": 18,
+     "power_hp": 24.14,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Fagor 8065",
+     "gcarve_post": "fagor-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "rack or manual, 10/12"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://dmscncrouters.com/3-axis-cnc-routers/glacier3/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "Fully enclosed 3-axis; X x Y = nominal table 12x3 ft (travels not published per size); Z 30 in stroke. Spinning ball nut + ball screws, absolute encoders."
+  },
+  {
+   "id": "dms-glacier3-12x6",
+   "maker": "Diversified Machine Systems",
+   "model": "Glacier3",
+   "variant": "12x6 ft table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 144,
+    "y": 72,
+    "z": 30
+   },
+   "work_area_mm": {
+    "x": 3658,
+    "y": 1829,
+    "z": 762
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco spindle up to 18 kW S1 / 21 kW S6, 24,000 RPM",
+     "power_kw": 18,
+     "power_hp": 24.14,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Fagor 8065",
+     "gcarve_post": "fagor-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "rack or manual, 10/12"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://dmscncrouters.com/3-axis-cnc-routers/glacier3/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "Fully enclosed 3-axis; X x Y = nominal table 12x6 ft (travels not published per size); Z 30 in stroke. Spinning ball nut + ball screws, absolute encoders."
+  },
+  {
+   "id": "dms-denali5-5x4",
+   "maker": "Diversified Machine Systems",
+   "model": "Denali5",
+   "variant": "5x4 ft table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 48,
+    "z": 30
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 1219,
+    "z": 762
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "5-axis head, 5-11 kW, 24,000 RPM",
+     "power_kw": 11,
+     "power_hp": 14.75,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1400,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 35560,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Fagor 8065",
+     "gcarve_post": "fagor-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 10,
+    "notes": "rack or manual, 10"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "fixtures"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://dmscncrouters.com/5-axis-cnc-routers/denali5/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Mid-range 5-axis trim center; X x Y = nominal table 5x4 ft; Z 30 in; B +/-115/130 deg, C +/-363 deg. Avg speed 1400 in/min."
+  },
+  {
+   "id": "dms-denali5-4x3",
+   "maker": "Diversified Machine Systems",
+   "model": "Denali5",
+   "variant": "4x3 ft table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48,
+    "y": 36,
+    "z": 30
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 914,
+    "z": 762
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "5-axis head, 5-11 kW, 24,000 RPM",
+     "power_kw": 11,
+     "power_hp": 14.75,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1400,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 35560,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Fagor 8065",
+     "gcarve_post": "fagor-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 10,
+    "notes": "rack or manual, 10"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "fixtures"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://dmscncrouters.com/5-axis-cnc-routers/denali5/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Mid-range 5-axis trim center; X x Y = nominal table 4x3 ft; Z 30 in; B +/-115/130 deg, C +/-363 deg. Avg speed 1400 in/min."
+  },
+  {
+   "id": "dms-hybrid-hero",
+   "maker": "Diversified Machine Systems",
+   "model": "Hybrid Hero",
+   "variant": "24 x 24 x 24 in",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 24,
+    "y": 24,
+    "z": 24
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 610,
+    "z": 610
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 12 HP (9 kW) liquid-cooled spindle, 24,000 RPM",
+     "power_kw": 9,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Fagor 8065",
+     "gcarve_post": "fagor-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 4,
+    "notes": "4-position tool change rack"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool height setter (stores tool length in CNC)"
+   },
+   "z_zero": [
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "threaded inserts"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://dmscncrouters.com/hybrid-cnc-routers/hybrid-hero/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "Hybrid wire-fed metal additive + CNC machining, fully enclosed; build volume 24 x 24 x 24 in; tilt-rotate table option; fits a 74 x 81 in double door. Fagor 8065 Q7a."
+  }
+ ]
+}

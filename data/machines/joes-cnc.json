@@ -1,0 +1,76 @@
+{
+ "maker": "Joe's CNC",
+ "website": "https://www.joescnc.com",
+ "machines": [
+  {
+   "id": "joes-cnc-4x4-hybrid",
+   "maker": "Joe's CNC",
+   "model": "4x4 Hybrid",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 48,
+    "y": 48,
+    "z": 5
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 1219,
+    "z": 127
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 150,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 3810,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 300,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 7620,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.joescnc.com/the-machines/4x4-hybrid"
+   ],
+   "notes": "DIY design (plans for forum members, MDF/HDPE parts kits). Cutting area roughly 48 x 48 x 5 in. Typical 100-150 IPM; rapids up to 300 IPM reported with a better controller. Joe's Evolution (rack and pinion, scalable to 16 ft) and Titan Desktop have no published sizes.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM",
+    "rapid_mm_min": "converted from IPM"
+   }
+  }
+ ]
+}

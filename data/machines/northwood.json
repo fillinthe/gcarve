@@ -1,0 +1,3290 @@
+{
+ "maker": "Northwood Machine",
+ "website": "https://northwoodmachine.com",
+ "machines": [
+  {
+   "id": "northwood-iron-horse-3-49x97",
+   "maker": "Northwood Machine",
+   "model": "Iron Horse 3",
+   "variant": "49 x 97 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 49,
+    "y": 97,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 2464,
+    "z": 356
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13 kW air-cooled spindle, HSK63F/HSK63A",
+     "power_kw": 13,
+     "power_hp": 17.43,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 kW liquid-cooled spindle",
+     "power_kw": 16,
+     "power_hp": 21.46,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "25 kW liquid-cooled spindle",
+     "power_kw": 25,
+     "power_hp": 33.53,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 standard ride-along (8, 10, 20 optional)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-iron-horse-3/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. 3-axis moving-table machine, single or twin tables (wide/narrow), aluminum matrix table. Z 24 in upgrade. Optional C axis."
+  },
+  {
+   "id": "northwood-iron-horse-3-61x121",
+   "maker": "Northwood Machine",
+   "model": "Iron Horse 3",
+   "variant": "61 x 121 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 121,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3073,
+    "z": 356
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13 kW air-cooled spindle, HSK63F/HSK63A",
+     "power_kw": 13,
+     "power_hp": 17.43,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 kW liquid-cooled spindle",
+     "power_kw": 16,
+     "power_hp": 21.46,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "25 kW liquid-cooled spindle",
+     "power_kw": 25,
+     "power_hp": 33.53,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 standard ride-along (8, 10, 20 optional)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-iron-horse-3/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. 3-axis moving-table machine, single or twin tables (wide/narrow), aluminum matrix table. Z 24 in upgrade. Optional C axis."
+  },
+  {
+   "id": "northwood-iron-horse-3-61x145",
+   "maker": "Northwood Machine",
+   "model": "Iron Horse 3",
+   "variant": "61 x 145 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 145,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3683,
+    "z": 356
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13 kW air-cooled spindle, HSK63F/HSK63A",
+     "power_kw": 13,
+     "power_hp": 17.43,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 kW liquid-cooled spindle",
+     "power_kw": 16,
+     "power_hp": 21.46,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "25 kW liquid-cooled spindle",
+     "power_kw": 25,
+     "power_hp": 33.53,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 standard ride-along (8, 10, 20 optional)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-iron-horse-3/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. 3-axis moving-table machine, single or twin tables (wide/narrow), aluminum matrix table. Z 24 in upgrade. Optional C axis."
+  },
+  {
+   "id": "northwood-iron-horse-5-49x97",
+   "maker": "Northwood Machine",
+   "model": "Iron Horse 5",
+   "variant": "49 x 97 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 49,
+    "y": 97,
+    "z": 36
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 2464,
+    "z": 914
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2-axis head, 18 kW liquid-cooled (option A)",
+     "power_kw": 18,
+     "power_hp": 24.14,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2-axis head, 7 to 50 kW liquid-cooled (options B-F)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 31i-B5 Plus with Alpha iD servos (5-axis)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 20,
+    "notes": "20 station"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-iron-horse-5/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. 5-axis moving-table machine; Z 50 or 72 in upgrades."
+  },
+  {
+   "id": "northwood-iron-horse-5-61x121",
+   "maker": "Northwood Machine",
+   "model": "Iron Horse 5",
+   "variant": "61 x 121 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 121,
+    "z": 36
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3073,
+    "z": 914
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2-axis head, 18 kW liquid-cooled (option A)",
+     "power_kw": 18,
+     "power_hp": 24.14,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2-axis head, 7 to 50 kW liquid-cooled (options B-F)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 31i-B5 Plus with Alpha iD servos (5-axis)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 20,
+    "notes": "20 station"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-iron-horse-5/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. 5-axis moving-table machine; Z 50 or 72 in upgrades."
+  },
+  {
+   "id": "northwood-iron-horse-5-61x145",
+   "maker": "Northwood Machine",
+   "model": "Iron Horse 5",
+   "variant": "61 x 145 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 145,
+    "z": 36
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3683,
+    "z": 914
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2-axis head, 18 kW liquid-cooled (option A)",
+     "power_kw": 18,
+     "power_hp": 24.14,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2-axis head, 7 to 50 kW liquid-cooled (options B-F)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 31i-B5 Plus with Alpha iD servos (5-axis)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 20,
+    "notes": "20 station"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-iron-horse-5/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. 5-axis moving-table machine; Z 50 or 72 in upgrades."
+  },
+  {
+   "id": "northwood-iron-horse-dual-49x97",
+   "maker": "Northwood Machine",
+   "model": "Iron Horse Dual Processing",
+   "variant": "49 x 97 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 49,
+    "y": 97,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 2464,
+    "z": 356
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13 kW air-cooled spindle, HSK63F/HSK63A",
+     "power_kw": 13,
+     "power_hp": 17.43,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 kW liquid-cooled spindle",
+     "power_kw": 16,
+     "power_hp": 21.46,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "25 kW liquid-cooled spindle",
+     "power_kw": 25,
+     "power_hp": 33.53,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 standard (8, 10, 20 optional)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-iron-horse-dual-processing/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. Dual-path FANUC (31i optional), adjustable spindle spacing, saw options."
+  },
+  {
+   "id": "northwood-iron-horse-dual-61x121",
+   "maker": "Northwood Machine",
+   "model": "Iron Horse Dual Processing",
+   "variant": "61 x 121 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 121,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3073,
+    "z": 356
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13 kW air-cooled spindle, HSK63F/HSK63A",
+     "power_kw": 13,
+     "power_hp": 17.43,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 kW liquid-cooled spindle",
+     "power_kw": 16,
+     "power_hp": 21.46,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "25 kW liquid-cooled spindle",
+     "power_kw": 25,
+     "power_hp": 33.53,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 standard (8, 10, 20 optional)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-iron-horse-dual-processing/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. Dual-path FANUC (31i optional), adjustable spindle spacing, saw options."
+  },
+  {
+   "id": "northwood-iron-horse-dual-61x145",
+   "maker": "Northwood Machine",
+   "model": "Iron Horse Dual Processing",
+   "variant": "61 x 145 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 145,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3683,
+    "z": 356
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13 kW air-cooled spindle, HSK63F/HSK63A",
+     "power_kw": 13,
+     "power_hp": 17.43,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 kW liquid-cooled spindle",
+     "power_kw": 16,
+     "power_hp": 21.46,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "25 kW liquid-cooled spindle",
+     "power_kw": 25,
+     "power_hp": 33.53,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 standard (8, 10, 20 optional)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-iron-horse-dual-processing/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. Dual-path FANUC (31i optional), adjustable spindle spacing, saw options."
+  },
+  {
+   "id": "northwood-iron-horse-multi-tool-49x97",
+   "maker": "Northwood Machine",
+   "model": "Iron Horse Multi-Tool",
+   "variant": "49 x 97 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 49,
+    "y": 97,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 2464,
+    "z": 356
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13 kW air-cooled spindle, HSK63F/HSK63A",
+     "power_kw": 13,
+     "power_hp": 17.43,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 kW liquid-cooled spindle",
+     "power_kw": 16,
+     "power_hp": 21.46,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "25 kW liquid-cooled spindle",
+     "power_kw": 25,
+     "power_hp": 33.53,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 standard (8, 10, 20 optional)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-iron-horse-multi-tool/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. Multi-tool machine with saw and molder options; independent X/Y heads possible."
+  },
+  {
+   "id": "northwood-iron-horse-multi-tool-61x121",
+   "maker": "Northwood Machine",
+   "model": "Iron Horse Multi-Tool",
+   "variant": "61 x 121 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 121,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3073,
+    "z": 356
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13 kW air-cooled spindle, HSK63F/HSK63A",
+     "power_kw": 13,
+     "power_hp": 17.43,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 kW liquid-cooled spindle",
+     "power_kw": 16,
+     "power_hp": 21.46,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "25 kW liquid-cooled spindle",
+     "power_kw": 25,
+     "power_hp": 33.53,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 standard (8, 10, 20 optional)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-iron-horse-multi-tool/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. Multi-tool machine with saw and molder options; independent X/Y heads possible."
+  },
+  {
+   "id": "northwood-iron-horse-multi-tool-61x145",
+   "maker": "Northwood Machine",
+   "model": "Iron Horse Multi-Tool",
+   "variant": "61 x 145 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 145,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3683,
+    "z": 356
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13 kW air-cooled spindle, HSK63F/HSK63A",
+     "power_kw": 13,
+     "power_hp": 17.43,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 kW liquid-cooled spindle",
+     "power_kw": 16,
+     "power_hp": 21.46,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "25 kW liquid-cooled spindle",
+     "power_kw": 25,
+     "power_hp": 33.53,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 standard (8, 10, 20 optional)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-iron-horse-multi-tool/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. Multi-tool machine with saw and molder options; independent X/Y heads possible."
+  },
+  {
+   "id": "northwood-iron-horse-mh-49x97",
+   "maker": "Northwood Machine",
+   "model": "Iron Horse Material Handling",
+   "variant": "49 x 97 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 49,
+    "y": 97,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 2464,
+    "z": 356
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13 kW air-cooled spindle, HSK63F/HSK63A",
+     "power_kw": 13,
+     "power_hp": 17.43,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 kW liquid-cooled spindle",
+     "power_kw": 16,
+     "power_hp": 21.46,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "25 kW liquid-cooled spindle",
+     "power_kw": 25,
+     "power_hp": 33.53,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 standard (8, 10, 20 optional)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-iron-horse-material-handling/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. Iron Horse with automatic material handling."
+  },
+  {
+   "id": "northwood-iron-horse-mh-61x121",
+   "maker": "Northwood Machine",
+   "model": "Iron Horse Material Handling",
+   "variant": "61 x 121 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 121,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3073,
+    "z": 356
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13 kW air-cooled spindle, HSK63F/HSK63A",
+     "power_kw": 13,
+     "power_hp": 17.43,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 kW liquid-cooled spindle",
+     "power_kw": 16,
+     "power_hp": 21.46,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "25 kW liquid-cooled spindle",
+     "power_kw": 25,
+     "power_hp": 33.53,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 standard (8, 10, 20 optional)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-iron-horse-material-handling/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. Iron Horse with automatic material handling."
+  },
+  {
+   "id": "northwood-iron-horse-mh-61x145",
+   "maker": "Northwood Machine",
+   "model": "Iron Horse Material Handling",
+   "variant": "61 x 145 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 145,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3683,
+    "z": 356
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13 kW air-cooled spindle, HSK63F/HSK63A",
+     "power_kw": 13,
+     "power_hp": 17.43,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 kW liquid-cooled spindle",
+     "power_kw": 16,
+     "power_hp": 21.46,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "25 kW liquid-cooled spindle",
+     "power_kw": 25,
+     "power_hp": 33.53,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 standard (8, 10, 20 optional)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-iron-horse-material-handling/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. Iron Horse with automatic material handling."
+  },
+  {
+   "id": "northwood-iron-horse-rhd-49x97",
+   "maker": "Northwood Machine",
+   "model": "Iron Horse Roller Hold-Down",
+   "variant": "49 x 97 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 49,
+    "y": 97,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 2464,
+    "z": 356
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13 kW air-cooled spindle, HSK63F/HSK63A",
+     "power_kw": 13,
+     "power_hp": 17.43,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 kW liquid-cooled spindle",
+     "power_kw": 16,
+     "power_hp": 21.46,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "25 kW liquid-cooled spindle",
+     "power_kw": 25,
+     "power_hp": 33.53,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 standard (8, 10, 20 optional)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "roller hold-down"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-iron-horse-roller-hold-down/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. Quad steel roller hold-down; load/unload/label options."
+  },
+  {
+   "id": "northwood-iron-horse-rhd-61x121",
+   "maker": "Northwood Machine",
+   "model": "Iron Horse Roller Hold-Down",
+   "variant": "61 x 121 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 121,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3073,
+    "z": 356
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13 kW air-cooled spindle, HSK63F/HSK63A",
+     "power_kw": 13,
+     "power_hp": 17.43,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 kW liquid-cooled spindle",
+     "power_kw": 16,
+     "power_hp": 21.46,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "25 kW liquid-cooled spindle",
+     "power_kw": 25,
+     "power_hp": 33.53,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 standard (8, 10, 20 optional)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "roller hold-down"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-iron-horse-roller-hold-down/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. Quad steel roller hold-down; load/unload/label options."
+  },
+  {
+   "id": "northwood-iron-horse-xl-3-144x96",
+   "maker": "Northwood Machine",
+   "model": "Iron Horse XL 3",
+   "variant": "144 x 96 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 144,
+    "y": 96,
+    "z": 36
+   },
+   "work_area_mm": {
+    "x": 3658,
+    "y": 2438,
+    "z": 914
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "32 kW liquid-cooled spindle",
+     "power_kw": 32,
+     "power_hp": 42.91,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63A",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "FANUC ISO40 / ISO50 taper spindle",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO40/ISO50",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 20,
+    "notes": "20 station"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-iron-horse-xl-3/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. Large 3-axis; Z 50 or 72 in upgrades."
+  },
+  {
+   "id": "northwood-iron-horse-xl-5-144x96",
+   "maker": "Northwood Machine",
+   "model": "Iron Horse XL 5",
+   "variant": "144 x 96 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 144,
+    "y": 96,
+    "z": 36
+   },
+   "work_area_mm": {
+    "x": 3658,
+    "y": 2438,
+    "z": 914
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2-axis head, 18 kW liquid-cooled (option A)",
+     "power_kw": 18,
+     "power_hp": 24.14,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2-axis head, 7 to 50 kW liquid-cooled (options B-F)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 31i-B5 Plus with Alpha iD servos (5-axis)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 20,
+    "notes": "20 station"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-iron-horse-xl-5/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. Large 5-axis; Z 50 or 72 in upgrades."
+  },
+  {
+   "id": "northwood-iron-horse-compact-5-146x61",
+   "maker": "Northwood Machine",
+   "model": "Iron Horse Compact 5",
+   "variant": "146 x 61 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 146,
+    "y": 61,
+    "z": 36
+   },
+   "work_area_mm": {
+    "x": 3708,
+    "y": 1549,
+    "z": 914
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2-axis head, 18 kW liquid-cooled (option A)",
+     "power_kw": 18,
+     "power_hp": 24.14,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2-axis head, 7 to 50 kW liquid-cooled (options B-F)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 31i-B5 Plus with Alpha iD servos (5-axis)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 20,
+    "notes": "20 station"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/iron-horse-compact-5/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. Compact 5-axis, wide orientation."
+  },
+  {
+   "id": "northwood-ironside-3-49x97",
+   "maker": "Northwood Machine",
+   "model": "Ironside 3",
+   "variant": "49 x 97 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 49,
+    "y": 97,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 2464,
+    "z": 356
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13 kW air-cooled spindle, HSK63F/HSK63A",
+     "power_kw": 13,
+     "power_hp": 17.43,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 kW liquid-cooled spindle",
+     "power_kw": 16,
+     "power_hp": 21.46,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "25 kW liquid-cooled spindle",
+     "power_kw": 25,
+     "power_hp": 33.53,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 standard (8, 10, 20 optional)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-ironside-3/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. 3-axis traveling gantry for panel processing and nested cabinets; Z 36 in upgrade."
+  },
+  {
+   "id": "northwood-ironside-3-61x121",
+   "maker": "Northwood Machine",
+   "model": "Ironside 3",
+   "variant": "61 x 121 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 121,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3073,
+    "z": 356
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13 kW air-cooled spindle, HSK63F/HSK63A",
+     "power_kw": 13,
+     "power_hp": 17.43,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 kW liquid-cooled spindle",
+     "power_kw": 16,
+     "power_hp": 21.46,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "25 kW liquid-cooled spindle",
+     "power_kw": 25,
+     "power_hp": 33.53,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 standard (8, 10, 20 optional)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-ironside-3/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. 3-axis traveling gantry for panel processing and nested cabinets; Z 36 in upgrade."
+  },
+  {
+   "id": "northwood-ironside-3-61x145",
+   "maker": "Northwood Machine",
+   "model": "Ironside 3",
+   "variant": "61 x 145 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 145,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3683,
+    "z": 356
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13 kW air-cooled spindle, HSK63F/HSK63A",
+     "power_kw": 13,
+     "power_hp": 17.43,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 kW liquid-cooled spindle",
+     "power_kw": 16,
+     "power_hp": 21.46,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "25 kW liquid-cooled spindle",
+     "power_kw": 25,
+     "power_hp": 33.53,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 standard (8, 10, 20 optional)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-ironside-3/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. 3-axis traveling gantry for panel processing and nested cabinets; Z 36 in upgrade."
+  },
+  {
+   "id": "northwood-ironside-5-49x97",
+   "maker": "Northwood Machine",
+   "model": "Ironside 5",
+   "variant": "49 x 97 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 49,
+    "y": 97,
+    "z": 36
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 2464,
+    "z": 914
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2-axis head, 18 kW liquid-cooled (option A)",
+     "power_kw": 18,
+     "power_hp": 24.14,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2-axis head, 7 to 50 kW liquid-cooled (options B-F)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 31i-B5 Plus with Alpha iD servos (5-axis)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 20,
+    "notes": "20 station"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-ironside-5/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. 5-axis traveling gantry; Z 50 or 72 in upgrades."
+  },
+  {
+   "id": "northwood-ironside-5-61x121",
+   "maker": "Northwood Machine",
+   "model": "Ironside 5",
+   "variant": "61 x 121 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 121,
+    "z": 36
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3073,
+    "z": 914
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2-axis head, 18 kW liquid-cooled (option A)",
+     "power_kw": 18,
+     "power_hp": 24.14,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2-axis head, 7 to 50 kW liquid-cooled (options B-F)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 31i-B5 Plus with Alpha iD servos (5-axis)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 20,
+    "notes": "20 station"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-ironside-5/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. 5-axis traveling gantry; Z 50 or 72 in upgrades."
+  },
+  {
+   "id": "northwood-ironside-5-61x145",
+   "maker": "Northwood Machine",
+   "model": "Ironside 5",
+   "variant": "61 x 145 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 145,
+    "z": 36
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3683,
+    "z": 914
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2-axis head, 18 kW liquid-cooled (option A)",
+     "power_kw": 18,
+     "power_hp": 24.14,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2-axis head, 7 to 50 kW liquid-cooled (options B-F)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 31i-B5 Plus with Alpha iD servos (5-axis)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 20,
+    "notes": "20 station"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-ironside-5/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. 5-axis traveling gantry; Z 50 or 72 in upgrades."
+  },
+  {
+   "id": "northwood-ironside-amms-49x97",
+   "maker": "Northwood Machine",
+   "model": "Ironside AMMS",
+   "variant": "49 x 97 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 49,
+    "y": 97,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 2464,
+    "z": 356
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13 kW air-cooled spindle, HSK63F/HSK63A",
+     "power_kw": 13,
+     "power_hp": 17.43,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 kW liquid-cooled spindle",
+     "power_kw": 16,
+     "power_hp": 21.46,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "25 kW liquid-cooled spindle",
+     "power_kw": 25,
+     "power_hp": 33.53,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 standard (8, 10, 20 optional)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-ironside-amms/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. Ironside with automatic material management system."
+  },
+  {
+   "id": "northwood-ironside-amms-61x121",
+   "maker": "Northwood Machine",
+   "model": "Ironside AMMS",
+   "variant": "61 x 121 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 121,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3073,
+    "z": 356
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13 kW air-cooled spindle, HSK63F/HSK63A",
+     "power_kw": 13,
+     "power_hp": 17.43,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 kW liquid-cooled spindle",
+     "power_kw": 16,
+     "power_hp": 21.46,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "25 kW liquid-cooled spindle",
+     "power_kw": 25,
+     "power_hp": 33.53,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 standard (8, 10, 20 optional)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-ironside-amms/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. Ironside with automatic material management system."
+  },
+  {
+   "id": "northwood-ironside-amms-61x145",
+   "maker": "Northwood Machine",
+   "model": "Ironside AMMS",
+   "variant": "61 x 145 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 145,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3683,
+    "z": 356
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13 kW air-cooled spindle, HSK63F/HSK63A",
+     "power_kw": 13,
+     "power_hp": 17.43,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "16 kW liquid-cooled spindle",
+     "power_kw": 16,
+     "power_hp": 21.46,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "25 kW liquid-cooled spindle",
+     "power_kw": 25,
+     "power_hp": 33.53,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 standard (8, 10, 20 optional)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-ironside-amms/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. Ironside with automatic material management system."
+  },
+  {
+   "id": "northwood-ironside-r-49x97",
+   "maker": "Northwood Machine",
+   "model": "Ironside R-Series",
+   "variant": "49 x 97 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 49,
+    "y": 97,
+    "z": 9
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 2464,
+    "z": 229
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13 kW air-cooled spindle, HSK63F/HSK63A",
+     "power_kw": 13,
+     "power_hp": 17.43,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 standard"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-ironside-r-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. Entry nested-based router, 13 kW air-cooled HSK63F spindle, 9-line drill."
+  },
+  {
+   "id": "northwood-ironside-r-61x121",
+   "maker": "Northwood Machine",
+   "model": "Ironside R-Series",
+   "variant": "61 x 121 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 121,
+    "z": 9
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3073,
+    "z": 229
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13 kW air-cooled spindle, HSK63F/HSK63A",
+     "power_kw": 13,
+     "power_hp": 17.43,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 standard"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-ironside-r-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. Entry nested-based router, 13 kW air-cooled HSK63F spindle, 9-line drill."
+  },
+  {
+   "id": "northwood-ironside-r-61x145",
+   "maker": "Northwood Machine",
+   "model": "Ironside R-Series",
+   "variant": "61 x 145 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 145,
+    "z": 9
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 3683,
+    "z": 229
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "13 kW air-cooled spindle, HSK63F/HSK63A",
+     "power_kw": 13,
+     "power_hp": 17.43,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 standard"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-ironside-r-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. Entry nested-based router, 13 kW air-cooled HSK63F spindle, 9-line drill."
+  },
+  {
+   "id": "northwood-maverick-144x72",
+   "maker": "Northwood Machine",
+   "model": "Maverick",
+   "variant": "144 x 72 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 144,
+    "y": 72,
+    "z": 12
+   },
+   "work_area_mm": {
+    "x": 3658,
+    "y": 1829,
+    "z": 305
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 kW spindle, ISO40 taper",
+     "power_kw": 18,
+     "power_hp": 24.14,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO40",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Tool changer not stated"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-maverick/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. Stone router (monoblock)."
+  },
+  {
+   "id": "northwood-navigator-eds-156x96",
+   "maker": "Northwood Machine",
+   "model": "Navigator EDS",
+   "variant": "156 x 96 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 156,
+    "y": 96,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 3962,
+    "y": 2438,
+    "z": 356
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 kW spindle, ISO40 taper",
+     "power_kw": 18,
+     "power_hp": 24.14,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO40",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 64,
+    "notes": "up to 64 tool pockets"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-navigator-eds/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. Stone countertop router; automatic pod placement."
+  },
+  {
+   "id": "northwood-navigator-eds-180x96",
+   "maker": "Northwood Machine",
+   "model": "Navigator EDS",
+   "variant": "180 x 96 in table",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 180,
+    "y": 96,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 4572,
+    "y": 2438,
+    "z": 356
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 kW spindle, ISO40 taper",
+     "power_kw": 18,
+     "power_hp": 24.14,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO40",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC 0i-Model F Plus with Alpha iD servos",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 64,
+    "notes": "up to 64 tool pockets"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Northwood tool/part probe (standard); Renishaw TS27R, NC4 or RMP400 optional"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://northwoodmachine.com/cnc-machine/new-cnc-machines-navigator-eds/"
+   ],
+   "estimated": {
+    "tool_change.kind": "ride-along/station changer; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z travel. Stone countertop router; automatic pod placement."
+  }
+ ]
+}

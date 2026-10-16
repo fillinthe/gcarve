@@ -1,0 +1,2078 @@
+{
+ "maker": "CNC-Technik Haase",
+ "website": "https://www.haase-cnc.de",
+ "machines": [
+  {
+   "id": "haase-al-640-profi",
+   "maker": "CNC-Technik Haase",
+   "model": "AL-Serie",
+   "variant": "AL 640 Profi",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 15.75,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 400,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 354.3,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 9000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "WinPC-NC Network",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/AL640-Profi-CNC-Maschine-Haase/2052"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published positioning speed approx. 9,000 mm/min",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Aluminium gantry on 12 double-bearing rollers over round shafts, ball screws on all axes, repeatability +/-0.015 mm, step 0.003125 mm."
+  },
+  {
+   "id": "haase-al-640-expert",
+   "maker": "CNC-Technik Haase",
+   "model": "AL-Serie",
+   "variant": "AL 640 Expert",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 15.75,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 400,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 708.7,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 18000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "cncGraF SMC5D-M4 LAN controller + cncGraF Pro",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/AL640-Expert-CNC-Maschine-Haase/2051"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published positioning speed approx. 18,000 mm/min",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Expert version of the AL series: closed-loop servo steppers, integrated cncGraF controller, ball screws, step 0.005 mm."
+  },
+  {
+   "id": "haase-al-1040-profi",
+   "maker": "CNC-Technik Haase",
+   "model": "AL-Serie",
+   "variant": "AL 1040 Profi",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 39.37,
+    "y": 15.75,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 1000,
+    "y": 400,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 354.3,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 9000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "WinPC-NC Network",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/AL1040-Profi-CNC-Maschine-Haase/2054"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published positioning speed approx. 9,000 mm/min",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Aluminium gantry on 12 double-bearing rollers over round shafts, ball screws on all axes, repeatability +/-0.015 mm, step 0.003125 mm."
+  },
+  {
+   "id": "haase-al-1040-expert",
+   "maker": "CNC-Technik Haase",
+   "model": "AL-Serie",
+   "variant": "AL 1040 Expert",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 39.37,
+    "y": 15.75,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 1000,
+    "y": 400,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 708.7,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 18000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "cncGraF SMC5D-M4 LAN controller + cncGraF Pro",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/AL1040-Expert-CNC-Maschine-Haase/2057"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published positioning speed approx. 18,000 mm/min",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Expert version of the AL series: closed-loop servo steppers, integrated cncGraF controller, ball screws, step 0.005 mm."
+  },
+  {
+   "id": "haase-al-1065-profi",
+   "maker": "CNC-Technik Haase",
+   "model": "AL-Serie",
+   "variant": "AL 1065 Profi",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 39.37,
+    "y": 25.59,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 1000,
+    "y": 650,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 354.3,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 9000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "WinPC-NC Network",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/AL1065-Profi-CNC-Maschine-Haase/2053"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published positioning speed approx. 9,000 mm/min",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Aluminium gantry on 12 double-bearing rollers over round shafts, ball screws on all axes, repeatability +/-0.015 mm, step 0.003125 mm."
+  },
+  {
+   "id": "haase-al-1065-expert",
+   "maker": "CNC-Technik Haase",
+   "model": "AL-Serie",
+   "variant": "AL 1065 Expert",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 39.37,
+    "y": 25.59,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 1000,
+    "y": 650,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 708.7,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 18000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "cncGraF SMC5D-M4 LAN controller + cncGraF Pro",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/AL1065-Expert-CNC-Maschine-Haase/2058"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published positioning speed approx. 18,000 mm/min",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Expert version of the AL series: closed-loop servo steppers, integrated cncGraF controller, ball screws, step 0.005 mm."
+  },
+  {
+   "id": "haase-al-1265-profi",
+   "maker": "CNC-Technik Haase",
+   "model": "AL-Serie",
+   "variant": "AL 1265 Profi",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 49.21,
+    "y": 25.59,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 1250,
+    "y": 650,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 354.3,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 9000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "WinPC-NC Network",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/AL1265-Profi-CNC-Maschine-Haase/2055"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published positioning speed approx. 9,000 mm/min",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Aluminium gantry on 12 double-bearing rollers over round shafts, ball screws on all axes, repeatability +/-0.015 mm, step 0.003125 mm."
+  },
+  {
+   "id": "haase-al-1265-expert",
+   "maker": "CNC-Technik Haase",
+   "model": "AL-Serie",
+   "variant": "AL 1265 Expert",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 49.21,
+    "y": 25.59,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 1250,
+    "y": 650,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 708.7,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 18000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "cncGraF SMC5D-M4 LAN controller + cncGraF Pro",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/AL1265-Expert-CNC-Maschine-Haase/2059"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published positioning speed approx. 18,000 mm/min",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Expert version of the AL series: closed-loop servo steppers, integrated cncGraF controller, ball screws, step 0.005 mm."
+  },
+  {
+   "id": "haase-al-1290-profi",
+   "maker": "CNC-Technik Haase",
+   "model": "AL-Serie",
+   "variant": "AL 1290 Profi",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 49.21,
+    "y": 35.43,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 1250,
+    "y": 900,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 354.3,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 9000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "WinPC-NC Network",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/AL1290-Profi-CNC-Maschine-Haase/2036"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published positioning speed approx. 9,000 mm/min",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Aluminium gantry on 12 double-bearing rollers over round shafts, ball screws on all axes, repeatability +/-0.015 mm, step 0.003125 mm."
+  },
+  {
+   "id": "haase-al-1290-expert",
+   "maker": "CNC-Technik Haase",
+   "model": "AL-Serie",
+   "variant": "AL 1290 Expert",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 49.21,
+    "y": 35.43,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 1250,
+    "y": 900,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 708.7,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 18000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "cncGraF SMC5D-M4 LAN controller + cncGraF Pro",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/AL1290-Expert-CNC-Maschine-Haase/2037"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published positioning speed approx. 18,000 mm/min",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Expert version of the AL series: closed-loop servo steppers, integrated cncGraF controller, ball screws, step 0.005 mm."
+  },
+  {
+   "id": "haase-al-2010-profi",
+   "maker": "CNC-Technik Haase",
+   "model": "AL-Serie",
+   "variant": "AL 2010 Profi",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 39.37,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 1000,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 354.3,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 9000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "WinPC-NC Network",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/AL2010-Profi-CNC-Maschine-Haase/2056"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published positioning speed approx. 9,000 mm/min",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Aluminium gantry on 12 double-bearing rollers over round shafts, ball screws on all axes, repeatability +/-0.015 mm, step 0.003125 mm."
+  },
+  {
+   "id": "haase-al-2010-expert",
+   "maker": "CNC-Technik Haase",
+   "model": "AL-Serie",
+   "variant": "AL 2010 Expert",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 39.37,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 1000,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 708.7,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 18000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "cncGraF SMC5D-M4 LAN controller + cncGraF Pro",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/AL2010-Expert-CNC-Maschine-Haase/2060"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published positioning speed approx. 18,000 mm/min",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Expert version of the AL series: closed-loop servo steppers, integrated cncGraF controller, ball screws, step 0.005 mm."
+  },
+  {
+   "id": "haase-al-m-640-expert",
+   "maker": "CNC-Technik Haase",
+   "model": "AL-M Serie",
+   "variant": "AL-M 640 Expert",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 15.75,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 400,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 708.7,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 18000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "cncGraF SMC5D-M4 LAN controller + cncGraF Pro",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "threaded inserts (grid table)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/AL-M-640-Expert-CNC-Maschine-Haase/1716"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published positioning speed 300 mm/s",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Assembled and adjusted: ground hardened rollers with preloaded carriages, 16 mm ball screws, 180 W servo-stepper drives, repeatability +/-0.01 mm."
+  },
+  {
+   "id": "haase-al-m-6065-expert",
+   "maker": "CNC-Technik Haase",
+   "model": "AL-M Serie",
+   "variant": "AL-M 6065 Expert",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 25.59,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 650,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 708.7,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 18000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "cncGraF SMC5D-M4 LAN controller + cncGraF Pro",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "threaded inserts (grid table)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/AL-M-665-Expert-CNC-Maschine-Haase/2099"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published positioning speed 300 mm/s",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Assembled and adjusted: ground hardened rollers with preloaded carriages, 16 mm ball screws, 180 W servo-stepper drives, repeatability +/-0.01 mm."
+  },
+  {
+   "id": "haase-al-m-1040-expert",
+   "maker": "CNC-Technik Haase",
+   "model": "AL-M Serie",
+   "variant": "AL-M 1040 Expert",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 39.37,
+    "y": 15.75,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 1000,
+    "y": 400,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 708.7,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 18000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "cncGraF SMC5D-M4 LAN controller + cncGraF Pro",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "threaded inserts (grid table)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/AL-M-1040-Expert-CNC-Maschine-Haase/1932"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published positioning speed 300 mm/s",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Assembled and adjusted: ground hardened rollers with preloaded carriages, 16 mm ball screws, 180 W servo-stepper drives, repeatability +/-0.01 mm."
+  },
+  {
+   "id": "haase-al-m-1065-expert",
+   "maker": "CNC-Technik Haase",
+   "model": "AL-M Serie",
+   "variant": "AL-M 1065 Expert",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 39.37,
+    "y": 25.59,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 1000,
+    "y": 650,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 708.7,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 18000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "cncGraF SMC5D-M4 LAN controller + cncGraF Pro",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "threaded inserts (grid table)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/AL-M-1065-Expert-CNC-Fraesmaschine-Haase/1728"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published positioning speed 300 mm/s",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Assembled and adjusted: ground hardened rollers with preloaded carriages, 16 mm ball screws, 180 W servo-stepper drives, repeatability +/-0.01 mm."
+  },
+  {
+   "id": "haase-al-m-1265-expert",
+   "maker": "CNC-Technik Haase",
+   "model": "AL-M Serie",
+   "variant": "AL-M 1265 Expert",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 49.21,
+    "y": 25.59,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 1250,
+    "y": 650,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 708.7,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 18000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "cncGraF SMC5D-M4 LAN controller + cncGraF Pro",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "threaded inserts (grid table)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/AL-M-1265-Expert-CNC-Maschine-Haase/1933"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published positioning speed 300 mm/s",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Assembled and adjusted: ground hardened rollers with preloaded carriages, 16 mm ball screws, 180 W servo-stepper drives, repeatability +/-0.01 mm."
+  },
+  {
+   "id": "haase-al-m-1210-expert",
+   "maker": "CNC-Technik Haase",
+   "model": "AL-M Serie",
+   "variant": "AL-M 1210 Expert",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 49.21,
+    "y": 39.37,
+    "z": 7.09
+   },
+   "work_area_mm": {
+    "x": 1250,
+    "y": 1000,
+    "z": 180
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 708.7,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 18000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "cncGraF SMC5D-M4 LAN controller + cncGraF Pro",
+     "gcarve_post": "din-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "threaded inserts (grid table)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/AL-M-1210-Expert-CNC-Maschine-Haase/1729"
+   ],
+   "estimated": {
+    "rapid_mm_min": "published positioning speed 300 mm/s",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Assembled and adjusted: ground hardened rollers with preloaded carriages, 16 mm ball screws, 180 W servo-stepper drives, repeatability +/-0.01 mm."
+  },
+  {
+   "id": "haase-als-1006-expert",
+   "maker": "CNC-Technik Haase",
+   "model": "ALS-Serie",
+   "variant": "ALS 1006 Expert",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 39.37,
+    "y": 23.62,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1000,
+    "y": 600,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 590.6,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/CNC-Fraesmaschine-ALS-1006/CNC-Fraesmaschine-ALS-1006-expert-Servo-absolut"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Expert version up to 15 m/min",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "25 mm aluminium base plate, 30 mm side parts, 25 mm ball screws (long axis under the table), preloaded rails; table-top with integrated electronics, 4 x 180 W servos."
+  },
+  {
+   "id": "haase-als-1006-absolut",
+   "maker": "CNC-Technik Haase",
+   "model": "ALS-Serie",
+   "variant": "ALS 1006 Absolut",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 39.37,
+    "y": 23.62,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1000,
+    "y": 600,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1181.1,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/CNC-Fraesmaschine-ALS-1006/CNC-Fraesmaschine-ALS-1006-expert-Servo-absolut"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Absolut version up to 30 m/min",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Absolut version: external magnetic scales (1/1000 mm) on all axes, 4 x 400 W servos, control cabinet in the stand."
+  },
+  {
+   "id": "haase-als-1208-expert",
+   "maker": "CNC-Technik Haase",
+   "model": "ALS-Serie",
+   "variant": "ALS 1208 Expert",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 49.21,
+    "y": 31.5,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1250,
+    "y": 800,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 590.6,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/CNC-Fraesmaschine-ALS-1208/HAS-ALS1208"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Expert version up to 15 m/min",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "25 mm aluminium base plate, 30 mm side parts, 25 mm ball screws (long axis under the table), preloaded rails; table-top with integrated electronics, 4 x 180 W servos."
+  },
+  {
+   "id": "haase-als-1208-absolut",
+   "maker": "CNC-Technik Haase",
+   "model": "ALS-Serie",
+   "variant": "ALS 1208 Absolut",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 49.21,
+    "y": 31.5,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1250,
+    "y": 800,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1181.1,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/CNC-Fraesmaschine-ALS-1208/HAS-ALS1208"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Absolut version up to 30 m/min",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Absolut version: external magnetic scales (1/1000 mm) on all axes, 4 x 400 W servos, control cabinet in the stand."
+  },
+  {
+   "id": "haase-als-1210-expert",
+   "maker": "CNC-Technik Haase",
+   "model": "ALS-Serie",
+   "variant": "ALS 1210 Expert",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 49.21,
+    "y": 39.37,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1250,
+    "y": 1000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 590.6,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/CNC-Fraesmaschine-ALS-1210/HAS-ALS1210"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Expert version up to 15 m/min",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "25 mm aluminium base plate, 30 mm side parts, 25 mm ball screws (long axis under the table), preloaded rails; table-top with integrated electronics, 4 x 180 W servos."
+  },
+  {
+   "id": "haase-als-1210-absolut",
+   "maker": "CNC-Technik Haase",
+   "model": "ALS-Serie",
+   "variant": "ALS 1210 Absolut",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 49.21,
+    "y": 39.37,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1250,
+    "y": 1000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1181.1,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/CNC-Fraesmaschine-ALS-1210/HAS-ALS1210"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Absolut version up to 30 m/min",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Absolut version: external magnetic scales (1/1000 mm) on all axes, 4 x 400 W servos, control cabinet in the stand."
+  },
+  {
+   "id": "haase-als-1508-expert",
+   "maker": "CNC-Technik Haase",
+   "model": "ALS-Serie",
+   "variant": "ALS 1508 Expert",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 31.5,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 800,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 590.6,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/CNC-Fraesmaschine-ALS-1508/HAS-ALS1508"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Expert version up to 15 m/min",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "25 mm aluminium base plate, 30 mm side parts, 25 mm ball screws (long axis under the table), preloaded rails; table-top with integrated electronics, 4 x 180 W servos."
+  },
+  {
+   "id": "haase-als-1508-absolut",
+   "maker": "CNC-Technik Haase",
+   "model": "ALS-Serie",
+   "variant": "ALS 1508 Absolut",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 31.5,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 800,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1181.1,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/CNC-Fraesmaschine-ALS-1508/HAS-ALS1508"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Absolut version up to 30 m/min",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Absolut version: external magnetic scales (1/1000 mm) on all axes, 4 x 400 W servos, control cabinet in the stand."
+  },
+  {
+   "id": "haase-als-1510-expert",
+   "maker": "CNC-Technik Haase",
+   "model": "ALS-Serie",
+   "variant": "ALS 1510 Expert",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 39.37,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 1000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 590.6,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/CNC-Fraesmaschine-ALS-1510/HAS-ALS1510"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Expert version up to 15 m/min",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "25 mm aluminium base plate, 30 mm side parts, 25 mm ball screws (long axis under the table), preloaded rails; table-top with integrated electronics, 4 x 180 W servos."
+  },
+  {
+   "id": "haase-als-1510-absolut",
+   "maker": "CNC-Technik Haase",
+   "model": "ALS-Serie",
+   "variant": "ALS 1510 Absolut",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 39.37,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 1000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1181.1,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/CNC-Fraesmaschine-ALS-1510/HAS-ALS1510"
+   ],
+   "estimated": {
+    "rapid_mm_min": "Absolut version up to 30 m/min",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Absolut version: external magnetic scales (1/1000 mm) on all axes, 4 x 400 W servos, control cabinet in the stand."
+  },
+  {
+   "id": "haase-als-2010-expert",
+   "maker": "CNC-Technik Haase",
+   "model": "ALS-Serie",
+   "variant": "ALS 2010 Expert",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 39.37,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 1000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 590.6,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/CNC-Fraesmaschine-ALS-2010/HAS-ALS2010"
+   ],
+   "estimated": {
+    "work_area_mm.y": "page lists \"Y-Achse 100 mm\", evidently a typo for 1000 mm (model 2010, same Y as ALS 1510/1210)",
+    "rapid_mm_min": "Expert version up to 15 m/min",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "25 mm aluminium base plate, 30 mm side parts, 25 mm ball screws (long axis under the table), preloaded rails; table-top with integrated electronics, 4 x 180 W servos."
+  },
+  {
+   "id": "haase-als-2010-absolut",
+   "maker": "CNC-Technik Haase",
+   "model": "ALS-Serie",
+   "variant": "ALS 2010 Absolut",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 39.37,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 1000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 1181.1,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 30000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material",
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "T-slot table",
+     "vacuum (option)"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.haase-cnc.de/CNC-Fraesmaschine-ALS-2010/HAS-ALS2010"
+   ],
+   "estimated": {
+    "work_area_mm.y": "page lists \"Y-Achse 100 mm\", evidently a typo for 1000 mm (model 2010, same Y as ALS 1510/1210)",
+    "rapid_mm_min": "Absolut version up to 30 m/min",
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from mm/min"
+   },
+   "notes": "Absolut version: external magnetic scales (1/1000 mm) on all axes, 4 x 400 W servos, control cabinet in the stand."
+  }
+ ]
+}

@@ -74,3 +74,15 @@ GCarve checks every toolpath (rapids in material, cuts below the board, spindle 
 ## Licence
 
 GCarve is free to use. The program and its files are © Fill in the Blank, all rights reserved; see the [Terms](https://gcarve.app/terms/) and [Privacy](https://gcarve.app/privacy/) pages. This repository holds the downloads and release notes only; it is not the source code.
+
+## Build from source
+
+The desktop app's source is in `rust/` (engine `gcarve-core`, shared UI `gcarve-ui`, the app `gcarve-app`); the bit and machine database it embeds is in `data/`. You need [Rust](https://rustup.rs) (stable).
+
+```sh
+cd rust
+cargo run -p gcarve-app --release      # run it
+cargo test --workspace                 # tests
+```
+
+Packaging scripts for macOS, Windows and Linux are in `rust/packaging/`. The source is published to read and to build for your own use; see [LICENSE.md](LICENSE.md). The website and account server are not part of this repository.

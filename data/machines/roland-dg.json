@@ -1,0 +1,172 @@
+{
+ "maker": "Roland DG",
+ "website": "https://www.rolanddg.com",
+ "machines": [
+  {
+   "id": "roland-dg-mdx-50",
+   "maker": "Roland DG",
+   "model": "MODELA MDX-50",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 12.01,
+    "z": 5.31
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 305,
+    "z": 135
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Brushless DC spindle motor",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 4500,
+     "rpm_max": 15000,
+     "collet": "collet, 6.35 / 3.175 mm shanks",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 141.73,
+    "z": 118.11
+   },
+   "max_feed_mm_min": {
+    "xy": 3600,
+    "z": 3000
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Roland built-in panel + VPanel (RML-1 or NC code)",
+     "gcarve_post": "roland-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 5,
+    "notes": "5-tool ATC + 1 detection pin (6 positions)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATC tool detection pin"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": 3.94
+   },
+   "sources": [
+    "https://www.rolanddga.com/products/3d/mdx-50-benchtop-cnc-mill"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "converted from the maker's mm/min figures",
+    "tool_change.kind": "magazine layout not published"
+   },
+   "notes": "Benchtop prototyping mill for resins, chemical wood and modelling wax (maker: metal not supported). Table 400 x 305 mm; loadable workpiece Z 100 mm. Optional rotary axis. Feed range 7-3600 mm/min XY, 7-3000 Z."
+  },
+  {
+   "id": "roland-dg-srm-20",
+   "maker": "Roland DG",
+   "model": "monoFab SRM-20",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 8,
+    "y": 6,
+    "z": 2.38
+   },
+   "work_area_mm": {
+    "x": 203,
+    "y": 152,
+    "z": 60
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DC motor Type 380",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": 3000,
+     "rpm_max": 7000,
+     "collet": "collet",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 70.87,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 1800,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Roland VPanel over USB (RML-1 or NC code)",
+     "gcarve_post": "roland-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.rolanddga.com/products/3d/srm-20-small-milling-machine"
+   ],
+   "estimated": {
+    "work_area_in": "converted from the maker's mm figures",
+    "max_feed_ipm": "single operating speed range 6-1800 mm/min given for all axes"
+   },
+   "notes": "Compact desktop mill for wax, chemical wood, plastics, PCB. Table 232.2 x 156.6 mm; collet tip to table max 130.75 mm. G-code compatible."
+  }
+ ]
+}

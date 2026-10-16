@@ -1,0 +1,406 @@
+{
+ "maker": "Zenbot",
+ "website": "https://www.zenbotcnc.com",
+ "machines": [
+  {
+   "id": "zenbot-2424",
+   "maker": "Zenbot",
+   "model": "2424 CNC Router",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 24,
+    "y": 24,
+    "z": 4
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 610,
+    "z": 102
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router (mount options)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Gecko G540 control box + UC100 USB + Mach3",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2021/https://www.zenbotcnc.com/2424-cnc-router_p_15.html"
+   ],
+   "notes": "Table 30-5/8 x 28-5/8 in, footprint 35-5/8 x 36 in, $1,499 (2022). 425 oz-in NEMA 23 bipolar steppers, steel-reinforced urethane 3 mm pitch 15 mm belts, home switches on all axes. Router mounts for Hitachi/Metabo M12VC, Bosch 1617/1618, DeWalt DWP611, 80 mm spindles. Zenbot (California) since 2006.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "zenbot-2448",
+   "maker": "Zenbot",
+   "model": "2448 CNC Router",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 24,
+    "y": 48,
+    "z": 4
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 1219,
+    "z": 102
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router (mount options)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Gecko G540 control box + UC100 USB + Mach3",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2021/https://www.zenbotcnc.com/2448-cnc-router_p_19.html"
+   ],
+   "notes": "Table 57-3/8 x 28-5/8 in, footprint 60 x 36 in, $1,799 (2021). 425 oz-in NEMA 23 steppers, 15 mm urethane belts, Z on 20 mm hardened linear rail. Router mounts for Hitachi/Metabo M12VC, DeWalt 611, 80 mm spindles.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "zenbot-4848-pro",
+   "maker": "Zenbot",
+   "model": "4848 Pro 4x4 CNC Router",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 49,
+    "y": 49,
+    "z": 5.25
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 1245,
+    "z": 133
+   },
+   "gantry_clearance_in": 4,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer router or spindle (mount options)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Gecko G540 control box + UC100 USB + Mach3",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2021/https://www.zenbotcnc.com/4848-pro-4x4-CNC-Router-_p_20.html"
+   ],
+   "notes": "Table 56-5/8 x 56-5/8 in, footprint 60 x 60 in, Z clearance 4 in, $4,199 (2023). All-aluminum, square profile linear guides on all axes, ball screw Z, 425 oz-in NEMA 23 steppers, 20 mm (3/4 in) urethane belts.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "zenbot-4896-pro",
+   "maker": "Zenbot",
+   "model": "4896 Pro 4x8 CNC Router",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 99,
+    "y": 49,
+    "z": 5
+   },
+   "work_area_mm": {
+    "x": 2515,
+    "y": 1245,
+    "z": 127
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "1.5 kW air-cooled spindle + VFD (110 V)",
+     "power_kw": 1.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 kW air-cooled spindle + VFD (220 V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Gecko G540 control box + UC100 USB + Mach3",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20250420101300/https://www.zenbotcnc.com/4896-pro-4x8-CNC-Router_p_46.html"
+   ],
+   "notes": "Package $5,999 (2025): machine, aluminum stand, Gecko G540 + UC100, Mach3, 110 V 1.5 kW air-cooled spindle + programmed VFD (220 V 2.2 kW option). Square linear guides, ball screw Z, 425 oz-in NEMA 23 steppers, 20 mm urethane belts. Optional vacuum hold-down tops.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "zenbot-pro-2",
+   "maker": "Zenbot",
+   "model": "Pro 2",
+   "variant": null,
+   "years": "2026-",
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 100,
+    "y": 50,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 2540,
+    "y": 1270,
+    "z": 178
+   },
+   "gantry_clearance_in": 6,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "1.5 kW spindle + VFD",
+     "power_kw": 1.5,
+     "power_hp": null,
+     "rpm_min": 8000,
+     "rpm_max": 24000,
+     "collet": "ER11 (to 1/4\")",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 kW spindle + VFD",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 8000,
+     "rpm_max": 24000,
+     "collet": "ER20 (to 1/2\")",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "UCCNC (configuration file included)",
+     "gcarve_post": "uccnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.zenbotcnc.com/products/pro-2"
+   ],
+   "notes": "2026 release, full-sheet, from $6,799. Table height 31 in, gantry clearance 6 in, user-installed spoilboard. Rack and pinion with helical planetary gearboxes on X/Y (NEMA 24 steppers), ball screw Z (NEMA 23). Spindles 1.5 kW (ER11) or 2.2 kW (ER20), 8,000-24,000 RPM, VFD included; the page calls them both air- and water-cooled.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  }
+ ]
+}

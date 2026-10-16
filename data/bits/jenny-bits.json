@@ -1,0 +1,494 @@
+{
+ "maker": "Jenny Bits",
+ "source_summary": "Jenny Bits by Cadence Manufacturing & Design (Tempe AZ; jennybits.com redirects to cadencemfgdesign.com, a Wix store): product page spec lists and starting feeds (stored as presets). Down-cut 'Downtown Jenny', 'Slim Jen', 1/8 'Uptown Jenny', 'Oh Jenny' O-flutes and the pre-release 3/16 tools are left out: their pages do not publish a flute count.",
+ "retrieved": "2026-10-09",
+ "bits": [
+  {
+   "id": "jennybits-8675309-j",
+   "maker": "Jenny Bits",
+   "part_number": "8675309-J",
+   "name": "The Jenny 1/4 compression (short up-cut)",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "up_cut_length": 0.1,
+   "oal": 2.5,
+   "flutes": 2,
+   "helix": "compression",
+   "gcarve_tool": {
+    "name": "Jenny Bits 8675309-J Compression 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cadencemfgdesign.com/product-page/the-jenny-bit-8675309"
+   ]
+  },
+  {
+   "id": "jennybits-8675309-3-8j",
+   "maker": "Jenny Bits",
+   "part_number": "8675309-3/8J",
+   "name": "The Jenny 3/8 compression (short up-cut)",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "in",
+   "diameter": 0.375,
+   "cut_length": 1.125,
+   "up_cut_length": 0.215,
+   "oal": 3.0,
+   "flutes": 2,
+   "helix": "compression",
+   "gcarve_tool": {
+    "name": "Jenny Bits 8675309-3/8J Compression 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cadencemfgdesign.com/product-page/copy-of-8675309-3-8j-the-jenny-3-8-custom-compression-bit"
+   ]
+  },
+  {
+   "id": "jennybits-8675309-1-2j",
+   "maker": "Jenny Bits",
+   "part_number": "8675309-1/2J",
+   "name": "The Jenny 1/2 compression (short up-cut)",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "in",
+   "diameter": 0.5,
+   "cut_length": 1.125,
+   "up_cut_length": 0.215,
+   "oal": 3.0,
+   "flutes": 2,
+   "helix": "compression",
+   "gcarve_tool": {
+    "name": "Jenny Bits 8675309-1/2J Compression 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cadencemfgdesign.com/product-page/copy-of-p-n-8675309-j-the-jenny-250-custom-compression-bit"
+   ]
+  },
+  {
+   "id": "jennybits-8675309-mj",
+   "maker": "Jenny Bits",
+   "part_number": "8675309-MJ",
+   "name": "Mini Jenny 1/8 compression",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "in",
+   "diameter": 0.125,
+   "cut_length": 0.75,
+   "up_cut_length": 0.07,
+   "oal": 2.0,
+   "flutes": 2,
+   "helix": "compression",
+   "gcarve_tool": {
+    "name": "Jenny Bits 8675309-MJ Compression 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cadencemfgdesign.com/product-page/mini-jenny"
+   ],
+   "notes": "Page says .085\" up-shear in the text and .07\" in the spec list; spec list used."
+  },
+  {
+   "id": "jennybits-8675309-uj",
+   "maker": "Jenny Bits",
+   "part_number": "8675309-UJ",
+   "name": "Uptown Jenny 1/4 up-cut",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "in",
+   "diameter": 0.25,
+   "cut_length": 1.125,
+   "oal": 2.5,
+   "flutes": 2,
+   "helix": "up",
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 12500,
+     "feed": 100,
+     "plunge": 50,
+     "chip_load": 0.004,
+     "units": "in/min",
+     "source": "https://www.cadencemfgdesign.com/product-page/p-n-8675309-uj-1-4in-uptown-jenny",
+     "note": "Maker's starting values; chip_load derived = feed/(rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "Jenny Bits 8675309-UJ Up Cut 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cadencemfgdesign.com/product-page/p-n-8675309-uj-1-4in-uptown-jenny"
+   ]
+  },
+  {
+   "id": "jennybits-1-4-extended-reach-upcut",
+   "maker": "Jenny Bits",
+   "part_number": "1/4 Extended Reach Upcut",
+   "name": "1/4 extended reach up-cut (relieved shank, 2 in reach)",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "in",
+   "diameter": 0.25,
+   "cut_length": 1.5,
+   "oal": 3.0,
+   "flutes": 2,
+   "helix": "up",
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 13000,
+     "feed": 80,
+     "plunge": 40,
+     "chip_load": 0.00308,
+     "units": "in/min",
+     "source": "https://www.cadencemfgdesign.com/product-page/1-4-extended-reach-upcut",
+     "note": "Maker's starting values; chip_load derived = feed/(rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "Jenny Bits 1/4 Extended Reach Upcut Up Cut 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cadencemfgdesign.com/product-page/1-4-extended-reach-upcut"
+   ],
+   "notes": "No part number published; product title used."
+  },
+  {
+   "id": "jennybits-8675309-kb",
+   "maker": "Jenny Bits",
+   "part_number": "8675309-KB",
+   "name": "The KnottyB 3/8 ball end mill",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "in",
+   "diameter": 0.375,
+   "cut_length": 1.5,
+   "oal": 3.0,
+   "flutes": 2,
+   "tip_radius": 0.1875,
+   "gcarve_tool": {
+    "name": "Jenny Bits 8675309-KB Ball Nose 3/8 in",
+    "kind": "BallNose",
+    "diameter": 0.375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cadencemfgdesign.com/product-page/8675309-kb-the-knottyb-3-8-ball-em"
+   ]
+  },
+  {
+   "id": "jennybits-8675309-bb",
+   "maker": "Jenny Bits",
+   "part_number": "8675309-BB",
+   "name": "The Big B 1/4 ball end mill",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.125,
+   "oal": 2.5,
+   "flutes": 2,
+   "tip_radius": 0.125,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 17000,
+     "feed": 80,
+     "chip_load": 0.00235,
+     "units": "in/min",
+     "source": "https://www.cadencemfgdesign.com/product-page/8675309-bb-the-big-b",
+     "note": "Maker's starting values; chip_load derived = feed/(rpm x flutes). Maker gives 80-100 IPM; lower value stored."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "Jenny Bits 8675309-BB Ball Nose 1/4 in",
+    "kind": "BallNose",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cadencemfgdesign.com/product-page/8675309-bb-the-big-b"
+   ]
+  },
+  {
+   "id": "jennybits-8675309-lb",
+   "maker": "Jenny Bits",
+   "part_number": "8675309-LB",
+   "name": "The Little B 1/8 tapered ball nose",
+   "family": "tapered-ball",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 1.125,
+   "oal": 3.0,
+   "flutes": 3,
+   "tip_diameter": 0.125,
+   "tip_radius": 0.0625,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 15000,
+     "feed": 80,
+     "chip_load": 0.00178,
+     "units": "in/min",
+     "source": "https://www.cadencemfgdesign.com/product-page/8676309-lb-the-little-b",
+     "note": "Maker's starting values; chip_load derived = feed/(rpm x flutes). Maker gives 80-100 IPM; lower value stored."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "Jenny Bits 8675309-LB Tapered Ball 1/8 in tip",
+    "kind": "BallNose",
+    "diameter": 0.125,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.cadencemfgdesign.com/product-page/8676309-lb-the-little-b"
+   ],
+   "notes": "Maker prints 'Angle: 3.4\u00b0' without saying per side or included; angle_deg left out. Body diameter not published; diameter = tip ball."
+  },
+  {
+   "id": "jennybits-8675309-sj",
+   "maker": "Jenny Bits",
+   "part_number": "8675309-SJ",
+   "name": "Skinny Jenny 1/16 tapered ball nose",
+   "family": "tapered-ball",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "in",
+   "diameter": 0.0625,
+   "shank": 0.25,
+   "cut_length": 1.125,
+   "oal": 3.0,
+   "flutes": 3,
+   "tip_diameter": 0.0625,
+   "tip_radius": 0.0312,
+   "gcarve_tool": {
+    "name": "Jenny Bits 8675309-SJ Tapered Ball 1/16 in tip",
+    "kind": "BallNose",
+    "diameter": 0.0625,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.cadencemfgdesign.com/product-page/coming-soon-p-n-8675309-sj-skinny-jenny"
+   ],
+   "notes": "Maker prints 'Angle: 5\u00b0' without saying per side or included; angle_deg left out. Body diameter not published; diameter = tip ball."
+  },
+  {
+   "id": "jennybits-8675309-v90",
+   "maker": "Jenny Bits",
+   "part_number": "8675309-V90",
+   "name": "GrooVee Jenny 90\u00b0 down-shear V-bit 3/8",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.25,
+   "oal": 2.0,
+   "flutes": 3,
+   "angle_deg": 90,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 14000,
+     "feed": 85,
+     "chip_load": 0.00202,
+     "units": "in/min",
+     "source": "https://www.cadencemfgdesign.com/product-page/groovee-jenny",
+     "note": "Maker's starting values; chip_load derived = feed/(rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "Jenny Bits 8675309-V90 V-Bit 3/8 in 90\u00b0",
+    "kind": "VBit",
+    "diameter": 0.375,
+    "angle": 90,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.cadencemfgdesign.com/product-page/groovee-jenny"
+   ]
+  },
+  {
+   "id": "jennybits-8675309-v60",
+   "maker": "Jenny Bits",
+   "part_number": "8675309-V60",
+   "name": "GrooVee Jenny 60\u00b0 down-shear V-bit 3/8",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.25,
+   "cut_length": 0.3,
+   "oal": 2.0,
+   "flutes": 3,
+   "angle_deg": 60,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 14000,
+     "feed": 85,
+     "chip_load": 0.00202,
+     "units": "in/min",
+     "source": "https://www.cadencemfgdesign.com/product-page/60-groovee-jenny",
+     "note": "Maker's starting values; chip_load derived = feed/(rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "Jenny Bits 8675309-V60 V-Bit 3/8 in 60\u00b0",
+    "kind": "VBit",
+    "diameter": 0.375,
+    "angle": 60,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.cadencemfgdesign.com/product-page/60-groovee-jenny"
+   ]
+  },
+  {
+   "id": "jennybits-30-groovee-jenny",
+   "maker": "Jenny Bits",
+   "part_number": "30 GrooVee Jenny",
+   "name": "GrooVee Jenny 30\u00b0 down-shear V-bit 1/4",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.467,
+   "oal": 2.0,
+   "flutes": 3,
+   "angle_deg": 30,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 23000,
+     "feed": 60,
+     "plunge": 30,
+     "chip_load": 0.00087,
+     "units": "in/min",
+     "source": "https://www.cadencemfgdesign.com/product-page/30-groovee-jenny",
+     "note": "Maker's starting values; chip_load derived = feed/(rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "Jenny Bits 30 GrooVee Jenny V-Bit 1/4 in 30\u00b0",
+    "kind": "VBit",
+    "diameter": 0.25,
+    "angle": 30,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.cadencemfgdesign.com/product-page/30-groovee-jenny"
+   ],
+   "notes": "No part number published; product title used."
+  },
+  {
+   "id": "jennybits-bowl-cut-jenny",
+   "maker": "Jenny Bits",
+   "part_number": "Bowl-Cut Jenny",
+   "name": "Bowl-Cut Jenny 1/2 bowl/tray bit",
+   "family": "bowl",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 3,
+   "helix": "up",
+   "corner_radius": 0.1875,
+   "gcarve_tool": {
+    "name": "Jenny Bits Bowl-Cut Jenny Bowl 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 3
+   },
+   "sources": [
+    "https://www.cadencemfgdesign.com/product-page/bowl-cut-jenny"
+   ],
+   "notes": "0.125 in flat bottom. No part number published; product title used."
+  },
+  {
+   "id": "jennybits-8675309-m",
+   "maker": "Jenny Bits",
+   "part_number": "8675309-M",
+   "name": "Molly Mill 1/4 drill mill (90\u00b0 end)",
+   "family": "drill",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "in",
+   "diameter": 0.25,
+   "cut_length": 1.032,
+   "oal": 3.0,
+   "flutes": 2,
+   "angle_deg": 90,
+   "gcarve_tool": {
+    "name": "Jenny Bits 8675309-M Drill 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cadencemfgdesign.com/product-page/the-molly-mill"
+   ]
+  },
+  {
+   "id": "jennybits-8675309-mm",
+   "maker": "Jenny Bits",
+   "part_number": "8675309-MM",
+   "name": "Mini Molly 1/8 drill mill (90\u00b0 end)",
+   "family": "drill",
+   "tool_material": "solid carbide",
+   "coating": "ZrN",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 0.75,
+   "oal": 2.0,
+   "flutes": 2,
+   "angle_deg": 90,
+   "gcarve_tool": {
+    "name": "Jenny Bits 8675309-MM Drill 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://www.cadencemfgdesign.com/product-page/mini-molly"
+   ]
+  }
+ ]
+}

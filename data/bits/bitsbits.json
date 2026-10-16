@@ -1,0 +1,3782 @@
+{
+ "maker": "Bits & Bits Co.",
+ "source_summary": "bitsbits.com WooCommerce store API (house-brand products only; Whiteside resale, seconds, discontinued and surplus excluded). Values from product bullet lists, descriptions and titles.",
+ "retrieved": "2026-10-08",
+ "bits": [
+  {
+   "id": "bitsbits-srb005",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB005",
+   "name": ".005 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.005,
+   "shank": 0.125,
+   "cut_length": 0.015,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.0025,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB005 Ball Nose 0.005 in",
+    "kind": "BallNose",
+    "diameter": 0.005,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2-flute-ball-end-mill-005/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb006",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB006",
+   "name": ".006 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.006,
+   "shank": 0.125,
+   "cut_length": 0.018,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.003,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB006 Ball Nose 0.006 in",
+    "kind": "BallNose",
+    "diameter": 0.006,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/srb006/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb007",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB007",
+   "name": ".007 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.007,
+   "shank": 0.125,
+   "cut_length": 0.021,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.0035,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB007 Ball Nose 0.007 in",
+    "kind": "BallNose",
+    "diameter": 0.007,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2-flute-ball-end-mill-007/"
+   ]
+  },
+  {
+   "id": "bitsbits-lr008-075b",
+   "maker": "Bits & Bits Co.",
+   "part_number": "LR008-075B",
+   "name": ".008 Long Reach Ball End Mill with 1.9mm Reach",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.008,
+   "shank": 0.125,
+   "cut_length": 0.024,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.004,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. LR008-075B Ball Nose 0.008 in",
+    "kind": "BallNose",
+    "diameter": 0.008,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/008-long-reach-ball-end-mill/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb008",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB008",
+   "name": ".008 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.008,
+   "shank": 0.125,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.004,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB008 Ball Nose 0.008 in",
+    "kind": "BallNose",
+    "diameter": 0.008,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2-flute-ball-end-mill-008/"
+   ]
+  },
+  {
+   "id": "bitsbits-lr009-075b",
+   "maker": "Bits & Bits Co.",
+   "part_number": "LR009-075B",
+   "name": ".009 Long Reach Ball End Mill with 1.9mm Reach",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.009,
+   "shank": 0.125,
+   "cut_length": 0.027,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.0045,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. LR009-075B Ball Nose 0.009 in",
+    "kind": "BallNose",
+    "diameter": 0.009,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/009-long-reach-ball-end-mill/"
+   ]
+  },
+  {
+   "id": "bitsbits-lr009b",
+   "maker": "Bits & Bits Co.",
+   "part_number": "LR009B",
+   "name": ".009 Long Reach Ball End Mill with .125\" Reach",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.009,
+   "shank": 0.125,
+   "cut_length": 0.027,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.0045,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. LR009B Ball Nose 0.009 in",
+    "kind": "BallNose",
+    "diameter": 0.009,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/009-long-reach-ball-end-mill-125/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb009",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB009",
+   "name": ".009 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.009,
+   "shank": 0.125,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.0045,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB009 Ball Nose 0.009 in",
+    "kind": "BallNose",
+    "diameter": 0.009,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/srb009/"
+   ]
+  },
+  {
+   "id": "bitsbits-lr010-075b",
+   "maker": "Bits & Bits Co.",
+   "part_number": "LR010-075B",
+   "name": ".010 Long Reach Ball End Mill with .075\" Reach",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.01,
+   "shank": 0.125,
+   "cut_length": 0.03,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.005,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. LR010-075B Ball Nose 0.01 in",
+    "kind": "BallNose",
+    "diameter": 0.01,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/010-long-reach-ball-end-mill/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb010",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB010",
+   "name": ".010 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.01,
+   "shank": 0.125,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.005,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB010 Ball Nose 0.01 in",
+    "kind": "BallNose",
+    "diameter": 0.01,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/srb010/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb010-4fl",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB010-4FL",
+   "name": ".010 Ball End Mill – 4 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.01,
+   "flutes": 4,
+   "tip_radius": 0.005,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB010-4FL Ball Nose 0.01 in",
+    "kind": "BallNose",
+    "diameter": 0.01,
+    "flutes": 4
+   },
+   "sources": [
+    "https://bitsbits.com/product/4-flute-ball-010-end-mill/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb011",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB011",
+   "name": ".011 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.011,
+   "shank": 0.125,
+   "cut_length": 0.033,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.0055,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB011 Ball Nose 0.011 in",
+    "kind": "BallNose",
+    "diameter": 0.011,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/srb011/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb03m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB03M",
+   "name": "0.3mm Metric Ball End Mill",
+   "family": "ball-nose",
+   "units": "mm",
+   "diameter": 0.3,
+   "shank": 3.0,
+   "cut_length": 0.9,
+   "oal": 38.0,
+   "flutes": 2,
+   "tip_radius": 0.15,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB03M Ball Nose 0.3 mm",
+    "kind": "BallNose",
+    "diameter": 0.01181,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/0-3mm-ball-end-mill-3mm-x-38mm/"
+   ]
+  },
+  {
+   "id": "bitsbits-lr012b",
+   "maker": "Bits & Bits Co.",
+   "part_number": "LR012B",
+   "name": ".012 Long Reach Ball End Mill with .200\" Reach",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.012,
+   "shank": 0.125,
+   "cut_length": 0.036,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.006,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. LR012B Ball Nose 0.012 in",
+    "kind": "BallNose",
+    "diameter": 0.012,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/012-long-reach-ball-end-mill/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb012",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB012",
+   "name": ".012 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.012,
+   "shank": 0.125,
+   "cut_length": 0.036,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.006,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB012 Ball Nose 0.012 in",
+    "kind": "BallNose",
+    "diameter": 0.012,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/srb012/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb013",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB013",
+   "name": ".012 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.012,
+   "shank": 0.125,
+   "cut_length": 0.039,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.006,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB013 Ball Nose 0.012 in",
+    "kind": "BallNose",
+    "diameter": 0.012,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/srb013/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb014",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB014",
+   "name": ".014 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.014,
+   "shank": 0.125,
+   "cut_length": 0.042,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.007,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB014 Ball Nose 0.014 in",
+    "kind": "BallNose",
+    "diameter": 0.014,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2-flute-ball-end-mill-014/"
+   ]
+  },
+  {
+   "id": "bitsbits-lr015b",
+   "maker": "Bits & Bits Co.",
+   "part_number": "LR015B",
+   "name": ".015 Long Reach Ball End Mill with .200\" Reach",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.015,
+   "shank": 0.125,
+   "cut_length": 0.045,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.0075,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. LR015B Ball Nose 0.015 in",
+    "kind": "BallNose",
+    "diameter": 0.015,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/015-long-reach-ball-end-mill/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb015",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB015",
+   "name": ".015 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.015,
+   "shank": 0.125,
+   "cut_length": 0.045,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.0075,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB015 Ball Nose 0.015 in",
+    "kind": "BallNose",
+    "diameter": 0.015,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/srb015/"
+   ]
+  },
+  {
+   "id": "bitsbits-dp016b",
+   "maker": "Bits & Bits Co.",
+   "part_number": "DP016B",
+   "name": ".016 Deep Cut Ball End Mill with .090\" cut length",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.016,
+   "shank": 0.125,
+   "cut_length": 0.09,
+   "oal": 2.0,
+   "flutes": 2,
+   "tip_radius": 0.008,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. DP016B Ball Nose 0.016 in",
+    "kind": "BallNose",
+    "diameter": 0.016,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/016-deep-cut-ball-end-mill/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb016",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB016",
+   "name": ".016 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.016,
+   "shank": 0.125,
+   "cut_length": 0.048,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.008,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB016 Ball Nose 0.016 in",
+    "kind": "BallNose",
+    "diameter": 0.016,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/srb016/"
+   ]
+  },
+  {
+   "id": "bitsbits-lr017-075f",
+   "maker": "Bits & Bits Co.",
+   "part_number": "LR017-075F",
+   "name": ".017 Long Reach Ball End Mill with .075\" Reach",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.017,
+   "shank": 0.125,
+   "cut_length": 0.051,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.0085,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. LR017-075F Ball Nose 1/59 in",
+    "kind": "BallNose",
+    "diameter": 0.017,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/017-long-reach-end-mill/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb017",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB017",
+   "name": ".017 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.017,
+   "shank": 0.125,
+   "cut_length": 0.051,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.0085,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB017 Ball Nose 1/59 in",
+    "kind": "BallNose",
+    "diameter": 0.017,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2-flute-ball-end-mill-017/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb019",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB019",
+   "name": ".019 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.019,
+   "shank": 0.125,
+   "cut_length": 0.057,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.0095,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB019 Ball Nose 0.019 in",
+    "kind": "BallNose",
+    "diameter": 0.019,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/srb019/"
+   ]
+  },
+  {
+   "id": "bitsbits-dp020b",
+   "maker": "Bits & Bits Co.",
+   "part_number": "DP020B",
+   "name": ".020 Deep Cut Ball End Mill with .180\" cut length",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.02,
+   "shank": 0.125,
+   "cut_length": 0.18,
+   "oal": 2.0,
+   "flutes": 2,
+   "tip_radius": 0.01,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. DP020B Ball Nose 1/50 in",
+    "kind": "BallNose",
+    "diameter": 0.02,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/020-deep-cut-ball-end-mill/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb020-4fl",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB020-4FL",
+   "name": ".020 Ball End Mill – 4 Flute",
+   "family": "ball-nose",
+   "units": "in",
+   "diameter": 0.02,
+   "flutes": 4,
+   "tip_radius": 0.01,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB020-4FL Ball Nose 1/50 in",
+    "kind": "BallNose",
+    "diameter": 0.02,
+    "flutes": 4
+   },
+   "sources": [
+    "https://bitsbits.com/product/4-flute-ball-020-end-mill/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb021",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB021",
+   "name": ".021 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "units": "in",
+   "diameter": 0.021,
+   "shank": 0.125,
+   "cut_length": 0.063,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.0105,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB021 Ball Nose 0.021 in",
+    "kind": "BallNose",
+    "diameter": 0.021,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2-flute-ball-end-mill-021/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb022",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB022",
+   "name": ".022 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "units": "in",
+   "diameter": 0.022,
+   "shank": 0.125,
+   "cut_length": 0.066,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.011,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB022 Ball Nose 0.022 in",
+    "kind": "BallNose",
+    "diameter": 0.022,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2-flute-ball-end-mill-022/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb023",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB023",
+   "name": ".023 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.023,
+   "shank": 0.125,
+   "cut_length": 0.069,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.0115,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB023 Ball Nose 0.023 in",
+    "kind": "BallNose",
+    "diameter": 0.023,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2-flute-ball-end-mill-023/"
+   ]
+  },
+  {
+   "id": "bitsbits-dp024b",
+   "maker": "Bits & Bits Co.",
+   "part_number": "DP024B",
+   "name": ".024 Deep Cut Ball End Mill with .200\" cut length",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.024,
+   "shank": 0.125,
+   "cut_length": 0.2,
+   "oal": 2.0,
+   "flutes": 2,
+   "tip_radius": 0.012,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. DP024B Ball Nose 0.024 in",
+    "kind": "BallNose",
+    "diameter": 0.024,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/024-deep-cut-ball-end-mill/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb024",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB024",
+   "name": ".024 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.024,
+   "shank": 0.125,
+   "cut_length": 0.072,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.012,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB024 Ball Nose 0.024 in",
+    "kind": "BallNose",
+    "diameter": 0.024,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2-flute-ball-end-mill-024/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb025-4fl",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB025-4FL",
+   "name": ".025 Ball End Mill – 4 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.025,
+   "flutes": 4,
+   "tip_radius": 0.0125,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB025-4FL Ball Nose 1/40 in",
+    "kind": "BallNose",
+    "diameter": 0.025,
+    "flutes": 4
+   },
+   "sources": [
+    "https://bitsbits.com/product/4-flute-ball-025-end-mill/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb07m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB07M",
+   "name": "0.7mm Metric Ball End Mill",
+   "family": "ball-nose",
+   "units": "mm",
+   "diameter": 0.7,
+   "shank": 3.0,
+   "cut_length": 2.1,
+   "oal": 38.0,
+   "flutes": 2,
+   "tip_radius": 0.35,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB07M Ball Nose 0.7 mm",
+    "kind": "BallNose",
+    "diameter": 0.02756,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/0-7mm-ball-end-mill-3mm-x-38mm/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb030",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB030",
+   "name": ".030 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.03,
+   "shank": 0.125,
+   "cut_length": 0.09,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.015,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB030 Ball Nose 0.03 in",
+    "kind": "BallNose",
+    "diameter": 0.03,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/srb030/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb030-4fl",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB030-4FL",
+   "name": ".030 Ball End Mill – 4 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.03,
+   "flutes": 4,
+   "tip_radius": 0.015,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB030-4FL Ball Nose 0.03 in",
+    "kind": "BallNose",
+    "diameter": 0.03,
+    "flutes": 4
+   },
+   "sources": [
+    "https://bitsbits.com/product/4-flute-ball-030-end-mill/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb031",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB031",
+   "name": ".031 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "units": "in",
+   "diameter": 0.031,
+   "shank": 0.125,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.0155,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB031 Ball Nose 0.031 in",
+    "kind": "BallNose",
+    "diameter": 0.031,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2-flute-ball-end-mill-031/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb08m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB08M",
+   "name": "0.8mm Metric Ball End Mill",
+   "family": "ball-nose",
+   "units": "mm",
+   "diameter": 0.8,
+   "shank": 3.0,
+   "cut_length": 2.4,
+   "oal": 38.0,
+   "flutes": 2,
+   "tip_radius": 0.4,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB08M Ball Nose 0.8 mm",
+    "kind": "BallNose",
+    "diameter": 0.0315,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/0-8mm-ball-end-mill-3mm-x-38mm/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb032",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB032",
+   "name": ".032 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.032,
+   "shank": 0.125,
+   "cut_length": 0.096,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.016,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB032 Ball Nose 0.032 in",
+    "kind": "BallNose",
+    "diameter": 0.032,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/srb032/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb035",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB035",
+   "name": ".035 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.035,
+   "shank": 0.125,
+   "cut_length": 0.105,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.0175,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB035 Ball Nose 2/57 in",
+    "kind": "BallNose",
+    "diameter": 0.035,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2-flute-ball-end-mill-035/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb09m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB09M",
+   "name": "0.9mm Metric Ball End Mill",
+   "family": "ball-nose",
+   "units": "mm",
+   "diameter": 0.9,
+   "shank": 3.0,
+   "cut_length": 2.7,
+   "oal": 38.0,
+   "flutes": 2,
+   "tip_radius": 0.45,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB09M Ball Nose 0.9 mm",
+    "kind": "BallNose",
+    "diameter": 0.03543,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/0-9mm-ball-end-mill-3mm-x-38mm/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb10m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB10M",
+   "name": "1.0mm Metric Ball End Mill",
+   "family": "ball-nose",
+   "units": "mm",
+   "diameter": 1.0,
+   "shank": 3.0,
+   "cut_length": 3.0,
+   "oal": 38.0,
+   "flutes": 2,
+   "tip_radius": 0.5,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB10M Ball Nose 1 mm",
+    "kind": "BallNose",
+    "diameter": 0.03937,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/1-0mm-ball-end-mill-3mm-x-38mm/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb11m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB11M",
+   "name": "1.1mm Metric Ball End Mill",
+   "family": "ball-nose",
+   "units": "mm",
+   "diameter": 1.1,
+   "shank": 3.0,
+   "cut_length": 3.3,
+   "oal": 38.0,
+   "flutes": 2,
+   "tip_radius": 0.55,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB11M Ball Nose 1.1 mm",
+    "kind": "BallNose",
+    "diameter": 0.04331,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/1-1mm-ball-end-mill-3mm-x-38mm/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb045",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB045",
+   "name": ".045 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.045,
+   "shank": 0.125,
+   "cut_length": 0.135,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.0225,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB045 Ball Nose 0.045 in",
+    "kind": "BallNose",
+    "diameter": 0.045,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/srb045/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb045-4fl",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB045-4FL",
+   "name": ".045 Ball End Mill – 4 Flute",
+   "family": "ball-nose",
+   "units": "in",
+   "diameter": 0.045,
+   "flutes": 4,
+   "tip_radius": 0.0225,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB045-4FL Ball Nose 0.045 in",
+    "kind": "BallNose",
+    "diameter": 0.045,
+    "flutes": 4
+   },
+   "sources": [
+    "https://bitsbits.com/product/4-flute-ball-045-end-mill/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb12m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB12M",
+   "name": "1.2mm Metric Ball End Mill",
+   "family": "ball-nose",
+   "units": "mm",
+   "diameter": 1.2,
+   "shank": 3.0,
+   "cut_length": 3.6,
+   "oal": 38.0,
+   "flutes": 2,
+   "tip_radius": 0.6,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB12M Ball Nose 1.2 mm",
+    "kind": "BallNose",
+    "diameter": 0.04724,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/1-2mm-ball-end-mill-3mm-x-38mm/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb050",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB050",
+   "name": ".050 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.05,
+   "shank": 0.125,
+   "cut_length": 0.15,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.025,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB050 Ball Nose 1/20 in",
+    "kind": "BallNose",
+    "diameter": 0.05,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2-flute-ball-end-mill-050/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb050-4fl",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB050-4FL",
+   "name": ".050 Ball End Mill – 4 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.05,
+   "shank": 0.125,
+   "flutes": 4,
+   "tip_radius": 0.025,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB050-4FL Ball Nose 1/20 in",
+    "kind": "BallNose",
+    "diameter": 0.05,
+    "flutes": 4
+   },
+   "sources": [
+    "https://bitsbits.com/product/4-flute-ball-050-end-mill/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb13m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB13M",
+   "name": "1.3mm Metric Ball End Mill",
+   "family": "ball-nose",
+   "units": "mm",
+   "diameter": 1.3,
+   "shank": 3.0,
+   "cut_length": 3.9,
+   "oal": 38.0,
+   "flutes": 2,
+   "tip_radius": 0.65,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB13M Ball Nose 1.3 mm",
+    "kind": "BallNose",
+    "diameter": 0.05118,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/1-3mm-ball-end-mill-3mm-x-38mm/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb055",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB055",
+   "name": ".055 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.055,
+   "shank": 0.125,
+   "cut_length": 0.165,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.0275,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB055 Ball Nose 0.055 in",
+    "kind": "BallNose",
+    "diameter": 0.055,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/srb055/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb14m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB14M",
+   "name": "1.4mm Metric Ball End Mill",
+   "family": "ball-nose",
+   "units": "mm",
+   "diameter": 1.4,
+   "shank": 3.0,
+   "cut_length": 4.2,
+   "oal": 38.0,
+   "flutes": 2,
+   "tip_radius": 0.7,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB14M Ball Nose 1.4 mm",
+    "kind": "BallNose",
+    "diameter": 0.05512,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/1-4mm-ball-end-mill-3mm-x-38mm/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb15m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB15M",
+   "name": "1.5mm Metric Ball End Mill",
+   "family": "ball-nose",
+   "units": "mm",
+   "diameter": 1.5,
+   "shank": 3.0,
+   "cut_length": 4.5,
+   "oal": 38.0,
+   "flutes": 2,
+   "tip_radius": 0.75,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB15M Ball Nose 1.5 mm",
+    "kind": "BallNose",
+    "diameter": 0.05906,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/1-5mm-ball-end-mill-3mm-x-38mm/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb060",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB060",
+   "name": ".060 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.06,
+   "shank": 0.125,
+   "cut_length": 0.18,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.03,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB060 Ball Nose 3/50 in",
+    "kind": "BallNose",
+    "diameter": 0.06,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2-flute-ball-end-mill-060/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb060-4fl",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB060-4FL",
+   "name": ".060 Ball End Mill – 4 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.06,
+   "shank": 0.125,
+   "cut_length": 0.18,
+   "oal": 1.5,
+   "flutes": 4,
+   "tip_radius": 0.03,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB060-4FL Ball Nose 3/50 in",
+    "kind": "BallNose",
+    "diameter": 0.06,
+    "flutes": 4
+   },
+   "sources": [
+    "https://bitsbits.com/product/srb060-4fl/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb062",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB062",
+   "name": ".062 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.062,
+   "shank": 0.125,
+   "cut_length": 0.18,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.031,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB062 Ball Nose 0.062 in",
+    "kind": "BallNose",
+    "diameter": 0.062,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2-flute-ball-end-mill-062/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb062-3fl",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB062-3FL",
+   "name": ".062\" Ball End Mill – 3 Flute, Astra Coated",
+   "family": "ball-nose",
+   "units": "in",
+   "diameter": 0.062,
+   "shank": 0.125,
+   "cut_length": 0.18,
+   "oal": 1.5,
+   "flutes": 3,
+   "tip_radius": 0.031,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB062-3FL Ball Nose 0.062 in",
+    "kind": "BallNose",
+    "diameter": 0.062,
+    "flutes": 3
+   },
+   "sources": [
+    "https://bitsbits.com/product/3-flute-062-ball-end-mill/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb16m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB16M",
+   "name": "1.6mm Metric Ball End Mill",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 1.6,
+   "shank": 3.0,
+   "cut_length": 4.8,
+   "oal": 38.0,
+   "flutes": 2,
+   "tip_radius": 0.8,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB16M Ball Nose 1.6 mm",
+    "kind": "BallNose",
+    "diameter": 0.06299,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/1-6mm-metric-ball-end-mill/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb17m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB17M",
+   "name": "1.7mm Metric Ball End Mill",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 1.7,
+   "shank": 3.0,
+   "cut_length": 5.1,
+   "oal": 38.0,
+   "flutes": 2,
+   "tip_radius": 0.85,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB17M Ball Nose 1.7 mm",
+    "kind": "BallNose",
+    "diameter": 0.06693,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/1-7mm-metric-ball-end-mill/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb18m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB18M",
+   "name": "1.8mm Metric Ball End Mill",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 1.8,
+   "shank": 3.0,
+   "cut_length": 5.4,
+   "oal": 38.0,
+   "flutes": 2,
+   "tip_radius": 0.9,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB18M Ball Nose 1.8 mm",
+    "kind": "BallNose",
+    "diameter": 0.07087,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/1-8mm-metric-ball-end-mill/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb19m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB19M",
+   "name": "1.9mm Metric Ball End Mill",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 1.9,
+   "shank": 3.0,
+   "cut_length": 5.7,
+   "oal": 38.0,
+   "flutes": 2,
+   "tip_radius": 0.95,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB19M Ball Nose 1.9 mm",
+    "kind": "BallNose",
+    "diameter": 0.0748,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/1-8mm-metric-ball-end-mill-copy/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb075",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB075",
+   "name": ".075 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.075,
+   "shank": 0.125,
+   "cut_length": 0.225,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.0375,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB075 Ball Nose 3/40 in",
+    "kind": "BallNose",
+    "diameter": 0.075,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2-flute-ball-end-mill-075/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb20m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB20M",
+   "name": "2.0mm Metric Ball End Mill",
+   "family": "ball-nose",
+   "units": "mm",
+   "diameter": 2.0,
+   "shank": 3.0,
+   "cut_length": 6.0,
+   "oal": 38.0,
+   "flutes": 2,
+   "tip_radius": 1.0,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB20M Ball Nose 2 mm",
+    "kind": "BallNose",
+    "diameter": 0.07874,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2mm-ball-end-mill-3mm-x-38mm/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb079",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB079",
+   "name": ".079 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.079,
+   "shank": 0.125,
+   "cut_length": 0.23,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.0395,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB079 Ball Nose 3/38 in",
+    "kind": "BallNose",
+    "diameter": 0.079,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2-flute-ball-end-mill-079/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb085",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB085",
+   "name": ".085 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.085,
+   "shank": 0.125,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.0425,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB085 Ball Nose 0.085 in",
+    "kind": "BallNose",
+    "diameter": 0.085,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2-flute-ball-end-mil-085/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb093",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB093",
+   "name": ".093 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.093,
+   "shank": 0.125,
+   "cut_length": 0.375,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.0465,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB093 Ball Nose 4/43 in",
+    "kind": "BallNose",
+    "diameter": 0.093,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2-flute-ball-end-mill-093/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb093-4fl",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB093-4FL",
+   "name": ".093 Ball End Mill – 4 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.093,
+   "flutes": 4,
+   "tip_radius": 0.0465,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB093-4FL Ball Nose 4/43 in",
+    "kind": "BallNose",
+    "diameter": 0.093,
+    "flutes": 4
+   },
+   "sources": [
+    "https://bitsbits.com/product/4-flute-ball-093-end-mill/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb25m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB25M",
+   "name": "2.5mm Metric Ball End Mill",
+   "family": "ball-nose",
+   "units": "mm",
+   "diameter": 2.5,
+   "shank": 3.0,
+   "cut_length": 7.5,
+   "oal": 38.0,
+   "flutes": 2,
+   "tip_radius": 1.25,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB25M Ball Nose 2.5 mm",
+    "kind": "BallNose",
+    "diameter": 0.09843,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2-5mm-ball-end-mill-3mm-x-38mm/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb109",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB109",
+   "name": ".109 Ball End Mill – 2 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.109,
+   "shank": 0.125,
+   "cut_length": 0.327,
+   "oal": 1.5,
+   "flutes": 2,
+   "tip_radius": 0.0545,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB109 Ball Nose 6/55 in",
+    "kind": "BallNose",
+    "diameter": 0.109,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2-flute-ball-end-mill-109/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb30m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB30M",
+   "name": "3.0mm Metric Ball End Mill",
+   "family": "ball-nose",
+   "units": "mm",
+   "diameter": 3.0,
+   "shank": 3.0,
+   "cut_length": 9.0,
+   "oal": 38.0,
+   "flutes": 2,
+   "tip_radius": 1.5,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB30M Ball Nose 3 mm",
+    "kind": "BallNose",
+    "diameter": 0.11811,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/3mm-ball-end-mill-3mm-x-38mm/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-srb125",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-SRB125",
+   "name": "1/8\" Ball Nose Spiral Bit (AstraHP Coated)",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "oal": 2.5,
+   "flutes": 2,
+   "tip_radius": 0.0625,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-SRB125 Ball Nose 1/8 in",
+    "kind": "BallNose",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/srb4-125up/"
+   ]
+  },
+  {
+   "id": "bitsbits-srb125-4fl",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRB125-4FL",
+   "name": ".125 Ball End Mill – 4 Flute",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.125,
+   "flutes": 4,
+   "tip_radius": 0.0625,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRB125-4FL Ball Nose 1/8 in",
+    "kind": "BallNose",
+    "diameter": 0.125,
+    "flutes": 4
+   },
+   "sources": [
+    "https://bitsbits.com/product/4-flute-ball-125-end-mill/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-srb250",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-SRB250",
+   "name": "1/4\" Ball Nose Spiral Bit (AstraHP Coated)",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "oal": 2.5,
+   "flutes": 2,
+   "tip_radius": 0.125,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-SRB250 Ball Nose 1/4 in",
+    "kind": "BallNose",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/srb4-250-ball-end/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-srb375",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-SRB375",
+   "name": "3/8\" Ball Nose Spiral Bit – 1/4\" Shank (AstraHP Coated)",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "oal": 2.5,
+   "flutes": 2,
+   "tip_radius": 0.1875,
+   "rpm": [
+    16000,
+    16000
+   ],
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-SRB375 Ball Nose 3/8 in",
+    "kind": "BallNose",
+    "diameter": 0.375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/bitsbits-425-srb375-round-nose-bit/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-srb500",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-SRB500",
+   "name": "1/2\" Ball Nose Spiral Bit – 1/4\" Shank (AstraHP Coated)",
+   "family": "ball-nose",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "oal": 2.5,
+   "flutes": 2,
+   "tip_radius": 0.25,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-SRB500 Ball Nose 1/2 in",
+    "kind": "BallNose",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/bitsbits-425-srb500-round-nose-bit/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-bt375",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-BT375",
+   "name": "3/8\" Spiral Bowl and Tray Bit – 1/8\" Corner Radius – 1/4\" Shank (AstraHP Coated)",
+   "family": "bowl",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "oal": 2.5,
+   "flutes": 3,
+   "corner_radius": 0.125,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-BT375 Bowl 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 3
+   },
+   "sources": [
+    "https://bitsbits.com/product/bitsbits-425-bt375-3-8-bowl-tray-bit/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-bt510",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-BT510",
+   "name": "1/2\" Spiral Bowl and Tray Bit – 1/8\" Corner Radius – 1/4\" Shank  (AstraHP Coated)",
+   "family": "bowl",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "oal": 2.5,
+   "flutes": 3,
+   "corner_radius": 0.125,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-BT510 Bowl 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 3
+   },
+   "sources": [
+    "https://bitsbits.com/product/bitsbits-425-bt510-1-2-bowl-tray-bit-1-loc/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-cs582",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-CS582",
+   "name": "82° Countersink Bit for CNC – Bits&Bits (425-CS582)",
+   "family": "chamfer",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.25,
+   "cut_length": 0.4,
+   "oal": 2.5,
+   "flutes": 3,
+   "angle_deg": 82.0,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-CS582 Chamfer 82° 1/2 in",
+    "kind": "VBit",
+    "diameter": 0.5,
+    "flutes": 3,
+    "angle": 82.0
+   },
+   "sources": [
+    "https://bitsbits.com/product/82-countersink-bit/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-cm125",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-CM125",
+   "name": "1/8\" Spiral Compression Bit (AstraHP Coated)",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.625,
+   "oal": 2.5,
+   "flutes": 2,
+   "helix": "compression",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-CM125 Compression 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/425-cm125/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-cm125lr",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-CM125LR",
+   "name": "1/8\" Long-Reach Spiral Compression Bit (AstraHP Coated)",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "oal": 2.5,
+   "flutes": 2,
+   "helix": "compression",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-CM125LR Compression 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/425-cm125lr/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-cm250",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-CM250",
+   "name": "1/4\" Spiral Compression Bit (AstraHP Coated)",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "helix": "compression",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-CM250 Compression 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/425-cm250/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-cm250cb",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-CM250CB",
+   "name": "1/4\" Spiral Compression Chipbreaker (AstraHP Coated)",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "helix": "compression",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-CM250CB Compression 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/bitsbits-425-cm250cb-1-4-chipbreaker/"
+   ]
+  },
+  {
+   "id": "bitsbits-330-acm375",
+   "maker": "Bits & Bits Co.",
+   "part_number": "330-ACM375",
+   "name": "3/8\" Aggressive Compression Spiral CNC Bit – (AstraHP Coated)",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.375,
+   "cut_length": 0.875,
+   "oal": 3.5,
+   "flutes": 3,
+   "helix": "compression",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 330-ACM375 Compression 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 3
+   },
+   "sources": [
+    "https://bitsbits.com/product/3-8-aggressive-compression-spiral-cnc-bit-astrahp-coated/"
+   ]
+  },
+  {
+   "id": "bitsbits-535-acm375",
+   "maker": "Bits & Bits Co.",
+   "part_number": "535-ACM375",
+   "name": "3/8\" Aggressive Compression Spiral CNC Bit – 1/2\" Shank (AstraHP Coated)",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "oal": 3.5,
+   "flutes": 3,
+   "helix": "compression",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 535-ACM375 Compression 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 3
+   },
+   "sources": [
+    "https://bitsbits.com/product/bitsbits-535-cm375-3-8-aggressive-compression/"
+   ]
+  },
+  {
+   "id": "bitsbits-535-cm375sf",
+   "maker": "Bits & Bits Co.",
+   "part_number": "535-CM375SF",
+   "name": "3/8\" Short-Flute Compression Spiral Bit – 1/2\" Shank (AstraHP Coated)",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.5,
+   "cut_length": 1.25,
+   "oal": 3.5,
+   "flutes": 2,
+   "helix": "compression",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 535-CM375SF Compression 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/535-cm375-sf/"
+   ]
+  },
+  {
+   "id": "bitsbits-540-cm500-3fl",
+   "maker": "Bits & Bits Co.",
+   "part_number": "540-CM500-3FL",
+   "name": "1/2\" Triple-Flute Compression Spiral Bit – Router & CNC (AstraHP Coated)",
+   "family": "compression",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.5,
+   "cut_length": 2.0,
+   "oal": 4.0,
+   "flutes": 3,
+   "helix": "compression",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 540-CM500-3FL Compression 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 3
+   },
+   "sources": [
+    "https://bitsbits.com/product/540-cm500-3fl-1-2-spiral-compression-bit/"
+   ]
+  },
+  {
+   "id": "bitsbits-820-dnc032",
+   "maker": "Bits & Bits Co.",
+   "part_number": "820-DNC032",
+   "name": "1/32\" Down-Cut Spiral Bit – 1/8\" Shank (AstraHP Coated)",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.03125,
+   "shank": 0.125,
+   "cut_length": 0.09375,
+   "flutes": 2,
+   "helix": "down",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 820-DNC032 Down Spiral 1/32 in",
+    "kind": "EndMill",
+    "diameter": 0.03125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/820-dnc032/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-dnc062",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-DNC062",
+   "name": "1/16\" Down-Cut Spiral Bit (AstraHP Coated)",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.0625,
+   "shank": 0.25,
+   "cut_length": 0.1875,
+   "flutes": 2,
+   "helix": "down",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-DNC062 Down Spiral 1/16 in",
+    "kind": "EndMill",
+    "diameter": 0.0625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/425-dnc062/"
+   ]
+  },
+  {
+   "id": "bitsbits-820-dnc062lr",
+   "maker": "Bits & Bits Co.",
+   "part_number": "820-DNC062LR",
+   "name": "1/16\" Long-Reach Down-Cut Spiral Bit – 1/8\" Shank (AstraHP Coated)",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.0625,
+   "shank": 0.125,
+   "cut_length": 0.1875,
+   "oal": 2.0,
+   "flutes": 2,
+   "helix": "down",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 820-DNC062LR Down Spiral 1/16 in",
+    "kind": "EndMill",
+    "diameter": 0.0625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/820-dnc062lr/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-dnc125lr",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-DNC125LR",
+   "name": "1/8\" Long-Reach Down-Cut Spiral Bit (AstraHP Coated)",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "oal": 2.5,
+   "flutes": 2,
+   "helix": "down",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-DNC125LR Down Spiral 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/425-dnc125lr/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-dnc187",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-DNC187",
+   "name": "3/16\" Down-Cut Spiral Bit (AstraHP Coated)",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.1875,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "oal": 2.5,
+   "flutes": 2,
+   "helix": "down",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-DNC187 Down Spiral 3/16 in",
+    "kind": "EndMill",
+    "diameter": 0.1875,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/425-dnc187-down-cut-spiral/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-dnc375",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-DNC375",
+   "name": "3/8\" Down-Cut Spiral Bit – 1/4\" Shank (AstraHP Coated)",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "oal": 2.5,
+   "flutes": 3,
+   "helix": "down",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-DNC375 Down Spiral 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 3
+   },
+   "sources": [
+    "https://bitsbits.com/product/425-dnc375-3-8-down-cut-cnc-router-bit/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-dnc500",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-DNC500",
+   "name": "1/2\" Triple Flute Down-Cut Spiral Bit – 1/4\" Shank (AstraHP Coated)",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.25,
+   "flutes": 3,
+   "helix": "down",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-DNC500 Down Spiral 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 3
+   },
+   "sources": [
+    "https://bitsbits.com/product/1-2-inch-down-cut-cnc-bit-1-4-shank/"
+   ]
+  },
+  {
+   "id": "bitsbits-530-dnc500",
+   "maker": "Bits & Bits Co.",
+   "part_number": "530-DNC500",
+   "name": "1/2\" Down-Cut Spiral Bit – 1\" Cut (AstraHP Coated)",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.0,
+   "oal": 3.0,
+   "flutes": 2,
+   "helix": "down",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 530-DNC500 Down Spiral 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/530-dnc500-down-cut/"
+   ]
+  },
+  {
+   "id": "bitsbits-530-dnc500-3fl",
+   "maker": "Bits & Bits Co.",
+   "part_number": "530-DNC500-3FL",
+   "name": "1/2\" Triple-Flute Down-Cut Spiral Bit (AstraHP Coated)",
+   "family": "end-mill-down",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.5,
+   "cut_length": 1.0,
+   "oal": 3.0,
+   "flutes": 3,
+   "helix": "down",
+   "rpm": [
+    16000,
+    16000
+   ],
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 530-DNC500-3FL Down Spiral 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 3
+   },
+   "sources": [
+    "https://bitsbits.com/product/bitsbits-1-2-down-cut-3-flute-bit/"
+   ]
+  },
+  {
+   "id": "bitsbits-530-dnc720",
+   "maker": "Bits & Bits Co.",
+   "part_number": "530-DNC720",
+   "name": "Down-Cut 3/4\" Plywood Dado Bit – 530-DNC720 (AstraHP Coated)",
+   "family": "end-mill-down",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.72,
+   "shank": 0.5,
+   "flutes": 3,
+   "helix": "down",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 530-DNC720 Down Spiral 18/25 in",
+    "kind": "EndMill",
+    "diameter": 0.72,
+    "flutes": 3
+   },
+   "sources": [
+    "https://bitsbits.com/product/router-bit-for-3-4-inch-plywood/"
+   ]
+  },
+  {
+   "id": "bitsbits-lr005-075f",
+   "maker": "Bits & Bits Co.",
+   "part_number": "LR005-075F",
+   "name": ".005 Long Reach Square End Mill with 1.9mm Reach",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.005,
+   "shank": 0.125,
+   "cut_length": 0.015,
+   "oal": 1.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. LR005-075F Up Spiral 0.005 in",
+    "kind": "EndMill",
+    "diameter": 0.005,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/005-long-reach-end-mill/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf005-4fl",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF005-4FL",
+   "name": ".005 Square End Mill – 4 Flute",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.005,
+   "shank": 0.125,
+   "cut_length": 0.015,
+   "oal": 1.5,
+   "flutes": 4,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF005-4FL Up Spiral 0.005 in",
+    "kind": "EndMill",
+    "diameter": 0.005,
+    "flutes": 4
+   },
+   "sources": [
+    "https://bitsbits.com/product/4-flute-square-005-end-mill/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-lr006-075f",
+   "maker": "Bits & Bits Co.",
+   "part_number": "LR006-075F",
+   "name": ".006 Long Reach Square End Mill with 1.9mm Reach",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.006,
+   "shank": 0.125,
+   "cut_length": 0.018,
+   "oal": 1.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. LR006-075F Up Spiral 0.006 in",
+    "kind": "EndMill",
+    "diameter": 0.006,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/006-long-reach-end-mill/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf007",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF007",
+   "name": ".007 Square End Mill – 2 Flute",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.007,
+   "shank": 0.125,
+   "cut_length": 0.021,
+   "oal": 1.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF007 Up Spiral 0.007 in",
+    "kind": "EndMill",
+    "diameter": 0.007,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2-flute-square-end-mill-007/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf009",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF009",
+   "name": ".009 Square End Mill – 2 Flute",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.009,
+   "shank": 0.125,
+   "cut_length": 0.027,
+   "oal": 1.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF009 Up Spiral 0.009 in",
+    "kind": "EndMill",
+    "diameter": 0.009,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/srf009-2/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf010-4fl",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF010-4FL",
+   "name": ".010 Square End Mill – 4 Flute",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.01,
+   "shank": 0.125,
+   "cut_length": 0.03,
+   "oal": 1.5,
+   "flutes": 4,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF010-4FL Up Spiral 0.01 in",
+    "kind": "EndMill",
+    "diameter": 0.01,
+    "flutes": 4
+   },
+   "sources": [
+    "https://bitsbits.com/product/4-flute-square-010-end-mill/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-lr011-075f",
+   "maker": "Bits & Bits Co.",
+   "part_number": "LR011-075F",
+   "name": ".011 Long Reach Square End Mill with .075\" Reach",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.011,
+   "shank": 0.125,
+   "cut_length": 0.033,
+   "oal": 1.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. LR011-075F Up Spiral 0.011 in",
+    "kind": "EndMill",
+    "diameter": 0.011,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/011-long-reach-end-mill/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf011",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF011",
+   "name": ".011 Square End Mill – 2 Flute",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.011,
+   "shank": 0.125,
+   "cut_length": 0.033,
+   "oal": 1.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF011 Up Spiral 0.011 in",
+    "kind": "EndMill",
+    "diameter": 0.011,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/srf01/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-lr012-075f",
+   "maker": "Bits & Bits Co.",
+   "part_number": "LR012-075F",
+   "name": ".012 Long Reach Square End Mill with .075\" Reach",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.012,
+   "shank": 0.125,
+   "cut_length": 0.036,
+   "oal": 1.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. LR012-075F Up Spiral 0.012 in",
+    "kind": "EndMill",
+    "diameter": 0.012,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/012-long-reach-end-mill/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-lr012f",
+   "maker": "Bits & Bits Co.",
+   "part_number": "LR012F",
+   "name": ".012 Long Reach Square End Mill with .200\" Reach",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.012,
+   "shank": 0.125,
+   "cut_length": 0.036,
+   "oal": 1.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. LR012F Up Spiral 0.012 in",
+    "kind": "EndMill",
+    "diameter": 0.012,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/012-long-reach-end-mill-2/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf012",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF012",
+   "name": ".012 Square End Mill – 2 Flute",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.012,
+   "shank": 0.125,
+   "cut_length": 0.036,
+   "oal": 1.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF012 Up Spiral 0.012 in",
+    "kind": "EndMill",
+    "diameter": 0.012,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/srf012/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf013",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF013",
+   "name": ".013 Square End Mill – 2 Flute",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.013,
+   "shank": 0.125,
+   "cut_length": 0.039,
+   "oal": 1.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF013 Up Spiral 0.013 in",
+    "kind": "EndMill",
+    "diameter": 0.013,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/srf013-2/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-lr014-075f",
+   "maker": "Bits & Bits Co.",
+   "part_number": "LR014-075F",
+   "name": ".014 Long Reach Square End Mill with .075\" Reach",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.014,
+   "shank": 0.125,
+   "cut_length": 0.042,
+   "oal": 1.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. LR014-075F Up Spiral 0.014 in",
+    "kind": "EndMill",
+    "diameter": 0.014,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/014-long-reach-end-mill/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf014",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF014",
+   "name": ".014 Square End Mill – 2 Flute",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.014,
+   "shank": 0.125,
+   "cut_length": 0.042,
+   "oal": 1.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF014 Up Spiral 0.014 in",
+    "kind": "EndMill",
+    "diameter": 0.014,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/srf014/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-lr015f",
+   "maker": "Bits & Bits Co.",
+   "part_number": "LR015F",
+   "name": ".015 Long Reach Square End Mill with .200\" Reach",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.015,
+   "shank": 0.125,
+   "cut_length": 0.045,
+   "oal": 1.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. LR015F Up Spiral 0.015 in",
+    "kind": "EndMill",
+    "diameter": 0.015,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/015-long-reach-end-mill-2/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-dp016f",
+   "maker": "Bits & Bits Co.",
+   "part_number": "DP016F",
+   "name": ".016 Deep Cut Square End Mill with .150\" cut length",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.016,
+   "shank": 0.125,
+   "cut_length": 0.16,
+   "oal": 2.0,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. DP016F Up Spiral 0.016 in",
+    "kind": "EndMill",
+    "diameter": 0.016,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/016-deep-cut-end-mill/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf06m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF06M",
+   "name": "0.6mm Metric Square End Mill",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 0.6,
+   "shank": 3.0,
+   "cut_length": 1.8,
+   "oal": 38.0,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF06M Up Spiral 0.6 mm",
+    "kind": "EndMill",
+    "diameter": 0.02362,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/0-6mm-square-end-mill-3mm-x-38mm/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf07m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF07M",
+   "name": "0.7mm Metric Square End Mill",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "mm",
+   "diameter": 0.7,
+   "shank": 3.0,
+   "cut_length": 2.1,
+   "oal": 38.0,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF07M Up Spiral 0.7 mm",
+    "kind": "EndMill",
+    "diameter": 0.02756,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/0-7mm-square-end-mill-3mm-x-38mm/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf045",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF045",
+   "name": ".045 Square End Mill – 2 Flute",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.045,
+   "shank": 0.125,
+   "cut_length": 0.135,
+   "oal": 1.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF045 Up Spiral 0.045 in",
+    "kind": "EndMill",
+    "diameter": 0.045,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/srf045/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf045-4fl",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF045-4FL",
+   "name": ".045 Square End Mill – 4 Flute",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.045,
+   "shank": 0.125,
+   "cut_length": 0.135,
+   "oal": 1.5,
+   "flutes": 4,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF045-4FL Up Spiral 0.045 in",
+    "kind": "EndMill",
+    "diameter": 0.045,
+    "flutes": 4
+   },
+   "sources": [
+    "https://bitsbits.com/product/4-flute-square-045-end-mill/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf12m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF12M",
+   "name": "1.2mm Metric Square End Mill",
+   "family": "end-mill-up",
+   "units": "mm",
+   "diameter": 1.2,
+   "cut_length": 3.6,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF12M Up Spiral 1.2 mm",
+    "kind": "EndMill",
+    "diameter": 0.04724,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/1-2mm-square-end-mill-3mm-x-38mm/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf050",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF050",
+   "name": ".050 Square End Mill – 2 Flute",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.05,
+   "shank": 0.125,
+   "cut_length": 0.15,
+   "oal": 1.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF050 Up Spiral 1/20 in",
+    "kind": "EndMill",
+    "diameter": 0.05,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2-flute-square-end-mill-050/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf13m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF13M",
+   "name": "1.3mm Metric Square End Mill",
+   "family": "end-mill-up",
+   "units": "mm",
+   "diameter": 1.3,
+   "shank": 3.0,
+   "cut_length": 3.9,
+   "oal": 38.0,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF13M Up Spiral 1.3 mm",
+    "kind": "EndMill",
+    "diameter": 0.05118,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/1-3mm-square-end-mill/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf14m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF14M",
+   "name": "1.4mm Metric Square End Mill",
+   "family": "end-mill-up",
+   "units": "mm",
+   "diameter": 1.4,
+   "shank": 3.0,
+   "cut_length": 4.2,
+   "oal": 38.0,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF14M Up Spiral 1.4 mm",
+    "kind": "EndMill",
+    "diameter": 0.05512,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/1-4mm-square-end-mill-3mm-x-38mm/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf15m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF15M",
+   "name": "1.5mm Metric Square End Mill",
+   "family": "end-mill-up",
+   "units": "mm",
+   "diameter": 1.5,
+   "shank": 3.0,
+   "cut_length": 4.5,
+   "oal": 38.0,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF15M Up Spiral 1.5 mm",
+    "kind": "EndMill",
+    "diameter": 0.05906,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/1-5mm-square-end-mill-3mm-x-38mm/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-820-srf062lr",
+   "maker": "Bits & Bits Co.",
+   "part_number": "820-SRF062LR",
+   "name": "1/16\" Long-Reach Up-Cut Spiral Bit – 1/8\" Shank (AstraHP Coated)",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.0625,
+   "shank": 0.125,
+   "cut_length": 0.1875,
+   "oal": 2.0,
+   "flutes": 2,
+   "helix": "up",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 820-SRF062LR Up Spiral 1/16 in",
+    "kind": "EndMill",
+    "diameter": 0.0625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/dc062f-deep/"
+   ]
+  },
+  {
+   "id": "bitsbits-srf16m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF16M",
+   "name": "1.6mm Metric Square End Mill",
+   "family": "end-mill-up",
+   "units": "mm",
+   "diameter": 1.6,
+   "shank": 3.0,
+   "cut_length": 3.2,
+   "oal": 38.0,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF16M Up Spiral 1.6 mm",
+    "kind": "EndMill",
+    "diameter": 0.06299,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/1-6mm-metric-square-end-mill/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf17m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF17M",
+   "name": "1.7mm Metric Square End Mill",
+   "family": "end-mill-up",
+   "units": "mm",
+   "diameter": 1.7,
+   "shank": 3.0,
+   "cut_length": 5.1,
+   "oal": 38.0,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF17M Up Spiral 1.7 mm",
+    "kind": "EndMill",
+    "diameter": 0.06693,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/1-7mm-metric-square-end-mill/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf18m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF18M",
+   "name": "1.8mm Metric Square End Mill",
+   "family": "end-mill-up",
+   "units": "mm",
+   "diameter": 1.8,
+   "shank": 3.0,
+   "cut_length": 5.4,
+   "oal": 38.0,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF18M Up Spiral 1.8 mm",
+    "kind": "EndMill",
+    "diameter": 0.07087,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/1-8mm-metric-square-end-mill/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf19m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF19M",
+   "name": "1.9mm Metric Square End Mill",
+   "family": "end-mill-up",
+   "units": "mm",
+   "diameter": 1.9,
+   "shank": 3.0,
+   "cut_length": 5.7,
+   "oal": 38.0,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF19M Up Spiral 1.9 mm",
+    "kind": "EndMill",
+    "diameter": 0.0748,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/1-9mm-metric-square-end-mill/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf075",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF075",
+   "name": ".075 Square End Mill – 2 Flute",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.075,
+   "shank": 0.125,
+   "cut_length": 0.225,
+   "oal": 1.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF075 Up Spiral 3/40 in",
+    "kind": "EndMill",
+    "diameter": 0.075,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/srf075/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf079",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF079",
+   "name": ".079 Square End Mill – 2 Flute",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.079,
+   "shank": 0.125,
+   "cut_length": 0.23,
+   "oal": 1.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF079 Up Spiral 3/38 in",
+    "kind": "EndMill",
+    "diameter": 0.079,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/srf079/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf085",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF085",
+   "name": ".085 Square End Mill – 2 Flute",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.085,
+   "shank": 0.125,
+   "cut_length": 0.255,
+   "oal": 1.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF085 Up Spiral 0.085 in",
+    "kind": "EndMill",
+    "diameter": 0.085,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2-flute-square-end-mill-085/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf25m",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF25M",
+   "name": "2.5mm Metric Square End Mill",
+   "family": "end-mill-up",
+   "units": "mm",
+   "diameter": 2.5,
+   "shank": 3.0,
+   "cut_length": 7.5,
+   "oal": 38.0,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF25M Up Spiral 2.5 mm",
+    "kind": "EndMill",
+    "diameter": 0.09843,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/2-5mm-square-end-mill-3mm-x-38mm/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-srf109",
+   "maker": "Bits & Bits Co.",
+   "part_number": "SRF109",
+   "name": ".109 Square End Mill – 2 Flute",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.109,
+   "shank": 0.125,
+   "cut_length": 0.327,
+   "oal": 1.5,
+   "flutes": 2,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. SRF109 Up Spiral 6/55 in",
+    "kind": "EndMill",
+    "diameter": 0.109,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/srf109/"
+   ],
+   "notes": "Square end mill (micro tool); helix direction not stated."
+  },
+  {
+   "id": "bitsbits-425-srf375",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-SRF375",
+   "name": "3/8\" Up-Cut Spiral Bit – 1/4\" Shank (AstraHP Coated)",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "oal": 2.5,
+   "flutes": 3,
+   "helix": "up",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-SRF375 Up Spiral 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 3
+   },
+   "sources": [
+    "https://bitsbits.com/product/425-srf375-3-8-spiral-up-cut-cnc-router-bit/"
+   ]
+  },
+  {
+   "id": "bitsbits-530-srf503am",
+   "maker": "Bits & Bits Co.",
+   "part_number": "530-SRF503AM",
+   "name": "1/2\" Aluminum Series 3-Flute End Mill (AstraHP Coated)",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 1.0,
+   "oal": 3.0,
+   "flutes": 3,
+   "helix": "up",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 530-SRF503AM Up Spiral 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 3
+   },
+   "sources": [
+    "https://bitsbits.com/product/srf3-500am/"
+   ]
+  },
+  {
+   "id": "bitsbits-540-srf500-3fl",
+   "maker": "Bits & Bits Co.",
+   "part_number": "540-SRF500-3FL",
+   "name": "1/2\" Triple Flute Up-Cut Spiral Bit – 2\" Cut (AstraHP Coated)",
+   "family": "end-mill-up",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.5,
+   "cut_length": 2.0,
+   "oal": 4.0,
+   "flutes": 3,
+   "helix": "up",
+   "rpm": [
+    16000,
+    16000
+   ],
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 540-SRF500-3FL Up Spiral 1/2 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 3
+   },
+   "sources": [
+    "https://bitsbits.com/product/1-2-triple-flute-up-cut-spiral/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-up062",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-UP062",
+   "name": "1/16\" O-Flute Spiral Bit – 1/4\" Shank (AstraHP Coated)",
+   "family": "o-flute",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.0625,
+   "shank": 0.25,
+   "cut_length": 0.125,
+   "flutes": 1,
+   "helix": "o-flute",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-UP062 O-Flute 1/16 in",
+    "kind": "EndMill",
+    "diameter": 0.0625,
+    "flutes": 1
+   },
+   "sources": [
+    "https://bitsbits.com/product/425-up062/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-alu125",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-ALU125",
+   "name": "1/8\" Aluminum O-Flute Spiral Bit – 1/4\" Shank (AstraHP Coated)",
+   "family": "o-flute",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "oal": 2.5,
+   "flutes": 1,
+   "helix": "o-flute",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-ALU125 O-Flute 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 1
+   },
+   "sources": [
+    "https://bitsbits.com/product/aluminum-o-flute-spiral-bit/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-up125",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-UP125",
+   "name": "1/8\" O-Flute Spiral Bit – 1/4\" Shank (AstraHP Coated)",
+   "family": "o-flute",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "oal": 2.5,
+   "flutes": 1,
+   "helix": "o-flute",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-UP125 O-Flute 1/8 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 1
+   },
+   "sources": [
+    "https://bitsbits.com/product/425-up125/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-up250",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-UP250",
+   "name": "1/4\" O-Flute Spiral Bit (AstraHP Coated)",
+   "family": "o-flute",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 1,
+   "helix": "o-flute",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-UP250 O-Flute 1/4 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 1
+   },
+   "sources": [
+    "https://bitsbits.com/product/425-up250/"
+   ]
+  },
+  {
+   "id": "bitsbits-330-up375",
+   "maker": "Bits & Bits Co.",
+   "part_number": "330-UP375",
+   "name": "3/8\" O-Flute Spiral Bit – 3/8\" Shank (AstraHP Coated)",
+   "family": "o-flute",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.375,
+   "cut_length": 0.625,
+   "oal": 3.0,
+   "flutes": 1,
+   "helix": "o-flute",
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 330-UP375 O-Flute 3/8 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 1
+   },
+   "sources": [
+    "https://bitsbits.com/product/bitsbits-330-up375-o-flute/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-tb12-032",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-TB12-032",
+   "name": "1/32\" Tapered Ball Nose Bit – 12° (AstraHP Coated)",
+   "family": "tapered-ball",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.03125,
+   "shank": 0.25,
+   "cut_length": 0.9,
+   "oal": 2.5,
+   "flutes": 2,
+   "angle_deg": 12.0,
+   "tip_diameter": 0.03125,
+   "tip_radius": 0.01562,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-TB12-032 Tapered Ball 1/32 in",
+    "kind": "BallNose",
+    "diameter": 0.03125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/1-32-tapered-ball-nose-12-degree/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-tb12-062",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-TB12-062",
+   "name": "1/16\" Tapered Ball Nose Bit – 12° (AstraHP Coated)",
+   "family": "tapered-ball",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.0625,
+   "shank": 0.25,
+   "cut_length": 0.9375,
+   "oal": 2.5,
+   "flutes": 2,
+   "angle_deg": 12.0,
+   "tip_diameter": 0.0625,
+   "tip_radius": 0.03125,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-TB12-062 Tapered Ball 1/16 in",
+    "kind": "BallNose",
+    "diameter": 0.0625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/425-tb12-062-tapered-ball-nose/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-tb2-062",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-TB2-062",
+   "name": "1/16\" Tapered Ball Nose Bit – 2° (AstraHP Coated)",
+   "family": "tapered-ball",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.0625,
+   "shank": 0.25,
+   "cut_length": 0.9375,
+   "oal": 2.5,
+   "flutes": 2,
+   "angle_deg": 2.0,
+   "tip_diameter": 0.0625,
+   "tip_radius": 0.03125,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-TB2-062 Tapered Ball 1/16 in",
+    "kind": "BallNose",
+    "diameter": 0.0625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/1-16%e2%80%b3-tapered-ball-nose-bit-2-astrahp-coated/"
+   ]
+  },
+  {
+   "id": "bitsbits-430-tb7-062",
+   "maker": "Bits & Bits Co.",
+   "part_number": "430-TB7-062",
+   "name": "1/16\" Tapered Ball Nose Bit – 7° (AstraHP Coated)",
+   "family": "tapered-ball",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.0625,
+   "shank": 0.25,
+   "cut_length": 1.5,
+   "oal": 3.0,
+   "flutes": 2,
+   "angle_deg": 7.0,
+   "tip_diameter": 0.0625,
+   "tip_radius": 0.03125,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 430-TB7-062 Tapered Ball 1/16 in",
+    "kind": "BallNose",
+    "diameter": 0.0625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/1-16-tapered-ball-nose-7-degree/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-tb12-125",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-TB12-125",
+   "name": "1/8\" Tapered Ball Nose Bit – 12° (AstraHP Coated)",
+   "family": "tapered-ball",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.65,
+   "oal": 2.5,
+   "flutes": 2,
+   "angle_deg": 12.0,
+   "tip_diameter": 0.125,
+   "tip_radius": 0.0625,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-TB12-125 Tapered Ball 1/8 in",
+    "kind": "BallNose",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/bitsbits-4teb12-125-tapered-ball-nose/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-tb7-125",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-TB7-125",
+   "name": "1/8\" Tapered Ball Nose Bit – 7° (AstraHP Coated)",
+   "family": "tapered-ball",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 1.1,
+   "oal": 2.5,
+   "flutes": 2,
+   "angle_deg": 7.0,
+   "tip_diameter": 0.125,
+   "tip_radius": 0.0625,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-TB7-125 Tapered Ball 1/8 in",
+    "kind": "BallNose",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://bitsbits.com/product/4teb7-125-3fl/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-cr120",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-CR120",
+   "name": "120° Single Flute V-Bit – Astra Coated – Bits&Bits (425-CR120)",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.1,
+   "oal": 2.5,
+   "flutes": 1,
+   "angle_deg": 120.0,
+   "tip_diameter": 0.005,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-CR120 V-Bit 120° 1/4 in",
+    "kind": "VBit",
+    "diameter": 0.25,
+    "flutes": 1,
+    "angle": 120.0
+   },
+   "sources": [
+    "https://bitsbits.com/product/425-cr120/"
+   ],
+   "estimated": true,
+   "notes": "Cutting diameter not published; shank diameter used."
+  },
+  {
+   "id": "bitsbits-425-cr30-005",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-CR30.005",
+   "name": "30° Single Flute V-Bit x .005 Tip – AstraHP Coated – Bits&Bits (425-CR30.005)",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "oal": 2.5,
+   "flutes": 1,
+   "angle_deg": 30.0,
+   "tip_diameter": 0.005,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-CR30.005 V-Bit 30° 1/4 in",
+    "kind": "VBit",
+    "diameter": 0.25,
+    "flutes": 1,
+    "angle": 30.0
+   },
+   "sources": [
+    "https://bitsbits.com/product/425-cr30-005/"
+   ],
+   "estimated": true,
+   "notes": "Cutting diameter not published; shank diameter used."
+  },
+  {
+   "id": "bitsbits-425-cr30-030",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-CR30.030",
+   "name": "30° Single Flute V-Bit x .030 Tip – AstraHP Coated – Bits&Bits (425-CR30.030)",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "oal": 2.5,
+   "flutes": 1,
+   "angle_deg": 30.0,
+   "tip_diameter": 0.03,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-CR30.030 V-Bit 30° 1/4 in",
+    "kind": "VBit",
+    "diameter": 0.25,
+    "flutes": 1,
+    "angle": 30.0
+   },
+   "sources": [
+    "https://bitsbits.com/product/425-cr30-010/"
+   ],
+   "estimated": true,
+   "notes": "Cutting diameter not published; shank diameter used."
+  },
+  {
+   "id": "bitsbits-425-cr90",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-CR90",
+   "name": "90° Single Flute V-Bit x .005 Tip – Astra Coated – Bits&Bits (425-CR90)",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.15,
+   "oal": 2.5,
+   "flutes": 1,
+   "angle_deg": 90.0,
+   "tip_diameter": 0.005,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-CR90 V-Bit 90° 1/4 in",
+    "kind": "VBit",
+    "diameter": 0.25,
+    "flutes": 1,
+    "angle": 90.0
+   },
+   "sources": [
+    "https://bitsbits.com/product/425-cr90/"
+   ],
+   "estimated": true,
+   "notes": "Cutting diameter not published; shank diameter used."
+  },
+  {
+   "id": "bitsbits-425-vg30",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-VG30",
+   "name": "30° 2 Flute V-Groove Bit – AstraHP Coated – Bits&Bits (425-VG30)",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "oal": 2.5,
+   "flutes": 2,
+   "angle_deg": 30.0,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-VG30 V-Bit 30° 1/4 in",
+    "kind": "VBit",
+    "diameter": 0.25,
+    "flutes": 2,
+    "angle": 30.0
+   },
+   "sources": [
+    "https://bitsbits.com/product/425-vg30/"
+   ],
+   "estimated": true,
+   "notes": "Cutting diameter not published; shank diameter used."
+  },
+  {
+   "id": "bitsbits-425-vg45",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-VG45",
+   "name": "45° 2 Flute V-Groove Bit – AstraHP Coated – Bits&Bits (425-VG45)",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.36,
+   "oal": 2.5,
+   "flutes": 2,
+   "angle_deg": 45.0,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-VG45 V-Bit 45° 1/4 in",
+    "kind": "VBit",
+    "diameter": 0.25,
+    "flutes": 2,
+    "angle": 45.0
+   },
+   "sources": [
+    "https://bitsbits.com/product/45-degree-v-groove/"
+   ],
+   "estimated": true,
+   "notes": "Cutting diameter not published; shank diameter used."
+  },
+  {
+   "id": "bitsbits-425-vg60",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-VG60",
+   "name": "60° 2 Flute V-Groove Bit – AstraHP Coated – Bits&Bits (425-VG60)",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "oal": 2.5,
+   "flutes": 2,
+   "angle_deg": 60.0,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-VG60 V-Bit 60° 1/4 in",
+    "kind": "VBit",
+    "diameter": 0.25,
+    "flutes": 2,
+    "angle": 60.0
+   },
+   "sources": [
+    "https://bitsbits.com/product/60-degree-v-groove/"
+   ],
+   "estimated": true,
+   "notes": "Cutting diameter not published; shank diameter used."
+  },
+  {
+   "id": "bitsbits-425-vg90",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-VG90",
+   "name": "90° 2 Flute V-Groove Bit – AstraHP Coated – Bits&Bits (425-VG90)",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.18,
+   "oal": 2.5,
+   "flutes": 2,
+   "angle_deg": 90.0,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-VG90 V-Bit 90° 1/4 in",
+    "kind": "VBit",
+    "diameter": 0.25,
+    "flutes": 2,
+    "angle": 90.0
+   },
+   "sources": [
+    "https://bitsbits.com/product/90-v-groove/"
+   ],
+   "estimated": true,
+   "notes": "Cutting diameter not published; shank diameter used."
+  },
+  {
+   "id": "bitsbits-425-375-vg30",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-375-VG30",
+   "name": "30° 3 Flute V-Groove Bit x 3/8\"Dia. – AstraHP Coated – Bits&Bits (425-375-VG30)",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.25,
+   "cut_length": 0.72,
+   "oal": 2.5,
+   "flutes": 3,
+   "angle_deg": 30.0,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-375-VG30 V-Bit 30° 3/8 in",
+    "kind": "VBit",
+    "diameter": 0.375,
+    "flutes": 3,
+    "angle": 30.0
+   },
+   "sources": [
+    "https://bitsbits.com/product/425-375-vg30-3-8-30-degree-v-groove-cnc-router-bit/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-375-vg45",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-375-VG45",
+   "name": "45° 3 Flute V-Groove Bit x 3/8\"Dia. – AstraHP Coated – Bits&Bits (425-375-VG45)",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "oal": 2.5,
+   "flutes": 3,
+   "angle_deg": 45.0,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-375-VG45 V-Bit 45° 3/8 in",
+    "kind": "VBit",
+    "diameter": 0.375,
+    "flutes": 3,
+    "angle": 45.0
+   },
+   "sources": [
+    "https://bitsbits.com/product/425-375-vg45-3-8-45-degree-v-groove-cnc-router-bit/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-375-vg60",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-375-VG60",
+   "name": "60° 3 Flute V-Groove Bit x 3/8\"Dia. – AstraHP Coated – Bits&Bits (425-375-VG60)",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.25,
+   "cut_length": 0.4,
+   "oal": 2.5,
+   "flutes": 3,
+   "angle_deg": 60.0,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-375-VG60 V-Bit 60° 3/8 in",
+    "kind": "VBit",
+    "diameter": 0.375,
+    "flutes": 3,
+    "angle": 60.0
+   },
+   "sources": [
+    "https://bitsbits.com/product/bitsbits-425-375-vg60-3-8-60-degree-v-groove/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-375-vg90",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-375-VG90",
+   "name": "90° 3 Flute V-Groove Bit x 3/8\"Dia. – AstraHP Coated – Bits&Bits (425-375-VG90)",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.25,
+   "cut_length": 0.28,
+   "oal": 2.5,
+   "flutes": 3,
+   "angle_deg": 90.0,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-375-VG90 V-Bit 90° 3/8 in",
+    "kind": "VBit",
+    "diameter": 0.375,
+    "flutes": 3,
+    "angle": 90.0
+   },
+   "sources": [
+    "https://bitsbits.com/product/bitsbits-425-375-vg90-3-8-90-degree-v-groove-cnc-router-bit/"
+   ]
+  },
+  {
+   "id": "bitsbits-425-500-vg60",
+   "maker": "Bits & Bits Co.",
+   "part_number": "425-500-VG60",
+   "name": "60° 3 Flute V-Groove Bit x 1/2\"Dia. – AstraHP Coated – Bits&Bits (425-500-VG60)",
+   "family": "v-bit",
+   "tool_material": "solid carbide",
+   "coating": "AstraHP",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.25,
+   "cut_length": 0.4,
+   "oal": 2.5,
+   "flutes": 3,
+   "angle_deg": 60.0,
+   "gcarve_tool": {
+    "name": "Bits & Bits Co. 425-500-VG60 V-Bit 60° 1/2 in",
+    "kind": "VBit",
+    "diameter": 0.5,
+    "flutes": 3,
+    "angle": 60.0
+   },
+   "sources": [
+    "https://bitsbits.com/product/bitsbits-1-2-3-flute-60-degree-v-groove-bit/"
+   ]
+  }
+ ]
+}

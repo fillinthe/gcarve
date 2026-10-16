@@ -1,0 +1,4951 @@
+{
+ "maker": "HOMAG",
+ "website": "https://www.homag.com",
+ "machines": [
+  {
+   "id": "homag-centateq-p-110-31",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-110",
+   "variant": "/31, 1 Z-axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.05,
+    "y": 61.02,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3100,
+    "y": 1550,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Air-cooled routing spindle 10 kW (13.2 kW option)",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "8-fold tool changer travelling in X (changer type not stated in text); option 10-slot linear changer; up to 24 places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": "tool length control (option)"
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": 9.4
+   },
+   "sources": [
+    "https://www.homag.com/en/product-detail/machines/cnc-machining-centers/cnc-processing-center-centateq-p-110",
+    "https://wtp.hoechsmann.com/cz/lexikon/pdf/hom_centateqp_-110_2023_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC processing centre (not a gantry router). Y 1,550 mm with a 25 mm tool at 0°; X 3,100 mm individual processing (/42: 4,200 mm). Workpiece thickness from console 240 mm (260 mm on 2-Z version). Drilling spindles 1,500-7,500 rpm. Routing-spindle rpm not published. Brochure via Hoechsmann dealer library."
+  },
+  {
+   "id": "homag-centateq-p-110-42-1-z-axis",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-110",
+   "variant": "/42, 1 Z-axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 165.35,
+    "y": 61.02,
+    "z": 9.45
+   },
+   "work_area_mm": {
+    "x": 4200,
+    "y": 1550,
+    "z": 240
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing spindle 10 kW (13.2 kW option)",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": null,
+    "notes": "Up to 24 tool places"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateqp_-110_2023_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC processing centre. Y 1,550 mm with 25 mm tool at 0° (rear stop); Z = workpiece thickness from console (260 mm with 2 Z-axes). Alternating processing 1,575 mm."
+  },
+  {
+   "id": "homag-centateq-p-210-31",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-210",
+   "variant": "/31",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.05,
+    "y": 61.02,
+    "z": 11.02
+   },
+   "work_area_mm": {
+    "x": 3100,
+    "y": 1550,
+    "z": 280
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing spindle 10 kW (13.2 kW option)",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 24,
+    "notes": "Up to 24 tool changing places; 14-fold changer"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateqp_-210_2023_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table centre, 2 Z-axes (drilling head and spindle on separate Z). Y 1,550 mm with 25 mm tool (rear stop); Z 280 mm from console. Alternating processing 1025 mm."
+  },
+  {
+   "id": "homag-centateq-p-210-42",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-210",
+   "variant": "/42",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 165.35,
+    "y": 61.02,
+    "z": 11.02
+   },
+   "work_area_mm": {
+    "x": 4200,
+    "y": 1550,
+    "z": 280
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing spindle 10 kW (13.2 kW option)",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 24,
+    "notes": "Up to 24 tool changing places; 14-fold changer"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateqp_-210_2023_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table centre, 2 Z-axes (drilling head and spindle on separate Z). Y 1,550 mm with 25 mm tool (rear stop); Z 280 mm from console. Alternating processing 1575 mm."
+  },
+  {
+   "id": "homag-centateq-p-210-60",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-210",
+   "variant": "/60",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 236.22,
+    "y": 61.02,
+    "z": 11.02
+   },
+   "work_area_mm": {
+    "x": 6000,
+    "y": 1550,
+    "z": 280
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Routing spindle 10 kW (13.2 kW option)",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 24,
+    "notes": "Up to 24 tool changing places; 14-fold changer"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateqp_-210_2023_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table centre, 2 Z-axes (drilling head and spindle on separate Z). Y 1,550 mm with 25 mm tool (rear stop); Z 280 mm from console. Alternating processing 2375 mm."
+  },
+  {
+   "id": "homag-centateq-p-500-33-12",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-500",
+   "variant": "/33/12",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 129.92,
+    "y": 61.02,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 3300,
+    "y": 1550,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4-axis trimming spindle up to 18.5 kW",
+     "power_kw": 18.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC processing centre. Y = rear stop with 25 mm tool at 0°; Z 300 mm workpiece thickness. Trimming spindles up to 18.5 kW."
+  },
+  {
+   "id": "homag-centateq-p-500-40-12",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-500",
+   "variant": "/40/12",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 157.48,
+    "y": 61.02,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 4000,
+    "y": 1550,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4-axis trimming spindle up to 18.5 kW",
+     "power_kw": 18.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC processing centre. Y = rear stop with 25 mm tool at 0°; Z 300 mm workpiece thickness. Trimming spindles up to 18.5 kW."
+  },
+  {
+   "id": "homag-centateq-p-500-60-12",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-500",
+   "variant": "/60/12",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 236.22,
+    "y": 61.02,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 6000,
+    "y": 1550,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4-axis trimming spindle up to 18.5 kW",
+     "power_kw": 18.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC processing centre. Y = rear stop with 25 mm tool at 0°; Z 300 mm workpiece thickness. Trimming spindles up to 18.5 kW."
+  },
+  {
+   "id": "homag-centateq-p-500-74-12",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-500",
+   "variant": "/74/12",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 291.34,
+    "y": 61.02,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 7400,
+    "y": 1550,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4-axis trimming spindle up to 18.5 kW",
+     "power_kw": 18.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC processing centre. Y = rear stop with 25 mm tool at 0°; Z 300 mm workpiece thickness. Trimming spindles up to 18.5 kW."
+  },
+  {
+   "id": "homag-centateq-p-500-33-15",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-500",
+   "variant": "/33/15",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 129.92,
+    "y": 74.8,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 3300,
+    "y": 1900,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4-axis trimming spindle up to 18.5 kW",
+     "power_kw": 18.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC processing centre. Y = rear stop with 25 mm tool at 0°; Z 300 mm workpiece thickness. Trimming spindles up to 18.5 kW."
+  },
+  {
+   "id": "homag-centateq-p-500-40-15",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-500",
+   "variant": "/40/15",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 157.48,
+    "y": 74.8,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 4000,
+    "y": 1900,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4-axis trimming spindle up to 18.5 kW",
+     "power_kw": 18.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC processing centre. Y = rear stop with 25 mm tool at 0°; Z 300 mm workpiece thickness. Trimming spindles up to 18.5 kW."
+  },
+  {
+   "id": "homag-centateq-p-500-60-15",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-500",
+   "variant": "/60/15",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 236.22,
+    "y": 74.8,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 6000,
+    "y": 1900,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4-axis trimming spindle up to 18.5 kW",
+     "power_kw": 18.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC processing centre. Y = rear stop with 25 mm tool at 0°; Z 300 mm workpiece thickness. Trimming spindles up to 18.5 kW."
+  },
+  {
+   "id": "homag-centateq-p-500-74-15",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-500",
+   "variant": "/74/15",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 291.34,
+    "y": 74.8,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 7400,
+    "y": 1900,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4-axis trimming spindle up to 18.5 kW",
+     "power_kw": 18.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC processing centre. Y = rear stop with 25 mm tool at 0°; Z 300 mm workpiece thickness. Trimming spindles up to 18.5 kW."
+  },
+  {
+   "id": "homag-centateq-p-500-40-19",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-500",
+   "variant": "/40/19",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 157.48,
+    "y": 88.58,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 4000,
+    "y": 2250,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4-axis trimming spindle up to 18.5 kW",
+     "power_kw": 18.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC processing centre. Y = rear stop with 25 mm tool at 0°; Z 300 mm workpiece thickness. Trimming spindles up to 18.5 kW."
+  },
+  {
+   "id": "homag-centateq-p-500-60-19",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-500",
+   "variant": "/60/19",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 236.22,
+    "y": 88.58,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 6000,
+    "y": 2250,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4-axis trimming spindle up to 18.5 kW",
+     "power_kw": 18.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC processing centre. Y = rear stop with 25 mm tool at 0°; Z 300 mm workpiece thickness. Trimming spindles up to 18.5 kW."
+  },
+  {
+   "id": "homag-centateq-p-500-74-19",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-500",
+   "variant": "/74/19",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 291.34,
+    "y": 88.58,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 7400,
+    "y": 2250,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4-axis trimming spindle up to 18.5 kW",
+     "power_kw": 18.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC processing centre. Y = rear stop with 25 mm tool at 0°; Z 300 mm workpiece thickness. Trimming spindles up to 18.5 kW."
+  },
+  {
+   "id": "homag-centateq-p-500-74-29",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-500",
+   "variant": "/74/29",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 291.34,
+    "y": 127.95,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 7400,
+    "y": 3250,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "4-axis trimming spindle up to 18.5 kW",
+     "power_kw": 18.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC processing centre. Y = rear stop with 25 mm tool at 0°; Z 300 mm workpiece thickness. Trimming spindles up to 18.5 kW."
+  },
+  {
+   "id": "homag-centateq-p-600-33-12",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-600",
+   "variant": "/33/12",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 129.92,
+    "y": 61.02,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 3300,
+    "y": 1550,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DRIVE5+ 5-axis head",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre with high Z-axis and DRIVE5+ 5-axis head; Z 500 mm workpiece thickness (300 mm version). Y = rear stop with 25 mm tool."
+  },
+  {
+   "id": "homag-centateq-e-500-33-12",
+   "maker": "HOMAG",
+   "model": "CENTATEQ E-500",
+   "variant": "/33/12",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 129.92,
+    "y": 61.02,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 3300,
+    "y": 1550,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Trimming spindle up to 18.5 kW",
+     "power_kw": 18.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre with edge banding unit. Y = rear stop with 25 mm tool; Z 300 mm."
+  },
+  {
+   "id": "homag-centateq-p-600-40-12",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-600",
+   "variant": "/40/12",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 157.48,
+    "y": 61.02,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 4000,
+    "y": 1550,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DRIVE5+ 5-axis head",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre with high Z-axis and DRIVE5+ 5-axis head; Z 500 mm workpiece thickness (300 mm version). Y = rear stop with 25 mm tool."
+  },
+  {
+   "id": "homag-centateq-e-500-40-12",
+   "maker": "HOMAG",
+   "model": "CENTATEQ E-500",
+   "variant": "/40/12",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 157.48,
+    "y": 61.02,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 4000,
+    "y": 1550,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Trimming spindle up to 18.5 kW",
+     "power_kw": 18.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre with edge banding unit. Y = rear stop with 25 mm tool; Z 300 mm."
+  },
+  {
+   "id": "homag-centateq-p-600-60-12",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-600",
+   "variant": "/60/12",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 236.22,
+    "y": 61.02,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 6000,
+    "y": 1550,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DRIVE5+ 5-axis head",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre with high Z-axis and DRIVE5+ 5-axis head; Z 500 mm workpiece thickness (300 mm version). Y = rear stop with 25 mm tool."
+  },
+  {
+   "id": "homag-centateq-e-500-60-12",
+   "maker": "HOMAG",
+   "model": "CENTATEQ E-500",
+   "variant": "/60/12",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 236.22,
+    "y": 61.02,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 6000,
+    "y": 1550,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Trimming spindle up to 18.5 kW",
+     "power_kw": 18.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre with edge banding unit. Y = rear stop with 25 mm tool; Z 300 mm."
+  },
+  {
+   "id": "homag-centateq-p-600-74-12",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-600",
+   "variant": "/74/12",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 291.34,
+    "y": 61.02,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 7400,
+    "y": 1550,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DRIVE5+ 5-axis head",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre with high Z-axis and DRIVE5+ 5-axis head; Z 500 mm workpiece thickness (300 mm version). Y = rear stop with 25 mm tool."
+  },
+  {
+   "id": "homag-centateq-e-500-74-12",
+   "maker": "HOMAG",
+   "model": "CENTATEQ E-500",
+   "variant": "/74/12",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 291.34,
+    "y": 61.02,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 7400,
+    "y": 1550,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Trimming spindle up to 18.5 kW",
+     "power_kw": 18.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre with edge banding unit. Y = rear stop with 25 mm tool; Z 300 mm."
+  },
+  {
+   "id": "homag-centateq-p-600-33-15",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-600",
+   "variant": "/33/15",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 129.92,
+    "y": 74.8,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 3300,
+    "y": 1900,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DRIVE5+ 5-axis head",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre with high Z-axis and DRIVE5+ 5-axis head; Z 500 mm workpiece thickness (300 mm version). Y = rear stop with 25 mm tool."
+  },
+  {
+   "id": "homag-centateq-e-500-33-15",
+   "maker": "HOMAG",
+   "model": "CENTATEQ E-500",
+   "variant": "/33/15",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 129.92,
+    "y": 74.8,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 3300,
+    "y": 1900,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Trimming spindle up to 18.5 kW",
+     "power_kw": 18.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre with edge banding unit. Y = rear stop with 25 mm tool; Z 300 mm."
+  },
+  {
+   "id": "homag-centateq-p-600-40-15",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-600",
+   "variant": "/40/15",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 157.48,
+    "y": 74.8,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 4000,
+    "y": 1900,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DRIVE5+ 5-axis head",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre with high Z-axis and DRIVE5+ 5-axis head; Z 500 mm workpiece thickness (300 mm version). Y = rear stop with 25 mm tool."
+  },
+  {
+   "id": "homag-centateq-e-500-40-15",
+   "maker": "HOMAG",
+   "model": "CENTATEQ E-500",
+   "variant": "/40/15",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 157.48,
+    "y": 74.8,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 4000,
+    "y": 1900,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Trimming spindle up to 18.5 kW",
+     "power_kw": 18.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre with edge banding unit. Y = rear stop with 25 mm tool; Z 300 mm."
+  },
+  {
+   "id": "homag-centateq-p-600-60-15",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-600",
+   "variant": "/60/15",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 236.22,
+    "y": 74.8,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 6000,
+    "y": 1900,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DRIVE5+ 5-axis head",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre with high Z-axis and DRIVE5+ 5-axis head; Z 500 mm workpiece thickness (300 mm version). Y = rear stop with 25 mm tool."
+  },
+  {
+   "id": "homag-centateq-e-500-60-15",
+   "maker": "HOMAG",
+   "model": "CENTATEQ E-500",
+   "variant": "/60/15",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 236.22,
+    "y": 74.8,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 6000,
+    "y": 1900,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Trimming spindle up to 18.5 kW",
+     "power_kw": 18.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre with edge banding unit. Y = rear stop with 25 mm tool; Z 300 mm."
+  },
+  {
+   "id": "homag-centateq-p-600-74-15",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-600",
+   "variant": "/74/15",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 291.34,
+    "y": 74.8,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 7400,
+    "y": 1900,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DRIVE5+ 5-axis head",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre with high Z-axis and DRIVE5+ 5-axis head; Z 500 mm workpiece thickness (300 mm version). Y = rear stop with 25 mm tool."
+  },
+  {
+   "id": "homag-centateq-e-500-74-15",
+   "maker": "HOMAG",
+   "model": "CENTATEQ E-500",
+   "variant": "/74/15",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 291.34,
+    "y": 74.8,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 7400,
+    "y": 1900,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Trimming spindle up to 18.5 kW",
+     "power_kw": 18.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre with edge banding unit. Y = rear stop with 25 mm tool; Z 300 mm."
+  },
+  {
+   "id": "homag-centateq-p-600-40-19",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-600",
+   "variant": "/40/19",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 157.48,
+    "y": 88.58,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 4000,
+    "y": 2250,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DRIVE5+ 5-axis head",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre with high Z-axis and DRIVE5+ 5-axis head; Z 500 mm workpiece thickness (300 mm version). Y = rear stop with 25 mm tool."
+  },
+  {
+   "id": "homag-centateq-e-500-40-19",
+   "maker": "HOMAG",
+   "model": "CENTATEQ E-500",
+   "variant": "/40/19",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 157.48,
+    "y": 88.58,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 4000,
+    "y": 2250,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Trimming spindle up to 18.5 kW",
+     "power_kw": 18.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre with edge banding unit. Y = rear stop with 25 mm tool; Z 300 mm."
+  },
+  {
+   "id": "homag-centateq-p-600-60-19",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-600",
+   "variant": "/60/19",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 236.22,
+    "y": 88.58,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 6000,
+    "y": 2250,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DRIVE5+ 5-axis head",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre with high Z-axis and DRIVE5+ 5-axis head; Z 500 mm workpiece thickness (300 mm version). Y = rear stop with 25 mm tool."
+  },
+  {
+   "id": "homag-centateq-e-500-60-19",
+   "maker": "HOMAG",
+   "model": "CENTATEQ E-500",
+   "variant": "/60/19",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 236.22,
+    "y": 88.58,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 6000,
+    "y": 2250,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Trimming spindle up to 18.5 kW",
+     "power_kw": 18.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre with edge banding unit. Y = rear stop with 25 mm tool; Z 300 mm."
+  },
+  {
+   "id": "homag-centateq-p-600-74-19",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-600",
+   "variant": "/74/19",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 291.34,
+    "y": 88.58,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 7400,
+    "y": 2250,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DRIVE5+ 5-axis head",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre with high Z-axis and DRIVE5+ 5-axis head; Z 500 mm workpiece thickness (300 mm version). Y = rear stop with 25 mm tool."
+  },
+  {
+   "id": "homag-centateq-e-500-74-19",
+   "maker": "HOMAG",
+   "model": "CENTATEQ E-500",
+   "variant": "/74/19",
+   "years": "2018-",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 291.34,
+    "y": 88.58,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 7400,
+    "y": 2250,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Trimming spindle up to 18.5 kW",
+     "power_kw": 18.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p-500_p-600__e-500_2020_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre with edge banding unit. Y = rear stop with 25 mm tool; Z 300 mm."
+  },
+  {
+   "id": "homag-centateq-n-500-4x8-ft",
+   "maker": "HOMAG",
+   "model": "CENTATEQ N-500",
+   "variant": "4x8 ft",
+   "years": "2019",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 99.21,
+    "y": 49.21,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 2520,
+    "y": 1250,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSK routing spindle 10 kW air-cooled",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "13.2 kW air / 11 or 16 kW liquid-cooled (options)",
+     "power_kw": 16,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 984
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 25000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "7, 8 or 10 places by table size"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool length control"
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateqn_-500_2019_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC centre with MATRIX table. Vector speed X/Y 96 m/min, Z 25 m/min; 2 synchronized servo drives in X. Tool changer 7/8/10 places (by table size), fixed changer 14/28/42 option."
+  },
+  {
+   "id": "homag-centateq-n-500-5x10-ft",
+   "maker": "HOMAG",
+   "model": "CENTATEQ N-500",
+   "variant": "5x10 ft",
+   "years": "2019",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.05,
+    "y": 61.02,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 3100,
+    "y": 1550,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSK routing spindle 10 kW air-cooled",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "13.2 kW air / 11 or 16 kW liquid-cooled (options)",
+     "power_kw": 16,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 984
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 25000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "7, 8 or 10 places by table size"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool length control"
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateqn_-500_2019_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC centre with MATRIX table. Vector speed X/Y 96 m/min, Z 25 m/min; 2 synchronized servo drives in X. Tool changer 7/8/10 places (by table size), fixed changer 14/28/42 option."
+  },
+  {
+   "id": "homag-centateq-n-500-5x12-ft",
+   "maker": "HOMAG",
+   "model": "CENTATEQ N-500",
+   "variant": "5x12 ft",
+   "years": "2019",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 145.67,
+    "y": 61.02,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 3700,
+    "y": 1550,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSK routing spindle 10 kW air-cooled",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "13.2 kW air / 11 or 16 kW liquid-cooled (options)",
+     "power_kw": 16,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 984
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 25000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "7, 8 or 10 places by table size"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool length control"
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateqn_-500_2019_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC centre with MATRIX table. Vector speed X/Y 96 m/min, Z 25 m/min; 2 synchronized servo drives in X. Tool changer 7/8/10 places (by table size), fixed changer 14/28/42 option."
+  },
+  {
+   "id": "homag-centateq-n-500-6x12-ft",
+   "maker": "HOMAG",
+   "model": "CENTATEQ N-500",
+   "variant": "6x12 ft",
+   "years": "2019",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 145.67,
+    "y": 72.83,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 3700,
+    "y": 1850,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSK routing spindle 10 kW air-cooled",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "13.2 kW air / 11 or 16 kW liquid-cooled (options)",
+     "power_kw": 16,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 984
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 25000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "7, 8 or 10 places by table size"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool length control"
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateqn_-500_2019_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC centre with MATRIX table. Vector speed X/Y 96 m/min, Z 25 m/min; 2 synchronized servo drives in X. Tool changer 7/8/10 places (by table size), fixed changer 14/28/42 option."
+  },
+  {
+   "id": "homag-centateq-n-500-7x10-ft",
+   "maker": "HOMAG",
+   "model": "CENTATEQ N-500",
+   "variant": "7x10 ft",
+   "years": "2019",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.05,
+    "y": 88.58,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 3100,
+    "y": 2250,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSK routing spindle 10 kW air-cooled",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "13.2 kW air / 11 or 16 kW liquid-cooled (options)",
+     "power_kw": 16,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 984
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 25000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "7, 8 or 10 places by table size"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool length control"
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateqn_-500_2019_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC centre with MATRIX table. Vector speed X/Y 96 m/min, Z 25 m/min; 2 synchronized servo drives in X. Tool changer 7/8/10 places (by table size), fixed changer 14/28/42 option."
+  },
+  {
+   "id": "homag-centateq-n-500-7x14-ft",
+   "maker": "HOMAG",
+   "model": "CENTATEQ N-500",
+   "variant": "7x14 ft",
+   "years": "2019",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 169.29,
+    "y": 88.58,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 4300,
+    "y": 2250,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSK routing spindle 10 kW air-cooled",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": "air",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "13.2 kW air / 11 or 16 kW liquid-cooled (options)",
+     "power_kw": 16,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "HSK",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 984
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 25000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "7, 8 or 10 places by table size"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool length control"
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateqn_-500_2019_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC centre with MATRIX table. Vector speed X/Y 96 m/min, Z 25 m/min; 2 synchronized servo drives in X. Tool changer 7/8/10 places (by table size), fixed changer 14/28/42 option."
+  },
+  {
+   "id": "homag-centateq-n-600-7x10-ft",
+   "maker": "HOMAG",
+   "model": "CENTATEQ N-600",
+   "variant": "7x10 ft",
+   "years": "2019",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.05,
+    "y": 88.58,
+    "z": 8.27
+   },
+   "work_area_mm": {
+    "x": 3100,
+    "y": 2250,
+    "z": 210
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_n_600_2019_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Nesting CNC centre; Z 210 mm without automation (125 mm with push-off device). Vector speed X/Y 130, Z 20 m/min."
+  },
+  {
+   "id": "homag-centateq-p-100",
+   "maker": "HOMAG",
+   "model": "CENTATEQ P-100",
+   "variant": null,
+   "years": "2021",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 127.95,
+    "y": 49.21,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 3250,
+    "y": 1250,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": null,
+    "z": 787
+   },
+   "rapid_mm_min": {
+    "xy": null,
+    "z": 20000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_centateq_p100_2021_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "Entry nesting/processing centre. Routing with 25 mm tool: Y 1600 mm. Vector speed X/Y 80, Z 20 m/min."
+  },
+  {
+   "id": "homag-bmg-110-venture-113-114-m",
+   "maker": "HOMAG",
+   "model": "BMG 110",
+   "variant": "Venture 113/114 M",
+   "years": "2017",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.05,
+    "y": 61.02,
+    "z": 10.24
+   },
+   "work_area_mm": {
+    "x": 3100,
+    "y": 1550,
+    "z": 260
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Liquid-cooled spindle 10 kW (12 kW option)",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_bmg_110_venture_113_114_115_2017_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC centre (Venture 113/114). Y 1,550 mm with 25 mm tool (rear stop); Z 260 mm from console. X with 25 mm tool +200 mm."
+  },
+  {
+   "id": "homag-bmg-110-venture-113-114-l",
+   "maker": "HOMAG",
+   "model": "BMG 110",
+   "variant": "Venture 113/114 L",
+   "years": "2017",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 165.35,
+    "y": 61.02,
+    "z": 10.24
+   },
+   "work_area_mm": {
+    "x": 4200,
+    "y": 1550,
+    "z": 260
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Liquid-cooled spindle 10 kW (12 kW option)",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_bmg_110_venture_113_114_115_2017_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC centre (Venture 113/114). Y 1,550 mm with 25 mm tool (rear stop); Z 260 mm from console. X with 25 mm tool +200 mm."
+  },
+  {
+   "id": "homag-bmg-110-venture-115-m",
+   "maker": "HOMAG",
+   "model": "BMG 110",
+   "variant": "Venture 115 M",
+   "years": "2017",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122.05,
+    "y": 55.71,
+    "z": 10.24
+   },
+   "work_area_mm": {
+    "x": 3100,
+    "y": 1415,
+    "z": 260
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Liquid-cooled spindle 10 kW (12 kW option)",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_bmg_110_venture_113_114_115_2017_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC centre (Venture 115, 2 Z-axes). Y 1,415 mm with 25 mm tool (rear stop); Z 260 mm from console."
+  },
+  {
+   "id": "homag-bmg-110-venture-115-l",
+   "maker": "HOMAG",
+   "model": "BMG 110",
+   "variant": "Venture 115 L",
+   "years": "2017",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 165.35,
+    "y": 55.71,
+    "z": 10.24
+   },
+   "work_area_mm": {
+    "x": 4200,
+    "y": 1415,
+    "z": 260
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Liquid-cooled spindle 10 kW (12 kW option)",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_bmg_110_venture_113_114_115_2017_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table CNC centre (Venture 115, 2 Z-axes). Y 1,415 mm with 25 mm tool (rear stop); Z 260 mm from console."
+  },
+  {
+   "id": "homag-bmg-310-33",
+   "maker": "HOMAG",
+   "model": "BMG 310",
+   "variant": "33",
+   "years": "2017",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 129.92,
+    "y": 62.99,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 3300,
+    "y": 1600,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DRIVE5C/+ 5-axis spindle 10 kW (12/15 kW option)",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_bmg_310_venture_2017_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table centre with 5-axis DRIVE5C/+ spindle. Y 1,600 mm with 25 mm tool; Z 200 mm (vacuum cup height 100 mm)."
+  },
+  {
+   "id": "homag-bmg-310-42",
+   "maker": "HOMAG",
+   "model": "BMG 310",
+   "variant": "42",
+   "years": "2017",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 165.35,
+    "y": 62.99,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 4200,
+    "y": 1600,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DRIVE5C/+ 5-axis spindle 10 kW (12/15 kW option)",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_bmg_310_venture_2017_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table centre with 5-axis DRIVE5C/+ spindle. Y 1,600 mm with 25 mm tool; Z 200 mm (vacuum cup height 100 mm)."
+  },
+  {
+   "id": "homag-bmg-310-60",
+   "maker": "HOMAG",
+   "model": "BMG 310",
+   "variant": "60",
+   "years": "2017",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 236.22,
+    "y": 62.99,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 6000,
+    "y": 1600,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "DRIVE5C/+ 5-axis spindle 10 kW (12/15 kW option)",
+     "power_kw": 10,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerTouch with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_bmg_310_venture_2017_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Console-table centre with 5-axis DRIVE5C/+ spindle. Y 1,600 mm with 25 mm tool; Z 200 mm (vacuum cup height 100 mm)."
+  },
+  {
+   "id": "homag-bmg-300-m",
+   "maker": "HOMAG",
+   "model": "BMG 300",
+   "variant": "M",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 129.92,
+    "y": 61.02,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 3300,
+    "y": 1550,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_bmg300_venture_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Venture series console-table centre; parts up to 1,550 mm deep can be processed. Z not stated."
+  },
+  {
+   "id": "homag-bmg-300-l",
+   "maker": "HOMAG",
+   "model": "BMG 300",
+   "variant": "L",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 165.35,
+    "y": 61.02,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 4200,
+    "y": 1550,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_bmg300_venture_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Venture series console-table centre; parts up to 1,550 mm deep can be processed. Z not stated."
+  },
+  {
+   "id": "homag-bmg-300-xxl",
+   "maker": "HOMAG",
+   "model": "BMG 300",
+   "variant": "XXL",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 236.22,
+    "y": 61.02,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 6000,
+    "y": 1550,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_bmg300_venture_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Venture series console-table centre; parts up to 1,550 mm deep can be processed. Z not stated."
+  },
+  {
+   "id": "homag-bmg-511-33-12",
+   "maker": "HOMAG",
+   "model": "BMG 511",
+   "variant": "/33/12",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 129.92,
+    "y": 61.02,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 3300,
+    "y": 1550,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_bmg500_600_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre (predecessor of CENTATEQ P-500). Y = rear stop with 25 mm tool; Z 300 mm."
+  },
+  {
+   "id": "homag-bmg-511-40-12",
+   "maker": "HOMAG",
+   "model": "BMG 511",
+   "variant": "/40/12",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 157.48,
+    "y": 61.02,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 4000,
+    "y": 1550,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_bmg500_600_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre (predecessor of CENTATEQ P-500). Y = rear stop with 25 mm tool; Z 300 mm."
+  },
+  {
+   "id": "homag-bmg-511-60-12",
+   "maker": "HOMAG",
+   "model": "BMG 511",
+   "variant": "/60/12",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 236.22,
+    "y": 61.02,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 6000,
+    "y": 1550,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_bmg500_600_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre (predecessor of CENTATEQ P-500). Y = rear stop with 25 mm tool; Z 300 mm."
+  },
+  {
+   "id": "homag-bmg-511-74-12",
+   "maker": "HOMAG",
+   "model": "BMG 511",
+   "variant": "/74/12",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 291.34,
+    "y": 61.02,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 7400,
+    "y": 1550,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_bmg500_600_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre (predecessor of CENTATEQ P-500). Y = rear stop with 25 mm tool; Z 300 mm."
+  },
+  {
+   "id": "homag-bmg-511-33-15",
+   "maker": "HOMAG",
+   "model": "BMG 511",
+   "variant": "/33/15",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 129.92,
+    "y": 74.8,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 3300,
+    "y": 1900,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_bmg500_600_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre (predecessor of CENTATEQ P-500). Y = rear stop with 25 mm tool; Z 300 mm."
+  },
+  {
+   "id": "homag-bmg-511-40-15",
+   "maker": "HOMAG",
+   "model": "BMG 511",
+   "variant": "/40/15",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 157.48,
+    "y": 74.8,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 4000,
+    "y": 1900,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_bmg500_600_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre (predecessor of CENTATEQ P-500). Y = rear stop with 25 mm tool; Z 300 mm."
+  },
+  {
+   "id": "homag-bmg-511-60-15",
+   "maker": "HOMAG",
+   "model": "BMG 511",
+   "variant": "/60/15",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 236.22,
+    "y": 74.8,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 6000,
+    "y": 1900,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_bmg500_600_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre (predecessor of CENTATEQ P-500). Y = rear stop with 25 mm tool; Z 300 mm."
+  },
+  {
+   "id": "homag-bmg-511-74-15",
+   "maker": "HOMAG",
+   "model": "BMG 511",
+   "variant": "/74/15",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 291.34,
+    "y": 74.8,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 7400,
+    "y": 1900,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_bmg500_600_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre (predecessor of CENTATEQ P-500). Y = rear stop with 25 mm tool; Z 300 mm."
+  },
+  {
+   "id": "homag-bmg-511-40-19",
+   "maker": "HOMAG",
+   "model": "BMG 511",
+   "variant": "/40/19",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 157.48,
+    "y": 88.58,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 4000,
+    "y": 2250,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_bmg500_600_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre (predecessor of CENTATEQ P-500). Y = rear stop with 25 mm tool; Z 300 mm."
+  },
+  {
+   "id": "homag-bmg-511-60-19",
+   "maker": "HOMAG",
+   "model": "BMG 511",
+   "variant": "/60/19",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 236.22,
+    "y": 88.58,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 6000,
+    "y": 2250,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_bmg500_600_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre (predecessor of CENTATEQ P-500). Y = rear stop with 25 mm tool; Z 300 mm."
+  },
+  {
+   "id": "homag-bmg-511-74-19",
+   "maker": "HOMAG",
+   "model": "BMG 511",
+   "variant": "/74/19",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 291.34,
+    "y": 88.58,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 7400,
+    "y": 2250,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_bmg500_600_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre (predecessor of CENTATEQ P-500). Y = rear stop with 25 mm tool; Z 300 mm."
+  },
+  {
+   "id": "homag-bmg-511-74-29",
+   "maker": "HOMAG",
+   "model": "BMG 511",
+   "variant": "/74/29",
+   "years": "2015",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 291.34,
+    "y": 127.95,
+    "z": 11.81
+   },
+   "work_area_mm": {
+    "x": 7400,
+    "y": 3250,
+    "z": 300
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "HOMAG powerControl with woodWOP",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods",
+     "console table"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/hom_bmg500_600_2015_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Gantry CNC centre (predecessor of CENTATEQ P-500). Y = rear stop with 25 mm tool; Z 300 mm."
+  }
+ ]
+}

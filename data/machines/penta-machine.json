@@ -1,0 +1,255 @@
+{
+ "maker": "Penta Machine",
+ "website": "https://pentamachine.com",
+ "machines": [
+  {
+   "id": "penta-machine-pocket-nc-v2-10",
+   "maker": "Penta Machine",
+   "model": "Pocket NC V2",
+   "variant": "V2-10",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 4.55,
+    "y": 5.05,
+    "z": 3.55
+   },
+   "work_area_mm": {
+    "x": 116,
+    "y": 128,
+    "z": 90.2
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "200 W BLDC spindle",
+     "power_kw": 0.2,
+     "power_hp": null,
+     "rpm_min": 2000,
+     "rpm_max": 10000,
+     "collet": "ER11",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 60,
+    "z": 60
+   },
+   "max_feed_mm_min": {
+    "xy": 1524,
+    "z": 1524
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Kinetic Control (Machinekit/Rockhopper, LinuxCNC-style G-code)",
+     "gcarve_post": "linuxcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool length probe"
+   },
+   "z_zero": [
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vise"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://pentamachine.com/all-products/p/pocket-nc-v2-10",
+    "https://pentamachine.com/s/Penta_V2-10_Spec-4.pdf"
+   ],
+   "notes": "Desktop 5-axis mill (Bozeman, Montana): A -25 to 135 deg, B continuous, 40 deg/s. Linear axes 60 in/min. Lead screws with preloaded nuts, 5 NEMA 17 steppers, rotary worm drives. Backlash 0.0005 in, homing repeatability +/- 0.0005 in. Footprint 17.5 x 12.5 in. Kinetic Control (TCPC) on a TI Cortex-A8 running Machinekit/Rockhopper; accepts .ngc/.nc G-code. Tested on G5 titanium, 6061, 303 stainless, wax, acetal.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "penta-machine-pocket-nc-v2-50chb",
+   "maker": "Penta Machine",
+   "model": "Pocket NC V2",
+   "variant": "V2-50CHB",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 4.55,
+    "y": 5.05,
+    "z": 3.55
+   },
+   "work_area_mm": {
+    "x": 116,
+    "y": 128,
+    "z": 90.2
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "NSK NRR-2651 spindle, 200 W",
+     "power_kw": 0.2,
+     "power_hp": null,
+     "rpm_min": 1000,
+     "rpm_max": 50000,
+     "collet": "CHB (1/8\")",
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 60,
+    "z": 60
+   },
+   "max_feed_mm_min": {
+    "xy": 1524,
+    "z": 1524
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Kinetic Control (Machinekit/Rockhopper, LinuxCNC-style G-code)",
+     "gcarve_post": "linuxcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool length probe"
+   },
+   "z_zero": [
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vise"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://pentamachine.com/s/Penta_CHB_Spec.pdf",
+    "https://pentamachine.com/all-products/v2-50"
+   ],
+   "notes": "Desktop 5-axis mill (Bozeman, Montana): A -25 to 135 deg, B continuous, 40 deg/s. Linear axes 60 in/min. Lead screws with preloaded nuts, 5 NEMA 17 steppers, rotary worm drives. Backlash 0.0005 in, homing repeatability +/- 0.0005 in. Footprint 17.5 x 12.5 in. Kinetic Control (TCPC) on a TI Cortex-A8 running Machinekit/Rockhopper; accepts .ngc/.nc G-code. Tested on G5 titanium, 6061, 303 stainless, wax, acetal. Needs compressed air; probes the tool after each change.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM"
+   }
+  },
+  {
+   "id": "penta-machine-pocket-nc-v2-50chk",
+   "maker": "Penta Machine",
+   "model": "Pocket NC V2",
+   "variant": "V2-50CHK",
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 4.55,
+    "y": 5.05,
+    "z": 3.55
+   },
+   "work_area_mm": {
+    "x": 116,
+    "y": 128,
+    "z": 90.2
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "NSK NR-2551 spindle, 200 W",
+     "power_kw": 0.2,
+     "power_hp": null,
+     "rpm_min": 1000,
+     "rpm_max": 50000,
+     "collet": "CHK (1/8\")",
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 60,
+    "z": 60
+   },
+   "max_feed_mm_min": {
+    "xy": 1524,
+    "z": 1524
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Kinetic Control (Machinekit/Rockhopper, LinuxCNC-style G-code)",
+     "gcarve_post": "linuxcnc-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool length probe"
+   },
+   "z_zero": [
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vise"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://pentamachine.com/s/Penta_CHK_Spec.pdf",
+    "https://pentamachine.com/pocket-nc"
+   ],
+   "notes": "Desktop 5-axis mill (Bozeman, Montana): A -25 to 135 deg, B continuous, 40 deg/s. Linear axes 60 in/min. Lead screws with preloaded nuts, 5 NEMA 17 steppers, rotary worm drives. Backlash 0.0005 in, homing repeatability +/- 0.0005 in. Footprint 17.5 x 12.5 in. Kinetic Control (TCPC) on a TI Cortex-A8 running Machinekit/Rockhopper; accepts .ngc/.nc G-code. Tested on G5 titanium, 6061, 303 stainless, wax, acetal. Needs compressed air; aimed at small tooling and SS303 or harder.",
+   "estimated": {
+    "work_area_mm": "converted from inches",
+    "max_feed_mm_min": "converted from IPM"
+   }
+  }
+ ]
+}

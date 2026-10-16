@@ -1,0 +1,1040 @@
+{
+ "maker": "CNC Factory",
+ "website": "https://cncfactory.com",
+ "machines": [
+  {
+   "id": "cnc-factory-viper-xp-4x8",
+   "maker": "CNC Factory",
+   "model": "Viper XP",
+   "variant": "4x8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48,
+    "y": 96,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 2438,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "10 HP ATC air-cooled spindle",
+     "power_kw": 7.46,
+     "power_hp": 10,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 (ER30 holders)",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25400,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50800,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "CNC Factory mobile controller, 21 in touch screen + wireless MPG (brand not published)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position rack on the gantry bar, 8 s changes (12-tool upgrade)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool length measurement sensor"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cncfactory.com/product/?id=2",
+    "https://cncfactory.com/cnc-factory-router-comparison-chart/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "work_area_in": "nominal table size (4'x8' etc.), not measured travel",
+    "tool_change.kind": "chart and product page disagree on rack vs carousel"
+   },
+   "notes": "Nesting router (Anaheim, CA). Helical rack and pinion X/Y, servo gear reduction; X/Y servos 750 W, Z 1300 W (Yaskawa Sigma 7 absolute encoders). Zoned high-flow vacuum table, pressurized auto lubrication. Ships with VCarve Pro; KCD trial. Z travel not published."
+  },
+  {
+   "id": "cnc-factory-viper-xp-4x10",
+   "maker": "CNC Factory",
+   "model": "Viper XP",
+   "variant": "4x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "10 HP ATC air-cooled spindle",
+     "power_kw": 7.46,
+     "power_hp": 10,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 (ER30 holders)",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25400,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50800,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "CNC Factory mobile controller, 21 in touch screen + wireless MPG (brand not published)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position rack on the gantry bar, 8 s changes (12-tool upgrade)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool length measurement sensor"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cncfactory.com/product/?id=2",
+    "https://cncfactory.com/cnc-factory-router-comparison-chart/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "work_area_in": "nominal table size (4'x8' etc.), not measured travel",
+    "tool_change.kind": "chart and product page disagree on rack vs carousel"
+   },
+   "notes": "Nesting router (Anaheim, CA). Helical rack and pinion X/Y, servo gear reduction; X/Y servos 750 W, Z 1300 W (Yaskawa Sigma 7 absolute encoders). Zoned high-flow vacuum table, pressurized auto lubrication. Ships with VCarve Pro; KCD trial. Z travel not published."
+  },
+  {
+   "id": "cnc-factory-viper-xp-5x10",
+   "maker": "CNC Factory",
+   "model": "Viper XP",
+   "variant": "5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "10 HP ATC air-cooled spindle",
+     "power_kw": 7.46,
+     "power_hp": 10,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 (ER30 holders)",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1000,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 25400,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2000,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 50800,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "CNC Factory mobile controller, 21 in touch screen + wireless MPG (brand not published)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position rack on the gantry bar, 8 s changes (12-tool upgrade)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool length measurement sensor"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cncfactory.com/product/?id=2",
+    "https://cncfactory.com/cnc-factory-router-comparison-chart/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "work_area_in": "nominal table size (4'x8' etc.), not measured travel",
+    "tool_change.kind": "chart and product page disagree on rack vs carousel"
+   },
+   "notes": "Nesting router (Anaheim, CA). Helical rack and pinion X/Y, servo gear reduction; X/Y servos 750 W, Z 1300 W (Yaskawa Sigma 7 absolute encoders). Zoned high-flow vacuum table, pressurized auto lubrication. Ships with VCarve Pro; KCD trial. Z travel not published."
+  },
+  {
+   "id": "cnc-factory-sidewinder-xpr-4x8",
+   "maker": "CNC Factory",
+   "model": "Sidewinder XPR",
+   "variant": "4x8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48,
+    "y": 96,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 2438,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP ATC air-cooled spindle",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 (ER30 holders)",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30480,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2200,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 55880,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "CNC Factory mobile controller, 21 in touch screen + wireless MPG (brand not published)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position auto rack tool changer, 8 s changes (12-tool option); comparison chart says rotary carousel"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool length measurement sensor"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cncfactory.com/product/?id=3",
+    "https://cncfactory.com/cnc-factory-router-comparison-chart/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "work_area_in": "nominal table size (4'x8' etc.), not measured travel",
+    "tool_change.kind": "chart and product page disagree on rack vs carousel"
+   },
+   "notes": "Nesting router (Anaheim, CA). Helical rack and pinion X/Y, servo gear reduction; X/Y servos 750 W, Z 1300 W. Zoned high-flow vacuum table, pressurized auto lubrication. Ships with VCarve Pro; KCD trial. Z travel not published."
+  },
+  {
+   "id": "cnc-factory-sidewinder-xpr-4x10",
+   "maker": "CNC Factory",
+   "model": "Sidewinder XPR",
+   "variant": "4x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP ATC air-cooled spindle",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 (ER30 holders)",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30480,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2200,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 55880,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "CNC Factory mobile controller, 21 in touch screen + wireless MPG (brand not published)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position auto rack tool changer, 8 s changes (12-tool option); comparison chart says rotary carousel"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool length measurement sensor"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cncfactory.com/product/?id=3",
+    "https://cncfactory.com/cnc-factory-router-comparison-chart/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "work_area_in": "nominal table size (4'x8' etc.), not measured travel",
+    "tool_change.kind": "chart and product page disagree on rack vs carousel"
+   },
+   "notes": "Nesting router (Anaheim, CA). Helical rack and pinion X/Y, servo gear reduction; X/Y servos 750 W, Z 1300 W. Zoned high-flow vacuum table, pressurized auto lubrication. Ships with VCarve Pro; KCD trial. Z travel not published."
+  },
+  {
+   "id": "cnc-factory-sidewinder-xpr-5x10",
+   "maker": "CNC Factory",
+   "model": "Sidewinder XPR",
+   "variant": "5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP ATC air-cooled spindle",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 (ER30 holders)",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30480,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2200,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 55880,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "CNC Factory mobile controller, 21 in touch screen + wireless MPG (brand not published)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position auto rack tool changer, 8 s changes (12-tool option); comparison chart says rotary carousel"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool length measurement sensor"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cncfactory.com/product/?id=3",
+    "https://cncfactory.com/cnc-factory-router-comparison-chart/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "work_area_in": "nominal table size (4'x8' etc.), not measured travel",
+    "tool_change.kind": "chart and product page disagree on rack vs carousel"
+   },
+   "notes": "Nesting router (Anaheim, CA). Helical rack and pinion X/Y, servo gear reduction; X/Y servos 750 W, Z 1300 W. Zoned high-flow vacuum table, pressurized auto lubrication. Ships with VCarve Pro; KCD trial. Z travel not published."
+  },
+  {
+   "id": "cnc-factory-sidewinder-xpr-5x12",
+   "maker": "CNC Factory",
+   "model": "Sidewinder XPR",
+   "variant": "5x12",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 144,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3658,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP ATC air-cooled spindle",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 (ER30 holders)",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1200,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 30480,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2200,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 55880,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "CNC Factory mobile controller, 21 in touch screen + wireless MPG (brand not published)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 8,
+    "notes": "8-position auto rack tool changer, 8 s changes (12-tool option); comparison chart says rotary carousel"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool length measurement sensor"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cncfactory.com/product/?id=3",
+    "https://cncfactory.com/cnc-factory-router-comparison-chart/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "work_area_in": "nominal table size (4'x8' etc.), not measured travel",
+    "tool_change.kind": "chart and product page disagree on rack vs carousel"
+   },
+   "notes": "Nesting router (Anaheim, CA). Helical rack and pinion X/Y, servo gear reduction; X/Y servos 750 W, Z 1300 W. Zoned high-flow vacuum table, pressurized auto lubrication. Ships with VCarve Pro; KCD trial. Z travel not published."
+  },
+  {
+   "id": "cnc-factory-python-xpr-4x8",
+   "maker": "CNC Factory",
+   "model": "Python XPR",
+   "variant": "4x8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48,
+    "y": 96,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 2438,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP ATC air-cooled spindle (HSD)",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 (ER30 holders)",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1500,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 38100,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 63500,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "CNC Factory mobile controller, 21 in touch screen + wireless MPG (brand not published)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12-position auto tool changer, 8 s changes"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool length measurement sensor"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cncfactory.com/product/?id=5",
+    "https://cncfactory.com/cnc-factory-router-comparison-chart/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "work_area_in": "nominal table size (4'x8' etc.), not measured travel",
+    "tool_change.kind": "chart and product page disagree on rack vs carousel"
+   },
+   "notes": "Nesting router (Anaheim, CA). Helical rack and pinion X/Y, servo gear reduction; X/Y servos 850 W, Z 1300 W. Zoned high-flow vacuum table, pressurized auto lubrication. Ships with VCarve Pro; KCD trial. Z travel not published."
+  },
+  {
+   "id": "cnc-factory-python-xpr-4x10",
+   "maker": "CNC Factory",
+   "model": "Python XPR",
+   "variant": "4x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP ATC air-cooled spindle (HSD)",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 (ER30 holders)",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1500,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 38100,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 63500,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "CNC Factory mobile controller, 21 in touch screen + wireless MPG (brand not published)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12-position auto tool changer, 8 s changes"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool length measurement sensor"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cncfactory.com/product/?id=5",
+    "https://cncfactory.com/cnc-factory-router-comparison-chart/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "work_area_in": "nominal table size (4'x8' etc.), not measured travel",
+    "tool_change.kind": "chart and product page disagree on rack vs carousel"
+   },
+   "notes": "Nesting router (Anaheim, CA). Helical rack and pinion X/Y, servo gear reduction; X/Y servos 850 W, Z 1300 W. Zoned high-flow vacuum table, pressurized auto lubrication. Ships with VCarve Pro; KCD trial. Z travel not published."
+  },
+  {
+   "id": "cnc-factory-python-xpr-5x10",
+   "maker": "CNC Factory",
+   "model": "Python XPR",
+   "variant": "5x10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP ATC air-cooled spindle (HSD)",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 (ER30 holders)",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1500,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 38100,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 63500,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "CNC Factory mobile controller, 21 in touch screen + wireless MPG (brand not published)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12-position auto tool changer, 8 s changes"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool length measurement sensor"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cncfactory.com/product/?id=5",
+    "https://cncfactory.com/cnc-factory-router-comparison-chart/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "work_area_in": "nominal table size (4'x8' etc.), not measured travel",
+    "tool_change.kind": "chart and product page disagree on rack vs carousel"
+   },
+   "notes": "Nesting router (Anaheim, CA). Helical rack and pinion X/Y, servo gear reduction; X/Y servos 850 W, Z 1300 W. Zoned high-flow vacuum table, pressurized auto lubrication. Ships with VCarve Pro; KCD trial. Z travel not published."
+  },
+  {
+   "id": "cnc-factory-python-xpr-5x12",
+   "maker": "CNC Factory",
+   "model": "Python XPR",
+   "variant": "5x12",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 144,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3658,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP ATC air-cooled spindle (HSD)",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 (ER30 holders)",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 1500,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 38100,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 2500,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 63500,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "CNC Factory mobile controller, 21 in touch screen + wireless MPG (brand not published)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12-position auto tool changer, 8 s changes"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "auto tool length measurement sensor"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cncfactory.com/product/?id=5",
+    "https://cncfactory.com/cnc-factory-router-comparison-chart/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "work_area_in": "nominal table size (4'x8' etc.), not measured travel",
+    "tool_change.kind": "chart and product page disagree on rack vs carousel"
+   },
+   "notes": "Nesting router (Anaheim, CA). Helical rack and pinion X/Y, servo gear reduction; X/Y servos 850 W, Z 1300 W. Zoned high-flow vacuum table, pressurized auto lubrication. Ships with VCarve Pro; KCD trial. Z travel not published."
+  }
+ ]
+}

@@ -1,0 +1,3461 @@
+{
+ "maker": "AccTek CNC",
+ "website": "https://acctekcnc.com",
+ "machines": [
+  {
+   "id": "acctek-akm1325",
+   "maker": "AccTek CNC",
+   "model": "AKM1325",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 3.5 kW air-cooled spindle",
+     "power_kw": 3.5,
+     "power_hp": 4.7,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HQD 3.0 kW water-cooled spindle",
+     "power_kw": 3.0,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm1325-cnc-router/"
+   ],
+   "notes": "Leadshine drivers; Fuling inverter; TBI ball screws, Hiwin rails; 380 V 3-phase.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "acctek-akm1325-r",
+   "maker": "AccTek CNC",
+   "model": "AKM1325-R",
+   "variant": "rotary",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3.5 kW spindle",
+     "power_kw": 3.5,
+     "power_hp": 4.7,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm1325-r-cnc-router/"
+   ],
+   "notes": "Rotary axis for cylinders 80-320 mm diameter; Z working area 200-500 mm (configuration dependent).",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "acctek-akm1325-4r",
+   "maker": "AccTek CNC",
+   "model": "AKM1325-4R",
+   "variant": "multi-rotary",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm1325-4r-cnc-router/"
+   ],
+   "notes": "Multi-head rotary router (listed under multi-head routers); Hiwin rails.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "acctek-akm1325c1",
+   "maker": "AccTek CNC",
+   "model": "AKM1325C1",
+   "variant": "ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (magazine type and slots not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm-c1-cnc-router/"
+   ],
+   "notes": "Leadshine easy-servo (closed-loop) motors. Repeat 0.03 mm/300 mm; 380 V 3-phase (220 V option).",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "acctek-akm1325c2",
+   "maker": "AccTek CNC",
+   "model": "AKM1325C2",
+   "variant": "ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60W-E",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (magazine type and slots not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm-c2-cnc-router/"
+   ],
+   "notes": "Delta or Inovance servos. Repeat 0.03 mm/300 mm; 380 V 3-phase (220 V option).",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "acctek-akm1325c3",
+   "maker": "AccTek CNC",
+   "model": "AKM1325C3",
+   "variant": "ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60W-E",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (magazine type and slots not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm-c3-cnc-router/"
+   ],
+   "notes": "Yaskawa servos. Repeat 0.03 mm/300 mm; 380 V 3-phase (220 V option).",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "acctek-akm1325-4a1",
+   "maker": "AccTek CNC",
+   "model": "AKM1325-4A1",
+   "variant": "4-axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 17.72
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 450
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 kW air-cooled spindle",
+     "power_kw": 6,
+     "power_hp": 8.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm-4a1-cnc-router/",
+    "https://acctekcnc.com/product/akm1325-4a-cnc-router/"
+   ],
+   "notes": "Tilting spindle (4th axis); Leadshine easy-servo or Yaskawa servo.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "acctek-akm1325-4a2",
+   "maker": "AccTek CNC",
+   "model": "AKM1325-4A2",
+   "variant": "4-axis ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 17.72
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 450
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 kW air-cooled ATC spindle",
+     "power_kw": 6,
+     "power_hp": 8.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 610MA-E5",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (magazine not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm-4a2-cnc-router/"
+   ],
+   "notes": "Tilting spindle; Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "acctek-akm1325-4a3",
+   "maker": "AccTek CNC",
+   "model": "AKM1325-4A3",
+   "variant": "4-axis ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 610MA-E5",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (magazine not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm-4a3-cnc-router/"
+   ],
+   "notes": "Tilting spindle; Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "acctek-akm1325c-4a",
+   "maker": "AccTek CNC",
+   "model": "AKM1325C-4A",
+   "variant": "4-axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60W-E",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm1325c-4a-cnc-router/"
+   ],
+   "notes": "Tilting spindle; Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "acctek-akm1530",
+   "maker": "AccTek CNC",
+   "model": "AKM1530",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 3.5 kW air-cooled spindle",
+     "power_kw": 3.5,
+     "power_hp": 4.7,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HQD 3.0 kW water-cooled spindle",
+     "power_kw": 3.0,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm1530-cnc-router/"
+   ],
+   "notes": "Leadshine drivers; Fuling inverter; TBI ball screws, Hiwin rails; 380 V 3-phase.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "acctek-akm1530-r",
+   "maker": "AccTek CNC",
+   "model": "AKM1530-R",
+   "variant": "rotary",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3.5 kW spindle",
+     "power_kw": 3.5,
+     "power_hp": 4.7,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm1530-r-cnc-router/"
+   ],
+   "notes": "Rotary axis for cylinders 80-320 mm diameter; Z working area 200-500 mm (configuration dependent).",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "acctek-akm1530-4r",
+   "maker": "AccTek CNC",
+   "model": "AKM1530-4R",
+   "variant": "multi-rotary",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm1530-4r-cnc-router/"
+   ],
+   "notes": "Multi-head rotary router (listed under multi-head routers); Hiwin rails.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "acctek-akm1530c1",
+   "maker": "AccTek CNC",
+   "model": "AKM1530C1",
+   "variant": "ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (magazine type and slots not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm-c1-cnc-router/"
+   ],
+   "notes": "Leadshine easy-servo (closed-loop) motors. Repeat 0.03 mm/300 mm; 380 V 3-phase (220 V option).",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "acctek-akm1530c2",
+   "maker": "AccTek CNC",
+   "model": "AKM1530C2",
+   "variant": "ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60W-E",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (magazine type and slots not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm-c2-cnc-router/"
+   ],
+   "notes": "Delta or Inovance servos. Repeat 0.03 mm/300 mm; 380 V 3-phase (220 V option).",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "acctek-akm1530c3",
+   "maker": "AccTek CNC",
+   "model": "AKM1530C3",
+   "variant": "ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60W-E",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (magazine type and slots not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm-c3-cnc-router/"
+   ],
+   "notes": "Yaskawa servos. Repeat 0.03 mm/300 mm; 380 V 3-phase (220 V option).",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "acctek-akm1530-4a1",
+   "maker": "AccTek CNC",
+   "model": "AKM1530-4A1",
+   "variant": "4-axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 17.72
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 450
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 kW air-cooled spindle",
+     "power_kw": 6,
+     "power_hp": 8.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm-4a1-cnc-router/",
+    "https://acctekcnc.com/product/akm1530-4a-cnc-router/"
+   ],
+   "notes": "Tilting spindle (4th axis); Leadshine easy-servo or Yaskawa servo. The series page lists 1300x2500x450 for this size (typo); the AKM1530-4A page gives 1500x3000x450 mm.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "acctek-akm1530-4a2",
+   "maker": "AccTek CNC",
+   "model": "AKM1530-4A2",
+   "variant": "4-axis ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 17.72
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 450
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 kW air-cooled ATC spindle",
+     "power_kw": 6,
+     "power_hp": 8.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 610MA-E5",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (magazine not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm-4a2-cnc-router/"
+   ],
+   "notes": "Tilting spindle; Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "acctek-akm1530-4a3",
+   "maker": "AccTek CNC",
+   "model": "AKM1530-4A3",
+   "variant": "4-axis ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 610MA-E5",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (magazine not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm-4a3-cnc-router/"
+   ],
+   "notes": "Tilting spindle; Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "acctek-akm1530c-4a",
+   "maker": "AccTek CNC",
+   "model": "AKM1530C-4A",
+   "variant": "4-axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60W-E",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm1325c-4a-cnc-router/"
+   ],
+   "notes": "Tilting spindle; Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "acctek-akm2030",
+   "maker": "AccTek CNC",
+   "model": "AKM2030",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 3.5 kW air-cooled spindle",
+     "power_kw": 3.5,
+     "power_hp": 4.7,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HQD 3.0 kW water-cooled spindle",
+     "power_kw": 3.0,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm2030-cnc-router/"
+   ],
+   "notes": "Leadshine drivers; Fuling inverter; TBI ball screws, Hiwin rails; 380 V 3-phase.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "acctek-akm2030-r",
+   "maker": "AccTek CNC",
+   "model": "AKM2030-R",
+   "variant": "rotary",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3.5 kW spindle",
+     "power_kw": 3.5,
+     "power_hp": 4.7,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm2030-r-cnc-router/"
+   ],
+   "notes": "Rotary axis for cylinders 80-320 mm diameter; Z working area 200-500 mm (configuration dependent).",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "acctek-akm2030-4r",
+   "maker": "AccTek CNC",
+   "model": "AKM2030-4R",
+   "variant": "multi-rotary",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm2030-4r-cnc-router/"
+   ],
+   "notes": "Multi-head rotary router (listed under multi-head routers); Hiwin rails.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "acctek-akm2030c1",
+   "maker": "AccTek CNC",
+   "model": "AKM2030C1",
+   "variant": "ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (magazine type and slots not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm-c1-cnc-router/"
+   ],
+   "notes": "Leadshine easy-servo (closed-loop) motors. Repeat 0.03 mm/300 mm; 380 V 3-phase (220 V option).",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "acctek-akm2030c2",
+   "maker": "AccTek CNC",
+   "model": "AKM2030C2",
+   "variant": "ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60W-E",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (magazine type and slots not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm-c2-cnc-router/"
+   ],
+   "notes": "Delta or Inovance servos. Repeat 0.03 mm/300 mm; 380 V 3-phase (220 V option).",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "acctek-akm2030c3",
+   "maker": "AccTek CNC",
+   "model": "AKM2030C3",
+   "variant": "ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60W-E",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (magazine type and slots not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm-c3-cnc-router/"
+   ],
+   "notes": "Yaskawa servos. Repeat 0.03 mm/300 mm; 380 V 3-phase (220 V option).",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "acctek-akm2030-4a1",
+   "maker": "AccTek CNC",
+   "model": "AKM2030-4A1",
+   "variant": "4-axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 17.72
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 450
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 kW air-cooled spindle",
+     "power_kw": 6,
+     "power_hp": 8.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm-4a1-cnc-router/",
+    "https://acctekcnc.com/product/akm2030-4a-cnc-router/"
+   ],
+   "notes": "Tilting spindle (4th axis); Leadshine easy-servo or Yaskawa servo.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "acctek-akm2030-4a2",
+   "maker": "AccTek CNC",
+   "model": "AKM2030-4A2",
+   "variant": "4-axis ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 17.72
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 450
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 kW air-cooled ATC spindle",
+     "power_kw": 6,
+     "power_hp": 8.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 610MA-E5",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (magazine not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm-4a2-cnc-router/"
+   ],
+   "notes": "Tilting spindle; Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "acctek-akm2030-4a3",
+   "maker": "AccTek CNC",
+   "model": "AKM2030-4A3",
+   "variant": "4-axis ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 610MA-E5",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (magazine not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm-4a3-cnc-router/"
+   ],
+   "notes": "Tilting spindle; Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "acctek-akm2030c-4a",
+   "maker": "AccTek CNC",
+   "model": "AKM2030C-4A",
+   "variant": "4-axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 118.11,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 3000,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60W-E",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm1325c-4a-cnc-router/"
+   ],
+   "notes": "Tilting spindle; Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "acctek-akm2040",
+   "maker": "AccTek CNC",
+   "model": "AKM2040",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 3.5 kW air-cooled spindle",
+     "power_kw": 3.5,
+     "power_hp": 4.7,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HQD 3.0 kW water-cooled spindle",
+     "power_kw": 3.0,
+     "power_hp": 4.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool sensor"
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm2040-cnc-router/"
+   ],
+   "notes": "Leadshine drivers; Fuling inverter; TBI ball screws, Hiwin rails; 380 V 3-phase.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "acctek-akm2040-r",
+   "maker": "AccTek CNC",
+   "model": "AKM2040-R",
+   "variant": "rotary",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "3.5 kW spindle",
+     "power_kw": 3.5,
+     "power_hp": 4.7,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm2040-r-cnc-router/"
+   ],
+   "notes": "Rotary axis for cylinders 80-320 mm diameter; Z working area 200-500 mm (configuration dependent).",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "acctek-akm2040-4r",
+   "maker": "AccTek CNC",
+   "model": "AKM2040-4R",
+   "variant": "multi-rotary",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": 7.87
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle",
+     "power_kw": 2.2,
+     "power_hp": 3.0,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm2040-4r-cnc-router/"
+   ],
+   "notes": "Multi-head rotary router (listed under multi-head routers); Hiwin rails.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "acctek-akm2040c1",
+   "maker": "AccTek CNC",
+   "model": "AKM2040C1",
+   "variant": "ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (magazine type and slots not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm-c1-cnc-router/"
+   ],
+   "notes": "Leadshine easy-servo (closed-loop) motors. Repeat 0.03 mm/300 mm; 380 V 3-phase (220 V option).",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "acctek-akm2040c2",
+   "maker": "AccTek CNC",
+   "model": "AKM2040C2",
+   "variant": "ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HQD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60W-E",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (magazine type and slots not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm-c2-cnc-router/"
+   ],
+   "notes": "Delta or Inovance servos. Repeat 0.03 mm/300 mm; 380 V 3-phase (220 V option).",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "acctek-akm2040c3",
+   "maker": "AccTek CNC",
+   "model": "AKM2040C3",
+   "variant": "ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": 9.84
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": 250
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60W-E",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (magazine type and slots not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm-c3-cnc-router/"
+   ],
+   "notes": "Yaskawa servos. Repeat 0.03 mm/300 mm; 380 V 3-phase (220 V option).",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "acctek-akm2040-4a1",
+   "maker": "AccTek CNC",
+   "model": "AKM2040-4A1",
+   "variant": "4-axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": 17.72
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": 450
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 kW air-cooled spindle",
+     "power_kw": 6,
+     "power_hp": 8.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Mach3",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm-4a1-cnc-router/",
+    "https://acctekcnc.com/product/akm2040-4a-cnc-router/"
+   ],
+   "notes": "Tilting spindle (4th axis); Leadshine easy-servo or Yaskawa servo.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "acctek-akm2040-4a2",
+   "maker": "AccTek CNC",
+   "model": "AKM2040-4A2",
+   "variant": "4-axis ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": 17.72
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": 450
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 kW air-cooled ATC spindle",
+     "power_kw": 6,
+     "power_hp": 8.0,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 610MA-E5",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (magazine not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm-4a2-cnc-router/"
+   ],
+   "notes": "Tilting spindle; Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "acctek-akm2040-4a3",
+   "maker": "AccTek CNC",
+   "model": "AKM2040-4A3",
+   "variant": "4-axis ATC",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW air-cooled ATC spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 610MA-E5",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": "ATC (magazine not stated)"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm-4a3-cnc-router/"
+   ],
+   "notes": "Tilting spindle; Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW",
+    "tool_change.kind": "magazine type not stated; linear assumed"
+   }
+  },
+  {
+   "id": "acctek-akm2040c-4a",
+   "maker": "AccTek CNC",
+   "model": "AKM2040C-4A",
+   "variant": "4-axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": 19.69
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": 500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "9 kW air-cooled spindle",
+     "power_kw": 9,
+     "power_hp": 12.1,
+     "rpm_min": null,
+     "rpm_max": 18000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": null,
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 60W-E",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum",
+     "T-slot"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm1325c-4a-cnc-router/"
+   ],
+   "notes": "Tilting spindle; Yaskawa servos.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "acctek-akm1212-5a",
+   "maker": "AccTek CNC",
+   "model": "AKM1212-5A",
+   "variant": "5-axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 47.24,
+    "y": 47.24,
+    "z": 23.62
+   },
+   "work_area_mm": {
+    "x": 1200,
+    "y": 1200,
+    "z": 600
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco 10 kW 5-axis ATC spindle",
+     "power_kw": 10,
+     "power_hp": 13.4,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 610MA-E5",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "Disc ATC, 8 tools"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm1212-5a-cnc-router/",
+    "https://acctekcnc.com/product/akm2040-5a-cnc-router/"
+   ],
+   "notes": "C +/-360 deg, B +/-110 deg; cast steel frame; Yaskawa servos; Hiwin 30 mm rails; repeat +/-0.05 mm.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "acctek-akm1224-5a",
+   "maker": "AccTek CNC",
+   "model": "AKM1224-5A",
+   "variant": "5-axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 47.24,
+    "y": 94.49,
+    "z": 23.62
+   },
+   "work_area_mm": {
+    "x": 1200,
+    "y": 2400,
+    "z": 600
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco 10 kW 5-axis ATC spindle",
+     "power_kw": 10,
+     "power_hp": 13.4,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 610MA-E5",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "Disc ATC, 8 tools"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm1224-5a-cnc-router/",
+    "https://acctekcnc.com/product/akm2040-5a-cnc-router/"
+   ],
+   "notes": "C +/-360 deg, B +/-110 deg; cast steel frame; Yaskawa servos; Hiwin 30 mm rails; repeat +/-0.05 mm.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "acctek-akm1325-5a",
+   "maker": "AccTek CNC",
+   "model": "AKM1325-5A",
+   "variant": "5-axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 51.18,
+    "y": 98.43,
+    "z": 23.62
+   },
+   "work_area_mm": {
+    "x": 1300,
+    "y": 2500,
+    "z": 600
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco 10 kW 5-axis ATC spindle",
+     "power_kw": 10,
+     "power_hp": 13.4,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 610MA-E5",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "Disc ATC, 8 tools"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm1325-5a-cnc-router/",
+    "https://acctekcnc.com/product/akm2040-5a-cnc-router/"
+   ],
+   "notes": "C +/-360 deg, B +/-110 deg; cast steel frame; Yaskawa servos; Hiwin 30 mm rails; repeat +/-0.05 mm.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "acctek-akm1530-5a",
+   "maker": "AccTek CNC",
+   "model": "AKM1530-5A",
+   "variant": "5-axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 59.06,
+    "y": 118.11,
+    "z": 23.62
+   },
+   "work_area_mm": {
+    "x": 1500,
+    "y": 3000,
+    "z": 600
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco 10 kW 5-axis ATC spindle",
+     "power_kw": 10,
+     "power_hp": 13.4,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 610MA-E5",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "Disc ATC, 8 tools"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm1530-5a-cnc-router/",
+    "https://acctekcnc.com/product/akm2040-5a-cnc-router/"
+   ],
+   "notes": "C +/-360 deg, B +/-110 deg; cast steel frame; Yaskawa servos; Hiwin 30 mm rails; repeat +/-0.05 mm.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  },
+  {
+   "id": "acctek-akm2040-5a",
+   "maker": "AccTek CNC",
+   "model": "AKM2040-5A",
+   "variant": "5-axis",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 78.74,
+    "y": 157.48,
+    "z": 59.06
+   },
+   "work_area_mm": {
+    "x": 2000,
+    "y": 4000,
+    "z": 1500
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Hiteco 10 kW 5-axis ATC spindle",
+     "power_kw": 10,
+     "power_hp": 13.4,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "ballscrew"
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "Syntec 610MA-E5",
+     "gcarve_post": "syntec-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 8,
+    "notes": "Disc ATC, 8 tools"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://acctekcnc.com/product/akm2040-5a-cnc-router/",
+    "https://acctekcnc.com/product/akm2040-5a-cnc-router/"
+   ],
+   "notes": "C +/-360 deg, B +/-110 deg; cast steel frame; Yaskawa servos; Hiwin 30 mm rails; repeat +/-0.05 mm.",
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "spindles.power_hp": "converted from kW"
+   }
+  }
+ ]
+}

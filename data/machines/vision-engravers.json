@@ -1,0 +1,415 @@
+{
+ "maker": "Vision Engraving & Routing Systems",
+ "website": "https://www.visionengravers.com",
+ "machines": [
+  {
+   "id": "vision-engravers-phoenix-1212",
+   "maker": "Vision Engraving & Routing Systems",
+   "model": "Phoenix 1212",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 12,
+    "y": 12,
+    "z": 1
+   },
+   "work_area_mm": {
+    "x": 305,
+    "y": 305,
+    "z": 25
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Vision engraving spindle (11/64 in, 6 mm or 1/4 in top-loading cutters; collet spindle optional)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "11/64\", 6 mm, 1/4\"",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Vision V-Touch touch-screen controller (Vision Express software, Ethernet)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": 3
+   },
+   "sources": [
+    "https://www.visionengravers.com/products/engravers/medium-engravers/1212/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "Sign / engraving router for wood, plastics and laminates. Z stroke 1 in standard, 1.75 in with riser kit. Max part height 3 in. Jobs come from Vision's own software, no G-code post."
+  },
+  {
+   "id": "vision-engravers-1612",
+   "maker": "Vision Engraving & Routing Systems",
+   "model": "1612 Pro",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 16,
+    "y": 12,
+    "z": 1.75
+   },
+   "work_area_mm": {
+    "x": 406,
+    "y": 305,
+    "z": 44
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Vision engraving spindle (11/64 in, 6 mm or 1/4 in top-loading cutters; collet spindle optional)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "11/64\", 6 mm, 1/4\"",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Vision Series 5 controller with V-Touch pendant (Vision Express / Expert / Pro software, Ethernet)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": 5
+   },
+   "sources": [
+    "https://www.visionengravers.com/products/engravers/medium-engravers/1612/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "rapid_ipm": "maker gives a single top speed of 10 in/s"
+   },
+   "notes": "Sign / engraving router for wood, plastics and laminates. Z stroke 1.75 in standard, 3.375 in with riser kit. Max part height 5 in. Jobs come from Vision's own software, no G-code post."
+  },
+  {
+   "id": "vision-engravers-1624",
+   "maker": "Vision Engraving & Routing Systems",
+   "model": "1624 Pro",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 16,
+    "y": 24,
+    "z": 1.75
+   },
+   "work_area_mm": {
+    "x": 406,
+    "y": 610,
+    "z": 44
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Vision engraving spindle (11/64 in, 6 mm or 1/4 in top-loading cutters; collet spindle optional)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "11/64\", 6 mm, 1/4\"",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Vision Series 5 controller with V-Touch pendant (Vision Express / Expert / Pro software, Ethernet)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "T-track"
+    ],
+    "max_material_thickness_in": 5
+   },
+   "sources": [
+    "https://www.visionengravers.com/products/engravers/medium-engravers/1624/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "rapid_ipm": "maker gives a single top speed of 10 in/s"
+   },
+   "notes": "Sign / engraving router for wood, plastics and laminates. Z stroke 1.75 in standard, 3.375 in with riser kit. Max part height 5 in. Jobs come from Vision's own software, no G-code post."
+  },
+  {
+   "id": "vision-engravers-2424",
+   "maker": "Vision Engraving & Routing Systems",
+   "model": "2424",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 24,
+    "y": 24,
+    "z": 1.75
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 610,
+    "z": 44
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Vision engraving spindle (11/64 in, 6 mm or 1/4 in top-loading cutters; collet spindle optional)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "11/64\", 6 mm, 1/4\"",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Vision Series 5 controller with V-Touch pendant (Vision Express / Expert / Pro software, Ethernet)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps",
+     "T-track"
+    ],
+    "max_material_thickness_in": 5
+   },
+   "sources": [
+    "https://www.visionengravers.com/products/engravers/large-engravers/2424/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "rapid_ipm": "maker gives a single top speed of 10 in/s"
+   },
+   "notes": "Sign / engraving router for wood, plastics and laminates. Z stroke 1.75 in standard, 3.375 in with riser kit. Max part height 5 in. Jobs come from Vision's own software, no G-code post. 2424/2448: aluminium flat bed, T-slot optional; 50,000 rpm spindle optional."
+  },
+  {
+   "id": "vision-engravers-2448",
+   "maker": "Vision Engraving & Routing Systems",
+   "model": "2448",
+   "variant": null,
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 24,
+    "y": 48,
+    "z": 1.75
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 1219,
+    "z": 44
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Vision engraving spindle (11/64 in, 6 mm or 1/4 in top-loading cutters; collet spindle optional)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "11/64\", 6 mm, 1/4\"",
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "Vision Series 5 controller with V-Touch pendant (Vision Express / Expert / Pro software, Ethernet)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "clamps",
+     "T-track"
+    ],
+    "max_material_thickness_in": 5
+   },
+   "sources": [
+    "https://www.visionengravers.com/products/engravers/large-engravers/2448/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "rapid_ipm": "maker gives a single top speed of 10 in/s"
+   },
+   "notes": "Sign / engraving router for wood, plastics and laminates. Z stroke 1.75 in standard, 3.375 in with riser kit. Max part height 5 in. Jobs come from Vision's own software, no G-code post. 2424/2448: aluminium flat bed, T-slot optional; 50,000 rpm spindle optional."
+  }
+ ]
+}

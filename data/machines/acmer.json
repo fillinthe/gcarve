@@ -1,0 +1,186 @@
+{
+ "maker": "ACMER",
+ "website": "https://easel.com/partners/acmer/",
+ "machines": [
+  {
+   "id": "acmer-ascarva-3s",
+   "maker": "ACMER",
+   "model": "ASCARVA 3S",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 7.09,
+    "z": 3.07
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 180,
+    "z": 78
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "500 W spindle",
+     "power_kw": 0.5,
+     "power_hp": null,
+     "rpm_min": 0,
+     "rpm_max": 12000,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 79,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 2000,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 197,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 5000,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "ESP32 GRBL-compatible",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool setter"
+   },
+   "z_zero": [
+    "top of material",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://easel.com/partners/machines/acmer-ascarva-3s/",
+    "https://manuals.plus/asin/B0FDF74DLG"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm",
+    "rapid_ipm": "converted from mm"
+   },
+   "notes": "Model CNC-3SLB. Lead screws on twin hardened round rails, E-stop, 6 limit switches. Engraving speed max 2000, movement 5000 mm/min."
+  },
+  {
+   "id": "acmer-ascarva-4s",
+   "maker": "ACMER",
+   "model": "ASCARVA 4S",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 15.75,
+    "y": 15.75,
+    "z": 3.15
+   },
+   "work_area_mm": {
+    "x": 400,
+    "y": 400,
+    "z": 80
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "70 W spindle",
+     "power_kw": 0.07,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "500 W spindle (upgrade)",
+     "power_kw": 0.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "belt",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL-compatible + 3.5 in touchscreen",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://easel.com/partners/machines/acmer-ascarva-4s/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "Belt (GT2 6 mm, V-wheels) X/Y, lead screw Z; NEMA17. Area per ACMER manual V1.2."
+  }
+ ]
+}

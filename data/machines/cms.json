@@ -1,0 +1,1615 @@
+{
+ "maker": "CMS",
+ "website": "https://www.cms.it",
+ "machines": [
+  {
+   "id": "cms-ares-3618",
+   "maker": "CMS",
+   "model": "Ares",
+   "variant": "3618",
+   "years": "2023",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 141.73,
+    "y": 70.87,
+    "z": 47.24
+   },
+   "work_area_mm": {
+    "x": 3600,
+    "y": 1800,
+    "z": 1200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Electrospindle 8-20 kW (S1), HSK 63F, 24,000 rpm",
+     "power_kw": 20,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 2756
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": 70000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "CMS PC console (CNC make not stated)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/cms_ares_2023_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "5-axis monobloc machining centre for advanced materials (plastics, composites). Axis strokes from spindle nose; B ±120°, C ±270°. Rapids X/Y 80, Z 70 m/min. Spindles 8-20 kW nominal."
+  },
+  {
+   "id": "cms-ares-4818",
+   "maker": "CMS",
+   "model": "Ares",
+   "variant": "4818",
+   "years": "2023",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 188.98,
+    "y": 70.87,
+    "z": 47.24
+   },
+   "work_area_mm": {
+    "x": 4800,
+    "y": 1800,
+    "z": 1200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Electrospindle 8-20 kW (S1), HSK 63F, 24,000 rpm",
+     "power_kw": 20,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 2756
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": 70000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "CMS PC console (CNC make not stated)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/cms_ares_2023_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "5-axis monobloc machining centre for advanced materials (plastics, composites). Axis strokes from spindle nose; B ±120°, C ±270°. Rapids X/Y 80, Z 70 m/min. Spindles 8-20 kW nominal."
+  },
+  {
+   "id": "cms-ares-6018",
+   "maker": "CMS",
+   "model": "Ares",
+   "variant": "6018",
+   "years": "2023",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 236.22,
+    "y": 70.87,
+    "z": 47.24
+   },
+   "work_area_mm": {
+    "x": 6000,
+    "y": 1800,
+    "z": 1200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Electrospindle 8-20 kW (S1), HSK 63F, 24,000 rpm",
+     "power_kw": 20,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 2756
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": 70000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "CMS PC console (CNC make not stated)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/cms_ares_2023_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "5-axis monobloc machining centre for advanced materials (plastics, composites). Axis strokes from spindle nose; B ±120°, C ±270°. Rapids X/Y 80, Z 70 m/min. Spindles 8-20 kW nominal."
+  },
+  {
+   "id": "cms-ares-3626",
+   "maker": "CMS",
+   "model": "Ares",
+   "variant": "3626",
+   "years": "2023",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 141.73,
+    "y": 102.36,
+    "z": 47.24
+   },
+   "work_area_mm": {
+    "x": 3600,
+    "y": 2600,
+    "z": 1200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Electrospindle 8-20 kW (S1), HSK 63F, 24,000 rpm",
+     "power_kw": 20,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 2756
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": 70000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "CMS PC console (CNC make not stated)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/cms_ares_2023_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "5-axis monobloc machining centre for advanced materials (plastics, composites). Axis strokes from spindle nose; B ±120°, C ±270°. Rapids X/Y 80, Z 70 m/min. Spindles 8-20 kW nominal."
+  },
+  {
+   "id": "cms-ares-4826",
+   "maker": "CMS",
+   "model": "Ares",
+   "variant": "4826",
+   "years": "2023",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 188.98,
+    "y": 102.36,
+    "z": 47.24
+   },
+   "work_area_mm": {
+    "x": 4800,
+    "y": 2600,
+    "z": 1200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Electrospindle 8-20 kW (S1), HSK 63F, 24,000 rpm",
+     "power_kw": 20,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 2756
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": 70000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "CMS PC console (CNC make not stated)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/cms_ares_2023_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "5-axis monobloc machining centre for advanced materials (plastics, composites). Axis strokes from spindle nose; B ±120°, C ±270°. Rapids X/Y 80, Z 70 m/min. Spindles 8-20 kW nominal."
+  },
+  {
+   "id": "cms-ares-6026",
+   "maker": "CMS",
+   "model": "Ares",
+   "variant": "6026",
+   "years": "2023",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 236.22,
+    "y": 102.36,
+    "z": 47.24
+   },
+   "work_area_mm": {
+    "x": 6000,
+    "y": 2600,
+    "z": 1200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Electrospindle 8-20 kW (S1), HSK 63F, 24,000 rpm",
+     "power_kw": 20,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 2756
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": 70000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "CMS PC console (CNC make not stated)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/cms_ares_2023_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "5-axis monobloc machining centre for advanced materials (plastics, composites). Axis strokes from spindle nose; B ±120°, C ±270°. Rapids X/Y 80, Z 70 m/min. Spindles 8-20 kW nominal."
+  },
+  {
+   "id": "cms-antares-26-15",
+   "maker": "CMS",
+   "model": "Antares",
+   "variant": "26/15",
+   "years": "2022",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 102.36,
+    "y": 59.06,
+    "z": 47.24
+   },
+   "work_area_mm": {
+    "x": 2600,
+    "y": 1500,
+    "z": 1200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Electrospindle up to 20 kW S1",
+     "power_kw": 20,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63A",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 2756
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": 70000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "CMS PC console (CNC make not stated)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 16,
+    "notes": "16-station tool magazine"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/cms_antares_2022_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "High-speed 5-axis monobloc machining centre (aluminium/composites). B ±120°, C ±270°. Rapids X/Y 80, Z 70 m/min. TR = rotating tables."
+  },
+  {
+   "id": "cms-antares-26-28",
+   "maker": "CMS",
+   "model": "Antares",
+   "variant": "26/28",
+   "years": "2022",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 102.36,
+    "y": 110.24,
+    "z": 47.24
+   },
+   "work_area_mm": {
+    "x": 2600,
+    "y": 2800,
+    "z": 1200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Electrospindle up to 20 kW S1",
+     "power_kw": 20,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63A",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 2756
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": 70000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "CMS PC console (CNC make not stated)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 16,
+    "notes": "16-station tool magazine"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/cms_antares_2022_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "High-speed 5-axis monobloc machining centre (aluminium/composites). B ±120°, C ±270°. Rapids X/Y 80, Z 70 m/min. TR = rotating tables."
+  },
+  {
+   "id": "cms-antares-k-26-17",
+   "maker": "CMS",
+   "model": "Antares",
+   "variant": "K 26/17",
+   "years": "2022",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 102.36,
+    "y": 66.93,
+    "z": 47.24
+   },
+   "work_area_mm": {
+    "x": 2600,
+    "y": 1700,
+    "z": 1200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Electrospindle up to 20 kW S1",
+     "power_kw": 20,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63A",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 2756
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": 70000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "CMS PC console (CNC make not stated)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 16,
+    "notes": "16-station tool magazine"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/cms_antares_2022_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "High-speed 5-axis monobloc machining centre (aluminium/composites). B ±120°, C ±270°. Rapids X/Y 80, Z 70 m/min. TR = rotating tables."
+  },
+  {
+   "id": "cms-antares-26-15-tr",
+   "maker": "CMS",
+   "model": "Antares",
+   "variant": "26/15 TR",
+   "years": "2022",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 102.36,
+    "y": 59.06,
+    "z": 39.37
+   },
+   "work_area_mm": {
+    "x": 2600,
+    "y": 1500,
+    "z": 1000
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Electrospindle up to 20 kW S1",
+     "power_kw": 20,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63A",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 2756
+   },
+   "rapid_mm_min": {
+    "xy": 80000,
+    "z": 70000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "CMS PC console (CNC make not stated)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 16,
+    "notes": "16-station tool magazine"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/cms_antares_2022_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "High-speed 5-axis monobloc machining centre (aluminium/composites). B ±120°, C ±270°. Rapids X/Y 80, Z 70 m/min. TR = rotating tables."
+  },
+  {
+   "id": "cms-athena-2015",
+   "maker": "CMS",
+   "model": "Athena",
+   "variant": "2015",
+   "years": "2022",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 93.31,
+    "y": 59.06,
+    "z": 47.24
+   },
+   "work_area_mm": {
+    "x": 2370,
+    "y": 1500,
+    "z": 1200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "CX5 8.5 kW S1, HSK 63F, liquid cooled",
+     "power_kw": 8.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "CX5 8 kW HSK 32E 40,000 rpm",
+     "power_kw": 8,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 40000,
+     "collet": "HSK 32E",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": 1575
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": 40000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "CMS PC console (CNC make not stated)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "6 or 12 stations standard, 8/16 optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/cms_athena_2022_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "High-speed 5-axis machining centre. Fast axis speeds X 90, Y 60, Z 40 m/min; B ±120°, C ±360°. 6/12 stations standard (8/16 option)."
+  },
+  {
+   "id": "cms-athena-3015",
+   "maker": "CMS",
+   "model": "Athena",
+   "variant": "3015",
+   "years": "2022",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 132.68,
+    "y": 59.06,
+    "z": 47.24
+   },
+   "work_area_mm": {
+    "x": 3370,
+    "y": 1500,
+    "z": 1200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "CX5 8.5 kW S1, HSK 63F, liquid cooled",
+     "power_kw": 8.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "CX5 8 kW HSK 32E 40,000 rpm",
+     "power_kw": 8,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 40000,
+     "collet": "HSK 32E",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": 1575
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": 40000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "CMS PC console (CNC make not stated)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "6 or 12 stations standard, 8/16 optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/cms_athena_2022_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "High-speed 5-axis machining centre. Fast axis speeds X 90, Y 60, Z 40 m/min; B ±120°, C ±360°. 6/12 stations standard (8/16 option)."
+  },
+  {
+   "id": "cms-athena-4015",
+   "maker": "CMS",
+   "model": "Athena",
+   "variant": "4015",
+   "years": "2022",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 172.05,
+    "y": 59.06,
+    "z": 47.24
+   },
+   "work_area_mm": {
+    "x": 4370,
+    "y": 1500,
+    "z": 1200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "CX5 8.5 kW S1, HSK 63F, liquid cooled",
+     "power_kw": 8.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "CX5 8 kW HSK 32E 40,000 rpm",
+     "power_kw": 8,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 40000,
+     "collet": "HSK 32E",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": 1575
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": 40000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "CMS PC console (CNC make not stated)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "6 or 12 stations standard, 8/16 optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/cms_athena_2022_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "High-speed 5-axis machining centre. Fast axis speeds X 90, Y 60, Z 40 m/min; B ±120°, C ±360°. 6/12 stations standard (8/16 option)."
+  },
+  {
+   "id": "cms-athena-5015",
+   "maker": "CMS",
+   "model": "Athena",
+   "variant": "5015",
+   "years": "2022",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 211.42,
+    "y": 59.06,
+    "z": 47.24
+   },
+   "work_area_mm": {
+    "x": 5370,
+    "y": 1500,
+    "z": 1200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "CX5 8.5 kW S1, HSK 63F, liquid cooled",
+     "power_kw": 8.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "CX5 8 kW HSK 32E 40,000 rpm",
+     "power_kw": 8,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 40000,
+     "collet": "HSK 32E",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": 1575
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": 40000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "CMS PC console (CNC make not stated)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "6 or 12 stations standard, 8/16 optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/cms_athena_2022_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "High-speed 5-axis machining centre. Fast axis speeds X 90, Y 60, Z 40 m/min; B ±120°, C ±360°. 6/12 stations standard (8/16 option)."
+  },
+  {
+   "id": "cms-athena-3020",
+   "maker": "CMS",
+   "model": "Athena",
+   "variant": "3020",
+   "years": "2022",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 132.68,
+    "y": 78.74,
+    "z": 47.24
+   },
+   "work_area_mm": {
+    "x": 3370,
+    "y": 2000,
+    "z": 1200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "CX5 8.5 kW S1, HSK 63F, liquid cooled",
+     "power_kw": 8.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "CX5 8 kW HSK 32E 40,000 rpm",
+     "power_kw": 8,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 40000,
+     "collet": "HSK 32E",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": 1575
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": 40000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "CMS PC console (CNC make not stated)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "6 or 12 stations standard, 8/16 optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/cms_athena_2022_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "High-speed 5-axis machining centre. Fast axis speeds X 90, Y 60, Z 40 m/min; B ±120°, C ±360°. 6/12 stations standard (8/16 option)."
+  },
+  {
+   "id": "cms-athena-4020",
+   "maker": "CMS",
+   "model": "Athena",
+   "variant": "4020",
+   "years": "2022",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 172.05,
+    "y": 78.74,
+    "z": 47.24
+   },
+   "work_area_mm": {
+    "x": 4370,
+    "y": 2000,
+    "z": 1200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "CX5 8.5 kW S1, HSK 63F, liquid cooled",
+     "power_kw": 8.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "CX5 8 kW HSK 32E 40,000 rpm",
+     "power_kw": 8,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 40000,
+     "collet": "HSK 32E",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": 1575
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": 40000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "CMS PC console (CNC make not stated)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "6 or 12 stations standard, 8/16 optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/cms_athena_2022_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "High-speed 5-axis machining centre. Fast axis speeds X 90, Y 60, Z 40 m/min; B ±120°, C ±360°. 6/12 stations standard (8/16 option)."
+  },
+  {
+   "id": "cms-athena-5020",
+   "maker": "CMS",
+   "model": "Athena",
+   "variant": "5020",
+   "years": "2022",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 211.42,
+    "y": 78.74,
+    "z": 47.24
+   },
+   "work_area_mm": {
+    "x": 5370,
+    "y": 2000,
+    "z": 1200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "CX5 8.5 kW S1, HSK 63F, liquid cooled",
+     "power_kw": 8.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "CX5 8 kW HSK 32E 40,000 rpm",
+     "power_kw": 8,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 40000,
+     "collet": "HSK 32E",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": 1575
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": 40000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "CMS PC console (CNC make not stated)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "6 or 12 stations standard, 8/16 optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/cms_athena_2022_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "High-speed 5-axis machining centre. Fast axis speeds X 90, Y 60, Z 40 m/min; B ±120°, C ±360°. 6/12 stations standard (8/16 option)."
+  },
+  {
+   "id": "cms-athena-4025",
+   "maker": "CMS",
+   "model": "Athena",
+   "variant": "4025",
+   "years": "2022",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 172.05,
+    "y": 98.43,
+    "z": 47.24
+   },
+   "work_area_mm": {
+    "x": 4370,
+    "y": 2500,
+    "z": 1200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "CX5 8.5 kW S1, HSK 63F, liquid cooled",
+     "power_kw": 8.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "CX5 8 kW HSK 32E 40,000 rpm",
+     "power_kw": 8,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 40000,
+     "collet": "HSK 32E",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": 1575
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": 40000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "CMS PC console (CNC make not stated)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "6 or 12 stations standard, 8/16 optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/cms_athena_2022_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "High-speed 5-axis machining centre. Fast axis speeds X 90, Y 60, Z 40 m/min; B ±120°, C ±360°. 6/12 stations standard (8/16 option)."
+  },
+  {
+   "id": "cms-athena-5025",
+   "maker": "CMS",
+   "model": "Athena",
+   "variant": "5025",
+   "years": "2022",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 211.42,
+    "y": 98.43,
+    "z": 47.24
+   },
+   "work_area_mm": {
+    "x": 5370,
+    "y": 2500,
+    "z": 1200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "CX5 8.5 kW S1, HSK 63F, liquid cooled",
+     "power_kw": 8.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "water",
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "CX5 8 kW HSK 32E 40,000 rpm",
+     "power_kw": 8,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 40000,
+     "collet": "HSK 32E",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 2362,
+    "z": 1575
+   },
+   "rapid_mm_min": {
+    "xy": 60000,
+    "z": 40000
+   },
+   "accel": null,
+   "drive": null,
+   "motors": null,
+   "controllers": [
+    {
+     "name": "CMS PC console (CNC make not stated)",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 12,
+    "notes": "6 or 12 stations standard, 8/16 optional"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "table (spoilboard)"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum pods"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://wtp.hoechsmann.com/lexikon/pdf/cms_athena_2022_en.pdf"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "rapid_ipm": "converted from m/min"
+   },
+   "notes": "High-speed 5-axis machining centre. Fast axis speeds X 90, Y 60, Z 40 m/min; B ±120°, C ±360°. 6/12 stations standard (8/16 option)."
+  }
+ ]
+}

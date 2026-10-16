@@ -1,0 +1,3579 @@
+{
+ "maker": "ShopBot",
+ "website": "https://shopbottools.com",
+ "machines": [
+  {
+   "id": "shopbot-desktop",
+   "maker": "ShopBot",
+   "model": "Desktop",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 24,
+    "y": 18,
+    "z": 3.5
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 460,
+    "z": 89
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Industrial 1 HP spindle",
+     "power_kw": null,
+     "power_hp": 1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER20",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 240,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 6096,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 360,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 9144,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "spoilboard",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://shopbottools.com/products/desktop/",
+    "https://shopbottools.com/products/spindles/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Machined aluminum frame, THK rails, anti-backlash lead screws, dual Y motors, 120 VAC. XYZ movement 25 x 20 x 5 in; the work area here is the cutting volume with the vacuum or T-slot deck (23 x 17 x 8 in with the lower deck). Positional resolution 0.00025 in. Spindle speed controller is an accessory."
+  },
+  {
+   "id": "shopbot-desktop-max",
+   "maker": "ShopBot",
+   "model": "Desktop MAX",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 36,
+    "y": 24,
+    "z": 3.5
+   },
+   "work_area_mm": {
+    "x": 915,
+    "y": 610,
+    "z": 89
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "Industrial 1 HP spindle",
+     "power_kw": null,
+     "power_hp": 1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER20",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 240,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 6096,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 360,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 9144,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "ATC version: shopbot-desktop-max-atc"
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "spoilboard",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://shopbottools.com/products/desktop-max/",
+    "https://shopbottools.com/products/spindles/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Machined aluminum frame, THK rails, anti-backlash lead screws, dual Y motors, 120 VAC. XYZ movement 41 x 25 x 5 in; the work area here is the cutting volume with the vacuum or T-slot deck (35 x 23 x 8 in with the lower deck). Positional resolution 0.00025 in. Spindle speed controller is an accessory."
+  },
+  {
+   "id": "shopbot-desktop-max-atc",
+   "maker": "ShopBot",
+   "model": "Desktop MAX ATC",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 36,
+    "y": 24,
+    "z": 3.5
+   },
+   "work_area_mm": {
+    "x": 915,
+    "y": 610,
+    "z": 89
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "1 HP ATC spindle, pneumatic drawbar (ISO20)",
+     "power_kw": null,
+     "power_hp": 1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO20 / ER20",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 240,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 6096,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 360,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 9144,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 7,
+    "notes": "7-position tool bar; bar removable for manual tool change"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool length measured by the ATC (stored offsets)"
+   },
+   "z_zero": [],
+   "table": {
+    "hold_down": [
+     "T-track",
+     "spoilboard",
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://shopbottools.com/products/desktop-max-atc/",
+    "https://shopbottools.com/products/spindles/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Machined aluminum frame, THK rails, anti-backlash lead screws, dual Y motors, 120 VAC. XYZ movement 41 x 25 x 5 in; the work area here is the cutting volume with the vacuum or T-slot deck (35 x 23 x 8 in with the lower deck). Positional resolution 0.00025 in. Spindle speed controller included from 6/1/2025; needs 4 scfm at 90 psi air."
+  },
+  {
+   "id": "shopbot-prs5-alpha-48-48",
+   "maker": "ShopBot",
+   "model": "PRS5 Alpha",
+   "variant": "48-48",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 56,
+    "y": 49,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 1420,
+    "y": 1245,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 2.2 HP (MT1073) with Yaskawa VFD",
+     "power_kw": null,
+     "power_hp": 2.2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 4 HP (MT1073) with Yaskawa VFD",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "Colombo 5 HP (RS 90.2) with Yaskawa VFD",
+     "power_kw": null,
+     "power_hp": 5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "router",
+     "name": "DeWalt 618 (2.25 HP, variable speed)",
+     "power_kw": null,
+     "power_hp": 2.25,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 720,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 18288,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 45720,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "ATC version: shopbot-prs5-alpha-48-48-atc"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://shopbottools.com/products/shopbot-prs5-alpha/",
+    "https://shopbottools.com/products/spindles/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Cut/movement area as published (X = table length). Oriental Motor alphaStep closed-loop steppers, tapered-hob gearheads, rack and pinion on all axes, 0.0004 in step resolution. Gantry tools available with 8, 14 or 26 in Z travel; custom tables 48-192 in long, gantry 32-108 in wide (large-format/custom builds). Ships with 1/4 and 1/2 in ER25 collets."
+  },
+  {
+   "id": "shopbot-prs5-alpha-48-48-atc",
+   "maker": "ShopBot",
+   "model": "PRS5 Alpha ATC",
+   "variant": "48-48",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 56,
+    "y": 49,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 1420,
+    "y": 1245,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "5 HP ATC spindle, pneumatic drawbar (ISO30)",
+     "power_kw": null,
+     "power_hp": 5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 / ER32",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 720,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 18288,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 45720,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 9,
+    "notes": "9-position tool bar, ISO30 holders with ER32 collets (shanks up to 3/4 in, max cutter dia 2 in)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://shopbottools.com/products/shopbot-prs5-alpha-atc/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Alpha with automatic tool changer; needs 7 scfm at 90 psi air. alphaStep closed-loop motors, rack and pinion on all axes."
+  },
+  {
+   "id": "shopbot-prs5-alpha-96-48",
+   "maker": "ShopBot",
+   "model": "PRS5 Alpha",
+   "variant": "96-48",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 103,
+    "y": 49,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 2616,
+    "y": 1245,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 2.2 HP (MT1073) with Yaskawa VFD",
+     "power_kw": null,
+     "power_hp": 2.2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 4 HP (MT1073) with Yaskawa VFD",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "Colombo 5 HP (RS 90.2) with Yaskawa VFD",
+     "power_kw": null,
+     "power_hp": 5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "router",
+     "name": "DeWalt 618 (2.25 HP, variable speed)",
+     "power_kw": null,
+     "power_hp": 2.25,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 720,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 18288,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 45720,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "ATC version: shopbot-prs5-alpha-96-48-atc"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://shopbottools.com/products/shopbot-prs5-alpha/",
+    "https://shopbottools.com/products/spindles/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Cut/movement area as published (X = table length). Oriental Motor alphaStep closed-loop steppers, tapered-hob gearheads, rack and pinion on all axes, 0.0004 in step resolution. Gantry tools available with 8, 14 or 26 in Z travel; custom tables 48-192 in long, gantry 32-108 in wide (large-format/custom builds). Ships with 1/4 and 1/2 in ER25 collets."
+  },
+  {
+   "id": "shopbot-prs5-alpha-96-48-atc",
+   "maker": "ShopBot",
+   "model": "PRS5 Alpha ATC",
+   "variant": "96-48",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 103,
+    "y": 49,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 2616,
+    "y": 1245,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "5 HP ATC spindle, pneumatic drawbar (ISO30)",
+     "power_kw": null,
+     "power_hp": 5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 / ER32",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 720,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 18288,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 45720,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 9,
+    "notes": "9-position tool bar, ISO30 holders with ER32 collets (shanks up to 3/4 in, max cutter dia 2 in)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://shopbottools.com/products/shopbot-prs5-alpha-atc/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Alpha with automatic tool changer; needs 7 scfm at 90 psi air. alphaStep closed-loop motors, rack and pinion on all axes."
+  },
+  {
+   "id": "shopbot-prs5-alpha-96-60",
+   "maker": "ShopBot",
+   "model": "PRS5 Alpha",
+   "variant": "96-60",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 103,
+    "y": 61,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 2616,
+    "y": 1550,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 2.2 HP (MT1073) with Yaskawa VFD",
+     "power_kw": null,
+     "power_hp": 2.2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 4 HP (MT1073) with Yaskawa VFD",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "Colombo 5 HP (RS 90.2) with Yaskawa VFD",
+     "power_kw": null,
+     "power_hp": 5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "router",
+     "name": "DeWalt 618 (2.25 HP, variable speed)",
+     "power_kw": null,
+     "power_hp": 2.25,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 720,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 18288,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 45720,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "ATC version: shopbot-prs5-alpha-96-60-atc"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://shopbottools.com/products/shopbot-prs5-alpha/",
+    "https://shopbottools.com/products/spindles/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Cut/movement area as published (X = table length). Oriental Motor alphaStep closed-loop steppers, tapered-hob gearheads, rack and pinion on all axes, 0.0004 in step resolution. Gantry tools available with 8, 14 or 26 in Z travel; custom tables 48-192 in long, gantry 32-108 in wide (large-format/custom builds). Ships with 1/4 and 1/2 in ER25 collets."
+  },
+  {
+   "id": "shopbot-prs5-alpha-96-60-atc",
+   "maker": "ShopBot",
+   "model": "PRS5 Alpha ATC",
+   "variant": "96-60",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 103,
+    "y": 61,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 2616,
+    "y": 1550,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "5 HP ATC spindle, pneumatic drawbar (ISO30)",
+     "power_kw": null,
+     "power_hp": 5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 / ER32",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 720,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 18288,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 45720,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 9,
+    "notes": "9-position tool bar, ISO30 holders with ER32 collets (shanks up to 3/4 in, max cutter dia 2 in)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://shopbottools.com/products/shopbot-prs5-alpha-atc/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Alpha with automatic tool changer; needs 7 scfm at 90 psi air. alphaStep closed-loop motors, rack and pinion on all axes."
+  },
+  {
+   "id": "shopbot-prs5-alpha-120-60",
+   "maker": "ShopBot",
+   "model": "PRS5 Alpha",
+   "variant": "120-60",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 127,
+    "y": 61,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 3225,
+    "y": 1550,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 2.2 HP (MT1073) with Yaskawa VFD",
+     "power_kw": null,
+     "power_hp": 2.2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 4 HP (MT1073) with Yaskawa VFD",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "Colombo 5 HP (RS 90.2) with Yaskawa VFD",
+     "power_kw": null,
+     "power_hp": 5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "router",
+     "name": "DeWalt 618 (2.25 HP, variable speed)",
+     "power_kw": null,
+     "power_hp": 2.25,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 720,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 18288,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 45720,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "ATC version: shopbot-prs5-alpha-120-60-atc"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://shopbottools.com/products/shopbot-prs5-alpha/",
+    "https://shopbottools.com/products/spindles/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Cut/movement area as published (X = table length). Oriental Motor alphaStep closed-loop steppers, tapered-hob gearheads, rack and pinion on all axes, 0.0004 in step resolution. Gantry tools available with 8, 14 or 26 in Z travel; custom tables 48-192 in long, gantry 32-108 in wide (large-format/custom builds). Ships with 1/4 and 1/2 in ER25 collets."
+  },
+  {
+   "id": "shopbot-prs5-alpha-120-60-atc",
+   "maker": "ShopBot",
+   "model": "PRS5 Alpha ATC",
+   "variant": "120-60",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 127,
+    "y": 61,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 3225,
+    "y": 1550,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "5 HP ATC spindle, pneumatic drawbar (ISO30)",
+     "power_kw": null,
+     "power_hp": 5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 / ER32",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 720,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 18288,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 45720,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 9,
+    "notes": "9-position tool bar, ISO30 holders with ER32 collets (shanks up to 3/4 in, max cutter dia 2 in)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://shopbottools.com/products/shopbot-prs5-alpha-atc/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Alpha with automatic tool changer; needs 7 scfm at 90 psi air. alphaStep closed-loop motors, rack and pinion on all axes."
+  },
+  {
+   "id": "shopbot-prs5-alpha-144-60",
+   "maker": "ShopBot",
+   "model": "PRS5 Alpha",
+   "variant": "144-60",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 151,
+    "y": 61,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 3835,
+    "y": 1550,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 2.2 HP (MT1073) with Yaskawa VFD",
+     "power_kw": null,
+     "power_hp": 2.2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 4 HP (MT1073) with Yaskawa VFD",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "Colombo 5 HP (RS 90.2) with Yaskawa VFD",
+     "power_kw": null,
+     "power_hp": 5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "router",
+     "name": "DeWalt 618 (2.25 HP, variable speed)",
+     "power_kw": null,
+     "power_hp": 2.25,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 720,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 18288,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 45720,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "ATC version: shopbot-prs5-alpha-144-60-atc"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://shopbottools.com/products/shopbot-prs5-alpha/",
+    "https://shopbottools.com/products/spindles/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Cut/movement area as published (X = table length). Oriental Motor alphaStep closed-loop steppers, tapered-hob gearheads, rack and pinion on all axes, 0.0004 in step resolution. Gantry tools available with 8, 14 or 26 in Z travel; custom tables 48-192 in long, gantry 32-108 in wide (large-format/custom builds). Ships with 1/4 and 1/2 in ER25 collets."
+  },
+  {
+   "id": "shopbot-prs5-alpha-144-60-atc",
+   "maker": "ShopBot",
+   "model": "PRS5 Alpha ATC",
+   "variant": "144-60",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 151,
+    "y": 61,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 3835,
+    "y": 1550,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "5 HP ATC spindle, pneumatic drawbar (ISO30)",
+     "power_kw": null,
+     "power_hp": 5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO30 / ER32",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 720,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 18288,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 45720,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 9,
+    "notes": "9-position tool bar, ISO30 holders with ER32 collets (shanks up to 3/4 in, max cutter dia 2 in)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://shopbottools.com/products/shopbot-prs5-alpha-atc/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Alpha with automatic tool changer; needs 7 scfm at 90 psi air. alphaStep closed-loop motors, rack and pinion on all axes."
+  },
+  {
+   "id": "shopbot-carolina-48-48",
+   "maker": "ShopBot",
+   "model": "Carolina (PRS5)",
+   "variant": "48-48",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 56,
+    "y": 49,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 1420,
+    "y": 1245,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "1 HP 110 V spindle",
+     "power_kw": null,
+     "power_hp": 1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER20",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 HP spindle",
+     "power_kw": null,
+     "power_hp": 2.2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "4 HP spindle",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "5 HP spindle",
+     "power_kw": null,
+     "power_hp": 5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 480,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 12192,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 720,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 18288,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "ATC version: shopbot-carolina-48-48-atc"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://shopbottools.com/products/shopbot-carolina-prs5/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Replaces the PRS5 Standard line on the same PRS5 table. 8 in Z travel on all Carolina gantries, 0.0006 in step resolution. Runs on 110 V with the 1 HP spindle."
+  },
+  {
+   "id": "shopbot-carolina-48-48-atc",
+   "maker": "ShopBot",
+   "model": "Carolina ATC (PRS5)",
+   "variant": "48-48",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 56,
+    "y": 49,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 1420,
+    "y": 1245,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "1 HP ATC spindle (ISO20)",
+     "power_kw": null,
+     "power_hp": 1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO20 / ER20",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "3 HP ATC spindle (ISO20)",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO20 / ER20",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 480,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 12192,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 720,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 18288,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 7,
+    "notes": "7-position tool bar (expandable on larger tables), ISO20 holders, ER20 up to 1/2 in shank"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://shopbottools.com/products/shopbot-carolina-atc-prs5/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Carolina with automatic tool changer; needs 4 scfm at 90 psi air."
+  },
+  {
+   "id": "shopbot-carolina-96-48",
+   "maker": "ShopBot",
+   "model": "Carolina (PRS5)",
+   "variant": "96-48",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 103,
+    "y": 49,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 2616,
+    "y": 1245,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "1 HP 110 V spindle",
+     "power_kw": null,
+     "power_hp": 1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER20",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 HP spindle",
+     "power_kw": null,
+     "power_hp": 2.2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "4 HP spindle",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "5 HP spindle",
+     "power_kw": null,
+     "power_hp": 5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 480,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 12192,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 720,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 18288,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "ATC version: shopbot-carolina-96-48-atc"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://shopbottools.com/products/shopbot-carolina-prs5/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Replaces the PRS5 Standard line on the same PRS5 table. 8 in Z travel on all Carolina gantries, 0.0006 in step resolution. Runs on 110 V with the 1 HP spindle."
+  },
+  {
+   "id": "shopbot-carolina-96-48-atc",
+   "maker": "ShopBot",
+   "model": "Carolina ATC (PRS5)",
+   "variant": "96-48",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 103,
+    "y": 49,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 2616,
+    "y": 1245,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "1 HP ATC spindle (ISO20)",
+     "power_kw": null,
+     "power_hp": 1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO20 / ER20",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "3 HP ATC spindle (ISO20)",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO20 / ER20",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 480,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 12192,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 720,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 18288,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 7,
+    "notes": "7-position tool bar (expandable on larger tables), ISO20 holders, ER20 up to 1/2 in shank"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://shopbottools.com/products/shopbot-carolina-atc-prs5/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Carolina with automatic tool changer; needs 4 scfm at 90 psi air."
+  },
+  {
+   "id": "shopbot-carolina-96-60",
+   "maker": "ShopBot",
+   "model": "Carolina (PRS5)",
+   "variant": "96-60",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 103,
+    "y": 61,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 2616,
+    "y": 1550,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "1 HP 110 V spindle",
+     "power_kw": null,
+     "power_hp": 1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER20",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "2.2 HP spindle",
+     "power_kw": null,
+     "power_hp": 2.2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "4 HP spindle",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    },
+    {
+     "type": "spindle",
+     "name": "5 HP spindle",
+     "power_kw": null,
+     "power_hp": 5,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 480,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 12192,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 720,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 18288,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "ATC version: shopbot-carolina-96-60-atc"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://shopbottools.com/products/shopbot-carolina-prs5/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Replaces the PRS5 Standard line on the same PRS5 table. 8 in Z travel on all Carolina gantries, 0.0006 in step resolution. Runs on 110 V with the 1 HP spindle."
+  },
+  {
+   "id": "shopbot-carolina-96-60-atc",
+   "maker": "ShopBot",
+   "model": "Carolina ATC (PRS5)",
+   "variant": "96-60",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 103,
+    "y": 61,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 2616,
+    "y": 1550,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "1 HP ATC spindle (ISO20)",
+     "power_kw": null,
+     "power_hp": 1,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO20 / ER20",
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "3 HP ATC spindle (ISO20)",
+     "power_kw": null,
+     "power_hp": 3,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ISO20 / ER20",
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 480,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 12192,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 720,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 18288,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": null,
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-linear",
+    "slots": 7,
+    "notes": "7-position tool bar (expandable on larger tables), ISO20 holders, ER20 up to 1/2 in shank"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://shopbottools.com/products/shopbot-carolina-atc-prs5/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Carolina with automatic tool changer; needs 4 scfm at 90 psi air."
+  },
+  {
+   "id": "shopbot-prsstandard-48-48-8",
+   "maker": "ShopBot",
+   "model": "PRSstandard",
+   "variant": "48-48-8",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 48,
+    "y": 48,
+    "z": 6
+   },
+   "work_area_mm": {
+    "x": 1220,
+    "y": 1220,
+    "z": 150
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Porter-Cable 7518 router",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 4 HP (MT1073) with Yaskawa VFD",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 300,
+    "z": 180
+   },
+   "max_feed_mm_min": {
+    "xy": 7620,
+    "z": 4572
+   },
+   "rapid_ipm": {
+    "xy": 500,
+    "z": 240
+   },
+   "rapid_mm_min": {
+    "xy": 12700,
+    "z": 6096
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20180113074119/http://www.shopbottools.com/mProducts/prsstandard.htm",
+    "https://web.archive.org/web/2018/http://www.shopbottools.com/mProducts/PRS_specs_compare.htm"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Pre-PRS5 PRSstandard (2018 site). Work area = nominal cutting area (total movement 50 x 50 x 8 in). Open-loop gearhead steppers (3.6:1) with RBK drivers, 0.0006 in step resolution, +/-0.002 in repeatability. Feeds: XY move max 300 in/min, Z 180; positioning XY 500, Z 240 (cutting quoted 'up to 600 in/min' elsewhere)."
+  },
+  {
+   "id": "shopbot-prsstandard-96-48-8",
+   "maker": "ShopBot",
+   "model": "PRSstandard",
+   "variant": "96-48-8",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 96,
+    "y": 48,
+    "z": 6
+   },
+   "work_area_mm": {
+    "x": 2440,
+    "y": 1220,
+    "z": 150
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Porter-Cable 7518 router",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 4 HP (MT1073) with Yaskawa VFD",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 300,
+    "z": 180
+   },
+   "max_feed_mm_min": {
+    "xy": 7620,
+    "z": 4572
+   },
+   "rapid_ipm": {
+    "xy": 500,
+    "z": 240
+   },
+   "rapid_mm_min": {
+    "xy": 12700,
+    "z": 6096
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20180113074119/http://www.shopbottools.com/mProducts/prsstandard.htm",
+    "https://web.archive.org/web/2018/http://www.shopbottools.com/mProducts/PRS_specs_compare.htm"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Pre-PRS5 PRSstandard (2018 site). Work area = nominal cutting area (total movement 102 x 50 x 8 in). Open-loop gearhead steppers (3.6:1) with RBK drivers, 0.0006 in step resolution, +/-0.002 in repeatability. Feeds: XY move max 300 in/min, Z 180; positioning XY 500, Z 240 (cutting quoted 'up to 600 in/min' elsewhere)."
+  },
+  {
+   "id": "shopbot-prsstandard-96-60-8",
+   "maker": "ShopBot",
+   "model": "PRSstandard",
+   "variant": "96-60-8",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 96,
+    "y": 60,
+    "z": 6
+   },
+   "work_area_mm": {
+    "x": 2440,
+    "y": 1520,
+    "z": 150
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Porter-Cable 7518 router",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "HSD 4 HP (MT1073) with Yaskawa VFD",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 300,
+    "z": 180
+   },
+   "max_feed_mm_min": {
+    "xy": 7620,
+    "z": 4572
+   },
+   "rapid_ipm": {
+    "xy": 500,
+    "z": 240
+   },
+   "rapid_mm_min": {
+    "xy": 12700,
+    "z": 6096
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20180113074119/http://www.shopbottools.com/mProducts/prsstandard.htm",
+    "https://web.archive.org/web/2018/http://www.shopbottools.com/mProducts/PRS_specs_compare.htm"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Pre-PRS5 PRSstandard (2018 site). Work area = nominal cutting area (total movement 102 x 62 x 8 in). Open-loop gearhead steppers (3.6:1) with RBK drivers, 0.0006 in step resolution, +/-0.002 in repeatability. Feeds: XY move max 300 in/min, Z 180; positioning XY 500, Z 240 (cutting quoted 'up to 600 in/min' elsewhere)."
+  },
+  {
+   "id": "shopbot-prsalpha-48-48-8",
+   "maker": "ShopBot",
+   "model": "PRSalpha",
+   "variant": "48-48-8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48,
+    "y": 48,
+    "z": 6
+   },
+   "work_area_mm": {
+    "x": 1220,
+    "y": 1220,
+    "z": 150
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 4 HP (MT1073) with Yaskawa VFD",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "Porter-Cable 7518 router",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 720,
+    "z": 360
+   },
+   "max_feed_mm_min": {
+    "xy": 18288,
+    "z": 9144
+   },
+   "rapid_ipm": {
+    "xy": 1800,
+    "z": 900
+   },
+   "rapid_mm_min": {
+    "xy": 45720,
+    "z": 22860
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "ATC accessory was offered for PRSalpha"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20180113104107/http://www.shopbottools.com/mProducts/prsalpha.htm",
+    "https://web.archive.org/web/2018/http://www.shopbottools.com/mProducts/PRS_specs_compare.htm"
+   ],
+   "estimated": {
+    "spindles[0].default": "no base spindle named on the 2018 page; 4 HP HSD is the spindle used in the PRS comparison table",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Pre-PRS5 PRSalpha (2018 site). Work area = nominal cutting area (total movement 50 x 50 x 8 in). Vexta alphaStep closed-loop motors (7.2:1 gearheads), 0.0004 in step resolution; UL-certified control box. Custom sizes up to 10 x 30 ft with up to 24 in plunge."
+  },
+  {
+   "id": "shopbot-prsalpha-96-48-8",
+   "maker": "ShopBot",
+   "model": "PRSalpha",
+   "variant": "96-48-8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 96,
+    "y": 48,
+    "z": 6
+   },
+   "work_area_mm": {
+    "x": 2440,
+    "y": 1220,
+    "z": 150
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 4 HP (MT1073) with Yaskawa VFD",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "Porter-Cable 7518 router",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 720,
+    "z": 360
+   },
+   "max_feed_mm_min": {
+    "xy": 18288,
+    "z": 9144
+   },
+   "rapid_ipm": {
+    "xy": 1800,
+    "z": 900
+   },
+   "rapid_mm_min": {
+    "xy": 45720,
+    "z": 22860
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "ATC accessory was offered for PRSalpha"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20180113104107/http://www.shopbottools.com/mProducts/prsalpha.htm",
+    "https://web.archive.org/web/2018/http://www.shopbottools.com/mProducts/PRS_specs_compare.htm"
+   ],
+   "estimated": {
+    "spindles[0].default": "no base spindle named on the 2018 page; 4 HP HSD is the spindle used in the PRS comparison table",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Pre-PRS5 PRSalpha (2018 site). Work area = nominal cutting area (total movement 102 x 50 x 8 in). Vexta alphaStep closed-loop motors (7.2:1 gearheads), 0.0004 in step resolution; UL-certified control box. Custom sizes up to 10 x 30 ft with up to 24 in plunge."
+  },
+  {
+   "id": "shopbot-prsalpha-96-60-8",
+   "maker": "ShopBot",
+   "model": "PRSalpha",
+   "variant": "96-60-8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 96,
+    "y": 60,
+    "z": 6
+   },
+   "work_area_mm": {
+    "x": 2440,
+    "y": 1520,
+    "z": 150
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 4 HP (MT1073) with Yaskawa VFD",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "Porter-Cable 7518 router",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 720,
+    "z": 360
+   },
+   "max_feed_mm_min": {
+    "xy": 18288,
+    "z": 9144
+   },
+   "rapid_ipm": {
+    "xy": 1800,
+    "z": 900
+   },
+   "rapid_mm_min": {
+    "xy": 45720,
+    "z": 22860
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "ATC accessory was offered for PRSalpha"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20180113104107/http://www.shopbottools.com/mProducts/prsalpha.htm",
+    "https://web.archive.org/web/2018/http://www.shopbottools.com/mProducts/PRS_specs_compare.htm"
+   ],
+   "estimated": {
+    "spindles[0].default": "no base spindle named on the 2018 page; 4 HP HSD is the spindle used in the PRS comparison table",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Pre-PRS5 PRSalpha (2018 site). Work area = nominal cutting area (total movement 102 x 62 x 8 in). Vexta alphaStep closed-loop motors (7.2:1 gearheads), 0.0004 in step resolution; UL-certified control box. Custom sizes up to 10 x 30 ft with up to 24 in plunge."
+  },
+  {
+   "id": "shopbot-prsalpha-120-60-8",
+   "maker": "ShopBot",
+   "model": "PRSalpha",
+   "variant": "120-60-8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 60,
+    "z": 6
+   },
+   "work_area_mm": {
+    "x": 3050,
+    "y": 1520,
+    "z": 150
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 4 HP (MT1073) with Yaskawa VFD",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "Porter-Cable 7518 router",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 720,
+    "z": 360
+   },
+   "max_feed_mm_min": {
+    "xy": 18288,
+    "z": 9144
+   },
+   "rapid_ipm": {
+    "xy": 1800,
+    "z": 900
+   },
+   "rapid_mm_min": {
+    "xy": 45720,
+    "z": 22860
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "ATC accessory was offered for PRSalpha"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20180113104107/http://www.shopbottools.com/mProducts/prsalpha.htm",
+    "https://web.archive.org/web/2018/http://www.shopbottools.com/mProducts/PRS_specs_compare.htm"
+   ],
+   "estimated": {
+    "spindles[0].default": "no base spindle named on the 2018 page; 4 HP HSD is the spindle used in the PRS comparison table",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Pre-PRS5 PRSalpha (2018 site). Work area = nominal cutting area (total movement 122 x 62 x 8 in). Vexta alphaStep closed-loop motors (7.2:1 gearheads), 0.0004 in step resolution; UL-certified control box. Custom sizes up to 10 x 30 ft with up to 24 in plunge."
+  },
+  {
+   "id": "shopbot-prsalpha-144-60-8",
+   "maker": "ShopBot",
+   "model": "PRSalpha",
+   "variant": "144-60-8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 144,
+    "y": 60,
+    "z": 6
+   },
+   "work_area_mm": {
+    "x": 3660,
+    "y": 1520,
+    "z": 150
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 4 HP (MT1073) with Yaskawa VFD",
+     "power_kw": null,
+     "power_hp": 4,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": "ER25",
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    },
+    {
+     "type": "router",
+     "name": "Porter-Cable 7518 router",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": null,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 720,
+    "z": 360
+   },
+   "max_feed_mm_min": {
+    "xy": 18288,
+    "z": 9144
+   },
+   "rapid_ipm": {
+    "xy": 1800,
+    "z": 900
+   },
+   "rapid_mm_min": {
+    "xy": 45720,
+    "z": 22860
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "ATC accessory was offered for PRSalpha"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20180113104107/http://www.shopbottools.com/mProducts/prsalpha.htm",
+    "https://web.archive.org/web/2018/http://www.shopbottools.com/mProducts/PRS_specs_compare.htm"
+   ],
+   "estimated": {
+    "spindles[0].default": "no base spindle named on the 2018 page; 4 HP HSD is the spindle used in the PRS comparison table",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Pre-PRS5 PRSalpha (2018 site). Work area = nominal cutting area (total movement 146 x 62 x 8 in). Vexta alphaStep closed-loop motors (7.2:1 gearheads), 0.0004 in step resolution; UL-certified control box. Custom sizes up to 10 x 30 ft with up to 24 in plunge."
+  },
+  {
+   "id": "shopbot-buddy-standard-48-8",
+   "maker": "ShopBot",
+   "model": "Buddy (PRS Standard)",
+   "variant": "48-8",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 49,
+    "y": 49,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 1245,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 360,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 9144,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 480,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12192,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20250320185624/https://shopbottools.com/products/shopbot-buddy/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Stationary gantry over a moving table (PowerStick). 49 x 49 in is with the 48 in PowerStick; the standard 24 in PowerStick gives 26 in front-to-back. 14 in Z option uses extended-height tablesides. Ships with 1/4 and 1/2 in ER25 collets (spindle not named)."
+  },
+  {
+   "id": "shopbot-buddy-standard-48-14",
+   "maker": "ShopBot",
+   "model": "Buddy (PRS Standard)",
+   "variant": "48-14",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 49,
+    "y": 49,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 1245,
+    "z": 360
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 360,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 9144,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 480,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 12192,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20250320185624/https://shopbottools.com/products/shopbot-buddy/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Stationary gantry over a moving table (PowerStick). 49 x 49 in is with the 48 in PowerStick; the standard 24 in PowerStick gives 26 in front-to-back. 14 in Z option uses extended-height tablesides. Ships with 1/4 and 1/2 in ER25 collets (spindle not named)."
+  },
+  {
+   "id": "shopbot-buddy-alpha-48-8",
+   "maker": "ShopBot",
+   "model": "Buddy (PRS Alpha)",
+   "variant": "48-8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 49,
+    "y": 49,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 1245,
+    "z": 200
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 720,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 18288,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 45720,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20250320185624/https://shopbottools.com/products/shopbot-buddy/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Stationary gantry over a moving table (PowerStick). 49 x 49 in is with the 48 in PowerStick; the standard 24 in PowerStick gives 26 in front-to-back. 14 in Z option uses extended-height tablesides. Ships with 1/4 and 1/2 in ER25 collets (spindle not named)."
+  },
+  {
+   "id": "shopbot-buddy-alpha-48-14",
+   "maker": "ShopBot",
+   "model": "Buddy (PRS Alpha)",
+   "variant": "48-14",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 49,
+    "y": 49,
+    "z": 14
+   },
+   "work_area_mm": {
+    "x": 1245,
+    "y": 1245,
+    "z": 360
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 720,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 18288,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 45720,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/20250320185624/https://shopbottools.com/products/shopbot-buddy/"
+   ],
+   "estimated": {
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   },
+   "notes": "Stationary gantry over a moving table (PowerStick). 49 x 49 in is with the 48 in PowerStick; the standard 24 in PowerStick gives 26 in front-to-back. 14 in Z option uses extended-height tablesides. Ships with 1/4 and 1/2 in ER25 collets (spindle not named)."
+  },
+  {
+   "id": "shopbot-5-axis-34",
+   "maker": "ShopBot",
+   "model": "5-Axis PRSalpha",
+   "variant": "34 in X",
+   "years": "2012-2018 (archived)",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 34,
+    "y": 34,
+    "z": 24
+   },
+   "work_area_mm": {
+    "x": 864,
+    "y": 864,
+    "z": 610
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 2.2 HP on ShopBot 5-axis head",
+     "power_kw": null,
+     "power_hp": 2.2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 45720,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2018/http://www.shopbottools.com/mProducts/5axis.htm",
+    "https://web.archive.org/web/2016/http://www.shopbottools.com/mProducts/Brochures/ShopBot_specSheet_5Axis.pdf"
+   ],
+   "notes": "Moving-table X (PowerStick), extruded-beam Y. Practical work envelope 34 x 34 x 24 in (Z from lowest horizontal to highest vertical position with a 1.5 in cutter); X extendable to 82 in with a longer PowerStick. alphaStep closed-loop motors, two alphaStep DG hollow rotary actuators for the wrist, 0.0004 in step resolution, +/-0.002 in accuracy. Soft materials (foam, soft wood); not for hardwood/aluminium.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "shopbot-5-axis-82",
+   "maker": "ShopBot",
+   "model": "5-Axis PRSalpha",
+   "variant": "82 in X (long PowerStick)",
+   "years": "2012-2018 (archived)",
+   "class": "industrial",
+   "work_area_in": {
+    "x": 82,
+    "y": 34,
+    "z": 24
+   },
+   "work_area_mm": {
+    "x": 2083,
+    "y": 864,
+    "z": 610
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "HSD 2.2 HP on ShopBot 5-axis head",
+     "power_kw": null,
+     "power_hp": 2.2,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 45720,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": null
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2018/http://www.shopbottools.com/mProducts/5axis.htm",
+    "https://web.archive.org/web/2016/http://www.shopbottools.com/mProducts/Brochures/ShopBot_specSheet_5Axis.pdf"
+   ],
+   "notes": "Moving-table X (PowerStick), extruded-beam Y. Practical work envelope 34 x 34 x 24 in (Z from lowest horizontal to highest vertical position with a 1.5 in cutter); X extendable to 82 in with a longer PowerStick. alphaStep closed-loop motors, two alphaStep DG hollow rotary actuators for the wrist, 0.0004 in step resolution, +/-0.002 in accuracy. Soft materials (foam, soft wood); not for hardwood/aluminium.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "shopbot-buddy-bt32-alpha",
+   "maker": "ShopBot",
+   "model": "Buddy BT32 (PRSalpha)",
+   "variant": "BT32",
+   "years": "2012 (spec sheet)",
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 32,
+    "y": 24,
+    "z": 5
+   },
+   "work_area_mm": {
+    "x": 813,
+    "y": 610,
+    "z": 127
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 45720,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2016/http://www.shopbottools.com/mProducts/Brochures/ShopBot_specSheet_Buddy.pdf"
+   ],
+   "notes": "Moving-deck (PowerStick) Buddy. Nominal cutting area published as 24 x 32 x 5 in (610 x 813 x 127 mm), recorded X = 32 in along the PowerStick; total movement 25 x 33 x 7 in. Optional extended-height tablesides with 12 in Z. PRSalpha: alphaStep closed-loop motors, cut up to 600 in/min, rapid 1800 in/min.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "shopbot-buddy-bt32-standard",
+   "maker": "ShopBot",
+   "model": "Buddy BT32 (PRSstandard)",
+   "variant": "BT32",
+   "years": "2012 (spec sheet)",
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 32,
+    "y": 24,
+    "z": 5
+   },
+   "work_area_mm": {
+    "x": 813,
+    "y": 610,
+    "z": 127
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2016/http://www.shopbottools.com/mProducts/Brochures/ShopBot_specSheet_Buddy.pdf"
+   ],
+   "notes": "Moving-deck (PowerStick) Buddy. Nominal cutting area published as 24 x 32 x 5 in (610 x 813 x 127 mm), recorded X = 32 in along the PowerStick; total movement 25 x 33 x 7 in. Optional extended-height tablesides with 12 in Z. PRSstandard: open-loop gearhead steppers with RBK drivers (speeds not on the sheet).",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   }
+  },
+  {
+   "id": "shopbot-buddy-bt48-alpha",
+   "maker": "ShopBot",
+   "model": "Buddy BT48 (PRSalpha)",
+   "variant": "BT48",
+   "years": "2012 (spec sheet)",
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 48,
+    "y": 24,
+    "z": 5
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 610,
+    "z": 127
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": {
+    "xy": 600,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 15240,
+    "z": null
+   },
+   "rapid_ipm": {
+    "xy": 1800,
+    "z": null
+   },
+   "rapid_mm_min": {
+    "xy": 45720,
+    "z": null
+   },
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2016/http://www.shopbottools.com/mProducts/Brochures/ShopBot_specSheet_Buddy.pdf"
+   ],
+   "notes": "Moving-deck (PowerStick) Buddy. Nominal cutting area published as 24 x 48 x 5 in (610 x 1219 x 127 mm), recorded X = 48 in along the PowerStick; total movement 25 x 49 x 7 in. Optional extended-height tablesides with 12 in Z. PRSalpha: alphaStep closed-loop motors, cut up to 600 in/min, rapid 1800 in/min.",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures",
+    "max_feed_mm_min": "converted from the maker's in/min figures",
+    "rapid_mm_min": "converted from the maker's in/min figures"
+   }
+  },
+  {
+   "id": "shopbot-buddy-bt48-standard",
+   "maker": "ShopBot",
+   "model": "Buddy BT48 (PRSstandard)",
+   "variant": "BT48",
+   "years": "2012 (spec sheet)",
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 48,
+    "y": 24,
+    "z": 5
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 610,
+    "z": 127
+   },
+   "gantry_clearance_in": null,
+   "spindles": [],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "rack-pinion",
+    "z": "rack-pinion"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "ShopBot Control Software (SB3, OpenSBP)",
+     "gcarve_post": "shopbot-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z-zero touch-off plate"
+   },
+   "z_zero": [
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://web.archive.org/web/2016/http://www.shopbottools.com/mProducts/Brochures/ShopBot_specSheet_Buddy.pdf"
+   ],
+   "notes": "Moving-deck (PowerStick) Buddy. Nominal cutting area published as 24 x 48 x 5 in (610 x 1219 x 127 mm), recorded X = 48 in along the PowerStick; total movement 25 x 49 x 7 in. Optional extended-height tablesides with 12 in Z. PRSstandard: open-loop gearhead steppers with RBK drivers (speeds not on the sheet).",
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   }
+  }
+ ]
+}

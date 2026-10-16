@@ -1,0 +1,1160 @@
+{
+ "maker": "BuildYourCNC",
+ "website": "https://buildyourcnc.com",
+ "machines": [
+  {
+   "id": "buildyourcnc-bluechick-v4",
+   "maker": "BuildYourCNC",
+   "model": "blueChick",
+   "variant": "v4.2",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 12,
+    "y": 36,
+    "z": 3
+   },
+   "work_area_mm": {
+    "x": 305,
+    "y": 914,
+    "z": 76.2
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "Porter Cable 892 router (customer supplied)",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    },
+    {
+     "type": "spindle",
+     "name": "1.5 kW spindle (option)",
+     "power_kw": 1.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": false
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "roller chain",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3 (USB or parallel breakout board)",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://buildyourcnc.com/products/cnc-machine-bluechick-v4-milling",
+    "https://buildyourcnc.com/products/cnc-machine-assembled-bluechick-v4-milling"
+   ],
+   "notes": "Retired (page kept for reference). Desktop MDO machine, envelope 24 x 51 x 22 in, also buildable with a 12 x 24 in area. Roller chain X/Y, ACME lead screw Z. Designed for the Porter Cable 892 router or a 1.5 kW spindle. Kit or assembled, parallel or USB (Mach3) electronics.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "buildyourcnc-blacktoe-v4",
+   "maker": "BuildYourCNC",
+   "model": "blackToe",
+   "variant": "v4.1 2x4",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 24,
+    "y": 48,
+    "z": 5.875
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 1219,
+    "z": 149
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle + inverter (220 V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "roller chain",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3 (USB or parallel breakout board)",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://buildyourcnc.com/products/cnc-machine-blacktoe-v4-2x4-milling"
+   ],
+   "notes": "Retired 2 x 4 ft chain-drive kit (parts still stocked). Roller chain and sprocket X/Y (velocities into the 800-1000 IPM range per the maker), lead screw Z with 5-7/8 in travel. Kit with 2.2 kW spindle + 220 V inverter, or assembled with table.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "buildyourcnc-blackfoot-v4",
+   "maker": "BuildYourCNC",
+   "model": "blackFoot",
+   "variant": "v4.3 4x8",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 48,
+    "y": 96,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 2438,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle + inverter (220 V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "roller chain",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3 (USB or parallel breakout board)",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://buildyourcnc.com/products/cnc-machine-blackfoot-v4-milling"
+   ],
+   "notes": "Retired 4 x 8 ft kit for full sheets (parts still stocked). ANSI #25 roller chain X/Y, 1/2-10 5-start lead screw with anti-backlash nut on Z. Basic kit for a router, or with 2.2 kW spindle + 220 V inverter; parallel interface board.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "buildyourcnc-greenbull-4x",
+   "maker": "BuildYourCNC",
+   "model": "greenBull",
+   "variant": "4X 4x8",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 48,
+    "y": 96,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 2438,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle + inverter (220 V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "roller chain",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3 (USB or parallel breakout board)",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://buildyourcnc.com/products/cnc-machine-greenbull-v4-4x-milling",
+    "https://buildyourcnc.com/products/cnc-machine-greenbull-v4-4x-hybrid"
+   ],
+   "notes": "Retired kit/assembled machine (MDO structure), page kept for reference; the current large design is the greenBull v2 (plans). NEMA 34 motors with 1/2 in shafts on all axes (6 A drivers), roller chain X/Y, lead screw Z, optional 40 W CO2 laser on the gantry. Table/torsion box not included; travel is 20 in shorter than the rail length. Kit $4,500 / assembled $6,000 with 2.2 kW spindle.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "buildyourcnc-greenbull-5x",
+   "maker": "BuildYourCNC",
+   "model": "greenBull",
+   "variant": "5X 5x10",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle + inverter (220 V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "roller chain",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3 (USB or parallel breakout board)",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://buildyourcnc.com/products/cnc-machine-greenbull-v4-5x-milling",
+    "https://buildyourcnc.com/products/cnc-machine-greenbull-v4-5x-hybrid"
+   ],
+   "notes": "Retired kit/assembled machine (MDO structure), page kept for reference; the current large design is the greenBull v2 (plans). NEMA 34 motors with 1/2 in shafts on all axes (6 A drivers), roller chain X/Y, lead screw Z, optional 40 W CO2 laser on the gantry. Table/torsion box not included; travel is 20 in shorter than the rail length. Rail-to-rail 67.36 in. Kit $5,500 / assembled $7,000 with 2.2 kW spindle.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "buildyourcnc-greenbull-6x",
+   "maker": "BuildYourCNC",
+   "model": "greenBull",
+   "variant": "6X 6x12",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 72,
+    "y": 144,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1829,
+    "y": 3658,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle + inverter (220 V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "roller chain",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3 (USB or parallel breakout board)",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://buildyourcnc.com/products/cnc-machine-greenbull-v4-6x-milling",
+    "https://buildyourcnc.com/products/cnc-machine-greenbull-v4-6x-hybrid"
+   ],
+   "notes": "Retired kit/assembled machine (MDO structure), page kept for reference; the current large design is the greenBull v2 (plans). NEMA 34 motors with 1/2 in shafts on all axes (6 A drivers), roller chain X/Y, lead screw Z, optional 40 W CO2 laser on the gantry. Table/torsion box not included; travel is 20 in shorter than the rail length. Rail-to-rail 80.08 in. Kit $6,500 / assembled $8,000 with 2.2 kW spindle.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "buildyourcnc-greenbull-v2-4x8",
+   "maker": "BuildYourCNC",
+   "model": "greenBull v2",
+   "variant": "4x8",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 48,
+    "y": 96,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 2438,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle + inverter (220 V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "roller chain/leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Mach3 USB controller",
+     "gcarve_post": "mach3-in",
+     "default": true
+    },
+    {
+     "name": "standalone CNC controller",
+     "gcarve_post": null,
+     "default": false
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://buildyourcnc.com/products/cnc-machine-greenbullv2-milling-laser",
+    "https://buildyourcnc.com/products/greenbull-v2-large-cnc-router-digital-plans"
+   ],
+   "notes": "Kit ($8,397, 60 deg variant) or digital plans. Rated for 4 x 8 ft stock; the actual envelope is 25 in wider and 40 in longer (extra length for a laser gantry). MDO structure, roller chain X, 1/2 in lead screws on Y and Z, NEMA 34 closed-loop steppers. Mach3 USB or standalone controller.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "buildyourcnc-greenbull-v2-5x10",
+   "maker": "BuildYourCNC",
+   "model": "greenBull v2",
+   "variant": "5x10",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle + inverter (220 V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "roller chain/leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "closed-loop",
+   "controllers": [
+    {
+     "name": "Mach3 (USB or parallel breakout board)",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://buildyourcnc.com/products/greenbull-v2-large-cnc-router-digital-plans",
+    "https://buildyourcnc.com/products/cnc-machine-greenbullv2-milling-laser"
+   ],
+   "notes": "Digital plans (or kit) for the 5 x 10 ft greenBull v2; same design as the 4x8: 7 in Z, roller chain X, lead screws Y/Z, 2.2 kW water-cooled spindle, NEMA 34 closed-loop steppers.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "buildyourcnc-greenbull-v2-2x4",
+   "maker": "BuildYourCNC",
+   "model": "greenBull v2 Small",
+   "variant": "2x4",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 24,
+    "y": 48,
+    "z": 7
+   },
+   "work_area_mm": {
+    "x": 610,
+    "y": 1219,
+    "z": 178
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle + inverter (220 V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "roller chain/leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3 (USB or parallel breakout board)",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://buildyourcnc.com/products/greenbull-v2-small-2x4-cnc-router-digital-plans"
+   ],
+   "notes": "Digital plans (40-50 pages + BOM). 2 x 4 ft working area, 7 in Z, roller chain X, lead screws on Y and Z, 220 V 2.2 kW water-cooled spindle.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "buildyourcnc-greenlean-v2",
+   "maker": "BuildYourCNC",
+   "model": "greenLean",
+   "variant": "v2 4x8 vertical",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 48,
+    "y": 96,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 2438,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle + inverter (220 V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "roller chain",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3 (USB or parallel breakout board)",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "screws",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://buildyourcnc.com/products/cnc-machine-greenlean-v1-milling",
+    "https://buildyourcnc.com/products/greenlean-v2-large-cnc-router-digital-plans"
+   ],
+   "notes": "Wall-mounted vertical machine with a 4 x 8 ft cutting area: needs 80 in clear height, 116 in long. Roller chain X/Y with 651 oz-in steppers, lead screw Z (425 oz-in) counterbalanced by a constant-force spring. Requires the 2.2 kW spindle. Kit $9,900 or plans $590.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "buildyourcnc-fabricator-pro-4x8",
+   "maker": "BuildYourCNC",
+   "model": "Fabricator Pro",
+   "variant": "4x8",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 48,
+    "y": 96,
+    "z": 10
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 2438,
+    "z": 254
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle + inverter (220 V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "roller chain",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "PoKeys57CNC + Mach3/Mach4",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://buildyourcnc.com/products/cnc-machine-fabricator-pro-milling-machine",
+    "https://buildyourcnc.com/products/fabricator-pro-cnc-machine-digital-plans"
+   ],
+   "notes": "All-metal (aluminum profile + steel rails) router; kit of parts $14,410 or digital plans (4x8/5x10). HIWIN-style linear guides, tensioned roller chain on the gantry, 10 in Z travel, PoKeys57CNC USB/Ethernet controller (Mach3/Mach4), 2.2 kW water-cooled spindle. Adaptable to plasma/laser; sizes are nominal sheet sizes.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "buildyourcnc-fabricator-pro-5x10",
+   "maker": "BuildYourCNC",
+   "model": "Fabricator Pro",
+   "variant": "5x10",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": 10
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": 254
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle + inverter (220 V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "roller chain",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "PoKeys57CNC + Mach3/Mach4",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://buildyourcnc.com/products/cnc-machine-fabricator-pro-milling-machine",
+    "https://buildyourcnc.com/products/fabricator-pro-cnc-machine-digital-plans"
+   ],
+   "notes": "All-metal (aluminum profile + steel rails) router; kit of parts $16,714 or digital plans (4x8/5x10). HIWIN-style linear guides, tensioned roller chain on the gantry, 10 in Z travel, PoKeys57CNC USB/Ethernet controller (Mach3/Mach4), 2.2 kW water-cooled spindle. Adaptable to plasma/laser; sizes are nominal sheet sizes.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "buildyourcnc-fabricator-pro-6x12",
+   "maker": "BuildYourCNC",
+   "model": "Fabricator Pro",
+   "variant": "6x12",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 72,
+    "y": 144,
+    "z": 10
+   },
+   "work_area_mm": {
+    "x": 1829,
+    "y": 3658,
+    "z": 254
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle + inverter (220 V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "roller chain",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "PoKeys57CNC + Mach3/Mach4",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://buildyourcnc.com/products/cnc-machine-fabricator-pro-milling-machine",
+    "https://buildyourcnc.com/products/fabricator-pro-cnc-machine-digital-plans"
+   ],
+   "notes": "All-metal (aluminum profile + steel rails) router; kit of parts $19,018 or digital plans (4x8/5x10). HIWIN-style linear guides, tensioned roller chain on the gantry, 10 in Z travel, PoKeys57CNC USB/Ethernet controller (Mach3/Mach4), 2.2 kW water-cooled spindle. Adaptable to plasma/laser; sizes are nominal sheet sizes.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "buildyourcnc-fabricator-pro-8x17",
+   "maker": "BuildYourCNC",
+   "model": "Fabricator Pro",
+   "variant": "8x17",
+   "years": null,
+   "class": "prosumer",
+   "work_area_in": {
+    "x": 96,
+    "y": 204,
+    "z": 10
+   },
+   "work_area_mm": {
+    "x": 2438,
+    "y": 5182,
+    "z": 254
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled spindle + inverter (220 V)",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "roller chain",
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "PoKeys57CNC + Mach3/Mach4",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://buildyourcnc.com/products/cnc-machine-fabricator-pro-milling-machine",
+    "https://buildyourcnc.com/products/fabricator-pro-cnc-machine-digital-plans"
+   ],
+   "notes": "All-metal (aluminum profile + steel rails) router; kit of parts $23,446 or digital plans (4x8/5x10). HIWIN-style linear guides, tensioned roller chain on the gantry, 10 in Z travel, PoKeys57CNC USB/Ethernet controller (Mach3/Mach4), 2.2 kW water-cooled spindle. Adaptable to plasma/laser; sizes are nominal sheet sizes.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  },
+  {
+   "id": "buildyourcnc-woodsmith-cnc-kit",
+   "maker": "BuildYourCNC",
+   "model": "Woodsmith CNC Kit",
+   "variant": "Shop-Made CNC Router 2.0",
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": null,
+    "y": 24,
+    "z": null
+   },
+   "work_area_mm": {
+    "x": null,
+    "y": 610,
+    "z": null
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "customer handheld router",
+     "power_kw": null,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": null,
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3 USB controller",
+     "gcarve_post": "mach3-in",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://buildyourcnc.com/products/cnc-machine-woodsmithcnc-kit"
+   ],
+   "notes": "Parts kit for Woodsmith Magazine's Shop-Made CNC Router 2.0 (plan SN14324, plans sold by Woodsmith). Routing area 24 in Y, X unlimited (set by build length); vertical and horizontal workpiece mounting. Two NEMA 24 (425 oz-in) + one NEMA 34 (651 oz-in) steppers, 1/2-10 5-start lead screws, V-groove bearings on aluminum angle. Any handheld router.",
+   "estimated": {
+    "work_area_mm": "converted from inches"
+   }
+  }
+ ]
+}

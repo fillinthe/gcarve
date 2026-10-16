@@ -1,0 +1,393 @@
+{
+ "maker": "AnoleX",
+ "website": "https://anolexcnc.com",
+ "machines": [
+  {
+   "id": "anolex-3060-evo-max",
+   "maker": "AnoleX",
+   "model": "3060-Evo Max",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.81,
+    "y": 23.62,
+    "z": 2.87
+   },
+   "work_area_mm": {
+    "x": 300,
+    "y": 600,
+    "z": 73
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "router",
+     "name": "800 W trim router (6-speed)",
+     "power_kw": 0.8,
+     "power_hp": null,
+     "rpm_min": 8000,
+     "rpm_max": 24000,
+     "collet": "ER11 1/8\"",
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "leadscrew",
+    "z": "leadscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Grbl_ESP32 (GRBL 1.3a), ESP3D Web UI over WiFi",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z probe"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://anolexcnc.com/products/anolex-cnc-router-machine-3060-evo-max-all-metal-xyz-axis-dual-steel-linear-guides-with-800w-trim-router",
+    "https://easel.com/partners/anolex/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "MGN15 dual linear rails + T8 lead screws on all axes (1204 ball-screw kit optional), NEMA17 650 mN·m steppers, 65 mm mount for optional 1.5 kW spindle."
+  },
+  {
+   "id": "anolex-rx6040",
+   "maker": "AnoleX",
+   "model": "RX6040",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 15.75,
+    "z": 5.12
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 400,
+    "z": 130
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "1.5 kW air-cooled spindle",
+     "power_kw": 1.5,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER11 1/8\" + 1/4\"",
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Grbl_ESP32 (GRBL 1.3a), ESP3D Web UI over WiFi",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "Z probe"
+   },
+   "z_zero": [
+    "top of material",
+    "touch plate"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://anolexcnc.com/products/anolex-cnc-router-machine-rx6040-with-1-5kw-air-cooled-spindle-xyz-axis-dual-steel-linear-guides-1204-ball-screws",
+    "https://easel.com/partners/anolex/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "HGH-15 dual linear rails + 1204 ball screws on X/Y/Z, NEMA23 2.8 A 1.2 N·m steppers (closed-loop upgrade), aluminium table, 42 kg. Published as 600*400*130 mm."
+  },
+  {
+   "id": "anolex-3020-evo",
+   "maker": "AnoleX",
+   "model": "3020-Evo",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.3,
+    "y": 7.72,
+    "z": 2.87
+   },
+   "work_area_mm": {
+    "x": 287,
+    "y": 196,
+    "z": 73
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "300 W spindle",
+     "power_kw": 0.3,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1h (USB)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://easel.com/partners/machines/anolex-3020-evo/",
+    "https://easel.com/partners/anolex/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "No longer sold (Easel). All-metal entry machine."
+  },
+  {
+   "id": "anolex-3030-evo-pro",
+   "maker": "AnoleX",
+   "model": "3030-Evo Pro",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.3,
+    "y": 11.81,
+    "z": 2.87
+   },
+   "work_area_mm": {
+    "x": 287,
+    "y": 300,
+    "z": 73
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "300 W spindle",
+     "power_kw": 0.3,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL 1.1h (USB)",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://easel.com/partners/machines/anolex-3030-evo-pro/",
+    "https://easel.com/partners/anolex/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "No longer sold (Easel). Dual guide rails."
+  },
+  {
+   "id": "anolex-3060-evo-pro",
+   "maker": "AnoleX",
+   "model": "3060-Evo Pro",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.3,
+    "y": 23.62,
+    "z": 2.87
+   },
+   "work_area_mm": {
+    "x": 287,
+    "y": 600,
+    "z": 73
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "300 W spindle",
+     "power_kw": 0.3,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": null,
+     "collet": null,
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "GRBL",
+     "gcarve_post": "grbl-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://easel.com/partners/machines/anolex-3060-evo-pro/",
+    "https://easel.com/partners/anolex/"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm"
+   },
+   "notes": "No longer sold (Easel). 300 x 600 mm table."
+  }
+ ]
+}

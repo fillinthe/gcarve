@@ -1,0 +1,6934 @@
+{
+ "maker": "C.R. Onsrud",
+ "website": "https://cronsrud.com",
+ "machines": [
+  {
+   "id": "cr-onsrud-a-series-97a",
+   "maker": "C.R. Onsrud",
+   "model": "A-Series",
+   "variant": "97A",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 97,
+    "y": 49,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 2464,
+    "y": 1245,
+    "z": 203
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 HP spindle, 24,000 RPM",
+     "power_kw": 4.47,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Optional automatic tool changer, 10 or 12 positions"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/a-series/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Small-footprint 3-axis moving-gantry router, single- or three-phase. Optional 10- or 12-position ATC (12 on 5x10/5x12)."
+  },
+  {
+   "id": "cr-onsrud-a-series-145a",
+   "maker": "C.R. Onsrud",
+   "model": "A-Series",
+   "variant": "145A",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 145,
+    "y": 61,
+    "z": 8
+   },
+   "work_area_mm": {
+    "x": 3683,
+    "y": 1549,
+    "z": 203
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "6 HP spindle, 24,000 RPM",
+     "power_kw": 4.47,
+     "power_hp": 6,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": "Optional automatic tool changer, 10 or 12 positions"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/a-series/"
+   ],
+   "estimated": {
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Small-footprint 3-axis moving-gantry router, single- or three-phase. Optional 10- or 12-position ATC (12 on 5x10/5x12)."
+  },
+  {
+   "id": "cr-onsrud-m-series-97m",
+   "maker": "C.R. Onsrud",
+   "model": "M-Series",
+   "variant": "97M",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 97,
+    "y": 49,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 2464,
+    "y": 1245,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP spindle, 24,000 RPM",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 positions standard (10 on the 4x8 table)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/m-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Compact 3-axis moving-gantry router; up to 3 spindles; 10-position Hide-A-Way changer option. XL tables up to 20 ft."
+  },
+  {
+   "id": "cr-onsrud-m-series-121m",
+   "maker": "C.R. Onsrud",
+   "model": "M-Series",
+   "variant": "121M",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 121,
+    "y": 61,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 3073,
+    "y": 1549,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP spindle, 24,000 RPM",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 positions standard (10 on the 4x8 table)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/m-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Compact 3-axis moving-gantry router; up to 3 spindles; 10-position Hide-A-Way changer option. XL tables up to 20 ft."
+  },
+  {
+   "id": "cr-onsrud-m-series-145m",
+   "maker": "C.R. Onsrud",
+   "model": "M-Series",
+   "variant": "145M",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 145,
+    "y": 61,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 3683,
+    "y": 1549,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP spindle, 24,000 RPM",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 positions standard (10 on the 4x8 table)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/m-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Compact 3-axis moving-gantry router; up to 3 spindles; 10-position Hide-A-Way changer option. XL tables up to 20 ft."
+  },
+  {
+   "id": "cr-onsrud-m-series-3100m",
+   "maker": "C.R. Onsrud",
+   "model": "M-Series",
+   "variant": "3100M",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122,
+    "y": 83,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 3099,
+    "y": 2108,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP spindle, 24,000 RPM",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 positions standard (10 on the 4x8 table)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/m-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Compact 3-axis moving-gantry router; up to 3 spindles; 10-position Hide-A-Way changer option. XL tables up to 20 ft."
+  },
+  {
+   "id": "cr-onsrud-m-series-4100m",
+   "maker": "C.R. Onsrud",
+   "model": "M-Series",
+   "variant": "4100M",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 162,
+    "y": 83,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 4115,
+    "y": 2108,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP spindle, 24,000 RPM",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 positions standard (10 on the 4x8 table)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/m-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Compact 3-axis moving-gantry router; up to 3 spindles; 10-position Hide-A-Way changer option. XL tables up to 20 ft."
+  },
+  {
+   "id": "cr-onsrud-m-series-5100m",
+   "maker": "C.R. Onsrud",
+   "model": "M-Series",
+   "variant": "5100M",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 201,
+    "y": 83,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 5105,
+    "y": 2108,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP spindle, 24,000 RPM",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 positions standard (10 on the 4x8 table)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/m-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Compact 3-axis moving-gantry router; up to 3 spindles; 10-position Hide-A-Way changer option. XL tables up to 20 ft."
+  },
+  {
+   "id": "cr-onsrud-m-series-6100m",
+   "maker": "C.R. Onsrud",
+   "model": "M-Series",
+   "variant": "6100M",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 240,
+    "y": 83,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 6096,
+    "y": 2108,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP spindle, 24,000 RPM",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": "12 positions standard (10 on the 4x8 table)"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/m-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Compact 3-axis moving-gantry router; up to 3 spindles; 10-position Hide-A-Way changer option. XL tables up to 20 ft."
+  },
+  {
+   "id": "cr-onsrud-t-series-145t",
+   "maker": "C.R. Onsrud",
+   "model": "T-Series",
+   "variant": "145T",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 145,
+    "y": 61,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 3683,
+    "y": 1549,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "12 HP spindle, 24,000 RPM",
+     "power_kw": 8.95,
+     "power_hp": 12,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/t-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Automation-ready 3-axis panel processor; 18 HP and second spindle optional."
+  },
+  {
+   "id": "cr-onsrud-g-series-97g",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series",
+   "variant": "97G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 97,
+    "y": 49,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 2464,
+    "y": 1245,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Heavy-duty long-table 3-axis gantry router (11 in Z version shown). 24 HP, up to 4 spindles, dual gantry, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-g-series-145g",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series",
+   "variant": "145G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 145,
+    "y": 61,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 3683,
+    "y": 1549,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Heavy-duty long-table 3-axis gantry router (11 in Z version shown). 24 HP, up to 4 spindles, dual gantry, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-g-series-193g",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series",
+   "variant": "193G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 192.5,
+    "y": 61,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 4890,
+    "y": 1549,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Heavy-duty long-table 3-axis gantry router (11 in Z version shown). 24 HP, up to 4 spindles, dual gantry, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-g-series-241g",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series",
+   "variant": "241G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 242,
+    "y": 61,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 6147,
+    "y": 1549,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Heavy-duty long-table 3-axis gantry router (11 in Z version shown). 24 HP, up to 4 spindles, dual gantry, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-g-series-289g",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series",
+   "variant": "289G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 289,
+    "y": 61,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 7341,
+    "y": 1549,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Heavy-duty long-table 3-axis gantry router (11 in Z version shown). 24 HP, up to 4 spindles, dual gantry, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-g-series-333g",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series",
+   "variant": "333G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 334,
+    "y": 61,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 8484,
+    "y": 1549,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Heavy-duty long-table 3-axis gantry router (11 in Z version shown). 24 HP, up to 4 spindles, dual gantry, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-g-series-420g",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series",
+   "variant": "420G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 428,
+    "y": 61,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 10871,
+    "y": 1549,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Heavy-duty long-table 3-axis gantry router (11 in Z version shown). 24 HP, up to 4 spindles, dual gantry, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-g-series-144gw8",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series",
+   "variant": "144GW8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 144,
+    "y": 96,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 3658,
+    "y": 2438,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Heavy-duty long-table 3-axis gantry router (11 in Z version shown). 24 HP, up to 4 spindles, dual gantry, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-g-series-240gw8",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series",
+   "variant": "240GW8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 240,
+    "y": 96,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 6096,
+    "y": 2438,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Heavy-duty long-table 3-axis gantry router (11 in Z version shown). 24 HP, up to 4 spindles, dual gantry, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-g-series-240gw10",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series",
+   "variant": "240GW10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 240,
+    "y": 120,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 6096,
+    "y": 3048,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Heavy-duty long-table 3-axis gantry router (11 in Z version shown). 24 HP, up to 4 spindles, dual gantry, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-g-series-480gw10",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series",
+   "variant": "480GW10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 480,
+    "y": 120,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 12192,
+    "y": 3048,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Heavy-duty long-table 3-axis gantry router (11 in Z version shown). 24 HP, up to 4 spindles, dual gantry, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-g-series-240gw12",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series",
+   "variant": "240GW12",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 240,
+    "y": 144,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 6096,
+    "y": 3658,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Heavy-duty long-table 3-axis gantry router (11 in Z version shown). 24 HP, up to 4 spindles, dual gantry, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-g-series-480gw12",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series",
+   "variant": "480GW12",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 480,
+    "y": 144,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 12192,
+    "y": 3658,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Heavy-duty long-table 3-axis gantry router (11 in Z version shown). 24 HP, up to 4 spindles, dual gantry, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-s-series-62s",
+   "maker": "C.R. Onsrud",
+   "model": "S-Series",
+   "variant": "62S",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 60,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 1524,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/s-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge single-table router for dense materials. 24/33 HP, 16/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-s-series-98s",
+   "maker": "C.R. Onsrud",
+   "model": "S-Series",
+   "variant": "98S",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 97,
+    "y": 49,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 2464,
+    "y": 1245,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/s-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge single-table router for dense materials. 24/33 HP, 16/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-s-series-122s",
+   "maker": "C.R. Onsrud",
+   "model": "S-Series",
+   "variant": "122S",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 60,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 1524,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/s-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge single-table router for dense materials. 24/33 HP, 16/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-s-series-146s",
+   "maker": "C.R. Onsrud",
+   "model": "S-Series",
+   "variant": "146S",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 144,
+    "y": 60,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 3658,
+    "y": 1524,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/s-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge single-table router for dense materials. 24/33 HP, 16/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-s-series-146sw6",
+   "maker": "C.R. Onsrud",
+   "model": "S-Series",
+   "variant": "146SW6",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 147,
+    "y": 72,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 3734,
+    "y": 1829,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/s-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge single-table router for dense materials. 24/33 HP, 16/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-rh-series-98rh",
+   "maker": "C.R. Onsrud",
+   "model": "RH-Series",
+   "variant": "98RH",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 96,
+    "y": 48,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 2438,
+    "y": 1219,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/rh-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 3-axis router with roller hold-down. 24 HP and second spindle optional."
+  },
+  {
+   "id": "cr-onsrud-rh-series-122rh",
+   "maker": "C.R. Onsrud",
+   "model": "RH-Series",
+   "variant": "122RH",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 122,
+    "y": 60,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 3099,
+    "y": 1524,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/rh-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 3-axis router with roller hold-down. 24 HP and second spindle optional."
+  },
+  {
+   "id": "cr-onsrud-rh-series-146rh",
+   "maker": "C.R. Onsrud",
+   "model": "RH-Series",
+   "variant": "146RH",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 146,
+    "y": 72,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 3708,
+    "y": 1829,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/rh-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 3-axis router with roller hold-down. 24 HP and second spindle optional."
+  },
+  {
+   "id": "cr-onsrud-c-series-98c",
+   "maker": "C.R. Onsrud",
+   "model": "C-Series",
+   "variant": "98C",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 48,
+    "y": 60,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 1219,
+    "y": 1524,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/c-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge twin-table machining center (X and U tables). 24 HP, 2 spindles, 16/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-c-series-122c",
+   "maker": "C.R. Onsrud",
+   "model": "C-Series",
+   "variant": "122C",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 60,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 1524,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/c-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge twin-table machining center (X and U tables). 24 HP, 2 spindles, 16/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-c-series-146c",
+   "maker": "C.R. Onsrud",
+   "model": "C-Series",
+   "variant": "146C",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 72,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 1829,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/c-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge twin-table machining center (X and U tables). 24 HP, 2 spindles, 16/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-e-series-98e-w5",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series",
+   "variant": "98E W5",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 48,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 1219,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge twin-table router for heavy cutting. Up to 8 spindles, 24-tool capacity, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-e-series-98e-w6",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series",
+   "variant": "98E W6",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 72,
+    "y": 48,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 1829,
+    "y": 1219,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge twin-table router for heavy cutting. Up to 8 spindles, 24-tool capacity, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-e-series-98e-w8",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series",
+   "variant": "98E W8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 96,
+    "y": 48,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 2438,
+    "y": 1219,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge twin-table router for heavy cutting. Up to 8 spindles, 24-tool capacity, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-e-series-98e-w10",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series",
+   "variant": "98E W10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 48,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 1219,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge twin-table router for heavy cutting. Up to 8 spindles, 24-tool capacity, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-e-series-122e-w5",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series",
+   "variant": "122E W5",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 60,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 1524,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge twin-table router for heavy cutting. Up to 8 spindles, 24-tool capacity, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-e-series-122e-w6",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series",
+   "variant": "122E W6",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 72,
+    "y": 60,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 1829,
+    "y": 1524,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge twin-table router for heavy cutting. Up to 8 spindles, 24-tool capacity, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-e-series-122e-w8",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series",
+   "variant": "122E W8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 96,
+    "y": 60,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 2438,
+    "y": 1524,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge twin-table router for heavy cutting. Up to 8 spindles, 24-tool capacity, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-e-series-122e-w10",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series",
+   "variant": "122E W10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 60,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 1524,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge twin-table router for heavy cutting. Up to 8 spindles, 24-tool capacity, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-e-series-148e-w5",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series",
+   "variant": "148E W5",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 72,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 1829,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge twin-table router for heavy cutting. Up to 8 spindles, 24-tool capacity, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-e-series-148e-w6",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series",
+   "variant": "148E W6",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 72,
+    "y": 72,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 1829,
+    "y": 1829,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge twin-table router for heavy cutting. Up to 8 spindles, 24-tool capacity, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-e-series-148e-w8",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series",
+   "variant": "148E W8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 96,
+    "y": 72,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 2438,
+    "y": 1829,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge twin-table router for heavy cutting. Up to 8 spindles, 24-tool capacity, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-e-series-148e-w10",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series",
+   "variant": "148E W10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 72,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 1829,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge twin-table router for heavy cutting. Up to 8 spindles, 24-tool capacity, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-e-series-194e-w5",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series",
+   "variant": "194E W5",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 61,
+    "y": 97,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 1549,
+    "y": 2464,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge twin-table router for heavy cutting. Up to 8 spindles, 24-tool capacity, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-e-series-194e-w6",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series",
+   "variant": "194E W6",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 72,
+    "y": 97,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 1829,
+    "y": 2464,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge twin-table router for heavy cutting. Up to 8 spindles, 24-tool capacity, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-e-series-194e-w8",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series",
+   "variant": "194E W8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 96,
+    "y": 97,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 2438,
+    "y": 2464,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge twin-table router for heavy cutting. Up to 8 spindles, 24-tool capacity, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-e-series-194e-w10",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series",
+   "variant": "194E W10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 120,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 3048,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge twin-table router for heavy cutting. Up to 8 spindles, 24-tool capacity, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-e-series-244e-w5",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series",
+   "variant": "244E W5",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge twin-table router for heavy cutting. Up to 8 spindles, 24-tool capacity, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-e-series-244e-w6",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series",
+   "variant": "244E W6",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 72,
+    "y": 120,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 1829,
+    "y": 3048,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge twin-table router for heavy cutting. Up to 8 spindles, 24-tool capacity, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-e-series-244e-w8",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series",
+   "variant": "244E W8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 96,
+    "y": 120,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 2438,
+    "y": 3048,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge twin-table router for heavy cutting. Up to 8 spindles, 24-tool capacity, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-e-series-244e-w10",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series",
+   "variant": "244E W10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 120,
+    "z": 11
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 3048,
+    "z": 279
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 3-axis fixed-bridge twin-table router for heavy cutting. Up to 8 spindles, 24-tool capacity, 18/28/40 in Z options."
+  },
+  {
+   "id": "cr-onsrud-c-series-5-axis-98c",
+   "maker": "C.R. Onsrud",
+   "model": "C-Series 5-Axis",
+   "variant": "98C",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 48,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 1219,
+    "z": 406
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/c-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 5-axis fixed-bridge twin-table machining center. 33 HP, 2 spindles, 28/40 in Z (Z-Ram) options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-c-series-5-axis-122c",
+   "maker": "C.R. Onsrud",
+   "model": "C-Series 5-Axis",
+   "variant": "122C",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 60,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 1524,
+    "z": 406
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/c-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 5-axis fixed-bridge twin-table machining center. 33 HP, 2 spindles, 28/40 in Z (Z-Ram) options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-c-series-5-axis-146c",
+   "maker": "C.R. Onsrud",
+   "model": "C-Series 5-Axis",
+   "variant": "146C",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 72,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 1829,
+    "z": 406
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/c-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. 5-axis fixed-bridge twin-table machining center. 33 HP, 2 spindles, 28/40 in Z (Z-Ram) options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-e-series-5-axis-98e-w5",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series 5-Axis",
+   "variant": "98E W5",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 48,
+    "z": 28
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 1219,
+    "z": 711
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis fixed-bridge router. 33 HP, 2 spindles, 24 tools, 40/52 in Z options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-e-series-5-axis-98e-w6",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series 5-Axis",
+   "variant": "98E W6",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 72,
+    "y": 48,
+    "z": 28
+   },
+   "work_area_mm": {
+    "x": 1829,
+    "y": 1219,
+    "z": 711
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis fixed-bridge router. 33 HP, 2 spindles, 24 tools, 40/52 in Z options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-e-series-5-axis-98e-w8",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series 5-Axis",
+   "variant": "98E W8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 96,
+    "y": 48,
+    "z": 28
+   },
+   "work_area_mm": {
+    "x": 2438,
+    "y": 1219,
+    "z": 711
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis fixed-bridge router. 33 HP, 2 spindles, 24 tools, 40/52 in Z options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-e-series-5-axis-98e-w10",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series 5-Axis",
+   "variant": "98E W10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 48,
+    "z": 28
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 1219,
+    "z": 711
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis fixed-bridge router. 33 HP, 2 spindles, 24 tools, 40/52 in Z options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-e-series-5-axis-122e-w5",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series 5-Axis",
+   "variant": "122E W5",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 60,
+    "z": 28
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 1524,
+    "z": 711
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis fixed-bridge router. 33 HP, 2 spindles, 24 tools, 40/52 in Z options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-e-series-5-axis-122e-w6",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series 5-Axis",
+   "variant": "122E W6",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 72,
+    "y": 60,
+    "z": 28
+   },
+   "work_area_mm": {
+    "x": 1829,
+    "y": 1524,
+    "z": 711
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis fixed-bridge router. 33 HP, 2 spindles, 24 tools, 40/52 in Z options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-e-series-5-axis-122e-w8",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series 5-Axis",
+   "variant": "122E W8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 96,
+    "y": 60,
+    "z": 28
+   },
+   "work_area_mm": {
+    "x": 2438,
+    "y": 1524,
+    "z": 711
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis fixed-bridge router. 33 HP, 2 spindles, 24 tools, 40/52 in Z options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-e-series-5-axis-122e-w10",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series 5-Axis",
+   "variant": "122E W10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 60,
+    "z": 28
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 1524,
+    "z": 711
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis fixed-bridge router. 33 HP, 2 spindles, 24 tools, 40/52 in Z options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-e-series-5-axis-244e-w5",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series 5-Axis",
+   "variant": "244E W5",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 120,
+    "z": 28
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 3048,
+    "z": 711
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis fixed-bridge router. 33 HP, 2 spindles, 24 tools, 40/52 in Z options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-e-series-5-axis-244e-w6",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series 5-Axis",
+   "variant": "244E W6",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 72,
+    "y": 120,
+    "z": 28
+   },
+   "work_area_mm": {
+    "x": 1829,
+    "y": 3048,
+    "z": 711
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis fixed-bridge router. 33 HP, 2 spindles, 24 tools, 40/52 in Z options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-e-series-5-axis-244e-w8",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series 5-Axis",
+   "variant": "244E W8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 96,
+    "y": 120,
+    "z": 28
+   },
+   "work_area_mm": {
+    "x": 2438,
+    "y": 3048,
+    "z": 711
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis fixed-bridge router. 33 HP, 2 spindles, 24 tools, 40/52 in Z options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-e-series-5-axis-244e-w10",
+   "maker": "C.R. Onsrud",
+   "model": "E-Series 5-Axis",
+   "variant": "244E W10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 120,
+    "z": 28
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 3048,
+    "z": 711
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/e-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis fixed-bridge router. 33 HP, 2 spindles, 24 tools, 40/52 in Z options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-g-series-5-axis-145g",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series 5-Axis",
+   "variant": "145G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 145,
+    "y": 61,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 3683,
+    "y": 1549,
+    "z": 406
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis long-table gantry router, 16 in Z version (standard Z-stroke 28 in; tables shrink with longer Z). 33 HP, dual gantry options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-g-series-5-axis-193g",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series 5-Axis",
+   "variant": "193G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 192.5,
+    "y": 61,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 4890,
+    "y": 1549,
+    "z": 406
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis long-table gantry router, 16 in Z version (standard Z-stroke 28 in; tables shrink with longer Z). 33 HP, dual gantry options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-g-series-5-axis-240g",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series 5-Axis",
+   "variant": "240G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 240,
+    "y": 61,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 6096,
+    "y": 1549,
+    "z": 406
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis long-table gantry router, 16 in Z version (standard Z-stroke 28 in; tables shrink with longer Z). 33 HP, dual gantry options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-g-series-5-axis-277g",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series 5-Axis",
+   "variant": "277G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 289,
+    "y": 61,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 7341,
+    "y": 1549,
+    "z": 406
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis long-table gantry router, 16 in Z version (standard Z-stroke 28 in; tables shrink with longer Z). 33 HP, dual gantry options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-g-series-5-axis-333g",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series 5-Axis",
+   "variant": "333G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 334,
+    "y": 61,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 8484,
+    "y": 1549,
+    "z": 406
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis long-table gantry router, 16 in Z version (standard Z-stroke 28 in; tables shrink with longer Z). 33 HP, dual gantry options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-g-series-5-axis-420g",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series 5-Axis",
+   "variant": "420G",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 428,
+    "y": 61,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 10871,
+    "y": 1549,
+    "z": 406
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis long-table gantry router, 16 in Z version (standard Z-stroke 28 in; tables shrink with longer Z). 33 HP, dual gantry options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-g-series-5-axis-144gw8",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series 5-Axis",
+   "variant": "144GW8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 144,
+    "y": 96,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 3658,
+    "y": 2438,
+    "z": 406
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis long-table gantry router, 16 in Z version (standard Z-stroke 28 in; tables shrink with longer Z). 33 HP, dual gantry options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-g-series-5-axis-240gw8",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series 5-Axis",
+   "variant": "240GW8",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 240,
+    "y": 96,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 6096,
+    "y": 2438,
+    "z": 406
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis long-table gantry router, 16 in Z version (standard Z-stroke 28 in; tables shrink with longer Z). 33 HP, dual gantry options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-g-series-5-axis-240gw10",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series 5-Axis",
+   "variant": "240GW10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 240,
+    "y": 120,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 6096,
+    "y": 3048,
+    "z": 406
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis long-table gantry router, 16 in Z version (standard Z-stroke 28 in; tables shrink with longer Z). 33 HP, dual gantry options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-g-series-5-axis-480gw10",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series 5-Axis",
+   "variant": "480GW10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 480,
+    "y": 120,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 12192,
+    "y": 3048,
+    "z": 406
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis long-table gantry router, 16 in Z version (standard Z-stroke 28 in; tables shrink with longer Z). 33 HP, dual gantry options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-g-series-5-axis-240gw12",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series 5-Axis",
+   "variant": "240GW12",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 240,
+    "y": 144,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 6096,
+    "y": 3658,
+    "z": 406
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis long-table gantry router, 16 in Z version (standard Z-stroke 28 in; tables shrink with longer Z). 33 HP, dual gantry options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-g-series-5-axis-480gw12",
+   "maker": "C.R. Onsrud",
+   "model": "G-Series 5-Axis",
+   "variant": "480GW12",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 480,
+    "y": 144,
+    "z": 16
+   },
+   "work_area_mm": {
+    "x": 12192,
+    "y": 3658,
+    "z": 406
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/g-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis long-table gantry router, 16 in Z version (standard Z-stroke 28 in; tables shrink with longer Z). 33 HP, dual gantry options. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-s-series-5-axis-f62s",
+   "maker": "C.R. Onsrud",
+   "model": "S-Series 5-Axis",
+   "variant": "F62S",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 60,
+    "z": 28
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 1524,
+    "z": 711
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/s-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis fixed-bridge single-table router. 33 HP, 16/40/52 in Z options. Same platform as the Honeycomb Processing Cell. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-s-series-5-axis-f122s",
+   "maker": "C.R. Onsrud",
+   "model": "S-Series 5-Axis",
+   "variant": "F122S",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 60,
+    "z": 28
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 1524,
+    "z": 711
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/s-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis fixed-bridge single-table router. 33 HP, 16/40/52 in Z options. Same platform as the Honeycomb Processing Cell. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-s-series-5-axis-f146s",
+   "maker": "C.R. Onsrud",
+   "model": "S-Series 5-Axis",
+   "variant": "F146S",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 144,
+    "y": 60,
+    "z": 28
+   },
+   "work_area_mm": {
+    "x": 3658,
+    "y": 1524,
+    "z": 711
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/s-series-5-axis/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. 5-axis fixed-bridge single-table router. 33 HP, 16/40/52 in Z options. Same platform as the Honeycomb Processing Cell. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-ch-series-f148ch",
+   "maker": "C.R. Onsrud",
+   "model": "CH-Series",
+   "variant": "F148CH",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 84,
+    "y": 142,
+    "z": 52
+   },
+   "work_area_mm": {
+    "x": 2134,
+    "y": 3607,
+    "z": 1321
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "33 HP spindle, 24,000 RPM",
+     "power_kw": 24.61,
+     "power_hp": 33,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/ch-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Fully enclosed compact high-rail 5-axis machine. 75 HP / 18,000 RPM option, 36-120+ tools. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-ch-series-f148ch-w10",
+   "maker": "C.R. Onsrud",
+   "model": "CH-Series",
+   "variant": "F148CH W10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 142,
+    "z": 52
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 3607,
+    "z": 1321
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "33 HP spindle, 24,000 RPM",
+     "power_kw": 24.61,
+     "power_hp": 33,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/ch-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Fully enclosed compact high-rail 5-axis machine. 75 HP / 18,000 RPM option, 36-120+ tools. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-ch-series-f192ch-w10",
+   "maker": "C.R. Onsrud",
+   "model": "CH-Series",
+   "variant": "F192CH W10",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 120,
+    "y": 190,
+    "z": 52
+   },
+   "work_area_mm": {
+    "x": 3048,
+    "y": 4826,
+    "z": 1321
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "33 HP spindle, 24,000 RPM",
+     "power_kw": 24.61,
+     "power_hp": 33,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/ch-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. Fully enclosed compact high-rail 5-axis machine. 75 HP / 18,000 RPM option, 36-120+ tools. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-hm-series-f98hm",
+   "maker": "C.R. Onsrud",
+   "model": "HM-Series",
+   "variant": "F98HM",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 48,
+    "z": 40
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 1219,
+    "z": 1016
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "33 HP spindle, 24,000 RPM",
+     "power_kw": 24.61,
+     "power_hp": 33,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 24,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/hm-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. Heavy-duty 5-axis high-rail twin-table machine (X and U tables). 75 HP option, 2 spindles. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-hm-series-f148hm",
+   "maker": "C.R. Onsrud",
+   "model": "HM-Series",
+   "variant": "F148HM",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 60,
+    "y": 72,
+    "z": 40
+   },
+   "work_area_mm": {
+    "x": 1524,
+    "y": 1829,
+    "z": 1016
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "33 HP spindle, 24,000 RPM",
+     "power_kw": 24.61,
+     "power_hp": 33,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 24,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/hm-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = each of the twin tables as published (travels not published); Z = standard Z-stroke. Heavy-duty 5-axis high-rail twin-table machine (X and U tables). 75 HP option, 2 spindles. 5-axis machine."
+  },
+  {
+   "id": "cr-onsrud-q-series-f144q",
+   "maker": "C.R. Onsrud",
+   "model": "Q-Series",
+   "variant": "F144Q",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 144,
+    "y": 60,
+    "z": 40
+   },
+   "work_area_mm": {
+    "x": 3658,
+    "y": 1524,
+    "z": 1016
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP spindle, 24,000 RPM",
+     "power_kw": 13.42,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": null,
+     "cooling": null,
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC (touchscreen interface)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 12,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "ATLM tool length measurement (Metrol), option"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://cronsrud.com/q-series/"
+   ],
+   "estimated": {
+    "tool_change.kind": "changer type not stated; carousel assumed",
+    "work_area_mm": "converted from the maker's inch figures"
+   },
+   "notes": "X x Y = table size as published (travels not published); Z = standard Z-stroke. High-speed enclosed 5-axis machine. 33 HP option, 6-8 position ride-along rack, second tool changer. 5-axis machine."
+  }
+ ]
+}

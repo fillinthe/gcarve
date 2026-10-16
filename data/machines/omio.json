@@ -1,0 +1,836 @@
+{
+ "maker": "OMIO",
+ "website": "https://www.omiocnc.com",
+ "machines": [
+  {
+   "id": "omio-mpb-6060",
+   "maker": "OMIO",
+   "model": "MPB-6060",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 23.62,
+    "y": 23.62,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 600,
+    "y": 600,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "800 W VFD spindle (1.5 kW optional)",
+     "power_kw": 0.8,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER11",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 315,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3 USB controller",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omiocnc.com/mpb-6060-cnc-router.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm"
+   },
+   "notes": "HG/EG15 rails, 1610 X/Y + 1605 Z ball screws, NEMA23-H76 2.3 N·m. Feed 100-8000 mm/min. Material up to 135 mm."
+  },
+  {
+   "id": "omio-mpb-9090",
+   "maker": "OMIO",
+   "model": "MPB-9090",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 35.43,
+    "y": 35.43,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 900,
+    "y": 900,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "800 W VFD spindle (1.5 kW optional)",
+     "power_kw": 0.8,
+     "power_hp": null,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "ER11",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 315,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 8000,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3 USB controller",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omiocnc.com/mpb-9090-cnc-router.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm"
+   },
+   "notes": "HG/EG15 rails, 1610 X/Y + 1605 Z ball screws, NEMA23-H76 2.3 N·m. Feed 100-8000 mm/min. Material up to 135 mm."
+  },
+  {
+   "id": "omio-x3m",
+   "maker": "OMIO",
+   "model": "X3M",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.22,
+    "y": 14.96,
+    "z": 2.76
+   },
+   "work_area_mm": {
+    "x": 285,
+    "y": 380,
+    "z": 70
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "300 W DC spindle",
+     "power_kw": 0.3,
+     "power_hp": null,
+     "rpm_min": 3000,
+     "rpm_max": 11000,
+     "collet": "ER11",
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 118,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3 USB controller",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omiocnc.com/x3m-cnc-router.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm"
+   },
+   "notes": "Chromed shafts + 1204 ball screws, NEMA23 1 N·m. 30 kg."
+  },
+  {
+   "id": "omio-x3-ws",
+   "maker": "OMIO",
+   "model": "X3-WS",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 11.22,
+    "y": 14.96,
+    "z": 2.76
+   },
+   "work_area_mm": {
+    "x": 285,
+    "y": 380,
+    "z": 70
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "300 W brushless DC spindle",
+     "power_kw": 0.3,
+     "power_hp": null,
+     "rpm_min": 3000,
+     "rpm_max": 11000,
+     "collet": "ER8",
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 118,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3 USB controller",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omiocnc.com/x3ws-cnc-router.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm"
+   },
+   "notes": "Chromed shafts + 1204 ball screws, NEMA23 1 N·m. Material up to 80 mm. 31 kg."
+  },
+  {
+   "id": "omio-xc-21d",
+   "maker": "OMIO",
+   "model": "XC-21D",
+   "variant": null,
+   "years": null,
+   "class": "desktop",
+   "work_area_in": {
+    "x": 9.06,
+    "y": 4.72,
+    "z": 2.36
+   },
+   "work_area_mm": {
+    "x": 230,
+    "y": 120,
+    "z": 60
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "300 W DC spindle",
+     "power_kw": 0.3,
+     "power_hp": null,
+     "rpm_min": 3000,
+     "rpm_max": 11000,
+     "collet": "ER11 3.175 mm",
+     "cooling": "air",
+     "vfd": false,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 118,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 3000,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3 USB controller",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omiocnc.com/xc21d-cnc-router.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm"
+   },
+   "notes": "Supported round rails + 1204 ball screws, NEMA23. Material up to 190 mm. 21 kg."
+  },
+  {
+   "id": "omio-x6m",
+   "maker": "OMIO",
+   "model": "X6M",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 14.96,
+    "y": 22.64,
+    "z": 3.15
+   },
+   "work_area_mm": {
+    "x": 380,
+    "y": 575,
+    "z": 80
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "1.5 kW air-cooled VFD spindle (water-cooled optional)",
+     "power_kw": 1.5,
+     "power_hp": null,
+     "rpm_min": 1000,
+     "rpm_max": 24000,
+     "collet": "ER11",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 157,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 4000,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "Mach3 USB controller",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omiocnc.com/x6m-cnc-router.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm"
+   },
+   "notes": "Chromed shafts + 1605 ball screws, NEMA23 1.8 N·m. Feed 300-4000 mm/min. Material up to 110 mm. 55 kg."
+  },
+  {
+   "id": "omio-x6-pro",
+   "maker": "OMIO",
+   "model": "X6 Pro",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 14.17,
+    "y": 22.05,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 360,
+    "y": 560,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled brushless spindle + VFD",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 157,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 4000,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "X-Pro Mach3 USB controller",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omiocnc.com/x6pro-cnc-router.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm"
+   },
+   "notes": "HG20 rails, 16 mm pitch-5 ball screws, NEMA23 H76 1.8 N·m. Feed 50-4000 mm/min. 67 kg."
+  },
+  {
+   "id": "omio-x6epl-pro",
+   "maker": "OMIO",
+   "model": "X6EPL Pro",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 14.17,
+    "y": 22.05,
+    "z": 3.94
+   },
+   "work_area_mm": {
+    "x": 360,
+    "y": 560,
+    "z": 100
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled brushless spindle + VFD",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 3000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 157,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 4000,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "EPL-4F stand-alone offline controller + handwheel",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omiocnc.com/x6epl-pro-cnc-router.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm"
+   },
+   "notes": "Same mechanics as X6 Pro with EPL-4F offline controller; closed-loop stepper edition offered. 67 kg."
+  },
+  {
+   "id": "omio-x8-2200l",
+   "maker": "OMIO",
+   "model": "X8-2200L",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 22.24,
+    "y": 30.31,
+    "z": 3.15
+   },
+   "work_area_mm": {
+    "x": 565,
+    "y": 770,
+    "z": 80
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled brushless spindle + VFD",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 157,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 4000,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "X-Pro Mach3 USB controller",
+     "gcarve_post": "mach3-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omiocnc.com/x8-2200l-cnc-router.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm"
+   },
+   "notes": "HG20 rails, 1605 X/Z + 2005 Y ball screws, NEMA23 82HBS8. Material up to 140 mm. 83 kg."
+  },
+  {
+   "id": "omio-x8-2200epl",
+   "maker": "OMIO",
+   "model": "X8-2200EPL",
+   "variant": null,
+   "years": null,
+   "class": "hobby",
+   "work_area_in": {
+    "x": 22.24,
+    "y": 30.31,
+    "z": 3.15
+   },
+   "work_area_mm": {
+    "x": 565,
+    "y": 770,
+    "z": 80
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "2.2 kW water-cooled brushless spindle + VFD",
+     "power_kw": 2.2,
+     "power_hp": null,
+     "rpm_min": 6000,
+     "rpm_max": 24000,
+     "collet": "ER20",
+     "cooling": "water",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": {
+    "xy": 157,
+    "z": null
+   },
+   "max_feed_mm_min": {
+    "xy": 4000,
+    "z": null
+   },
+   "rapid_ipm": null,
+   "rapid_mm_min": null,
+   "accel": null,
+   "drive": {
+    "xy": "ballscrew",
+    "z": "ballscrew"
+   },
+   "motors": "stepper",
+   "controllers": [
+    {
+     "name": "EPL-4F stand-alone offline controller + handwheel",
+     "gcarve_post": null,
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "manual",
+    "slots": null,
+    "notes": null
+   },
+   "tool_setter": {
+    "available": false,
+    "type": null
+   },
+   "z_zero": [
+    "top of material"
+   ],
+   "table": {
+    "hold_down": [
+     "spoilboard",
+     "clamps"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://www.omiocnc.com/x8-2200epl-cnc-router.html"
+   ],
+   "estimated": {
+    "work_area_in": "converted from mm",
+    "max_feed_ipm": "converted from mm"
+   },
+   "notes": "As X8-2200L with EPL-4F offline controller; closed-loop stepper edition offered. 83 kg."
+  }
+ ]
+}
