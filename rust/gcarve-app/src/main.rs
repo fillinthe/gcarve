@@ -65,7 +65,7 @@ fn main() -> eframe::Result {
         store::save("crash.txt", &format!("v{} {}: {info}", env!("CARGO_PKG_VERSION"), std::env::consts::OS));
     }));
     let options = eframe::NativeOptions {
-        viewport: eframe::egui::ViewportBuilder::default().with_title("GCarve").with_inner_size(dev_size().unwrap_or([1500.0, 900.0])).with_min_inner_size([900.0, 500.0]),
+        viewport: eframe::egui::ViewportBuilder::default().with_title("GCarve").with_inner_size(dev_size().unwrap_or([1500.0, 900.0])).with_min_inner_size([900.0, 500.0]).with_icon(window_icon()),
         ..Default::default()
     };
     eframe::run_native("GCarve", options, Box::new(|cc| Ok(Box::new(app::App::new(cc)))))
@@ -117,6 +117,13 @@ fn main() {
 
 /// dev: `GCARVE_SIZE=1024x530` opens the window at that size (screenshots of small-screen layouts)
 #[cfg(not(target_arch = "wasm32"))]
+/// The window / taskbar / Dock icon. Without one eframe shows its own default icon: on macOS it sets that as the
+/// Dock icon at start-up, hiding the bundle's appicon.icns (the owner saw a black hexagon, 2026-10-17).
+fn window_icon() -> std::sync::Arc<eframe::egui::IconData> {
+    let (width, height, rgba) = gcarve_ui::shot::png_rgba(include_bytes!("../../../app/branding/appicon-512.png")).unwrap_or((1, 1, vec![0; 4]));
+    std::sync::Arc::new(eframe::egui::IconData { rgba, width, height })
+}
+
 fn dev_size() -> Option<[f32; 2]> {
     let v = std::env::var("GCARVE_SIZE").ok()?;
     let (w, h) = v.split_once('x')?;

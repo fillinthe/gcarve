@@ -38,7 +38,17 @@ pub fn load(key: &str) -> Option<String> {
     }
 }
 
+static FROZEN: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+
+/// Stop writing preferences (tests and smoke runs that press every button must not change this computer's settings).
+pub fn freeze() {
+    FROZEN.store(true, std::sync::atomic::Ordering::Relaxed);
+}
+
 pub fn save(key: &str, text: &str) {
+    if FROZEN.load(std::sync::atomic::Ordering::Relaxed) {
+        return;
+    }
     #[cfg(not(target_arch = "wasm32"))]
     if let Some(p) = path_for(key) {
         if let Some(dir) = p.parent() {
@@ -62,6 +72,9 @@ fn path_for(key: &str) -> Option<std::path::PathBuf> {
 }
 
 pub fn remove(key: &str) {
+    if FROZEN.load(std::sync::atomic::Ordering::Relaxed) {
+        return;
+    }
     #[cfg(not(target_arch = "wasm32"))]
     if let Some(p) = path_for(key) {
         let _ = std::fs::remove_file(p);

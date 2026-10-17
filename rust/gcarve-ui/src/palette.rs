@@ -29,6 +29,10 @@ pub fn filter(cmds: &[Command], q: &str) -> Vec<usize> {
     scored.into_iter().take(12).map(|(_, i)| i).collect()
 }
 
+fn box_id() -> egui::Id {
+    egui::Id::new("palette-query")
+}
+
 #[derive(Default)]
 pub struct Palette {
     pub open: bool,
@@ -39,6 +43,13 @@ pub struct Palette {
 impl Palette {
     pub fn show(&mut self) {
         *self = Palette { open: true, ..Default::default() };
+    }
+
+    /// Open with the search box focused at once, so letters typed in the frames before the box is drawn still reach
+    /// it (and not the single-key tool shortcuts).
+    pub fn open(&mut self, ctx: &egui::Context) {
+        self.show();
+        ctx.memory_mut(|m| m.request_focus(box_id()));
     }
 
     /// Draws the open palette; returns the command id to run. `hint` = the search box's placeholder.
@@ -58,13 +69,18 @@ impl Palette {
         }
         let mut run = enter.then(|| hits.get(self.cur).map(|&i| cmds[i].id.clone())).flatten();
         let before = self.query.clone();
+        // focus the box before this frame's text events are handed out: letters typed right after ⌘K (or in the same
+        // input batch, as a fast typist or the browser does) went to the single-key tool shortcuts and never arrived here
+        let box_id = box_id();
+        if !ctx.memory(|m| m.has_focus(box_id)) {
+            ctx.memory_mut(|m| m.request_focus(box_id));
+        }
         let win = egui::Window::new("palette").title_bar(false).resizable(false).fixed_size([560.0, 0.0]).anchor(egui::Align2::CENTER_TOP, [0.0, 90.0]).frame(egui::Frame::window(&ctx.global_style()).inner_margin(0)).show(ctx, |ui| {
             ui.spacing_mut().item_spacing.y = 0.0;
             ui.add_space(8.0);
             ui.horizontal(|ui| {
                 ui.add_space(8.0);
-                let r = ui.add_sized([ui.available_width() - 8.0, 34.0], egui::TextEdit::singleline(&mut self.query).hint_text(hint).font(theme::font(15.0)));
-                r.request_focus();
+                ui.add_sized([ui.available_width() - 8.0, 34.0], egui::TextEdit::singleline(&mut self.query).id(box_id).hint_text(hint).font(theme::font(15.0)));
             });
             ui.add_space(8.0);
             theme::hline(ui);
