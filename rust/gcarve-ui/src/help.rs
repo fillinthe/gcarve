@@ -13,6 +13,8 @@ static FAILED: Mutex<bool> = Mutex::new(false);
 
 /// `repo` = "owner/name" on GitHub that holds the public releases; `version` = the running program's version.
 pub fn init(repo: &'static str, version: &'static str) {
+    #[cfg(not(target_arch = "wasm32"))]
+    let version = std::env::var("GCARVE_VERSION").map_or(version, |v| Box::leak(v.into_boxed_str())); // dev: pretend to be an older build
     let _ = INFO.set((repo, version));
 }
 
@@ -205,6 +207,22 @@ impl Help {
 
 #[cfg(test)]
 mod tests {
+    /// `cargo test -p gcarve-ui live_update -- --ignored`: a 0.1.0 build must see the real newest release.
+    #[test]
+    #[ignore]
+    fn live_update_check_finds_a_newer_release() {
+        super::init("fillinthe/gcarve", "0.1.0");
+        super::check(&super::egui::Context::default());
+        for _ in 0..100 {
+            if let Some((v, url)) = super::available() {
+                assert!(super::parse(&v) > super::parse("0.1.0") && url.starts_with("https://github.com/fillinthe/gcarve/"));
+                return;
+            }
+            std::thread::sleep(std::time::Duration::from_millis(100));
+        }
+        panic!("no answer from GitHub in 10 s");
+    }
+
     #[test]
     fn versions_compare_by_number() {
         assert!(super::parse("v0.10.0") > super::parse("0.9.3"));

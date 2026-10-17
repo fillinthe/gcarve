@@ -30,3 +30,20 @@ pub fn png_bytes(img: &egui::ColorImage) -> Vec<u8> {
     }
     out
 }
+
+/// A PNG decoded to (width, height, RGBA bytes): the window / taskbar icon at start-up (`ViewportBuilder::with_icon`).
+pub fn png_rgba(bytes: &[u8]) -> Option<(u32, u32, Vec<u8>)> {
+    let mut reader = png::Decoder::new(bytes).read_info().ok()?;
+    let mut buf = vec![0; reader.output_buffer_size()];
+    let info = reader.next_frame(&mut buf).ok()?;
+    let (w, h) = (info.width, info.height);
+    let px = &buf[..info.buffer_size()];
+    let rgba = match info.color_type {
+        png::ColorType::Rgba => px.to_vec(),
+        png::ColorType::Rgb => px.chunks(3).flat_map(|c| [c[0], c[1], c[2], 255]).collect(),
+        png::ColorType::GrayscaleAlpha => px.chunks(2).flat_map(|c| [c[0], c[0], c[0], c[1]]).collect(),
+        png::ColorType::Grayscale => px.iter().flat_map(|&g| [g, g, g, 255]).collect(),
+        png::ColorType::Indexed => return None,
+    };
+    (info.bit_depth == png::BitDepth::Eight).then_some((w, h, rgba))
+}

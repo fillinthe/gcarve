@@ -61,7 +61,8 @@ window.addEventListener("beforeunload", e => { if (window.gcarveDirty) { e.preve
     try { fetch("/api/error", { method: "POST", headers: { "Content-Type": "application/json" }, keepalive: true,
       body: JSON.stringify({ source, message: String(message).slice(0, 300), where: navigator.userAgent.slice(0, 120) }) }); } catch (_) {}
   };
-  window.addEventListener("error", e => report("load", e.message || e.error));
+  // the file name and line make a "Cannot read properties of undefined" findable (one such report, 2026-10-16, had neither)
+  window.addEventListener("error", e => report("load", (e.message || e.error) + (e.filename ? " @" + e.filename.split("/").pop().split("?")[0] + ":" + e.lineno + ":" + e.colno : "")));
   window.addEventListener("unhandledrejection", e => report("load", e.reason));
   // the download fills the bar (the size of the uncompressed program is stamped in by build-web.sh); without it, or
   // when the body can't be streamed, the bar keeps sweeping
@@ -74,7 +75,7 @@ window.addEventListener("beforeunload", e => { if (window.gcarveDirty) { e.preve
     return new Response(new ReadableStream({ async pull(c) {
       const { done, value } = await rd.read();
       if (done) { bar.style.width = "100%"; c.close(); return; }
-      got += value.length; bar.style.width = Math.min(98, 2 + got * 96 / size) + "%"; c.enqueue(value);
+      got += value ? value.length : 0; bar.style.width = Math.min(98, 2 + got * 96 / size) + "%"; c.enqueue(value);
     } }), { headers: { "Content-Type": "application/wasm" } });
   };
   init({ module_or_path: program() }).catch(e => { report("load", "start: " + e); document.getElementById("loading").innerHTML = "GCarve couldn't start in this browser: " + e; });

@@ -861,7 +861,7 @@ impl App {
             ("panels", _) => self.right_open = !self.right_open,
             ("fold", "right") => self.right_open = false,
             ("rail", "fold") => self.left_open = false,
-            ("palette", _) => self.palette.show(),
+            ("palette", _) => self.palette.open(ctx),
             ("mode", "Design") => self.set_mode(Mode::Design),
             ("tab", "toolpaths") => {
                 self.shell.side_tab = 2; // no Toolpaths mode any more: key 2 shows the inspector's Toolpaths tab
@@ -1293,7 +1293,11 @@ impl eframe::App for App {
             if d == "snap" {
                 egui::Popup::open_id(&ctx, shell::snap_popup()); // dev: the status-bar Snap popover
             }
-            self.cam.open_named(if d == "prefs-newdoc" { "prefs" } else { &d }, &self.canvas);
+            if matches!(d.as_str(), "update" | "bug" | "donate") {
+                self.shell.push(&d); // dev: the Help dialogs (GCARVE_VERSION=0.1.0 shows "Update available")
+            } else {
+                self.cam.open_named(if d == "prefs-newdoc" { "prefs" } else { &d }, &self.canvas);
+            }
         }
         // quitting with unsaved tabs: ask for each (Qt onClosing)
         if ctx.input(|i| i.viewport().close_requested()) && !self.shot {
@@ -1629,7 +1633,7 @@ impl App {
             ui.label(RichText::new("GCarve").font(crate::widgets::bold(20.0)));
             ui.label(format!("Version {} · {}", env!("CARGO_PKG_VERSION"), if Cloud::web() { "web" } else { std::env::consts::OS }));
             ui.add_space(6.0);
-            ui.label("CAM for CNC routers: design, toolpaths, simulation and G-code for 47+ machine posts.");
+            ui.label(format!("CAM for CNC routers: design, toolpaths, simulation and G-code for {} machine posts.", gcarve_core::postdef::post_library().len()));
             ui.add_space(6.0);
             ui.horizontal(|ui| {
                 if ui.link("gcarve.app").clicked() {

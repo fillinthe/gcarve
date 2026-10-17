@@ -397,8 +397,12 @@ impl Canvas {
         // clicks on the rulers do nothing: the pointer tools only sense the area beside them
         let rect = self.view_area(full);
         let resp = ui.interact(rect, ui.id().with("canvas"), Sense::click_and_drag());
+        // the web canvas can be a few pixels on the first frame (page layout not done): a fit made then gives the 1 px/in
+        // floor and a board off-screen, so fit again once there is room
+        let tiny = |r: Rect| r.width() < 120.0 || r.height() < 120.0;
+        let refit = tiny(self.last_rect) && !tiny(full);
         self.last_rect = full;
-        if self.view.is_none() {
+        if self.view.is_none() || refit {
             self.zoom_fit(); // Qt: open and F fit the shapes, the board when there are none (new documents too)
             if self.view.is_none() {
                 self.zoom_board(full);
