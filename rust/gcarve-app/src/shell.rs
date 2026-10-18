@@ -519,6 +519,8 @@ pub fn status_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, synced
 
 /// EmptyState.qml: the "Start a job" card over an empty, untouched document
 pub fn empty_state(ui: &mut egui::Ui, sh: &mut Shell, rect: egui::Rect, doc: &Document, recent: &[String]) {
+    // on a phone the top bar makes the layout wider than the screen: keep the card on the visible part
+    let rect = rect.intersect(ui.ctx().content_rect());
     // never wider / taller than the canvas (phones, tablets) and clipped to it: never over the rail or inspector
     let w = (rect.width() - 24.0).min(460.0);
     if w < 120.0 {

@@ -126,7 +126,8 @@ pub fn sim_grid(paths: &[SimPath], m: &Material, cells: usize) -> HeightField {
     by1 = m.h.min(by1 + max_r + 0.05);
     let w = 1e-3_f64.max(bx1 - bx0);
     let h = 1e-3_f64.max(by1 - by0);
-    let res = 0.002_f64.max((w * h / cells as f64).sqrt());
+    // no side over 4096 cells either: the grid becomes a texture, and GPUs (WebGL especially) refuse longer sides
+    let res = 0.002_f64.max((w * h / cells as f64).sqrt()).max(w.max(h) / 4000.0);
     let nx = 1.max((w / res).ceil() as i32);
     let ny = 1.max((h / res).ceil() as i32);
     HeightField { nx, ny, res, x0: bx0, y0: by0, depth: vec![0.0; nx as usize * ny as usize] }
@@ -256,5 +257,16 @@ mod tests {
         stamp(&mut hf, &Tool { radius: 0.25, ..t }, 1.0, 1.0, 0.5);
         let at = |dist: f64| hf.depth[100 * 200 + (100.0 + dist / 0.01) as usize] as f64;
         assert!(at(0.0) == 0.5 && at(0.2) == 0.5 && at(0.4) < 0.3 && at(0.4) > 0.25, "{} {}", at(0.2), at(0.4));
+    }
+
+    #[test]
+    fn a_long_thin_cut_never_makes_a_grid_side_over_4096() {
+        // one straight 90 in groove on a 96 in board (texture 1 x 17265 crashed the web app, 2026-10-17)
+        let mv = |x: f64, y: f64, z: f64| crate::job::Move { x: Some(x), y: Some(y), z: Some(z), ..Default::default() };
+        let tp = Toolpath { moves: vec![mv(10.0, 2.0, 0.1), mv(10.0, 2.0, -0.1), mv(10.0, 92.0, -0.1)], ..Default::default() };
+        let t = Tool { diameter: 0.0625, ..Default::default() };
+        let m = Material { w: 48.0, h: 96.0, ..Default::default() };
+        let hf = sim_grid(&[(&tp, &t)], &m, 1_500_000);
+        assert!(hf.nx <= 4096 && hf.ny <= 4096, "{} x {}", hf.nx, hf.ny);
     }
 }

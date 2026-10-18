@@ -107,8 +107,9 @@ pub fn rasterize_relief(tris: &[Triangle], r: &mut Relief, cells: usize) {
         return;
     }
     let aspect = r.w / r.h;
-    r.nx = 2.max((cells as f64 * aspect).sqrt().round() as i32);
-    r.ny = 2.max((r.nx as f64 / aspect).round() as i32);
+    // no side over 4000: the height map is drawn as a texture (GPUs refuse long sides; a long thin model did it)
+    r.nx = (cells as f64 * aspect).sqrt().round().clamp(2.0, 4000.0) as i32;
+    r.ny = (r.nx as f64 / aspect).round().clamp(2.0, 4000.0) as i32;
     r.height = vec![0.0; r.nx as usize * r.ny as usize]; // unmapped cells: base
     let zr = if z1 - z0 > 1e-12 { z1 - z0 } else { 1.0 };
     let (sx, sy) = (r.nx as f64 / (x1 - x0), r.ny as f64 / (y1 - y0));

@@ -175,6 +175,7 @@ impl App {
         let ui_state = if shot { UiState::default() } else { UiState::load() }; // screenshots use the stock layout (Qt: temp settings)
         let prefs = if shot { dialogs::prefs::Prefs::default() } else { dialogs::prefs::Prefs::load() }; // screenshots: stock settings (Qt: temp settings)
         gcarve_ui::help::init("fillinthe/gcarve", env!("CARGO_PKG_VERSION"));
+        gcarve_ui::help::set_download_page("https://gcarve.app/download/");
         let mut app = App { files, mode, canvas: new_canvas(&prefs), left_open: ui_state.tool_rail, right_open: ui_state.side_panel, status: String::new(), message: "Open an SVG, DXF or PDF, or draw with R / E / P.".into(), name: "Untitled".into(), shell: Shell::new(), frame: 0, gen: None, gen_rev: 0, lib_ready: false, lib_pushed: 0, shares: Vec::new(), shares_open: false, gen_draft: None, export: None, cloud: Cloud::new(), cloud_id: String::new(), account: Default::default(), help: Default::default(), movie: std::env::var("GCARVE_MOVIE").ok().map(|d| (d.into(), 0, std::env::var("GCARVE_MOVIE_FRAMES").ok().and_then(|n| n.parse().ok()).unwrap_or(600), false)), projects: Default::default(), dialogs: Dialogs::default(), select_all_on_load: false, prev_tool: Tool::Select, dev_measure: false,
             prefs_seen: prefs.synced.clone(), prefs_push_at: None, prefs_from_server: false,
             cam: CamDialogs { prefs, ..Default::default() }, posts: UserPosts::load(), templates: Default::default(), player: Player::default(), view3d: View3d::load(shot), sim_wait: false, gen_wait: false, puck_tried: shot, puck_filter: Default::default(), puck_trace: Default::default(), view_3d: false, watch_pending: false, show_sim: false, shot, pending_dialog: String::new(), recover: if shot { None } else { crate::recover::load() }, recover_at: None, recover_rev: 0, last_dirty: false,
@@ -1449,6 +1450,10 @@ impl eframe::App for App {
                 if self.canvas.doc.shapes.is_empty() && self.canvas.doc.reliefs.is_empty() && !self.canvas.dirty && !simulating && self.cam.prefs.start_card && !self.canvas.card_closed {
                     let recent: Vec<String> = self.recent.iter().take(5).cloned().collect();
                     shell::empty_state(ui, &mut self.shell, rect, &self.canvas.doc, &recent);
+                    // Esc closes the card like its ×, unless a dialog or a field has the keyboard
+                    if !ctx.egui_wants_keyboard_input() && ctx.memory(|m| m.top_modal_layer().is_none()) && ctx.input(|i| i.key_pressed(egui::Key::Escape)) {
+                        self.canvas.card_closed = true;
+                    }
                 }
             });
         });

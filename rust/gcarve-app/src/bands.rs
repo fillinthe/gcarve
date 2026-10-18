@@ -163,7 +163,9 @@ impl Bands {
             x1 = x1.max(s.a.x.max(s.b.x) + s.r);
             y1 = y1.max(s.a.y.max(s.b.y) + s.r);
         }
-        let res = ((x1 - x0) * (y1 - y0) / MAX_CELLS).sqrt().max(1e-4);
+        // also no side over 4096 px: a long thin set of cuts (one straight line) gave a 1 × 17265 texture, which
+        // WebGL refuses and the web app panicked (error log 2026-10-17)
+        let res = ((x1 - x0) * (y1 - y0) / MAX_CELLS).sqrt().max((x1 - x0).max(y1 - y0) / 4000.0).max(1e-4);
         let (nx, ny) = (((x1 - x0) / res).ceil() as usize + 1, ((y1 - y0) / res).ceil() as usize + 1);
         let mut mask = vec![0u8; nx * ny]; // bit per depth bucket that sweeps the cell
         for s in segs {
