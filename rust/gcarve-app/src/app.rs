@@ -526,7 +526,7 @@ impl App {
             self.open_target();
         }
         match files::load(&mut self.canvas.doc, &name, &bytes) {
-            Loaded::Project(mut d) => {
+            Loaded::Project(mut d, note) => {
                 dialogs::relief::rehydrate(&mut d);
                 let (tool, requests, hook) = (self.canvas.tool, std::mem::take(&mut self.canvas.requests), std::mem::take(&mut self.canvas.shot_hook)); // dev hooks set before the load
                 self.canvas = Canvas::with_doc(*d);
@@ -538,10 +538,14 @@ impl App {
                 self.canvas.mutated();
                 self.canvas.dirty = false;
                 self.gen_rev = self.canvas.rev.wrapping_sub(1);
-                self.name = name.trim_end_matches(".tlp").to_string();
+                let tlp = note.is_empty();
+                self.name = name.trim_end_matches(".tlp").trim_end_matches(".crv").to_string();
                 self.cloud_id.clear();
-                self.message = format!("Opened {name}: {} shapes, {} toolpaths", self.canvas.doc.shapes.len(), self.canvas.doc.ops.len());
-                if let Some(p) = path {
+                self.message = if tlp { format!("Opened {name}: {} shapes, {} toolpaths", self.canvas.doc.shapes.len(), self.canvas.doc.ops.len()) } else { format!("Opened {name}: {note}") };
+                if !tlp {
+                    self.canvas.dirty = true; // never saved over the VCarve file: Save asks where the .tlp goes
+                }
+                if let Some(p) = path.filter(|_| tlp) {
                     #[cfg(not(target_arch = "wasm32"))]
                     {
                         self.recent = files::add_recent(&p);
