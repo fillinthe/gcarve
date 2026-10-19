@@ -286,6 +286,15 @@ pub(crate) fn op_json(op: &Op, tools: &[Tool]) -> Value {
     if op.thread_pitch > 0.0 {
         m.insert("threadPitch".into(), json!(op.thread_pitch));
     }
+    if op.tab_corners {
+        m.insert("tabAvoidCorners".into(), json!(true));
+    }
+    if op.sheet_scope >= 0 {
+        m.insert("sheet".into(), json!(op.sheet_scope));
+    }
+    if op.all_vectors {
+        m.insert("allVectors".into(), json!(true));
+    }
     if op.array_rows * op.array_cols > 1 {
         m.insert("array".into(), json!({"rows": op.array_rows, "cols": op.array_cols, "dx": op.array_dx, "dy": op.array_dy}));
     }
@@ -361,6 +370,9 @@ pub(crate) fn op_from(o: &Value, tool_count: i32) -> Op {
         raster: flag(o, "raster", false),
         thread_pitch: num(o, "threadPitch", 0.0).max(0.0),
         start_first: flag(o, "startFirst", false),
+        tab_corners: flag(o, "tabAvoidCorners", false),
+        sheet_scope: int(o, "sheet", -1).max(-1),
+        all_vectors: flag(o, "allVectors", false),
         array_rows: int(get(o, "array"), "rows", 1).clamp(1, 500),
         array_cols: int(get(o, "array"), "cols", 1).clamp(1, 500),
         array_dx: num(get(o, "array"), "dx", 0.0),

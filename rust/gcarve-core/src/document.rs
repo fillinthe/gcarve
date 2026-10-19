@@ -279,6 +279,14 @@ pub struct Op {
     /// profile: tabs placed by hand (document points on the shape's outline): a cut that has some of them near it
     /// uses them instead of `tab_count` evenly spaced tabs (JSON "tabPoints", Rust only)
     pub tab_points: Vec<[f64; 2]>,
+    /// profile: evenly spaced tabs slide along the outline off corners (VCarve "avoid corners"; JSON
+    /// "tabAvoidCorners" when set, Rust only). Off by default so older projects cut as before; new toolpaths turn it on
+    pub tab_corners: bool,
+    /// the sheet it cuts on (index), -1 = every sheet (JSON "sheet" when set, Rust only)
+    pub sheet_scope: i32,
+    /// cuts every vector (all layers but keep-out ones) instead of picked shapes / a layer / a group (JSON
+    /// "allVectors", Rust only)
+    pub all_vectors: bool,
     /// array copies (VCarve "Array Copy Toolpath"): the toolpath is cut `array_rows` × `array_cols` times, each copy
     /// moved by `array_dx` / `array_dy` (inches, copy to copy) from the last; 1 × 1 = no copies (JSON "array" when set)
     pub array_rows: i32,
@@ -336,6 +344,9 @@ impl Default for Op {
             raster: false,
             thread_pitch: 0.0,
             start_first: false,
+            tab_corners: false,
+            sheet_scope: -1,
+            all_vectors: false,
             array_rows: 1,
             array_cols: 1,
             array_dx: 0.0,
@@ -984,14 +995,28 @@ impl Document {
 
     /// Resolves layer/group scope, else op.shape_ids; only shapes on the active sheet.
     pub fn op_shape_ids(&self, op: &Op) -> Vec<i32> {
-        if op.layer_scope < 0 && op.group_scope == 0 {
-            return op.shape_ids.iter().copied().filter(|&id| self.find(id).is_some_and(|s| s.sheet == self.active_sheet)).collect();
+        self.op_shape_ids_on(op, self.active_sheet)
+    }
+
+    /// The shapes `op` cuts on `sheet`: none when the toolpath is kept to another sheet (`sheet_scope`), else every
+    /// vector there (`all_vectors`, keep-out layers excepted), its layer's or group's, or its own picked shapes.
+    pub fn op_shape_ids_on(&self, op: &Op, sheet: i32) -> Vec<i32> {
+        if op.sheet_scope >= 0 && op.sheet_scope != sheet {
+            return Vec::new();
         }
+        if op.layer_scope < 0 && op.group_scope == 0 && !op.all_vectors {
+            return op.shape_ids.iter().copied().filter(|&id| self.find(id).is_some_and(|s| s.sheet == sheet)).collect();
+        }
+        let keep_out = |l: i32| usize::try_from(l).ok().and_then(|i| self.layers.get(i)).is_some_and(|l| l.keep_out);
         self.shapes
             .iter()
             .filter(|s| {
-                s.sheet == self.active_sheet
-                    && ((op.layer_scope >= 0 && s.layer == op.layer_scope) || (op.group_scope > 0 && s.group == op.group_scope))
+                s.sheet == sheet
+                    && if op.all_vectors {
+                        !keep_out(s.layer)
+                    } else {
+                        (op.layer_scope >= 0 && s.layer == op.layer_scope) || (op.group_scope > 0 && s.group == op.group_scope)
+                    }
             })
             .map(|s| s.id)
             .collect()

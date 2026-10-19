@@ -249,6 +249,19 @@ pub struct Shell {
     pub cmds: Vec<String>,
     pub side_tab: usize,
     pub op_sel: Option<usize>,
+    /// toolpaths picked with ⌘ / Shift-click in the list (Group puts them in a folder)
+    pub op_multi: std::collections::BTreeSet<usize>,
+    /// toolpath folders shut in the list
+    pub folded: std::collections::BTreeSet<String>,
+    /// the name typed for a new folder (Group…)
+    pub new_folder: Option<String>,
+    /// folders made with + Folder that hold nothing yet (they live here until a toolpath is dropped in)
+    pub empty_folders: std::collections::BTreeSet<String>,
+    /// toolpath list filters: only the active sheet's, one layer (-1 = all)
+    pub tp_this_sheet: bool,
+    pub tp_layer: i32,
+    /// (canvas rev, per toolpath: vectors cut per sheet and their layers)
+    pub tp_usage: (u64, Vec<crate::inspector::OpUsage>),
     /// toolpath list grouping: 0 none, 1 by bit, 2 by operation
     pub tp_group: u8,
     pub lock_aspect: bool,
@@ -266,7 +279,7 @@ pub struct Shell {
 
 impl Shell {
     pub fn new() -> Self {
-        Shell { cmds: Vec::new(), side_tab: 0, op_sel: None, tp_group: 0, lock_aspect: true, rot_text: "15".into(), edit: Default::default(), edit_for: None, zoom_text: String::new(), canvas_rect: egui::Rect::ZERO, menu_rect: egui::Rect::NOTHING, snap_arrow: egui::Rect::NOTHING }
+        Shell { cmds: Vec::new(), side_tab: 0, op_sel: None, op_multi: Default::default(), folded: Default::default(), new_folder: None, empty_folders: Default::default(), tp_this_sheet: false, tp_layer: -1, tp_usage: (u64::MAX, Vec::new()), tp_group: 0, lock_aspect: true, rot_text: "15".into(), edit: Default::default(), edit_for: None, zoom_text: String::new(), canvas_rect: egui::Rect::ZERO, menu_rect: egui::Rect::NOTHING, snap_arrow: egui::Rect::NOTHING }
     }
     pub fn push(&mut self, id: impl Into<String>) {
         self.cmds.push(id.into());
@@ -296,24 +309,7 @@ pub fn mode_bar(ui: &mut egui::Ui, sh: &mut Shell, mode: Mode, title: &str, canv
             icon_btn(ui, sh, "undo", can_undo); // new / open / jobs / save live in the File menu (user decision)
             icon_btn(ui, sh, "redo", can_redo);
             ui.add_space(10.0);
-            // command search box
-            // narrow windows (small laptops, tablets, phones): the search box shrinks to its icon and the export
-            // button to one word, so nothing overlaps the Design / Simulate switch
             let wide = ui.ctx().content_rect().width();
-            let (r, resp) = ui.allocate_exact_size(egui::vec2(if wide < 1000.0 { 32.0 } else { 230.0 }, 28.0), egui::Sense::click());
-            let resp = resp.tip("Search every command (⌘K)");
-            let p = ui.painter();
-            p.rect(r, theme::RADIUS as f32, theme::FIELD, egui::Stroke::new(1.0, if resp.hovered() { theme::BORDER_STRONG } else { theme::BORDER }), egui::StrokeKind::Inside);
-            crate::icons::paint(ui, "search", egui::Rect::from_min_size(r.left_top() + egui::vec2(8.0, 7.0), egui::vec2(14.0, 14.0)), 14.0, theme::TEXT_DIM);
-            if wide >= 1000.0 {
-                ui.painter().text(r.left_center() + egui::vec2(28.0, 0.0), egui::Align2::LEFT_CENTER, "Search commands…", theme::font(theme::FONT_SIZE), theme::TEXT.gamma_multiply(0.55));
-                let kb = egui::Rect::from_min_max(egui::pos2(r.right() - 36.0, r.top() + 6.0), egui::pos2(r.right() - 6.0, r.bottom() - 6.0));
-                ui.painter().rect_stroke(kb, 4.0, egui::Stroke::new(1.0, theme::BORDER_STRONG), egui::StrokeKind::Inside);
-                ui.painter().text(kb.center(), egui::Align2::CENTER_CENTER, theme::keys("⌘K"), theme::font(10.0), theme::TEXT.gamma_multiply(0.6));
-            }
-            if resp.clicked() {
-                sh.push("palette");
-            }
             // right-aligned group, then the mode switch in what is left
             ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                 ui.spacing_mut().item_spacing.x = 2.0;
@@ -327,7 +323,10 @@ pub fn mode_bar(ui: &mut egui::Ui, sh: &mut Shell, mode: Mode, title: &str, canv
                 // mode switch pill, centred in the remaining space
                 let avail = ui.available_rect_before_wrap();
                 let pill_w = 6.0 + MODES.iter().map(|(_, _, t, k, _)| 16.0 + 2.0 + 12.0 + text_w(ui, &format!("{t}  {k}"), 12.0)).sum::<f32>() + 2.0 * 2.0;
-                let pill = egui::Rect::from_center_size(egui::pos2(avail.center().x, avail.center().y), egui::vec2(pill_w, 32.0));
+                // centred on the window when that leaves it clear of the title and the buttons, else in the space left
+                let mid = ui.ctx().content_rect().center().x;
+                let x = if mid - pill_w / 2.0 > avail.left() + 8.0 && mid + pill_w / 2.0 < avail.right() - 8.0 { mid } else { avail.center().x };
+                let pill = egui::Rect::from_center_size(egui::pos2(x, avail.center().y), egui::vec2(pill_w, 32.0));
                 ui.painter().rect(pill, 8.0, theme::FIELD, egui::Stroke::new(1.0, theme::BORDER), egui::StrokeKind::Inside);
                 let mut child = ui.new_child(egui::UiBuilder::new().max_rect(pill.shrink2(egui::vec2(3.0, 0.0))).layout(egui::Layout::left_to_right(egui::Align::Center)));
                 child.spacing_mut().item_spacing.x = 2.0;
@@ -340,6 +339,26 @@ pub fn mode_bar(ui: &mut egui::Ui, sh: &mut Shell, mode: Mode, title: &str, canv
             });
         });
     });
+}
+
+/// The command search box (⌘K opens the same palette). Narrow windows (small laptops, tablets, phones) get only
+/// its icon.
+fn search_box(ui: &mut egui::Ui, sh: &mut Shell) {
+    let wide = ui.ctx().content_rect().width() >= 1000.0;
+    let (r, resp) = ui.allocate_exact_size(egui::vec2(if wide { 240.0 } else { 30.0 }, 22.0), egui::Sense::click());
+    let resp = resp.tip("Search every command (⌘K)");
+    let p = ui.painter();
+    p.rect(r, theme::RADIUS as f32, theme::FIELD, egui::Stroke::new(1.0, if resp.hovered() { theme::BORDER_STRONG } else { theme::BORDER }), egui::StrokeKind::Inside);
+    crate::icons::paint(ui, "search", egui::Rect::from_min_size(r.left_top() + egui::vec2(8.0, 4.0), egui::vec2(14.0, 14.0)), 14.0, theme::TEXT_DIM);
+    if wide {
+        ui.painter().text(r.left_center() + egui::vec2(28.0, 0.0), egui::Align2::LEFT_CENTER, "Search commands…", theme::font(12.0), theme::TEXT.gamma_multiply(0.55));
+        let kb = egui::Rect::from_min_max(egui::pos2(r.right() - 34.0, r.top() + 4.0), egui::pos2(r.right() - 5.0, r.bottom() - 4.0));
+        ui.painter().rect_stroke(kb, 4.0, egui::Stroke::new(1.0, theme::BORDER_STRONG), egui::StrokeKind::Inside);
+        ui.painter().text(kb.center(), egui::Align2::CENTER_CENTER, theme::keys("⌘K"), theme::font(10.0), theme::TEXT.gamma_multiply(0.6));
+    }
+    if resp.clicked() {
+        sh.push("palette");
+    }
 }
 
 fn text_w(ui: &egui::Ui, s: &str, size: f32) -> f32 {
@@ -398,7 +417,7 @@ pub fn rail(ui: &mut egui::Ui, sh: &mut Shell, mode: Mode, current: &str, sel: u
 }
 
 /// SheetTabs.qml: 28 px strip under the canvas
-pub fn sheet_tabs(ui: &mut egui::Ui, sh: &mut Shell, doc: &Document) {
+pub fn sheet_tabs(ui: &mut egui::Ui, sh: &mut Shell, doc: &Document, all: bool) {
     ui.spacing_mut().item_spacing.x = 2.0;
     ui.horizontal(|ui| {
         ui.set_height(27.0);
@@ -422,6 +441,10 @@ pub fn sheet_tabs(ui: &mut egui::Ui, sh: &mut Shell, doc: &Document) {
         }
         if ui.add_enabled_ui(doc.sheets.len() > 1, |ui| IconButton::new("remove").size(13.0).padding(3.0).tip("Remove this sheet (its shapes move to the previous one)").show(ui)).inner.clicked() {
             sh.push("sheet:remove");
+        }
+        ui.add_space(6.0);
+        if IconButton::new("board").text("All sheets").size(13.0).padding(3.0).active(all).tip("Show every sheet side by side: click a sheet to work on it, drag vectors onto another sheet to move them there").show(ui).clicked() {
+            sh.push("allsheets");
         }
         ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
             ui.add_space(10.0);
@@ -822,6 +845,7 @@ pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, m: &Menu
                 check(ui, "Snap", &mut canvas.snap);
                 item(ui, sh, "Snap Settings…", "", true, "snap:settings");
                 item(ui, sh, "Clear Guides", "", !canvas.doc.guides.is_empty(), "guides:clear");
+                item(ui, sh, if canvas.all_sheets { "One Sheet at a Time" } else { "All Sheets Side by Side" }, "", true, "allsheets");
                 let (line, can) = crate::spacemouse::status();
                 item(ui, sh, if can || line.is_empty() { "Connect a SpaceMouse…" } else { line.split(':').next().unwrap_or("SpaceMouse") }, "", can, "spacemouse");
                 for (t, on, id) in [("Show Grid", m.show_grid, "grid:toggle"), ("Rulers", m.rulers, "rulers:toggle")] {
@@ -871,6 +895,11 @@ pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, m: &Menu
                 widgets::menu_separator(ui);
                 item(ui, sh, "About GCarve", "", true, "about");
             }).response);
+            // the command search, at the right end of the menu row (it sat in the bar below and pushed the mode switch aside)
+            ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                ui.add_space(4.0);
+                search_box(ui, sh);
+            });
             // like a desktop menu bar: while one menu is open, hovering another title opens that one
             let ctx = ui.ctx().clone();
             if tops.iter().any(|r| egui::Popup::is_id_open(&ctx, egui::Popup::default_response_id(r))) {

@@ -756,6 +756,7 @@ fn toolpaths(d: &[u8], objs: &HashMap<&[u8], Vec<i32>>, tabs: &HashMap<i32, Vec<
                 op.tabs = num("_ppdUseTabs") == 1.0;
                 (op.tab_width, op.tab_height, op.tab_ramped) = (len("TabLength"), len("TabThickness"), num("_ppd3dTabs") == 1.0);
                 op.tab_count = (num("tabsNumTabs") as i32).max(1);
+                op.tab_corners = num("tabsAvoidCorners") == 1.0;
                 // tabs placed in VCarve go where they were (GCarve's hand-placed tabs)
                 if op.tabs {
                     op.tab_points = op.shape_ids.iter().filter_map(|id| tabs.get(id)).flatten().map(|q| [q.x, q.y]).collect();

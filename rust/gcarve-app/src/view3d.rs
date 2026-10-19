@@ -11,6 +11,124 @@ use gcarve_core::sim::{wood, HeightField};
 /// ponytail: CPU mesh; ≤ 60k quads keeps a frame under a few ms. A GPU callback when boards get huge.
 /// mesh size cap: the browser draws on one thread, so it gets fewer squares (each square = one block of sim cells)
 const MAX_QUADS: usize = if cfg!(target_arch = "wasm32") { 120_000 } else { 200_000 };
+/// while the cut plays (the mesh is rebuilt every frame)
+const PLAYING_QUADS: usize = 60_000;
+
+/// A patch of the carved surface as mesh vertices: one per `step` × `step` block of sim cells over the cell window
+/// `cells` = [x0, y0, x1, y1). Each vertex takes its block's centre cell, so walls stay where they are (the deepest
+/// cell of the block widened every cut and swallowed thin strips between cuts: owner, 2026-10-19).
+#[derive(Default)]
+struct Grid {
+    nx: usize,
+    ny: usize,
+    step: usize,
+    cells: [usize; 4],
+    /// the mesh budget it was built for (the full one once playback stops)
+    budget: usize,
+    res: f64,
+    x0: f64,
+    y0: f64,
+    px: Vec<f32>,
+    py: Vec<f32>,
+    pz: Vec<f32>,
+    col: Vec<Color32>,
+    /// unlit wood colour and the surface slope (d depth / dx, dy); None = cut through (colour as is)
+    lit: Vec<Option<([f32; 3], [f32; 2])>>,
+}
+
+impl Grid {
+    /// the smallest block size that keeps the window under `budget` squares
+    fn step_for(c: [usize; 4], budget: usize) -> usize {
+        let (w, h) = (c[2].saturating_sub(c[0]).max(1), c[3].saturating_sub(c[1]).max(1));
+        let mut step = 1;
+        while (w / step) * (h / step) > budget {
+            step += 1;
+        }
+        step
+    }
+
+    fn build(hf: &HeightField, t: f64, cells: [usize; 4], step: usize) -> Grid {
+        let nx = 2.max((cells[2] - cells[0]) / step);
+        let ny = 2.max((cells[3] - cells[1]) / step);
+        let res = hf.res * step as f64;
+        let (x0, y0) = (hf.x0 + cells[0] as f64 * hf.res, hf.y0 + cells[1] as f64 * hf.res);
+        let mut depth = vec![0.0f32; nx * ny];
+        for iy in 0..ny {
+            for ix in 0..nx {
+                let sx = (hf.nx as usize - 1).min(cells[0] + ix * step + step / 2) as i32;
+                let sy = (hf.ny as usize - 1).min(cells[1] + iy * step + step / 2) as i32;
+                depth[iy * nx + ix] = hf.at(sx, sy);
+            }
+        }
+        let at = |ix: usize, iy: usize| f64::from(depth[iy.min(ny - 1) * nx + ix.min(nx - 1)]);
+        let n = nx * ny;
+        let mut g = Grid { nx, ny, step, cells, budget: 0, res, x0, y0, px: Vec::with_capacity(n), py: Vec::with_capacity(n), pz: Vec::with_capacity(n), col: Vec::with_capacity(n), lit: Vec::with_capacity(n) };
+        for iy in 0..ny {
+            for ix in 0..nx {
+                g.px.push((x0 + (ix as f64 + 0.5) * res) as f32);
+                g.py.push((y0 + (iy as f64 + 0.5) * res) as f32);
+                let d = at(ix, iy);
+                if d >= t - 1e-6 {
+                    g.pz.push(-t as f32); // through-cut: the table
+                    g.col.push(Color32::from_rgb(40, 42, 46));
+                    g.lit.push(None);
+                } else {
+                    g.pz.push(-d as f32);
+                    g.col.push(Color32::BLACK); // set per frame (`shade`)
+                    let (r, gr, b) = wood(d, t);
+                    let (gx, gy) = ((at(ix + 1, iy) - at(ix.saturating_sub(1), iy)) / (2.0 * res), (at(ix, iy + 1) - at(ix, iy.saturating_sub(1))) / (2.0 * res));
+                    g.lit.push(Some(([r as f32, gr as f32, b as f32], [gx as f32, gy as f32])));
+                }
+            }
+        }
+        g
+    }
+
+    /// the field's extent on the board (inches)
+    fn field(&self) -> (f64, f64, f64, f64) {
+        (self.x0, self.y0, self.x0 + self.nx as f64 * self.res, self.y0 + self.ny as f64 * self.res)
+    }
+
+    fn shade(&mut self, light: [f32; 3], zs: f32) {
+        for (c, l) in self.col.iter_mut().zip(&self.lit) {
+            if let Some((wood, [gx, gy])) = l {
+                let (gx, gy) = (gx * zs, gy * zs);
+                let lambert = ((gx * light[0] + gy * light[1] + light[2]) / (gx * gx + gy * gy + 1.0).sqrt()).max(0.0);
+                let k = (0.35 + 0.65 * lambert) * 255.0;
+                *c = Color32::from_rgb((wood[0] * k) as u8, (wood[1] * k) as u8, (wood[2] * k) as u8);
+            }
+        }
+    }
+
+    /// Its vertices and squares into `mesh`, far corner first (`order` = columns, rows increasing). Squares wholly
+    /// inside `skip` (a detail window drawn over this one) are left out.
+    fn emit(&self, mesh: &mut Mesh, project: &impl Fn(f64, f64, f64) -> Pos2, order: (bool, bool), skip: Option<[usize; 4]>) {
+        let base = mesh.vertices.len() as u32;
+        for i in 0..self.px.len() {
+            mesh.colored_vertex(project(self.px[i] as f64, self.py[i] as f64, self.pz[i] as f64), self.col[i]);
+        }
+        let (nx, ny) = (self.nx, self.ny);
+        let inside = |ix: usize, iy: usize| {
+            skip.is_some_and(|w| {
+                let (cx0, cy0) = (self.cells[0] + ix * self.step, self.cells[1] + iy * self.step);
+                cx0 >= w[0] && cy0 >= w[1] && cx0 + 2 * self.step <= w[2] && cy0 + 2 * self.step <= w[3]
+            })
+        };
+        for j in 0..ny - 1 {
+            let iy = if order.1 { j } else { ny - 2 - j };
+            for i in 0..nx - 1 {
+                let ix = if order.0 { i } else { nx - 2 - i };
+                if inside(ix, iy) {
+                    continue;
+                }
+                let a = base + (iy * nx + ix) as u32;
+                let (b, c, d) = (a + 1, a + nx as u32, a + nx as u32 + 1);
+                mesh.add_triangle(a, b, c);
+                mesh.add_triangle(b, d, c);
+            }
+        }
+    }
+}
 
 pub use gcarve_ui::nav::{Act, Nav};
 
@@ -36,16 +154,15 @@ pub struct View3d {
     /// screen offset of the projection centre (px), Qt panX / panY
     pan: egui::Vec2,
     frame: u64,
-    nx: usize,
-    ny: usize,
-    /// grid vertices: world xyz + colour
-    px: Vec<f32>,
-    py: Vec<f32>,
-    pz: Vec<f32>,
-    col: Vec<Color32>,
-    /// grid vertices: unlit wood colour and the surface slope (d depth / dx, dy); None = cut through (colour as is)
-    lit: Vec<Option<([f32; 3], [f32; 2])>>,
-    /// board box (sides + bottom + the uncut rim) appended after the grid
+    /// the whole carved surface, coarse enough to stay quick
+    coarse: Grid,
+    /// zoomed in and still for a moment: the part on screen again at full detail, drawn over `coarse`
+    detail: Option<Grid>,
+    /// when the camera last moved, and where it was
+    quiet: f64,
+    last_view: [f32; 8],
+    /// board box (sides, bottom, the uncut rim round the field): vertices and triangles
+    skirt_v: Vec<([f32; 3], Color32)>,
     skirt: Vec<[u32; 3]>,
     bw: f64,
     bh: f64,
@@ -54,7 +171,7 @@ pub struct View3d {
 
 impl Default for View3d {
     fn default() -> Self {
-        View3d { want_trace: false, yaw: 35.0, pitch: 55.0, zoom: 1.0, z_scale: 1.0, show: SimShow::default(), wheel: Default::default(), perspective: false, nav: Nav::Fusion, zoom_reverse: false, pan: egui::Vec2::ZERO, frame: u64::MAX, nx: 0, ny: 0, px: Vec::new(), py: Vec::new(), pz: Vec::new(), col: Vec::new(), lit: Vec::new(), skirt: Vec::new(), bw: 1.0, bh: 1.0, bt: 0.1 }
+        View3d { want_trace: false, yaw: 35.0, pitch: 55.0, zoom: 1.0, z_scale: 1.0, show: SimShow::default(), wheel: Default::default(), perspective: false, nav: Nav::Fusion, zoom_reverse: false, pan: egui::Vec2::ZERO, frame: u64::MAX, coarse: Grid::default(), detail: None, quiet: 0.0, last_view: [0.0; 8], skirt_v: Vec::new(), skirt: Vec::new(), bw: 1.0, bh: 1.0, bt: 0.1 }
     }
 }
 
@@ -179,56 +296,17 @@ impl View3d {
         let hf = &p.hf;
         let m = &p.material;
         (self.bw, self.bh, self.bt) = (m.w, m.h, m.t);
-        let mut step = 1;
-        while (hf.nx as usize / step) * (hf.ny as usize / step) > MAX_QUADS {
-            step += 1;
-        }
-        let nx = 2.max(hf.nx as usize / step);
-        let ny = 2.max(hf.ny as usize / step);
-        let mut lo = HeightField { nx: nx as i32, ny: ny as i32, res: hf.res * step as f64, x0: hf.x0, y0: hf.y0, depth: vec![0.0; nx * ny] };
-        for iy in 0..ny {
-            for ix in 0..nx {
-                // the block's centre cell: walls stay where they are. The deepest cell of the block (as before) widened
-                // every cut by up to a block and swallowed thin strips and tabs between cuts (owner, 2026-10-19)
-                let sx = (hf.nx as usize - 1).min(ix * step + step / 2) as i32;
-                let sy = (hf.ny as usize - 1).min(iy * step + step / 2) as i32;
-                lo.depth[iy * nx + ix] = hf.at(sx, sy);
-            }
-        }
-        let n = nx * ny;
-        self.lit = Vec::with_capacity(n);
-        let at = |ix: usize, iy: usize| f64::from(lo.depth[iy.min(ny - 1) * nx + ix.min(nx - 1)]);
-        self.px = Vec::with_capacity(n + 12);
-        self.py = Vec::with_capacity(n + 12);
-        self.pz = Vec::with_capacity(n + 12);
-        self.col = Vec::with_capacity(n + 12);
-        for iy in 0..ny {
-            for ix in 0..nx {
-                let v = iy * nx + ix;
-                self.px.push((lo.x0 + (ix as f64 + 0.5) * lo.res) as f32);
-                self.py.push((lo.y0 + (iy as f64 + 0.5) * lo.res) as f32);
-                let d = f64::from(lo.depth[v]);
-                if d >= m.t - 1e-6 {
-                    self.pz.push(-m.t as f32); // through-cut: the table
-                    self.col.push(Color32::from_rgb(40, 42, 46));
-                    self.lit.push(None);
-                } else {
-                    self.pz.push(-lo.depth[v]);
-                    self.col.push(Color32::BLACK); // set per frame (`ui`)
-                    let (r, g, b) = wood(d, m.t);
-                    let (gx, gy) = ((at(ix + 1, iy) - at(ix.saturating_sub(1), iy)) / (2.0 * lo.res), (at(ix, iy + 1) - at(ix, iy.saturating_sub(1))) / (2.0 * lo.res));
-                    self.lit.push(Some(([r as f32, g as f32, b as f32], [gx as f32, gy as f32])));
-                }
-            }
-        }
-        (self.nx, self.ny) = (nx, ny);
+        // while the cut plays the surface is rebuilt every frame: a lighter mesh then, the full one when it stops
+        let budget = if p.playing { PLAYING_QUADS } else { MAX_QUADS };
+        let all = [0, 0, hf.nx.max(1) as usize, hf.ny.max(1) as usize];
+        self.coarse = Grid::build(hf, m.t, all, Grid::step_for(all, budget));
+        self.coarse.budget = budget;
+        self.detail = None;
         // skirt: board box + the uncut rim between the field and the board edge
+        self.skirt_v.clear();
         let mut add = |x: f64, y: f64, z: f64, c: Color32| {
-            self.px.push(x as f32);
-            self.py.push(y as f32);
-            self.pz.push(z as f32);
-            self.col.push(c);
-            (self.px.len() - 1) as u32
+            self.skirt_v.push(([x as f32, y as f32, z as f32], c));
+            (self.skirt_v.len() - 1) as u32
         };
         let side = Color32::from_rgb(150, 120, 80);
         let bottom = Color32::from_rgb(90, 72, 48);
@@ -242,7 +320,7 @@ impl View3d {
         let b10 = add(x1, 0.0, -m.t, bottom);
         let b11 = add(x1, y1, -m.t, bottom);
         let b01 = add(0.0, y1, -m.t, bottom);
-        let (fx0, fy0, fx1, fy1) = (lo.x0, lo.y0, lo.x0 + nx as f64 * lo.res, lo.y0 + ny as f64 * lo.res);
+        let (fx0, fy0, fx1, fy1) = self.coarse.field();
         let r00 = add(fx0, fy0, 0.0, top);
         let r10 = add(fx1, fy0, 0.0, top);
         let r11 = add(fx1, fy1, 0.0, top);
@@ -309,7 +387,8 @@ impl View3d {
                 self.zoom_at(factor, at, rect.center());
             }
         }
-        if self.frame != p.frame || self.px.is_empty() {
+        let stopped = !p.playing && self.coarse.budget < MAX_QUADS;
+        if self.frame != p.frame || self.coarse.px.is_empty() || stopped {
             self.rebuild(p);
         }
         // orthographic orbit camera about the board centre
@@ -333,17 +412,43 @@ impl View3d {
         let (la, lb, lc) = (-0.45 / 1.0003, 0.6 / 1.0003, 0.66 / 1.0003); // along screen right, screen up, towards the viewer
         let light = [(la * cy + lb * sy * sp - lc * sy * cp) as f32, (-la * sy + lb * cy * sp - lc * cy * cp) as f32, (lb * cp + lc * sp) as f32];
         let zs = self.z_scale as f32;
-        for (c, l) in self.col.iter_mut().zip(&self.lit) {
-            if let Some((wood, [gx, gy])) = l {
-                let (gx, gy) = (gx * zs, gy * zs);
-                let lambert = ((gx * light[0] + gy * light[1] + light[2]) / (gx * gx + gy * gy + 1.0).sqrt()).max(0.0);
-                let k = (0.35 + 0.65 * lambert) * 255.0;
-                *c = Color32::from_rgb((wood[0] * k) as u8, (wood[1] * k) as u8, (wood[2] * k) as u8);
+        // zoomed in and the camera still for a moment: the part of the field on screen again at full detail
+        let now = ui.input(|i| i.time);
+        let view = [self.yaw as f32, self.pitch as f32, self.zoom as f32, self.pan.x, self.pan.y, rect.width(), rect.height(), self.perspective as u8 as f32];
+        if view != self.last_view {
+            (self.last_view, self.quiet) = (view, now);
+        }
+        if p.playing || self.coarse.step <= 1 {
+            self.detail = None;
+        } else if now - self.quiet < 0.3 {
+            ui.ctx().request_repaint_after(std::time::Duration::from_millis(320));
+        } else {
+            // the board points under the screen corners (orthographic, on the top face), with a margin for perspective
+            let hf = &p.hf;
+            let under = |q: Pos2| {
+                let (rx, vy) = ((q.x as f64 - ox) / scale, (oy - q.y as f64) / scale);
+                let ry = vy / sp.max(0.05);
+                (rx * cy + ry * sy + cxw, -rx * sy + ry * cy + cyw)
+            };
+            let pts = [rect.left_top(), rect.right_top(), rect.left_bottom(), rect.right_bottom()].map(under);
+            let (mut x0, mut y0, mut x1, mut y1) = (f64::MAX, f64::MAX, f64::MIN, f64::MIN);
+            for (x, y) in pts {
+                (x0, y0, x1, y1) = (x0.min(x), y0.min(y), x1.max(x), y1.max(y));
+            }
+            let grow = if self.perspective { 0.5 } else { 0.15 };
+            let (gx, gy) = ((x1 - x0) * grow, (y1 - y0) * grow);
+            let cell = |v: f64, o: f64, n: i32| (((v - o) / hf.res).floor().max(0.0) as usize).min(n.max(1) as usize);
+            let win = [cell(x0 - gx, hf.x0, hf.nx), cell(y0 - gy, hf.y0, hf.ny), cell(x1 + gx, hf.x0, hf.nx), cell(y1 + gy, hf.y0, hf.ny)];
+            let step = Grid::step_for(win, MAX_QUADS);
+            if win[2] - win[0] < 4 || win[3] - win[1] < 4 || step >= self.coarse.step {
+                self.detail = None;
+            } else if self.detail.as_ref().is_none_or(|d| d.cells != win || d.step != step) {
+                self.detail = Some(Grid::build(hf, p.material.t, win, step));
             }
         }
         let mut mesh = Mesh::default();
-        for i in 0..self.px.len() {
-            mesh.colored_vertex(project(self.px[i] as f64, self.py[i] as f64, self.pz[i] as f64), self.col[i]);
+        for (v, c) in &self.skirt_v {
+            mesh.colored_vertex(project(v[0] as f64, v[1] as f64, v[2] as f64), *c);
         }
         for t in &self.skirt {
             mesh.add_triangle(t[0], t[1], t[2]);
@@ -351,17 +456,12 @@ impl View3d {
         // painter's order: far corner first. Depth into the screen = x·sy + y·cy, so rows get farther as y grows when
         // cy > 0 (then the last row goes first), columns as x grows when sy > 0. The other way round a pocket's near
         // wall is painted over the board in front of it and the pocket reads as a raised block.
-        let (nx, ny) = (self.nx, self.ny);
-        let (x_inc, y_inc) = (sy <= 0.0, cy <= 0.0);
-        for j in 0..ny - 1 {
-            let iy = if y_inc { j } else { ny - 2 - j };
-            for i in 0..nx - 1 {
-                let ix = if x_inc { i } else { nx - 2 - i };
-                let a = (iy * nx + ix) as u32;
-                let (b, c, d) = (a + 1, a + nx as u32, a + nx as u32 + 1);
-                mesh.add_triangle(a, b, c);
-                mesh.add_triangle(b, d, c);
-            }
+        let order = (sy <= 0.0, cy <= 0.0);
+        self.coarse.shade(light, zs);
+        self.coarse.emit(&mut mesh, &project, order, self.detail.as_ref().map(|d| d.cells));
+        if let Some(d) = &mut self.detail {
+            d.shade(light, zs);
+            d.emit(&mut mesh, &project, order, None);
         }
         painter.add(Shape::mesh(mesh));
         if paths {

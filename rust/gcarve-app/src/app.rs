@@ -87,6 +87,10 @@ pub struct App {
     view3d: View3d,
     /// the simulation is about to be rebuilt: this frame shows "Preparing the simulation" first
     sim_wait: bool,
+    /// a toolpath folder's Export: only its toolpaths are exported (None = all)
+    export_group: Option<String>,
+    /// View › All Sheets: every sheet side by side (allsheets.rs), remembered per device
+    all_sheets: bool,
     /// files picked / dropped, read one frame after the "Opening…" card is shown (`busy_card`)
     opening: Vec<Picked>,
     open_wait: bool,
@@ -185,7 +189,7 @@ impl App {
         gcarve_ui::help::set_download_page("https://gcarve.app/download/");
         let mut app = App { files, mode, canvas: new_canvas(&prefs), left_open: ui_state.tool_rail, right_open: ui_state.side_panel, status: String::new(), message: "Open a VCarve project (.crv), an SVG, DXF or PDF, or draw with R / E / P.".into(), name: "Untitled".into(), shell: Shell::new(), frame: 0, gen: None, gen_rev: 0, lib_ready: false, lib_pushed: 0, shares: Vec::new(), shares_open: false, gen_draft: None, export: None, cloud: Cloud::new(), cloud_id: String::new(), account: Default::default(), help: Default::default(), movie: std::env::var("GCARVE_MOVIE").ok().map(|d| (d.into(), 0, std::env::var("GCARVE_MOVIE_FRAMES").ok().and_then(|n| n.parse().ok()).unwrap_or(600), false)), projects: Default::default(), dialogs: Dialogs::default(), select_all_on_load: false, prev_tool: Tool::Select, dev_measure: false,
             prefs_seen: prefs.synced.clone(), prefs_push_at: None, prefs_from_server: false,
-            cam: CamDialogs { prefs, ..Default::default() }, posts: UserPosts::load(), templates: Default::default(), player: Player::default(), view3d: View3d::load(shot), sim_wait: false, opening: Vec::new(), open_wait: false, gen_wait: false, puck_tried: shot, puck_filter: Default::default(), puck_trace: Default::default(), view_3d: false, watch_pending: false, show_sim: false, shot, pending_dialog: String::new(), recover: if shot { None } else { crate::recover::load() }, recover_at: None, recover_rev: 0, last_dirty: false, last_open: false,
+            cam: CamDialogs { prefs, ..Default::default() }, posts: UserPosts::load(), templates: Default::default(), player: Player::default(), view3d: View3d::load(shot), sim_wait: false, export_group: None, all_sheets: !shot && crate::store::load("all-sheets").as_deref() == Some("1") || std::env::var("GCARVE_ALL_SHEETS").is_ok(), opening: Vec::new(), open_wait: false, gen_wait: false, puck_tried: shot, puck_filter: Default::default(), puck_trace: Default::default(), view_3d: false, watch_pending: false, show_sim: false, shot, pending_dialog: String::new(), recover: if shot { None } else { crate::recover::load() }, recover_at: None, recover_rev: 0, last_dirty: false, last_open: false,
             project_path: None,
             #[cfg(not(target_arch = "wasm32"))]
             jobs: crate::jobs::Jobs::load(),
@@ -815,7 +819,15 @@ impl App {
             }
             ("undo", _) => self.canvas.undo(),
             ("redo", _) => self.canvas.redo(),
-            ("export", _) => self.start_export(false),
+            ("export", _) => {
+                self.export_group = None;
+                self.start_export(false);
+            }
+            ("exportgroup", g) => {
+                // a folder's Export button: only its toolpaths go into the files
+                self.export_group = Some(g.to_string()).filter(|g| self.canvas.doc.ops.iter().any(|o| o.op_group == *g));
+                self.start_export(false);
+            }
             // ---- CAM dialogs / simulation ----
             ("aircut", _) => self.start_export(true),
             ("setupsheet", _) => {
@@ -926,6 +938,19 @@ impl App {
             }
             ("text", "curves") => self.canvas.convert_text_to_curves(),
             ("paths", _) => self.canvas.show_paths = !self.canvas.show_paths,
+            ("allsheets", _) => {
+                self.all_sheets = !self.all_sheets;
+                crate::store::save("all-sheets", if self.all_sheets { "1" } else { "0" });
+                self.canvas.all_sheets = self.all_sheets;
+                self.canvas.zoom_fit();
+                self.message = if !self.all_sheets {
+                    "One sheet at a time: the tabs below switch sheets".into()
+                } else if self.canvas.doc.sheets.len() > 1 {
+                    "All sheets: click a sheet to work on it, drag vectors onto another sheet to move them there".into()
+                } else {
+                    "All sheets: add a sheet (+ by the tabs) and they show side by side".into()
+                };
+            }
             ("width", _) => self.canvas.show_width = !self.canvas.show_width,
             ("startcard", "close") => self.canvas.card_closed = true,
             ("guides", "clear") => {
@@ -1022,6 +1047,10 @@ impl App {
             }
             ("sheet", v) => {
                 if let Ok(i) = v.parse::<i32>() {
+                    if self.canvas.showing_all_sheets() && (0..self.canvas.doc.sheets.len() as i32).contains(&i) {
+                        self.canvas.switch_sheet_keep_view(i as usize); // all sheets shown: nothing moves on screen
+                        return;
+                    }
                     self.canvas.doc.set_active_sheet(i);
                     self.canvas.sel.clear();
                     self.canvas.apply_bindings(); // thickness / board-w are this sheet's (Qt switchSheet)
@@ -1435,7 +1464,7 @@ impl eframe::App for App {
                 }
             }
             egui::Panel::bottom("sheets").resizable(false).exact_size(28.0).frame(egui::Frame::new().fill(theme::PANEL)).show(ui, |ui| {
-                shell::sheet_tabs(ui, &mut self.shell, &self.canvas.doc);
+                shell::sheet_tabs(ui, &mut self.shell, &self.canvas.doc, self.all_sheets);
             });
             egui::CentralPanel::default().frame(egui::Frame::new()).show(ui, |ui| {
                 let rect = ui.available_rect_before_wrap();
@@ -1452,6 +1481,7 @@ impl eframe::App for App {
                     if simulating && show.paths != crate::view3d::ShowPaths::All {
                         self.canvas.show_paths = false;
                     }
+                    self.canvas.all_sheets = self.all_sheets && !simulating; // the simulation is of the active sheet
                     self.status = self.canvas.ui(ui, self.gen.as_ref(), simulating.then_some(&self.player.view));
                     self.canvas.show_paths = previews;
                     self.puck(ui.ctx(), false);
@@ -1813,6 +1843,21 @@ impl App {
         let gen = self.gen.as_ref()?;
         let ts = chrono::Local::now().format("%I:%M %p, %A %B %-d %Y").to_string();
         let post = pipeline::active_post(&self.canvas.doc, &|id| self.posts.find(id));
+        if let Some(g) = &self.export_group {
+            // one folder: the document and its toolpaths with only that folder's toolpaths, files named after it
+            let keep: Vec<bool> = self.canvas.doc.ops.iter().map(|o| o.op_group == *g).collect();
+            let mut doc = self.canvas.doc.clone();
+            let mut k = keep.iter();
+            doc.ops.retain(|_| *k.next().unwrap_or(&false));
+            let only = pipeline::Generated {
+                paths: gen.paths.iter().zip(&keep).filter(|(_, k)| **k).map(|(x, _)| x.clone()).collect(),
+                minutes: gen.minutes.iter().zip(&keep).filter(|(_, k)| **k).map(|(x, _)| *x).collect(),
+                warnings: gen.warnings.clone(),
+                draft_tool: -1,
+            };
+            let name = format!("{}_{}", self.name, g.replace(|c: char| !c.is_alphanumeric() && c != '-' && c != '_', "-"));
+            return Some(pipeline::export_tiled(&doc, &only, &name, &ts, raise, &post, tiling));
+        }
         Some(pipeline::export_tiled(&self.canvas.doc, gen, &self.name, &ts, raise, &post, tiling))
     }
 

@@ -327,7 +327,17 @@ impl Canvas {
         self.mutated();
     }
 
-    fn press_select(&mut self, s: Pos2, w: Pt, shift: bool, drag: bool) {
+    fn press_select(&mut self, s: Pos2, mut w: Pt, shift: bool, drag: bool) {
+        // all sheets shown: a press on another sheet's board (not on a shape of this one) makes that sheet active
+        if self.hit_shape(w).is_none() {
+            if let Some(j) = self.other_sheet_at(w) {
+                let d = self.switch_sheet_keep_view(j);
+                w = w + d;
+                if drag {
+                    self.press_w = w;
+                }
+            }
+        }
         if let Some(dh) = self.hit_dimension(s) {
             self.sel_dim = dh as i32;
             self.sel.clear();
@@ -816,6 +826,10 @@ impl Canvas {
             if matches!(self.drag, Drag::Scale(_) | Drag::Rotate) {
                 let m = self.xf_last;
                 self.texts_follow(&m);
+            }
+            // all sheets shown: a selection dropped on another sheet's board moves to that sheet
+            if self.drag == Drag::Move && self.drop_on_other_sheet().is_some() {
+                self.gen_stale = false;
             }
             self.drag = Drag::None;
             self.snap_mark = None;

@@ -270,6 +270,69 @@ fn along(path: &[Pt], lens: &[f64], p: Pt, reach: f64) -> Option<f64> {
     (h.d <= reach && h.seg + 1 < lens.len()).then(|| lens[h.seg] + h.t * (lens[h.seg + 1] - lens[h.seg]))
 }
 
+/// Distances along the path of its corners: where it turns by more than 35° within `reach` (an outside cut rounds
+/// each corner over the bit's radius, so the turn is spread over many short steps; long gentle curves have none).
+fn corner_stations(path: &[Pt], lens: &[f64], reach: f64) -> Vec<f64> {
+    let n = path.len();
+    let closed = n > 2 && dist(path[0], path[n - 1]) < 1e-9;
+    // signed turn at each vertex
+    let mut turns: Vec<(f64, f64)> = Vec::new(); // (station, turn in radians)
+    for i in 0..n {
+        let (a, b, c) = if i > 0 && i + 1 < n {
+            (path[i - 1], path[i], path[i + 1])
+        } else if i == 0 && closed {
+            (path[n - 2], path[0], path[1]) // the closing point counts once, as the first
+        } else {
+            continue;
+        };
+        let (u, v) = (b - a, c - b);
+        if u.x.hypot(u.y) < 1e-9 || v.x.hypot(v.y) < 1e-9 {
+            continue;
+        }
+        let t = (u.x * v.y - u.y * v.x).atan2(u.x * v.x + u.y * v.y);
+        if t.abs() > 0.5f64.to_radians() {
+            turns.push((lens[i], t));
+        }
+    }
+    // runs of turning points closer than `reach` to the next: one corner each when they add up to enough
+    let mut out = Vec::new();
+    let mut i = 0;
+    while i < turns.len() {
+        let (mut j, mut sum) = (i, turns[i].1);
+        while j + 1 < turns.len() && turns[j + 1].0 - turns[j].0 < reach && (turns[j + 1].1 > 0.0) == (turns[i].1 > 0.0) {
+            j += 1;
+            sum += turns[j].1;
+        }
+        if sum.abs() > 35f64.to_radians() {
+            out.push((turns[i].0 + turns[j].0) / 2.0);
+        }
+        i = j + 1;
+    }
+    out
+}
+
+/// A tab centred at `c` moved to the nearest place within `reach` whose span (± `half`) keeps clear of every corner;
+/// `c` itself when there is none.
+fn off_corners(c: f64, corners: &[f64], half: f64, reach: f64, l: f64, closed: bool) -> f64 {
+    let gap_to = |s: f64, k: f64| {
+        let d = (s - k).abs();
+        if closed { d.min(l - d) } else { d }
+    };
+    let free = |s: f64| (closed || (s - half >= 0.0 && s + half <= l)) && corners.iter().all(|&k| gap_to(s, k) >= half);
+    let step = (half / 4.0).max(1e-3);
+    let mut d = 0.0;
+    while d <= reach {
+        for s in [c + d, c - d] {
+            let s = if closed { s.rem_euclid(l) } else { s };
+            if free(s) {
+                return s;
+            }
+        }
+        d += step;
+    }
+    c
+}
+
 /// Builds the moves for one cutter path. closed: pts[0] == pts.last().
 fn cut_path(path: &[Pt], closed: bool, op: &Op, tool: &Tool, m: &Material, warn: &mut Vec<String>) -> Toolpath {
     let stepdown = if op.stepdown > 0.0 { op.stepdown } else { tool.stepdown };
@@ -288,8 +351,13 @@ fn cut_path(path: &[Pt], closed: bool, op: &Op, tool: &Tool, m: &Material, warn:
         if w * op.tab_count as f64 >= l {
             warn.push(format!("{}: tabs don't fit, skipped", op.name));
         } else {
+            let gap = l / op.tab_count as f64;
+            let corners = if op.tab_corners { corner_stations(path, &lens, tool.diameter.max(0.05)) } else { Vec::new() };
             for i in 0..op.tab_count {
-                let c = (i as f64 + 0.5) * l / op.tab_count as f64;
+                let mut c = (i as f64 + 0.5) * gap;
+                if !corners.is_empty() {
+                    c = off_corners(c, &corners, w / 2.0 + tool.diameter / 2.0, gap / 2.0, l, closed);
+                }
                 spans.push((c - w / 2.0, c + w / 2.0));
             }
         }
@@ -297,7 +365,9 @@ fn cut_path(path: &[Pt], closed: bool, op: &Op, tool: &Tool, m: &Material, warn:
     let local = |s: f64| if closed && l > 0.0 { s - (s / l).floor() * l } else { s };
     let in_tab = |s: f64| {
         let s = local(s);
-        spans.iter().any(|&(a, b)| s > a && s < b)
+        // a tab moved next to the start of a closed path reaches over it
+        let wraps = |a: f64, b: f64| closed && ((s + l > a && s + l < b) || (s - l > a && s - l < b));
+        spans.iter().any(|&(a, b)| (s > a && s < b) || wraps(a, b))
     };
 
     // laps: nominal Z per point
@@ -2709,5 +2779,35 @@ mod last_pass_tests {
         assert!(x0.abs() < 1e-6 && y0.abs() < 1e-6, "{x0} {y0}");
         let (x1, y1) = start(true);
         assert!((x1 - 4.0).abs() < 1e-6 && (y1 - 4.0).abs() < 1e-6, "{x1} {y1}");
+    }
+}
+
+#[cfg(test)]
+mod tab_tests {
+    use super::*;
+
+    #[test]
+    fn spread_tabs_slide_off_corners() {
+        // the cutter path round a 4 × 1 rectangle: corners rounded over a 0.125 radius, as an outside cut makes them
+        let mut path = Vec::new();
+        let r = 0.125;
+        for (cx, cy, a0) in [(4.0, 0.0, -90.0f64), (4.0, 1.0, 0.0), (0.0, 1.0, 90.0), (0.0, 0.0, 180.0)] {
+            for k in 0..=8 {
+                let a = (a0 + 90.0 * k as f64 / 8.0).to_radians();
+                path.push(pt(cx + r * a.cos(), cy + r * a.sin()));
+            }
+        }
+        path.push(path[0]);
+        let lens = lengths(&path);
+        let l = *lens.last().unwrap();
+        let corners = corner_stations(&path, &lens, 0.25);
+        assert_eq!(corners.len(), 4, "{corners:?}");
+        // a tab centred on a corner moves until its span (± 0.3) is clear of it; one on a straight run stays
+        let c = off_corners(corners[1], &corners, 0.3, 1.0, l, true);
+        assert!(corners.iter().all(|&k| (c - k).abs().min(l - (c - k).abs()) >= 0.3 - 1e-9), "{c} {corners:?}");
+        let mid = (corners[0] + corners[1]) / 2.0;
+        if (corners[1] - corners[0]) > 1.0 {
+            assert_eq!(off_corners(mid, &corners, 0.3, 1.0, l, true), mid);
+        }
     }
 }

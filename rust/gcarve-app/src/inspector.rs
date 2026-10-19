@@ -434,29 +434,130 @@ fn toolpaths(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Option
             ui.add(egui::Label::new(RichText::new("Select shapes, then pick a toolpath type above.").color(theme::TEXT.gamma_multiply(0.6))).wrap());
         });
     }
-    // Group: none / by bit (= one file per bit at export, with the tool-changer number) / by the user's operations
+    // what each toolpath cuts on every sheet, and on which layers (worked out again only when the document changes)
+    let nsheets = doc.sheets.len().max(1);
+    if sh.tp_usage.0 != canvas.rev || sh.tp_usage.1.len() != doc.ops.len() || sh.tp_usage.1.first().is_some_and(|u| u.0.len() != nsheets) {
+        sh.tp_usage = (canvas.rev, usage(doc));
+    }
+    let used = sh.tp_usage.1.clone();
+    let active = doc.active_sheet.max(0) as usize;
+    // one row of dropdowns: view (your folders / a folder per sheet / bits), which sheet, which layer; + new folder
     ui.horizontal(|ui| {
-        ui.label(RichText::new("Group").size(11.0).color(theme::TEXT_DIM));
-        for (g, name) in ["None", "Bit", "Operation"].into_iter().enumerate() {
-            if ui.selectable_label(sh.tp_group == g as u8, name).clicked() {
-                sh.tp_group = g as u8;
+        ui.spacing_mut().item_spacing.x = 4.0;
+        let views = [(VIEW_FOLDERS, "Folders"), (VIEW_SHEETS, "By sheet"), (VIEW_BITS, "By bit")];
+        let current = views.iter().find(|v| v.0 == sh.tp_group).map_or("Folders", |v| v.1);
+        crate::widgets::combo_box("tp-view").selected_text(current).width(76.0).show_ui(ui, |ui| {
+            for (g, name) in views {
+                ui.selectable_value(&mut sh.tp_group, g, name);
             }
+        }).response.tip("Folders: yours, drag toolpaths in. By sheet: a heading per sheet with the toolpaths that cut there. By bit: one G-code file per bit");
+        if nsheets > 1 {
+            let label = if sh.tp_this_sheet { format!("Sheet {}", active + 1) } else { "All sheets".to_string() };
+            crate::widgets::combo_box("tp-sheet").selected_text(label).width(76.0).show_ui(ui, |ui| {
+                ui.selectable_value(&mut sh.tp_this_sheet, false, "All sheets");
+                ui.selectable_value(&mut sh.tp_this_sheet, true, format!("Sheet {} (this one)", active + 1));
+            }).response.tip("Every toolpath (the ones with nothing on this sheet greyed), or only the ones that cut on this sheet");
         }
-        if sh.tp_group == 1 && !doc.ops.is_empty() && ui.small_button("Number bits").tip("Give each bit here without a tool-changer number the lowest free one (T1, T2…)").clicked() {
-            acts.push(TpAct::AutoSlots);
-        }
+        let layers: Vec<(i32, String)> = std::iter::once((-1, "All layers".to_string())).chain(doc.layers.iter().enumerate().map(|(i, l)| (i as i32, l.name.clone()))).collect();
+        let current = layers.iter().find(|l| l.0 == sh.tp_layer).map_or("All layers".to_string(), |l| l.1.clone());
+        crate::widgets::combo_box("tp-layer").selected_text(current).width(76.0).show_ui(ui, |ui| {
+            for (i, n) in &layers {
+                ui.selectable_value(&mut sh.tp_layer, *i, n);
+            }
+        }).response.tip("Only the toolpaths that cut vectors on this layer");
+        ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+            if sh.tp_group == VIEW_BITS && !doc.ops.is_empty() && ui.small_button("Number").tip("Give each bit here without a tool-changer number the lowest free one (T1, T2…)").clicked() {
+                acts.push(TpAct::AutoSlots);
+            }
+        });
     });
-    let groups: Vec<(String, Vec<usize>)> = match sh.tp_group {
-        1 => group_ops(doc, |o| o.tool.to_string()),
-        2 => group_ops(doc, |o| o.op_group.clone()),
-        _ => vec![(String::new(), (0..doc.ops.len()).collect())],
+    // a new folder's name (+ Folder, or Group… for the picked toolpaths)
+    if let Some(mut name) = sh.new_folder.take() {
+        let mut keep = true;
+        ui.horizontal(|ui| {
+            let r = ui.add(egui::TextEdit::singleline(&mut name).hint_text("Folder name").desired_width(150.0));
+            r.request_focus();
+            let ok = !name.trim().is_empty();
+            if ok && (ui.small_button("Make").clicked() || (r.lost_focus() && ui.input(|i| i.key_pressed(egui::Key::Enter)))) {
+                if sh.op_multi.is_empty() {
+                    sh.empty_folders.insert(name.trim().to_string());
+                    keep = false;
+                } else {
+                    acts.push(TpAct::GroupMany(sh.op_multi.iter().copied().collect(), name.trim().to_string()));
+                }
+            } else if ui.small_button("Cancel").clicked() || ui.input(|i| i.key_pressed(egui::Key::Escape)) {
+                keep = false;
+            }
+        });
+        if keep {
+            sh.new_folder = Some(name);
+        }
+    }
+    // several toolpaths picked (⌘ / Shift-click): put them in a folder, new or existing
+    sh.op_multi.retain(|&i| i < doc.ops.len());
+    let names: Vec<String> = {
+        let mut n: Vec<String> = group_ops(doc, |o| o.op_group.clone()).into_iter().map(|(k, _)| k).filter(|k| !k.is_empty()).collect();
+        n.extend(sh.empty_folders.iter().filter(|f| !n.contains(f)).cloned().collect::<Vec<_>>());
+        n
     };
-    let names: Vec<String> = group_ops(doc, |o| o.op_group.clone()).into_iter().map(|(k, _)| k).filter(|k| !k.is_empty()).collect();
+    if !sh.op_multi.is_empty() && sh.new_folder.is_none() {
+        ui.horizontal(|ui| {
+            ui.label(RichText::new(format!("{} picked", sh.op_multi.len())).size(11.0).color(theme::TEXT_DIM));
+            if ui.small_button("Group…").tip("Put the picked toolpaths in a new folder").clicked() {
+                sh.new_folder = Some(String::new());
+            }
+            if !names.is_empty() {
+                ui.menu_button("Move to ▾", |ui| {
+                    for g in names.iter().map(String::as_str).chain([""]) {
+                        if ui.button(if g.is_empty() { "No folder" } else { g }).clicked() {
+                            acts.push(TpAct::GroupMany(sh.op_multi.iter().copied().collect(), g.into()));
+                            ui.close();
+                        }
+                    }
+                });
+            }
+            if ui.small_button("Clear").clicked() {
+                sh.op_multi.clear();
+            }
+        });
+    }
+    // the headings and their toolpaths, filtered
+    let shown = |i: usize| (!sh.tp_this_sheet || used[i].0.get(active).is_some_and(|&n| n > 0)) && (sh.tp_layer < 0 || used[i].1.contains(&sh.tp_layer));
+    let mut heads: Vec<(Head, Vec<usize>)> = match sh.tp_group {
+        VIEW_BITS => group_ops(doc, |o| o.tool.to_string()).into_iter().map(|(k, v)| (Head::Bit(k.parse().unwrap_or(0)), v)).collect(),
+        VIEW_SHEETS => {
+            let mut h: Vec<(Head, Vec<usize>)> = (0..nsheets).map(|j| (Head::Sheet(j), (0..doc.ops.len()).filter(|&i| used[i].0[j] > 0).collect())).collect();
+            let idle: Vec<usize> = (0..doc.ops.len()).filter(|&i| used[i].0.iter().all(|&n| n == 0)).collect();
+            if !idle.is_empty() {
+                h.push((Head::Idle, idle));
+            }
+            h
+        }
+        _ => {
+            let mut h: Vec<(Head, Vec<usize>)> = names.iter().map(|n| (Head::Folder(n.clone()), (0..doc.ops.len()).filter(|&i| doc.ops[i].op_group == *n).collect())).collect();
+            let loose: Vec<usize> = (0..doc.ops.len()).filter(|&i| doc.ops[i].op_group.is_empty()).collect();
+            if !loose.is_empty() {
+                h.push((Head::Folder(String::new()), loose));
+            }
+            h
+        }
+    };
+    for h in &mut heads {
+        h.1.retain(|&i| shown(i));
+    }
+    let filtered = sh.tp_this_sheet || sh.tp_layer >= 0;
+    if filtered && heads.iter().all(|h| h.1.is_empty()) && !doc.ops.is_empty() {
+        ui.add_space(8.0);
+        ui.label(RichText::new("No toolpath matches these filters.").color(theme::TEXT_DIM));
+    }
     ui.spacing_mut().item_spacing.y = 0.0;
-    for (key, ops) in &groups {
-        if sh.tp_group == 1 {
-            let t = key.parse::<usize>().unwrap_or(0);
-            if let Some(tool) = doc.tools.get(t) {
+    for (head, ops) in &heads {
+        // empty headings only for your own folders (somewhere to drop toolpaths), not while filtering
+        if ops.is_empty() && !(matches!(head, Head::Folder(n) if !n.is_empty()) && !filtered) {
+            continue;
+        }
+        if let Head::Bit(t) = head {
+            if let Some(tool) = doc.tools.get(*t) {
                 ui.add_space(6.0);
                 ui.horizontal(|ui| {
                     ui.label(RichText::new(&tool.name).size(11.0).family(crate::widgets::bold_family()).color(theme::TEXT));
@@ -465,30 +566,87 @@ fn toolpaths(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Option
                         let r = ui.add(egui::DragValue::new(&mut v).range(0..=99).prefix("T").custom_formatter(|n, _| if n < 1.0 { "–".into() } else { format!("{n:.0}") }))
                             .tip("Tool-changer number for this bit (T in the G-code); – = numbered in cutting order");
                         if v != tool.slot {
-                            acts.push(TpAct::Slot(t, v, r.drag_started() || !r.dragged()));
+                            acts.push(TpAct::Slot(*t, v, r.drag_started() || !r.dragged()));
                         }
                     });
                 });
             }
-        } else if sh.tp_group == 2 {
+        } else {
             ui.add_space(6.0);
-            let r = ui.label(RichText::new(if key.is_empty() { "No operation" } else { key }).size(11.0).family(crate::widgets::bold_family()).color(theme::TEXT));
-            if !key.is_empty() {
-                r.tip("Right-click to rename").context_menu(|ui| {
-                    let id = ui.id().with(("rename-op-group", key));
-                    let mut name = ui.data(|d| d.get_temp::<String>(id)).unwrap_or_else(|| key.clone());
-                    ui.label("Rename operation");
+            // heading: open / shut, name, count, eye for all; folders: export just these, rename, drop rows on it
+            let key = match head {
+                Head::Folder(n) => format!("f:{n}"),
+                Head::Sheet(j) => format!("s:{j}"),
+                _ => "idle".into(),
+            };
+            let shut = sh.folded.contains(&key);
+            let (hr, hresp) = ui.allocate_exact_size(egui::vec2(w, 24.0), egui::Sense::click());
+            let folder = if let Head::Folder(n) = head { Some(n.clone()) } else { None };
+            let drop_here = folder.is_some() && hresp.dnd_hover_payload::<usize>().is_some();
+            let here = matches!(head, Head::Sheet(j) if *j == active);
+            let p = ui.painter();
+            p.rect_filled(hr, 4.0, if drop_here { theme::ACCENT.gamma_multiply(0.35) } else if hresp.hovered() { theme::ROW_HOVER } else { Color32::TRANSPARENT });
+            icons::paint(ui, if shut { "chevron-right" } else { "chevron-down" }, egui::Rect::from_min_size(hr.left_top() + egui::vec2(4.0, 5.0), egui::vec2(14.0, 14.0)), 14.0, theme::TEXT_DIM);
+            let title = match head {
+                Head::Folder(n) if n.is_empty() => "Not in a folder".to_string(),
+                Head::Folder(n) => n.clone(),
+                Head::Sheet(j) => format!("Sheet {}{}", j + 1, if here { "  ·  this sheet" } else { "" }),
+                _ => "Cutting nothing yet".into(),
+            };
+            ui.painter().text(hr.left_center() + egui::vec2(22.0, 0.0), egui::Align2::LEFT_CENTER, format!("{title}  ({})", ops.len()), theme::font(12.0), if here { theme::ACCENT } else { theme::TEXT });
+            if let (Some(f), Some(i)) = (&folder, hresp.dnd_release_payload::<usize>()) {
+                acts.push(TpAct::Group(*i, f.clone()));
+            }
+            if hresp.clicked() {
+                if shut { sh.folded.remove(&key); } else { sh.folded.insert(key.clone()); }
+            }
+            let all_on = !ops.is_empty() && ops.iter().all(|&i| doc.ops[i].visible);
+            let br = egui::Rect::from_min_max(egui::pos2(hr.right() - 56.0, hr.top()), hr.right_bottom());
+            let mut b = ui.new_child(egui::UiBuilder::new().max_rect(br).layout(egui::Layout::right_to_left(egui::Align::Center)));
+            if !ops.is_empty() && IconButton::new(if all_on { "eye" } else { "eye-off" }).size(14.0).padding(3.0).tip(if all_on { "Hide every toolpath here" } else { "Show every toolpath here" }).show(&mut b).clicked() {
+                acts.push(TpAct::Show(ops.clone(), !all_on));
+            }
+            if let Some(f) = folder.as_ref().filter(|f| !f.is_empty()) {
+                if !ops.is_empty() && IconButton::new("export").size(14.0).padding(3.0).tip("Export only this folder's toolpaths").show(&mut b).clicked() {
+                    sh.push(format!("exportgroup:{f}"));
+                }
+                let f = f.clone();
+                hresp.tip("Click to open or shut · drag toolpaths here · right-click to rename").context_menu(|ui| {
+                    let id = ui.id().with(("rename-op-group", &f));
+                    let mut name = ui.data(|d| d.get_temp::<String>(id)).unwrap_or_else(|| f.clone());
+                    ui.label("Rename folder");
                     let e = ui.text_edit_singleline(&mut name);
                     if e.lost_focus() && ui.input(|i| i.key_pressed(egui::Key::Enter)) && !name.trim().is_empty() {
-                        acts.push(TpAct::Rename(key.clone(), name.trim().into()));
+                        acts.push(TpAct::Rename(f.clone(), name.trim().into()));
                         ui.close();
                     }
                     ui.data_mut(|d| d.insert_temp(id, name));
+                    if crate::widgets::menu_item(ui, "Remove the folder (its toolpaths stay)", "").clicked() {
+                        acts.push(TpAct::Rename(f.clone(), String::new()));
+                        sh.empty_folders.remove(&f);
+                        ui.close();
+                    }
                 });
+            }
+            if shut {
+                continue;
             }
         }
         for &i in ops {
-            op_row(ui, sh, doc, i, w, &names, &mut acts, gen.and_then(|g| g.minutes.get(i)).copied().unwrap_or(0.0));
+            if let Some(from) = op_row(ui, sh, doc, i, w, &names, &mut acts, gen.and_then(|g| g.minutes.get(i)).copied().unwrap_or(0.0), &used[i].0, active) {
+                // a row dropped on a row: into that row's folder
+                if let (Head::Folder(f), true) = (head, from != i) {
+                    acts.push(TpAct::Group(from, f.clone()));
+                }
+            }
+        }
+    }
+    // a new folder at the end of the folder list (the dropdown row has no room)
+    if sh.tp_group == VIEW_FOLDERS && !doc.ops.is_empty() && sh.new_folder.is_none() {
+        ui.add_space(6.0);
+        if ui.add(egui::Label::new(RichText::new("+ New folder").size(12.0).color(theme::ACCENT)).sense(egui::Sense::click())).tip("A new, empty folder: then drag toolpaths onto it").clicked() {
+            sh.new_folder = Some(String::new());
+            sh.op_multi.clear();
         }
     }
     for a in acts {
@@ -520,6 +678,36 @@ fn toolpaths(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Option
                 canvas.doc.ops[i].op_group = g;
                 canvas.touch();
             }
+            TpAct::GroupMany(is, g) => {
+                canvas.doc.checkpoint();
+                for i in is {
+                    if let Some(o) = canvas.doc.ops.get_mut(i) {
+                        o.op_group = g.clone();
+                    }
+                }
+                sh.op_multi.clear();
+                sh.new_folder = None;
+                sh.tp_group = VIEW_FOLDERS; // show the folders
+                canvas.touch();
+            }
+            TpAct::SheetScope(i, sc) => {
+                canvas.doc.checkpoint();
+                canvas.doc.ops[i].sheet_scope = sc;
+                canvas.touch();
+            }
+            TpAct::LayerEverywhere(i, l) => {
+                canvas.doc.checkpoint();
+                let op = &mut canvas.doc.ops[i];
+                (op.layer_scope, op.group_scope, op.all_vectors, op.sheet_scope) = (l, 0, false, -1);
+                op.shape_ids.clear();
+                canvas.touch();
+            }
+            TpAct::Show(is, on) => {
+                for i in is {
+                    canvas.doc.ops[i].visible = on;
+                }
+                canvas.rev += 1; // preview only
+            }
             TpAct::Rename(old, new) => {
                 canvas.doc.checkpoint();
                 canvas.doc.ops.iter_mut().filter(|o| o.op_group == old).for_each(|o| o.op_group = new.clone());
@@ -549,6 +737,14 @@ fn toolpaths(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Option
 
 enum TpAct {
     Toggle(usize),
+    /// show (true) or hide the previews of these toolpaths
+    Show(Vec<usize>, bool),
+    /// these toolpaths into this folder ("" = none)
+    GroupMany(Vec<usize>, String),
+    /// the sheet a toolpath cuts on (-1 = all)
+    SheetScope(usize, i32),
+    /// a toolpath on picked vectors cuts their layer on every sheet instead
+    LayerEverywhere(usize, i32),
     Edit(usize),
     Group(usize, String),
     /// op index, -1 up / +1 down in the cutting order
@@ -558,6 +754,55 @@ enum TpAct {
     /// tool index, new slot, start of an edit (= undo step)
     Slot(usize, i32, bool),
     AutoSlots,
+}
+
+/// The toolpath list's views (`Shell::tp_group`)
+pub const VIEW_FOLDERS: u8 = 0;
+pub const VIEW_BITS: u8 = 1;
+pub const VIEW_SHEETS: u8 = 2;
+
+enum Head {
+    Folder(String),
+    Sheet(usize),
+    /// toolpaths with no vectors on any sheet
+    Idle,
+    Bit(usize),
+}
+
+/// vectors cut per sheet, and the layers they are on
+pub type OpUsage = (Vec<usize>, std::collections::BTreeSet<i32>);
+
+/// Per toolpath: how many vectors it cuts on each sheet, and the layers they are on (`Document::op_shape_ids_on`,
+/// done with an id map so a big job stays quick).
+pub fn usage(doc: &gcarve_core::document::Document) -> Vec<OpUsage> {
+    let n = doc.sheets.len().max(1);
+    let at: std::collections::HashMap<i32, (i32, i32)> = doc.shapes.iter().map(|s| (s.id, (s.sheet, s.layer))).collect();
+    let keep_out = |l: i32| usize::try_from(l).ok().and_then(|i| doc.layers.get(i)).is_some_and(|l| l.keep_out);
+    doc.ops.iter().map(|op| {
+        let mut counts = vec![0usize; n];
+        let mut layers = std::collections::BTreeSet::new();
+        let mut add = |sheet: i32, layer: i32| {
+            if (op.sheet_scope < 0 || op.sheet_scope == sheet) && (0..n as i32).contains(&sheet) {
+                counts[sheet as usize] += 1;
+                layers.insert(layer);
+            }
+        };
+        if op.layer_scope < 0 && op.group_scope == 0 && !op.all_vectors {
+            for id in &op.shape_ids {
+                if let Some(&(s, l)) = at.get(id) {
+                    add(s, l);
+                }
+            }
+        } else {
+            for s in &doc.shapes {
+                let hit = if op.all_vectors { !keep_out(s.layer) } else { (op.layer_scope >= 0 && s.layer == op.layer_scope) || (op.group_scope > 0 && s.group == op.group_scope) };
+                if hit {
+                    add(s.sheet, s.layer);
+                }
+            }
+        }
+        (counts, layers)
+    }).collect()
 }
 
 /// Toolpath indices grouped by `key`, groups in order of first use
@@ -573,21 +818,26 @@ fn group_ops(doc: &gcarve_core::document::Document, key: impl Fn(&gcarve_core::d
     out
 }
 
-/// One toolpath row: kind icon, name · side, bit · summary, eye; right-click = put it in an operation
+/// One toolpath row: kind icon, name · side, bit · summary, the sheets it cuts on, eye; right-click = where it cuts
+/// and its folder. Returns the toolpath dragged onto it, if one was dropped here. `used`: vectors it cuts on each
+/// sheet; `active`: the sheet on screen (rows with nothing there are greyed).
 #[allow(clippy::too_many_arguments)]
-fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Document, i: usize, w: f32, groups: &[String], acts: &mut Vec<TpAct>, minutes: f64) {
+fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Document, i: usize, w: f32, groups: &[String], acts: &mut Vec<TpAct>, minutes: f64, used: &[usize], active: usize) -> Option<usize> {
     let op = &doc.ops[i];
     let k = shell::kind_index(op.kind);
     let col = kind_color(op.kind);
     let (side, info) = shell::op_summary(doc, op);
     let tool = doc.tools.get(op.tool as usize).map(|t| t.name.as_str()).unwrap_or("?");
-    let (rect, resp) = ui.allocate_exact_size(egui::vec2(w, 36.0), egui::Sense::click());
-    let on = sh.op_sel == Some(i);
+    let (rect, resp) = ui.allocate_exact_size(egui::vec2(w, 36.0), egui::Sense::click_and_drag());
+    resp.dnd_set_drag_payload(i); // drag a row onto a folder (or a row in one) to move it there
+    let dropped = resp.dnd_release_payload::<usize>().map(|p| *p);
+    let on = sh.op_sel == Some(i) || sh.op_multi.contains(&i);
     let fill = if on { theme::ACCENT } else if resp.hovered() { theme::ROW_HOVER } else { Color32::TRANSPARENT };
     let p = ui.painter();
     p.rect_filled(rect, 4.0, fill);
     p.rect_filled(egui::Rect::from_min_max(rect.left_top() + egui::vec2(3.0, 3.0), egui::pos2(rect.left() + 6.0, rect.bottom() - 3.0)), 1.5, col);
-    let alpha = if op.visible { 1.0 } else { 0.55 };
+    let here = used.get(active).is_some_and(|&n| n > 0);
+    let alpha = if !here { 0.4 } else if op.visible { 1.0 } else { 0.55 };
     let icon_col = if on { Color32::WHITE } else { col };
     icons::paint(ui, shell::KINDS[k].1, egui::Rect::from_min_size(rect.left_top() + egui::vec2(12.0, 10.0), egui::vec2(16.0, 16.0)), 16.0, icon_col.gamma_multiply(alpha));
     let tc = if on { Color32::WHITE } else { theme::TEXT }.gamma_multiply(alpha);
@@ -602,7 +852,37 @@ fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Docume
         p.rect_filled(egui::Rect::from_min_size(at - egui::vec2(6.0, 1.0), g.size() + egui::vec2(6.0, 2.0)), 0.0, if on { theme::ACCENT } else if resp.hovered() { theme::ROW_HOVER } else { theme::PANEL });
         p.galley(at, g, tc);
     }
-    p.text(egui::pos2(tx, rect.top() + 19.0), egui::Align2::LEFT_TOP, format!("{tool}  ·  {info}"), theme::font(11.0), tc.gamma_multiply(0.75));
+    // where it cuts, when that is not simply its picked shapes on every sheet
+    let place = match (op.sheet_scope, op.all_vectors) {
+        (s, true) if s >= 0 => format!("all vectors, sheet {}  ·  ", s + 1),
+        (_, true) => "all vectors  ·  ".to_string(),
+        (s, _) if s >= 0 => format!("sheet {} only  ·  ", s + 1),
+        _ => String::new(),
+    };
+    let info = if here || used.len() < 2 { format!("{place}{tool}  ·  {info}") } else { format!("not on this sheet  ·  {place}{tool}") };
+    p.text(egui::pos2(tx, rect.top() + 19.0), egui::Align2::LEFT_TOP, info, theme::font(11.0), tc.gamma_multiply(0.75));
+    // sheet column: the sheets it cuts on, this one in the accent colour ("all" when every sheet)
+    if used.len() > 1 {
+        let on: Vec<usize> = (0..used.len()).filter(|&j| used[j] > 0).collect();
+        let font = theme::font(10.0);
+        let mut job = egui::text::LayoutJob::default();
+        let fmt = |c: Color32| egui::TextFormat { font_id: font.clone(), color: c, ..Default::default() };
+        if on.is_empty() {
+            job.append("no sheet", 0.0, fmt(theme::ORANGE));
+        } else if on.len() == used.len() && on.len() > 3 {
+            job.append(&format!("all {}", on.len()), 0.0, fmt(if sh.op_sel == Some(i) { Color32::WHITE } else { theme::ACCENT }));
+        } else {
+            for (k, j) in on.iter().enumerate() {
+                let c = if *j == active { if sh.op_sel == Some(i) { Color32::WHITE } else { theme::ACCENT } } else { tc.gamma_multiply(0.6) };
+                job.append(&format!("{}{}", if k > 0 { " " } else { "" }, j + 1), 0.0, fmt(c));
+            }
+        }
+        let g = ui.painter().layout_job(job);
+        let at = egui::pos2(rect.right() - 34.0 - g.size().x, rect.top() + 20.0);
+        let bg = if sh.op_sel == Some(i) || sh.op_multi.contains(&i) { theme::ACCENT } else if resp.hovered() { theme::ROW_HOVER } else { theme::PANEL };
+        ui.painter().rect_filled(egui::Rect::from_min_size(at - egui::vec2(6.0, 1.0), g.size() + egui::vec2(6.0, 2.0)), 0.0, bg);
+        ui.painter().galley(at, g, tc);
+    }
     let eye = egui::Rect::from_center_size(egui::pos2(rect.right() - 14.0, rect.center().y), egui::vec2(21.0, 21.0));
     let mut e = ui.new_child(egui::UiBuilder::new().max_rect(eye).layout(egui::Layout::centered_and_justified(egui::Direction::LeftToRight))); // new_child: `put` would advance the row cursor
     let er = IconButton::new(if op.visible { "eye" } else { "eye-off" }).size(15.0).padding(3.0).tip(if op.visible { "Hide this toolpath's preview" } else { "Show this toolpath's preview" }).show(&mut e);
@@ -611,8 +891,19 @@ fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Docume
     } else if resp.double_clicked() {
         acts.push(TpAct::Edit(i));
     } else if resp.clicked() {
-        sh.op_sel = Some(i);
-        sh.push(format!("opselect:{i}")); // every shape of the toolpath (layer / group scope too), Qt selectOpShapes
+        if ui.input(|inp| inp.modifiers.command || inp.modifiers.shift) {
+            // pick several (for Group…); the first click keeps the row that was selected
+            if let Some(s) = sh.op_sel.take() {
+                sh.op_multi.insert(s);
+            }
+            if !sh.op_multi.remove(&i) {
+                sh.op_multi.insert(i);
+            }
+        } else {
+            sh.op_multi.clear();
+            sh.op_sel = Some(i);
+            sh.push(format!("opselect:{i}")); // every shape of the toolpath (layer / group scope too), Qt selectOpShapes
+        }
     }
     resp.context_menu(|ui| {
         // the list order is the cutting order (per bit): pockets and carving before the cut-out
@@ -622,10 +913,32 @@ fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Docume
                 ui.close();
             }
         }
+        // where it cuts: every sheet / this sheet only / its layer everywhere (VCarve makes moving a toolpath to every
+        // sheet hard)
+        if doc.sheets.len() > 1 {
+            crate::widgets::menu_separator(ui);
+            if op.sheet_scope >= 0 && crate::widgets::menu_item(ui, "Cut on all sheets", "").clicked() {
+                acts.push(TpAct::SheetScope(i, -1));
+                ui.close();
+            }
+            if op.sheet_scope != doc.active_sheet && crate::widgets::menu_item(ui, &format!("Cut on Sheet {} only", doc.active_sheet + 1), "").clicked() {
+                acts.push(TpAct::SheetScope(i, doc.active_sheet));
+                ui.close();
+            }
+        }
+        let own_layers: std::collections::BTreeSet<i32> = op.shape_ids.iter().filter_map(|id| doc.find(*id)).map(|s| s.layer).collect();
+        if op.layer_scope < 0 && !op.all_vectors && op.group_scope == 0 && own_layers.len() == 1 {
+            let l = *own_layers.iter().next().unwrap_or(&0);
+            let name = doc.layers.get(l as usize).map_or(String::new(), |x| x.name.clone());
+            if crate::widgets::menu_item(ui, &format!("Cut layer “{name}” on every sheet"), "").on_hover_text("Instead of its picked vectors: everything on that layer, on every sheet, including vectors added later").clicked() {
+                acts.push(TpAct::LayerEverywhere(i, l));
+                ui.close();
+            }
+        }
         crate::widgets::menu_separator(ui);
-        ui.label(RichText::new("Operation").small().color(theme::TEXT_DIM));
+        ui.label(RichText::new("Folder").small().color(theme::TEXT_DIM));
         for g in groups.iter().map(String::as_str).chain([""]) {
-            let label = if g.is_empty() { "None" } else { g };
+            let label = if g.is_empty() { "No folder" } else { g };
             if ui.radio(op.op_group == g, label).clicked() {
                 acts.push(TpAct::Group(i, g.into()));
                 ui.close();
@@ -633,7 +946,7 @@ fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Docume
         }
         let id = ui.id().with("new-op-group");
         let mut name = ui.data(|d| d.get_temp::<String>(id)).unwrap_or_default();
-        let r = ui.add(egui::TextEdit::singleline(&mut name).hint_text("New operation…").desired_width(160.0));
+        let r = ui.add(egui::TextEdit::singleline(&mut name).hint_text("New folder…").desired_width(160.0));
         if r.lost_focus() && ui.input(|inp| inp.key_pressed(egui::Key::Enter)) && !name.trim().is_empty() {
             acts.push(TpAct::Group(i, name.trim().into()));
             name.clear();
@@ -641,6 +954,7 @@ fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Docume
         }
         ui.data_mut(|d| d.insert_temp(id, name));
     });
+    dropped
 }
 
 /// Board fields driven by variables (Qt Canvas::boardBindings): "W = board-w  ·  Thickness = t2"
@@ -661,5 +975,31 @@ mod tests {
         d.material.bind.insert("t".into(), "ply".into());
         d.material.bind.insert("w".into(), "2 * side".into());
         assert_eq!(super::board_bindings(&d), "W = 2 * side  ·  Thickness = ply");
+    }
+}
+
+#[cfg(test)]
+mod usage_tests {
+    use gcarve_core::document::{Document, Op};
+    use gcarve_core::geom::make_rect;
+
+    #[test]
+    fn usage_counts_each_sheet_and_layer() {
+        let mut d = Document::default();
+        d.sheets = vec![d.material.clone(), d.material.clone()];
+        let a = d.add(make_rect(0.0, 0.0, 1.0, 1.0), None);
+        d.set_active_sheet(1);
+        let b = d.add(make_rect(0.0, 0.0, 1.0, 1.0), None);
+        let _c = d.add(make_rect(2.0, 0.0, 3.0, 1.0), None);
+        d.ops = vec![
+            Op { shape_ids: vec![a, b], ..Default::default() },
+            Op { all_vectors: true, sheet_scope: 1, ..Default::default() },
+            Op { layer_scope: 0, ..Default::default() },
+        ];
+        let u = super::usage(&d);
+        assert_eq!(u[0].0, vec![1, 1], "picked vectors on both sheets");
+        assert_eq!(u[1].0, vec![0, 2], "all vectors, sheet 2 only");
+        assert_eq!(u[2].0, vec![1, 2], "a layer on every sheet");
+        assert!(u[2].1.contains(&0));
     }
 }
