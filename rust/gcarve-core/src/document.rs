@@ -279,6 +279,12 @@ pub struct Op {
     /// profile: tabs placed by hand (document points on the shape's outline): a cut that has some of them near it
     /// uses them instead of `tab_count` evenly spaced tabs (JSON "tabPoints", Rust only)
     pub tab_points: Vec<[f64; 2]>,
+    /// array copies (VCarve "Array Copy Toolpath"): the toolpath is cut `array_rows` × `array_cols` times, each copy
+    /// moved by `array_dx` / `array_dy` (inches, copy to copy) from the last; 1 × 1 = no copies (JSON "array" when set)
+    pub array_rows: i32,
+    pub array_cols: i32,
+    pub array_dx: f64,
+    pub array_dy: f64,
     /// depth|stepdown|tabWidth|tabHeight|allowance|peck|flatDepth -> expression
     pub bind: Bind,
 }
@@ -330,6 +336,10 @@ impl Default for Op {
             raster: false,
             thread_pitch: 0.0,
             start_first: false,
+            array_rows: 1,
+            array_cols: 1,
+            array_dx: 0.0,
+            array_dy: 0.0,
             tab_points: Vec::new(),
             bind: Bind::new(),
         }

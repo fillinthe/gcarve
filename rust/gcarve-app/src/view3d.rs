@@ -23,7 +23,8 @@ pub struct View3d {
     pub pitch: f64,
     pub zoom: f64,
     pub z_scale: f64,
-    pub show_paths: bool,
+    /// what is drawn over the carved board, shared with the 2D simulation (Simulate bar › Show)
+    pub show: SimShow,
     /// perspective camera (fov 35°) instead of orthographic; remembered in the store (`PERSPECTIVE_KEY`)
     pub perspective: bool,
     pub nav: Nav,
@@ -50,11 +51,102 @@ pub struct View3d {
 
 impl Default for View3d {
     fn default() -> Self {
-        View3d { want_trace: false, yaw: 35.0, pitch: 55.0, zoom: 1.0, z_scale: 1.0, show_paths: true, perspective: false, nav: Nav::Fusion, zoom_reverse: false, pan: egui::Vec2::ZERO, frame: u64::MAX, nx: 0, ny: 0, px: Vec::new(), py: Vec::new(), pz: Vec::new(), col: Vec::new(), lit: Vec::new(), skirt: Vec::new(), bw: 1.0, bh: 1.0, bt: 0.1 }
+        View3d { want_trace: false, yaw: 35.0, pitch: 55.0, zoom: 1.0, z_scale: 1.0, show: SimShow::default(), perspective: false, nav: Nav::Fusion, zoom_reverse: false, pan: egui::Vec2::ZERO, frame: u64::MAX, nx: 0, ny: 0, px: Vec::new(), py: Vec::new(), pz: Vec::new(), col: Vec::new(), lit: Vec::new(), skirt: Vec::new(), bw: 1.0, bh: 1.0, bt: 0.1 }
     }
 }
 
 const PERSPECTIVE_KEY: &str = "view3d-perspective";
+const SHOW_KEY: &str = "sim-show";
+
+/// What the simulation draws over the board, in 2D and 3D (Simulate bar › Show), remembered per device.
+#[derive(Clone, Copy, PartialEq, Debug)]
+pub struct SimShow {
+    pub paths: ShowPaths,
+    pub rapids: bool,
+    pub cutter: bool,
+}
+
+#[derive(Clone, Copy, PartialEq, Debug)]
+pub enum ShowPaths {
+    /// every move: cut ones bright, the rest faint
+    All,
+    /// only the moves cut so far: the tool's trail
+    Trail,
+    Hidden,
+}
+
+impl Default for SimShow {
+    fn default() -> Self {
+        SimShow { paths: ShowPaths::All, rapids: true, cutter: true }
+    }
+}
+
+impl SimShow {
+    fn load() -> Self {
+        let Some(v) = crate::store::load(SHOW_KEY) else { return Self::default() };
+        let b: Vec<&str> = v.split(',').collect();
+        let paths = match b.first().copied() {
+            Some("trail") => ShowPaths::Trail,
+            Some("hidden") => ShowPaths::Hidden,
+            _ => ShowPaths::All,
+        };
+        SimShow { paths, rapids: b.get(1) != Some(&"0"), cutter: b.get(2) != Some(&"0") }
+    }
+    pub fn save(&self) {
+        let paths = match self.paths {
+            ShowPaths::All => "all",
+            ShowPaths::Trail => "trail",
+            ShowPaths::Hidden => "hidden",
+        };
+        crate::store::save(SHOW_KEY, &format!("{paths},{},{}", self.rapids as u8, self.cutter as u8));
+    }
+}
+
+/// The simulated moves as lines (`project` = machine x y z to the screen). Consecutive moves of one colour go out as
+/// one line and moves shorter than half a pixel are merged, so a big job stays cheap to draw every frame.
+pub fn draw_moves(painter: &egui::Painter, p: &Player, show: SimShow, project: impl Fn(f64, f64, f64) -> Pos2) {
+    if show.paths == ShowPaths::Hidden {
+        return;
+    }
+    let trail = show.paths == ShowPaths::Trail;
+    let mut run: Vec<Pos2> = Vec::new();
+    let mut run_col = Color32::TRANSPARENT;
+    let flush = |run: &mut Vec<Pos2>, col: Color32| {
+        if run.len() > 1 {
+            painter.add(Shape::line(std::mem::take(run), Stroke::new(1.0, col)));
+        }
+        run.clear();
+    };
+    for s in &p.segs {
+        let done = s.t1 <= p.pos + 1e-9;
+        if trail && s.t0 >= p.pos {
+            break; // segments are in time order
+        }
+        if s.rapid && !show.rapids {
+            flush(&mut run, run_col);
+            continue;
+        }
+        let col = if s.rapid {
+            Color32::from_rgba_unmultiplied(230, 90, 90, 110)
+        } else if done {
+            Color32::from_rgba_unmultiplied(90, 200, 230, 230)
+        } else {
+            Color32::from_rgba_unmultiplied(90, 200, 230, 120)
+        };
+        // the move under way stops at the cutter when only the trail is shown
+        let f = if trail && !done && s.t1 > s.t0 { ((p.pos - s.t0) / (s.t1 - s.t0)).clamp(0.0, 1.0) } else { 1.0 };
+        let (a, b) = (project(s.x0, s.y0, s.z0), project(s.x0 + (s.x1 - s.x0) * f, s.y0 + (s.y1 - s.y0) * f, s.z0 + (s.z1 - s.z0) * f));
+        if col != run_col || run.last().is_none_or(|l| l.distance(a) > 0.5) {
+            flush(&mut run, run_col);
+            run_col = col;
+            run.push(a);
+        }
+        if run.last().is_some_and(|l| l.distance(b) >= 0.5) {
+            run.push(b);
+        }
+    }
+    flush(&mut run, run_col);
+}
 const NAV_KEY: &str = "view3d-nav";
 const ZOOM_REV_KEY: &str = "view3d-zoom-reverse";
 
@@ -64,7 +156,14 @@ impl View3d {
         let stored = !shot && crate::store::load(PERSPECTIVE_KEY).as_deref() == Some("1");
         let nav = crate::store::load(NAV_KEY).filter(|_| !shot).and_then(|n| Nav::from_key(&n)).unwrap_or(Nav::Fusion);
         let zoom_reverse = !shot && crate::store::load(ZOOM_REV_KEY).as_deref() == Some("1");
-        View3d { perspective: stored || std::env::var("GCARVE_PERSP").is_ok(), nav, zoom_reverse, ..Default::default() } // GCARVE_PERSP: dev, screenshots
+        // GCARVE_SIM_SHOW=trail|hidden: dev, screenshots of the Show menu's choices
+        let show = match std::env::var("GCARVE_SIM_SHOW").as_deref() {
+            Ok("trail") => SimShow { paths: ShowPaths::Trail, ..SimShow::default() },
+            Ok("hidden") => SimShow { paths: ShowPaths::Hidden, cutter: false, ..SimShow::default() },
+            _ if shot => SimShow::default(),
+            _ => SimShow::load(),
+        };
+        View3d { perspective: stored || std::env::var("GCARVE_PERSP").is_ok(), nav, zoom_reverse, show, ..Default::default() } // GCARVE_PERSP: dev, screenshots
     }
 
     fn rebuild(&mut self, p: &Player) {
@@ -159,7 +258,8 @@ impl View3d {
         self.frame = p.frame;
     }
 
-    pub fn ui(&mut self, ui: &mut egui::Ui, p: &Player) {
+    /// `paths`: the status bar's Paths switch, which hides the toolpath lines here too
+    pub fn ui(&mut self, ui: &mut egui::Ui, p: &Player, paths: bool) {
         let (rect, resp) = ui.allocate_exact_size(ui.available_size(), Sense::click_and_drag());
         let painter = ui.painter_at(rect);
         painter.rect_filled(rect, 0.0, crate::theme::CANVAS_BG);
@@ -259,12 +359,8 @@ impl View3d {
             }
         }
         painter.add(Shape::mesh(mesh));
-        if self.show_paths {
-            for s in &p.segs {
-                let done = s.t1 <= p.pos + 1e-9;
-                let c = if s.rapid { Color32::from_rgba_unmultiplied(230, 90, 90, 110) } else if done { Color32::from_rgba_unmultiplied(90, 200, 230, 230) } else { Color32::from_rgba_unmultiplied(90, 200, 230, 120) };
-                painter.line_segment([project(s.x0, s.y0, s.z0), project(s.x1, s.y1, s.z1)], Stroke::new(1.0, c));
-            }
+        if paths {
+            draw_moves(&painter, p, self.show, project);
         }
         // the cutter: a yellow ring at the tool's position on the surface plus a stem down to the tip
         let (tx, ty) = p.tool_pos;
@@ -274,8 +370,10 @@ impl View3d {
             let a = std::f64::consts::TAU * k as f64 / 24.0;
             project(tx + rad * a.cos(), ty + rad * a.sin(), 0.0)
         }).collect();
-        painter.add(Shape::closed_line(ring, Stroke::new(1.5, yellow)));
-        painter.line_segment([project(tx, ty, 0.3), project(tx, ty, p.tip_z().min(0.0))], Stroke::new(1.5, yellow));
+        if self.show.cutter {
+            painter.add(Shape::closed_line(ring, Stroke::new(1.5, yellow)));
+            painter.line_segment([project(tx, ty, 0.3), project(tx, ty, p.tip_z().min(0.0))], Stroke::new(1.5, yellow));
+        }
         // Sim3D.qml overlays: Z exaggeration + Reset view top right, the mouse hint bottom left
         if resp.double_clicked() {
             self.reset_view();

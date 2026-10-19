@@ -50,7 +50,20 @@ window.addEventListener("beforeunload", e => { if (window.gcarveDirty) { e.preve
     <rect x="522" y="330" width="36" height="22" rx="4" fill="#d7dae0"/>
   </g>
 </svg><b>GCarve</b><div class="bar"><i></i></div></div>
+<script>// when the site needs an account for the web app, signed-out visitors go to the sign-in page first instead of
+// seeing the app under a sign-in box; any failure (offline, local smoke test) lets the app start, which still asks itself
+window.gcGate = (async () => {
+  try {
+    const c = await fetch("/api/config", { credentials: "same-origin" });
+    if (!c.ok || !(await c.json()).requireSignin) return;
+    const me = await fetch("/api/auth/me", { credentials: "same-origin" });
+    if (me.status !== 401) return;
+    location.replace("/signin/?next=" + encodeURIComponent(location.pathname + location.search));
+    await new Promise(() => {}); // never start the app
+  } catch (_) {}
+})();</script>
 <script type="module">
+  await window.gcGate;
   // BUILD is replaced by build-web.sh with this build's fingerprint: the script and the program always load as a
   // matching pair, whatever a browser or Cloudflare still has cached from the previous deploy
   import init from "./gcarve.js?v=BUILD";

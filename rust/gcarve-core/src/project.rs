@@ -286,6 +286,9 @@ pub(crate) fn op_json(op: &Op, tools: &[Tool]) -> Value {
     if op.thread_pitch > 0.0 {
         m.insert("threadPitch".into(), json!(op.thread_pitch));
     }
+    if op.array_rows * op.array_cols > 1 {
+        m.insert("array".into(), json!({"rows": op.array_rows, "cols": op.array_cols, "dx": op.array_dx, "dy": op.array_dy}));
+    }
     if !op.photo.is_empty() {
         m.insert("photo".into(), json!({"w": op.photo_w, "h": op.photo_h, "gray": op.photo, "invert": op.photo_invert}));
     }
@@ -358,6 +361,10 @@ pub(crate) fn op_from(o: &Value, tool_count: i32) -> Op {
         raster: flag(o, "raster", false),
         thread_pitch: num(o, "threadPitch", 0.0).max(0.0),
         start_first: flag(o, "startFirst", false),
+        array_rows: int(get(o, "array"), "rows", 1).clamp(1, 500),
+        array_cols: int(get(o, "array"), "cols", 1).clamp(1, 500),
+        array_dx: num(get(o, "array"), "dx", 0.0),
+        array_dy: num(get(o, "array"), "dy", 0.0),
         tab_points: arr(get(o, "tabPoints")).iter().filter_map(|p| Some([p.get(0)?.as_f64()?, p.get(1)?.as_f64()?])).collect(),
         relief: int(o, "relief", -1),
         raster_angle: int(o, "rasterAngle", 0),

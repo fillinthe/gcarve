@@ -555,7 +555,7 @@ pub fn empty_state(ui: &mut egui::Ui, sh: &mut Shell, rect: egui::Rect, doc: &Do
             if doc.material.machine.is_none() && IconButton::new("machine").text("Choose machine…").tip("Pick your CNC: feeds are scaled to it, the board starts at its table size and the G-code comes out in its dialect").show(ui).clicked() {
                 sh.push("machine");
             }
-            for (id, icon, text, tip) in [("open", "open", "Open…", "Open a project or import SVG / DXF / PDF (⌘O)"), ("import", "relief", "Import", "Import SVG / DXF / PDF / AI / STL into this document"), ("tool:text", "text", "Add Text", "Add text (T)"), ("board", "board", "Board…", "Board size, material, XY zero, post-processor")] {
+            for (id, icon, text, tip) in [("open", "open", "Open…", "Open a project (GCarve .tlp, VCarve .crv) or a drawing: SVG / DXF / PDF (⌘O)"), ("import", "relief", "Import", "Import SVG / DXF / PDF / AI / STL into this document"), ("tool:text", "text", "Add Text", "Add text (T)"), ("board", "board", "Board…", "Board size, material, XY zero, post-processor")] {
                 if IconButton::new(icon).text(text).tip(tip).show(ui).clicked() {
                     sh.push(id);
                 }

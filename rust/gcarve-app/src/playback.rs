@@ -276,7 +276,8 @@ impl Player {
         }
         let now = ctx.input(|i| i.time);
         let dt_min = match self.last_tick {
-            Some(last) => (now - last) / 60.0 * if self.speed > 0.0 { self.speed } else { 1e9 },
+            // a stalled frame (window hidden, slow machine) never jumps more than a tenth of a second of playback
+            Some(last) => (now - last).min(0.1) / 60.0 * if self.speed > 0.0 { self.speed } else { 1e9 },
             None => 0.0,
         };
         self.last_tick = Some(now);
