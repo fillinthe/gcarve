@@ -207,7 +207,7 @@ impl Canvas {
         for op in &mut self.doc.ops {
             op.shape_ids.retain(|id| !sel.contains(id));
         }
-        self.doc.ops.retain(|op| !(op.shape_ids.is_empty() && op.layer_scope < 0 && op.group_scope == 0));
+        self.doc.ops.retain(|op| !(op.shape_ids.is_empty() && op.layer_scope < 0 && op.group_scope == 0 && !op.all_vectors));
         self.mutated();
     }
 

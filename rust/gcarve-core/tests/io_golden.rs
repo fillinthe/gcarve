@@ -211,3 +211,22 @@ fn nesting_matches_cpp() {
     assert!(overlaps(&rust) < 1e-6);
     assert!(got.iter().filter(|a| a.placed).count() >= 3);
 }
+
+#[test]
+fn a_toolpath_can_keep_to_one_sheet_or_take_every_vector() {
+    use gcarve_core::document::{Document, Op};
+    use gcarve_core::geom::make_rect;
+    let mut d = Document::default();
+    d.sheets = vec![d.material.clone(), d.material.clone()];
+    let a = d.add(make_rect(0.0, 0.0, 1.0, 1.0), None);
+    d.set_active_sheet(1);
+    let b = d.add(make_rect(0.0, 0.0, 2.0, 2.0), None);
+    let all = Op { all_vectors: true, ..Default::default() };
+    assert_eq!((d.op_shape_ids_on(&all, 0), d.op_shape_ids_on(&all, 1)), (vec![a], vec![b]), "all vectors: each sheet's own");
+    let one = Op { all_vectors: true, sheet_scope: 1, ..Default::default() };
+    assert!(d.op_shape_ids_on(&one, 0).is_empty() && d.op_shape_ids_on(&one, 1) == vec![b], "kept to sheet 2");
+    // saved and read back
+    d.ops.push(one.clone());
+    let back = gcarve_core::project::load_project(&gcarve_core::project::save_project(&d)).unwrap();
+    assert_eq!((back.ops[0].sheet_scope, back.ops[0].all_vectors), (1, true));
+}

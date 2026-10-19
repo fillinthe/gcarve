@@ -43,7 +43,7 @@ pub struct OpDialog {
 
 /// Qt Canvas::newProfileParams defaults.
 pub fn new_op(doc: &Document, kind: OpType, selected: &[i32]) -> Op {
-    let mut op = Op { kind, ..Default::default() };
+    let mut op = Op { kind, tab_corners: true, ..Default::default() };
     let find = |k: ToolType| doc.tools.iter().position(|t| t.kind == k).map(|i| i as i32);
     match kind {
         OpType::Relief => {
@@ -137,7 +137,7 @@ impl OpDialog {
         f.set_bound("chamferWidth", b, if op.chamfer_width > 0.0 { op.chamfer_width } else { 0.125 });
         f.set_bound("arrayDx", b, op.array_dx);
         f.set_bound("arrayDy", b, op.array_dy);
-        let scope = if op.layer_scope >= 0 { 1 } else if op.group_scope > 0 { 2 } else { 0 };
+        let scope = if op.all_vectors { 3 } else if op.layer_scope >= 0 { 1 } else if op.group_scope > 0 { 2 } else { 0 };
         OpDialog {
             flat: op.flat_depth > 0.0 || op.kind == OpType::Inlay,
             peck: op.peck > 0.0,
@@ -170,6 +170,8 @@ impl OpDialog {
         op.ramp_length = f.get_or("rampLength", doc, op.ramp_length).max(0.0);
         op.layer_scope = if self.scope == 1 { self.scope_layer.clamp(0, doc.layers.len() as i32 - 1) } else { -1 };
         op.group_scope = if self.scope == 2 { self.scope_group } else { 0 };
+        op.all_vectors = self.scope == 3;
+        op.sheet_scope = op.sheet_scope.clamp(-1, doc.sheets.len() as i32 - 1);
         op.tab_count = self.tab_count.max(1);
         op.tab_width = f.get_or("tabWidth", doc, op.tab_width).max(0.0);
         op.tab_height = f.get_or("tabHeight", doc, op.tab_height).max(0.0);
@@ -263,7 +265,9 @@ impl OpDialog {
         if self.index.is_none() && self.scope == 0 && have_sel && selected != self.op.shape_ids {
             self.op.shape_ids = selected.clone();
         }
-        let shapes = doc.op_shape_ids(&self.apply(doc)).len();
+        // every sheet counts: a toolpath kept to another sheet still has its shapes there
+        let applied = self.apply(doc);
+        let shapes: usize = (0..doc.sheets.len().max(1) as i32).map(|j| doc.op_shape_ids_on(&applied, j).len()).sum();
         let needs_shapes = !matches!(k, OpType::Relief | OpType::Imported);
         let at = egui::pos2(ctx.content_rect().right() - 12.0, 70.0);
         crate::widgets::Dialog::new(title).id("op").width(464.0).modeless(at, egui::Align2::RIGHT_TOP).show(ctx, |ui| {
@@ -278,13 +282,28 @@ impl OpDialog {
                         ui.label("Applies to");
                         let layer_name = doc.layers.get(self.scope_layer.max(0) as usize).map(|l| l.name.clone()).unwrap_or_default();
                         let group_ok = self.scope_group > 0;
-                        let items = [(0, "Selected shapes only".to_string()), (1, format!("Everything on layer “{layer_name}” (new shapes inherit)")), (2, if group_ok { "The selection’s group (new members inherit)".into() } else { "The selection’s group (select a group first)".into() })];
+                        let _ = layer_name;
+                        let items = [(0, "Selected shapes only".to_string()), (1, "A layer (new shapes on it join)".to_string()), (2, if group_ok { "The selection’s group (new members inherit)".into() } else { "The selection’s group (select a group first)".into() }), (3, "All vectors, every layer (new shapes join)".to_string())];
                         let refs: Vec<(i32, &str)> = items.iter().map(|(i, s)| (*i, s.as_str())).collect();
                         combo(ui, "scope", &mut self.scope, &refs, 360.0);
                         if self.scope == 2 && !group_ok {
                             self.scope = 0;
                         }
                         ui.end_row();
+                        if self.scope == 1 {
+                            ui.label("Layer");
+                            let layers: Vec<(i32, String)> = doc.layers.iter().enumerate().filter(|(_, l)| !l.keep_out).map(|(i, l)| (i as i32, l.name.clone())).collect();
+                            let refs: Vec<(i32, &str)> = layers.iter().map(|(i, n)| (*i, n.as_str())).collect();
+                            combo(ui, "scope-layer", &mut self.scope_layer, &refs, 260.0);
+                            ui.end_row();
+                        }
+                        if doc.sheets.len() > 1 {
+                            ui.label("Sheets").tip("Which sheets it cuts on. All sheets: the same toolpath cuts its shapes on every sheet they're on (one setup, every sheet's file).");
+                            let sheets: Vec<(i32, String)> = std::iter::once((-1, "All sheets".to_string())).chain((0..doc.sheets.len()).map(|j| (j as i32, format!("Sheet {} only", j + 1)))).collect();
+                            let refs: Vec<(i32, &str)> = sheets.iter().map(|(i, n)| (*i, n.as_str())).collect();
+                            combo(ui, "scope-sheet", &mut self.op.sheet_scope, &refs, 200.0);
+                            ui.end_row();
+                        }
                         ui.label("Shapes");
                         ui.horizontal(|ui| {
                             if shapes == 0 {
@@ -701,12 +720,25 @@ impl OpDialog {
                         ui.add_enabled(tabs, egui::Label::new("Tab shape"));
                         ui.add_enabled(tabs, crate::widgets::CheckBox::new(&mut self.op.tab_ramped, "3D tabs: ramp over the tab instead of stepping"));
                         ui.end_row();
-                        ui.add_enabled(tabs, egui::Label::new("Tab places"));
-                        ui.horizontal(|ui| {
+                        ui.add_enabled(tabs, egui::Label::new("Spread evenly"));
+                        ui.add_enabled(tabs, crate::widgets::CheckBox::new(&mut self.op.tab_corners, "Keep tabs off corners")).tip("Evenly spaced tabs that would land on a corner slide along to the nearest straight part: a tab on a corner is hard to sand off.");
+                        ui.end_row();
+                        ui.add_enabled(tabs, egui::Label::new("Place by hand")).tip("Tabs you place replace the evenly spaced ones on the parts they are on; other parts keep the even ones.");
+                        ui.vertical(|ui| {
                             ui.add_enabled_ui(tabs, |ui| {
-                                crate::widgets::checkbox(ui, &mut self.place_tabs, "Click the outline to place tabs");
-                                if !self.op.tab_points.is_empty() && ui.small_button(format!("Clear {} by hand", self.op.tab_points.len())).clicked() {
-                                    self.op.tab_points.clear();
+                                ui.horizontal(|ui| {
+                                    let label = if self.place_tabs { "Done placing tabs" } else { "Place tabs on the drawing…" };
+                                    if ui.add(crate::widgets::Button::new(label).primary(self.place_tabs)).clicked() {
+                                        self.place_tabs = !self.place_tabs;
+                                    }
+                                    if !self.op.tab_points.is_empty() && ui.small_button(format!("Clear {}", self.op.tab_points.len())).tip("Remove the tabs placed by hand: the parts go back to evenly spaced tabs").clicked() {
+                                        self.op.tab_points.clear();
+                                    }
+                                });
+                                if self.place_tabs {
+                                    hint(ui, "Click an outline to add a tab there, click a tab to remove it");
+                                } else if !self.op.tab_points.is_empty() {
+                                    hint(ui, &format!("{} placed by hand", self.op.tab_points.len()));
                                 }
                             });
                         });

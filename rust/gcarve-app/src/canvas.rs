@@ -126,6 +126,8 @@ pub(crate) const RULER_PX: f32 = 20.0;
 
 pub struct Canvas {
     pub doc: Document,
+    /// every sheet side by side (allsheets.rs)
+    pub all_sheets: bool,
     pub sel: BTreeSet<i32>, // shape ids (groups expand in sel_changed)
     pub tool: Tool,
     pub snap: bool,
@@ -262,6 +264,7 @@ impl Default for Canvas {
             dirty: false,
             rev: 1,
             show_paths: true,
+            all_sheets: false,
             show_width: true,
             bands: Default::default(),
             status: String::new(),
@@ -337,8 +340,8 @@ pub(crate) const DIM_COLOR: Color32 = Color32::from_rgb(0x9a, 0xd0, 0xff);
 impl Canvas {
     /// Zoom to the visible shapes (the board when there are none).
     pub fn zoom_fit(&mut self) {
-        let mut b: Option<geom::Rect> = None;
-        for s in &self.doc.shapes {
+        let mut b: Option<geom::Rect> = self.all_boards(); // all sheets shown: fit every board
+        for s in self.doc.shapes.iter().filter(|_| !self.showing_all_sheets()) {
             // Qt Document::bounds: every shape, all sheets
             let r = geom::bounds(&s.c);
             b = Some(match b { Some(a) => geom::Rect { x0: a.x0.min(r.x0), y0: a.y0.min(r.y0), x1: a.x1.max(r.x1), y1: a.y1.max(r.y1) }, None => r });
@@ -439,6 +442,12 @@ impl Canvas {
             }
         }
         self.paint_grid(&painter, view, full);
+        let hover_doc = ui.input(|i| i.pointer.hover_pos()).filter(|p| rect.contains(*p)).map(|p| view.to_doc(p));
+        self.paint_other_sheets(&painter, self.drag == Drag::Move, hover_doc);
+        if self.drag == Drag::None && self.tool == Tool::Select && hover_doc.is_some_and(|w| self.other_sheet_at(w).is_some() && self.hit_shape(w).is_none()) {
+            ui.ctx().set_cursor_icon(egui::CursorIcon::PointingHand);
+        }
+        let view = self.view.as_ref().unwrap();
         let (bw, bh) = (self.doc.material.w, self.doc.material.h);
         let board = Rect::from_two_pos(view.to_screen(pt(0.0, 0.0)), view.to_screen(pt(bw, bh)));
         painter.rect(board, 0.0, Color32::from_rgba_unmultiplied(138, 122, 90, 28), Stroke::new(1.0, c(0x8a7a5a)), egui::StrokeKind::Middle);
@@ -912,7 +921,7 @@ pub fn arc_points(a: Pt, b: Pt, i: f64, j: f64, ccw: bool) -> Vec<Pt> {
 
 /// A shape's outline. Where the path turns straight back on itself (a speck in a VCarve or SVG file) egui's corner
 /// join has no direction and shoots a spike across the screen, so the outline is drawn in pieces split there.
-fn stroke_path(painter: &egui::Painter, pts: Vec<Pos2>, closed: bool, stroke: Stroke) {
+pub(crate) fn stroke_path(painter: &egui::Painter, pts: Vec<Pos2>, closed: bool, stroke: Stroke) {
     match split_at_reversals(pts, closed) {
         Ok(pts) => {
             painter.add(if closed { Shape::closed_line(pts, stroke) } else { Shape::line(pts, stroke) });
