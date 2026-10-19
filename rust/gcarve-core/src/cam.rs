@@ -2153,6 +2153,45 @@ pub fn generate(op: &Op, tool: &Tool, contours: &[Contour], m: &Material, clear_
     r
 }
 
+/// Array copies (`Op::array_*`): the op's toolpaths again for every other cell of the rows × columns grid, row by
+/// row going back and forth so the bit never crosses the whole grid between copies. Modal X / Y are written out on
+/// the copies (a copy must not inherit the last copy's position).
+pub fn array_copies(op: &Op, paths: &mut Vec<Toolpath>) {
+    let (rows, cols) = (op.array_rows.clamp(1, 500), op.array_cols.clamp(1, 500));
+    if rows * cols <= 1 || paths.is_empty() {
+        return;
+    }
+    let one: Vec<Toolpath> = paths.iter().map(|tp| {
+        let mut tp = tp.clone();
+        let (mut x, mut y) = (None, None);
+        for m in &mut tp.moves {
+            x = m.x.or(x);
+            y = m.y.or(y);
+            if m.x.is_some() || m.y.is_some() {
+                (m.x, m.y) = (x, y);
+            }
+        }
+        tp
+    }).collect();
+    for r in 0..rows {
+        for k in 0..cols {
+            let c = if r % 2 == 0 { k } else { cols - 1 - k };
+            if r == 0 && c == 0 {
+                continue;
+            }
+            let (dx, dy) = (c as f64 * op.array_dx, r as f64 * op.array_dy);
+            for tp in &one {
+                let mut tp = tp.clone();
+                for m in &mut tp.moves {
+                    m.x = m.x.map(|v| v + dx);
+                    m.y = m.y.map(|v| v + dy);
+                }
+                paths.push(tp);
+            }
+        }
+    }
+}
+
 /// Document → file coordinates: add to every move so the file is relative to the board's origin corner and Z zero.
 pub fn origin_shift(m: &Material) -> (f64, f64, f64) {
     const OX: [f64; 5] = [0.0, 1.0, 0.0, 1.0, 0.5];

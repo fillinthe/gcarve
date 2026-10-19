@@ -210,7 +210,7 @@ pub fn regenerate(doc: &Document) -> Generated {
         }
         let tool = tool_for_cut(doc, op.tool as usize);
         let clear = (op.clear_tool >= 0 && (op.clear_tool as usize) < doc.tools.len()).then(|| tool_for_cut(doc, op.clear_tool as usize));
-        let r = if op.kind == OpType::Imported {
+        let mut r = if op.kind == OpType::Imported {
             let mut paths = crate::gimport::section_toolpaths(&op.gcode, &op.name);
             for tp in &mut paths {
                 cam::enforce_safe_rapids(tp, doc.material.retract_z);
@@ -232,6 +232,7 @@ pub fn regenerate(doc: &Document) -> Generated {
                 cam::generate(op, &tool, &cs, &doc.material, clear.as_ref())
             }
         };
+        cam::array_copies(op, &mut r.paths);
         g.minutes.push(r.paths.iter().map(|tp| crate::order::estimate_minutes_with(tp, tp.feed_xy, tp.feed_z, mo)).sum());
         g.paths.push(r.paths);
         g.warnings.extend(r.warnings);

@@ -53,6 +53,8 @@ struct ExportDlg {
 /// store key: the last folder G-code was exported to (desktop)
 #[cfg(not(target_arch = "wasm32"))]
 const EXPORT_FOLDER_KEY: &str = "export-folder";
+/// fastest simulation playback (× machine time): above it each frame only stamps more moves
+const MAX_SIM_SPEED: f64 = 200.0;
 
 pub struct App {
     canvas: Canvas,
@@ -85,6 +87,9 @@ pub struct App {
     view3d: View3d,
     /// the simulation is about to be rebuilt: this frame shows "Preparing the simulation" first
     sim_wait: bool,
+    /// files picked / dropped, read one frame after the "Opening…" card is shown (`busy_card`)
+    opening: Vec<Picked>,
+    open_wait: bool,
     /// toolpaths of a big drawing are about to be rebuilt: this frame shows "Generating toolpaths" first
     gen_wait: bool,
     /// a SpaceMouse allowed earlier was looked for
@@ -176,9 +181,9 @@ impl App {
         let prefs = if shot { dialogs::prefs::Prefs::default() } else { dialogs::prefs::Prefs::load() }; // screenshots: stock settings (Qt: temp settings)
         gcarve_ui::help::init("fillinthe/gcarve", env!("CARGO_PKG_VERSION"));
         gcarve_ui::help::set_download_page("https://gcarve.app/download/");
-        let mut app = App { files, mode, canvas: new_canvas(&prefs), left_open: ui_state.tool_rail, right_open: ui_state.side_panel, status: String::new(), message: "Open an SVG, DXF or PDF, or draw with R / E / P.".into(), name: "Untitled".into(), shell: Shell::new(), frame: 0, gen: None, gen_rev: 0, lib_ready: false, lib_pushed: 0, shares: Vec::new(), shares_open: false, gen_draft: None, export: None, cloud: Cloud::new(), cloud_id: String::new(), account: Default::default(), help: Default::default(), movie: std::env::var("GCARVE_MOVIE").ok().map(|d| (d.into(), 0, std::env::var("GCARVE_MOVIE_FRAMES").ok().and_then(|n| n.parse().ok()).unwrap_or(600), false)), projects: Default::default(), dialogs: Dialogs::default(), select_all_on_load: false, prev_tool: Tool::Select, dev_measure: false,
+        let mut app = App { files, mode, canvas: new_canvas(&prefs), left_open: ui_state.tool_rail, right_open: ui_state.side_panel, status: String::new(), message: "Open a VCarve project (.crv), an SVG, DXF or PDF, or draw with R / E / P.".into(), name: "Untitled".into(), shell: Shell::new(), frame: 0, gen: None, gen_rev: 0, lib_ready: false, lib_pushed: 0, shares: Vec::new(), shares_open: false, gen_draft: None, export: None, cloud: Cloud::new(), cloud_id: String::new(), account: Default::default(), help: Default::default(), movie: std::env::var("GCARVE_MOVIE").ok().map(|d| (d.into(), 0, std::env::var("GCARVE_MOVIE_FRAMES").ok().and_then(|n| n.parse().ok()).unwrap_or(600), false)), projects: Default::default(), dialogs: Dialogs::default(), select_all_on_load: false, prev_tool: Tool::Select, dev_measure: false,
             prefs_seen: prefs.synced.clone(), prefs_push_at: None, prefs_from_server: false,
-            cam: CamDialogs { prefs, ..Default::default() }, posts: UserPosts::load(), templates: Default::default(), player: Player::default(), view3d: View3d::load(shot), sim_wait: false, gen_wait: false, puck_tried: shot, puck_filter: Default::default(), puck_trace: Default::default(), view_3d: false, watch_pending: false, show_sim: false, shot, pending_dialog: String::new(), recover: if shot { None } else { crate::recover::load() }, recover_at: None, recover_rev: 0, last_dirty: false,
+            cam: CamDialogs { prefs, ..Default::default() }, posts: UserPosts::load(), templates: Default::default(), player: Player::default(), view3d: View3d::load(shot), sim_wait: false, opening: Vec::new(), open_wait: false, gen_wait: false, puck_tried: shot, puck_filter: Default::default(), puck_trace: Default::default(), view_3d: false, watch_pending: false, show_sim: false, shot, pending_dialog: String::new(), recover: if shot { None } else { crate::recover::load() }, recover_at: None, recover_rev: 0, last_dirty: false,
             project_path: None,
             #[cfg(not(target_arch = "wasm32"))]
             jobs: crate::jobs::Jobs::load(),
@@ -720,7 +725,7 @@ impl App {
                 // a first visitor sees the carved sign, not a web of toolpath lines; key 1 goes back to the drawing
                 self.set_mode(Mode::Simulate);
                 self.view_3d = true;
-                self.view3d.show_paths = false; // the wood, not the lines ("paths" in the bar brings them back)
+                self.view3d.show.paths = crate::view3d::ShowPaths::Hidden; // the wood, not the lines (Show in the bar brings them back; not saved)
             }
             ("import", _) => self.files.pick(ctx, true),
             ("save", _) => {
@@ -1274,8 +1279,23 @@ impl eframe::App for App {
             }
         }
         crate::catalog::prefetch(&ctx); // web: the bit & machine database comes from the site (once)
-        for f in self.files.poll(&ctx) {
-            self.open_picked(f);
+        // opening a big file (a VCarve project, a large drawing) can take seconds, in the browser especially: the
+        // "Opening…" card goes on screen for one frame first, then the file is read
+        self.opening.extend(self.files.poll(&ctx));
+        if !self.opening.is_empty() {
+            let big = self.opening.iter().any(|f| f.bytes.len() > 300_000);
+            if !big || std::mem::replace(&mut self.open_wait, true) {
+                for f in std::mem::take(&mut self.opening) {
+                    self.open_picked(f);
+                }
+                self.open_wait = false;
+            } else {
+                ctx.request_repaint();
+            }
+        }
+        if self.open_wait {
+            let name = self.opening.first().map_or(String::new(), |f| f.name.clone());
+            busy_card(&ctx.layer_painter(egui::LayerId::new(egui::Order::Foreground, egui::Id::new("opening"))), ctx.content_rect(), &format!("Opening {name}…"), None);
         }
         for (doc, path) in self.files.saved_rx.try_iter().collect::<Vec<_>>() {
             self.saved_as(doc, path, &ctx);
@@ -1419,19 +1439,33 @@ impl eframe::App for App {
                 let rect = ui.available_rect_before_wrap();
                 self.shell.canvas_rect = rect;
                 if simulating && self.view_3d {
-                    self.view3d.ui(ui, &self.player);
+                    self.view3d.ui(ui, &self.player, self.canvas.show_paths);
                     self.puck(ui.ctx(), true);
                     self.status = format!("yaw {:.0}°  pitch {:.0}°  drag: orbit", self.view3d.yaw, self.view3d.pitch); // fits the 230 px slot
                 } else {
+                    // while simulating, the Show menu decides: all toolpath previews, or the moves cut so far drawn
+                    // over the carved board (the tool's trail), or none
+                    let show = self.view3d.show;
+                    let previews = self.canvas.show_paths;
+                    if simulating && show.paths != crate::view3d::ShowPaths::All {
+                        self.canvas.show_paths = false;
+                    }
                     self.status = self.canvas.ui(ui, self.gen.as_ref(), simulating.then_some(&self.player.view));
+                    self.canvas.show_paths = previews;
                     self.puck(ui.ctx(), false);
                     if simulating && self.player.ready() {
                         if let Some(v) = &self.canvas.view {
-                            let (x, y) = self.player.tool_pos;
-                            let c = v.to_screen(gcarve_core::geom::pt(x, y));
-                            let r = (self.player.tool_dia as f32 / 2.0 * v.zoom).max(3.0);
-                            ui.painter().circle_stroke(c, r, egui::Stroke::new(1.5, egui::Color32::from_rgb(255, 211, 77)));
-                            ui.painter().circle_filled(c, 2.0, egui::Color32::from_rgb(255, 211, 77));
+                            let painter = ui.painter().with_clip_rect(rect);
+                            if show.paths == crate::view3d::ShowPaths::Trail && previews {
+                                crate::view3d::draw_moves(&painter, &self.player, show, |x, y, _| v.to_screen(gcarve_core::geom::pt(x, y)));
+                            }
+                            if show.cutter {
+                                let (x, y) = self.player.tool_pos;
+                                let c = v.to_screen(gcarve_core::geom::pt(x, y));
+                                let r = (self.player.tool_dia as f32 / 2.0 * v.zoom).max(3.0);
+                                painter.circle_stroke(c, r, egui::Stroke::new(1.5, egui::Color32::from_rgb(255, 211, 77)));
+                                painter.circle_filled(c, 2.0, egui::Color32::from_rgb(255, 211, 77));
+                            }
                         }
                     }
                 }
@@ -1441,15 +1475,7 @@ impl eframe::App for App {
                 // building the simulation can take a few seconds on a big job: say so, with how far it got
                 let busy = if self.sim_wait { Some(0.0) } else { self.player.preparing() };
                 if let (true, Some(f)) = (simulating, busy) {
-                    let p = ui.painter();
-                    p.rect_filled(rect, 0.0, theme::CANVAS_BG.gamma_multiply(0.85));
-                    let card = egui::Rect::from_center_size(rect.center(), egui::vec2(300.0, 84.0));
-                    p.rect_filled(card, 8.0, theme::PANEL);
-                    p.text(card.center_top() + egui::vec2(0.0, 24.0), egui::Align2::CENTER_CENTER, "Preparing the simulation…", theme::font(14.0), theme::TEXT);
-                    let bar = egui::Rect::from_min_size(card.left_bottom() + egui::vec2(24.0, -34.0), egui::vec2(card.width() - 48.0, 6.0));
-                    p.rect_filled(bar, 3.0, theme::TEXT.gamma_multiply(0.15));
-                    p.rect_filled(egui::Rect::from_min_size(bar.min, egui::vec2(bar.width() * f.clamp(0.02, 1.0), bar.height())), 3.0, theme::MODE_SIMULATE);
-                    p.text(card.center_bottom() + egui::vec2(0.0, -14.0), egui::Align2::CENTER_CENTER, format!("{:.0}%", f * 100.0), theme::font(11.0), theme::TEXT_DIM);
+                    busy_card(ui.painter(), rect, "Preparing the simulation…", Some(f));
                 }
                 if self.canvas.doc.shapes.is_empty() && self.canvas.doc.reliefs.is_empty() && !self.canvas.dirty && !simulating && self.cam.prefs.start_card && !self.canvas.card_closed {
                     let recent: Vec<String> = self.recent.iter().take(5).cloned().collect();
@@ -1722,16 +1748,17 @@ impl App {
                         self.player.seek(0.0, &ctx);
                     }
                     let mut p = self.player.progress();
-                    let w = (ui.available_width() - 380.0).max(60.0);
+                    let w = (ui.available_width() - 500.0).max(60.0); // room for the Show menu
                     ui.spacing_mut().slider_width = w;
                     if ui.add_enabled(ready, egui::Slider::new(&mut p, 0.0..=1.0).show_value(false).handle_shape(egui::style::HandleShape::Circle)).tip("Drag to scrub through the job (rewinding re-cuts from the start)").changed() {
                         self.player.pause();
                         self.player.seek(p, &ctx);
                     }
                     ui.label(RichText::new(self.player.time_text()).font(egui::FontId::monospace(12.0)));
-                    let speeds = [(1.0, "1× real"), (4.0, "4×"), (10.0, "10×"), (50.0, "50×"), (0.0, "Instant")];
-                    let mut sp = self.player.speed;
-                    if dialogs::combo(ui, "speed", &mut sp, &speeds, 96.0) {
+                    // any speed from real time to 200× (Finish = instant); faster would only stamp more moves per frame
+                    ui.spacing_mut().slider_width = 80.0;
+                    let mut sp = self.player.speed.clamp(1.0, MAX_SIM_SPEED);
+                    if ui.add(egui::Slider::new(&mut sp, 1.0..=MAX_SIM_SPEED).logarithmic(true).handle_shape(egui::style::HandleShape::Circle).suffix("×").fixed_decimals(0)).tip("Playback speed: 1× is the machine's real speed").changed() {
                         self.player.speed = sp;
                     }
                     if ui.add_enabled(ready, B::new("Finish").flat()).tip("Jump to the finished part").clicked() {
@@ -1741,15 +1768,37 @@ impl App {
                     if ui.add(B::new(if self.view_3d { "2D" } else { "3D" }).flat().min_width(52.0)).tip(if self.view_3d { "Back to the drawing view" } else { "Rotate the carved board in 3D (⌘3)" }).clicked() {
                         self.view_3d = !self.view_3d;
                     }
-                    if self.view_3d {
-                        crate::widgets::checkbox(ui, &mut self.view3d.show_paths, "paths");
-                    }
+                    self.show_menu(ui);
                     if crate::icons::IconButton::new("remove").size(14.0).padding(3.0).tip("Hide the simulation").show(ui).clicked() {
                         self.shell.push("showsim");
                     }
                 });
             });
         });
+    }
+
+    /// Simulate bar › Show: toolpaths (all / cut so far / hidden), rapid moves, cutter; same in 2D and 3D, remembered.
+    fn show_menu(&mut self, ui: &mut egui::Ui) {
+        use crate::view3d::ShowPaths;
+        let before = self.view3d.show;
+        let s = &mut self.view3d.show;
+        ui.menu_button("Show ▾", |ui| {
+            ui.label(RichText::new("Toolpaths").color(theme::TEXT_DIM));
+            ui.radio_value(&mut s.paths, ShowPaths::All, "All moves");
+            ui.radio_value(&mut s.paths, ShowPaths::Trail, "Cut so far (tool trail)");
+            ui.radio_value(&mut s.paths, ShowPaths::Hidden, "Hidden");
+            ui.separator();
+            ui.checkbox(&mut s.rapids, "Rapid moves (red)");
+            ui.checkbox(&mut s.cutter, "Cutter");
+            if !self.canvas.show_paths {
+                ui.label(RichText::new("The status bar's Paths switch is off: toolpaths stay hidden").color(theme::TEXT_DIM).size(11.0));
+            }
+        })
+        .response
+        .on_hover_text("What the simulation draws over the board: toolpaths, the tool's trail, rapid moves, the cutter");
+        if self.view3d.show != before {
+            self.view3d.show.save();
+        }
     }
 
     /// The export files for the current state: (files, safety issues, per-file (tools, toolpaths))
@@ -2042,6 +2091,21 @@ impl App {
 
 /// The showcase sign as the demo: the lettering's clearance bit doesn't fit its narrow flats (a warning in the
 /// showcase, which the goldens keep), so the demo leaves the V-bit to clear them and opens without warnings.
+/// The "please wait" card over `rect`: a title and a bar (`progress` 0..1, None = no number, the bar half full).
+fn busy_card(p: &egui::Painter, rect: egui::Rect, title: &str, progress: Option<f32>) {
+    p.rect_filled(rect, 0.0, theme::CANVAS_BG.gamma_multiply(0.85));
+    let card = egui::Rect::from_center_size(rect.center(), egui::vec2(320.0, 84.0));
+    p.rect_filled(card, 8.0, theme::PANEL);
+    p.text(card.center_top() + egui::vec2(0.0, 24.0), egui::Align2::CENTER_CENTER, title, theme::font(14.0), theme::TEXT);
+    let bar = egui::Rect::from_min_size(card.left_bottom() + egui::vec2(24.0, -34.0), egui::vec2(card.width() - 48.0, 6.0));
+    p.rect_filled(bar, 3.0, theme::TEXT.gamma_multiply(0.15));
+    let f = progress.unwrap_or(0.5);
+    p.rect_filled(egui::Rect::from_min_size(bar.min, egui::vec2(bar.width() * f.clamp(0.02, 1.0), bar.height())), 3.0, theme::MODE_SIMULATE);
+    if let Some(f) = progress {
+        p.text(card.center_bottom() + egui::vec2(0.0, -14.0), egui::Align2::CENTER_CENTER, format!("{:.0}%", f * 100.0), theme::font(11.0), theme::TEXT_DIM);
+    }
+}
+
 fn demo_project() -> Vec<u8> {
     let raw = include_bytes!("../../../samples/showcase.tlp");
     let Ok(mut v) = serde_json::from_slice::<serde_json::Value>(raw) else { return raw.to_vec() };

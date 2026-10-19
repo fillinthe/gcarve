@@ -135,6 +135,8 @@ impl OpDialog {
         f.set_bound("rampOut", b, op.ramp_out);
         f.set_bound("rampLength", b, op.ramp_length);
         f.set_bound("chamferWidth", b, if op.chamfer_width > 0.0 { op.chamfer_width } else { 0.125 });
+        f.set_bound("arrayDx", b, op.array_dx);
+        f.set_bound("arrayDy", b, op.array_dy);
         let scope = if op.layer_scope >= 0 { 1 } else if op.group_scope > 0 { 2 } else { 0 };
         OpDialog {
             flat: op.flat_depth > 0.0 || op.kind == OpType::Inlay,
@@ -190,6 +192,10 @@ impl OpDialog {
         op.rough_stepdown = super::eval_len(&self.rough_step, doc).unwrap_or(op.rough_stepdown).max(0.0);
         op.rough_stepover = (self.rough_pct as f64 / 100.0).clamp(0.05, 1.0);
         op.raster_angle = if matches!(k, OpType::Texture | OpType::Photo) || (k == OpType::Pocket && op.raster) { op.raster_angle.rem_euclid(180) } else if op.raster_angle == 90 { 90 } else { 0 };
+        op.array_rows = op.array_rows.clamp(1, 500);
+        op.array_cols = op.array_cols.clamp(1, 500);
+        op.array_dx = f.get_or("arrayDx", doc, op.array_dx);
+        op.array_dy = f.get_or("arrayDy", doc, op.array_dy);
         op.bind = f.bindings(&BIND_KEYS);
         op
     }
@@ -651,6 +657,22 @@ impl OpDialog {
                     if !is_drill && !v_like && !is_bore && !is_flute && !is_relief && !is_prism {
                         ui.label("Direction");
                         crate::widgets::checkbox(ui, &mut self.op.climb, "Climb (else conventional)");
+                        ui.end_row();
+                    }
+                    // VCarve's Array Copy Toolpath: the same cut repeated across a grid, no extra vectors
+                    ui.label("Array copies").tip("Cut this toolpath again in a grid: rows × columns copies, each moved by the spacing from the last (copy to copy, not the gap between parts). 1 × 1 = off.");
+                    ui.horizontal(|ui| {
+                        ui.add(egui::DragValue::new(&mut self.op.array_rows).range(1..=500).suffix(" rows"));
+                        ui.label("×");
+                        ui.add(egui::DragValue::new(&mut self.op.array_cols).range(1..=500).suffix(" columns"));
+                    });
+                    ui.end_row();
+                    if self.op.array_rows * self.op.array_cols > 1 {
+                        ui.label(unit_label("Spacing X / Y", doc)).tip("How far each copy moves from the last: X across the columns, Y up the rows (centre to centre).");
+                        ui.horizontal(|ui| {
+                            self.f.ui(ui, "arrayDx", doc);
+                            self.f.ui(ui, "arrayDy", doc);
+                        });
                         ui.end_row();
                     }
                     if is_drill {

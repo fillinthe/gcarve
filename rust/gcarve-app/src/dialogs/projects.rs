@@ -79,11 +79,24 @@ impl ProjectsDialog {
         if !self.folder.is_empty() && !folders.contains(&self.folder) {
             self.folder.clear(); // its last project moved away
         }
-        crate::widgets::Dialog::new("Projects").open(&mut open).close_footer().width(620.0).show(ctx, |ui| {
+        crate::widgets::Dialog::new("Open or save").open(&mut open).close_footer().width(620.0).show(ctx, |ui| {
+            // a file from this computer first: people coming from VCarve have their .crv files there
+            egui::Frame::new().fill(theme::TEXT.gamma_multiply(0.05)).corner_radius(8.0).inner_margin(12.0).show(ui, |ui| {
+                ui.set_width(ui.available_width());
+                ui.horizontal(|ui| {
+                    if ui.add(crate::widgets::Button::new("Open a file from this computer…").primary(true).min_width(250.0)).clicked() {
+                        act = Some(Action::FromComputer);
+                    }
+                    ui.label(RichText::new("or drop it anywhere on the window").color(theme::TEXT_DIM));
+                });
+                ui.add_space(4.0);
+                ui.label(RichText::new("GCarve projects (.tlp), VCarve projects (.crv), SVG, DXF, DWG, PDF, Illustrator, pictures and G-code (.tap, .nc, .gcode)").small().color(theme::TEXT_DIM));
+            });
+            ui.add_space(8.0);
             // breadcrumb + new folder
             ui.horizontal(|ui| {
                 let mut path = String::new();
-                if ui.link(RichText::new("My projects").strong()).clicked() {
+                if ui.link(RichText::new("My online projects").strong()).clicked() {
                     self.folder.clear();
                 }
                 for part in self.folder.clone().split('/').filter(|p| !p.is_empty()) {
@@ -258,9 +271,6 @@ impl ProjectsDialog {
                 ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                     if ui.link("Download .tlp").on_hover_text("Save a copy to this computer").clicked() {
                         act = Some(Action::Download);
-                    }
-                    if ui.link("Open from this computer…").clicked() {
-                        act = Some(Action::FromComputer);
                     }
                 });
             });

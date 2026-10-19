@@ -222,7 +222,7 @@ fn properties(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas) {
 fn next_step(ui: &mut egui::Ui, sh: &mut Shell, canvas: &Canvas) {
     let doc = &canvas.doc;
     let (text, buttons): (&str, &[(&str, &str)]) = if doc.shapes.is_empty() {
-        ("Draw with the tools on the left, or bring in an SVG, DXF, PDF, image or G-code file.", &[("Import…", "import"), ("Board…", "board")])
+        ("Draw with the tools on the left, or open a VCarve project (.crv) or an SVG, DXF, PDF, image or G-code file.", &[("Import…", "import"), ("Board…", "board")])
     } else if doc.ops.is_empty() {
         ("Click shapes to select them (drag a box for several), then add a toolpath.", &[("Select all", "selectall"), ("Add toolpath", "tab:toolpaths")])
     } else {

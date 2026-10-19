@@ -783,3 +783,23 @@ fn photo_grooves_follow_darkness() {
     let none = Op { photo: String::new(), ..op };
     assert!(!generate(&none, vbit, &[make_rect(0.0, 0.0, 4.0, 2.0)], &mat(), None).warnings.is_empty());
 }
+
+#[test]
+fn array_copies_repeat_the_cut_across_the_grid() {
+    let t = &default_tools()[0];
+    let op = Op { kind: OpType::Profile, name: "Part".into(), depth: 0.2, array_rows: 2, array_cols: 3, array_dx: 5.0, array_dy: 4.0, ..Default::default() };
+    let mut paths = generate(&op, t, &[make_rect(0.0, 0.0, 2.0, 1.0)], &mat(), None).paths;
+    let one = paths.len();
+    gcarve_core::cam::array_copies(&op, &mut paths);
+    assert_eq!(paths.len(), one * 6);
+    // every copy is complete (explicit X / Y) and the grid reaches the far cell
+    let xs: Vec<f64> = paths.iter().flat_map(|p| &p.moves).filter_map(|m| m.x).collect();
+    let ys: Vec<f64> = paths.iter().flat_map(|p| &p.moves).filter_map(|m| m.y).collect();
+    let max = |v: &[f64]| v.iter().cloned().fold(f64::MIN, f64::max);
+    assert!((max(&xs) - (10.0 + 2.0 + t.diameter / 2.0)).abs() < 1e-6, "{}", max(&xs));
+    assert!((max(&ys) - (4.0 + 1.0 + t.diameter / 2.0)).abs() < 1e-6, "{}", max(&ys));
+    for p in &paths[one..] {
+        let first_xy = p.moves.iter().find(|m| m.x.is_some() || m.y.is_some()).unwrap();
+        assert!(first_xy.x.is_some() && first_xy.y.is_some());
+    }
+}
