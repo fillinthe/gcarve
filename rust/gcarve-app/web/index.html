@@ -19,9 +19,10 @@
   .bar i { display:block; height:100%; width:35%; background:linear-gradient(90deg,#1473e6,#ff9a2e); animation:s 1.2s ease-in-out infinite }
   @keyframes s { 0% { transform:translateX(-100%) } 100% { transform:translateX(300%) } }
 </style>
-<script src="/assets/accountbar.js" defer></script>
-<script>// the app sets window.gcarveDirty while there is unsaved work: the browser then asks before a refresh / close
-window.addEventListener("beforeunload", e => { if (window.gcarveDirty) { e.preventDefault(); e.returnValue = ""; } });</script>
+<script src="/assets/accountbar.js?v=2" defer></script>
+<script>// the app sets window.gcarveDirty while there is unsaved work and window.gcarveOpen while a drawing is on screen:
+// the browser then asks before a refresh / close / leaving (a reload starts the app over)
+window.addEventListener("beforeunload", e => { if (window.gcarveDirty || window.gcarveOpen) { e.preventDefault(); e.returnValue = ""; } });</script>
 </head>
 <body>
 <canvas id="gcarve"></canvas>

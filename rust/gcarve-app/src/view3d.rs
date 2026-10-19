@@ -9,7 +9,8 @@ use eframe::egui::{self, Color32, Mesh, Pos2, Rect, Sense, Shape, Stroke};
 use gcarve_core::sim::{wood, HeightField};
 
 /// ponytail: CPU mesh; ≤ 60k quads keeps a frame under a few ms. A GPU callback when boards get huge.
-const MAX_QUADS: usize = 60_000;
+/// mesh size cap: the browser draws on one thread, so it gets fewer squares (each square = one block of sim cells)
+const MAX_QUADS: usize = if cfg!(target_arch = "wasm32") { 120_000 } else { 200_000 };
 
 pub use gcarve_ui::nav::{Act, Nav};
 
@@ -25,6 +26,8 @@ pub struct View3d {
     pub z_scale: f64,
     /// what is drawn over the carved board, shared with the 2D simulation (Simulate bar › Show)
     pub show: SimShow,
+    /// mouse wheel or trackpad, per scroll gesture
+    wheel: gcarve_ui::nav::WheelKind,
     /// perspective camera (fov 35°) instead of orthographic; remembered in the store (`PERSPECTIVE_KEY`)
     pub perspective: bool,
     pub nav: Nav,
@@ -51,7 +54,7 @@ pub struct View3d {
 
 impl Default for View3d {
     fn default() -> Self {
-        View3d { want_trace: false, yaw: 35.0, pitch: 55.0, zoom: 1.0, z_scale: 1.0, show: SimShow::default(), perspective: false, nav: Nav::Fusion, zoom_reverse: false, pan: egui::Vec2::ZERO, frame: u64::MAX, nx: 0, ny: 0, px: Vec::new(), py: Vec::new(), pz: Vec::new(), col: Vec::new(), lit: Vec::new(), skirt: Vec::new(), bw: 1.0, bh: 1.0, bt: 0.1 }
+        View3d { want_trace: false, yaw: 35.0, pitch: 55.0, zoom: 1.0, z_scale: 1.0, show: SimShow::default(), wheel: Default::default(), perspective: false, nav: Nav::Fusion, zoom_reverse: false, pan: egui::Vec2::ZERO, frame: u64::MAX, nx: 0, ny: 0, px: Vec::new(), py: Vec::new(), pz: Vec::new(), col: Vec::new(), lit: Vec::new(), skirt: Vec::new(), bw: 1.0, bh: 1.0, bt: 0.1 }
     }
 }
 
@@ -163,7 +166,13 @@ impl View3d {
             _ if shot => SimShow::default(),
             _ => SimShow::load(),
         };
-        View3d { perspective: stored || std::env::var("GCARVE_PERSP").is_ok(), nav, zoom_reverse, show, ..Default::default() } // GCARVE_PERSP: dev, screenshots
+        let mut v = View3d { perspective: stored || std::env::var("GCARVE_PERSP").is_ok(), nav, zoom_reverse, show, ..Default::default() };
+        // GCARVE_VIEW3D=yaw,pitch[,zoom]: dev, screenshots from a given angle
+        if let Ok(a) = std::env::var("GCARVE_VIEW3D") {
+            let n: Vec<f64> = a.split(',').filter_map(|x| x.trim().parse().ok()).collect();
+            (v.yaw, v.pitch, v.zoom) = (n.first().copied().unwrap_or(v.yaw), n.get(1).copied().unwrap_or(v.pitch), n.get(2).copied().unwrap_or(v.zoom));
+        }
+        v // GCARVE_PERSP: dev, screenshots
     }
 
     fn rebuild(&mut self, p: &Player) {
@@ -179,15 +188,11 @@ impl View3d {
         let mut lo = HeightField { nx: nx as i32, ny: ny as i32, res: hf.res * step as f64, x0: hf.x0, y0: hf.y0, depth: vec![0.0; nx * ny] };
         for iy in 0..ny {
             for ix in 0..nx {
-                let mut d = 0.0f32; // deepest cell in the block, so narrow cuts survive the downsampling
-                for b in 0..step {
-                    for a in 0..step {
-                        let sx = (hf.nx as usize - 1).min(ix * step + a) as i32;
-                        let sy = (hf.ny as usize - 1).min(iy * step + b) as i32;
-                        d = d.max(hf.at(sx, sy));
-                    }
-                }
-                lo.depth[iy * nx + ix] = d;
+                // the block's centre cell: walls stay where they are. The deepest cell of the block (as before) widened
+                // every cut by up to a block and swallowed thin strips and tabs between cuts (owner, 2026-10-19)
+                let sx = (hf.nx as usize - 1).min(ix * step + step / 2) as i32;
+                let sy = (hf.ny as usize - 1).min(iy * step + step / 2) as i32;
+                lo.depth[iy * nx + ix] = hf.at(sx, sy);
             }
         }
         let n = nx * ny;
@@ -290,7 +295,7 @@ impl View3d {
                     if modifiers.ctrl || modifiers.command {
                         continue; // already in zoom_delta
                     }
-                    if gcarve_ui::nav::wheel_is_mouse(unit, delta) {
+                    if self.wheel.is_mouse(ui.input(|i| i.time), unit, delta) {
                         let lines = if unit == egui::MouseWheelUnit::Point { delta.y as f64 / 50.0 } else { delta.y as f64 };
                         factor *= (lines * 0.12 * zdir).exp();
                     } else if self.nav.swipe(shift) == Act::Orbit {

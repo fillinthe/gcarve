@@ -65,8 +65,26 @@ impl Nav {
 /// ponytail: heuristic for the web; a smooth-scrolling mouse may read as a trackpad (then it pans; pinch still zooms)
 pub fn wheel_is_mouse(unit: egui::MouseWheelUnit, d: egui::Vec2) -> bool {
     match unit {
-        egui::MouseWheelUnit::Point => d.x == 0.0 && d.y.abs() >= 40.0 && d.y.fract() == 0.0,
+        egui::MouseWheelUnit::Point => d.x == 0.0 && d.y.fract() == 0.0,
         _ => true,
+    }
+}
+
+/// Mouse wheel or trackpad, decided per scroll gesture (events under 0.3 s apart) instead of per event: a wheel with
+/// acceleration or smooth scrolling sends steps of every size mid-spin, so judging each one made a spin zoom and
+/// orbit by turns (owner, 2026-10-19). A sideways or fractional step still turns the gesture into a trackpad one.
+#[derive(Default, Clone, Copy)]
+pub struct WheelKind {
+    last: f64,
+    mouse: bool,
+}
+
+impl WheelKind {
+    pub fn is_mouse(&mut self, now: f64, unit: egui::MouseWheelUnit, d: egui::Vec2) -> bool {
+        let this = wheel_is_mouse(unit, d);
+        self.mouse = if now - self.last > 0.3 { this } else { self.mouse && this };
+        self.last = now;
+        self.mouse
     }
 }
 
@@ -95,6 +113,12 @@ mod tests {
         assert!(wheel_is_mouse(egui::MouseWheelUnit::Point, egui::vec2(0.0, -100.0)));
         assert!(!wheel_is_mouse(egui::MouseWheelUnit::Point, egui::vec2(0.0, -3.5)));
         assert!(!wheel_is_mouse(egui::MouseWheelUnit::Point, egui::vec2(12.0, -60.0)));
+        assert!(wheel_is_mouse(egui::MouseWheelUnit::Point, egui::vec2(0.0, -4.0)), "a small wheel step (macOS acceleration)");
+        // one gesture keeps its kind: a trackpad swipe ending in whole-number steps doesn't start zooming
+        let mut k = WheelKind::default();
+        assert!(!k.is_mouse(1.0, egui::MouseWheelUnit::Point, egui::vec2(0.5, -3.5)));
+        assert!(!k.is_mouse(1.1, egui::MouseWheelUnit::Point, egui::vec2(0.0, -2.0)));
+        assert!(k.is_mouse(2.0, egui::MouseWheelUnit::Point, egui::vec2(0.0, -8.0)), "a new gesture after a pause");
         assert_eq!(key_drag(true, false, false), Some(Act::Orbit));
         assert_eq!(key_drag(false, true, false), Some(Act::Pan));
         assert_eq!(key_drag(false, false, true), Some(Act::Zoom));

@@ -157,8 +157,12 @@ fn find_all<'a>(d: &'a [u8], pat: &'a [u8]) -> impl Iterator<Item = usize> + 'a 
     d.windows(pat.len()).enumerate().filter(move |(_, w)| *w == pat).map(|(i, _)| i)
 }
 
-/// One vdContour starting at its version word (`at`); None when the bytes there aren't one.
-fn vd_contour(d: &[u8], at: usize) -> Option<Contour> {
+/// start, end, bulge (arcs), control points (curves)
+type Span = (Pt, Pt, Option<f64>, Option<(Pt, Pt)>);
+
+/// One vdContour starting at its version word (`at`) and the tabs VCarve placed on it; None when the bytes there
+/// aren't one.
+fn vd_contour(d: &[u8], at: usize) -> Option<(Contour, Vec<Pt>)> {
     let mut r = Rd { d, p: at + 8 };
     let tol = r.f64()?;
     if !(1e-7..0.1).contains(&tol) {
@@ -171,6 +175,7 @@ fn vd_contour(d: &[u8], at: usize) -> Option<Contour> {
     }
     let mut b = Builder::default();
     let mut first = None;
+    let mut spans: Vec<Span> = Vec::new();
     for _ in 0..n {
         r.u8()?;
         if r.u32()? != 2 {
@@ -187,20 +192,69 @@ fn vd_contour(d: &[u8], at: usize) -> Option<Contour> {
             b.start(p0);
         }
         match kind {
-            1 => b.line(p1),
+            1 => {
+                b.line(p1);
+                spans.push((p0, p1, None, None));
+            }
             0 => {
                 let bulge = r.f64()?;
                 if bulge.abs() < 1e-9 || dist(p0, p1) < 1e-12 {
                     b.line(p1);
+                    spans.push((p0, p1, None, None));
                 } else {
                     crate::dxf::bulge_arc(&mut b, p0, p1, bulge);
+                    spans.push((p0, p1, Some(bulge), None));
                 }
             }
             6 => {
                 let (c1, c2) = (r.xy()?, r.xy()?);
                 b.cubic(c1, c2, p1);
+                spans.push((p0, p1, None, Some((c1, c2))));
             }
             _ => return None,
+        }
+    }
+    // tabs (vcToolpathTab): own GUID, i32 -1, 2 bytes, u32 count, then per tab: class tag, u32 1, u32 span, f64
+    // position along it (0..1), u32 1
+    let mut tabs = Vec::new();
+    let mut t = Rd { d, p: r.p + 16 };
+    if t.u32() == Some(u32::MAX) && t.take(2).is_some() {
+        let count = t.u32().unwrap_or(0).min(256);
+        for _ in 0..count {
+            let Some(tag) = t.take(2).map(|g| [g[0], g[1]]) else { break };
+            if tag == [0xff, 0xff] {
+                if t.take(2).is_none() {
+                    break;
+                }
+                let Some(len) = t.take(2).map(|l| u16::from_le_bytes([l[0], l[1]]) as usize) else { break };
+                if t.take(len) != Some(b"vcToolpathTab".as_slice()) {
+                    break;
+                }
+            } else if tag[1] & 0x80 == 0 {
+                break;
+            }
+            let (Some(1), Some(k), Some(f), Some(_)) = (t.u32(), t.u32(), t.f64(), t.u32()) else { break };
+            let Some(&(a, z, bulge, ctl)) = spans.get(k as usize) else { break };
+            if !(0.0..=1.0).contains(&f) {
+                break;
+            }
+            tabs.push(match (bulge, ctl) {
+                (Some(bu), _) => {
+                    // the same arc as dxf::bulge_arc
+                    let th = 4.0 * bu.atan();
+                    let c = dist(a, z);
+                    let m = (a + z) * 0.5;
+                    let nrm = pt(-(z.y - a.y) / c, (z.x - a.x) / c);
+                    let ctr = m + nrm * (c / 2.0 / (th / 2.0).tan());
+                    let ang = (a.y - ctr.y).atan2(a.x - ctr.x) + th * f;
+                    ctr + pt(ang.cos(), ang.sin()) * dist(a, ctr)
+                }
+                (_, Some((c1, c2))) => {
+                    let u = 1.0 - f;
+                    a * (u * u * u) + c1 * (3.0 * u * u * f) + c2 * (3.0 * u * f * f) + z * (f * f * f)
+                }
+                _ => a + (z - a) * f,
+            });
         }
     }
     let end = b.cur();
@@ -209,7 +263,7 @@ fn vd_contour(d: &[u8], at: usize) -> Option<Contour> {
     } else {
         b.c.closed = false;
     }
-    Some(b.c)
+    Some((b.c, tabs))
 }
 
 /// A VCarve project as a new document: board size and thickness, layers and vectors. Toolpaths aren't read yet
@@ -282,7 +336,11 @@ fn from_streams(s: &HashMap<String, Vec<u8>>) -> Result<(Document, String), Stri
     owners.sort();
     // object GUID -> its shapes (toolpaths name the objects they cut)
     let mut objs: HashMap<&[u8], Vec<i32>> = HashMap::new();
-    let outlines: Vec<(usize, Contour)> = find_all(vec, &[7, 0, 0, 0]).filter_map(|at| vd_contour(vec, at).map(|c| (at, c))).collect();
+    let found: Vec<(usize, (Contour, Vec<Pt>))> = find_all(vec, &[7, 0, 0, 0]).filter_map(|at| vd_contour(vec, at).map(|c| (at, c))).collect();
+    let outlines: Vec<(usize, Contour)> = found.iter().map(|(at, c)| (*at, c.0.clone())).collect();
+    let tab_at: HashMap<usize, &Vec<Pt>> = found.iter().filter(|f| !f.1 .1.is_empty()).map(|(at, c)| (*at, &c.1)).collect();
+    // shape id -> the tabs placed on it in VCarve (document inches)
+    let mut tabs: HashMap<i32, Vec<Pt>> = HashMap::new();
     let text = text_layout(vec, &outlines);
     let mut groups: HashMap<usize, i32> = HashMap::new();
     let mut n = 0;
@@ -307,6 +365,10 @@ fn from_streams(s: &HashMap<String, Vec<u8>>) -> Result<(Document, String), Stri
         }
         let l = doc.layer_named(layer);
         let id = doc.add(c, Some(l));
+        if let Some(ts) = tab_at.get(&at) {
+            let m = letter.map_or(Affine::default(), |l| l.0);
+            tabs.insert(id, ts.iter().map(|&q| (m.apply(q) + *shift) * *scale).collect());
+        }
         let group = letter.map(|(_, block)| *groups.entry(*block).or_insert_with(|| doc.new_group_id()));
         if let Some(sh) = doc.shapes.iter_mut().find(|s| s.id == id) {
             sh.sheet = sheet as i32;
@@ -342,7 +404,7 @@ fn from_streams(s: &HashMap<String, Vec<u8>>) -> Result<(Document, String), Stri
     if text.unread > 0 {
         note += &format!(". {} text{} not read: in VCarve, convert it to curves first", text.unread, if text.unread == 1 { "" } else { "s" });
     }
-    let (made, copies, skipped) = s.get("Toolpaths/ToolpathData").map_or((0, 0, Vec::new()), |d| toolpaths(d, &objs, fallback.2, &mut doc));
+    let (made, copies, skipped) = s.get("Toolpaths/ToolpathData").map_or((0, 0, Vec::new()), |d| toolpaths(d, &objs, &tabs, fallback.2, &mut doc));
     note += &format!(". {made} toolpath{} read", if made == 1 { "" } else { "s" });
     if copies > 0 {
         note += &format!(" ({copies} as array copies)");
@@ -569,7 +631,7 @@ fn tool_at(d: &[u8], i: usize, scale: f64) -> Option<(Tool, f64)> {
 
 /// The toolpaths, as GCarve toolpaths on the shapes they cut. Returns how many were made, how many array copies
 /// were set and what was left out.
-fn toolpaths(d: &[u8], objs: &HashMap<&[u8], Vec<i32>>, scale: f64, doc: &mut Document) -> (usize, usize, Vec<String>) {
+fn toolpaths(d: &[u8], objs: &HashMap<&[u8], Vec<i32>>, tabs: &HashMap<i32, Vec<Pt>>, scale: f64, doc: &mut Document) -> (usize, usize, Vec<String>) {
     let mut nodes = Vec::new();
     for at in find_all(d, &[0xff, 0xfe, 0xff]) {
         let mut r = Rd { d, p: at };
@@ -694,6 +756,10 @@ fn toolpaths(d: &[u8], objs: &HashMap<&[u8], Vec<i32>>, scale: f64, doc: &mut Do
                 op.tabs = num("_ppdUseTabs") == 1.0;
                 (op.tab_width, op.tab_height, op.tab_ramped) = (len("TabLength"), len("TabThickness"), num("_ppd3dTabs") == 1.0);
                 op.tab_count = (num("tabsNumTabs") as i32).max(1);
+                // tabs placed in VCarve go where they were (GCarve's hand-placed tabs)
+                if op.tabs {
+                    op.tab_points = op.shape_ids.iter().filter_map(|id| tabs.get(id)).flatten().map(|q| [q.x, q.y]).collect();
+                }
                 op.entry = if num("_mcrdDoRamping") == 1.0 { Entry::Ramp } else { Entry::Plunge };
                 op.ramp_length = num("_mcrdRampingDistance") * scale;
                 if num("_mcldDoRamping") == 1.0 {
@@ -887,6 +953,9 @@ mod tests {
     fn crv_to_svg() {
         let (d, note) = import_crv(&std::fs::read(std::env::var("GCARVE_CRV").unwrap()).unwrap()).unwrap();
         println!("{note}");
+        for op in &d.ops {
+            println!("  {} {:?} {:?} depth {:.3} tabs {} ({} placed) array {}x{} group {:?}", op.name, op.kind, op.side, op.depth, op.tabs, op.tab_points.len(), op.array_rows, op.array_cols, op.op_group);
+        }
         let sheet: Option<i32> = std::env::var("GCARVE_CRV_SHEET").ok().and_then(|v| v.parse().ok()); // one sheet only
         let items: Vec<_> = d.shapes.iter().filter(|s| sheet.is_none_or(|i| s.sheet == i)).map(|s| (&s.c, d.layers[s.layer as usize].name.as_str())).collect();
         std::fs::write(std::env::var("GCARVE_CRV_SVG").unwrap(), crate::svg::export_svg(&items, d.material.w, d.material.h)).unwrap();

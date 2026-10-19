@@ -13,12 +13,22 @@ pub struct Recovery {
 const KEY: &str = "recover";
 
 pub fn set_dirty(dirty: bool) {
+    page_flag("Dirty", dirty);
+}
+
+/// Web: window.<app>Open while a drawing is on screen, saved or not: the page then asks before a reload or leaving
+/// too (a reload would start the app over).
+pub fn set_open(open: bool) {
+    page_flag("Open", open);
+}
+
+fn page_flag(name: &str, on: bool) {
     #[cfg(target_arch = "wasm32")]
     if let Some(w) = web_sys::window() {
-        let _ = js_sys::Reflect::set(&w, &format!("{}Dirty", store::app().to_lowercase()).into(), &dirty.into());
+        let _ = js_sys::Reflect::set(&w, &format!("{}{name}", store::app().to_lowercase()).into(), &on.into());
     }
     #[cfg(not(target_arch = "wasm32"))]
-    let _ = dirty;
+    let _ = (name, on);
 }
 
 pub fn save(name: &str, json: &str) {
