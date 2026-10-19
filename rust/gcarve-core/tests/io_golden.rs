@@ -230,3 +230,16 @@ fn a_toolpath_can_keep_to_one_sheet_or_take_every_vector() {
     let back = gcarve_core::project::load_project(&gcarve_core::project::save_project(&d)).unwrap();
     assert_eq!((back.ops[0].sheet_scope, back.ops[0].all_vectors), (1, true));
 }
+
+#[test]
+fn sheets_keep_their_names() {
+    use gcarve_core::document::Document;
+    let mut d = Document::default();
+    d.sheets = vec![d.material.clone(), d.material.clone()];
+    d.set_sheet_name(1, "Doors");
+    assert_eq!((d.sheet_name(0), d.sheet_name(1)), ("Sheet 1".to_string(), "Doors".to_string()));
+    let back = gcarve_core::project::load_project(&gcarve_core::project::save_project(&d)).unwrap();
+    assert_eq!(back.sheet_name(1), "Doors");
+    d.set_sheet_name(1, " ");
+    assert_eq!(d.sheet_name(1), "Sheet 2", "blank = back to the number");
+}

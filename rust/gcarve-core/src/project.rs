@@ -289,6 +289,9 @@ pub(crate) fn op_json(op: &Op, tools: &[Tool]) -> Value {
     if op.tab_corners {
         m.insert("tabAvoidCorners".into(), json!(true));
     }
+    if op.tab_spacing > 0.0 {
+        m.insert("tabSpacing".into(), json!(op.tab_spacing));
+    }
     if op.sheet_scope >= 0 {
         m.insert("sheet".into(), json!(op.sheet_scope));
     }
@@ -371,6 +374,7 @@ pub(crate) fn op_from(o: &Value, tool_count: i32) -> Op {
         thread_pitch: num(o, "threadPitch", 0.0).max(0.0),
         start_first: flag(o, "startFirst", false),
         tab_corners: flag(o, "tabAvoidCorners", false),
+        tab_spacing: num(o, "tabSpacing", 0.0).max(0.0),
         sheet_scope: int(o, "sheet", -1).max(-1),
         all_vectors: flag(o, "allVectors", false),
         array_rows: int(get(o, "array"), "rows", 1).clamp(1, 500),
@@ -396,6 +400,9 @@ fn material_json(m: &Material) -> Value {
     if let Some(ml) = &m.machine {
         o.as_object_mut().unwrap().insert("machine".into(), serde_json::to_value(ml).unwrap_or(Value::Null));
     }
+    if !m.name.is_empty() {
+        o.as_object_mut().unwrap().insert("name".into(), json!(m.name));
+    }
     o
 }
 fn material_from(o: &Value) -> Material {
@@ -412,6 +419,7 @@ fn material_from(o: &Value) -> Material {
         auto_feeds: flag(o, "autoFeeds", true),
         machine: get(o, "machine").as_object().and_then(|_| serde_json::from_value(get(o, "machine").clone()).ok()),
         bind: bind_from(get(o, "bind")),
+        name: s(o, "name", ""),
     }
 }
 

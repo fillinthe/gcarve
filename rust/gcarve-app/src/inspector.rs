@@ -452,10 +452,10 @@ fn toolpaths(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Option
             }
         }).response.tip("Folders: yours, drag toolpaths in. By sheet: a heading per sheet with the toolpaths that cut there. By bit: one G-code file per bit");
         if nsheets > 1 {
-            let label = if sh.tp_this_sheet { format!("Sheet {}", active + 1) } else { "All sheets".to_string() };
+            let label = if sh.tp_this_sheet { doc.sheet_name(active) } else { "All sheets".to_string() };
             crate::widgets::combo_box("tp-sheet").selected_text(label).width(76.0).show_ui(ui, |ui| {
                 ui.selectable_value(&mut sh.tp_this_sheet, false, "All sheets");
-                ui.selectable_value(&mut sh.tp_this_sheet, true, format!("Sheet {} (this one)", active + 1));
+                ui.selectable_value(&mut sh.tp_this_sheet, true, format!("{} (this one)", doc.sheet_name(active)));
             }).response.tip("Every toolpath (the ones with nothing on this sheet greyed), or only the ones that cut on this sheet");
         }
         let layers: Vec<(i32, String)> = std::iter::once((-1, "All layers".to_string())).chain(doc.layers.iter().enumerate().map(|(i, l)| (i as i32, l.name.clone()))).collect();
@@ -590,7 +590,7 @@ fn toolpaths(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Option
             let title = match head {
                 Head::Folder(n) if n.is_empty() => "Not in a folder".to_string(),
                 Head::Folder(n) => n.clone(),
-                Head::Sheet(j) => format!("Sheet {}{}", j + 1, if here { "  ·  this sheet" } else { "" }),
+                Head::Sheet(j) => format!("{}{}", doc.sheet_name(*j), if here { "  ·  this sheet" } else { "" }),
                 _ => "Cutting nothing yet".into(),
             };
             ui.painter().text(hr.left_center() + egui::vec2(22.0, 0.0), egui::Align2::LEFT_CENTER, format!("{title}  ({})", ops.len()), theme::font(12.0), if here { theme::ACCENT } else { theme::TEXT });
@@ -856,7 +856,7 @@ fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Docume
     let place = match (op.sheet_scope, op.all_vectors) {
         (s, true) if s >= 0 => format!("all vectors, sheet {}  ·  ", s + 1),
         (_, true) => "all vectors  ·  ".to_string(),
-        (s, _) if s >= 0 => format!("sheet {} only  ·  ", s + 1),
+        (s, _) if s >= 0 => format!("{} only  ·  ", doc.sheet_name(s as usize)),
         _ => String::new(),
     };
     let info = if here || used.len() < 2 { format!("{place}{tool}  ·  {info}") } else { format!("not on this sheet  ·  {place}{tool}") };
@@ -921,7 +921,7 @@ fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Docume
                 acts.push(TpAct::SheetScope(i, -1));
                 ui.close();
             }
-            if op.sheet_scope != doc.active_sheet && crate::widgets::menu_item(ui, &format!("Cut on Sheet {} only", doc.active_sheet + 1), "").clicked() {
+            if op.sheet_scope != doc.active_sheet && crate::widgets::menu_item(ui, &format!("Cut on {} only", doc.sheet_name(doc.active_sheet.max(0) as usize)), "").clicked() {
                 acts.push(TpAct::SheetScope(i, doc.active_sheet));
                 ui.close();
             }

@@ -114,6 +114,8 @@ pub struct Material {
     pub machine: Option<MachineLimits>,
     /// w|h|t|safeZ|retractZ -> expression
     pub bind: Bind,
+    /// the sheet's name ("Doors", "12a"); empty = "Sheet N" (JSON "name" when set, Rust only)
+    pub name: String,
 }
 
 /// What GCarve needs from a machine record (copied into the project so it travels with it). 0 = not published.
@@ -155,6 +157,7 @@ impl Default for Material {
             auto_feeds: true,
             machine: None,
             bind: Bind::new(),
+            name: String::new(),
         }
     }
 }
@@ -282,6 +285,9 @@ pub struct Op {
     /// profile: evenly spaced tabs slide along the outline off corners (VCarve "avoid corners"; JSON
     /// "tabAvoidCorners" when set, Rust only). Off by default so older projects cut as before; new toolpaths turn it on
     pub tab_corners: bool,
+    /// profile: > 0 = evenly spaced tabs about this far apart on every part (so a big part gets more than a small one)
+    /// instead of `tab_count` per part (JSON "tabSpacing" when set, Rust only)
+    pub tab_spacing: f64,
     /// the sheet it cuts on (index), -1 = every sheet (JSON "sheet" when set, Rust only)
     pub sheet_scope: i32,
     /// cuts every vector (all layers but keep-out ones) instead of picked shapes / a layer / a group (JSON
@@ -345,6 +351,7 @@ impl Default for Op {
             thread_pitch: 0.0,
             start_first: false,
             tab_corners: false,
+            tab_spacing: 0.0,
             sheet_scope: -1,
             all_vectors: false,
             array_rows: 1,
@@ -664,6 +671,22 @@ impl Document {
             *s = self.material.clone();
         }
     }
+    /// a sheet's name for the screen: its own, else "Sheet N" (the active one's lives in `material`)
+    pub fn sheet_name(&self, j: usize) -> String {
+        let m = if j as i32 == self.active_sheet { &self.material } else { match self.sheets.get(j) { Some(m) => m, None => return format!("Sheet {}", j + 1) } };
+        if m.name.trim().is_empty() { format!("Sheet {}", j + 1) } else { m.name.clone() }
+    }
+
+    /// names sheet `j` ("" = back to "Sheet N")
+    pub fn set_sheet_name(&mut self, j: usize, name: &str) {
+        if j as i32 == self.active_sheet {
+            self.material.name = name.trim().to_string();
+        }
+        if let Some(m) = self.sheets.get_mut(j) {
+            m.name = name.trim().to_string();
+        }
+    }
+
     pub fn set_active_sheet(&mut self, i: i32) {
         self.sync_sheet();
         self.active_sheet = clamp(i, 0, self.sheets.len() as i32 - 1);
