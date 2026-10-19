@@ -106,6 +106,8 @@ pub struct App {
     recover_at: Option<f64>,
     recover_rev: u64,
     last_dirty: bool,
+    /// a drawing is on screen (web: the page asks before a reload)
+    last_open: bool,
     pending_dialog: String,
     project_path: Option<PathBuf>, // desktop: where the project is saved (always None on the web)
     #[cfg(not(target_arch = "wasm32"))]
@@ -183,7 +185,7 @@ impl App {
         gcarve_ui::help::set_download_page("https://gcarve.app/download/");
         let mut app = App { files, mode, canvas: new_canvas(&prefs), left_open: ui_state.tool_rail, right_open: ui_state.side_panel, status: String::new(), message: "Open a VCarve project (.crv), an SVG, DXF or PDF, or draw with R / E / P.".into(), name: "Untitled".into(), shell: Shell::new(), frame: 0, gen: None, gen_rev: 0, lib_ready: false, lib_pushed: 0, shares: Vec::new(), shares_open: false, gen_draft: None, export: None, cloud: Cloud::new(), cloud_id: String::new(), account: Default::default(), help: Default::default(), movie: std::env::var("GCARVE_MOVIE").ok().map(|d| (d.into(), 0, std::env::var("GCARVE_MOVIE_FRAMES").ok().and_then(|n| n.parse().ok()).unwrap_or(600), false)), projects: Default::default(), dialogs: Dialogs::default(), select_all_on_load: false, prev_tool: Tool::Select, dev_measure: false,
             prefs_seen: prefs.synced.clone(), prefs_push_at: None, prefs_from_server: false,
-            cam: CamDialogs { prefs, ..Default::default() }, posts: UserPosts::load(), templates: Default::default(), player: Player::default(), view3d: View3d::load(shot), sim_wait: false, opening: Vec::new(), open_wait: false, gen_wait: false, puck_tried: shot, puck_filter: Default::default(), puck_trace: Default::default(), view_3d: false, watch_pending: false, show_sim: false, shot, pending_dialog: String::new(), recover: if shot { None } else { crate::recover::load() }, recover_at: None, recover_rev: 0, last_dirty: false,
+            cam: CamDialogs { prefs, ..Default::default() }, posts: UserPosts::load(), templates: Default::default(), player: Player::default(), view3d: View3d::load(shot), sim_wait: false, opening: Vec::new(), open_wait: false, gen_wait: false, puck_tried: shot, puck_filter: Default::default(), puck_trace: Default::default(), view_3d: false, watch_pending: false, show_sim: false, shot, pending_dialog: String::new(), recover: if shot { None } else { crate::recover::load() }, recover_at: None, recover_rev: 0, last_dirty: false, last_open: false,
             project_path: None,
             #[cfg(not(target_arch = "wasm32"))]
             jobs: crate::jobs::Jobs::load(),
@@ -1574,6 +1576,11 @@ impl App {
     fn recover_tick(&mut self, ctx: &egui::Context) {
         if self.shot {
             return;
+        }
+        let open = !self.canvas.doc.shapes.is_empty() || !self.canvas.doc.ops.is_empty();
+        if open != self.last_open {
+            crate::recover::set_open(open);
+            self.last_open = open;
         }
         let dirty = self.canvas.dirty;
         if dirty != self.last_dirty {
