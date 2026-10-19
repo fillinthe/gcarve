@@ -168,16 +168,16 @@ pub fn board_summary(doc: &Document) -> String {
     let m = &doc.material;
     let (name, u, dt) = unit(doc);
     let d = if name == "mm" { 1 } else { 2 };
-    let origins = ["bottom-left", "bottom-right", "top-left", "top-right", "centre"];
-    let sheet = if doc.sheets.len() > 1 { format!("Sheet {} of {}  ·  ", doc.active_sheet + 1, doc.sheets.len()) } else { String::new() };
+    let origins = ["the bottom-left corner", "the bottom-right corner", "the top-left corner", "the top-right corner", "the centre"];
+    let sheet = if doc.sheets.len() > 1 { format!("{} ({} of {})  ·  ", doc.sheet_name(doc.active_sheet.max(0) as usize), doc.active_sheet + 1, doc.sheets.len()) } else { String::new() };
     format!(
-        "{sheet}{}  ·  {:.d$} × {:.d$} × {:.dt$} {name}  ·  XY0 {} · Z0 {}",
+        "{sheet}{}  ·  {:.d$} × {:.d$} × {:.dt$} {name}  ·  zero at {}, {}",
         m.kind,
         m.w * u,
         m.h * u,
         m.t * u,
         origins[(m.origin.max(0) as usize).min(4)],
-        if m.z_bottom { "bed" } else { "top" }
+        if m.z_bottom { "bit touched off on the table" } else { "bit touched off on top" }
     ) + &m.machine.as_ref().map(|x| format!("  ·  {}", x.name)).unwrap_or_default()
 }
 
@@ -253,6 +253,10 @@ pub struct Shell {
     pub op_multi: std::collections::BTreeSet<usize>,
     /// toolpath folders shut in the list
     pub folded: std::collections::BTreeSet<String>,
+    /// a sheet tab being renamed: (sheet, text)
+    pub sheet_rename: Option<(usize, String)>,
+    /// the active sheet the tab strip last scrolled to
+    pub tabs_seen: Option<usize>,
     /// the name typed for a new folder (Group…)
     pub new_folder: Option<String>,
     /// folders made with + Folder that hold nothing yet (they live here until a toolpath is dropped in)
@@ -279,7 +283,7 @@ pub struct Shell {
 
 impl Shell {
     pub fn new() -> Self {
-        Shell { cmds: Vec::new(), side_tab: 0, op_sel: None, op_multi: Default::default(), folded: Default::default(), new_folder: None, empty_folders: Default::default(), tp_this_sheet: false, tp_layer: -1, tp_usage: (u64::MAX, Vec::new()), tp_group: 0, lock_aspect: true, rot_text: "15".into(), edit: Default::default(), edit_for: None, zoom_text: String::new(), canvas_rect: egui::Rect::ZERO, menu_rect: egui::Rect::NOTHING, snap_arrow: egui::Rect::NOTHING }
+        Shell { cmds: Vec::new(), side_tab: 0, op_sel: None, op_multi: Default::default(), folded: Default::default(), new_folder: None, sheet_rename: None, tabs_seen: None, empty_folders: Default::default(), tp_this_sheet: false, tp_layer: -1, tp_usage: (u64::MAX, Vec::new()), tp_group: 0, lock_aspect: true, rot_text: "15".into(), edit: Default::default(), edit_for: None, zoom_text: String::new(), canvas_rect: egui::Rect::ZERO, menu_rect: egui::Rect::NOTHING, snap_arrow: egui::Rect::NOTHING }
     }
     pub fn push(&mut self, id: impl Into<String>) {
         self.cmds.push(id.into());
@@ -300,12 +304,16 @@ pub fn mode_bar(ui: &mut egui::Ui, sh: &mut Shell, mode: Mode, title: &str, canv
         ui.spacing_mut().item_spacing.x = 2.0;
         ui.horizontal(|ui| {
             ui.set_height(28.0);
-            ui.label(RichText::new("GCarve").family(crate::widgets::bold_family()).size(14.0).color(Color32::WHITE));
-            ui.add_space(4.0);
-            ui.add(egui::Label::new(RichText::new(title).color(theme::TEXT.gamma_multiply(0.6))).truncate());
-            ui.add_space(6.0);
-            theme::vsep(ui, 22.0);
-            ui.add_space(4.0);
+            // phones: no name or title, icon-only buttons, so undo / mode / export fit in one row
+            let phone = ui.ctx().content_rect().width() < 600.0;
+            if !phone {
+                ui.label(RichText::new("GCarve").family(crate::widgets::bold_family()).size(14.0).color(Color32::WHITE));
+                ui.add_space(4.0);
+                ui.add(egui::Label::new(RichText::new(title).color(theme::TEXT.gamma_multiply(0.6))).truncate());
+                ui.add_space(6.0);
+                theme::vsep(ui, 22.0);
+                ui.add_space(4.0);
+            }
             icon_btn(ui, sh, "undo", can_undo); // new / open / jobs / save live in the File menu (user decision)
             icon_btn(ui, sh, "redo", can_redo);
             ui.add_space(10.0);
@@ -313,16 +321,16 @@ pub fn mode_bar(ui: &mut egui::Ui, sh: &mut Shell, mode: Mode, title: &str, canv
             // right-aligned group, then the mode switch in what is left
             ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                 ui.spacing_mut().item_spacing.x = 2.0;
-                if ui.add_enabled_ui(can_export, |ui| IconButton::new("export").text(if wide < 760.0 { "Export" } else { "Export G-code" }).tip("Export G-code (⌘E)").primary(true).show(ui)).inner.clicked() {
+                if ui.add_enabled_ui(can_export, |ui| IconButton::new("export").text(if phone { "" } else if wide < 760.0 { "Export" } else { "Export G-code" }).tip("Export G-code (⌘E)").primary(true).show(ui)).inner.clicked() {
                     sh.push("export");
                 }
                 ui.add_space(6.0);
-                if IconButton::new("heart").tint(theme::ORANGE).tip("Support GCarve: donate (opens gcarve.app)").show(ui).clicked() {
+                if !phone && IconButton::new("heart").tint(theme::ORANGE).tip("Support GCarve: donate (opens gcarve.app)").show(ui).clicked() {
                     sh.push("donate");
                 }
                 // mode switch pill, centred in the remaining space
                 let avail = ui.available_rect_before_wrap();
-                let pill_w = 6.0 + MODES.iter().map(|(_, _, t, k, _)| 16.0 + 2.0 + 12.0 + text_w(ui, &format!("{t}  {k}"), 12.0)).sum::<f32>() + 2.0 * 2.0;
+                let pill_w = 6.0 + MODES.iter().map(|(_, _, t, k, _)| 16.0 + 12.0 + if phone { 0.0 } else { 2.0 + text_w(ui, &format!("{t}  {k}"), 12.0) }).sum::<f32>() + 2.0 * 2.0;
                 // centred on the window when that leaves it clear of the title and the buttons, else in the space left
                 let mid = ui.ctx().content_rect().center().x;
                 let x = if mid - pill_w / 2.0 > avail.left() + 8.0 && mid + pill_w / 2.0 < avail.right() - 8.0 { mid } else { avail.center().x };
@@ -331,7 +339,7 @@ pub fn mode_bar(ui: &mut egui::Ui, sh: &mut Shell, mode: Mode, title: &str, canv
                 let mut child = ui.new_child(egui::UiBuilder::new().max_rect(pill.shrink2(egui::vec2(3.0, 0.0))).layout(egui::Layout::left_to_right(egui::Align::Center)));
                 child.spacing_mut().item_spacing.x = 2.0;
                 for (m, icon, text, key, tip) in MODES {
-                    let label = format!("{text}  {key}");
+                    let label = if phone { String::new() } else { format!("{text}  {key}") };
                     if IconButton::new(icon).text(&label).tip(tip).size(16.0).padding(6.0).tint(m.color()).active(mode == m).show(&mut child).clicked() {
                         sh.push(format!("mode:{text}"));
                     }
@@ -417,25 +425,74 @@ pub fn rail(ui: &mut egui::Ui, sh: &mut Shell, mode: Mode, current: &str, sel: u
 }
 
 /// SheetTabs.qml: 28 px strip under the canvas
+/// The sheet tabs under the drawing: named tabs (double-click or right-click › Rename), which scroll sideways when
+/// they don't fit (wheel or trackpad over them), then + / − / All sheets / board setup at the right.
 pub fn sheet_tabs(ui: &mut egui::Ui, sh: &mut Shell, doc: &Document, all: bool) {
     ui.spacing_mut().item_spacing.x = 2.0;
     ui.horizontal(|ui| {
         ui.set_height(27.0);
         ui.add_space(6.0);
-        for i in 0..doc.sheets.len().max(1) {
-            let count = doc.shapes.iter().filter(|s| s.sheet as usize == i).count();
-            let label = if count > 0 { format!("Sheet {}  {count}", i + 1) } else { format!("Sheet {}", i + 1) };
-            let galley = ui.painter().layout_no_wrap(label, theme::font(12.0), theme::TEXT);
-            let (r, resp) = ui.allocate_exact_size(egui::vec2(galley.size().x + 24.0, 24.0), egui::Sense::click());
-            let r = r.translate(egui::vec2(0.0, 1.5));
-            let current = i as i32 == doc.active_sheet;
-            let fill = if current { theme::RAISED } else if resp.hovered() { theme::ROW_HOVER } else { Color32::TRANSPARENT };
-            ui.painter().rect(r, 5.0, fill, egui::Stroke::new(1.0, if current { theme::BORDER_STRONG } else { Color32::TRANSPARENT }), egui::StrokeKind::Inside);
-            ui.painter().galley(r.center() - galley.size() / 2.0, galley, if current { theme::TEXT } else { theme::TEXT.gamma_multiply(0.7) });
-            if resp.clicked() {
-                sh.push(format!("sheet:{i}"));
-            }
-        }
+        // the buttons keep their place at the right; the tabs get the rest
+        let buttons_w = 230.0;
+        let tabs_w = (ui.available_width() - buttons_w).max(80.0);
+        ui.allocate_ui_with_layout(egui::vec2(tabs_w, 27.0), egui::Layout::left_to_right(egui::Align::Center), |ui| {
+            egui::ScrollArea::horizontal().id_salt("sheet-tabs").scroll_bar_visibility(egui::scroll_area::ScrollBarVisibility::AlwaysHidden).max_width(tabs_w).show(ui, |ui| {
+                ui.horizontal(|ui| {
+                    // a mouse wheel over the tabs scrolls them sideways
+                    if ui.rect_contains_pointer(ui.max_rect()) {
+                        let dy = ui.input(|i| i.smooth_scroll_delta.y);
+                        if dy != 0.0 {
+                            ui.scroll_with_delta(egui::vec2(dy, 0.0));
+                        }
+                    }
+                    for i in 0..doc.sheets.len().max(1) {
+                        let current = i as i32 == doc.active_sheet;
+                        if let Some((j, name)) = sh.sheet_rename.as_mut().filter(|(j, _)| *j == i) {
+                            let _ = j;
+                            let r = ui.add(egui::TextEdit::singleline(name).desired_width(110.0).hint_text(format!("Sheet {}", i + 1)));
+                            r.request_focus();
+                            if r.lost_focus() {
+                                if !ui.input(|k| k.key_pressed(egui::Key::Escape)) {
+                                    sh.cmds.push(format!("sheetname:{i}:{}", name.trim()));
+                                }
+                                sh.sheet_rename = None;
+                            }
+                            continue;
+                        }
+                        let count = doc.shapes.iter().filter(|s| s.sheet as usize == i).count();
+                        let name = doc.sheet_name(i);
+                        let label = if count > 0 { format!("{name}  {count}") } else { name.clone() };
+                        let galley = ui.painter().layout_no_wrap(label, theme::font(12.0), theme::TEXT);
+                        let (r, resp) = ui.allocate_exact_size(egui::vec2(galley.size().x + 24.0, 24.0), egui::Sense::click());
+                        let r = r.translate(egui::vec2(0.0, 1.5));
+                        let fill = if current { theme::RAISED } else if resp.hovered() { theme::ROW_HOVER } else { Color32::TRANSPARENT };
+                        ui.painter().rect(r, 5.0, fill, egui::Stroke::new(1.0, if current { theme::BORDER_STRONG } else { Color32::TRANSPARENT }), egui::StrokeKind::Inside);
+                        ui.painter().galley(r.center() - galley.size() / 2.0, galley, if current { theme::TEXT } else { theme::TEXT.gamma_multiply(0.7) });
+                        // the active tab comes into view when it changes (another sheet picked elsewhere)
+                        if current && sh.tabs_seen != Some(i) {
+                            resp.scroll_to_me(None);
+                            sh.tabs_seen = Some(i);
+                        }
+                        if resp.double_clicked() {
+                            sh.sheet_rename = Some((i, if name.starts_with("Sheet ") && name[6..].parse::<usize>().is_ok() { String::new() } else { name.clone() }));
+                        } else if resp.clicked() {
+                            sh.push(format!("sheet:{i}"));
+                        }
+                        let resp = resp.tip("Click to work on this sheet · double-click to rename");
+                        resp.context_menu(|ui| {
+                            if crate::widgets::menu_item(ui, "Rename…", "").clicked() {
+                                sh.sheet_rename = Some((i, name.clone()));
+                                ui.close();
+                            }
+                            if !current && crate::widgets::menu_item(ui, "Work on this sheet", "").clicked() {
+                                sh.push(format!("sheet:{i}"));
+                                ui.close();
+                            }
+                        });
+                    }
+                });
+            });
+        });
         if IconButton::new("add").size(13.0).padding(3.0).tip("Add a sheet (another board; parts that don't fit go on the next)").show(ui).clicked() {
             sh.push("sheet:add");
         }
@@ -448,12 +505,9 @@ pub fn sheet_tabs(ui: &mut egui::Ui, sh: &mut Shell, doc: &Document, all: bool) 
         }
         ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
             ui.add_space(10.0);
-            if IconButton::new("edit").size(13.0).padding(3.0).tip("Board / job setup").show(ui).clicked() {
+            if IconButton::new("edit").size(13.0).padding(3.0).tip(&format!("Board / job setup: {}", board_summary(doc))).show(ui).clicked() {
                 sh.push("board");
             }
-            let summary = board_summary(doc);
-            let summary = summary.split_once("  ·  ").filter(|(a, _)| a.starts_with("Sheet ")).map(|(_, b)| b.to_string()).unwrap_or(summary);
-            ui.add(egui::Label::new(RichText::new(summary).size(11.0).color(theme::TEXT.gamma_multiply(0.55))).truncate());
         });
     });
 }
@@ -475,6 +529,9 @@ pub fn status_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, synced
         }
         ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
             ui.add_space(10.0);
+            // phones: zoom, fit and Paths only (units and snap live in the menus: View, Edit › Preferences)
+            let phone = ui.ctx().content_rect().width() < 600.0;
+            if !phone {
             // units
             let (uname, _, _) = unit(&canvas.doc);
             let names = ["inches", "feet", "mm"];
@@ -502,6 +559,7 @@ pub fn status_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, synced
             if IconButton::new("board").tip("Zoom to board (⌘1)").show(ui).clicked() {
                 sh.push("zoom:board");
             }
+            }
             if IconButton::new("fit").tip("Zoom to fit shapes (⌘0 / F)").show(ui).clicked() {
                 sh.push("zoom:fit");
             }
@@ -514,7 +572,7 @@ pub fn status_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, synced
             if !ui.memory(|m| m.has_focus(id)) {
                 sh.zoom_text = shown;
             }
-            let r = ui.add_sized([64.0, theme::CONTROL_HEIGHT - 2.0], crate::widgets::field(&mut sh.zoom_text).id(id).horizontal_align(egui::Align::Center));
+            let r = ui.add_sized([if phone { 48.0 } else { 64.0 }, theme::CONTROL_HEIGHT - 2.0], crate::widgets::field(&mut sh.zoom_text).id(id).horizontal_align(egui::Align::Center));
             if r.lost_focus() && ui.input(|i| i.key_pressed(egui::Key::Enter)) {
                 if let Ok(v) = sh.zoom_text.trim().trim_end_matches('%').parse::<f32>() {
                     sh.push(format!("zoom:{v}"));
@@ -525,7 +583,7 @@ pub fn status_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, synced
             }
             theme::vsep(ui, 18.0);
             if has_ops {
-                if IconButton::new("offset").text("Width").active(canvas.show_width).tip("Show / hide cut-width bands").show(ui).clicked() {
+                if !phone && IconButton::new("offset").text("Width").active(canvas.show_width).tip("Show / hide cut-width bands").show(ui).clicked() {
                     canvas.show_width = !canvas.show_width;
                 }
                 if IconButton::new(if canvas.show_paths { "eye" } else { "eye-off" }).text("Paths").active(canvas.show_paths).tip("Show / hide toolpath previews (⇧⌘T): hide them to see just the vectors").show(ui).clicked() {
@@ -680,6 +738,9 @@ pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, m: &Menu
                     ui.close();
                 }
             }
+            // phones: every menu under one ☰ button (the titles don't fit in a row)
+            let phone = ui.ctx().content_rect().width() < 600.0;
+            let mut menus = |ui: &mut egui::Ui, tops: &mut Vec<egui::Response>| {
             tops.push(ui.menu_button("File", |ui| {
                 item(ui, sh, "New", "⌘N", true, "new");
                 item(ui, sh, "Close Tab", "⌘W", true, "closetab");
@@ -845,6 +906,12 @@ pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, m: &Menu
                 check(ui, "Snap", &mut canvas.snap);
                 item(ui, sh, "Snap Settings…", "", true, "snap:settings");
                 item(ui, sh, "Clear Guides", "", !canvas.doc.guides.is_empty(), "guides:clear");
+                widgets::menu_separator(ui);
+                item(ui, sh, "Photo of the Board…", "", true, "boardphoto");
+                if let Some(b) = &canvas.board_photo {
+                    item(ui, sh, if b.show { "Hide the Board Photo" } else { "Show the Board Photo" }, "", true, "boardphoto:toggle");
+                    item(ui, sh, "Remove the Board Photo", "", true, "boardphoto:remove");
+                }
                 item(ui, sh, if canvas.all_sheets { "One Sheet at a Time" } else { "All Sheets Side by Side" }, "", true, "allsheets");
                 let (line, can) = crate::spacemouse::status();
                 item(ui, sh, if can || line.is_empty() { "Connect a SpaceMouse…" } else { line.split(':').next().unwrap_or("SpaceMouse") }, "", can, "spacemouse");
@@ -895,6 +962,13 @@ pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, m: &Menu
                 widgets::menu_separator(ui);
                 item(ui, sh, "About GCarve", "", true, "about");
             }).response);
+            };
+            if phone {
+                let mut inner = Vec::new();
+                tops.push(ui.menu_button("☰ Menu", |ui| menus(ui, &mut inner)).response);
+            } else {
+                menus(ui, &mut tops);
+            }
             // the command search, at the right end of the menu row (it sat in the bar below and pushed the mode switch aside)
             ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                 ui.add_space(4.0);

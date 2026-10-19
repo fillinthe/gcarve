@@ -17,6 +17,7 @@ pub mod share;
 pub mod templates;
 pub mod tools;
 pub mod trace;
+pub mod boardphoto;
 pub mod vars;
 
 use crate::canvas::Canvas;
@@ -54,6 +55,7 @@ pub struct Dialogs {
     pub templates: Option<templates::TemplatesDialog>,
     pub gimport: Option<gimport::GcodeImportDialog>,
     pub trace: Option<trace::TraceDialog>,
+    pub board_photo: Option<boardphoto::BoardPhotoDialog>,
     pub shapes: Option<shapes::ShapesDialog>,
     #[cfg(not(target_arch = "wasm32"))]
     pub jobs: Option<jobs::JobsDialog>,
@@ -148,6 +150,10 @@ impl Dialogs {
                         }
                     }
                 }
+                "boardphoto" => match boardphoto::BoardPhotoDialog::new(&name, &bytes) {
+                    Ok(d) => self.board_photo = Some(d),
+                    Err(e) => *host.message = e,
+                },
                 "image" => match trace::TraceDialog::new(&name, &bytes, &host.canvas.doc) {
                     Ok(d) => self.trace = Some(d),
                     Err(e) => {
@@ -234,6 +240,11 @@ impl Dialogs {
         if let Some(mut d) = self.trace.take() {
             if d.ui(ctx, host) {
                 self.trace = Some(d);
+            }
+        }
+        if let Some(mut d) = self.board_photo.take() {
+            if d.ui(ctx, host) {
+                self.board_photo = Some(d);
             }
         }
         if let Some(mut d) = self.gimport.take() {

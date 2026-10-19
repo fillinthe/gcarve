@@ -852,6 +852,13 @@ impl App {
             ("importstl", _) => self.files.pick_into(ctx, "3D models (.stl)", &["stl"], "stl"),
             ("importgcode", _) => self.files.pick_into(ctx, "G-code", files::GCODE_EXTS, "gcode"),
             ("shapes", _) => self.cam.shapes = Some(dialogs::shapes::ShapesDialog::new(&self.canvas.doc)),
+            ("boardphoto", "toggle") => {
+                if let Some(b) = self.canvas.board_photo.as_mut() {
+                    b.show = !b.show;
+                }
+            }
+            ("boardphoto", "remove") => self.canvas.board_photo = None,
+            ("boardphoto", _) => self.files.pick_into(ctx, "Photo of the board (PNG, JPEG)", files::IMAGE_EXTS, "boardphoto"),
             ("trace", _) => self.files.pick_into(ctx, "Images (.png, .jpg)", files::IMAGE_EXTS, "image"),
             ("prefs", _) => self.cam.prefs_open = true,
             ("vars", _) => self.cam.vars = Some(Default::default()),
@@ -997,7 +1004,7 @@ impl App {
                 let doc = &mut self.canvas.doc;
                 doc.checkpoint();
                 doc.sync_sheet();
-                doc.sheets.push(doc.material.clone());
+                doc.sheets.push(gcarve_core::document::Material { name: String::new(), ..doc.material.clone() }); // a new sheet starts unnamed
                 doc.set_active_sheet(doc.sheets.len() as i32 - 1);
                 self.canvas.touch();
             }
@@ -1013,7 +1020,7 @@ impl App {
                 let flip = if lr { gcarve_core::geom::Affine { a: -1.0, d: 1.0, e: w, ..Default::default() } } else { gcarve_core::geom::Affine { a: 1.0, d: -1.0, f: h, ..Default::default() } };
                 let picked = &self.canvas.sel;
                 let copies: Vec<(gcarve_core::geom::Contour, i32)> = doc.shapes.iter().filter(|s| s.sheet == from && (picked.is_empty() || picked.contains(&s.id))).map(|s| (gcarve_core::geom::transformed(&s.c, &flip), s.layer)).collect();
-                doc.sheets.push(doc.material.clone());
+                doc.sheets.push(gcarve_core::document::Material { name: String::new(), ..doc.material.clone() }); // a new sheet starts unnamed
                 doc.set_active_sheet(doc.sheets.len() as i32 - 1);
                 let n = copies.len();
                 self.canvas.sel = copies.into_iter().map(|(c, layer)| doc.add(c, Some(layer))).collect();
@@ -1032,6 +1039,16 @@ impl App {
                     doc.sheets.remove(i as usize);
                     doc.set_active_sheet(to);
                     self.canvas.touch();
+                }
+            }
+            ("sheetname", v) => {
+                // "<sheet>:<name>" from the sheet tabs (empty name = back to "Sheet N")
+                if let Some((j, name)) = v.split_once(':').and_then(|(j, n)| j.parse::<usize>().ok().map(|j| (j, n))) {
+                    if j < self.canvas.doc.sheets.len().max(1) && self.canvas.doc.sheet_name(j) != name {
+                        self.canvas.doc.checkpoint();
+                        self.canvas.doc.set_sheet_name(j, name);
+                        self.canvas.touch();
+                    }
                 }
             }
             ("sheet", "next") => {
@@ -1140,6 +1157,7 @@ impl eframe::App for App {
         // its edge opens it); once per start, the user's own choice stands after that
         if self.frame == 2 && ctx.content_rect().width() < 760.0 {
             self.right_open = false;
+            self.left_open &= ctx.content_rect().width() >= 600.0; // phones: the tool column folds too
             self.canvas.view = None; // fit the board into the wider canvas
         }
         let n_ops = self.canvas.doc.ops.len();
@@ -1344,6 +1362,17 @@ impl eframe::App for App {
             let air = std::mem::take(&mut self.pending_dialog) == "aircut"; // dev: GCARVE_DIALOG=export|aircut, once paths exist
             self.start_export(air);
         }
+        // GCARVE_BOARD_PHOTO=photo.png:x1,y1,x2,y2,x3,y3,x4,y4 (corners in photo pixels, BL BR TR TL): dev, screenshots;
+        // after the file given on the command line has opened
+        #[cfg(not(target_arch = "wasm32"))]
+        if self.frame == 4 {
+            if let Some((f, c)) = std::env::var("GCARVE_BOARD_PHOTO").ok().and_then(|v| v.split_once(':').map(|(a, b)| (a.to_string(), b.to_string()))) {
+                let n: Vec<f32> = c.split(',').filter_map(|x| x.trim().parse().ok()).collect();
+                if let (Ok(bytes), 8) = (std::fs::read(&f), n.len()) {
+                    self.canvas.board_photo = crate::dialogs::boardphoto::dev_photo(&bytes, &n, &self.canvas.doc);
+                }
+            }
+        }
         if self.frame == 2 && !self.pending_dialog.is_empty() && !matches!(self.pending_dialog.as_str(), "export" | "aircut" | "setupsheet") {
             let d = std::mem::take(&mut self.pending_dialog);
             if d == "snap" {
@@ -1387,7 +1416,7 @@ impl eframe::App for App {
         let job = self.project_path.as_ref().and_then(|p| self.jobs.job_for(p)).and_then(|j| j.file_name().map(|n| format!("{} › ", n.to_string_lossy()))).unwrap_or_default();
         #[cfg(target_arch = "wasm32")]
         let job = String::new();
-        let title = if self.canvas.doc.sheets.len() > 1 { format!("{dirty}{job}{} · Sheet {}", self.name, self.canvas.doc.active_sheet + 1) } else { format!("{dirty}{job}{}", self.name) };
+        let title = if self.canvas.doc.sheets.len() > 1 { format!("{dirty}{job}{} · {}", self.name, self.canvas.doc.sheet_name(self.canvas.doc.active_sheet.max(0) as usize)) } else { format!("{dirty}{job}{}", self.name) };
         let window_title = format!("{dirty}{} — GCarve", self.name);
         if window_title != self.title {
             ctx.send_viewport_cmd(egui::ViewportCommand::Title(window_title.clone()));
@@ -1785,18 +1814,22 @@ impl App {
                         self.player.seek(0.0, &ctx);
                     }
                     let mut p = self.player.progress();
-                    let w = (ui.available_width() - 500.0).max(60.0); // room for the Show menu
+                    // phones: no time or speed in the bar (play, scrub, Finish, 3D, Show fit)
+                    let phone = ctx.content_rect().width() < 600.0;
+                    let w = (ui.available_width() - if phone { 290.0 } else { 500.0 }).max(40.0); // room for the Show menu
                     ui.spacing_mut().slider_width = w;
                     if ui.add_enabled(ready, egui::Slider::new(&mut p, 0.0..=1.0).show_value(false).handle_shape(egui::style::HandleShape::Circle)).tip("Drag to scrub through the job (rewinding re-cuts from the start)").changed() {
                         self.player.pause();
                         self.player.seek(p, &ctx);
                     }
-                    ui.label(RichText::new(self.player.time_text()).font(egui::FontId::monospace(12.0)));
-                    // any speed from real time to 200× (Finish = instant); faster would only stamp more moves per frame
-                    ui.spacing_mut().slider_width = 80.0;
-                    let mut sp = self.player.speed.clamp(1.0, MAX_SIM_SPEED);
-                    if ui.add(egui::Slider::new(&mut sp, 1.0..=MAX_SIM_SPEED).logarithmic(true).handle_shape(egui::style::HandleShape::Circle).suffix("×").fixed_decimals(0)).tip("Playback speed: 1× is the machine's real speed").changed() {
-                        self.player.speed = sp;
+                    if !phone {
+                        ui.label(RichText::new(self.player.time_text()).font(egui::FontId::monospace(12.0)));
+                        // any speed from real time to 200× (Finish = instant); faster would only stamp more moves per frame
+                        ui.spacing_mut().slider_width = 80.0;
+                        let mut sp = self.player.speed.clamp(1.0, MAX_SIM_SPEED);
+                        if ui.add(egui::Slider::new(&mut sp, 1.0..=MAX_SIM_SPEED).logarithmic(true).handle_shape(egui::style::HandleShape::Circle).suffix("×").fixed_decimals(0)).tip("Playback speed: 1× is the machine's real speed").changed() {
+                            self.player.speed = sp;
+                        }
                     }
                     if ui.add_enabled(ready, B::new("Finish").flat()).tip("Jump to the finished part").clicked() {
                         self.player.pause();

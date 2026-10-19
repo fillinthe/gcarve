@@ -314,7 +314,7 @@ fn from_streams(s: &HashMap<String, Vec<u8>>) -> Result<(Document, String), Stri
     sheets.sort_by_key(|q| key(&q.0));
     let mut doc = Document::default();
     let fallback = job.unwrap_or((doc.material.clone(), pt(0.0, 0.0), 1.0));
-    doc.sheets = if sheets.is_empty() { vec![fallback.0.clone()] } else { sheets.iter().map(|q| q.2 .0.clone()).collect() };
+    doc.sheets = if sheets.is_empty() { vec![fallback.0.clone()] } else { sheets.iter().map(|q| Material { name: q.0.clone(), ..q.2 .0.clone() }).collect() };
     doc.material = doc.sheets[0].clone();
     // layers: tag, u32 4, GUID, CString name
     let mut layers: HashMap<&[u8], String> = HashMap::new();
@@ -757,6 +757,10 @@ fn toolpaths(d: &[u8], objs: &HashMap<&[u8], Vec<i32>>, tabs: &HashMap<i32, Vec<
                 (op.tab_width, op.tab_height, op.tab_ramped) = (len("TabLength"), len("TabThickness"), num("_ppd3dTabs") == 1.0);
                 op.tab_count = (num("tabsNumTabs") as i32).max(1);
                 op.tab_corners = num("tabsAvoidCorners") == 1.0;
+                if num("tabsAutoType") == 1.0 && num("tabsTabDistance") > 0.0 {
+                    // ponytail: 1 = VCarve's "constant distance" is a guess (all 305 NAS files use 0, constant number)
+                    op.tab_spacing = num("tabsTabDistance") * scale;
+                }
                 // tabs placed in VCarve go where they were (GCarve's hand-placed tabs)
                 if op.tabs {
                     op.tab_points = op.shape_ids.iter().filter_map(|id| tabs.get(id)).flatten().map(|q| [q.x, q.y]).collect();

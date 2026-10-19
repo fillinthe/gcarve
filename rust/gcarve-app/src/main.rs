@@ -66,7 +66,7 @@ fn main() -> eframe::Result {
         store::save("crash.txt", &format!("v{} {}: {info}", env!("CARGO_PKG_VERSION"), std::env::consts::OS));
     }));
     let options = eframe::NativeOptions {
-        viewport: eframe::egui::ViewportBuilder::default().with_title("GCarve").with_inner_size(dev_size().unwrap_or([1500.0, 900.0])).with_min_inner_size([900.0, 500.0]).with_icon(window_icon()),
+        viewport: eframe::egui::ViewportBuilder::default().with_title("GCarve").with_inner_size(dev_size().unwrap_or([1500.0, 900.0])).with_min_inner_size(if dev_size().is_some() { [320.0, 400.0] } else { [900.0, 500.0] }).with_icon(window_icon()),
         ..Default::default()
     };
     eframe::run_native("GCarve", options, Box::new(|cc| Ok(Box::new(app::App::new(cc)))))

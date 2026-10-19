@@ -118,8 +118,8 @@ impl Canvas {
             let (o, (bw, bh)) = (self.sheet_rel(j), self.sheet_size(j));
             let board = Rect::from_two_pos(view.to_screen(o), view.to_screen(pt(o.x + bw, o.y + bh)));
             let count = self.doc.shapes.iter().filter(|s| s.sheet as usize == j).count();
-            let name = format!("Sheet {}  ·  {} × {}  ·  {count} vector{}", j + 1, crate::units::text(&self.doc, bw), crate::units::text(&self.doc, bh), if count == 1 { "" } else { "s" });
-            let short = format!("Sheet {}  ·  {count}", j + 1);
+            let name = format!("{}  ·  {} × {}  ·  {count} vector{}", self.doc.sheet_name(j), crate::units::text(&self.doc, bw), crate::units::text(&self.doc, bh), if count == 1 { "" } else { "s" });
+            let short = format!("{}  ·  {count}", self.doc.sheet_name(j));
             let tiny = format!("{}", j + 1);
             if j as i32 == self.doc.active_sheet {
                 // the sheet being worked on: its name in the accent colour and a bar over the board
@@ -137,7 +137,7 @@ impl Canvas {
             };
             painter.rect(board, 0.0, Color32::from_rgba_unmultiplied(138, 122, 90, fill), stroke, egui::StrokeKind::Middle);
             let forms = if hot {
-                vec![format!("Drop to move to Sheet {}", j + 1), format!("→ Sheet {}", j + 1), tiny]
+                vec![format!("Drop to move to {}", self.doc.sheet_name(j)), format!("→ {}", j + 1), tiny]
             } else if over {
                 vec![format!("{name}  ·  click to work on it"), format!("{short}  ·  click to edit"), short, tiny]
             } else {

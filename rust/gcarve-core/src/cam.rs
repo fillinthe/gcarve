@@ -348,12 +348,14 @@ fn cut_path(path: &[Pt], closed: bool, op: &Op, tool: &Tool, m: &Material, warn:
     if !by_hand.is_empty() {
         spans = by_hand.iter().map(|&c| (c - w / 2.0, c + w / 2.0)).collect();
     } else if op.tabs && op.tab_count > 0 && op.tab_height > 0.0 && l > 0.0 {
-        if w * op.tab_count as f64 >= l {
+        // one every `tab_spacing` along this part's cut, else the same count on every part
+        let count = if op.tab_spacing > 0.0 { ((l / op.tab_spacing).round() as i32).clamp(1, 200) } else { op.tab_count };
+        if w * count as f64 >= l {
             warn.push(format!("{}: tabs don't fit, skipped", op.name));
         } else {
-            let gap = l / op.tab_count as f64;
+            let gap = l / count as f64;
             let corners = if op.tab_corners { corner_stations(path, &lens, tool.diameter.max(0.05)) } else { Vec::new() };
-            for i in 0..op.tab_count {
+            for i in 0..count {
                 let mut c = (i as f64 + 0.5) * gap;
                 if !corners.is_empty() {
                     c = off_corners(c, &corners, w / 2.0 + tool.diameter / 2.0, gap / 2.0, l, closed);

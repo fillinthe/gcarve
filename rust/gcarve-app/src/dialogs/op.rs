@@ -29,6 +29,10 @@ pub struct OpDialog {
     rough_pct: i32,
     rough_step: String,
     tab_count: i32,
+    /// tabs one every so far (`Op::tab_spacing`) instead of a count per part
+    by_spacing: bool,
+    /// the hand-placed tab being dragged along the outline
+    drag_tab: Option<usize>,
     /// Profile: clicks on the canvas place / remove tabs at the part's outline (Canvas::tab_pick)
     place_tabs: bool,
     /// chamfer: sized by width (else by V depth)
@@ -135,6 +139,7 @@ impl OpDialog {
         f.set_bound("rampOut", b, op.ramp_out);
         f.set_bound("rampLength", b, op.ramp_length);
         f.set_bound("chamferWidth", b, if op.chamfer_width > 0.0 { op.chamfer_width } else { 0.125 });
+        f.set_bound("tabSpacing", b, op.tab_spacing);
         f.set_bound("arrayDx", b, op.array_dx);
         f.set_bound("arrayDy", b, op.array_dy);
         let scope = if op.all_vectors { 3 } else if op.layer_scope >= 0 { 1 } else if op.group_scope > 0 { 2 } else { 0 };
@@ -148,10 +153,12 @@ impl OpDialog {
             rough_pct: (op.rough_stepover * 100.0).round() as i32,
             rough_step: crate::units::text(doc, op.rough_stepdown),
             tab_count: op.tab_count,
+            by_spacing: op.tab_spacing > 0.0,
             by_width: op.chamfer_width > 0.0 || op.kind != OpType::Chamfer,
             open_bits: false,
             pick_photo: false,
             place_tabs: false,
+            drag_tab: None,
             tools_before: None,
             f,
             op,
@@ -173,6 +180,7 @@ impl OpDialog {
         op.all_vectors = self.scope == 3;
         op.sheet_scope = op.sheet_scope.clamp(-1, doc.sheets.len() as i32 - 1);
         op.tab_count = self.tab_count.max(1);
+        op.tab_spacing = if self.by_spacing { f.get_or("tabSpacing", doc, op.tab_spacing).max(0.0) } else { 0.0 };
         op.tab_width = f.get_or("tabWidth", doc, op.tab_width).max(0.0);
         op.tab_height = f.get_or("tabHeight", doc, op.tab_height).max(0.0);
         op.stepover = if k == OpType::Texture { (self.stepover_pct as f64 / 100.0).clamp(0.2, 3.0) } else if k == OpType::Relief { (self.stepover_pct as f64 / 100.0).clamp(0.02, 1.0) } else { (self.stepover_pct as f64 / 100.0).clamp(0.05, 1.0) };
@@ -215,6 +223,20 @@ impl OpDialog {
         (matches!(op.kind, OpType::Relief | OpType::Imported) || !doc.op_shape_ids(&op).is_empty()).then_some((self.index, op))
     }
 
+    /// The nearest point on the outline of a shape this toolpath cuts: (distance, point).
+    fn on_outline(&self, canvas: &crate::canvas::Canvas, c: Pt) -> Option<(f64, Pt)> {
+        let doc = &canvas.doc;
+        let mut best: Option<(f64, Pt)> = None;
+        for id in doc.op_shape_ids(&self.apply(doc)) {
+            let Some(s) = doc.find(id) else { continue };
+            let h = gcarve_core::geom::nearest(&s.c, c);
+            if best.is_none_or(|(d, _)| h.d < d) {
+                best = Some((h.d, gcarve_core::geom::point_on(&s.c, &h)));
+            }
+        }
+        best
+    }
+
     /// By-hand tabs: while the box is ticked the canvas hands its clicks over (not selecting anything); a click near the
     /// outline of the shapes this toolpath cuts adds a tab there, a click on a tab takes it away.
     fn tab_clicks(&mut self, host: &mut Host) {
@@ -225,22 +247,30 @@ impl OpDialog {
             return;
         }
         host.canvas.tab_pick = 3;
+        // a tab dragged along: it follows the pointer, kept on the outline
+        if let Some((start, now, done)) = host.canvas.tab_drag {
+            if self.drag_tab.is_none() {
+                self.drag_tab = self.op.tab_points.iter().position(|p| gcarve_core::geom::dist(pt(p[0], p[1]), start) < 0.3).or(Some(usize::MAX));
+            }
+            if let Some(i) = self.drag_tab.filter(|&i| i < self.op.tab_points.len()) {
+                if let Some((d, q)) = self.on_outline(host.canvas, now) {
+                    if d < 1.5 {
+                        self.op.tab_points[i] = [q.x, q.y];
+                    }
+                }
+            }
+            if done {
+                self.drag_tab = None;
+                host.canvas.tab_drag = None;
+            }
+        }
         let clicks = std::mem::take(&mut host.canvas.tab_clicks);
         for c in clicks {
             if let Some(i) = self.op.tab_points.iter().position(|p| gcarve_core::geom::dist(pt(p[0], p[1]), c) < 0.3) {
                 self.op.tab_points.remove(i);
                 continue;
             }
-            let doc = &host.canvas.doc;
-            let mut best: Option<(f64, Pt)> = None;
-            for id in doc.op_shape_ids(&self.apply(doc)) {
-                let Some(s) = doc.find(id) else { continue };
-                let h = gcarve_core::geom::nearest(&s.c, c);
-                if best.is_none_or(|(d, _)| h.d < d) {
-                    best = Some((h.d, gcarve_core::geom::point_on(&s.c, &h)));
-                }
-            }
-            match best {
+            match self.on_outline(host.canvas, c) {
                 Some((d, q)) if d < 1.5 => self.op.tab_points.push([q.x, q.y]),
                 _ => *host.message = "Click on the outline of a part this toolpath cuts".into(),
             }
@@ -299,7 +329,7 @@ impl OpDialog {
                         }
                         if doc.sheets.len() > 1 {
                             ui.label("Sheets").tip("Which sheets it cuts on. All sheets: the same toolpath cuts its shapes on every sheet they're on (one setup, every sheet's file).");
-                            let sheets: Vec<(i32, String)> = std::iter::once((-1, "All sheets".to_string())).chain((0..doc.sheets.len()).map(|j| (j as i32, format!("Sheet {} only", j + 1)))).collect();
+                            let sheets: Vec<(i32, String)> = std::iter::once((-1, "All sheets".to_string())).chain((0..doc.sheets.len()).map(|j| (j as i32, format!("{} only", doc.sheet_name(j))))).collect();
                             let refs: Vec<(i32, &str)> = sheets.iter().map(|(i, n)| (*i, n.as_str())).collect();
                             combo(ui, "scope-sheet", &mut self.op.sheet_scope, &refs, 200.0);
                             ui.end_row();
@@ -708,8 +738,17 @@ impl OpDialog {
                         crate::widgets::checkbox(ui, &mut self.op.tabs, "Add tabs");
                         ui.end_row();
                         let tabs = self.op.tabs;
-                        ui.add_enabled(tabs, egui::Label::new("Tab count"));
-                        ui.add_enabled(tabs, crate::widgets::SpinBox::new(&mut self.tab_count, 1..=50));
+                        ui.add_enabled(tabs, egui::Label::new("How many"));
+                        ui.add_enabled_ui(tabs, |ui| {
+                            ui.horizontal(|ui| {
+                                combo(ui, "tab-mode", &mut self.by_spacing, &[(false, "Same on every part"), (true, "One every")], 150.0);
+                                if self.by_spacing {
+                                    self.f.ui(ui, "tabSpacing", doc);
+                                } else {
+                                    ui.add(crate::widgets::SpinBox::new(&mut self.tab_count, 1..=50));
+                                }
+                            });
+                        });
                         ui.end_row();
                         ui.add_enabled(tabs, egui::Label::new(unit_label("Tab width", doc)));
                         ui.add_enabled_ui(tabs, |ui| self.f.ui(ui, "tabWidth", doc));
@@ -736,7 +775,7 @@ impl OpDialog {
                                     }
                                 });
                                 if self.place_tabs {
-                                    hint(ui, "Click an outline to add a tab there, click a tab to remove it");
+                                    hint(ui, "Click an outline to add a tab, click a tab to remove it, drag a tab to move it");
                                 } else if !self.op.tab_points.is_empty() {
                                     hint(ui, &format!("{} placed by hand", self.op.tab_points.len()));
                                 }

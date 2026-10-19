@@ -507,6 +507,11 @@ impl View3d {
                 }
             }
         });
+        // phones: View and Reset view only (touch: one finger orbits, two pan and pinch-zoom)
+        let phone = rect.width() < 520.0;
+        if phone {
+            return;
+        }
         crate::widgets::combo_box("view3d-nav").selected_text("Mouse").width(84.0).show_ui(&mut row, |ui| {
             ui.set_min_width(230.0);
             for (nav, key, label, _) in Nav::ALL {

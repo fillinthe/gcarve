@@ -374,7 +374,11 @@ impl Canvas {
                 if !shift {
                     self.sel.clear();
                 }
-                if drag && !self.start_relief_drag(w) {
+                // a finger on empty canvas pans (phones and tablets have no right button and no space bar)
+                let touch = drag && self.touching;
+                if touch {
+                    self.touch_pan = true;
+                } else if drag && !self.start_relief_drag(w) {
                     self.drag = Drag::Marquee; // a 3D model under the pointer is dragged into place instead
                 }
                 self.sel_changed();
@@ -527,7 +531,19 @@ impl Canvas {
                     self.tab_clicks.push(w);
                 }
             }
-            return format!("{status}   click the part's outline to add or remove a tab");
+            // drag a tab along the outline (the dialog moves it while the pointer moves)
+            if drag_started {
+                self.tab_drag = Some((press_w, press_w, false));
+            }
+            if let (Some(d), Some(w)) = (self.tab_drag.as_mut(), hover_w) {
+                d.1 = w;
+            }
+            if resp.drag_stopped() {
+                if let Some(d) = self.tab_drag.as_mut() {
+                    d.2 = true;
+                }
+            }
+            return format!("{status}   click the part's outline to add or remove a tab, drag a tab to move it");
         }
         match self.tool {
             Tool::Select => {
@@ -821,6 +837,9 @@ impl Canvas {
                 }
                 status = format!("{status}   click to place text");
             }
+        }
+        if resp.drag_stopped() {
+            self.touch_pan = false;
         }
         if resp.drag_stopped() && matches!(self.drag, Drag::Move | Drag::Node | Drag::Marquee | Drag::ReliefMove | Drag::Scale(_) | Drag::Rotate | Drag::Pivot) {
             if matches!(self.drag, Drag::Scale(_) | Drag::Rotate) {

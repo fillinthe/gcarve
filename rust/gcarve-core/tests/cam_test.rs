@@ -804,3 +804,21 @@ fn array_copies_repeat_the_cut_across_the_grid() {
     }
 }
 
+
+#[test]
+fn tabs_by_spacing_give_big_parts_more_tabs() {
+    let t = &default_tools()[0];
+    let op = Op { kind: OpType::Profile, name: "P".into(), depth: 0.5, stepdown: 0.5, tabs: true, tab_count: 2, tab_spacing: 6.0, tab_width: 0.25, tab_height: 0.1, ..Default::default() };
+    // rising onto a tab top in the full-depth pass, per part
+    let tabs = |r: &gcarve_core::cam::CamResult| -> Vec<usize> {
+        r.paths.iter().map(|p| {
+            let zs: Vec<f64> = p.moves.iter().filter_map(|m| m.z).collect();
+            zs.windows(2).filter(|w| w[0] < -0.45 && w[1] > -0.41 && w[1] < -0.39).count()
+        }).collect()
+    };
+    let small = tabs(&generate(&op, t, &[make_rect(0.0, 0.0, 3.0, 3.0)], &mat(), None));
+    let big = tabs(&generate(&op, t, &[make_rect(0.0, 0.0, 12.0, 12.0)], &mat(), None));
+    assert_eq!(small.iter().sum::<usize>(), 2, "a 3 × 3 part (about 13 in round): 2 tabs, {small:?}");
+    // about 49 in round: 8 tabs (a tab across the start of the loop can count twice here)
+    assert!((8..=9).contains(&big.iter().sum::<usize>()), "a 12 × 12 part gets about 8 tabs, {big:?}");
+}

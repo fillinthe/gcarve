@@ -237,7 +237,7 @@ impl JobDialog {
                 ui.label("Sheet");
                 ui.horizontal(|ui| {
                     for i in 0..sheets {
-                        if ui.selectable_label(i as i32 == active, format!("Sheet {}", i + 1)).clicked() {
+                        if ui.selectable_label(i as i32 == active, doc.sheet_name(i)).clicked() {
                             sheet_act = Some(i as i32);
                         }
                     }
@@ -269,19 +269,19 @@ impl JobDialog {
                 ui.label(unit_label("Thickness", doc));
                 self.f.ui(ui, "t", doc);
                 ui.end_row();
-                ui.label(unit_label("Safe Z", doc));
+                ui.label(unit_label("Lift for moves", doc)).tip("Safe Z: how high above the board the bit travels between parts. Clear your clamps.");
                 self.f.ui(ui, "safeZ", doc);
                 ui.end_row();
-                ui.label(unit_label("Retract Z between paths", doc));
+                ui.label(unit_label("Small lift", doc)).tip("Retract Z: the short hop between nearby cuts of one toolpath, above the board.");
                 self.f.ui(ui, "retractZ", doc);
                 ui.end_row();
             });
             });
             ui.add_space(18.0);
             ui.vertical(|ui| {
-            ui.label(RichText::new("Zero point").family(crate::widgets::bold_family()));
+            ui.label(RichText::new("Where you zero the machine").family(crate::widgets::bold_family()));
             egui::Grid::new("job-zero").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                ui.label("XY zero (datum)");
+                ui.label("X and Y").on_hover_text("XY zero (datum): the point of the board you set as X0 Y0 on the machine");
                 let (w, h) = (self.f.get_or("w", doc, 1.5), self.f.get_or("h", doc, 1.0));
                 let aspect = if w > 0.0 && h > 0.0 { w / h } else { 1.5 };
                 let row_h = (96.0 / aspect.clamp(0.5, 3.0)).round() as f32 + 8.0; // the picker's height: label centred on it
@@ -290,16 +290,22 @@ impl JobDialog {
                     ui.label(RichText::new(format!("{}{}", ORIGIN_NAMES[self.origin as usize], if self.origin == 4 { " of the board" } else { " corner" })).color(crate::theme::TEXT_DIM));
                 });
                 ui.end_row();
-                ui.label("Z zero");
+                ui.label("Z (bit height)").on_hover_text("Z zero: where you touch the bit off");
                 ui.vertical(|ui| {
-                    crate::widgets::radio_value(ui, &mut self.z_bottom, false, "Material surface (touch top)");
-                    crate::widgets::radio_value(ui, &mut self.z_bottom, true, "Machine bed (touch bottom)");
+                    crate::widgets::radio_value(ui, &mut self.z_bottom, false, "Touch off on top of the board");
+                    crate::widgets::radio_value(ui, &mut self.z_bottom, true, "Touch off on the spoilboard / table");
                 });
                 ui.end_row();
                 ui.label("");
                 ui.vertical(|ui| {
                     ui.set_width(380.0);
-                    hint(ui, "G-code is written relative to these. The yellow marker on the canvas shows the datum.");
+                    // the whole setup as one paragraph, the way you'd tell someone at the machine
+                    let u = |v: f64| crate::units::text(doc, v);
+                    let (w, h, t) = (self.f.get_or("w", doc, doc.material.w), self.f.get_or("h", doc, doc.material.h), self.f.get_or("t", doc, doc.material.t));
+                    let corner = match self.origin { 4 => "the centre of the board".to_string(), o => format!("its {} corner", ORIGIN_NAMES[o.clamp(0, 3) as usize].to_lowercase()) };
+                    let z = if self.z_bottom { "on the spoilboard under it" } else { "on its top" };
+                    let lift = self.f.get_or("safeZ", doc, doc.material.safe_z);
+                    hint(ui, &format!("At the machine: lay down a {} × {} board, {} thick, of {}. Zero X and Y at {corner} and touch the bit off {z}. Between parts the bit lifts {} above the board. The yellow marker on the drawing shows your X/Y zero.", u(w), u(h), u(t), self.kind.to_lowercase(), u(lift)));
                 });
                 ui.end_row();
             });
@@ -333,7 +339,7 @@ impl JobDialog {
                 ui.label("Feeds & speeds");
                 crate::widgets::checkbox(ui, &mut self.auto_feeds, "Auto-set feeds for bits with no preset for this material").tip("Uses chip-load tables (bit diameter, flutes, material type). Bits with a saved preset for the material keep it.");
                 ui.end_row();
-                ui.label("Post-processor");
+                ui.label("G-code style").on_hover_text("Post-processor: the dialect your controller reads (WinCNC, GRBL, Mach3…)");
                 ui.horizontal(|ui| {
                     ui.add(egui::Label::new(&post_name).truncate());
                     if ui.button("Choose…").clicked() {
@@ -433,7 +439,7 @@ pub fn origin_picker(ui: &mut egui::Ui, value: &mut i32, aspect: f64) -> bool {
 
 pub fn sheet_add(doc: &mut Document) {
     doc.sync_sheet();
-    let m = doc.material.clone();
+    let m = gcarve_core::document::Material { name: String::new(), ..doc.material.clone() }; // a new sheet starts unnamed
     doc.sheets.push(m);
     doc.set_active_sheet(doc.sheets.len() as i32 - 1);
 }

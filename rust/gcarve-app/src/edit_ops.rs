@@ -869,7 +869,7 @@ impl Canvas {
             let next = self.doc.active_sheet + 1;
             if next >= self.doc.sheets.len() as i32 {
                 self.doc.sync_sheet();
-                let m = self.doc.material.clone();
+                let m = gcarve_core::document::Material { name: String::new(), ..self.doc.material.clone() };
                 self.doc.sheets.push(m);
             }
             for id in &rest {

@@ -128,6 +128,12 @@ pub struct Canvas {
     pub doc: Document,
     /// every sheet side by side (allsheets.rs)
     pub all_sheets: bool,
+    /// a straightened photo of the board under the drawing (dialogs/boardphoto.rs), this session only
+    pub board_photo: Option<crate::dialogs::boardphoto::BoardPhoto>,
+    /// a one-finger touch that began on empty canvas: it pans instead of drawing a selection box
+    pub(crate) touch_pan: bool,
+    /// a finger is on the screen this frame (touch devices)
+    pub(crate) touching: bool,
     pub sel: BTreeSet<i32>, // shape ids (groups expand in sel_changed)
     pub tool: Tool,
     pub snap: bool,
@@ -194,6 +200,8 @@ pub struct Canvas {
     /// instead of the tool; tab_marks are drawn on the canvas
     pub(crate) tab_pick: u8,
     pub(crate) tab_clicks: Vec<Pt>,
+    /// a drag while placing tabs: (where it started, where the pointer is, released)
+    pub(crate) tab_drag: Option<(Pt, Pt, bool)>,
     pub(crate) tab_marks: Vec<[f64; 2]>,
     /// dev hook for screenshots (GCARVE_DIALOG=shapemenu|sizepopup), resolved once the canvas rect is known
     pub(crate) shot_hook: String,
@@ -265,6 +273,9 @@ impl Default for Canvas {
             rev: 1,
             show_paths: true,
             all_sheets: false,
+            board_photo: None,
+            touch_pan: false,
+            touching: false,
             show_width: true,
             bands: Default::default(),
             status: String::new(),
@@ -309,6 +320,7 @@ impl Default for Canvas {
             size_popup: None,
             tab_pick: 0,
             tab_clicks: Vec::new(),
+            tab_drag: None,
             tab_marks: Vec::new(),
             shot_hook: String::new(),
             card_closed: false,
@@ -350,7 +362,8 @@ impl Canvas {
         rect.max.y -= self.bottom_inset;
         match b {
             Some(b) if rect.width() > 0.0 && b.w() > 0.0 && b.h() > 0.0 => {
-                let zoom = (((rect.width() - 80.0) as f64 / b.w()).min((rect.height() - 80.0) as f64 / b.h())).max(1.0) as f32;
+                let m = if rect.width() < 500.0 { 24.0 } else { 80.0 }; // phones: every pixel counts
+                let zoom = (((rect.width() - m) as f64 / b.w()).min((rect.height() - m) as f64 / b.h())).max(1.0) as f32;
                 let c = rect.center();
                 let mid = pt((b.x0 + b.x1) / 2.0, (b.y0 + b.y1) / 2.0);
                 self.view = Some(View { zoom, origin: c + egui::vec2(-(mid.x as f32) * zoom, mid.y as f32 * zoom) });
@@ -363,7 +376,8 @@ impl Canvas {
         let mut rect = self.view_area(rect);
         rect.max.y -= self.bottom_inset;
         let (w, h) = (self.doc.material.w, self.doc.material.h);
-        let zoom = ((rect.width() - 80.0) / w as f32).min((rect.height() - 80.0) / h as f32).max(1.0); // Qt zoomBoard: 40 px margin
+        let m = if rect.width() < 500.0 { 24.0 } else { 80.0 }; // Qt zoomBoard: 40 px margin (phones: 12)
+        let zoom = ((rect.width() - m) / w as f32).min((rect.height() - m) / h as f32).max(1.0);
         let origin = Pos2::new(rect.center().x - w as f32 * zoom / 2.0, rect.center().y + h as f32 * zoom / 2.0);
         self.view = Some(View { zoom, origin });
     }
@@ -413,11 +427,21 @@ impl Canvas {
         }
         let painter = ui.painter_at(full);
         painter.rect_filled(full, 0.0, theme::CANVAS_BG);
+        if let Some(bp) = self.board_photo.as_mut().filter(|b| b.show && b.tex.is_none()) {
+            bp.tex = Some(ui.ctx().load_texture("board-photo", egui::ColorImage::from_rgba_unmultiplied([bp.w, bp.h], &bp.rgba), egui::TextureOptions::LINEAR));
+        }
 
         // pan (right/middle drag or space+drag) and zoom (wheel / pinch) around the cursor
         let view = self.view.as_mut().unwrap();
         let space = ui.input(|i| i.key_down(egui::Key::Space));
         if resp.dragged_by(egui::PointerButton::Secondary) || resp.dragged_by(egui::PointerButton::Middle) || (space && resp.dragged()) {
+            view.origin += resp.drag_delta();
+        }
+        self.touching = ui.input(|i| i.any_touches());
+        // touch screens: two fingers pan (and pinch zooms below); one finger on empty space pans too (`touch_pan`)
+        if let Some(t) = ui.input(|i| i.multi_touch()).filter(|_| resp.hovered() || resp.dragged()) {
+            view.origin += t.translation_delta;
+        } else if self.touch_pan && resp.dragged_by(egui::PointerButton::Primary) {
             view.origin += resp.drag_delta();
         }
         if resp.hovered() {
@@ -450,6 +474,11 @@ impl Canvas {
         let view = self.view.as_ref().unwrap();
         let (bw, bh) = (self.doc.material.w, self.doc.material.h);
         let board = Rect::from_two_pos(view.to_screen(pt(0.0, 0.0)), view.to_screen(pt(bw, bh)));
+        // the photo of the board, straightened onto it (dimmed so the vectors stay readable)
+        if let Some((bp, tex)) = self.board_photo.as_ref().filter(|b| b.show && b.sheet == self.doc.active_sheet).and_then(|b| b.tex.as_ref().map(|t| (b, t))) {
+            let _ = bp;
+            painter.image(tex.id(), board, Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)), Color32::from_white_alpha(170));
+        }
         painter.rect(board, 0.0, Color32::from_rgba_unmultiplied(138, 122, 90, 28), Stroke::new(1.0, c(0x8a7a5a)), egui::StrokeKind::Middle);
         self.paint_reliefs(ui.ctx(), &painter);
         let view = self.view.as_ref().unwrap();
