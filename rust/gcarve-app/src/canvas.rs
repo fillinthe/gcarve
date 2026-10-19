@@ -473,10 +473,10 @@ impl Canvas {
             let pts = self.screen_pts(view, &s.c);
             let layer = self.doc.layers.get(s.layer as usize);
             if self.sel.contains(&s.id) {
-                painter.add(if s.c.closed { Shape::closed_line(pts, Stroke::new(2.0, SELECTED)) } else { Shape::line(pts, Stroke::new(2.0, SELECTED)) });
+                stroke_path(&painter, pts, s.c.closed, Stroke::new(2.0, SELECTED));
             } else if layer.is_some_and(|l| l.keep_out) && s.c.closed {
                 // keep-out zones (clamps, screws): thick red, so nobody mistakes them for parts
-                painter.add(Shape::closed_line(pts, Stroke::new(2.0, crate::theme::DANGER)));
+                stroke_path(&painter, pts, true, Stroke::new(2.0, crate::theme::DANGER));
             } else {
                 let stroke = Stroke::new(1.0, layer.map(|l| hex(&l.color)).unwrap_or(c(0xd7dae0)));
                 if layer.is_some_and(|l| l.locked) {
@@ -486,7 +486,7 @@ impl Canvas {
                     }
                     painter.extend(Shape::dotted_line(&pts, stroke.color, 3.0, 0.6));
                 } else {
-                    painter.add(if s.c.closed { Shape::closed_line(pts, stroke) } else { Shape::line(pts, stroke) });
+                    stroke_path(&painter, pts, s.c.closed, stroke);
                 }
             }
         }
@@ -908,4 +908,63 @@ pub fn arc_points(a: Pt, b: Pt, i: f64, j: f64, ccw: bool) -> Vec<Pt> {
         let t = a0 + sweep * k as f64 / n as f64;
         pt(c.x + r * t.cos(), c.y + r * t.sin())
     }).collect()
+}
+
+/// A shape's outline. Where the path turns straight back on itself (a speck in a VCarve or SVG file) egui's corner
+/// join has no direction and shoots a spike across the screen, so the outline is drawn in pieces split there.
+fn stroke_path(painter: &egui::Painter, pts: Vec<Pos2>, closed: bool, stroke: Stroke) {
+    match split_at_reversals(pts, closed) {
+        Ok(pts) => {
+            painter.add(if closed { Shape::closed_line(pts, stroke) } else { Shape::line(pts, stroke) });
+        }
+        Err(pieces) => painter.extend(pieces.into_iter().map(|p| Shape::line(p, stroke))),
+    }
+}
+
+/// Ok(the points) when nothing doubles back, else Err(open pieces that each run from one reversal to the next).
+fn split_at_reversals(mut pts: Vec<Pos2>, closed: bool) -> Result<Vec<Pos2>, Vec<Vec<Pos2>>> {
+    pts.dedup_by(|a, b| a.distance(*b) < 0.01);
+    let n = pts.len();
+    let reverses = |i: usize| {
+        let (a, b, c) = (pts[(i + n - 1) % n], pts[i], pts[(i + 1) % n]);
+        let (u, v) = (b - a, c - b);
+        u.dot(v) < -0.999 * u.length() * v.length()
+    };
+    let cuts: Vec<usize> = (0..n).filter(|&i| n > 2 && (closed || (i > 0 && i + 1 < n)) && reverses(i)).collect();
+    if cuts.is_empty() {
+        return Ok(pts);
+    }
+    let start = if closed { cuts[0] } else { 0 };
+    let mut ring = pts.clone();
+    ring.rotate_left(start); // closed: start at a reversal, so every piece runs reversal to reversal
+    if closed {
+        ring.push(ring[0]);
+    }
+    let mut pieces = Vec::new();
+    let mut piece = vec![ring[0]];
+    for (k, q) in ring.iter().enumerate().skip(1) {
+        piece.push(*q);
+        if k + 1 < ring.len() && cuts.contains(&((k + start) % n)) {
+            pieces.push(std::mem::replace(&mut piece, vec![*q]));
+        }
+    }
+    pieces.push(piece);
+    Err(pieces)
+}
+
+#[cfg(test)]
+mod stroke_tests {
+    use super::*;
+
+    #[test]
+    fn outlines_that_double_back_are_drawn_in_pieces() {
+        let p = |x: f32, y: f32| Pos2::new(x, y);
+        // a square has no reversal: one closed line, as before
+        assert!(split_at_reversals(vec![p(0., 0.), p(10., 0.), p(10., 10.), p(0., 10.)], true).is_ok());
+        // out and straight back (a speck): open pieces that start and end at the turn, so no join is drawn there
+        let Err(pieces) = split_at_reversals(vec![p(0., 0.), p(10., 0.), p(5., 0.), p(5., 3.)], true) else { panic!("not split") };
+        assert_eq!(pieces, vec![vec![p(10., 0.), p(5., 0.), p(5., 3.), p(0., 0.), p(10., 0.)]]);
+        let Err(open) = split_at_reversals(vec![p(0., 0.), p(10., 0.), p(2., 0.)], false) else { panic!("open not split") };
+        assert_eq!(open, vec![vec![p(0., 0.), p(10., 0.)], vec![p(10., 0.), p(2., 0.)]]);
+    }
 }

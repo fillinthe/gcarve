@@ -32,7 +32,7 @@ struct Vtx {
     bulge: f64,
 }
 
-fn bulge_arc(b: &mut Builder, p1: Pt, p2: Pt, bulge: f64) {
+pub(crate) fn bulge_arc(b: &mut Builder, p1: Pt, p2: Pt, bulge: f64) {
     let th = 4.0 * bulge.atan();
     let c = dist(p1, p2);
     let m = lerp(p1, p2, 0.5);

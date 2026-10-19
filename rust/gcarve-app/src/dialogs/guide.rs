@@ -60,6 +60,7 @@ pub const TOPICS: &[gcarve_ui::guide::Topic] = &[
     ("Cut both sides of a board", "Vectors › New Back Side: a second sheet with your vectors mirrored for the flip. Drill two dowel holes through on side 1 to line the board up again.", ""),
     ("Several boards in one project", "The + next to the sheet tabs under the canvas adds a sheet; each exports its own files.", "sheet:add"),
     ("A printout for the machine", "File › Setup Sheet…: bits, order, zero point and a picture of the result.", "setupsheet"),
+    ("Open a VCarve project (.crv)", "File › Open the .crv file, or drop it on the window. The vectors come in on their layers, each VCarve sheet becomes a GCarve sheet with its board size and thickness. Toolpaths aren't read yet: add them in GCarve, then save as a GCarve project (.tlp); the .crv file is never changed.", "open"),
     ("Send vectors to other software", "File › Export Vectors › SVG, DXF or DWG (the selection, or everything on the sheet).", "vexport:svg"),
     ("Save my work", "File › Save. With a free account projects are kept online in folders and open on any computer; without one, File › Download Project keeps a .tlp file.", "save"),
     ("Find any command", "Press ⌘K / Ctrl+K and type what you want.", "palette"),

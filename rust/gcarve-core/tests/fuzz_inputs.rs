@@ -1,6 +1,7 @@
 //! Importers and the project loader must never panic on damaged files: in the browser a panic ends the whole app.
 //! Deterministic mutations (cut, byte flips, junk, repeats) of the sample files; run with
-//! `cargo test -p gcarve-core --release --test fuzz_inputs -- --ignored` (a few seconds).
+//! `cargo test -p gcarve-core --release --test fuzz_inputs -- --ignored` (a few seconds; GCARVE_FUZZ_CRV=x.crv adds a
+//! VCarve project).
 
 use gcarve_core::document::Material;
 use std::panic::catch_unwind;
@@ -113,6 +114,18 @@ fn importers_survive_damaged_files() {
         if r.is_err() {
             bad.push(format!("pdf #{n}"));
             let _ = std::fs::write(std::env::temp_dir().join(format!("fuzz-pdf-{n}.bin")), &bytes);
+        }
+    }
+    // VCarve .crv: no sample is committed (customers' projects), so only when GCARVE_FUZZ_CRV names a real one
+    if let Some(crv) = std::env::var("GCARVE_FUZZ_CRV").ok().and_then(|p| std::fs::read(p).ok()) {
+        for n in 0..rounds * 2 {
+            let bytes = mutate(&crv, &mut seed);
+            let t0 = std::time::Instant::now();
+            let r = catch_unwind(|| drop(gcarve_core::crv::import_crv(&bytes)));
+            if t0.elapsed().as_secs_f64() > 2.0 || r.is_err() {
+                bad.push(format!("crv #{n}{}", if r.is_err() { "" } else { " slow" }));
+                let _ = std::fs::write(std::env::temp_dir().join(format!("fuzz-crv-{n}.bin")), &bytes);
+            }
         }
     }
     assert!(bad.is_empty(), "panics on damaged input: {bad:?} (inputs saved in the temp dir)");

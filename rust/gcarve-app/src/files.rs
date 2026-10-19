@@ -61,7 +61,7 @@ impl Files {
         }
         #[cfg(target_arch = "wasm32")]
         {
-            let exts: &[&str] = if import { &["svg", "dxf", "dwg", "pdf", "ai", "gsk", "stl", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg"] } else { &["tlp", "svg", "dxf", "dwg", "pdf", "ai", "gsk", "stl", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg"] };
+            let exts: &[&str] = if import { &["svg", "dxf", "dwg", "pdf", "ai", "gsk", "stl", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg"] } else { &["tlp", "crv", "svg", "dxf", "dwg", "pdf", "ai", "gsk", "stl", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg"] };
             let tx = self.tx.clone();
             web_pick(exts, ctx.clone(), self.msg_tx.clone(), move |name, bytes| {
                 let _ = tx.send(Picked { name, bytes, path: None, import });
@@ -72,7 +72,7 @@ impl Files {
         let dialog = if import {
             rfd::AsyncFileDialog::new().set_title("Import into this document").add_filter("All supported", &["svg", "dxf", "dwg", "pdf", "ai", "gsk", "stl", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg"]).add_filter("Vector files", &["svg", "dxf", "dwg"]).add_filter("GSketch model", &["gsk"]).add_filter("G-code", GCODE_EXTS).add_filter("Images to trace", IMAGE_EXTS).add_filter("3D models", &["stl"])
         } else {
-            rfd::AsyncFileDialog::new().add_filter("All supported", &["tlp", "svg", "dxf", "dwg", "pdf", "ai", "gsk", "stl", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg"]).add_filter("GCarve project", &["tlp"]).add_filter("GSketch model", &["gsk"]).add_filter("Vector files", &["svg", "dxf", "dwg"]).add_filter("G-code", GCODE_EXTS)
+            rfd::AsyncFileDialog::new().add_filter("All supported", &["tlp", "crv", "svg", "dxf", "dwg", "pdf", "ai", "gsk", "stl", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg"]).add_filter("GCarve project", &["tlp"]).add_filter("VCarve project", &["crv"]).add_filter("GSketch model", &["gsk"]).add_filter("Vector files", &["svg", "dxf", "dwg"]).add_filter("G-code", GCODE_EXTS)
         };
         let tx = self.tx.clone();
         let ctx = ctx.clone();
@@ -166,7 +166,7 @@ impl Files {
     /// Save As (desktop): native dialog on its own thread; the chosen path comes back on `saved_rx` with `doc`.
     #[cfg(not(target_arch = "wasm32"))]
     pub fn save_project_as(&self, doc: u64, name: &str, bytes: Vec<u8>) {
-        let dialog = rfd::AsyncFileDialog::new().set_file_name(format!("{name}.tlp")).add_filter("GCarve project", &["tlp"]);
+        let dialog = rfd::AsyncFileDialog::new().set_file_name(format!("{name}.tlp")).add_filter("GCarve project", &["tlp"]).add_filter("VCarve project", &["crv"]);
         let (done, msg) = (self.saved_tx.clone(), self.msg_tx.clone());
         std::thread::spawn(move || {
             let Some(f) = pollster_block_on(dialog.save_file()) else { return };
@@ -372,7 +372,8 @@ pub enum Loaded {
     Gcode(String),
     /// a picture: the app shows Trace Image
     Image,
-    Project(Box<Document>),
+    /// a whole project; the note says what came in (a VCarve file), "" for .tlp
+    Project(Box<Document>, String),
     Imported(usize, String), // shapes added, note
     Error(String),
 }
@@ -439,7 +440,7 @@ pub fn dxf_to_dwg(dxf: &str) -> Result<Vec<u8>, String> {
     .map_err(|_| "Could not write the DWG file. Export DXF instead.".to_string())?
 }
 
-/// .tlp replaces the document; .svg / .dxf / .pdf / .ai add to it (layers from the file).
+/// .tlp and VCarve .crv replace the document; .svg / .dxf / .pdf / .ai add to it (layers from the file).
 pub fn load(doc: &mut Document, name: &str, bytes: &[u8]) -> Loaded {
     // a browser tab has a few GB at most, and the importers copy the text: refuse the absurd before reading it
     if bytes.len() > MAX_IMPORT_BYTES {
@@ -459,7 +460,11 @@ pub fn load(doc: &mut Document, name: &str, bytes: &[u8]) -> Loaded {
     };
     match ext.as_str() {
         "tlp" => match project::load_project(&text) {
-            Ok(d) => Loaded::Project(Box::new(d)),
+            Ok(d) => Loaded::Project(Box::new(d), String::new()),
+            Err(e) => Loaded::Error(e),
+        },
+        "crv" => match gcarve_core::crv::import_crv(bytes) {
+            Ok((d, note)) => Loaded::Project(Box::new(d), note),
             Err(e) => Loaded::Error(e),
         },
         "svg" | "dxf" | "pdf" | "ai" => {
@@ -495,7 +500,7 @@ pub fn load(doc: &mut Document, name: &str, bytes: &[u8]) -> Loaded {
         "step" | "stp" | "sldprt" | "sldasm" | "iges" | "igs" | "f3d" | "ipt" | "3dm" => Loaded::Error(format!(
             "GCarve can't read .{ext} (3D CAD) files. In your CAD program export the outline you want to cut as DXF, DWG or SVG (or the shape as STL) and open that."
         )),
-        _ => Loaded::Error(format!("GCarve can't open .{ext} files. It opens GCarve projects (.tlp), SVG, DXF, AutoCAD DWG, PDF and Illustrator (.ai), G-code (.tap .nc .gcode) and pictures (PNG, JPEG) to trace.")),
+        _ => Loaded::Error(format!("GCarve can't open .{ext} files. It opens GCarve projects (.tlp), VCarve projects (.crv), SVG, DXF, AutoCAD DWG, PDF and Illustrator (.ai), G-code (.tap .nc .gcode) and pictures (PNG, JPEG) to trace.")),
     }
 }
 

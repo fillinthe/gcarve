@@ -7,6 +7,7 @@ pub mod cam;
 pub mod catalog;
 pub mod clipart;
 pub mod document;
+pub mod crv;
 pub mod dxf;
 pub mod expr;
 pub mod feeds;
