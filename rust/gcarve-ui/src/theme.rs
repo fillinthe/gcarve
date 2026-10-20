@@ -45,6 +45,34 @@ pub const TOOL_MEASURE: Color32 = c(0xffd34d);
 pub const TOOL_TEXT: Color32 = c(0xff9f1a);
 pub const TOOL_FILE: Color32 = c(0xb8bec8);
 
+/// What a tool does, for its colour: every app's tool rail tints by this, so a draw tool looks the same in all of them.
+#[derive(Clone, Copy, PartialEq, Eq, Debug)]
+pub enum ToolKind {
+    Select,
+    Draw,
+    /// changes what is there (move, push/pull, booleans)
+    Modify,
+    Measure,
+    Text,
+    /// paint, materials, set-up
+    Material,
+    View,
+}
+
+/// (icon tint, active accent bar); Select keeps the blue accent bar
+pub fn tool_color(k: ToolKind) -> (Color32, Color32) {
+    let tint = match k {
+        ToolKind::Select => return (TOOL_SELECT, ACCENT),
+        ToolKind::Draw => TOOL_DRAW,
+        ToolKind::Modify => GROUP_BOOLEAN,
+        ToolKind::Measure => TOOL_MEASURE,
+        ToolKind::Text => TOOL_TEXT,
+        ToolKind::Material => GROUP_SETUP,
+        ToolKind::View => GROUP_VIEW,
+    };
+    (tint, tint)
+}
+
 pub const RADIUS: u8 = 6;
 pub const CONTROL_HEIGHT: f32 = 30.0;
 pub const FONT_SIZE: f32 = 13.0;
