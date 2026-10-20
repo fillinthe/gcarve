@@ -3,6 +3,7 @@
 
 pub mod account;
 pub mod cloud;
+pub mod color;
 pub mod fonts;
 pub mod glyphs;
 pub mod guide;
@@ -15,6 +16,9 @@ pub mod shot;
 pub mod spacemouse;
 pub mod store;
 pub mod theme;
+pub mod menubar;
 pub mod widgets;
 #[cfg(target_arch = "wasm32")]
 pub mod webfile;
+#[cfg(target_arch = "wasm32")]
+pub mod webserial;

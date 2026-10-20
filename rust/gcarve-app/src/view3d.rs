@@ -25,7 +25,6 @@ struct Grid {
     cells: [usize; 4],
     /// the mesh budget it was built for (the full one once playback stops)
     budget: usize,
-    res: f64,
     x0: f64,
     y0: f64,
     px: Vec<f32>,
@@ -47,26 +46,32 @@ impl Grid {
         step
     }
 
+    /// Vertices sit on the block corners from one edge of the window to the other (the last block may be shorter), so
+    /// the surface reaches the window's edges: the uncut rim around the field joins it there, and a cut near the
+    /// edge keeps its outer wall (with vertices at block centres a half-block strip was left open along every edge and
+    /// the board box showed through it as a lower ledge: owner, 2026-10-20).
     fn build(hf: &HeightField, t: f64, cells: [usize; 4], step: usize) -> Grid {
-        let nx = 2.max((cells[2] - cells[0]) / step);
-        let ny = 2.max((cells[3] - cells[1]) / step);
+        let (w, h) = (cells[2].saturating_sub(cells[0]).max(1), cells[3].saturating_sub(cells[1]).max(1));
+        let nx = w.div_ceil(step) + 1;
+        let ny = h.div_ceil(step) + 1;
         let res = hf.res * step as f64;
         let (x0, y0) = (hf.x0 + cells[0] as f64 * hf.res, hf.y0 + cells[1] as f64 * hf.res);
+        // the cell a vertex stands on: its block corner, inside the window and the field
+        let cx = |ix: usize| (cells[0] + (ix * step).min(w)).min(cells[2].saturating_sub(1)).min(hf.nx.max(1) as usize - 1);
+        let cy = |iy: usize| (cells[1] + (iy * step).min(h)).min(cells[3].saturating_sub(1)).min(hf.ny.max(1) as usize - 1);
         let mut depth = vec![0.0f32; nx * ny];
         for iy in 0..ny {
             for ix in 0..nx {
-                let sx = (hf.nx as usize - 1).min(cells[0] + ix * step + step / 2) as i32;
-                let sy = (hf.ny as usize - 1).min(cells[1] + iy * step + step / 2) as i32;
-                depth[iy * nx + ix] = hf.at(sx, sy);
+                depth[iy * nx + ix] = hf.at(cx(ix) as i32, cy(iy) as i32);
             }
         }
         let at = |ix: usize, iy: usize| f64::from(depth[iy.min(ny - 1) * nx + ix.min(nx - 1)]);
         let n = nx * ny;
-        let mut g = Grid { nx, ny, step, cells, budget: 0, res, x0, y0, px: Vec::with_capacity(n), py: Vec::with_capacity(n), pz: Vec::with_capacity(n), col: Vec::with_capacity(n), lit: Vec::with_capacity(n) };
+        let mut g = Grid { nx, ny, step, cells, budget: 0, x0, y0, px: Vec::with_capacity(n), py: Vec::with_capacity(n), pz: Vec::with_capacity(n), col: Vec::with_capacity(n), lit: Vec::with_capacity(n) };
         for iy in 0..ny {
             for ix in 0..nx {
-                g.px.push((x0 + (ix as f64 + 0.5) * res) as f32);
-                g.py.push((y0 + (iy as f64 + 0.5) * res) as f32);
+                g.px.push((x0 + (ix * step).min(w) as f64 * hf.res) as f32);
+                g.py.push((y0 + (iy * step).min(h) as f64 * hf.res) as f32);
                 let d = at(ix, iy);
                 if d >= t - 1e-6 {
                     g.pz.push(-t as f32); // through-cut: the table
@@ -84,9 +89,10 @@ impl Grid {
         g
     }
 
-    /// the field's extent on the board (inches)
+    /// the field's extent on the board (inches): the window's edges, where the outer vertices stand
     fn field(&self) -> (f64, f64, f64, f64) {
-        (self.x0, self.y0, self.x0 + self.nx as f64 * self.res, self.y0 + self.ny as f64 * self.res)
+        let (x1, y1) = (self.px.get(self.nx - 1).copied().unwrap_or(0.0), self.py.last().copied().unwrap_or(0.0));
+        (self.x0, self.y0, f64::from(x1), f64::from(y1))
     }
 
     fn shade(&mut self, light: [f32; 3], zs: f32) {
@@ -284,10 +290,11 @@ impl View3d {
             _ => SimShow::load(),
         };
         let mut v = View3d { perspective: stored || std::env::var("GCARVE_PERSP").is_ok(), nav, zoom_reverse, show, ..Default::default() };
-        // GCARVE_VIEW3D=yaw,pitch[,zoom]: dev, screenshots from a given angle
+        // GCARVE_VIEW3D=yaw,pitch[,zoom[,panx,pany]]: dev, screenshots from a given angle
         if let Ok(a) = std::env::var("GCARVE_VIEW3D") {
             let n: Vec<f64> = a.split(',').filter_map(|x| x.trim().parse().ok()).collect();
             (v.yaw, v.pitch, v.zoom) = (n.first().copied().unwrap_or(v.yaw), n.get(1).copied().unwrap_or(v.pitch), n.get(2).copied().unwrap_or(v.zoom));
+            v.pan = egui::vec2(n.get(3).copied().unwrap_or(0.0) as f32, n.get(4).copied().unwrap_or(0.0) as f32); // [,panx,pany] screen px
         }
         v // GCARVE_PERSP: dev, screenshots
     }

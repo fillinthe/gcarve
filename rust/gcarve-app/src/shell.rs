@@ -349,26 +349,6 @@ pub fn mode_bar(ui: &mut egui::Ui, sh: &mut Shell, mode: Mode, title: &str, canv
     });
 }
 
-/// The command search box (⌘K opens the same palette). Narrow windows (small laptops, tablets, phones) get only
-/// its icon.
-fn search_box(ui: &mut egui::Ui, sh: &mut Shell) {
-    let wide = ui.ctx().content_rect().width() >= 1000.0;
-    let (r, resp) = ui.allocate_exact_size(egui::vec2(if wide { 240.0 } else { 30.0 }, 22.0), egui::Sense::click());
-    let resp = resp.tip("Search every command (⌘K)");
-    let p = ui.painter();
-    p.rect(r, theme::RADIUS as f32, theme::FIELD, egui::Stroke::new(1.0, if resp.hovered() { theme::BORDER_STRONG } else { theme::BORDER }), egui::StrokeKind::Inside);
-    crate::icons::paint(ui, "search", egui::Rect::from_min_size(r.left_top() + egui::vec2(8.0, 4.0), egui::vec2(14.0, 14.0)), 14.0, theme::TEXT_DIM);
-    if wide {
-        ui.painter().text(r.left_center() + egui::vec2(28.0, 0.0), egui::Align2::LEFT_CENTER, "Search commands…", theme::font(12.0), theme::TEXT.gamma_multiply(0.55));
-        let kb = egui::Rect::from_min_max(egui::pos2(r.right() - 34.0, r.top() + 4.0), egui::pos2(r.right() - 5.0, r.bottom() - 4.0));
-        ui.painter().rect_stroke(kb, 4.0, egui::Stroke::new(1.0, theme::BORDER_STRONG), egui::StrokeKind::Inside);
-        ui.painter().text(kb.center(), egui::Align2::CENTER_CENTER, theme::keys("⌘K"), theme::font(10.0), theme::TEXT.gamma_multiply(0.6));
-    }
-    if resp.clicked() {
-        sh.push("palette");
-    }
-}
-
 fn text_w(ui: &egui::Ui, s: &str, size: f32) -> f32 {
     ui.painter().layout_no_wrap(s.to_owned(), theme::font(size), theme::TEXT).size().x
 }
@@ -586,8 +566,19 @@ pub fn status_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, synced
                 if !phone && IconButton::new("offset").text("Width").active(canvas.show_width).tip("Show / hide cut-width bands").show(ui).clicked() {
                     canvas.show_width = !canvas.show_width;
                 }
-                if IconButton::new(if canvas.show_paths { "eye" } else { "eye-off" }).text("Paths").active(canvas.show_paths).tip("Show / hide toolpath previews (⇧⌘T): hide them to see just the vectors").show(ui).clicked() {
-                    canvas.show_paths = !canvas.show_paths;
+                // which toolpaths the drawing shows (and works out) while you edit: Paths off / Picked / All (right to
+                // left here, so they read Paths · Picked · All); Simulate always cuts every toolpath
+                if !phone {
+                    let opts = [("All", "all", canvas.all_paths, "Every toolpath, worked out again a moment after each edit"), ("Picked", "picked", !canvas.all_paths, "Only the toolpath you click in the Toolpaths list, or the one open in its dialog")];
+                    for (label, cmd, on, tip) in opts {
+                        let r = ui.add_enabled(canvas.show_paths, egui::Button::selectable(canvas.show_paths && on, RichText::new(label).size(12.0)));
+                        if r.on_hover_text(tip).on_disabled_hover_text("Paths are off: nothing is drawn or worked out while you edit").clicked() {
+                            sh.push(format!("paths:{cmd}"));
+                        }
+                    }
+                }
+                if IconButton::new(if canvas.show_paths { "eye" } else { "eye-off" }).text("Paths").active(canvas.show_paths).tip("Toolpaths on the drawing (⇧⌘T). Off: nothing is drawn or worked out while you edit; Simulate still cuts them all").show(ui).clicked() {
+                    sh.push("paths");
                 }
             }
             // Qt: the message fills the space after the cursor readout, left-aligned
@@ -696,36 +687,14 @@ pub struct MenuInfo {
 }
 
 /// Main.qml menuBar: the same menus, wording and shortcuts
-/// egui closes a menu only on a full click (press + release without moving); a press that drags a little (the
-/// canvas) left it open. Any press outside menus / popups and the menu bar closes them, as does losing focus.
-fn close_menus_on_press_elsewhere(ctx: &egui::Context, bar: egui::Rect, toggle: egui::Rect) {
-    if !ctx.input(|i| i.focused) && egui::Popup::is_any_open(ctx) {
-        egui::Popup::close_all(ctx); // another window, or the site bar above the web app, took the click
-        return;
-    }
-    let Some(p) = ctx.input(|i| i.pointer.any_pressed().then(|| i.pointer.interact_pos()).flatten()) else { return };
-    if egui::Popup::is_any_open(ctx) && !bar.contains(p) && !toggle.contains(p) && ctx.layer_id_at(p).is_none_or(|l| l.order != egui::Order::Foreground) {
-        egui::Popup::close_all(ctx);
-    }
-}
-
 pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, m: &MenuInfo, rail_open: &mut bool, panel_open: &mut bool, has_ops: bool) {
     let sel = canvas.selection_count();
     let (can_undo, can_redo) = (canvas.doc.can_undo(), canvas.doc.can_redo());
     let web = cfg!(target_arch = "wasm32");
     let text = canvas.selected_text() != 0;
-    close_menus_on_press_elsewhere(ui.ctx(), sh.menu_rect, sh.snap_arrow);
-    sh.menu_rect = egui::Panel::top("menu").frame(egui::Frame::new().fill(theme::BG).inner_margin(egui::Margin { left: 6, right: 6, top: 2, bottom: 2 })).show(ui, |ui| {
-        ui.style_mut().text_styles.insert(egui::TextStyle::Button, theme::font(12.0));
-        ui.spacing_mut().button_padding = egui::vec2(9.0, 3.0);
-        ui.spacing_mut().interact_size.y = 23.0; // 27 px menu bar like the Qt one
-        // style/MenuBarItem.qml: 9 px side padding per title
-        egui::MenuBar::new().config(egui::containers::menu::MenuConfig::new().style(widgets::menu_style)).style(|s: &mut egui::Style| {
-            egui::containers::menu::menu_style(s);
-            s.spacing.button_padding = egui::vec2(9.0, 4.0);
-            s.spacing.item_spacing.x = 0.0;
-        }).ui(ui, |ui| {
-            let mut tops: Vec<egui::Response> = Vec::new(); // the top-level menu buttons (hover switches menus)
+    let keep = sh.snap_arrow;
+    let mut search = false;
+    sh.menu_rect = gcarve_ui::menubar::bar(ui, keep, |ui: &mut egui::Ui, tops: &mut Vec<egui::Response>| {
             // item: label, shortcut text, enabled, command id
             fn item(ui: &mut egui::Ui, sh: &mut Shell, text: &str, key: &str, on: bool, id: &str) {
                 if ui.add_enabled_ui(on, |ui| widgets::menu_item(ui, text, key)).inner.clicked() {
@@ -738,9 +707,6 @@ pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, m: &Menu
                     ui.close();
                 }
             }
-            // phones: every menu under one ☰ button (the titles don't fit in a row)
-            let phone = ui.ctx().content_rect().width() < 600.0;
-            let mut menus = |ui: &mut egui::Ui, tops: &mut Vec<egui::Response>| {
             tops.push(ui.menu_button("File", |ui| {
                 item(ui, sh, "New", "⌘N", true, "new");
                 item(ui, sh, "Close Tab", "⌘W", true, "closetab");
@@ -970,26 +936,9 @@ pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, m: &Menu
                 widgets::menu_separator(ui);
                 item(ui, sh, "About GCarve", "", true, "about");
             }).response);
-            };
-            if phone {
-                let mut inner = Vec::new();
-                tops.push(ui.menu_button("☰ Menu", |ui| menus(ui, &mut inner)).response);
-            } else {
-                menus(ui, &mut tops);
-            }
-            // the command search, at the right end of the menu row (it sat in the bar below and pushed the mode switch aside)
-            ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                ui.add_space(4.0);
-                search_box(ui, sh);
-            });
-            // like a desktop menu bar: while one menu is open, hovering another title opens that one
-            let ctx = ui.ctx().clone();
-            if tops.iter().any(|r| egui::Popup::is_id_open(&ctx, egui::Popup::default_response_id(r))) {
-                if let Some(h) = tops.iter().find(|r| r.hovered() && !egui::Popup::is_id_open(&ctx, egui::Popup::default_response_id(r))) {
-                    egui::Popup::open_id(&ctx, egui::Popup::default_response_id(h));
-                }
-            }
-        });
-    }).response.rect;
+    }, |ui: &mut egui::Ui| search = gcarve_ui::menubar::search_box(ui));
+    if search {
+        sh.push("palette");
+    }
 }
 

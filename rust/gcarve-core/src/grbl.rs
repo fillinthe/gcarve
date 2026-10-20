@@ -15,6 +15,10 @@ pub const JOG_CANCEL: u8 = 0x85;
 pub const FEED_100: u8 = 0x90;
 pub const FEED_PLUS_10: u8 = 0x91;
 pub const FEED_MINUS_10: u8 = 0x92;
+/// spindle (laser power) overrides
+pub const SPINDLE_100: u8 = 0x99;
+pub const SPINDLE_PLUS_10: u8 = 0x9A;
+pub const SPINDLE_MINUS_10: u8 = 0x9B;
 /// controller serial RX buffer (character-counting protocol)
 pub const RX_BUFFER: usize = 128;
 
@@ -57,12 +61,14 @@ pub struct MachineStatus {
     pub feed: f64,
     pub rpm: f64,
     pub feed_ov: i32,
+    /// spindle / laser power override, %
+    pub spindle_ov: i32,
     pub valid: bool,
 }
 
 impl Default for MachineStatus {
     fn default() -> Self {
-        MachineStatus { state: "Unknown".into(), mpos: Vec3::default(), wco: Vec3::default(), feed: 0.0, rpm: 0.0, feed_ov: 100, valid: false }
+        MachineStatus { state: "Unknown".into(), mpos: Vec3::default(), wco: Vec3::default(), feed: 0.0, rpm: 0.0, feed_ov: 100, spindle_ov: 100, valid: false }
     }
 }
 
@@ -91,7 +97,12 @@ pub fn parse_status(line: &str, st: &mut MachineStatus) -> bool {
                 st.rpm = v[1];
             }
             "F" if !v.is_empty() => st.feed = v[0],
-            "Ov" if !v.is_empty() => st.feed_ov = v[0] as i32,
+            "Ov" if !v.is_empty() => {
+                st.feed_ov = v[0] as i32;
+                if v.len() >= 3 {
+                    st.spindle_ov = v[2] as i32;
+                }
+            }
             _ => {}
         }
     }
@@ -334,7 +345,7 @@ impl GrblSim {
             None if self.gs.spindle_on => self.gs.rpm,
             None => 0.0,
         };
-        self.out += &format!("<{}|MPos:{}|FS:{feed:.0},{rpm:.0}|WCO:{}|Ov:{},100,100>\r\n", self.st.state, fmt3(self.st.mpos), fmt3(self.st.wco), self.st.feed_ov);
+        self.out += &format!("<{}|MPos:{}|FS:{feed:.0},{rpm:.0}|WCO:{}|Ov:{},100,{}>\r\n", self.st.state, fmt3(self.st.mpos), fmt3(self.st.wco), self.st.feed_ov, self.st.spindle_ov);
     }
 
     /// from the host
@@ -377,6 +388,9 @@ impl GrblSim {
                 FEED_100 => self.st.feed_ov = 100,
                 FEED_PLUS_10 => self.st.feed_ov = (self.st.feed_ov + 10).min(200),
                 FEED_MINUS_10 => self.st.feed_ov = (self.st.feed_ov - 10).max(10),
+                SPINDLE_100 => self.st.spindle_ov = 100,
+                SPINDLE_PLUS_10 => self.st.spindle_ov = (self.st.spindle_ov + 10).min(200),
+                SPINDLE_MINUS_10 => self.st.spindle_ov = (self.st.spindle_ov - 10).max(10),
                 b'\n' => {
                     let l = String::from_utf8_lossy(&std::mem::take(&mut self.rx)).into_owned();
                     if !self.pending.is_empty() || self.planner_blocks() >= PLANNER {
@@ -993,8 +1007,8 @@ mod tests {
     #[test]
     fn status_parsing() {
         let mut st = MachineStatus::default();
-        assert!(parse_status("<Hold:0|MPos:1.000,2.000,-0.500|FS:120,18000|WCO:1,1,-1|Ov:110,100,100>", &mut st));
-        assert!(st.state == "Hold:0" && near(st.wpos().z, 0.5) && st.rpm == 18000.0 && st.feed_ov == 110);
+        assert!(parse_status("<Hold:0|MPos:1.000,2.000,-0.500|FS:120,18000|WCO:1,1,-1|Ov:110,100,80>", &mut st));
+        assert!(st.state == "Hold:0" && near(st.wpos().z, 0.5) && st.rpm == 18000.0 && st.feed_ov == 110 && st.spindle_ov == 80);
         assert!(parse_status("<Idle|WPos:0,0,0>", &mut st) && near(st.mpos.x, 1.0));
         assert!(!parse_status("ok", &mut st));
         assert_eq!(clean_line(" g1 x1 (c) ; tail"), "G1X1");

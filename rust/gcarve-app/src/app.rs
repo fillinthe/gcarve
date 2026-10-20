@@ -78,6 +78,9 @@ pub struct App {
     edit_at: f64,
     /// View › Every Toolpath While Drawing (store `design-all-paths`): off = only the picked toolpath / the one in its dialog
     all_paths: bool,
+    /// toolpath previews on at all (status bar Paths, ⇧⌘T, the Toolpaths tab's Show switch; store `show-paths`, per
+    /// device): off = nothing is drawn or worked out while drawing. Copied onto the canvas each frame.
+    show_paths: bool,
     /// account library sync: the account copy has been merged (uploads only after that), last uploaded library rev
     lib_ready: bool,
     lib_pushed: u64,
@@ -199,7 +202,7 @@ impl App {
         let prefs = if shot { dialogs::prefs::Prefs::default() } else { dialogs::prefs::Prefs::load() }; // screenshots: stock settings (Qt: temp settings)
         gcarve_ui::help::init("fillinthe/gcarve", env!("CARGO_PKG_VERSION"));
         gcarve_ui::help::set_download_page("https://gcarve.app/download/");
-        let mut app = App { files, mode, canvas: new_canvas(&prefs), left_open: ui_state.tool_rail, right_open: ui_state.side_panel, status: String::new(), message: "Open a VCarve project (.crv), an SVG, DXF or PDF, or draw with R / E / P.".into(), name: "Untitled".into(), shell: Shell::new(), frame: 0, gen: None, gen_rev: 0, gen_cov: Vec::new(), edit_seen: (0, None), edit_at: 0.0, all_paths: std::env::var("GCARVE_ALL_PATHS").map_or(shot || crate::store::load("design-all-paths").as_deref() == Some("1"), |v| v == "1"), lib_ready: false, lib_pushed: 0, shares: Vec::new(), shares_open: false, gen_draft: None, export: None, cloud: Cloud::new(), cloud_id: String::new(), account: Default::default(), help: Default::default(), movie: std::env::var("GCARVE_MOVIE").ok().map(|d| (d.into(), 0, std::env::var("GCARVE_MOVIE_FRAMES").ok().and_then(|n| n.parse().ok()).unwrap_or(600), false)), projects: Default::default(), dialogs: Dialogs::default(), select_all_on_load: false, prev_tool: Tool::Select, dev_measure: false,
+        let mut app = App { files, mode, canvas: new_canvas(&prefs), left_open: ui_state.tool_rail, right_open: ui_state.side_panel, status: String::new(), message: "Open a VCarve project (.crv), an SVG, DXF or PDF, or draw with R / E / P.".into(), name: "Untitled".into(), shell: Shell::new(), frame: 0, gen: None, gen_rev: 0, gen_cov: Vec::new(), edit_seen: (0, None), edit_at: 0.0, show_paths: shot || crate::store::load("show-paths").as_deref() != Some("0"), all_paths: std::env::var("GCARVE_ALL_PATHS").map_or(shot || crate::store::load("design-all-paths").as_deref() == Some("1"), |v| v == "1"), lib_ready: false, lib_pushed: 0, shares: Vec::new(), shares_open: false, gen_draft: None, export: None, cloud: Cloud::new(), cloud_id: String::new(), account: Default::default(), help: Default::default(), movie: std::env::var("GCARVE_MOVIE").ok().map(|d| (d.into(), 0, std::env::var("GCARVE_MOVIE_FRAMES").ok().and_then(|n| n.parse().ok()).unwrap_or(600), false)), projects: Default::default(), dialogs: Dialogs::default(), select_all_on_load: false, prev_tool: Tool::Select, dev_measure: false,
             prefs_seen: prefs.synced.clone(), prefs_push_at: None, prefs_from_server: false,
             cam: CamDialogs { prefs, ..Default::default() }, posts: UserPosts::load(), templates: Default::default(), player: Player::default(), view3d: View3d::load(shot), sim_wait: false, export_group: None, all_sheets: !shot && crate::store::load("all-sheets").as_deref() == Some("1") || std::env::var("GCARVE_ALL_SHEETS").is_ok(), opening: Vec::new(), open_wait: false, gen_wait: false, puck_tried: shot, puck_filter: Default::default(), puck_trace: Default::default(), view_3d: false, watch_pending: false, show_sim: false, shot, pending_dialog: String::new(), recover: if shot { None } else { crate::recover::load() }, recover_at: None, recover_rev: 0, last_dirty: false, last_open: false,
             project_path: None,
@@ -1033,7 +1036,18 @@ impl App {
                 if t != 0 { self.dialogs.request(Request::EditText(t), &self.canvas) }
             }
             ("text", "curves") => self.canvas.convert_text_to_curves(),
-            ("paths", _) => self.canvas.show_paths = !self.canvas.show_paths,
+            ("paths", v) => {
+                // "" toggles; off / picked / all = the Toolpaths tab's Show switch
+                (self.show_paths, self.all_paths) = match v {
+                    "off" => (false, self.all_paths),
+                    "picked" => (true, false),
+                    "all" => (true, true),
+                    _ => (!self.show_paths, self.all_paths),
+                };
+                self.canvas.show_paths = self.show_paths;
+                crate::store::save("show-paths", if self.show_paths { "1" } else { "0" });
+                crate::store::save("design-all-paths", if self.all_paths { "1" } else { "0" });
+            }
             ("allpaths", _) => {
                 self.all_paths = !self.all_paths;
                 crate::store::save("design-all-paths", if self.all_paths { "1" } else { "0" });
@@ -1266,6 +1280,7 @@ impl eframe::App for App {
         crate::shot::tick(&ctx, self.frame);
         #[cfg(all(feature = "screenshot", not(target_arch = "wasm32")))]
         self.movie_tick(&ctx);
+        self.canvas.show_paths = self.show_paths; // a new or switched-to drawing gets this device's choice
         let draft = self.cam.op.as_ref().and_then(|d| d.draft(&self.canvas.doc));
         let now = ctx.input(|i| i.time);
         if self.edit_seen.0 != self.canvas.rev || self.edit_seen.1 != draft {
@@ -1533,6 +1548,9 @@ impl eframe::App for App {
         // after the file given on the command line has opened
         #[cfg(not(target_arch = "wasm32"))]
         if self.frame == 4 {
+            if let Ok(j) = std::env::var("GCARVE_SHEET") {
+                self.shell.push(format!("sheet:{j}")); // dev: screenshots of another sheet (0-based)
+            }
             if let Some((f, c)) = std::env::var("GCARVE_BOARD_PHOTO").ok().and_then(|v| v.split_once(':').map(|(a, b)| (a.to_string(), b.to_string()))) {
                 let n: Vec<f32> = c.split(',').filter_map(|x| x.trim().parse().ok()).collect();
                 if let (Ok(bytes), 8) = (std::fs::read(&f), n.len()) {
