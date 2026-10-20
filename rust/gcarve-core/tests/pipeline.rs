@@ -215,3 +215,15 @@ fn small_parts_cut_free_without_tabs_are_flagged() {
     doc.ops.last_mut().unwrap().tabs = true;
     assert!(!pipeline::order_issues(&doc).iter().any(|s| s.contains("small part")));
 }
+
+#[test]
+fn only_the_wanted_toolpaths_are_worked_out() {
+    let doc = load_project(&std::fs::read_to_string(root().join("samples/showcase.tlp")).unwrap()).unwrap();
+    let all = pipeline::regenerate(&doc);
+    let some = pipeline::regenerate_some(&doc, &|i| i == 1);
+    assert_eq!(some.paths.len(), doc.ops.len());
+    assert!(!all.paths[1].is_empty());
+    assert_eq!(format!("{:?}", some.paths[1]), format!("{:?}", all.paths[1]), "a wanted toolpath is the same as in a full run");
+    assert_eq!(some.minutes[1], all.minutes[1]);
+    assert!(some.paths.iter().enumerate().all(|(i, p)| i == 1 || p.is_empty()) && some.minutes.iter().enumerate().all(|(i, m)| i == 1 || *m == 0.0));
+}

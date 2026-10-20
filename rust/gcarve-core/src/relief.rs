@@ -20,8 +20,11 @@ pub struct Triangle {
     pub c: Pt3,
 }
 
-/// STL (binary or ASCII) from the file's bytes (the engine does no file I/O: the caller reads the file).
+/// STL (binary or ASCII) or 3MF (a zip) from the file's bytes (the engine does no file I/O: the caller reads the file).
 pub fn load_stl(data: &[u8]) -> Result<Vec<Triangle>, String> {
+    if data.starts_with(b"PK\x03\x04") {
+        return crate::threemf::load_3mf(data);
+    }
     let mut out = Vec::new();
     // binary: 80-byte header + uint32 count + 50 bytes per triangle; ASCII starts with "solid" and has "facet" words
     let ascii = data.starts_with(b"solid") && data.windows(5).any(|w| w == b"facet");

@@ -50,6 +50,8 @@ struct ExportDlg {
     folder: Option<PathBuf>,
 }
 
+/// seconds after the last edit before the previews are worked out again
+const GEN_PAUSE: f64 = 0.4;
 /// store key: the last folder G-code was exported to (desktop)
 #[cfg(not(target_arch = "wasm32"))]
 const EXPORT_FOLDER_KEY: &str = "export-folder";
@@ -69,6 +71,13 @@ pub struct App {
     frame: u64,
     gen: Option<Generated>,
     gen_rev: u64,
+    /// which toolpaths `gen` holds (by index); while drawing only the ones on screen are worked out
+    gen_cov: Vec<bool>,
+    /// the last edit seen (document rev, dialog settings) and when: previews wait `GEN_PAUSE` after it
+    edit_seen: (u64, Option<(Option<usize>, gcarve_core::document::Op)>),
+    edit_at: f64,
+    /// View › Every Toolpath While Drawing (store `design-all-paths`): off = only the picked toolpath / the one in its dialog
+    all_paths: bool,
     /// account library sync: the account copy has been merged (uploads only after that), last uploaded library rev
     lib_ready: bool,
     lib_pushed: u64,
@@ -187,7 +196,7 @@ impl App {
         let prefs = if shot { dialogs::prefs::Prefs::default() } else { dialogs::prefs::Prefs::load() }; // screenshots: stock settings (Qt: temp settings)
         gcarve_ui::help::init("fillinthe/gcarve", env!("CARGO_PKG_VERSION"));
         gcarve_ui::help::set_download_page("https://gcarve.app/download/");
-        let mut app = App { files, mode, canvas: new_canvas(&prefs), left_open: ui_state.tool_rail, right_open: ui_state.side_panel, status: String::new(), message: "Open a VCarve project (.crv), an SVG, DXF or PDF, or draw with R / E / P.".into(), name: "Untitled".into(), shell: Shell::new(), frame: 0, gen: None, gen_rev: 0, lib_ready: false, lib_pushed: 0, shares: Vec::new(), shares_open: false, gen_draft: None, export: None, cloud: Cloud::new(), cloud_id: String::new(), account: Default::default(), help: Default::default(), movie: std::env::var("GCARVE_MOVIE").ok().map(|d| (d.into(), 0, std::env::var("GCARVE_MOVIE_FRAMES").ok().and_then(|n| n.parse().ok()).unwrap_or(600), false)), projects: Default::default(), dialogs: Dialogs::default(), select_all_on_load: false, prev_tool: Tool::Select, dev_measure: false,
+        let mut app = App { files, mode, canvas: new_canvas(&prefs), left_open: ui_state.tool_rail, right_open: ui_state.side_panel, status: String::new(), message: "Open a VCarve project (.crv), an SVG, DXF or PDF, or draw with R / E / P.".into(), name: "Untitled".into(), shell: Shell::new(), frame: 0, gen: None, gen_rev: 0, gen_cov: Vec::new(), edit_seen: (0, None), edit_at: 0.0, all_paths: std::env::var("GCARVE_ALL_PATHS").map_or(shot || crate::store::load("design-all-paths").as_deref() == Some("1"), |v| v == "1"), lib_ready: false, lib_pushed: 0, shares: Vec::new(), shares_open: false, gen_draft: None, export: None, cloud: Cloud::new(), cloud_id: String::new(), account: Default::default(), help: Default::default(), movie: std::env::var("GCARVE_MOVIE").ok().map(|d| (d.into(), 0, std::env::var("GCARVE_MOVIE_FRAMES").ok().and_then(|n| n.parse().ok()).unwrap_or(600), false)), projects: Default::default(), dialogs: Dialogs::default(), select_all_on_load: false, prev_tool: Tool::Select, dev_measure: false,
             prefs_seen: prefs.synced.clone(), prefs_push_at: None, prefs_from_server: false,
             cam: CamDialogs { prefs, ..Default::default() }, posts: UserPosts::load(), templates: Default::default(), player: Player::default(), view3d: View3d::load(shot), sim_wait: false, export_group: None, all_sheets: !shot && crate::store::load("all-sheets").as_deref() == Some("1") || std::env::var("GCARVE_ALL_SHEETS").is_ok(), opening: Vec::new(), open_wait: false, gen_wait: false, puck_tried: shot, puck_filter: Default::default(), puck_trace: Default::default(), view_3d: false, watch_pending: false, show_sim: false, shot, pending_dialog: String::new(), recover: if shot { None } else { crate::recover::load() }, recover_at: None, recover_rev: 0, last_dirty: false, last_open: false,
             project_path: None,
@@ -252,6 +261,7 @@ impl App {
         #[cfg(not(target_arch = "wasm32"))]
         {
             if let Some(t) = std::env::var("GCARVE_TAB").ok().and_then(|t| t.parse().ok()) { app.shell.side_tab = t } // dev: screenshots
+            app.shell.op_sel = std::env::var("GCARVE_TPSEL").ok().and_then(|t| t.parse().ok()); // dev: a picked toolpath
             if let Some(g) = std::env::var("GCARVE_TPGROUP").ok().and_then(|t| t.parse().ok()) { app.shell.tp_group = g }
             if dialog == "folded" { app.left_open = false; app.right_open = false }
             if dialog == "demo" { app.shell.push("demo") } // dev: the built-in demo as a first visitor gets it
@@ -357,6 +367,7 @@ impl App {
             path: self.project_path.take(),
             gen: self.gen.take(),
             gen_rev: self.gen_rev,
+            gen_cov: std::mem::take(&mut self.gen_cov),
         }
     }
 
@@ -369,6 +380,7 @@ impl App {
         self.project_path = d.path;
         self.gen = d.gen;
         self.gen_rev = d.gen_rev;
+        self.gen_cov = d.gen_cov;
         // per-document chrome
         self.shell.op_sel = None;
         self.shell.edit_for = None;
@@ -522,10 +534,10 @@ impl App {
         }
     }
 
-    /// A picked / dropped / recent file: .tlp opens (in a tab), .svg / .dxf open or import, .stl joins the current one.
+    /// A picked / dropped / recent file: .tlp opens (in a tab), .svg / .dxf open or import, .stl / .3mf join the current one.
     fn open_picked(&mut self, f: Picked) {
         let Picked { name, bytes, path, import } = f;
-        if name.to_ascii_lowercase().ends_with(".stl") {
+        if [".stl", ".3mf"].iter().any(|e| name.to_ascii_lowercase().ends_with(e)) {
             self.import_stl(&name, &bytes);
             return;
         }
@@ -645,6 +657,39 @@ fn tool_id(t: Tool) -> &'static str {
 impl App {
     fn simulating(&self) -> bool {
         self.mode == Mode::Simulate || self.show_sim
+    }
+
+    /// Which toolpaths need working out now (by index; a new one in its dialog is the last), and whether it can't
+    /// wait for the edits to pause: simulating and exporting need every toolpath at once; drawing needs only the
+    /// picked toolpaths and the one being set up, or all of them with View › Every Toolpath While Drawing.
+    fn paths_wanted(&self, draft: Option<&(Option<usize>, gcarve_core::document::Op)>, n: usize) -> (Vec<bool>, bool) {
+        let urgent = self.simulating() || self.export.is_some() || self.movie.is_some() || matches!(self.pending_dialog.as_str(), "export" | "aircut" | "setupsheet");
+        if urgent || (self.canvas.show_paths && self.all_paths) {
+            return (vec![true; n], urgent);
+        }
+        let mut w = vec![false; n];
+        if self.canvas.show_paths {
+            for i in self.shell.op_sel.into_iter().chain(self.shell.op_multi.iter().copied()).chain(draft.map(|d| d.0.unwrap_or(n.saturating_sub(1)))) {
+                if let Some(x) = w.get_mut(i) {
+                    *x = true;
+                }
+            }
+        }
+        (w, false)
+    }
+
+    /// Every toolpath of the document as it is now (export, setup sheet, Send to Control), worked out here if the
+    /// previews held only some of them.
+    fn full_gen(&mut self) {
+        let n = self.canvas.doc.ops.len();
+        if self.gen_rev == self.canvas.rev && self.gen_draft.is_none() && self.gen.is_some() && self.gen_cov.len() == n && self.gen_cov.iter().all(|c| *c) {
+            return;
+        }
+        self.gen = Some(pipeline::regenerate(&self.canvas.doc));
+        self.gen_cov = vec![true; n];
+        self.gen_rev = self.canvas.rev;
+        self.gen_draft = None; // an open dialog's preview is built again next frame
+        self.canvas.gen_seq += 1;
     }
 
     fn set_mode(&mut self, m: Mode) {
@@ -820,17 +865,23 @@ impl App {
             ("undo", _) => self.canvas.undo(),
             ("redo", _) => self.canvas.redo(),
             ("export", _) => {
+                self.full_gen();
                 self.export_group = None;
                 self.start_export(false);
             }
             ("exportgroup", g) => {
+                self.full_gen();
                 // a folder's Export button: only its toolpaths go into the files
                 self.export_group = Some(g.to_string()).filter(|g| self.canvas.doc.ops.iter().any(|o| o.op_group == *g));
                 self.start_export(false);
             }
             // ---- CAM dialogs / simulation ----
-            ("aircut", _) => self.start_export(true),
+            ("aircut", _) => {
+                self.full_gen();
+                self.start_export(true);
+            }
             ("setupsheet", _) => {
+                self.full_gen();
                 if let Some(html) = self.setup_sheet(0.0, &[]) {
                     self.message = crate::setupsheet::open(&self.name, &html);
                 }
@@ -849,7 +900,7 @@ impl App {
                 self.cam.job = Some(d);
             }
             ("reliefs" | "relief", _) => self.cam.relief = Some(dialogs::relief::ReliefDialog::default()),
-            ("importstl", _) => self.files.pick_into(ctx, "3D models (.stl)", &["stl"], "stl"),
+            ("importstl", _) => self.files.pick_into(ctx, "3D models (.stl .3mf)", &["stl", "3mf"], "stl"),
             ("importgcode", _) => self.files.pick_into(ctx, "G-code", files::GCODE_EXTS, "gcode"),
             ("shapes", _) => self.cam.shapes = Some(dialogs::shapes::ShapesDialog::new(&self.canvas.doc)),
             ("boardphoto", "toggle") => {
@@ -945,6 +996,10 @@ impl App {
             }
             ("text", "curves") => self.canvas.convert_text_to_curves(),
             ("paths", _) => self.canvas.show_paths = !self.canvas.show_paths,
+            ("allpaths", _) => {
+                self.all_paths = !self.all_paths;
+                crate::store::save("design-all-paths", if self.all_paths { "1" } else { "0" });
+            }
             ("allsheets", _) => {
                 self.all_sheets = !self.all_sheets;
                 crate::store::save("all-sheets", if self.all_sheets { "1" } else { "0" });
@@ -1174,10 +1229,30 @@ impl eframe::App for App {
         #[cfg(all(feature = "screenshot", not(target_arch = "wasm32")))]
         self.movie_tick(&ctx);
         let draft = self.cam.op.as_ref().and_then(|d| d.draft(&self.canvas.doc));
-        let gen_due = self.gen_rev != self.canvas.rev || draft != self.gen_draft;
+        let now = ctx.input(|i| i.time);
+        if self.edit_seen.0 != self.canvas.rev || self.edit_seen.1 != draft {
+            self.edit_seen = (self.canvas.rev, draft.clone());
+            self.edit_at = now;
+        }
+        // only what is on screen is worked out, and while drawing only once the edits pause
+        let n = self.canvas.doc.ops.len() + usize::from(matches!(draft, Some((None, _))));
+        let (mut want, urgent) = self.paths_wanted(draft.as_ref(), n);
+        let fresh = self.gen_rev == self.canvas.rev && draft == self.gen_draft;
+        if fresh {
+            for (w, c) in want.iter_mut().zip(&self.gen_cov) {
+                *w |= *c; // keep what is already worked out
+            }
+        }
+        let gen_due = want.iter().enumerate().any(|(i, &w)| w && !(fresh && self.gen_cov.get(i).copied().unwrap_or(false)));
+        let pause = if self.shot { 0.0 } else { GEN_PAUSE - (now - self.edit_at) };
+        self.canvas.all_paths = self.all_paths;
+        self.canvas.paths_old = !fresh;
+        self.canvas.paths_only = (!(urgent || self.all_paths)).then(|| want.clone());
         // a big drawing can take seconds (and the web build has no second thread): draw a card for one frame first
         let heavy = self.canvas.doc.shapes.len() > 150 && !self.canvas.doc.ops.is_empty();
-        if gen_due && heavy && !self.gen_wait {
+        if gen_due && !urgent && pause > 0.0 {
+            ctx.request_repaint_after(std::time::Duration::from_secs_f64(pause));
+        } else if gen_due && heavy && !self.gen_wait {
             self.gen_wait = true;
             ctx.request_repaint();
         } else if gen_due {
@@ -1190,10 +1265,12 @@ impl eframe::App for App {
                         Some(i) => doc.ops[i] = op.clone(),
                         None => doc.ops.push(op.clone()),
                     }
-                    pipeline::regenerate(&doc)
+                    pipeline::regenerate_some(&doc, &|i| want[i])
                 }
-                None => pipeline::regenerate(&self.canvas.doc),
+                None => pipeline::regenerate_some(&self.canvas.doc, &|i| want[i]),
             });
+            self.gen_cov = want;
+            self.canvas.paths_old = false;
             if let (Some(g), Some((None, op))) = (self.gen.as_mut(), &draft) {
                 g.draft_tool = op.tool;
             }
@@ -1422,7 +1499,8 @@ impl eframe::App for App {
             ctx.send_viewport_cmd(egui::ViewportCommand::Title(window_title.clone()));
             self.title = window_title;
         }
-        let can_export = self.gen.as_ref().is_some_and(|g| g.paths.iter().any(|p| !p.is_empty()));
+        // previews may hold only some toolpaths while drawing: Export works them all out
+        let can_export = !self.canvas.doc.ops.is_empty();
         shell::mode_bar(ui, &mut self.shell, self.mode, &title, &self.canvas, can_export);
 
         egui::Panel::bottom("status").frame(egui::Frame::new().fill(theme::BG)).show(ui, |ui| {
@@ -1751,7 +1829,10 @@ impl App {
     /// Toolpaths ▸ Send to / Open GCarve Control (desktop).
     fn control(&mut self, what: &str) {
         match what {
-            "send" => self.message = crate::control::send(&self.canvas.doc, self.gen.as_ref(), &self.name),
+            "send" => {
+                self.full_gen();
+                self.message = crate::control::send(&self.canvas.doc, self.gen.as_ref(), &self.name);
+            }
             _ => crate::control::open(None),
         }
     }
@@ -2256,6 +2337,7 @@ impl App {
         if self.frame <= 3 || self.frame % 20 != 0 || self.canvas.doc.ops.len() < 7 {
             return;
         }
+        self.full_gen();
         let Some(gen) = self.gen.as_ref() else { return };
         let cut: usize = gen.paths.iter().flatten().map(|t| t.moves.len()).sum();
         let made = gen.paths.iter().filter(|p| !p.is_empty()).count();

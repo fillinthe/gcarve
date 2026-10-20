@@ -198,9 +198,20 @@ pub struct Generated {
 
 /// Toolpaths for every op on the active sheet.
 pub fn regenerate(doc: &Document) -> Generated {
+    regenerate_some(doc, &|_| true)
+}
+
+/// Only the toolpaths `want` picks (by op index); the others come back empty with no time (the app works out just
+/// what is on screen while drawing).
+pub fn regenerate_some(doc: &Document, want: &dyn Fn(usize) -> bool) -> Generated {
     let mut g = Generated { paths: Vec::new(), warnings: Vec::new(), minutes: Vec::new(), draft_tool: -1 };
     let mo = motion(doc);
-    for op in &doc.ops {
+    for (i, op) in doc.ops.iter().enumerate() {
+        if !want(i) {
+            g.paths.push(Vec::new());
+            g.minutes.push(0.0);
+            continue;
+        }
         let tool_ok = op.tool >= 0 && (op.tool as usize) < doc.tools.len();
         if !tool_ok {
             g.paths.push(Vec::new());

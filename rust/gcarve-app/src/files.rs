@@ -61,7 +61,7 @@ impl Files {
         }
         #[cfg(target_arch = "wasm32")]
         {
-            let exts: &[&str] = if import { &["svg", "dxf", "dwg", "pdf", "ai", "gsk", "stl", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg"] } else { &["tlp", "crv", "svg", "dxf", "dwg", "pdf", "ai", "gsk", "stl", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg"] };
+            let exts: &[&str] = if import { &["svg", "dxf", "dwg", "pdf", "ai", "eps", "lbrn2", "gsk", "stl", "3mf", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg"] } else { &["tlp", "crv", "svg", "dxf", "dwg", "pdf", "ai", "eps", "lbrn2", "gsk", "stl", "3mf", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg"] };
             let tx = self.tx.clone();
             web_pick(exts, ctx.clone(), self.msg_tx.clone(), move |name, bytes| {
                 let _ = tx.send(Picked { name, bytes, path: None, import });
@@ -70,9 +70,9 @@ impl Files {
         }
         #[cfg_attr(target_arch = "wasm32", allow(unreachable_code))]
         let dialog = if import {
-            rfd::AsyncFileDialog::new().set_title("Import into this document").add_filter("All supported", &["svg", "dxf", "dwg", "pdf", "ai", "gsk", "stl", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg"]).add_filter("Vector files", &["svg", "dxf", "dwg"]).add_filter("GSketch model", &["gsk"]).add_filter("G-code", GCODE_EXTS).add_filter("Images to trace", IMAGE_EXTS).add_filter("3D models", &["stl"])
+            rfd::AsyncFileDialog::new().set_title("Import into this document").add_filter("All supported", &["svg", "dxf", "dwg", "pdf", "ai", "eps", "lbrn2", "gsk", "stl", "3mf", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg"]).add_filter("Vector files", &["svg", "dxf", "dwg", "pdf", "ai", "eps"]).add_filter("LightBurn project", &["lbrn2"]).add_filter("GSketch model", &["gsk"]).add_filter("G-code", GCODE_EXTS).add_filter("Images to trace", IMAGE_EXTS).add_filter("3D models", &["stl", "3mf"])
         } else {
-            rfd::AsyncFileDialog::new().add_filter("All supported", &["tlp", "crv", "svg", "dxf", "dwg", "pdf", "ai", "gsk", "stl", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg"]).add_filter("GCarve project", &["tlp"]).add_filter("VCarve project", &["crv"]).add_filter("GSketch model", &["gsk"]).add_filter("Vector files", &["svg", "dxf", "dwg"]).add_filter("G-code", GCODE_EXTS)
+            rfd::AsyncFileDialog::new().add_filter("All supported", &["tlp", "crv", "svg", "dxf", "dwg", "pdf", "ai", "eps", "lbrn2", "gsk", "stl", "3mf", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg"]).add_filter("GCarve project", &["tlp"]).add_filter("VCarve project", &["crv"]).add_filter("GSketch model", &["gsk"]).add_filter("Vector files", &["svg", "dxf", "dwg", "pdf", "ai", "eps"]).add_filter("LightBurn project", &["lbrn2"]).add_filter("G-code", GCODE_EXTS)
         };
         let tx = self.tx.clone();
         let ctx = ctx.clone();
@@ -467,10 +467,12 @@ pub fn load(doc: &mut Document, name: &str, bytes: &[u8]) -> Loaded {
             Ok((d, note)) => Loaded::Project(Box::new(d), note),
             Err(e) => Loaded::Error(e),
         },
-        "svg" | "dxf" | "pdf" | "ai" => {
+        "svg" | "dxf" | "pdf" | "ai" | "eps" | "lbrn2" => {
             let mut r = match ext.as_str() {
                 "svg" => svg::import_svg_with_text(&text),
                 "dxf" => dxf::import_dxf_with_text(&text),
+                "eps" => gcarve_core::pdf::import_eps(bytes),
+                "lbrn2" => gcarve_core::lbrn::import_lbrn(&text),
                 _ => gcarve_core::pdf::import_pdf(bytes), // .ai files carry a PDF copy of the artwork
             };
             if ext != name.rsplit('.').next().unwrap_or("").to_ascii_lowercase() {
@@ -500,7 +502,7 @@ pub fn load(doc: &mut Document, name: &str, bytes: &[u8]) -> Loaded {
         "step" | "stp" | "sldprt" | "sldasm" | "iges" | "igs" | "f3d" | "ipt" | "3dm" => Loaded::Error(format!(
             "GCarve can't read .{ext} (3D CAD) files. In your CAD program export the outline you want to cut as DXF, DWG or SVG (or the shape as STL) and open that."
         )),
-        _ => Loaded::Error(format!("GCarve can't open .{ext} files. It opens GCarve projects (.tlp), VCarve projects (.crv), SVG, DXF, AutoCAD DWG, PDF and Illustrator (.ai), G-code (.tap .nc .gcode) and pictures (PNG, JPEG) to trace.")),
+        _ => Loaded::Error(format!("GCarve can't open .{ext} files. It opens GCarve projects (.tlp), VCarve projects (.crv), SVG, DXF, AutoCAD DWG, PDF, Illustrator (.ai) and EPS, LightBurn (.lbrn2), 3D models (.stl .3mf), G-code (.tap .nc .gcode) and pictures (PNG, JPEG) to trace.")),
     }
 }
 
