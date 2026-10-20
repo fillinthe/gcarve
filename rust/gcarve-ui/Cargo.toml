@@ -32,3 +32,4 @@ hidapi = { version = "2", default-features = false, features = ["linux-native-ba
 wasm-bindgen = "=0.2.129"
 web-sys = { version = "0.3", features = ["Window", "Navigator", "Storage", "Document", "Element", "HtmlAnchorElement", "Blob", "BlobPropertyBag", "Url", "Location"] }
 js-sys = "0.3"
+wasm-bindgen-futures = "0.4"   # the screen eyedropper (color.rs)

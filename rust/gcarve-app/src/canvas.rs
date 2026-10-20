@@ -863,7 +863,14 @@ impl Canvas {
             return;
         }
         if pressed(egui::Key::Delete) || pressed(egui::Key::Backspace) {
-            self.delete_selected();
+            // while drawing a polyline or a curve: take back the last point clicked
+            if self.tool == Tool::Polyline && !self.poly.is_empty() {
+                self.poly.pop();
+            } else if self.tool == Tool::Pen && !self.pen.nodes.is_empty() {
+                self.pen.nodes.pop();
+            } else {
+                self.delete_selected();
+            }
         }
         if pressed(egui::Key::Escape) {
             self.escape();
@@ -1004,6 +1011,21 @@ fn split_at_reversals(mut pts: Vec<Pos2>, closed: bool) -> Result<Vec<Pos2>, Vec
 #[cfg(test)]
 mod stroke_tests {
     use super::*;
+
+    #[test]
+    fn delete_takes_back_the_last_polyline_point() {
+        let mut c = Canvas { tool: Tool::Polyline, ..Default::default() };
+        c.poly = vec![pt(0.0, 0.0), pt(1.0, 0.0), pt(1.0, 1.0)];
+        let id = c.doc.add(gcarve_core::geom::make_rect(0.0, 0.0, 1.0, 1.0), None);
+        c.sel.insert(id);
+        let ctx = egui::Context::default();
+        let key = |k| egui::RawInput { events: vec![egui::Event::Key { key: k, physical_key: None, pressed: true, repeat: false, modifiers: Default::default() }], ..Default::default() };
+        ctx.run_ui(key(egui::Key::Backspace), |ui| c.keys(ui.ctx())).textures_delta.clear();
+        assert_eq!(c.poly.len(), 2, "the last point goes");
+        assert!(c.doc.find(id).is_some(), "the selection stays while drawing");
+        ctx.run_ui(key(egui::Key::Delete), |ui| c.keys(ui.ctx())).textures_delta.clear();
+        assert_eq!(c.poly.len(), 1);
+    }
 
     #[test]
     fn outlines_that_double_back_are_drawn_in_pieces() {

@@ -429,9 +429,6 @@ fn toolpaths(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Option
     ui.add_space(6.0);
     section(ui, "TOOLPATHS", theme::TEXT_DIM);
     let old = canvas.paths_old;
-    if !doc.ops.is_empty() && !canvas.all_paths && canvas.show_paths {
-        ui.label(RichText::new("Click a toolpath to see it on the drawing. Simulate shows them all, with times.").small().color(theme::TEXT_DIM));
-    }
     if doc.ops.is_empty() {
         ui.add_space(20.0);
         ui.vertical_centered(|ui| {

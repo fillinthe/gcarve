@@ -701,7 +701,7 @@ impl Canvas {
                         pts.push(view.to_screen(sn.to));
                     }
                     painter.add(Shape::line(pts, Stroke::new(1.0, theme::ACCENT)));
-                    status = format!("{status}   {} points · click the start or double-click to finish, Esc cancels", self.poly.len());
+                    status = format!("{status}   {} points · click the start or double-click to finish, Delete takes back the last point, Esc cancels", self.poly.len());
                 }
             }
             Tool::Pen => {

@@ -51,6 +51,75 @@ impl OutlineBuilder for Outline {
     }
 }
 
+/// A font on this computer: family and style (from its name table), the file, and which face in a .ttc / .otc.
+#[derive(Clone, Debug, PartialEq)]
+pub struct FontFile {
+    pub family: String,
+    pub style: String,
+    pub path: std::path::PathBuf,
+    pub index: u32,
+}
+
+fn font_name(f: &Face, ids: [u16; 2]) -> Option<String> {
+    ids.iter().find_map(|id| f.names().into_iter().filter(|n| n.name_id == *id && n.is_unicode()).find_map(|n| n.to_string()).filter(|s| !s.trim().is_empty()))
+}
+
+/// Family and style of every face in a font file's bytes (one per face of a collection).
+pub fn faces_in(data: &[u8]) -> Vec<(String, String, u32)> {
+    (0..ttf_parser::fonts_in_collection(data).unwrap_or(1))
+        .filter_map(|i| {
+            let f = Face::parse(data, i).ok()?;
+            Some((font_name(&f, [16, 1])?, font_name(&f, [17, 2]).unwrap_or_else(|| "Regular".into()), i))
+        })
+        .collect()
+}
+
+/// Every TrueType / OpenType font in the usual font folders (macOS, Windows, Linux, the user's own), sorted by family
+/// then style; hidden system faces (names starting with '.') left out. Reads each file once: call it off the UI's
+/// first frame and keep the list.
+#[cfg(not(target_arch = "wasm32"))]
+pub fn system_fonts() -> Vec<FontFile> {
+    use std::path::{Path, PathBuf};
+    let mut dirs: Vec<PathBuf> = ["/System/Library/Fonts", "/Library/Fonts", "/usr/share/fonts", "/usr/local/share/fonts", "C:\\Windows\\Fonts"].iter().map(PathBuf::from).collect();
+    if let Some(h) = std::env::var_os("HOME") {
+        for sub in ["Library/Fonts", ".fonts", ".local/share/fonts"] {
+            dirs.push(Path::new(&h).join(sub));
+        }
+    }
+    if let Some(l) = std::env::var_os("LOCALAPPDATA") {
+        dirs.push(Path::new(&l).join("Microsoft\\Windows\\Fonts"));
+    }
+    fn walk(dir: &Path, depth: u32, out: &mut Vec<FontFile>) {
+        let Ok(rd) = std::fs::read_dir(dir) else { return };
+        for e in rd.flatten() {
+            let p = e.path();
+            if p.is_dir() {
+                if depth < 4 {
+                    walk(&p, depth + 1, out);
+                }
+                continue;
+            }
+            let ext = p.extension().and_then(|x| x.to_str()).unwrap_or("").to_ascii_lowercase();
+            if !matches!(ext.as_str(), "ttf" | "otf" | "ttc" | "otc") {
+                continue;
+            }
+            let Ok(data) = std::fs::read(&p) else { continue };
+            for (family, style, index) in faces_in(&data) {
+                if !family.starts_with('.') {
+                    out.push(FontFile { family, style, path: p.clone(), index });
+                }
+            }
+        }
+    }
+    let mut out = Vec::new();
+    for d in dirs {
+        walk(&d, 0, &mut out);
+    }
+    out.sort_by(|a, b| a.family.to_lowercase().cmp(&b.family.to_lowercase()).then(a.style.cmp(&b.style)));
+    out.dedup_by(|a, b| a.family == b.family && a.style == b.style);
+    out
+}
+
 pub struct Glyph {
     pub contours: Vec<Contour>, // font units
     pub advance: f64,
@@ -105,6 +174,23 @@ pub fn text_outlines(text: &str, cap_in: f64, bold: bool) -> Vec<Contour> {
 
 #[cfg(test)]
 mod tests {
+    /// how long the scan takes on this computer: cargo test -p gcarve-ui system_fonts_scan -- --ignored --nocapture
+    #[cfg(not(target_arch = "wasm32"))]
+    #[test]
+    #[ignore]
+    fn system_fonts_scan() {
+        let t = std::time::Instant::now();
+        let f = super::system_fonts();
+        println!("{} faces in {:?}; first {:?}", f.len(), t.elapsed(), f.first());
+    }
+
+    #[test]
+    fn the_bundled_fonts_name_themselves() {
+        assert_eq!(super::faces_in(super::REGULAR), vec![("Liberation Sans".to_string(), "Regular".to_string(), 0)]);
+        assert_eq!(super::faces_in(super::BOLD)[0].1, "Bold");
+        assert!(super::faces_in(b"not a font").is_empty());
+    }
+
     #[test]
     fn letters_come_out_at_the_asked_height() {
         let out = super::text_outlines("HO", 2.0, false);
