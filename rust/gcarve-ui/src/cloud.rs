@@ -541,10 +541,7 @@ impl Cloud {
             return;
         }
         let place = if Self::web() { "web" } else { "desktop" };
-        let body = serde_json::json!({ "source": "app", "message": format!("{kind}: {message}"), "where": format!("v{} {place}", env!("CARGO_PKG_VERSION")) });
-        let mut req = ehttp::Request::post(format!("{}/api/error", self.base), serde_json::to_vec(&body).unwrap_or_default());
-        req.headers.insert("Content-Type", "application/json");
-        ehttp::fetch(req, |_| {});
+        post_error(&self.base, &format!("{kind}: {message}"), place);
     }
 
     pub fn send_request(&mut self, ctx: &egui::Context, kind: &str, subject: &str, body: &str, email: &str) {
@@ -717,6 +714,30 @@ impl Cloud {
 /// Days a desktop licence keeps working offline after it was last confirmed.
 pub const GRACE_DAYS: i64 = 14;
 const VERIFIED_KEY: &str = "license.verified";
+
+/// A web panic, from the panic hook (no Cloud there): the page's own origin, which proxies /api to the server.
+pub fn report_panic(message: &str) {
+    if let Some(origin) = web_origin() {
+        post_error(&origin, message, "web");
+    }
+}
+
+#[cfg(target_arch = "wasm32")]
+fn web_origin() -> Option<String> {
+    web_sys::window()?.location().origin().ok()
+}
+#[cfg(not(target_arch = "wasm32"))]
+fn web_origin() -> Option<String> {
+    None
+}
+
+/// "GSketch v0.1.5 web": the app and its own version (both apps share this crate, so not this crate's version).
+fn post_error(base: &str, message: &str, place: &str) {
+    let body = serde_json::json!({ "source": "app", "message": message, "where": format!("{} v{} {place}", crate::store::app(), crate::help::version()) });
+    let mut req = ehttp::Request::post(format!("{base}/api/error"), serde_json::to_vec(&body).unwrap_or_default());
+    req.headers.insert("Content-Type", "application/json");
+    ehttp::fetch(req, |_| {});
+}
 
 fn now() -> i64 {
     chrono::Utc::now().timestamp()

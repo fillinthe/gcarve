@@ -92,12 +92,7 @@ fn main() {
                 }
             }
         }
-        if let Some(origin) = web_sys::window().and_then(|w| w.location().origin().ok()) {
-            let body = serde_json::json!({ "source": "app", "message": msg, "where": format!("v{}", env!("CARGO_PKG_VERSION")) });
-            let mut req = ehttp::Request::post(format!("{origin}/api/error"), serde_json::to_vec(&body).unwrap_or_default());
-            req.headers.insert("Content-Type", "application/json");
-            ehttp::fetch(req, |_| {});
-        }
+        gcarve_ui::cloud::report_panic(&msg);
     }));
     wasm_bindgen_futures::spawn_local(async {
         let document = web_sys::window().unwrap().document().unwrap();

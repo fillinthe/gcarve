@@ -68,8 +68,8 @@ fn parse(v: &str) -> Vec<u32> {
     v.trim().trim_start_matches('v').split('.').map(|p| p.parse().unwrap_or(0)).collect()
 }
 
-fn version() -> &'static str {
-    INFO.get().map_or("0", |i| i.1)
+pub fn version() -> &'static str {
+    INFO.get().map_or(env!("CARGO_PKG_VERSION"), |i| i.1)
 }
 
 /// The newest version's number and page when it is newer than this program.

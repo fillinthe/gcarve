@@ -1,5 +1,5 @@
 //! G-code reader (C++ `core/gcode.*`): one interpreter for previewing programs and for the controller simulator.
-//! Standard G-code (GRBL / grblHAL dialect): G0 G1 G2 G3 G4 G10 L20 G17 G20 G21 G53 G54 G90 G91 G94, F S M3 M4 M5
+//! Standard G-code (GRBL / grblHAL dialect): G0 G1 G2 G3 G4 G10 L20 G17 G20 G21 G53 G54 G90 G91 G92 G92.1 G94, F S M3 M4 M5
 //! M30 M2, comments in ( ) or after ;, N line numbers. Positions are inches in work coordinates unless a line uses G53.
 
 use std::f64::consts::PI;
@@ -136,7 +136,7 @@ pub fn interpret_line(raw: &str, st: &mut GState, out: &mut Vec<GMotion>, line_n
         return Ok(LineEffect::default());
     }
     let mut n = *st;
-    let (mut motion, mut g53, mut g10, mut g4, mut l) = (-1, false, false, false, 0);
+    let (mut motion, mut g53, mut g10, mut g92, mut g4, mut l) = (-1, false, false, false, false, 0);
     let [mut x, mut y, mut z, mut i, mut j, mut p]: [Option<f64>; 6] = [None; 6];
     for &(c, v) in &words {
         let code = (v * 10.0).round() as i64; // G-codes with decimals (G38.2) arrive as 382
@@ -145,6 +145,12 @@ pub fn interpret_line(raw: &str, st: &mut GState, out: &mut Vec<GMotion>, line_n
                 0 | 10 | 20 | 30 => motion = (code / 10) as i32,
                 40 => g4 = true,
                 100 => g10 = true,
+                // G92: the current position reads these values (GRBL lasers' "start from here"); G92.1 clears it
+                920 => {
+                    g10 = true;
+                    g92 = true;
+                }
+                921 => {}
                 170 | 400 | 490 | 540 | 800 | 940 | 610 | 640 => {}
                 200 => n.inches = true,
                 210 => n.inches = false,
@@ -182,7 +188,7 @@ pub fn interpret_line(raw: &str, st: &mut GState, out: &mut Vec<GMotion>, line_n
         return Ok(LineEffect { dwell_sec: Some(p.unwrap_or(0.0)), ..Default::default() });
     }
     if g10 {
-        if l != 20 {
+        if l != 20 && !g92 {
             return Err("only G10 L20 is supported".into());
         }
         let w = v3(x.map_or(n.pos.x, |v| v * u), y.map_or(n.pos.y, |v| v * u), z.map_or(n.pos.z, |v| v * u));

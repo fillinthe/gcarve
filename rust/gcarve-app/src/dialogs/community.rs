@@ -277,7 +277,8 @@ const LICENSES: [(&str, &str, &str); 3] = [
     ("cc-by-nc", "Free for non-commercial use, credit me (CC BY-NC 4.0)", "Anyone may cut and change it, not sell it; credit you"),
     ("cc0", "No conditions (CC0)", "Public domain: anyone may do anything with it"),
 ];
-const MAX_PHOTOS: usize = 4;
+/// the server takes up to 4 pictures, the simulated cut included
+const MAX_PICTURES: usize = 4;
 
 pub struct ShareDialog {
     title: String,
@@ -286,18 +287,34 @@ pub struct ShareDialog {
     license: usize,
     author: String,
     rights: bool,
-    /// the simulated cut (JPEG) and its preview texture
-    cover: Option<Vec<u8>>,
-    cover_rgba: Option<(Vec<u8>, usize, usize)>,
-    cover_tex: Option<egui::TextureHandle>,
-    /// photos of the real thing: (name, JPEG)
-    photos: Vec<(String, Vec<u8>)>,
+    /// put the "Shown as" name on the project (and the maker page), else "A GCarve maker"
+    show_name: bool,
+    /// the simulated cut first (when it renders), then photos of the real thing
+    pics: Vec<Pic>,
+    /// which picture is the cover (card thumbnail, the big picture, the link preview)
+    cover: usize,
     minutes: f64,
     problems: Vec<String>,
     sending: bool,
     pub sent: Option<Result<String, String>>,
     /// Add photos… was pressed (Dialogs opens the file picker)
     pub want_photo: bool,
+}
+
+/// a picture to upload: JPEG + a small preview for the dialog
+struct Pic {
+    name: String,
+    jpeg: Vec<u8>,
+    preview: egui::ColorImage,
+    tex: Option<egui::TextureHandle>,
+}
+
+impl Pic {
+    fn new(name: &str, jpeg: Vec<u8>) -> Option<Pic> {
+        let small = image::load_from_memory(&jpeg).ok()?.thumbnail(220, 220).to_rgba8();
+        let preview = egui::ColorImage::from_rgba_unmultiplied([small.width() as usize, small.height() as usize], small.as_raw());
+        Some(Pic { name: name.into(), jpeg, preview, tex: None })
+    }
 }
 
 /// JPEG of straight RGBA, through-cut holes on a dark spoilboard
@@ -328,18 +345,21 @@ impl ShareDialog {
         if doc.ops.iter().zip(&gen.paths).all(|(_, p)| p.is_empty()) && !doc.ops.is_empty() {
             problems.push("The toolpaths cut nothing on this sheet.".to_string());
         }
-        let carved = crate::setupsheet::carved(doc, &gen, 1_200_000);
-        let cover = carved.as_ref().and_then(|(rgba, w, h, _)| jpeg(rgba, *w, *h));
-        let cover_rgba = carved.map(|(rgba, w, h, _)| (rgba, w as usize, h as usize));
+        let pics: Vec<Pic> = crate::setupsheet::carved(doc, &gen, 1_200_000).and_then(|(rgba, w, h, _)| jpeg(&rgba, w, h)).and_then(|j| Pic::new("Simulated cut", j)).into_iter().collect();
         let title = name.trim_end_matches(".tlp").trim_end_matches(".crv").to_string();
-        ShareDialog { title: if title == "Untitled" { String::new() } else { title }, summary: String::new(), tags: String::new(), license: 0, author: String::new(), rights: false, cover, cover_rgba, cover_tex: None, photos: Vec::new(), minutes: gen.minutes.iter().sum(), problems, sending: false, sent: None, want_photo: false }
+        ShareDialog { title: if title == "Untitled" { String::new() } else { title }, summary: String::new(), tags: String::new(), license: 0, author: String::new(), rights: false, show_name: true, pics, cover: 0, minutes: gen.minutes.iter().sum(), problems, sending: false, sent: None, want_photo: false }
     }
 
     pub fn add_photo(&mut self, name: &str, bytes: &[u8]) -> Result<(), String> {
-        if self.photos.len() >= MAX_PHOTOS {
-            return Err(format!("Up to {MAX_PHOTOS} photos"));
+        if self.pics.len() >= MAX_PICTURES {
+            return Err(format!("Up to {MAX_PICTURES} pictures"));
         }
-        self.photos.push((name.to_string(), photo_jpeg(bytes)?));
+        let pic = Pic::new(name, photo_jpeg(bytes)?).ok_or("Could not read the converted picture")?;
+        // the first real photo makes a better cover than the simulation
+        if self.cover == 0 && self.pics.len() == 1 && self.pics[0].name == "Simulated cut" {
+            self.cover = 1;
+        }
+        self.pics.push(pic);
         Ok(())
     }
 
@@ -387,7 +407,14 @@ impl ShareDialog {
                 ui.add(crate::widgets::field(&mut self.tags).hint_text("sign, v-carve, gift (comma between)").desired_width(420.0));
                 ui.end_row();
                 ui.label("Shown as");
-                ui.add(crate::widgets::field(&mut self.author).hint_text("your name or shop (optional)").desired_width(260.0).char_limit(40));
+                ui.vertical(|ui| {
+                    ui.add(crate::widgets::field(&mut self.author).hint_text("your name or shop (optional)").desired_width(260.0).char_limit(40));
+                    let named = !self.author.trim().is_empty();
+                    ui.add_enabled(named, egui::Checkbox::new(&mut self.show_name, "Show this name on the project and a page of my projects"));
+                    if !named || !self.show_name {
+                        ui.label(RichText::new("Shown as “A GCarve maker”. Your email is never shown.").small().color(crate::theme::TEXT_DIM));
+                    }
+                });
                 ui.end_row();
                 ui.label("License");
                 ui.vertical(|ui| {
@@ -398,37 +425,48 @@ impl ShareDialog {
                 ui.end_row();
                 ui.label("Pictures");
                 ui.vertical(|ui| {
-                    ui.horizontal(|ui| {
-                        if let Some((rgba, w, h)) = &self.cover_rgba {
-                            let tex = self.cover_tex.get_or_insert_with(|| ctx.load_texture("share-cover", egui::ColorImage::from_rgba_unmultiplied([*w, *h], rgba), egui::TextureOptions::LINEAR));
-                            let k = 120.0 / (*w).max(*h) as f32;
-                            ui.add(egui::Image::new((tex.id(), egui::vec2(*w as f32 * k, *h as f32 * k))));
-                        }
-                        ui.vertical(|ui| {
-                            ui.label(RichText::new("The simulated cut is always included.").small().color(crate::theme::TEXT_DIM));
-                            let mut gone = None;
-                            for (i, (name, _)) in self.photos.iter().enumerate() {
+                    let mut gone = None;
+                    ui.horizontal_wrapped(|ui| {
+                        for (i, p) in self.pics.iter_mut().enumerate() {
+                            let tex = p.tex.get_or_insert_with(|| ctx.load_texture(format!("share-pic-{i}"), p.preview.clone(), egui::TextureOptions::LINEAR)).clone();
+                            ui.vertical(|ui| {
+                                let [w, h] = p.preview.size;
+                                let k = 96.0 / w.max(h) as f32;
+                                let on = self.cover == i;
+                                let r = ui.add(egui::Image::new((tex.id(), egui::vec2(w as f32 * k, h as f32 * k))).sense(egui::Sense::click())).on_hover_text(format!("{}: click to make it the cover", p.name));
+                                if on {
+                                    ui.painter().rect_stroke(r.rect.expand(2.0), 3.0, egui::Stroke::new(2.0, crate::theme::ACCENT), egui::StrokeKind::Outside);
+                                }
+                                if r.clicked() {
+                                    self.cover = i;
+                                }
                                 ui.horizontal(|ui| {
-                                    ui.label(RichText::new(name).small());
-                                    if ui.small_button("✕").on_hover_text("Remove this photo").clicked() {
+                                    ui.label(RichText::new(if on { "Cover" } else { "" }).small().color(crate::theme::ACCENT));
+                                    if p.name != "Simulated cut" && ui.small_button("✕").on_hover_text("Remove this photo").clicked() {
                                         gone = Some(i);
                                     }
                                 });
-                            }
-                            if let Some(i) = gone {
-                                self.photos.remove(i);
-                            }
-                            if ui.add_enabled(self.photos.len() < MAX_PHOTOS, egui::Button::new("Add photos of the real thing…")).clicked() {
-                                self.want_photo = true;
-                            }
-                        });
+                            });
+                        }
+                    });
+                    if let Some(i) = gone {
+                        self.pics.remove(i);
+                        if self.cover >= i && self.cover > 0 {
+                            self.cover -= 1;
+                        }
+                    }
+                    ui.horizontal(|ui| {
+                        if ui.add_enabled(self.pics.len() < MAX_PICTURES, egui::Button::new("Add photos of the real thing…")).clicked() {
+                            self.want_photo = true;
+                        }
+                        ui.label(RichText::new("Click a picture to make it the cover.").small().color(crate::theme::TEXT_DIM));
                     });
                 });
                 ui.end_row();
             });
             ui.add_space(6.0);
             ui.checkbox(&mut self.rights, "I made this design, or I have the right to share it under this license");
-            let ready = host.cloud.signed_in() && self.problems.is_empty() && self.rights && self.title.trim().chars().count() >= 3 && self.cover.is_some() && !self.sending;
+            let ready = host.cloud.signed_in() && self.problems.is_empty() && self.rights && self.title.trim().chars().count() >= 3 && !self.pics.is_empty() && !self.sending;
             match crate::widgets::buttons(ui, &[("Cancel", false), (if self.sending { "Sharing…" } else { "Share" }, ready)]) {
                 Some(0) => close = true,
                 Some(1) if ready => send = true,
@@ -463,13 +501,14 @@ impl ShareDialog {
         });
         // the vectors of the active sheet, for people who use other software
         let items: Vec<(&gcarve_core::geom::Contour, &str)> = doc.shapes.iter().filter(|s| s.sheet == doc.active_sheet && doc.layers.get(s.layer as usize).is_none_or(|l| !l.keep_out)).map(|s| (&s.c, doc.layers.get(s.layer as usize).map_or("0", |l| l.name.as_str()))).collect();
-        let photos: Vec<serde_json::Value> = self.cover.iter().chain(self.photos.iter().map(|p| &p.1)).map(|b| serde_json::json!({"mime": "image/jpeg", "data": base64(b)})).collect();
+        let photos: Vec<serde_json::Value> = self.pics.iter().map(|p| serde_json::json!({"mime": "image/jpeg", "data": base64(&p.jpeg)})).collect();
+        let show_author = self.show_name && !self.author.trim().is_empty();
         let tags: Vec<String> = self.tags.split(',').map(|t| t.trim().to_lowercase()).filter(|t| !t.is_empty()).take(8).collect();
         serde_json::json!({
             "title": self.title.trim(), "summary": self.summary.trim(), "tags": tags, "license": LICENSES[self.license].0,
             "author": self.author.trim(), "facts": facts, "project": gcarve_core::project::save_project(doc),
             "svg": gcarve_core::svg::export_svg(&items, doc.material.w, doc.material.h), "dxf": gcarve_core::dxf::export_dxf(&items),
-            "photos": photos, "rights": self.rights,
+            "photos": photos, "cover": self.cover.min(self.pics.len().saturating_sub(1)), "show_author": show_author, "rights": self.rights,
         })
     }
 }
@@ -607,7 +646,7 @@ mod seeds {
         assert!(gen.warnings.is_empty(), "{title}: {:?}", gen.warnings);
         assert!(pipeline::order_issues(doc).is_empty(), "{title}: {:?}", pipeline::order_issues(doc));
         let mut d = ShareDialog::new(doc, title);
-        assert!(d.problems.is_empty() && d.cover.is_some(), "{title}: {:?}", d.problems);
+        assert!(d.problems.is_empty() && !d.pics.is_empty(), "{title}: {:?}", d.problems);
         (d.title, d.summary, d.tags, d.author, d.license, d.rights) = (title.into(), summary.into(), tags.into(), "GCarve".into(), 2, true);
         d.body(doc)
     }

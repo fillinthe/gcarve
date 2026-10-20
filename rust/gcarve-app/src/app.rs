@@ -136,6 +136,9 @@ pub struct App {
     palette: Palette,
     /// web: `?open=<project id>` in the address (GSketch's Send to GCarve): opened once the session is known
     open_at_start: Option<String>,
+    /// /app/?share=1 (the "Share your project" button on gcarve.app/projects): sign in, pick a project, then the
+    /// Share to Community box (steps below, 0 = off)
+    share_start: u8,
     title: String,               // last window title sent
     about_open: bool,
     /// usage counts: op count while the toolpath dialog was open; "toolpath" already sent this session
@@ -202,7 +205,7 @@ impl App {
             project_path: None,
             #[cfg(not(target_arch = "wasm32"))]
             jobs: crate::jobs::Jobs::load(),
-            doc_id: 1, next_doc_id: 2, tabs: vec![None], cur: 0, recent: if cfg!(target_arch = "wasm32") { Vec::new() } else { files::recent() }, confirm: None, after_save: None, palette: Palette::default(), open_at_start: None, title: String::new(), about_open: false, ops_before: None, counted_toolpath: false, counted_open: false, staff: false, smoke_step: 0, smoke_note: String::new(), guide: Default::default(), ui_state };
+            doc_id: 1, next_doc_id: 2, tabs: vec![None], cur: 0, recent: if cfg!(target_arch = "wasm32") { Vec::new() } else { files::recent() }, confirm: None, after_save: None, palette: Palette::default(), open_at_start: None, share_start: 0, title: String::new(), about_open: false, ops_before: None, counted_toolpath: false, counted_open: false, staff: false, smoke_step: 0, smoke_note: String::new(), guide: Default::default(), ui_state };
         // keyboard zoom is the canvas's (⌘+ / ⌘− / ⌘0), not the whole UI's
         cc.egui_ctx.options_mut(|o| o.zoom_with_keyboard = false);
         // ---- CAM dialogs / simulation ----
@@ -243,6 +246,7 @@ impl App {
             if let Some(s) = slug {
                 app.cloud.community_open(&cc.egui_ctx, &s);
             }
+            app.share_start = u8::from(web_sys::window().and_then(|w| w.location().search().ok()).is_some_and(|q| q.trim_start_matches('?').split('&').any(|kv| kv == "share=1")));
             app.open_at_start = web_sys::window().and_then(|w| w.location().search().ok()).and_then(|q| {
                 q.trim_start_matches('?').split('&').find_map(|kv| kv.strip_prefix("open=")).filter(|id| !id.is_empty() && id.chars().all(|c| c.is_ascii_alphanumeric() || c == '-' || c == '_')).map(str::to_string)
             });
@@ -1318,6 +1322,29 @@ impl eframe::App for App {
             let card = egui::Rect::from_center_size(ctx.content_rect().center(), egui::vec2(280.0, 56.0));
             p.rect_filled(card, 8.0, theme::PANEL);
             p.text(card.center(), egui::Align2::CENTER_CENTER, "Generating toolpaths…", theme::font(14.0), theme::TEXT);
+        }
+        // /app/?share=1: 1 = start, 2 = sign-in box shown, 3 = project list shown (waiting for a project to open)
+        if self.share_start > 0 && self.cloud.checked {
+            if !self.cloud.signed_in() {
+                if self.share_start == 1 {
+                    self.account.reason = "Sign in to share a project with the GCarve community.".into();
+                    self.account.open = true;
+                    self.share_start = 2;
+                }
+            } else if !self.canvas.doc.ops.is_empty() {
+                self.share_start = 0;
+                self.cam.share = Some(dialogs::community::ShareDialog::new(&self.canvas.doc, &self.name));
+            } else if self.share_start < 3 {
+                if !self.account.open {
+                    self.projects.show(&self.name.clone());
+                    self.cloud.refresh(&ctx);
+                    self.message = "Pick the project to share: it opens, then the Share box appears. A file on your computer? File › Open it first.".into();
+                    self.share_start = 3;
+                }
+            } else if !self.projects.open && self.cloud.busy == 0 && self.opening.is_empty() {
+                self.share_start = 0; // closed without opening one
+                self.message = "Open the project you want to share, then File › Share to Community…".into();
+            }
         }
         // a project handed over in the address (GSketch › Send to GCarve): open it as soon as the account is known
         if let Some(id) = self.open_at_start.clone() {

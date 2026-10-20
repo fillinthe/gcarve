@@ -149,13 +149,13 @@ const TOOLS: [(&str, &str, &str, &str); 12] = [
 ];
 
 fn tool_color(id: &str) -> (Color32, Color32) {
-    // (tint, accent) per Theme.toolColor; select / nodes keep the blue accent bar
-    match id {
-        "tool:select" | "tool:nodes" => (theme::TOOL_SELECT, theme::ACCENT),
-        "tool:measure" | "tool:dimension" => (theme::TOOL_MEASURE, theme::TOOL_MEASURE),
-        "tool:text" => (theme::TOOL_TEXT, theme::TOOL_TEXT),
-        _ => (theme::TOOL_DRAW, theme::TOOL_DRAW),
-    }
+    use theme::ToolKind as K;
+    theme::tool_color(match id {
+        "tool:select" | "tool:nodes" => K::Select,
+        "tool:measure" | "tool:dimension" => K::Measure,
+        "tool:text" => K::Text,
+        _ => K::Draw,
+    })
 }
 
 /// project unit from Document::bare_unit_in: (name, multiplier from inches, decimals)
