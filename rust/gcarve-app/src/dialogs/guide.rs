@@ -42,6 +42,8 @@ pub const TOPICS: &[gcarve_ui::guide::Topic] = &[
     ("Mill a thread", "Toolpaths tab › Bore on a circle the size of the thread's outer diameter, with a thread mill as the bit and the Thread pitch set (distance per turn). It climbs from the bottom up, one turn per pitch.", "kind:4"),
     ("Carve a photo", "Toolpaths tab › Photo: a V-bit cuts lines whose depth follows the picture's darkness.", "kind:11"),
     ("A textured background", "Toolpaths tab › Texture.", "kind:10"),
+    ("Cut a free community project", "File › Free Community Projects… opens gcarve.app/projects: pick a project and press Open in GCarve. GCarve asks for your machine, your bits and your board's thickness, then shows the cut in Simulate; export the G-code as usual. Desktop app: download the project (.tlp) on its page, open it, then File › Make It on My Machine….", "community"),
+    ("Share my project with everyone", "File › Share to Community…: a title, a few words, tags and a license. A picture of the simulated cut goes with it; add photos of the real thing too. We check it, then it appears on gcarve.app/projects for others to open and cut on their own machine.", "communityshare"),
     ("See toolpaths on the drawing", "While drawing, only the toolpath you click in the Toolpaths tab (or have open in its dialog) is drawn and worked out, so edits stay quick; Simulate (3) shows them all with their times. To see every toolpath while drawing: View › Every Toolpath While Drawing.", "allpaths"),
     ("Change the cutting order", "Toolpaths tab: right-click a toolpath › Cut Earlier / Cut Later. The list order is the order each bit cuts in. Cut parts out last.", ""),
     ("Copy a toolpath", "Toolpaths tab: right-click it › Duplicate, then double-click the copy to change it.", ""),

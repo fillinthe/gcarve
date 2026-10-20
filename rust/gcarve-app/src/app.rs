@@ -230,8 +230,19 @@ impl App {
         }
         app.cloud.check_session(&cc.egui_ctx);
         app.cloud.fetch_config(&cc.egui_ctx);
+        #[cfg(not(target_arch = "wasm32"))]
+        if let Ok(slug) = std::env::var("GCARVE_COMMUNITY") {
+            app.cloud.community_open(&cc.egui_ctx, &slug); // dev: what /app/?community=<slug> does on the web
+        }
         #[cfg(target_arch = "wasm32")]
         {
+            // "Open in GCarve" on a community project page: /app/?community=<slug>
+            let slug = web_sys::window().and_then(|w| w.location().search().ok()).and_then(|q| {
+                q.trim_start_matches('?').split('&').find_map(|kv| kv.strip_prefix("community=")).filter(|s| !s.is_empty() && s.len() < 100 && s.chars().all(|c| c.is_ascii_alphanumeric() || c == '-')).map(str::to_string)
+            });
+            if let Some(s) = slug {
+                app.cloud.community_open(&cc.egui_ctx, &s);
+            }
             app.open_at_start = web_sys::window().and_then(|w| w.location().search().ok()).and_then(|q| {
                 q.trim_start_matches('?').split('&').find_map(|kv| kv.strip_prefix("open=")).filter(|id| !id.is_empty() && id.chars().all(|c| c.is_ascii_alphanumeric() || c == '-' || c == '_')).map(str::to_string)
             });
@@ -568,6 +579,7 @@ impl App {
                 if !tlp {
                     self.canvas.dirty = true; // never saved over the VCarve file: Save asks where the .tlp goes
                 }
+                self.offer_make_it();
                 if let Some(p) = path.filter(|_| tlp) {
                     #[cfg(not(target_arch = "wasm32"))]
                     {
@@ -655,6 +667,17 @@ fn tool_id(t: Tool) -> &'static str {
 }
 
 impl App {
+    /// A project saved with another machine, post or bits than this computer uses: offer to switch it (Make It).
+    fn offer_make_it(&mut self) {
+        if self.shot || self.canvas.doc.ops.is_empty() {
+            return;
+        }
+        let reasons = dialogs::community::differences_here(&self.canvas.doc);
+        if !reasons.is_empty() {
+            self.cam.make_it = Some(dialogs::community::MakeIt::new(&self.canvas.doc, &self.name).with_reasons(reasons));
+        }
+    }
+
     fn simulating(&self) -> bool {
         self.mode == Mode::Simulate || self.show_sim
     }
@@ -773,6 +796,7 @@ impl App {
                     self.cloud.event("demo");
                 }
                 self.open_picked(files::Picked { name: "GCarve demo.tlp".into(), bytes: std::env::var("GCARVE_DEMO_FILE").ok().and_then(|f| std::fs::read(f).ok()).unwrap_or_else(demo_project), path: None, import: false });
+                self.cam.make_it = None; // our own demo: nothing to fit
                 // a first visitor sees the carved sign, not a web of toolpath lines; key 1 goes back to the drawing
                 self.set_mode(Mode::Simulate);
                 self.view_3d = true;
@@ -933,6 +957,16 @@ impl App {
                 self.view_3d = !self.view_3d;
             }
             ("spacemouse", _) => crate::spacemouse::connect(true),
+            ("makeit", _) => self.cam.make_it = Some(dialogs::community::MakeIt::new(&self.canvas.doc, &self.name)),
+            ("community", _) => ctx.open_url(egui::OpenUrl::new_tab("https://gcarve.app/projects/")),
+            ("communityshare", _) => {
+                if self.cloud.signed_in() {
+                    self.cam.share = Some(dialogs::community::ShareDialog::new(&self.canvas.doc, &self.name));
+                } else {
+                    self.account.reason = "Sign in to share a project with the GCarve community.".into();
+                    self.account.open = true;
+                }
+            }
             ("donate", _) => ctx.open_url(egui::OpenUrl::new_tab("https://gcarve.app/donate/")),
             ("website", _) => ctx.open_url(egui::OpenUrl::new_tab("https://gcarve.app/")),
             ("download", _) => ctx.open_url(egui::OpenUrl::new_tab("https://gcarve.app/download/")),
@@ -1340,6 +1374,34 @@ impl eframe::App for App {
                 Reply::RequestSent(r) => {
                     self.help.on_reply(r);
                 }
+                Reply::CommunityShared(r) => {
+                    if let Some(d) = self.cam.share.as_mut() {
+                        d.answered(r);
+                    }
+                }
+                Reply::CommunityOpened { slug, title, json } => match project::load_project(&json) {
+                    Ok(mut d) => {
+                        dialogs::relief::rehydrate(&mut d);
+                        dialogs::community::use_my_machine(&mut d);
+                        self.open_target();
+                        self.canvas = Canvas::with_doc(d);
+                        self.canvas.hit_scale = self.cam.prefs.hit_scale();
+                        self.canvas.apply_bindings();
+                        self.canvas.dirty = true; // someone else's project: saving makes it a copy of your own
+                        self.gen_rev = self.canvas.rev.wrapping_sub(1);
+                        self.project_path = None;
+                        self.cloud_id = String::new();
+                        self.name = title.clone();
+                        let reasons = dialogs::community::differences_here(&self.canvas.doc);
+                        self.cam.make_it = Some(dialogs::community::MakeIt::new(&self.canvas.doc, &title).with_reasons(reasons));
+                        self.message = format!("Opened “{title}” from gcarve.app/projects/{slug}/");
+                        self.cloud.event_detail("community_open", &slug);
+                    }
+                    Err(e) => {
+                        self.cloud.report("community open", &e);
+                        self.message = e;
+                    }
+                },
                 Reply::Opened { id, name, json } => match project::load_project(&json) {
                     Ok(mut d) => {
                         dialogs::relief::rehydrate(&mut d);
@@ -1352,6 +1414,7 @@ impl eframe::App for App {
                         self.cloud_id = id;
                         self.name = name.clone();
                         self.message = format!("Opened {name} from the cloud");
+                        self.offer_make_it();
                     }
                     Err(e) => {
                         self.cloud.report("cloud open", &e);
@@ -1850,6 +1913,9 @@ impl App {
             jobs: &mut self.jobs,
         };
         self.cam.ui(ctx, &mut host);
+        if std::mem::take(&mut self.cam.go_simulate) {
+            self.set_mode(Mode::Simulate);
+        }
     }
 
     fn import_stl(&mut self, name: &str, bytes: &[u8]) {
@@ -2272,7 +2338,7 @@ fn busy_card(p: &egui::Painter, rect: egui::Rect, title: &str, progress: Option<
     }
 }
 
-fn demo_project() -> Vec<u8> {
+pub(crate) fn demo_project() -> Vec<u8> {
     let raw = include_bytes!("../../../samples/showcase.tlp");
     let Ok(mut v) = serde_json::from_slice::<serde_json::Value>(raw) else { return raw.to_vec() };
     if let Some(ops) = v["ops"].as_array_mut() {

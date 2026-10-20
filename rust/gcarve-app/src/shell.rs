@@ -747,6 +747,8 @@ pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, m: &Menu
                 item(ui, sh, if web { "Open / Import from Computer…" } else { "Open Project / Import…" }, "⌘O", true, "open");
                 item(ui, sh, "Import G-code…", "", true, "importgcode");
                 item(ui, sh, "Cloud Projects…", "", true, "cloud");
+                item(ui, sh, "Free Community Projects…", "", true, "community");
+                item(ui, sh, "Make It on My Machine…", "", has_ops, "makeit");
                 if !web {
                     item(ui, sh, "Jobs…", "⌘J", true, "jobs");
                     item(ui, sh, "Import 3D Model (STL)…", "", true, "importstl");
@@ -780,6 +782,7 @@ pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, m: &Menu
                     item(ui, sh, "As DWG (AutoCAD)", "", true, "vexport:dwg");
                 });
                 item(ui, sh, "Setup Sheet…", "", has_ops, "setupsheet"); // printable job sheet for the operator
+                item(ui, sh, "Share to Community…", "", has_ops, "communityshare");
                 widgets::menu_separator(ui);
                 item(ui, sh, &m.account, "", true, "account");
             }).response);

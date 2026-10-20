@@ -18,6 +18,7 @@ pub mod templates;
 pub mod tools;
 pub mod trace;
 pub mod boardphoto;
+pub mod community;
 pub mod vars;
 
 use crate::canvas::Canvas;
@@ -56,6 +57,11 @@ pub struct Dialogs {
     pub gimport: Option<gimport::GcodeImportDialog>,
     pub trace: Option<trace::TraceDialog>,
     pub board_photo: Option<boardphoto::BoardPhotoDialog>,
+    /// community projects: Make It after opening one, Share to Community
+    pub make_it: Option<community::MakeIt>,
+    pub share: Option<community::ShareDialog>,
+    /// Make It applied: the app shows the simulation
+    pub go_simulate: bool,
     pub shapes: Option<shapes::ShapesDialog>,
     #[cfg(not(target_arch = "wasm32"))]
     pub jobs: Option<jobs::JobsDialog>,
@@ -109,6 +115,8 @@ impl Dialogs {
             "constraint" => self.constraint = Some(vars::ConstraintDialog::new(canvas)),
             "templates" => self.templates = Some(templates::TemplatesDialog::new("Showcase sign")),
             "shapes" => self.shapes = Some(shapes::ShapesDialog::new(&canvas.doc)),
+            "makeit" => self.make_it = Some(community::MakeIt::new(&canvas.doc, "Showcase sign").with_reasons(vec!["It was set up for a ShopBot PRSalpha; you use a CAMaster Panther.".into(), "Not in your bit library: 1/8 End Mill (0.125 inch).".into()])),
+            "share" => self.share = Some(community::ShareDialog::new(&canvas.doc, "Showcase sign")),
             "trace" => {
                 let bytes = std::fs::read(concat!(env!("CARGO_MANIFEST_DIR"), "/../../app/branding/appicon-1024.png")).unwrap_or_default();
                 self.trace = trace::TraceDialog::new("appicon-1024.png", &bytes, &canvas.doc).ok();
@@ -147,6 +155,13 @@ impl Dialogs {
                         Err(e) => {
                             host.cloud.report("font", &crate::files::scrub(&e, &name));
                             format!("{name}: {e}")
+                        }
+                    }
+                }
+                "communityphoto" => {
+                    if let Some(d) = self.share.as_mut() {
+                        if let Err(e) = d.add_photo(&name, &bytes) {
+                            *host.message = e;
                         }
                     }
                 }
@@ -240,6 +255,29 @@ impl Dialogs {
         if let Some(mut d) = self.trace.take() {
             if d.ui(ctx, host) {
                 self.trace = Some(d);
+            }
+        }
+        if let Some(mut d) = self.make_it.take() {
+            match d.ui(ctx, host) {
+                community::Next::Keep => {
+                    if std::mem::take(&mut d.want_machine) {
+                        let mut j = job::JobDialog::new(&host.canvas.doc);
+                        j.browser.show(host.canvas.doc.material.machine.as_ref());
+                        j.machine_only = true;
+                        self.job = Some(j);
+                    }
+                    self.make_it = Some(d);
+                }
+                community::Next::Close => {}
+                community::Next::Made => self.go_simulate = true,
+            }
+        }
+        if let Some(mut d) = self.share.take() {
+            if d.ui(ctx, host) {
+                if std::mem::take(&mut d.want_photo) {
+                    host.files.pick_into(ctx, "Photos (PNG, JPEG)", crate::files::IMAGE_EXTS, "communityphoto");
+                }
+                self.share = Some(d);
             }
         }
         if let Some(mut d) = self.board_photo.take() {
