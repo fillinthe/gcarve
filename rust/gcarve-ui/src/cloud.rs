@@ -92,6 +92,10 @@ pub enum Reply {
     DevicePending,
     DeviceDone(AuthReply),
     DeviceFailed(String),
+    /// a community project (gcarve.app/projects/<slug>/): its title and .tlp text
+    CommunityOpened { slug: String, title: String, json: String },
+    /// Share to Community answered: the project page's path (waiting for review), or why not
+    CommunityShared(Result<String, String>),
     Error(String),
 }
 
@@ -461,6 +465,30 @@ impl Cloud {
         let body = serde_json::json!({"to": to, "kind": kind, "name": name, "data": data});
         let msg = format!("Shared “{name}” with {to}: it waits in their {} until they add it", crate::store::app());
         self.request(ctx, "POST", "/api/shares", Some(body), move |status, text| if status < 400 { Reply::Shared(msg) } else { Reply::Error(error_of(status, text)) });
+    }
+
+    /// GET /api/community/<slug>/project: a shared project (public, no sign-in needed)
+    pub fn community_open(&mut self, ctx: &egui::Context, slug: &str) {
+        let slug_ = slug.to_string();
+        self.request(ctx, "GET", &format!("/api/community/{slug}/project"), None, move |status, text| {
+            let v: serde_json::Value = serde_json::from_str(text).unwrap_or_default();
+            let s = |k: &str| v.get(k).and_then(|x| x.as_str()).map(str::to_string);
+            match (s("title"), s("project")) {
+                (Some(title), Some(json)) if status < 400 => Reply::CommunityOpened { slug: slug_, title, json },
+                _ => Reply::Error(error_of(status, text)),
+            }
+        });
+    }
+
+    /// POST /api/community: share a project with everyone (it waits for review first)
+    pub fn community_share(&mut self, ctx: &egui::Context, body: serde_json::Value) {
+        self.request(ctx, "POST", "/api/community", Some(body), |status, text| {
+            let v: serde_json::Value = serde_json::from_str(text).unwrap_or_default();
+            match v.get("url").and_then(|u| u.as_str()) {
+                Some(u) if status < 400 => Reply::CommunityShared(Ok(u.to_string())),
+                _ => Reply::CommunityShared(Err(error_of(status, text))),
+            }
+        });
     }
 
     pub fn fetch_shares(&mut self, ctx: &egui::Context) {

@@ -7,8 +7,9 @@ use gcarve_core::postdef::PostDef;
 use gcarve_core::setupsheet::base64;
 use gcarve_core::sim::{shade, simulate};
 
-/// The shaded simulation of one sheet as a PNG data URI + where it sits on the board.
-fn picture(d: &Document, g: &Generated) -> SheetPicture {
+/// The carved board of the active sheet as straight RGBA (top row first; through cuts transparent), simulated on
+/// about `cells` grid cells, + where it sits on the board. None when nothing cuts.
+pub fn carved(d: &Document, g: &Generated, cells: usize) -> Option<(Vec<u8>, u32, u32, [f64; 4])> {
     let eff: Vec<_> = (0..d.tools.len()).map(|i| pipeline::tool_for_cut(d, i)).collect();
     let mut paths = Vec::new();
     for (op, ps) in d.ops.iter().zip(&g.paths) {
@@ -22,16 +23,22 @@ fn picture(d: &Document, g: &Generated) -> SheetPicture {
     if paths.is_empty() {
         return None;
     }
-    let hf = simulate(&paths, &d.material, 400_000); // small enough to keep the HTML light
+    let hf = simulate(&paths, &d.material, cells);
     let rgba = shade(&hf, &d.material);
+    Some((rgba, hf.nx as u32, hf.ny as u32, [hf.x0, hf.y0, f64::from(hf.nx) * hf.res, f64::from(hf.ny) * hf.res]))
+}
+
+/// The shaded simulation of one sheet as a PNG data URI + where it sits on the board.
+fn picture(d: &Document, g: &Generated) -> SheetPicture {
+    let (rgba, nx, ny, at) = carved(d, g, 400_000)?; // small enough to keep the HTML light
     let mut png_bytes = Vec::new();
-    let mut enc = png::Encoder::new(&mut png_bytes, hf.nx as u32, hf.ny as u32);
+    let mut enc = png::Encoder::new(&mut png_bytes, nx, ny);
     enc.set_color(png::ColorType::Rgba);
     enc.set_depth(png::BitDepth::Eight);
     let mut w = enc.write_header().ok()?;
     w.write_image_data(&rgba).ok()?;
     w.finish().ok()?;
-    Some((format!("data:image/png;base64,{}", base64(&png_bytes)), [hf.x0, hf.y0, f64::from(hf.nx) * hf.res, f64::from(hf.ny) * hf.res]))
+    Some((format!("data:image/png;base64,{}", base64(&png_bytes)), at))
 }
 
 /// The sheet for an export with these settings (`names` = the export dialog's file names, empty = the post's).
