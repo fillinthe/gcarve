@@ -55,7 +55,7 @@ pub struct Bands {
     pub rapids: Vec<Vec<Pt>>,
     /// cut polylines per depth bucket
     pub cuts: [Vec<Vec<Pt>>; BUCKETS],
-    key: (u64, u64, usize),
+    key: (u64, u64, usize, u64),
     built: bool,
 }
 
@@ -69,10 +69,12 @@ struct Seg {
 
 impl Bands {
     /// `seq`: bumped by the app on every regenerate (live previews change the paths without a document change)
-    pub fn update(&mut self, ctx: &egui::Context, doc: &Document, gen: &Generated, rev: u64, seq: u64) {
+    /// `only`: which toolpaths to draw (by index), None = all
+    pub fn update(&mut self, ctx: &egui::Context, doc: &Document, gen: &Generated, rev: u64, seq: u64, only: Option<&[bool]>) {
         // the paths may arrive a frame after the document change: key on their size too
         let moves: usize = gen.paths.iter().flatten().map(|tp| tp.moves.len()).sum();
-        let key = (rev, seq, moves);
+        let picked = only.map_or(u64::MAX, |o| o.iter().enumerate().fold(0u64, |h, (i, &w)| if w { h.wrapping_mul(31).wrapping_add(i as u64 + 1) } else { h }));
+        let key = (rev, seq, moves, picked);
         if self.built && self.key == key {
             return;
         }
@@ -93,7 +95,7 @@ impl Bands {
         // a new toolpath being set up in its dialog comes last, with no op in the document yet
         for (i, paths) in gen.paths.iter().enumerate() {
             let (visible, op_tool) = doc.ops.get(i).map_or((true, gen.draft_tool), |op| (op.visible, op.tool));
-            if !visible {
+            if !visible || only.is_some_and(|o| !o.get(i).copied().unwrap_or(false)) {
                 continue;
             }
             for tp in paths {

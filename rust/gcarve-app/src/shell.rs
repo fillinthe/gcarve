@@ -872,6 +872,11 @@ pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, m: &Menu
                     sh.push("paths");
                     ui.close();
                 }
+                let mut every = canvas.all_paths;
+                if widgets::menu_check(ui, "Every Toolpath While Drawing", "", &mut every).on_hover_text("Off: while drawing, only the toolpath picked in the list (or open in its dialog) is shown and worked out, so edits stay quick. Simulate always shows them all.").clicked() {
+                    sh.push("allpaths");
+                    ui.close();
+                }
                 item(ui, sh, "Show All Toolpaths", "", has_ops, "ops:showall");
                 item(ui, sh, "Hide All Toolpaths", "", has_ops, "ops:hideall");
                 check(ui, "Show Cut Width", &mut canvas.show_width);

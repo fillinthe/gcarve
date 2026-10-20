@@ -142,6 +142,13 @@ pub struct Canvas {
     /// bumped on every document change: the app regenerates toolpaths when it moves
     pub rev: u64,
     pub show_paths: bool,
+    /// every toolpath shown while drawing (View menu; the app copies its setting in each frame), else only the picked
+    /// one / the one being set up
+    pub all_paths: bool,
+    /// the previews are from before the last edit (worked out again shortly): drawn faded
+    pub paths_old: bool,
+    /// which toolpaths' previews to draw (by index into the generated paths); None = all
+    pub paths_only: Option<Vec<bool>>,
     /// cut-width bands under the toolpath lines (status-bar Width toggle)
     pub show_width: bool,
     pub bands: crate::bands::Bands,
@@ -272,6 +279,9 @@ impl Default for Canvas {
             dirty: false,
             rev: 1,
             show_paths: true,
+            all_paths: true,
+            paths_old: false,
+            paths_only: None,
             all_sheets: false,
             board_photo: None,
             touch_pan: false,
@@ -486,20 +496,21 @@ impl Canvas {
         // toolpath previews (built once per regenerate in bands.rs): rapids dashed red, cut-width bands, cuts by depth
         if self.show_paths && !self.gen_stale {
             if let Some(g) = gen {
-                self.bands.update(ui.ctx(), &self.doc, g, self.rev, self.gen_seq);
+                self.bands.update(ui.ctx(), &self.doc, g, self.rev, self.gen_seq, self.paths_only.as_deref());
                 let to = |c: &Vec<Pt>| -> Vec<Pos2> { c.iter().map(|p| view.to_screen(*p)).collect() };
-                let rapid = Stroke::new(1.0, c(0xff6b6b));
+                let fade = if self.paths_old { 0.35 } else { 1.0 };
+                let rapid = Stroke::new(1.0, c(0xff6b6b).gamma_multiply(fade));
                 for ch in &self.bands.rapids {
                     painter.extend(Shape::dashed_line(&to(ch), rapid, 4.0, 2.0));
                 }
                 if self.show_width {
                     if let (Some(tex), Some([x0, y0, w, h])) = (&self.bands.texture, self.bands.rect) {
                         let r = Rect::from_two_pos(view.to_screen(pt(x0, y0 + h)), view.to_screen(pt(x0 + w, y0)));
-                        painter.image(tex.id(), r, Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)), Color32::WHITE);
+                        painter.image(tex.id(), r, Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)), Color32::WHITE.gamma_multiply(fade));
                     }
                 }
                 for (b, chains) in self.bands.cuts.iter().enumerate() {
-                    let stroke = Stroke::new(1.0, crate::bands::cut_color(b));
+                    let stroke = Stroke::new(1.0, crate::bands::cut_color(b).gamma_multiply(fade));
                     for ch in chains {
                         painter.add(Shape::line(to(ch), stroke));
                     }

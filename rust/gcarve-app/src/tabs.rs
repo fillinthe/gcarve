@@ -18,11 +18,12 @@ pub struct DocState {
     pub path: Option<PathBuf>,
     pub gen: Option<Generated>,
     pub gen_rev: u64,
+    pub gen_cov: Vec<bool>,
 }
 
 impl DocState {
     pub fn new(id: u64, canvas: Canvas) -> Self {
-        DocState { id, canvas, name: "Untitled".into(), cloud_id: String::new(), path: None, gen: None, gen_rev: 0 }
+        DocState { id, canvas, name: "Untitled".into(), cloud_id: String::new(), path: None, gen: None, gen_rev: 0, gen_cov: Vec::new() }
     }
     /// empty and untouched: an open reuses it instead of adding a tab
     pub fn blank(c: &Canvas) -> bool {

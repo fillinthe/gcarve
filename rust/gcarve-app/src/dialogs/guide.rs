@@ -9,7 +9,7 @@ pub const TOPICS: &[gcarve_ui::guide::Topic] = &[
     ("Choose my machine", "Toolpaths tab › Machine. Its size and spindle limit the suggested feeds, and its controller picks the right post-processor.", "machine"),
     ("Get the desktop app (Mac, Windows, Linux)", "Help › Download the Desktop App: free, works offline, signing in is optional. The same menu item on the desktop opens the page with the newest version.", "download"),
     ("See an example", "Help › Open the Demo Project: a sign with every toolpath type. It opens as the carved board in 3D (drag to turn it); press 1 for the drawing and its toolpaths.", "demo"),
-    ("Import a drawing (SVG, DXF, DWG, PDF, Illustrator)", "File › Open / Import, or drop the file on the window. AutoCAD .dwg files are read like DXF. Text in an SVG or DXF comes in as editable text in the standard font at its size, place and angle (double-click it to change the wording or font). PDF and .ai bring in the vector artwork only: convert their text to outlines first. Pictures are skipped.", "import"),
+    ("Import a drawing (SVG, DXF, DWG, PDF, Illustrator, EPS, LightBurn)", "File › Open / Import, or drop the file on the window. AutoCAD .dwg files are read like DXF. LightBurn projects (.lbrn2) bring their shapes on one layer per LightBurn cut layer; EPS files their vector artwork, like PDF. Text in an SVG or DXF comes in as editable text in the standard font at its size, place and angle (double-click it to change the wording or font). PDF and .ai bring in the vector artwork only: convert their text to outlines first. Pictures are skipped.", "import"),
     ("Turn a picture into vectors", "Vectors › Trace Image… (PNG or JPEG, best with a clean black-and-white picture).", "trace"),
     ("Bring in G-code made elsewhere", "File › Import G-code…: it is split per bit, you confirm the bits, then it simulates and re-posts for your machine.", "importgcode"),
     // drawing
@@ -42,6 +42,7 @@ pub const TOPICS: &[gcarve_ui::guide::Topic] = &[
     ("Mill a thread", "Toolpaths tab › Bore on a circle the size of the thread's outer diameter, with a thread mill as the bit and the Thread pitch set (distance per turn). It climbs from the bottom up, one turn per pitch.", "kind:4"),
     ("Carve a photo", "Toolpaths tab › Photo: a V-bit cuts lines whose depth follows the picture's darkness.", "kind:11"),
     ("A textured background", "Toolpaths tab › Texture.", "kind:10"),
+    ("See toolpaths on the drawing", "While drawing, only the toolpath you click in the Toolpaths tab (or have open in its dialog) is drawn and worked out, so edits stay quick; Simulate (3) shows them all with their times. To see every toolpath while drawing: View › Every Toolpath While Drawing.", "allpaths"),
     ("Change the cutting order", "Toolpaths tab: right-click a toolpath › Cut Earlier / Cut Later. The list order is the order each bit cuts in. Cut parts out last.", ""),
     ("Copy a toolpath", "Toolpaths tab: right-click it › Duplicate, then double-click the copy to change it.", ""),
     ("Reuse toolpath settings on another job", "Toolpaths menu › Templates…: save the toolpaths of this job and apply them to another drawing by layer name.", "templates"),
@@ -52,6 +53,7 @@ pub const TOPICS: &[gcarve_ui::guide::Topic] = &[
     ("Warn me when a cut is deeper than my bit", "Toolpaths tab › Bits: fill in Cutting length (bits from the catalog have it). Export then lists any toolpath that cuts deeper than the flutes reach. A pass deeper than the bit is wide also lowers the feed the meter calls good (80% at 2× the diameter, 60% at 3×).", "tools"),
     ("Find a bit from a maker's catalog", "Toolpaths tab › Bits › Browse bit catalog… (Whiteside, Amana, SpeTool and many more, with their feeds where published).", "tools"),
     // output
+    ("Carve a 3D model (STL, 3MF)", "Toolpaths › 3D Models › Import, or drop the .stl / .3mf file on the window (3MF from Bambu Studio, PrusaSlicer, Cura or Fusion works). It is fitted into the board; then make a 3D toolpath for it.", "importstl"),
     ("Watch the cut before exporting", "Press 3 (Simulate). Carve shows the result, Watch plays it at speed, 3D lets you orbit.", "mode:Simulate"),
     ("Turn the 3D view with my mouse like Fusion, Blender or VCarve", "In Simulate › 3D open Mouse (top right) and pick the style; Reverse zoom direction is there too. View has Top, Front, Left, Right and Back.", "view3d"),
     ("Use a 3Dconnexion SpaceMouse", "View › Connect a SpaceMouse… and pick it in the browser's list (Chrome or Edge on a computer). It reconnects by itself next time. It orbits the 3D view and pans / zooms the drawing. If the menu says nothing was received, quit the 3Dconnexion driver and reload.", "spacemouse"),

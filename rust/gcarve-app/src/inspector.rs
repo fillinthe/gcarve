@@ -428,6 +428,10 @@ fn toolpaths(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Option
     tile_grid(ui, sh, &setup);
     ui.add_space(6.0);
     section(ui, "TOOLPATHS", theme::TEXT_DIM);
+    let old = canvas.paths_old;
+    if !doc.ops.is_empty() && !canvas.all_paths && canvas.show_paths {
+        ui.label(RichText::new("Click a toolpath to see it on the drawing. Simulate shows them all, with times.").small().color(theme::TEXT_DIM));
+    }
     if doc.ops.is_empty() {
         ui.add_space(20.0);
         ui.vertical_centered(|ui| {
@@ -633,7 +637,7 @@ fn toolpaths(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Option
             }
         }
         for &i in ops {
-            if let Some(from) = op_row(ui, sh, doc, i, w, &names, &mut acts, gen.and_then(|g| g.minutes.get(i)).copied().unwrap_or(0.0), &used[i].0, active) {
+            if let Some(from) = op_row(ui, sh, doc, i, w, &names, &mut acts, gen.and_then(|g| g.minutes.get(i)).copied().unwrap_or(0.0), old, &used[i].0, active) {
                 // a row dropped on a row: into that row's folder
                 if let (Head::Folder(f), true) = (head, from != i) {
                     acts.push(TpAct::Group(from, f.clone()));
@@ -822,7 +826,7 @@ fn group_ops(doc: &gcarve_core::document::Document, key: impl Fn(&gcarve_core::d
 /// and its folder. Returns the toolpath dragged onto it, if one was dropped here. `used`: vectors it cuts on each
 /// sheet; `active`: the sheet on screen (rows with nothing there are greyed).
 #[allow(clippy::too_many_arguments)]
-fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Document, i: usize, w: f32, groups: &[String], acts: &mut Vec<TpAct>, minutes: f64, used: &[usize], active: usize) -> Option<usize> {
+fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Document, i: usize, w: f32, groups: &[String], acts: &mut Vec<TpAct>, minutes: f64, old: bool, used: &[usize], active: usize) -> Option<usize> {
     let op = &doc.ops[i];
     let k = shell::kind_index(op.kind);
     let col = kind_color(op.kind);
@@ -847,7 +851,8 @@ fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Docume
     if minutes > 0.0 {
         // rough cutting time, right-aligned on the name line
         let t = if minutes < 1.0 { "<1 min".to_string() } else if minutes < 90.0 { format!("{minutes:.0} min") } else { format!("{:.1} h", minutes / 60.0) };
-        let g = p.layout_no_wrap(t, theme::font(11.0), tc.gamma_multiply(0.6));
+        // from before the last edit: faded until the toolpaths are worked out again
+        let g = p.layout_no_wrap(t, theme::font(11.0), tc.gamma_multiply(if old { 0.3 } else { 0.6 }));
         let at = egui::pos2(rect.right() - 34.0 - g.size().x, rect.top() + 5.0);
         p.rect_filled(egui::Rect::from_min_size(at - egui::vec2(6.0, 1.0), g.size() + egui::vec2(6.0, 2.0)), 0.0, if on { theme::ACCENT } else if resp.hovered() { theme::ROW_HOVER } else { theme::PANEL });
         p.galley(at, g, tc);

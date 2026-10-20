@@ -118,7 +118,7 @@ impl ReliefDialog {
             hint(ui, "The model's XY footprint is stretched to the width and height; its height range maps to the depth. Use a ball-nose bit for finishing and an end mill for roughing.");
         });
         if import {
-            host.files.pick_into(ctx, "3D models (.stl)", &["stl"], "stl");
+            host.files.pick_into(ctx, "3D models (.stl .3mf)", &["stl", "3mf"], "stl");
         }
         if (apply || mirror.is_some()) && have {
             let doc = &mut host.canvas.doc;
@@ -181,7 +181,7 @@ pub fn import_file(name: &str, bytes: &[u8], host: &mut Host) {
         Ok(t) => t,
         Err(e) => {
             host.cloud.report("stl", &crate::files::scrub(&e, name));
-            *host.message = format!("Cannot load STL: {e}");
+            *host.message = format!("Cannot load the 3D model: {e}");
             return;
         }
     };

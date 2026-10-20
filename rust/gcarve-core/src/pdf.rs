@@ -213,8 +213,26 @@ impl Reader<'_> {
                     }
                     nums.clear();
                 }
+                // PostScript procedures (EPS prologs): skipped whole, never run
+                b'{' => {
+                    let mut level = 0;
+                    while i < s.len() {
+                        match s[i] {
+                            b'{' => level += 1,
+                            b'}' => level -= 1,
+                            _ => {}
+                        }
+                        i += 1;
+                        if level == 0 {
+                            break;
+                        }
+                    }
+                    nums.clear();
+                }
+                // array brackets keep their numbers (EPS `[1 0 0 1 0 0] concat`)
+                b'[' | b']' => i += 1,
                 // (a stray ')' too: it is a delimiter, so the token branch below would never move past it)
-                b')' | b'<' | b'>' | b'[' | b']' | b'{' | b'}' => {
+                b')' | b'<' | b'>' | b'}' => {
                     i += 1;
                     nums.clear();
                 }
@@ -250,8 +268,24 @@ impl Reader<'_> {
                             }
                         }
                     };
+                    // EPS: PostScript's names (and Illustrator's / Affinity's short ones) for the same operators
+                    let tok: &[u8] = match tok {
+                        b"moveto" | b"mo" => b"m",
+                        b"lineto" | b"li" => b"l",
+                        b"curveto" | b"cv" => b"c",
+                        b"closepath" | b"cp" => b"h",
+                        b"stroke" | b"@" => b"S",
+                        b"fill" | b"eofill" | b"ef" => b"f",
+                        b"gsave" | b"pgsv" => b"q",
+                        b"grestore" | b"pgrs" => b"Q",
+                        b"newpath" | b"np" | b"clip" | b"eoclip" | b"clp" => b"n",
+                        b"concat" | b"ct" => b"cm",
+                        t => t,
+                    };
                     match tok {
                         b"BT" => in_text = true,
+                        b"translate" if n >= 2 => ctm = ctm.then(&Affine { a: 1.0, d: 1.0, e: nums[n - 2], f: nums[n - 1], ..Default::default() }),
+                        b"scale" if n >= 2 => ctm = ctm.then(&Affine { a: nums[n - 2], d: nums[n - 1], ..Default::default() }),
                         b"ET" => in_text = false,
                         _ if in_text => {}
                         b"q" => stack.push(ctm),
@@ -379,12 +413,57 @@ pub fn import_pdf(bytes: &[u8]) -> ImportResult {
             rd.content(s, identity, &HashMap::new(), 0);
         }
     }
-    let mut paths = rd.out;
+    finish(rd.out, if find(bytes, 0, b"/Encrypt").is_some() { "The PDF is password-protected." } else { "No vector paths found (the file may hold only pictures or live text: convert text to outlines and save again)." })
+}
+
+/// EPS (Illustrator, Affinity, CorelDRAW exports; the DOS-binary kind with a preview picture too): the page's
+/// PostScript read with the PDF content reader, which knows PostScript's operator names.
+///
+/// ponytail: no PostScript interpreter, so artwork drawn by procedures the file defines itself (old Illustrator 3
+/// files, some CorelDRAW ones) or shown with `show` / images is not read: save as PDF or SVG for those.
+pub fn import_eps(bytes: &[u8]) -> ImportResult {
+    // DOS EPS binary header: C5 D0 D3 C6, PostScript offset, length
+    let ps = if bytes.starts_with(&[0xC5, 0xD0, 0xD3, 0xC6]) && bytes.len() >= 12 {
+        let at = |k: usize| u32::from_le_bytes(bytes[k..k + 4].try_into().unwrap()) as usize;
+        bytes.get(at(4)..at(4).saturating_add(at(8)).min(bytes.len())).unwrap_or_default()
+    } else {
+        bytes
+    };
+    if !ps.starts_with(b"%!PS") {
+        return ImportResult { note: "This isn't an EPS file.".into(), ..Default::default() };
+    }
+    // the page: after the prolog / setup, before the trailer and Illustrator's private copy (the same drawing again)
+    let start = [&b"%%EndSetup"[..], b"%%EndProlog"].iter().filter_map(|k| find(ps, 0, k)).max().unwrap_or(0);
+    let end = [&b"%%PageTrailer"[..], b"%%Trailer", b"%AI9_PrivateDataBegin"].iter().filter_map(|k| find(ps, start, k)).min().unwrap_or(ps.len());
+    // XMP metadata (base64 thumbnails could read as operators) cut out
+    let mut body = Vec::with_capacity(end - start);
+    let mut i = start;
+    while i < end {
+        match find(&ps[..end], i, b"<?xpacket begin") {
+            Some(a) => {
+                body.extend_from_slice(&ps[i..a]);
+                i = find(&ps[..end], a, b"<?xpacket end").map_or(end, |e| e + 13);
+            }
+            None => {
+                body.extend_from_slice(&ps[i..end]);
+                i = end;
+            }
+        }
+    }
+    let objs = HashMap::new();
+    let mut rd = Reader { objs: &objs, any: HashMap::new(), out: Vec::new() };
+    rd.content(&body, Affine { a: 1.0, d: 1.0, ..Default::default() }, &HashMap::new(), 0);
+    finish(rd.out, "No vector paths found (the file may hold only pictures or live text, or draw with its own procedures: save as PDF or SVG and open that).")
+}
+
+/// Painted paths (points) → the import: duplicates dropped, inches, artwork's corner at 0, 0.
+fn finish(mut paths: Vec<Contour>, empty: &str) -> ImportResult {
+    let mut r = ImportResult::default();
     // identical paths drawn twice (fill, then stroke) count once
     let mut seen = std::collections::HashSet::new();
     paths.retain(|c| seen.insert(c.nodes.iter().flat_map(|n| [(n.p.x * 100.0).round() as i64, (n.p.y * 100.0).round() as i64]).chain([i64::from(c.closed)]).collect::<Vec<_>>()));
     if paths.is_empty() {
-        r.note = if find(bytes, 0, b"/Encrypt").is_some() { "The PDF is password-protected.".into() } else { "No vector paths found (the file may hold only pictures or live text: convert text to outlines and save again).".into() };
+        r.note = empty.into();
         return r;
     }
     let mut bb = Rect::default();
@@ -497,11 +576,33 @@ mod survey {
     #[ignore]
     fn pdf_file() {
         let path = std::env::var("GCARVE_PDF").expect("GCARVE_PDF");
-        let r = super::import_pdf(&std::fs::read(&path).unwrap());
+        let bytes = std::fs::read(&path).unwrap();
+        let r = if path.to_ascii_lowercase().ends_with(".eps") { super::import_eps(&bytes) } else { super::import_pdf(&bytes) };
         println!("{}: {} paths; {}", path, r.contours.len(), r.note);
         for c in r.contours.iter().take(12) {
             let b = crate::geom::bounds(c);
             println!("  {} nodes {} x {:.3}..{:.3} y {:.3}..{:.3}", c.nodes.len(), if c.closed { "closed" } else { "open" }, b.x0, b.x1, b.y0, b.y1);
         }
+    }
+
+    #[test]
+    fn eps_reads_illustrator_and_postscript_names_and_skips_the_rest() {
+        // Illustrator's short names under a flip, PostScript's long ones, a clip, a procedure in the prolog, an XMP
+        // packet whose text looks like operators, and the private copy after the trailer: two shapes only
+        let eps = b"%!PS-Adobe-3.0 EPSF-3.0\n/x { 0 0 moveto 9 9 lineto stroke } def\n%%EndProlog\n<?xpacket begin=''?> 1 2 moveto 3 4 lineto stroke <?xpacket end='w'?>\n\
+1 -1 scale 0 -144 translate\npgsv [1 0 0 1 0 0 ]ct\n0 0 mo 0 144 li 144 144 li cp clp\n0 0 mo 72 0 li 72 72 li 0 72 li cp f\npgrs\n\
+newpath 100 100 moveto 172 100 lineto 136 136 72 100 100 100 curveto closepath eofill\n%%Trailer\n%AI9_PrivateDataBegin\n0 0 m 5 5 l S\n";
+        let r = super::import_eps(eps);
+        assert_eq!(r.contours.len(), 2, "{}", r.note);
+        // the square, flipped: 1 in, top at the artwork's top
+        let b = crate::geom::bounds(&r.contours[0]);
+        assert!((b.w() - 1.0).abs() < 1e-9 && (b.h() - 1.0).abs() < 1e-9 && r.contours[0].closed);
+        // DOS binary header around the same PostScript
+        let mut dos = vec![0xC5, 0xD0, 0xD3, 0xC6];
+        dos.extend(30u32.to_le_bytes());
+        dos.extend((eps.len() as u32).to_le_bytes());
+        dos.resize(30, 0);
+        dos.extend_from_slice(eps);
+        assert_eq!(super::import_eps(&dos).contours.len(), 2);
     }
 }
