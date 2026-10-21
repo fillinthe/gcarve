@@ -139,7 +139,7 @@ pub struct App {
     palette: Palette,
     /// web: `?open=<project id>` in the address (GSketch's Send to GCarve): opened once the session is known
     open_at_start: Option<String>,
-    /// /app/?share=1 (the "Share your project" button on gcarve.app/projects): sign in, pick a project, then the
+    /// /app/?share=1 (the "Share your project" button on gworkshop.app/projects): sign in, pick a project, then the
     /// Share to Community box (steps below, 0 = off)
     share_start: u8,
     title: String,               // last window title sent
@@ -965,7 +965,7 @@ impl App {
             }
             ("spacemouse", _) => crate::spacemouse::connect(true),
             ("makeit", _) => self.cam.make_it = Some(dialogs::community::MakeIt::new(&self.canvas.doc, &self.name)),
-            ("community", _) => ctx.open_url(egui::OpenUrl::new_tab("https://gcarve.app/projects/")),
+            ("community", _) => ctx.open_url(egui::OpenUrl::new_tab("https://gworkshop.app/projects/")),
             ("communityshare", _) => {
                 if self.cloud.signed_in() {
                     self.cam.share = Some(dialogs::community::ShareDialog::new(&self.canvas.doc, &self.name));
@@ -1436,7 +1436,7 @@ impl eframe::App for App {
                         self.name = title.clone();
                         let reasons = dialogs::community::differences_here(&self.canvas.doc);
                         self.cam.make_it = Some(dialogs::community::MakeIt::new(&self.canvas.doc, &title).with_reasons(reasons));
-                        self.message = format!("Opened “{title}” from gcarve.app/projects/{slug}/");
+                        self.message = format!("Opened “{title}” from gworkshop.app/projects/{slug}/");
                         self.cloud.event_detail("community_open", &slug);
                     }
                     Err(e) => {

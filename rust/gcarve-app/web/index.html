@@ -53,11 +53,18 @@ window.addEventListener("beforeunload", e => { if (window.gcarveDirty || window.
 </svg><b>GCarve</b><div class="bar"><i></i></div></div>
 <script>// when the site needs an account for the web app, signed-out visitors go to the sign-in page first instead of
 // seeing the app under a sign-in box; any failure (offline, local smoke test) lets the app start, which still asks itself
+// One account for every app, signed in at gworkshop.app: not signed in here, ask it once, silently (it sends us
+// straight back with ?sso=0 when nobody is signed in there either). Never on a local or smoke run.
 window.gcGate = (async () => {
   try {
+    const me = await fetch("/api/auth/me", { credentials: "same-origin" });
+    const q = new URLSearchParams(location.search);
+    if (me.status === 401 && location.hostname === "gcarve.app" && !q.has("sso") && !q.has("smoke")) {
+      location.replace("/api/auth/handoff?to=https://gcarve.app&silent=1&next=" + encodeURIComponent(location.pathname + location.search));
+      await new Promise(() => {});
+    }
     const c = await fetch("/api/config", { credentials: "same-origin" });
     if (!c.ok || !(await c.json()).requireSignin) return;
-    const me = await fetch("/api/auth/me", { credentials: "same-origin" });
     if (me.status !== 401) return;
     location.replace("/signin/?next=" + encodeURIComponent(location.pathname + location.search));
     await new Promise(() => {}); // never start the app

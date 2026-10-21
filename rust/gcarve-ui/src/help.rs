@@ -77,6 +77,11 @@ pub fn available() -> Option<(String, String)> {
     NEWEST.lock().ok()?.clone().filter(|(v, _)| parse(v) > parse(version()))
 }
 
+/// Dev / screenshots: behave as if `v` (at `url`) were the newest release.
+pub fn pretend_newest(v: &str, url: &str) {
+    *NEWEST.lock().unwrap() = Some((v.to_string(), url.to_string()));
+}
+
 /// Ask GitHub for the newest release (desktop only); repaints when the answer lands. Cheap to call again ("Check again").
 pub fn check(ctx: &egui::Context) {
     #[cfg(not(target_arch = "wasm32"))]

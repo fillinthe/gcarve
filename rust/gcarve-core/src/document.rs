@@ -1016,6 +1016,17 @@ impl Document {
         ids.iter().filter_map(|&id| self.find(id)).map(|s| s.c.clone()).collect()
     }
 
+    /// A toolpath whose vectors on the active sheet all sit on hidden layers (or whose layer is hidden) is hidden
+    /// with them in the previews; export is not affected.
+    pub fn op_hidden_by_layers(&self, op: &Op) -> bool {
+        let hidden = |l: i32| usize::try_from(l).ok().and_then(|i| self.layers.get(i)).is_some_and(|l| !l.visible);
+        if op.layer_scope >= 0 && hidden(op.layer_scope) {
+            return true;
+        }
+        let ids = self.op_shape_ids(op);
+        !ids.is_empty() && ids.iter().all(|&id| self.find(id).is_some_and(|s| hidden(s.layer)))
+    }
+
     /// Resolves layer/group scope, else op.shape_ids; only shapes on the active sheet.
     pub fn op_shape_ids(&self, op: &Op) -> Vec<i32> {
         self.op_shape_ids_on(op, self.active_sheet)
@@ -1164,6 +1175,23 @@ mod tests {
         d.add(make_rect(0.0, 0.0, 2.0, 2.0), None);
         assert!(d.shapes.len() == 2 && d.undo() && d.shapes.len() == 1 && d.redo() && d.shapes.len() == 2);
         assert!(!d.redo() && d.can_undo());
+    }
+
+    #[test]
+    fn hiding_a_layer_hides_the_toolpaths_that_cut_only_its_vectors() {
+        let mut d = Document::default();
+        d.layers.push(Layer { name: "Cut".into(), visible: true, ..d.layers[0].clone() });
+        let a = d.add(make_rect(0.0, 0.0, 1.0, 1.0), None);
+        let b = d.add(make_rect(2.0, 0.0, 1.0, 1.0), None);
+        d.find_mut(b).unwrap().layer = 1;
+        let only_b = Op { shape_ids: vec![b], ..Default::default() };
+        let both = Op { shape_ids: vec![a, b], ..Default::default() };
+        let layer = Op { layer_scope: 1, ..Default::default() };
+        assert!(!d.op_hidden_by_layers(&only_b) && !d.op_hidden_by_layers(&layer));
+        d.layers[1].visible = false;
+        assert!(d.op_hidden_by_layers(&only_b) && d.op_hidden_by_layers(&layer));
+        assert!(!d.op_hidden_by_layers(&both)); // still cuts a visible vector
+        assert!(!d.op_hidden_by_layers(&Op::default())); // nothing picked: nothing to hide it by
     }
 
     #[test]
