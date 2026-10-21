@@ -94,7 +94,7 @@ impl Bands {
         let mut last_bucket = usize::MAX;
         // a new toolpath being set up in its dialog comes last, with no op in the document yet
         for (i, paths) in gen.paths.iter().enumerate() {
-            let (visible, op_tool) = doc.ops.get(i).map_or((true, gen.draft_tool), |op| (op.visible, op.tool));
+            let (visible, op_tool) = doc.ops.get(i).map_or((true, gen.draft_tool), |op| (op.visible && !doc.op_hidden_by_layers(op), op.tool));
             if !visible || only.is_some_and(|o| !o.get(i).copied().unwrap_or(false)) {
                 continue;
             }

@@ -677,3 +677,27 @@ impl TipExt for Response {
         self.on_disabled_hover_ui(|ui| tip_ui(ui, text))
     }
 }
+
+const SHAPE_TILE: f32 = 86.0;
+
+/// A shapes-library thumbnail: the outlines fitted in an 86 px square, the name under them (GCarve's Shapes
+/// dialog, GBurn's Shapes Library).
+pub fn shape_tile(ui: &mut egui::Ui, cs: &[gcarve_core::geom::Contour], name: &str, tip: &str) -> egui::Response {
+    let (rect, resp) = ui.allocate_exact_size(egui::vec2(SHAPE_TILE, SHAPE_TILE + 26.0), egui::Sense::click());
+    let hovered = resp.hovered();
+    let p = ui.painter_at(rect);
+    p.rect(rect.shrink(1.0), 6.0, if hovered { ROW_HOVER } else { FIELD }, Stroke::new(1.0, if hovered { ACCENT } else { BORDER }), egui::StrokeKind::Inside);
+    let area = egui::Rect::from_min_size(rect.min + egui::vec2(12.0, 10.0), egui::vec2(SHAPE_TILE - 24.0, SHAPE_TILE - 24.0));
+    let b = gcarve_core::clipart::bounds_all(cs);
+    if !b.is_empty() {
+        let k = (area.width() as f64 / b.w().max(1e-9)).min(area.height() as f64 / b.h().max(1e-9));
+        let off = egui::vec2(((area.width() as f64 - b.w() * k) / 2.0) as f32, ((area.height() as f64 - b.h() * k) / 2.0) as f32);
+        for c in cs {
+            let pts: Vec<egui::Pos2> = gcarve_core::geom::flatten(c, b.w().max(b.h()) / 200.0).iter().map(|q| area.left_bottom() + off * egui::vec2(1.0, -1.0) + egui::vec2(((q.x - b.x0) * k) as f32, -((q.y - b.y0) * k) as f32)).collect();
+            p.add(if c.closed { egui::Shape::closed_line(pts, Stroke::new(1.3, Color32::from_rgb(0x6c, 0xb6, 0xff))) } else { egui::Shape::line(pts, Stroke::new(1.3, Color32::from_rgb(0x6c, 0xb6, 0xff))) });
+        }
+    }
+    let g = p.layout(name.to_string(), font(11.0), TEXT, SHAPE_TILE - 6.0);
+    p.galley(egui::pos2(rect.center().x - g.size().x / 2.0, rect.bottom() - 32.0), g, TEXT); // up to two lines
+    resp.tip(tip)
+}

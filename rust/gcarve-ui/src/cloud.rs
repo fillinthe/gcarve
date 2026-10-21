@@ -262,6 +262,7 @@ impl Cloud {
         req.headers.insert("Content-Type", "application/json");
         if !self.token.is_empty() {
             req.headers.insert("Authorization", format!("Bearer {}", self.token));
+            req.headers.insert("X-App", crate::store::app()); // desktop apps share one server address: say which app this is
         }
         #[cfg(target_arch = "wasm32")]
         {

@@ -61,7 +61,7 @@ impl Files {
         }
         #[cfg(target_arch = "wasm32")]
         {
-            let exts: &[&str] = if import { &["svg", "dxf", "dwg", "pdf", "ai", "eps", "lbrn2", "gsk", "stl", "3mf", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg"] } else { &["tlp", "crv", "svg", "dxf", "dwg", "pdf", "ai", "eps", "lbrn2", "gsk", "stl", "3mf", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg"] };
+            let exts: &[&str] = if import { IMPORT_EXTS } else { OPEN_EXTS };
             let tx = self.tx.clone();
             web_pick(exts, ctx.clone(), self.msg_tx.clone(), move |name, bytes| {
                 let _ = tx.send(Picked { name, bytes, path: None, import });
@@ -70,9 +70,9 @@ impl Files {
         }
         #[cfg_attr(target_arch = "wasm32", allow(unreachable_code))]
         let dialog = if import {
-            rfd::AsyncFileDialog::new().set_title("Import into this document").add_filter("All supported", &["svg", "dxf", "dwg", "pdf", "ai", "eps", "lbrn2", "gsk", "stl", "3mf", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg"]).add_filter("Vector files", &["svg", "dxf", "dwg", "pdf", "ai", "eps"]).add_filter("LightBurn project", &["lbrn2"]).add_filter("GSketch model", &["gsk"]).add_filter("G-code", GCODE_EXTS).add_filter("Images to trace", IMAGE_EXTS).add_filter("3D models", &["stl", "3mf"])
+            rfd::AsyncFileDialog::new().set_title("Import into this document").add_filter("All supported", IMPORT_EXTS).add_filter("Vector files", VECTOR_EXTS).add_filter("LightBurn project", &["lbrn2"]).add_filter("GSketch model", &["gsk"]).add_filter("G-code", GCODE_EXTS).add_filter("Images to trace", IMAGE_EXTS).add_filter("3D models", &["stl", "3mf"])
         } else {
-            rfd::AsyncFileDialog::new().add_filter("All supported", &["tlp", "crv", "svg", "dxf", "dwg", "pdf", "ai", "eps", "lbrn2", "gsk", "stl", "3mf", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg"]).add_filter("GCarve project", &["tlp"]).add_filter("VCarve project", &["crv"]).add_filter("GSketch model", &["gsk"]).add_filter("Vector files", &["svg", "dxf", "dwg", "pdf", "ai", "eps"]).add_filter("LightBurn project", &["lbrn2"]).add_filter("G-code", GCODE_EXTS)
+            rfd::AsyncFileDialog::new().add_filter("All supported", OPEN_EXTS).add_filter("GCarve project", &["tlp"]).add_filter("VCarve project", &["crv"]).add_filter("GSketch model", &["gsk"]).add_filter("Vector files", VECTOR_EXTS).add_filter("LightBurn project", &["lbrn2"]).add_filter("G-code", GCODE_EXTS)
         };
         let tx = self.tx.clone();
         let ctx = ctx.clone();
@@ -364,6 +364,11 @@ pub fn save_many(files: Vec<(String, Vec<u8>)>, done: Sender<String>) {
 
 /// G-code file extensions File ▸ Open / Import read (dialogs/gimport.rs).
 pub const GCODE_EXTS: &[&str] = &["tap", "nc", "gcode", "ngc", "cnc"];
+/// drawings read as vectors (the "Vector files" filter)
+pub const VECTOR_EXTS: &[&str] = &["svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl"];
+/// what Import takes (everything Open does but whole projects), and Open
+pub const IMPORT_EXTS: &[&str] = &["svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl", "lbrn2", "gsk", "stl", "3mf", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg"];
+pub const OPEN_EXTS: &[&str] = &["tlp", "crv", "svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl", "lbrn2", "gsk", "stl", "3mf", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg"];
 /// Pictures File ▸ Open / Import send to Trace Image (dialogs/trace.rs).
 pub const IMAGE_EXTS: &[&str] = &["png", "jpg", "jpeg"];
 
@@ -467,12 +472,13 @@ pub fn load(doc: &mut Document, name: &str, bytes: &[u8]) -> Loaded {
             Ok((d, note)) => Loaded::Project(Box::new(d), note),
             Err(e) => Loaded::Error(e),
         },
-        "svg" | "dxf" | "pdf" | "ai" | "eps" | "lbrn2" => {
+        "svg" | "dxf" | "pdf" | "ai" | "eps" | "lbrn2" | "plt" | "hpgl" => {
             let mut r = match ext.as_str() {
                 "svg" => svg::import_svg_with_text(&text),
                 "dxf" => dxf::import_dxf_with_text(&text),
                 "eps" => gcarve_core::pdf::import_eps(bytes),
                 "lbrn2" => gcarve_core::lbrn::import_lbrn(&text),
+                "plt" | "hpgl" => gcarve_core::hpgl::import_hpgl(&text),
                 _ => gcarve_core::pdf::import_pdf(bytes), // .ai files carry a PDF copy of the artwork
             };
             if ext != name.rsplit('.').next().unwrap_or("").to_ascii_lowercase() {
@@ -502,7 +508,7 @@ pub fn load(doc: &mut Document, name: &str, bytes: &[u8]) -> Loaded {
         "step" | "stp" | "sldprt" | "sldasm" | "iges" | "igs" | "f3d" | "ipt" | "3dm" => Loaded::Error(format!(
             "GCarve can't read .{ext} (3D CAD) files. In your CAD program export the outline you want to cut as DXF, DWG or SVG (or the shape as STL) and open that."
         )),
-        _ => Loaded::Error(format!("GCarve can't open .{ext} files. It opens GCarve projects (.tlp), VCarve projects (.crv), SVG, DXF, AutoCAD DWG, PDF, Illustrator (.ai) and EPS, LightBurn (.lbrn2), 3D models (.stl .3mf), G-code (.tap .nc .gcode) and pictures (PNG, JPEG) to trace.")),
+        _ => Loaded::Error(format!("GCarve can't open .{ext} files. It opens GCarve projects (.tlp), VCarve projects (.crv), SVG, DXF, AutoCAD DWG, PDF, Illustrator (.ai) and EPS, HPGL plot files (.plt), LightBurn (.lbrn2), 3D models (.stl .3mf), G-code (.tap .nc .gcode) and pictures (PNG, JPEG) to trace.")),
     }
 }
 
@@ -704,5 +710,20 @@ mod gsk_tests {
         assert!(matches!(load(&mut Document::default(), "x.gsk", br#"{"app":"Other"}"#), Loaded::Error(_)));
         assert!(matches!(load(&mut Document::default(), "x.gsk", br#"{"app":"GSketch","mesh":{}}"#), Loaded::Error(_)));
         assert!(matches!(load(&mut Document::default(), "x.gsk", b"\xff\xfe junk"), Loaded::Error(_)));
+    }
+
+    #[test]
+    fn a_plot_file_opens_one_layer_per_pen() {
+        // pen 1: a 1 x 1 in square (40 units a mm), pen 2: an open line; .PLT in capitals like CorelDRAW writes it
+        let plt = b"IN;SP1;PU0,0;PD1016,0,1016,1016,0,1016,0,0;SP2;PU2032,0;PD3048,0;";
+        let mut doc = Document::default();
+        assert!(matches!(load(&mut doc, "SIGN.PLT", plt), Loaded::Imported(2, _)));
+        let layer = |name: &str| doc.layers.iter().position(|l| l.name == name).map(|i| i as i32).expect(name);
+        let (p1, p2) = (layer("Pen 1"), layer("Pen 2"));
+        let sq = doc.shapes.iter().find(|s| s.layer == p1).expect("square");
+        let r = gcarve_core::geom::bounds(&sq.c);
+        assert!(sq.c.closed && (r.w() - 1.0).abs() < 1e-6 && (r.h() - 1.0).abs() < 1e-6);
+        assert!(doc.shapes.iter().any(|s| s.layer == p2 && !s.c.closed));
+        assert!(OPEN_EXTS.contains(&"plt") && IMPORT_EXTS.contains(&"hpgl"));
     }
 }

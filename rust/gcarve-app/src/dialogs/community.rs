@@ -1,4 +1,4 @@
-//! Community projects (gcarve.app/projects/, server community.go). Make It: the step after opening someone's
+//! Community projects (gworkshop.app/projects/, server community.go). Make It: the step after opening someone's
 //! project, so it cuts on this machine (machine and post, bits from the own library, board thickness). Share to
 //! Community (File menu): the project, a picture of the simulated cut, photos, the vectors as SVG / DXF and the
 //! facts the project page shows; it waits for review before it is public.
@@ -388,7 +388,7 @@ impl ShareDialog {
                 }
                 return;
             }
-            ui.label(RichText::new("Share this project on gcarve.app/projects so others can open it, pick their machine and bits, and cut it. It is checked by us before it appears.").color(crate::theme::TEXT_DIM));
+            ui.label(RichText::new("Share this project on gworkshop.app/projects so others can open it, pick their machine and bits, and cut it. It is checked by us before it appears.").color(crate::theme::TEXT_DIM));
             ui.add_space(6.0);
             if !host.cloud.signed_in() {
                 ui.label(RichText::new("Sign in first (Help › Account): shared projects carry your chosen name, never your email.").color(crate::theme::ORANGE));
@@ -555,7 +555,7 @@ mod tests {
     }
 }
 
-/// The starter projects GCarve publishes on gcarve.app/projects (made here so they stay correct as the engine changes):
+/// The starter projects GCarve publishes on gworkshop.app/projects (made here so they stay correct as the engine changes):
 /// `GCARVE_SEED_OUT=dir cargo test -p gcarve-app community_seeds -- --ignored` writes one POST /api/community body
 /// per project; the server's `gcarve-api community-seed <email> <file>` publishes it.
 #[cfg(test)]
