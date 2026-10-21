@@ -1238,6 +1238,9 @@ impl eframe::App for App {
         let ctx = ui.ctx().clone();
         self.frame += 1;
         self.canvas.bottom_inset = if self.mode == Mode::Simulate { 56.0 } else { 0.0 };
+        if crate::mouse::take_prefs_request() {
+            self.cam.prefs_open = true; // the 3D view's Mouse menu › Fine-tune…
+        }
         #[cfg(target_arch = "wasm32")]
         self.smoke_test(&ctx);
         // anonymous usage counts: the app was opened; a first toolpath was added (the toolpath dialog closed with one more)

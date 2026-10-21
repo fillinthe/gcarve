@@ -441,11 +441,24 @@ impl Canvas {
             bp.tex = Some(ui.ctx().load_texture("board-photo", egui::ColorImage::from_rgba_unmultiplied([bp.w, bp.h], &bp.rgba), egui::TextureOptions::LINEAR));
         }
 
-        // pan (right/middle drag or space+drag) and zoom (wheel / pinch) around the cursor
+        // pan / zoom: a middle or right drag does what Preferences › Mouse says (orbit has no meaning in 2D: it pans),
+        // space+drag pans, the wheel / pinch zooms round the cursor
         let view = self.view.as_mut().unwrap();
-        let space = ui.input(|i| i.key_down(egui::Key::Space));
-        if resp.dragged_by(egui::PointerButton::Secondary) || resp.dragged_by(egui::PointerButton::Middle) || (space && resp.dragged()) {
-            view.origin += resp.drag_delta();
+        let mouse = crate::mouse::get();
+        let (space, shift, ctrl) = ui.input(|i| (i.key_down(egui::Key::Space), i.modifiers.shift, i.modifiers.ctrl || i.modifiers.command));
+        let button = [egui::PointerButton::Middle, egui::PointerButton::Secondary].into_iter().find(|b| resp.dragged_by(*b));
+        match button.map(|b| mouse.drag(b, shift, ctrl)) {
+            Some(gcarve_ui::nav::Act::Zoom) => {
+                if let Some(at) = resp.interact_pointer_pos() {
+                    let k = (-resp.drag_delta().y * 0.01 * if mouse.wheel_reverse { -1.0 } else { 1.0 } * mouse.zoom_speed).exp(); // up = closer
+                    let new_zoom = (view.zoom * k).clamp(0.5, 5000.0);
+                    view.origin = at + (view.origin - at) * (new_zoom / view.zoom);
+                    view.zoom = new_zoom;
+                }
+            }
+            Some(_) => view.origin += resp.drag_delta(),
+            None if space && resp.dragged() => view.origin += resp.drag_delta(),
+            None => {}
         }
         self.touching = ui.input(|i| i.any_touches());
         // touch screens: two fingers pan (and pinch zooms below); one finger on empty space pans too (`touch_pan`)
@@ -457,7 +470,7 @@ impl Canvas {
         if resp.hovered() {
             let (scroll, zoom_delta, hover) = ui.input(|i| (i.smooth_scroll_delta, i.zoom_delta(), i.pointer.hover_pos()));
             if let Some(h) = hover {
-                let factor = zoom_delta * (scroll.y * 0.0015).exp();
+                let factor = zoom_delta * (scroll.y * 0.0015 * if mouse.wheel_reverse { -1.0 } else { 1.0 } * mouse.zoom_speed).exp();
                 if (factor - 1.0).abs() > 1e-4 {
                     let new_zoom = (view.zoom * factor).clamp(0.5, 5000.0);
                     let k = new_zoom / view.zoom;

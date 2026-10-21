@@ -261,6 +261,63 @@ pub fn snap_grid_ui(ui: &mut egui::Ui, s: &mut Synced, doc: &gcarve_core::docume
     checkbox(ui, &mut s.grid.rulers, "Rulers");
 }
 
+/// Preferences › Mouse: a style to start from, then every button / modifier cell, the wheel and the speeds
+/// (`crate::mouse`, used by the drawing and the 3D view)
+fn mouse_ui(ui: &mut egui::Ui) {
+    use gcarve_ui::nav::{Act, MouseMap, Nav, ACTS, BUTTONS};
+    let mut m = crate::mouse::get();
+    let custom = m.label() == "Custom";
+    ui.horizontal(|ui| {
+        ui.label("Style");
+        crate::widgets::combo_box("mouse.style").selected_text(m.label()).width(170.0).show_ui(ui, |ui| {
+            for (nav, _, label, _) in Nav::ALL {
+                if ui.selectable_label(!custom && m.base == Some(nav), label).clicked() {
+                    m = MouseMap { wheel_reverse: m.wheel_reverse, zoom_speed: m.zoom_speed, orbit_speed: m.orbit_speed, ..MouseMap::from_nav(nav) };
+                }
+            }
+            if custom {
+                let _ = ui.selectable_label(true, "Custom");
+            }
+        });
+        ui.label(RichText::new("pick one, then change any cell below").size(11.0).color(crate::theme::TEXT.gamma_multiply(0.6)));
+    });
+    egui::Grid::new("mouse.grid").num_columns(4).spacing([10.0, 6.0]).show(ui, |ui| {
+        ui.label("");
+        for h in ["Drag", "⇧ + drag", "⌘ + drag"] {
+            ui.label(RichText::new(crate::theme::keys(h)).size(12.0).color(crate::theme::TEXT_DIM));
+        }
+        ui.end_row();
+        for (r, (_, name)) in BUTTONS.iter().enumerate() {
+            ui.label(format!("{name} button"));
+            for c in 0..3 {
+                super::combo(ui, &format!("mouse.{r}.{c}"), &mut m.drags[r][c], &ACTS, 90.0);
+            }
+            ui.end_row();
+        }
+        ui.label("Trackpad swipe");
+        super::combo(ui, "mouse.swipe", &mut m.swipe, &[(Act::Orbit, "Orbit"), (Act::Pan, "Pan")], 90.0);
+        ui.label(RichText::new(crate::theme::keys("⇧ swaps them")).size(11.0).color(crate::theme::TEXT_DIM));
+        ui.end_row();
+    });
+    for (label, v) in [("Zoom speed", &mut m.zoom_speed), ("Orbit speed", &mut m.orbit_speed)] {
+        ui.horizontal(|ui| {
+            ui.add_sized([96.0, 20.0], egui::Label::new(label));
+            ui.spacing_mut().slider_width = 180.0;
+            ui.add(egui::Slider::new(v, 0.25..=4.0).logarithmic(true).fixed_decimals(2).suffix("×"));
+        });
+    }
+    ui.horizontal(|ui| {
+        crate::widgets::checkbox(ui, &mut m.wheel_reverse, "Reverse wheel zoom");
+        if ui.add(crate::widgets::Button::new("Reset mouse").flat()).clicked() {
+            m = MouseMap::from_nav(m.base.unwrap_or(Nav::Fusion));
+        }
+    });
+    ui.allocate_ui(egui::vec2(420.0, 30.0), |ui| {
+        ui.add(egui::Label::new(RichText::new("The 3D view uses every cell. In the drawing the left button stays with the tool you're using, and an orbit drag pans (there is nothing to orbit in 2D).").size(11.0).color(crate::theme::TEXT.gamma_multiply(0.6))).wrap())
+    });
+    crate::mouse::set(m);
+}
+
 impl Prefs {
     pub fn load() -> Self {
         crate::store::load(KEY).and_then(|t| serde_json::from_str(&t).ok()).unwrap_or_default()
@@ -335,6 +392,8 @@ impl Prefs {
             if crate::widgets::right(ui, 140.0, |ui| ui.add(crate::widgets::Button::new("Reset to defaults").flat().min_width(140.0))).clicked() {
                 *self = Prefs { start_card: self.start_card, synced: self.synced.clone(), ..Prefs::default() };
             }
+            section(ui, "Mouse");
+            mouse_ui(ui);
             section(ui, "New documents");
             note(ui, "Used by every new tab; opened files keep their own board. Synced to your GCarve account when signed in.");
             let doc = &host.canvas.doc;
