@@ -154,9 +154,6 @@ pub struct View3d {
     wheel: gcarve_ui::nav::WheelKind,
     /// perspective camera (fov 35°) instead of orthographic; remembered in the store (`PERSPECTIVE_KEY`)
     pub perspective: bool,
-    pub nav: Nav,
-    /// wheel / zoom-drag direction turned round (`ZOOM_REV_KEY`)
-    pub zoom_reverse: bool,
     /// screen offset of the projection centre (px), Qt panX / panY
     pan: egui::Vec2,
     frame: u64,
@@ -177,7 +174,7 @@ pub struct View3d {
 
 impl Default for View3d {
     fn default() -> Self {
-        View3d { want_trace: false, yaw: 35.0, pitch: 55.0, zoom: 1.0, z_scale: 1.0, show: SimShow::default(), wheel: Default::default(), perspective: false, nav: Nav::Fusion, zoom_reverse: false, pan: egui::Vec2::ZERO, frame: u64::MAX, coarse: Grid::default(), detail: None, quiet: 0.0, last_view: [0.0; 8], skirt_v: Vec::new(), skirt: Vec::new(), bw: 1.0, bh: 1.0, bt: 0.1 }
+        View3d { want_trace: false, yaw: 35.0, pitch: 55.0, zoom: 1.0, z_scale: 1.0, show: SimShow::default(), wheel: Default::default(), perspective: false, pan: egui::Vec2::ZERO, frame: u64::MAX, coarse: Grid::default(), detail: None, quiet: 0.0, last_view: [0.0; 8], skirt_v: Vec::new(), skirt: Vec::new(), bw: 1.0, bh: 1.0, bt: 0.1 }
     }
 }
 
@@ -273,15 +270,11 @@ pub fn draw_moves(painter: &egui::Painter, p: &Player, show: SimShow, project: i
     }
     flush(&mut run, run_col);
 }
-const NAV_KEY: &str = "view3d-nav";
-const ZOOM_REV_KEY: &str = "view3d-zoom-reverse";
 
 impl View3d {
     /// the remembered projection (screenshots keep the orthographic default)
     pub fn load(shot: bool) -> Self {
         let stored = !shot && crate::store::load(PERSPECTIVE_KEY).as_deref() == Some("1");
-        let nav = crate::store::load(NAV_KEY).filter(|_| !shot).and_then(|n| Nav::from_key(&n)).unwrap_or(Nav::Fusion);
-        let zoom_reverse = !shot && crate::store::load(ZOOM_REV_KEY).as_deref() == Some("1");
         // GCARVE_SIM_SHOW=trail|hidden: dev, screenshots of the Show menu's choices
         let show = match std::env::var("GCARVE_SIM_SHOW").as_deref() {
             Ok("trail") => SimShow { paths: ShowPaths::Trail, ..SimShow::default() },
@@ -289,7 +282,7 @@ impl View3d {
             _ if shot => SimShow::default(),
             _ => SimShow::load(),
         };
-        let mut v = View3d { perspective: stored || std::env::var("GCARVE_PERSP").is_ok(), nav, zoom_reverse, show, ..Default::default() };
+        let mut v = View3d { perspective: stored || std::env::var("GCARVE_PERSP").is_ok(), show, ..Default::default() };
         // GCARVE_VIEW3D=yaw,pitch[,zoom[,panx,pany]]: dev, screenshots from a given angle
         if let Ok(a) = std::env::var("GCARVE_VIEW3D") {
             let n: Vec<f64> = a.split(',').filter_map(|x| x.trim().parse().ok()).collect();
@@ -359,14 +352,15 @@ impl View3d {
         }
         // buttons per `Nav`; the wheel zooms toward the pointer; trackpads: two-finger swipe pans or orbits, pinch zooms
         let (shift, ctrl, hover) = ui.input(|i| (i.modifiers.shift, i.modifiers.ctrl || i.modifiers.command, i.pointer.hover_pos()));
-        let zdir = if self.zoom_reverse { -1.0 } else { 1.0 };
+        let mouse = crate::mouse::get(); // Preferences › Mouse
+        let zdir = if mouse.wheel_reverse { -1.0 } else { 1.0 } * f64::from(mouse.zoom_speed);
         let touch = ui.input(|i| i.multi_touch()); // touch screens: two fingers pan, pinch zooms (zoom_delta below)
         if let Some(t) = touch.filter(|_| resp.hovered()) {
             self.pan += t.translation_delta;
         } else if let Some(b) = [egui::PointerButton::Primary, egui::PointerButton::Middle, egui::PointerButton::Secondary].into_iter().find(|b| resp.dragged_by(*b)) {
             let d = resp.drag_delta();
-            match self.nav.drag(b, shift, ctrl) {
-                Act::Orbit => self.orbit(d),
+            match mouse.drag(b, shift, ctrl) {
+                Act::Orbit => self.orbit(d * mouse.orbit_speed),
                 Act::Pan => self.pan += d,
                 Act::Zoom => self.zoom_at((-f64::from(d.y) * 0.01 * zdir).exp(), rect.center() + self.pan, rect.center()), // up = closer
             }
@@ -383,8 +377,8 @@ impl View3d {
                     if self.wheel.is_mouse(ui.input(|i| i.time), unit, delta) {
                         let lines = if unit == egui::MouseWheelUnit::Point { delta.y as f64 / 50.0 } else { delta.y as f64 };
                         factor *= (lines * 0.12 * zdir).exp();
-                    } else if self.nav.swipe(shift) == Act::Orbit {
-                        self.orbit(delta);
+                    } else if mouse.swipe(shift) == Act::Orbit {
+                        self.orbit(delta * mouse.orbit_speed);
                     } else {
                         self.pan += delta;
                     }
@@ -521,16 +515,22 @@ impl View3d {
         }
         crate::widgets::combo_box("view3d-nav").selected_text("Mouse").width(84.0).show_ui(&mut row, |ui| {
             ui.set_min_width(230.0);
-            for (nav, key, label, _) in Nav::ALL {
-                if ui.selectable_label(self.nav == nav, format!("{label} style")).clicked() {
-                    self.nav = nav;
-                    crate::store::save(NAV_KEY, key);
+            let mut m = crate::mouse::get();
+            let custom = m.label() == "Custom";
+            for (nav, _, label, _) in Nav::ALL {
+                if ui.selectable_label(!custom && m.base == Some(nav), format!("{label} style")).clicked() {
+                    m = gcarve_ui::nav::MouseMap { wheel_reverse: m.wheel_reverse, zoom_speed: m.zoom_speed, orbit_speed: m.orbit_speed, ..gcarve_ui::nav::MouseMap::from_nav(nav) };
                 }
             }
-            ui.separator();
-            if crate::widgets::checkbox(ui, &mut self.zoom_reverse, "Reverse zoom direction").changed() {
-                crate::store::save(ZOOM_REV_KEY, if self.zoom_reverse { "1" } else { "0" });
+            if custom {
+                let _ = ui.selectable_label(true, "Custom (set in Preferences)");
             }
+            ui.separator();
+            crate::widgets::checkbox(ui, &mut m.wheel_reverse, "Reverse zoom direction");
+            if ui.selectable_label(false, "Fine-tune buttons and speeds…").clicked() {
+                crate::mouse::ask_prefs();
+            }
+            crate::mouse::set(m);
             ui.separator();
             let (line, can) = crate::spacemouse::status();
             if can && ui.selectable_label(false, "Connect a SpaceMouse…").clicked() {
@@ -549,7 +549,7 @@ impl View3d {
             self.z_scale = z;
         }
         row.label(egui::RichText::new(format!("Z ×{:.1}", self.z_scale)).size(11.0).color(crate::theme::TEXT.gamma_multiply(0.7)));
-        painter.text(rect.left_bottom() + egui::vec2(10.0, -10.0), egui::Align2::LEFT_BOTTOM, format!("{} · double-click resets", self.nav.row().3), crate::theme::font(11.0), crate::theme::TEXT.gamma_multiply(0.5));
+        painter.text(rect.left_bottom() + egui::vec2(10.0, -10.0), egui::Align2::LEFT_BOTTOM, format!("{} · double-click resets", crate::mouse::get().hint()), crate::theme::font(11.0), crate::theme::TEXT.gamma_multiply(0.5));
     }
 
     /// The board follows the pointer: dragging down tips its top towards the viewer.
@@ -564,7 +564,7 @@ impl View3d {
     /// (the camera is a turntable). A per-axis flip in the Mouse menu if a model disagrees.
     pub fn puck(&mut self, a: [f32; 6], dt: f32, centre: Pos2) {
         self.pan += egui::vec2(a[0], a[2]) * 700.0 * dt;
-        self.zoom_at((f64::from(a[1] * dt) * 1.6 * if self.zoom_reverse { -1.0 } else { 1.0 }).exp(), centre + self.pan, centre);
+        self.zoom_at((f64::from(a[1] * dt) * 1.6 * if crate::mouse::get().wheel_reverse { -1.0 } else { 1.0 }).exp(), centre + self.pan, centre);
         self.yaw -= f64::from((a[5] + a[4]) * dt) * 120.0; // twist and tilt left / right both turn the board about its vertical
         self.pitch = (self.pitch + f64::from(a[3] * dt) * 120.0).clamp(0.0, 90.0);
     }

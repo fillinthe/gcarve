@@ -23,6 +23,7 @@ mod setupsheet;
 mod inspector;
 mod layers;
 mod machinebrowser;
+mod mouse;
 mod library;
 mod shell;
 mod tabs;
