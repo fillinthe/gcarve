@@ -133,7 +133,7 @@ pub fn enabled(id: &str, sel: usize, ops: usize, can_undo: bool, can_redo: bool)
 }
 
 /// Design-mode tools: id, icon, name, key
-const TOOLS: [(&str, &str, &str, &str); 12] = [
+const TOOLS: [(&str, &str, &str, &str); 13] = [
     ("tool:select", "select", "Select", "V"),
     ("tool:nodes", "nodes", "Nodes", "N"),
     ("tool:rect", "rect", "Rect", "R"),
@@ -143,6 +143,7 @@ const TOOLS: [(&str, &str, &str, &str); 12] = [
     ("tool:polyline", "polyline", "Polyline", "P"),
     ("tool:curve", "pen", "Curve", "B"),
     ("tool:arc", "arc", "Arc", "A"),
+    ("tool:freehand", "edit", "Freehand", "H"),
     ("tool:measure", "measure", "Measure", "M"),
     ("tool:dimension", "dimension", "Dimension", "D"),
     ("tool:text", "text", "Text", "T"),
@@ -152,7 +153,7 @@ fn tool_color(id: &str) -> (Color32, Color32) {
     use theme::ToolKind as K;
     theme::tool_color(match id {
         "tool:select" | "tool:nodes" => K::Select,
-        "tool:measure" | "tool:dimension" => K::Measure,
+        "tool:measure" | "tool:dimension" | "tool:angle" => K::Measure,
         "tool:text" => K::Text,
         _ => K::Draw,
     })
@@ -740,14 +741,18 @@ pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, m: &Menu
                     item(ui, sh, "Save As…", "⇧⌘S", true, "saveas");
                     item(ui, sh, "Save to Cloud", "", true, "savecloud");
                 }
+                item(ui, sh, "Save as Job Template…", "", true, "jobtemplate");
                 widgets::menu_separator(ui);
                 widgets::submenu(ui, "Export Vectors", |ui| {
                     // the selection, or every visible vector of this sheet, at real size
                     item(ui, sh, "As SVG (curves kept)", "", true, "vexport:svg");
                     item(ui, sh, "As DXF (for CAD / other CAM)", "", true, "vexport:dxf");
                     item(ui, sh, "As DWG (AutoCAD)", "", true, "vexport:dwg");
+                    item(ui, sh, "As PDF (print, full size)", "", true, "vexport:pdf");
                 });
+                item(ui, sh, "Send to GBurn (laser)…", "", true, "sendgburn");
                 item(ui, sh, "Setup Sheet…", "", has_ops, "setupsheet"); // printable job sheet for the operator
+                item(ui, sh, "Save Preview Image (PNG)", "", has_ops, "previewimage");
                 item(ui, sh, "Share to Community…", "", has_ops, "communityshare");
                 widgets::menu_separator(ui);
                 item(ui, sh, &m.account, "", true, "account");
@@ -761,6 +766,7 @@ pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, m: &Menu
                 item(ui, sh, "Paste", "⌘V", true, "paste");
                 widgets::menu_separator(ui);
                 item(ui, sh, "Select All", "⌘A", true, "selectall");
+                item(ui, sh, "Vector Selector…", "", true, "selector");
                 item(ui, sh, "Duplicate (with toolpaths)", "⌘D", sel > 0, "clone");
                 widgets::menu_separator(ui);
                 item(ui, sh, "Group", "⌘G", sel > 1, "group");
@@ -782,15 +788,24 @@ pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, m: &Menu
                 item(ui, sh, "Shapes Library…", "", true, "shapes");
                 item(ui, sh, "Trace Image…", "", true, "trace");
                 widgets::menu_separator(ui);
-                for (t, k, on, id) in [("Offset…", "", sel > 0, "offset"), ("Corners: Dogbone / Fillet…", "", sel > 0, "dogbone"), ("Join Open Vectors", "", sel > 1, "join"), ("Close Vectors", "", sel > 0, "close"), ("Extend Ends to Next Vector", "", sel > 0, "extend"), ("Check Vectors (open, duplicate, tiny)", "", true, "validate")] {
+                for (t, k, on, id) in [("Offset…", "", sel > 0, "offset"), ("Corners: Dogbone / Fillet…", "", sel > 0, "dogbone"), ("Join Open Vectors", "", sel > 1, "join"), ("Close Vectors", "", sel > 0, "close"), ("Extend Ends to Next Vector", "", sel > 0, "extend"), ("Vector Texture…", "", sel > 0, "vtexture"), ("Plate Production…", "", sel > 0, "plates"), ("Shelf-Pin Holes…", "", sel > 0, "shelfpins"), ("Rotary Layout (spiral, flutes)…", "", canvas.doc.material.rotary.is_some(), "rotarylayout"), ("Check Vectors (open, duplicate, tiny)", "", true, "validate")] {
                     item(ui, sh, t, k, on, id);
                 }
+                ui.add_enabled_ui(sel > 1, |ui| {
+                    widgets::submenu(ui, "Distort", |ui| {
+                        item(ui, sh, "Bend Along Curve", "", true, "distort:1");
+                        item(ui, sh, "Fit Into Four Corners", "", true, "distort:4");
+                        item(ui, sh, "Fit Between Two Curves", "", true, "distort:2");
+                    });
+                });
                 ui.add_enabled_ui(sel > 0, |ui| {
                     widgets::submenu(ui, "Simplify (fewer nodes)", |ui| {
                         let u = if crate::units::name(&canvas.doc) == "mm" { ["0.03 mm", "0.13 mm", "0.5 mm"] } else { ["0.001 in", "0.005 in", "0.02 in"] };
                         for (label, tol) in [(format!("Fine: within {}", u[0]), "0.001"), (format!("Medium: within {}", u[1]), "0.005"), (format!("Coarse: within {}", u[2]), "0.02")] {
                             item(ui, sh, &label, "", true, &format!("simplify:{tol}"));
                         }
+                        widgets::menu_separator(ui);
+                        item(ui, sh, "Fit Arcs and Curves (smooth)", "", true, "fitcurves:0.005");
                     });
                 });
                 widgets::menu_separator(ui);

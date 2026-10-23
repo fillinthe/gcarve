@@ -6,19 +6,30 @@ pub use gcarve_ui::palette::{Command, Palette};
 
 /// Main.qml tbDefs order
 const TB: [&str; 40] = ["new", "open", "jobs", "save", "undo", "redo", "copy", "paste", "clone", "group", "delete", "fliph", "flipv", "rotate", "align", "array", "nest", "link", "weld", "subtract", "intersect", "offset", "dogbone", "join", "close", "paths", "width", "sim", "watch", "vars", "tools", "posts", "board", "export", "edittext", "tocurves", "opedit", "opdelete", "restart", "view3d"];
-const TOOLS: [(&str, &str, &str); 12] = [("Select", "V", "tool:select"), ("Nodes", "N", "tool:nodes"), ("Rect", "R", "tool:rect"), ("Ellipse", "E", "tool:ellipse"), ("Polygon", "G", "tool:polygon"), ("Star", "S", "tool:star"), ("Polyline", "P", "tool:polyline"), ("Curve", "B", "tool:curve"), ("Arc", "A", "tool:arc"), ("Measure", "M", "tool:measure"), ("Dimension", "D", "tool:dimension"), ("Text", "T", "tool:text")];
-const VIEWS: [(&str, &str, &str); 39] = [
+const TOOLS: [(&str, &str, &str); 14] = [("Select", "V", "tool:select"), ("Nodes", "N", "tool:nodes"), ("Rect", "R", "tool:rect"), ("Ellipse", "E", "tool:ellipse"), ("Polygon", "G", "tool:polygon"), ("Star", "S", "tool:star"), ("Polyline", "P", "tool:polyline"), ("Curve", "B", "tool:curve"), ("Arc", "A", "tool:arc"), ("Freehand", "H", "tool:freehand"), ("Measure", "M", "tool:measure"), ("Dimension", "D", "tool:dimension"), ("Angle", "L", "tool:angle"), ("Text", "T", "tool:text")];
+const VIEWS: [(&str, &str, &str); 50] = [
     ("How do I…? (help)", "", "guide"),
     ("Check vectors (open, duplicate, tiny)", "", "validate"),
     ("Extend open vectors to the next vector", "", "extend"),
     ("Simplify vectors: fine (fewer nodes)", "", "simplify:0.001"),
     ("Simplify vectors: medium", "", "simplify:0.005"),
     ("Simplify vectors: coarse", "", "simplify:0.02"),
+    ("Fit arcs and curves to vectors (smooth)", "", "fitcurves:0.005"),
     ("Fillet / dogbone corners…", "", "dogbone"),
+    ("Vector Selector (open, closed, circles, size, layer)…", "", "selector"),
+    ("Vector texture (wavy lines filling shapes)…", "", "vtexture"),
+    ("Distort: bend shapes along a curve", "", "distort:1"),
+    ("Distort: fit shapes between two curves", "", "distort:2"),
+    ("Distort: fit shapes into four corners (corner pin)", "", "distort:4"),
+    ("Plate production (name plates / badges from a list)…", "", "plates"),
+    ("Shelf-pin holes (drill bank, system 32)…", "", "shelfpins"),
+    ("Rotary layout: wrapped spiral or flutes…", "", "rotarylayout"),
     ("Copy along a vector (array)…", "", "array"),
     ("Export vectors as SVG", "", "vexport:svg"),
     ("Export vectors as DXF", "", "vexport:dxf"),
     ("Export vectors as DWG", "", "vexport:dwg"),
+    ("Export vectors as PDF", "", "vexport:pdf"),
+    ("Send to GBurn (laser cut / engrave)", "", "sendgburn"),
     ("New back side: flip left to right (two-sided job)", "", "sheet:back-lr"),
     ("New back side: flip top to bottom (two-sided job)", "", "sheet:back-tb"),
     ("Clear guide lines", "", "guides:clear"),

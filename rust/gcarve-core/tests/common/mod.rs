@@ -32,7 +32,7 @@ pub fn fixture_jobs() -> Vec<Job> {
     let material = "48.000\" x 24.000\" x 0.750\"".to_string();
     let p1 = Toolpath {
         name: "Profile 1 (outside)".into(),
-        tool: -1,
+        tool: -1, comp: 0,
         feed_xy: 432.0,
         feed_z: 216.0,
         moves: vec![
@@ -52,7 +52,7 @@ pub fn fixture_jobs() -> Vec<Job> {
     };
     let p2 = Toolpath {
         name: "Pocket inner".into(),
-        tool: -1,
+        tool: -1, comp: 0,
         feed_xy: 300.0,
         feed_z: 100.0,
         moves: vec![r(5.0, 5.0, N), l(N, N, -0.1), l(6.0, 5.0, N), l(N, 6.0, N), mv(CW, 5.0, 6.0, -0.2, -0.5, 0.0), l(5.0, 5.0, -0.2), r(N, N, 0.8)],
@@ -69,12 +69,12 @@ pub fn fixture_jobs() -> Vec<Job> {
     };
     let v = Toolpath {
         name: "V-Carve".into(),
-        tool: -1,
+        tool: -1, comp: 0,
         feed_xy: 120.5,
         feed_z: 60.25,
         moves: vec![r(0.0, 0.0, 0.8), l(N, N, -0.1), l(0.333333, 0.1, -0.15), l(1.0, 0.0, N), l(1.0, 0.0, -0.1), r(N, N, 0.5), r(10.0, 10.0, 0.5), l(10.0, 10.0, -0.05)],
     };
-    let e = Toolpath { name: "Empty".into(), tool: -1, feed_xy: 50.0, feed_z: 25.0, moves: vec![] };
+    let e = Toolpath { name: "Empty".into(), tool: -1, comp: 0, feed_xy: 50.0, feed_z: 25.0, moves: vec![] };
     let b = Job {
         filename: "02_V-Bit".into(),
         timestamp: ts,
@@ -85,6 +85,8 @@ pub fn fixture_jobs() -> Vec<Job> {
         notes,
         toolpaths: vec![v, e],
         slot: 0,
+        a_axis: false,
+        a_along_y: false,
     };
     vec![a, b]
 }

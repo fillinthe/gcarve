@@ -28,7 +28,8 @@ $CC-windres "$OBJ/gcarve.rc" -O coff -o "$OBJ/gcarve-res.o"
 TUP="$(echo $T | tr a-z- A-Z_)"
 export CARGO_TARGET_${TUP}_LINKER=$CC-gcc
 # GUI subsystem (no console window); the resource object carries icon + version info
-export CARGO_TARGET_${TUP}_RUSTFLAGS="-C link-arg=-Wl,--subsystem,windows -C link-arg=$OBJ/gcarve-res.o $EXTRA"
+# no build-machine paths in the exe (generated bindings embed their OUT_DIR)
+export CARGO_TARGET_${TUP}_RUSTFLAGS="-C link-arg=-Wl,--subsystem,windows -C link-arg=$OBJ/gcarve-res.o --remap-path-prefix=$HOME=/home --remap-path-prefix=$REPO=/gcarve $EXTRA"
 export CC_$(echo $T | tr - _)=$CC-gcc
 if [ $TC = nightly ]; then
   rustup component add rust-src --toolchain nightly >/dev/null

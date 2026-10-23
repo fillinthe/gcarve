@@ -134,6 +134,12 @@ pub fn tool_to_json(t: &Tool) -> Value {
     if t.slot > 0 {
         o.as_object_mut().unwrap().insert("slot".into(), json!(t.slot));
     }
+    if !t.group.is_empty() {
+        o.as_object_mut().unwrap().insert("group".into(), json!(t.group));
+    }
+    if !t.form.is_empty() {
+        o.as_object_mut().unwrap().insert("form".into(), json!(t.form));
+    }
     if t.cut_length > 0.0 {
         o.as_object_mut().unwrap().insert("cutLength".into(), json!(t.cut_length));
     }
@@ -163,6 +169,8 @@ pub fn tool_from_json(o: &Value) -> Tool {
     t.slot = int(o, "slot", 0).max(0);
     t.radius = num(o, "radius", 0.0).max(0.0);
     t.cut_length = num(o, "cutLength", 0.0).max(0.0);
+    t.group = s(o, "group", "").trim().to_string();
+    t.form = arr(get(o, "form")).iter().filter_map(|p| Some([p.get(0)?.as_f64()?, p.get(1)?.as_f64()?])).collect();
     if let Some(m) = get(o, "chipLoads").as_object() {
         for (k, v) in m {
             if let (Some(lo), Some(hi)) = (v.get(0).and_then(Value::as_f64), v.get(1).and_then(Value::as_f64)) {
@@ -189,6 +197,9 @@ fn shape_json(sh: &Shape) -> Value {
     let nodes: Vec<Value> = sh.c.nodes.iter().map(node_json).collect();
     let mut o = json!({"id": sh.id, "layer": sh.layer, "closed": sh.c.closed, "nodes": nodes});
     let m = o.as_object_mut().unwrap();
+    if sh.anchor != 0 {
+        m.insert("anchor".into(), sh.anchor.into());
+    }
     if sh.group != 0 {
         m.insert("group".into(), sh.group.into());
     }
@@ -210,6 +221,7 @@ fn shape_from(o: &Value) -> Shape {
         group: int(o, "group", 0),
         sheet: int(o, "sheet", 0),
         text: int(o, "text", 0),
+        anchor: int(o, "anchor", 0).clamp(0, 8),
         bind: bind_from(get(o, "bind")),
         ..Default::default()
     };
@@ -231,6 +243,15 @@ fn text_json(t: &TextItem) -> Value {
     if t.angle != 0.0 {
         o["angle"] = json!(t.angle);
     }
+    if t.line_spacing != 1.0 {
+        o["lineSpacing"] = json!(t.line_spacing);
+    }
+    if t.arch != 0.0 {
+        o["arch"] = json!(t.arch);
+    }
+    if t.kerns.iter().any(|k| *k != 0.0) {
+        o["kerns"] = json!(t.kerns);
+    }
     o
 }
 fn text_from(o: &Value) -> TextItem {
@@ -248,6 +269,9 @@ fn text_from(o: &Value) -> TextItem {
         align: int(o, "align", 0).clamp(0, 2),
         weld: flag(o, "weld", false),
         angle: num(o, "angle", 0.0),
+        line_spacing: num(o, "lineSpacing", 1.0).clamp(0.3, 10.0),
+        arch: num(o, "arch", 0.0),
+        kerns: arr(get(o, "kerns")).iter().filter_map(Value::as_f64).collect(),
     }
 }
 
@@ -280,6 +304,27 @@ pub(crate) fn op_json(op: &Op, tools: &[Tool]) -> Value {
     if op.start_first {
         m.insert("startFirst".into(), json!(true));
     }
+    if op.cutter_comp {
+        m.insert("cutterComp".into(), json!(true));
+    }
+    if op.keyhole {
+        m.insert("keyhole".into(), json!(true));
+    }
+    if op.drag_knife > 0.0 {
+        m.insert("dragKnife".into(), json!(op.drag_knife));
+    }
+    if op.rounding > 0.0 {
+        m.insert("rounding".into(), json!(op.rounding));
+    }
+    if op.section > 0 {
+        m.insert("section".into(), json!(op.section));
+    }
+    if op.project_on > 0 {
+        m.insert("projectOn".into(), json!(op.project_on));
+    }
+    if op.keep_order {
+        m.insert("keepOrder".into(), json!(true));
+    }
     if !op.tab_points.is_empty() {
         m.insert("tabPoints".into(), json!(op.tab_points));
     }
@@ -302,7 +347,16 @@ pub(crate) fn op_json(op: &Op, tools: &[Tool]) -> Value {
         m.insert("array".into(), json!({"rows": op.array_rows, "cols": op.array_cols, "dx": op.array_dx, "dy": op.array_dy}));
     }
     if !op.photo.is_empty() {
-        m.insert("photo".into(), json!({"w": op.photo_w, "h": op.photo_h, "gray": op.photo, "invert": op.photo_invert}));
+        let mut ph = json!({"w": op.photo_w, "h": op.photo_h, "gray": op.photo, "invert": op.photo_invert});
+        if op.sketch {
+            ph["sketch"] = json!(true);
+        }
+        for (k, v, def) in [("brightness", op.photo_brightness, 0.0), ("contrast", op.photo_contrast, 1.0), ("gamma", op.photo_gamma, 1.0)] {
+            if v != def {
+                ph[k] = json!(v);
+            }
+        }
+        m.insert("photo".into(), ph);
     }
     if op.vary > 0.0 {
         m.insert("vary".into(), json!(op.vary));
@@ -370,9 +424,20 @@ pub(crate) fn op_from(o: &Value, tool_count: i32) -> Op {
         photo_w: int(get(o, "photo"), "w", 0).max(0) as u32,
         photo_h: int(get(o, "photo"), "h", 0).max(0) as u32,
         photo_invert: flag(get(o, "photo"), "invert", false),
+        photo_brightness: num(get(o, "photo"), "brightness", 0.0).clamp(-1.0, 1.0),
+        photo_contrast: num(get(o, "photo"), "contrast", 1.0).clamp(0.1, 5.0),
+        photo_gamma: num(get(o, "photo"), "gamma", 1.0).clamp(0.1, 5.0),
+        sketch: flag(get(o, "photo"), "sketch", false),
         raster: flag(o, "raster", false),
         thread_pitch: num(o, "threadPitch", 0.0).max(0.0),
         start_first: flag(o, "startFirst", false),
+        cutter_comp: flag(o, "cutterComp", false),
+        keyhole: flag(o, "keyhole", false),
+        drag_knife: num(o, "dragKnife", 0.0).max(0.0),
+        rounding: num(o, "rounding", 0.0).max(0.0),
+        section: int(o, "section", 0).max(0),
+        project_on: int(o, "projectOn", 0).max(0),
+        keep_order: flag(o, "keepOrder", false),
         tab_corners: flag(o, "tabAvoidCorners", false),
         tab_spacing: num(o, "tabSpacing", 0.0).max(0.0),
         sheet_scope: int(o, "sheet", -1).max(-1),
@@ -400,6 +465,21 @@ fn material_json(m: &Material) -> Value {
     if let Some(ml) = &m.machine {
         o.as_object_mut().unwrap().insert("machine".into(), serde_json::to_value(ml).unwrap_or(Value::Null));
     }
+    if let Some(h) = m.home {
+        o.as_object_mut().unwrap().insert("home".into(), json!(h));
+    }
+    if m.merge {
+        o.as_object_mut().unwrap().insert("merge".into(), json!(true));
+    }
+    if let Some(dia) = m.rotary {
+        o.as_object_mut().unwrap().insert("rotary".into(), json!(dia));
+        if m.rotary_y {
+            o.as_object_mut().unwrap().insert("rotaryAlongY".into(), json!(true));
+        }
+    }
+    if let Some((sheet, lr)) = m.back_of {
+        o.as_object_mut().unwrap().insert("backOf".into(), json!({"sheet": sheet, "lr": lr}));
+    }
     if !m.name.is_empty() {
         o.as_object_mut().unwrap().insert("name".into(), json!(m.name));
     }
@@ -420,6 +500,11 @@ fn material_from(o: &Value) -> Material {
         machine: get(o, "machine").as_object().and_then(|_| serde_json::from_value(get(o, "machine").clone()).ok()),
         bind: bind_from(get(o, "bind")),
         name: s(o, "name", ""),
+        merge: flag(o, "merge", false),
+        rotary: get(o, "rotary").as_f64().filter(|d| *d > 0.0),
+        rotary_y: get(o, "rotaryAlongY").as_bool().unwrap_or(false),
+        back_of: get(o, "backOf").as_object().map(|_| (int(get(o, "backOf"), "sheet", 0), flag(get(o, "backOf"), "lr", true))),
+        home: get(o, "home").as_array().filter(|a| a.len() == 2).and_then(|a| Some([a[0].as_f64()?, a[1].as_f64()?])),
     }
 }
 
@@ -441,8 +526,15 @@ pub fn save_project(d: &Document) -> String {
         .dimensions
         .iter()
         .map(|m| {
-            json!({"a": pt_json(m.a), "b": pt_json(m.b), "offset": m.offset, "sa": m.shape_a, "na": m.node_a, "sb": m.shape_b,
-                   "nb": m.node_b, "label": m.label, "drive": m.drive})
+            let mut o = json!({"a": pt_json(m.a), "b": pt_json(m.b), "offset": m.offset, "sa": m.shape_a, "na": m.node_a, "sb": m.shape_b,
+                   "nb": m.node_b, "label": m.label, "drive": m.drive});
+            if m.axis != 0 {
+                o["axis"] = json!(m.axis);
+            }
+            if m.axis == 3 {
+                o["vertex"] = pt_json(m.vertex);
+            }
+            o
         })
         .collect();
     let sheets: Vec<Value> = d
@@ -532,6 +624,8 @@ pub fn load_project(text: &str) -> Result<Document, String> {
             node_b: int(o, "nb", -1),
             label: s(o, "label", ""),
             drive: s(o, "drive", ""),
+            axis: int(o, "axis", 0).clamp(0, 3),
+            vertex: to_pt(get(o, "vertex")),
         })
         .collect();
     out.material = material_from(get(&root, "material"));
@@ -835,6 +929,31 @@ mod tests {
 
 #[cfg(test)]
 mod guide_tests {
+    #[test]
+    fn an_angular_dimension_measures_and_survives_save_and_load() {
+        use crate::geom::pt;
+        let mut d = Document::default();
+        d.add(crate::geom::make_polyline(&[pt(4.0, 0.0), pt(1.0, 1.0), pt(1.0 + 3f64.sqrt(), 2.0)], false), None);
+        let dim = Dimension { vertex: pt(1.0, 1.0), a: pt(4.0, 1.0), b: pt(1.0 + 3f64.sqrt(), 2.0), offset: 1.0, axis: 3, ..Default::default() };
+        assert!((dim.degrees() - 30.0).abs() < 1e-9, "{}", dim.degrees());
+        d.dimensions.push(dim.clone());
+        if let Ok(out) = std::env::var("GCARVE_ANGLE_OUT") {
+            std::fs::write(out, save_project(&d)).unwrap();
+        }
+        let back = load_project(&save_project(&d)).unwrap();
+        assert_eq!((back.dimensions[0].axis, back.dimensions[0].vertex), (3, pt(1.0, 1.0)));
+    }
+
+    #[test]
+    fn a_bits_folder_survives_save_and_load() {
+        let mut d = Document::default();
+        d.tools = vec![Tool { name: "V90".into(), group: "V-bits".into(), ..Default::default() }, Tool { name: "E".into(), ..Default::default() }];
+        let text = save_project(&d);
+        assert_eq!(text.matches("\"group\"").count(), 1, "only written when set");
+        let back = load_project(&text).unwrap();
+        assert_eq!((back.tools[0].group.as_str(), back.tools[1].group.as_str()), ("V-bits", ""));
+    }
+
     use super::*;
 
     #[test]

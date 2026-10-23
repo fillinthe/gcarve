@@ -163,8 +163,22 @@ pub fn import_lbrn(text: &str) -> ImportResult {
     let identity = Affine::default();
     let mut stack: Vec<Frame> = Vec::new();
     let (mut paths, mut layers, mut skipped) = (Vec::<Contour>::new(), Vec::<String>::new(), 0usize);
-    let emit = |f: &Frame, paths: &mut Vec<Contour>, layers: &mut Vec<String>, skipped: &mut usize| {
+    // pictures: base64, corners (mm, before the mirror / move below), layer
+    let mut images: Vec<(String, [Pt; 4], String)> = Vec::new();
+    let mut emit = |f: &Frame, paths: &mut Vec<Contour>, layers: &mut Vec<String>, skipped: &mut usize| {
         let kind = attr(&f.tag, "Type").unwrap_or("");
+        let ix = attr(&f.tag, "CutIndex").unwrap_or("0");
+        let layer = names.get(ix).cloned().filter(|n| !n.is_empty()).unwrap_or_else(|| format!("C{:0>2}", ix));
+        if kind == "Bitmap" {
+            // W × H centred on its own origin, then the XForm (row 0 of the picture at the top)
+            let (w, h) = (num(&f.tag, "W") / 2.0, num(&f.tag, "H") / 2.0);
+            if let Some(data) = attr(&f.tag, "Data").filter(|d| !d.is_empty() && w > 0.0 && h > 0.0) {
+                images.push((data.to_string(), [pt(-w, -h), pt(w, -h), pt(w, h), pt(-w, h)].map(|p| f.xf.apply(p)), layer));
+            } else {
+                *skipped += 1;
+            }
+            return;
+        }
         let local = match kind {
             "Path" | "Text" => path(&verts(&f.verts), &f.prims),
             "Rect" => vec![rect(num(&f.tag, "W"), num(&f.tag, "H"), num(&f.tag, "Cr"))],
@@ -175,8 +189,6 @@ pub fn import_lbrn(text: &str) -> ImportResult {
                 Vec::new()
             }
         };
-        let ix = attr(&f.tag, "CutIndex").unwrap_or("0");
-        let layer = names.get(ix).cloned().filter(|n| !n.is_empty()).unwrap_or_else(|| format!("C{:0>2}", ix));
         for c in local {
             paths.push(transformed(&c, &f.xf));
             layers.push(layer.clone());
@@ -231,8 +243,8 @@ pub fn import_lbrn(text: &str) -> ImportResult {
         }
         i = end;
     }
-    if paths.is_empty() {
-        r.note = "No shapes found in the LightBurn project (pictures are not imported).".into();
+    if paths.is_empty() && images.is_empty() {
+        r.note = "No shapes found in the LightBurn project.".into();
         return r;
     }
     // the project's Mirror X / Y (how LightBurn shows the bed for this machine's origin): what the designer saw
@@ -244,16 +256,36 @@ pub fn import_lbrn(text: &str) -> ImportResult {
     for c in &paths {
         bb.add_rect(&bounds(c));
     }
+    for (_, corners, _) in &images {
+        for p in corners {
+            bb.add(mirror.apply(*p));
+        }
+    }
     let m = Affine { a: 1.0 / 25.4, d: 1.0 / 25.4, e: -bb.x0 / 25.4, f: -bb.y0 / 25.4, ..Default::default() };
     r.contours = paths.iter().map(|c| transformed(c, &m)).collect();
     r.layers = layers;
-    r.note = format!("{:.2} × {:.2} in from LightBurn{}", bb.w() / 25.4, bb.h() / 25.4, if skipped > 0 { format!("; skipped {skipped} picture / polygon shapes") } else { String::new() });
+    r.images = images.into_iter().map(|(data, corners, layer)| crate::svg::ImportImage { data, corners: corners.map(|p| m.apply(mirror.apply(p))), layer }).collect();
+    r.note = format!("{:.2} × {:.2} in from LightBurn{}", bb.w() / 25.4, bb.h() / 25.4, if skipped > 0 { format!("; skipped {skipped} shapes it doesn't know") } else { String::new() });
     r
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn pictures_come_with_their_corners() {
+        // LightBurn's Bitmap: W × H centred on its origin, then the XForm (here a quarter size at 55, 55)
+        let lb = r#"<LightBurnProject AppVersion="1.7.08" FormatVersion="1"><CutSetting type="Image"><index Value="2"/><name Value="Photo"/></CutSetting>
+<Shape Type="Bitmap" CutIndex="2" W="40" H="20" Gamma="1" File="" Data="iVBORw0KGgo="><XForm>0.25 0 0 0.25 55 55</XForm></Shape></LightBurnProject>"#;
+        let r = import_lbrn(lb);
+        assert!(r.contours.is_empty());
+        assert_eq!(r.images.len(), 1, "{}", r.note);
+        let im = &r.images[0];
+        assert_eq!((im.data.as_str(), im.layer.as_str()), ("iVBORw0KGgo=", "Photo"));
+        let mm: Vec<(f64, f64)> = im.corners.iter().map(|p| ((p.x * 25.4 * 1e6).round() / 1e6, (p.y * 25.4 * 1e6).round() / 1e6)).collect();
+        assert_eq!(mm, [(0.0, 0.0), (10.0, 0.0), (10.0, 5.0), (0.0, 5.0)]);
+    }
 
     #[test]
     fn lightburn_paths_groups_rects_and_layers() {

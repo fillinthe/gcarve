@@ -22,14 +22,18 @@ pub enum Tool {
     Polyline,
     Pen,
     Arc,
+    /// drag to draw; the stroke is smoothed into arcs and lines on release
+    Freehand,
     Measure,
     Dimension,
+    /// angular dimension: corner, then a point on each arm
+    Angle,
     Text,
 }
 
 impl Tool {
     /// (tool, label, key) for the rail and the key handler (same keys as the Qt app)
-    pub const ALL: [(Tool, &'static str, egui::Key); 12] = [
+    pub const ALL: [(Tool, &'static str, egui::Key); 14] = [
         (Tool::Select, "Select", egui::Key::V),
         (Tool::Nodes, "Nodes", egui::Key::N),
         (Tool::Rect, "Rect", egui::Key::R),
@@ -39,8 +43,10 @@ impl Tool {
         (Tool::Polyline, "Polyline", egui::Key::P),
         (Tool::Pen, "Curve", egui::Key::B),
         (Tool::Arc, "Arc", egui::Key::A),
+        (Tool::Freehand, "Freehand", egui::Key::H),
         (Tool::Measure, "Measure", egui::Key::M),
         (Tool::Dimension, "Dimension", egui::Key::D),
+        (Tool::Angle, "Angle", egui::Key::L),
         (Tool::Text, "Text", egui::Key::T),
     ];
     pub fn draws(self) -> bool {
@@ -56,6 +62,16 @@ pub enum Request {
     Array,
     Align,
     Nest,
+    /// Edit › Vector Selector…
+    Selector,
+    /// Vectors › Vector Texture…
+    Texture,
+    /// Vectors › Plate Production…
+    Plates,
+    /// Vectors › Shelf-Pin Holes…
+    Pins,
+    /// Vectors › Rotary Layout…
+    RotaryLayout,
     /// new text; true = along the selected curve
     Text(bool),
     EditText(i32),
@@ -172,6 +188,14 @@ pub struct Canvas {
     pub(crate) poly: Vec<Pt>,
     pub(crate) pen: Contour,
     pub(crate) arc_pts: Vec<Pt>,
+    /// freehand stroke being drawn (world points)
+    pub(crate) freehand: Vec<Pt>,
+    /// Nest dialog "Mirror parts for a better fit" (set by the dialog before nesting)
+    pub nest_mirror: bool,
+    /// Nest dialog "Inside the largest selected shape" (an offcut's outline)
+    pub nest_boundary: bool,
+    /// Nest dialog "Fill the rest with copies of the smallest part"
+    pub nest_filler: bool,
     pub(crate) measure: Vec<Pt>,
     pub(crate) measure_text: String,
     /// the measured segment now (second point = the click, or the pointer before it): the Properties panel shows it
@@ -305,6 +329,10 @@ impl Default for Canvas {
             poly: Vec::new(),
             pen: Contour::default(),
             arc_pts: Vec::new(),
+            freehand: Vec::new(),
+            nest_mirror: false,
+            nest_boundary: false,
+            nest_filler: false,
             measure: Vec::new(),
             measure_text: String::new(),
             measure_seg: None,
@@ -491,6 +519,7 @@ impl Canvas {
         self.paint_grid(&painter, view, full);
         let hover_doc = ui.input(|i| i.pointer.hover_pos()).filter(|p| rect.contains(*p)).map(|p| view.to_doc(p));
         self.paint_other_sheets(&painter, self.drag == Drag::Move, hover_doc);
+        self.paint_front_side(&painter);
         if self.drag == Drag::None && self.tool == Tool::Select && hover_doc.is_some_and(|w| self.other_sheet_at(w).is_some() && self.hit_shape(w).is_none()) {
             ui.ctx().set_cursor_icon(egui::CursorIcon::PointingHand);
         }
@@ -754,7 +783,7 @@ impl Canvas {
     }
 
     pub fn dimension_text(&self, d: &Dimension) -> String {
-        let v = units::fmt(&self.doc, dist(d.a, d.b));
+        let v = if d.axis == 3 { format!("{:.1}°", d.degrees()) } else { units::fmt(&self.doc, d.length()) };
         if d.label.is_empty() {
             v
         } else if d.label.contains("{v}") {
@@ -765,8 +794,12 @@ impl Canvas {
     }
 
     pub(crate) fn paint_dimension(&self, painter: &egui::Painter, view: &View, dm: &Dimension, selected: bool, preview: bool) {
-        let d = dm.b - dm.a;
-        let l = dist(dm.a, dm.b);
+        if dm.axis == 3 {
+            return self.paint_angle(painter, view, dm, selected, preview);
+        }
+        let (ea, eb) = dm.ends();
+        let d = eb - ea;
+        let l = dist(ea, eb);
         if l < 1e-9 {
             return;
         }
@@ -774,8 +807,8 @@ impl Canvas {
         let off = n * dm.offset;
         let ext = n * (dm.offset + if dm.offset >= 0.0 { 0.08 } else { -0.08 });
         let (a, b) = (view.to_screen(dm.a), view.to_screen(dm.b));
-        let (a2, b2) = (view.to_screen(dm.a + off), view.to_screen(dm.b + off));
-        let (ae, be) = (view.to_screen(dm.a + ext), view.to_screen(dm.b + ext));
+        let (a2, b2) = (view.to_screen(ea + off), view.to_screen(eb + off));
+        let (ae, be) = (view.to_screen(ea + ext), view.to_screen(eb + ext));
         let mut col = if selected { SELECTED } else { DIM_COLOR };
         let stroke = Stroke::new(1.0, col);
         let line = |p: Pos2, q: Pos2| {
@@ -827,6 +860,42 @@ impl Canvas {
             painter.add(Shape::convex_polygon(pts, Color32::from_rgba_unmultiplied(27, 29, 33, 230), Stroke::NONE));
         }
         painter.add(egui::epaint::TextShape::new(rot(egui::vec2(-size.x / 2.0, by + 2.0)), galley, col).with_angle(ang));
+    }
+
+    /// angular dimension: both arms out to the arc, the arc with arrow ends, the angle on a label at its middle
+    fn paint_angle(&self, painter: &egui::Painter, view: &View, dm: &Dimension, selected: bool, preview: bool) {
+        let col = if selected { SELECTED } else { DIM_COLOR };
+        let stroke = Stroke::new(1.0, col);
+        let (a0, sweep) = dm.arc();
+        let r = dm.offset.abs().max(1e-3);
+        let at = |t: f64| view.to_screen(dm.vertex + pt(t.cos(), t.sin()) * r);
+        let v = view.to_screen(dm.vertex);
+        let arm = |p: Pt, t: f64| {
+            let end = at(t);
+            // the drawn arm reaches past the arc a little, or to the point when that is further out
+            let far = if dist(dm.vertex, p) > r { view.to_screen(p) } else { end + (end - v).normalized() * 6.0 };
+            painter.line_segment([v, far], stroke);
+        };
+        arm(dm.a, a0);
+        arm(dm.b, a0 + sweep);
+        let n = ((sweep.abs() * r * f64::from(view.zoom)) / 4.0).clamp(8.0, 128.0) as usize;
+        let pts: Vec<Pos2> = (0..=n).map(|k| at(a0 + sweep * k as f64 / n as f64)).collect();
+        if preview {
+            painter.add(Shape::dashed_line(&pts, stroke, 4.0, 3.0));
+        } else {
+            painter.add(Shape::line(pts.clone(), stroke));
+        }
+        for (tip, before) in [(pts[0], pts[1]), (pts[n], pts[n - 1])] {
+            let dir = (before - tip).normalized();
+            let nn = egui::vec2(-dir.y, dir.x);
+            painter.add(Shape::convex_polygon(vec![tip, tip + dir * 9.0 + nn * 3.0, tip + dir * 9.0 - nn * 3.0], col, Stroke::NONE));
+        }
+        let galley = painter.layout_no_wrap(self.dimension_text(dm), theme::font(theme::FONT_SIZE), col);
+        let mid = at(a0 + sweep / 2.0);
+        let out = (mid - v).normalized() * (galley.size().length() / 2.0 + 6.0);
+        let rect = Rect::from_center_size(mid + out, galley.size() + egui::vec2(10.0, 4.0));
+        painter.rect_filled(rect, 3.0, Color32::from_rgba_unmultiplied(27, 29, 33, 230));
+        painter.galley(rect.min + egui::vec2(5.0, 2.0), galley, col);
     }
 
     pub fn touch(&mut self) {

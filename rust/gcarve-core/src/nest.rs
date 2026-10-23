@@ -3,8 +3,8 @@
 use std::f64::consts::PI;
 
 use clipper2_rust::{
-    area, difference_d, get_bounds_path, inflate_paths_d, is_positive, minkowski_sum_d, union_subjects_d, EndType, FillRule, JoinType, PathD,
-    PathsD, PointD,
+    area, difference_d, get_bounds_path, inflate_paths_d, intersect_d, is_positive, minkowski_sum_d, union_subjects_d, EndType, FillRule, JoinType,
+    PathD, PathsD, PointD,
 };
 
 use crate::geom::Pt;
@@ -24,6 +24,8 @@ pub struct NestPlacement {
     pub rotation: f64,
     /// then translate by this
     pub offset: Pt,
+    /// mirrored left to right (about x = 0) before the rotation
+    pub mirror: bool,
 }
 
 fn to_path(pts: &[Pt]) -> PathD {
@@ -50,6 +52,19 @@ fn largest(ps: &PathsD) -> PathD {
 /// rot_step_deg: 0 = no rotation, 90 = try 0/90/180/270, 45, 15 ... Parts are tried largest-area first.
 /// ponytail: single sheet, bottom-left heuristic over NFP vertices; good for tens of parts, not a genetic optimiser.
 pub fn nest_shapes(parts: &[NestPart], sheet_w: f64, sheet_h: f64, gap: f64, margin: f64, rot_step_deg: i32) -> Vec<NestPlacement> {
+    nest_shapes_with(parts, sheet_w, sheet_h, gap, margin, rot_step_deg, false, None)
+}
+
+/// `nest_shapes`, also trying each part mirrored when `mirror` (VCarve "Mirror parts to find best fit"), and only
+/// inside the closed `boundary` when given (VCarve "Nest boundary": an offcut's outline)
+#[allow(clippy::too_many_arguments)]
+pub fn nest_shapes_with(parts: &[NestPart], sheet_w: f64, sheet_h: f64, gap: f64, margin: f64, rot_step_deg: i32, mirror: bool, boundary: Option<&[Pt]>) -> Vec<NestPlacement> {
+    let boundary: Option<PathD> = boundary.map(to_path).filter(|b| b.len() >= 3).map(|mut b| {
+        if !is_positive(&b) {
+            b.reverse();
+        }
+        b
+    });
     let mut out = vec![NestPlacement::default(); parts.len()];
     let areas: Vec<f64> = parts.iter().map(|p| area(&to_path(&p.outline)).abs()).collect();
     let mut order: Vec<usize> = (0..parts.len()).collect();
@@ -65,18 +80,19 @@ pub fn nest_shapes(parts: &[NestPart], sheet_w: f64, sheet_h: f64, gap: f64, mar
     let mut placed_outlines: Vec<PathD> = Vec::new(); // inflated, in sheet coordinates
 
     for i in order {
-        let mut base = to_path(&parts[i].outline);
-        if base.len() < 3 {
+        let plain = to_path(&parts[i].outline);
+        if plain.len() < 3 {
             continue;
         }
-        if !is_positive(&base) {
-            base.reverse();
-        }
         let mut found = false;
-        let (mut best_y, mut best_x, mut best_rot) = (1e300, 1e300, 0.0);
+        let (mut best_y, mut best_x, mut best_rot, mut best_mirror) = (1e300, 1e300, 0.0, false);
         let mut best_outline = PathD::new();
         let mut best_off = Pt::default();
-        for &rot in &rots {
+        for (flip, &rot) in [false, true].into_iter().filter(|f| !*f || mirror).flat_map(|f| rots.iter().map(move |r| (f, r))) {
+            let mut base = if flip { map(&plain, |q| PointD::new(-q.x, q.y)) } else { plain.clone() };
+            if !is_positive(&base) {
+                base.reverse();
+            }
             let (s, c) = rot.sin_cos();
             let r = map(&base, |q| PointD::new(c * q.x - s * q.y, s * q.x + c * q.y));
             let infl = if half > 0.0 { inflate_paths_d(&vec![r], half, JoinType::Round, EndType::Polygon, 2.0, PREC, 0.0) } else { vec![r] };
@@ -108,12 +124,21 @@ pub fn nest_shapes(parts: &[NestPart], sheet_w: f64, sheet_h: f64, gap: f64, mar
                 let nfps = union_subjects_d(&nfps, FillRule::NonZero, PREC);
                 feasible = difference_d(&feasible, &nfps, FillRule::NonZero, PREC);
             }
+            if let Some(bp) = &boundary {
+                // inside the boundary: the reference point's own spot inside it, and the part crossing none of its edge
+                let neg = map(&rf, |q| PointD::new(-q.x, -q.y));
+                let within = vec![map(bp, |q| PointD::new(q.x - rf[0].x, q.y - rf[0].y))];
+                let crossing = union_subjects_d(&minkowski_sum_d(&neg, bp, true, 2), FillRule::NonZero, PREC);
+                let fits = difference_d(&within, &crossing, FillRule::NonZero, PREC);
+                feasible = intersect_d(&feasible, &fits, FillRule::NonZero, PREC);
+            }
             // bottom-left vertex of the feasible region
             for v in feasible.iter().flatten() {
                 if v.y < best_y - 1e-9 || ((v.y - best_y).abs() <= 1e-9 && v.x < best_x - 1e-9) {
                     best_y = v.y;
                     best_x = v.x;
                     best_rot = rot;
+                    best_mirror = flip;
                     found = true;
                     best_outline = map(&rf, |q| PointD::new(q.x + v.x, q.y + v.y));
                     best_off = Pt { x: v.x - b.left, y: v.y - b.top }; // offset to apply after rotating the ORIGINAL part
@@ -124,7 +149,7 @@ pub fn nest_shapes(parts: &[NestPart], sheet_w: f64, sheet_h: f64, gap: f64, mar
             continue;
         }
         placed_outlines.push(best_outline);
-        out[i] = NestPlacement { placed: true, rotation: best_rot, offset: best_off };
+        out[i] = NestPlacement { placed: true, rotation: best_rot, offset: best_off, mirror: best_mirror };
     }
     out
 }
@@ -132,6 +157,48 @@ pub fn nest_shapes(parts: &[NestPart], sheet_w: f64, sheet_h: f64, gap: f64, mar
 #[cfg(test)]
 mod overlap_tests {
     use super::*;
+
+    #[test]
+    fn parts_nest_only_inside_the_boundary() {
+        use crate::geom::pt;
+        // a triangular offcut on a 20 x 10 sheet: squares must stay inside it
+        let tri = [pt(0.0, 0.0), pt(10.0, 0.0), pt(0.0, 10.0)];
+        let sq = vec![pt(0.0, 0.0), pt(1.0, 0.0), pt(1.0, 1.0), pt(0.0, 1.0)];
+        let parts: Vec<NestPart> = (0..12).map(|_| NestPart { outline: sq.clone() }).collect();
+        let places = nest_shapes_with(&parts, 20.0, 10.0, 0.0, 0.0, 0, false, Some(&tri));
+        let n = places.iter().filter(|p| p.placed).count();
+        assert!(n >= 8, "{n} placed");
+        for p in places.iter().filter(|p| p.placed) {
+            for q in &sq {
+                let (x, y) = (q.x + p.offset.x, q.y + p.offset.y);
+                assert!(x >= -1e-6 && y >= -1e-6 && x + y <= 10.0 + 1e-6, "({x}, {y}) is outside the offcut");
+            }
+        }
+    }
+
+    #[test]
+    fn mirrored_placements_stay_on_the_sheet_and_apart() {
+        use crate::geom::pt;
+        // an L-shaped (handed) part, eight of them on a sheet just big enough
+        let l = vec![pt(0.0, 0.0), pt(3.0, 0.0), pt(3.0, 1.0), pt(1.0, 1.0), pt(1.0, 2.0), pt(0.0, 2.0)];
+        let parts: Vec<NestPart> = (0..8).map(|_| NestPart { outline: l.clone() }).collect();
+        let places = nest_shapes_with(&parts, 10.0, 6.0, 0.1, 0.1, 90, true, None);
+        let placed: Vec<Vec<Pt>> = places.iter().zip(&parts).filter(|(p, _)| p.placed).map(|(p, part)| {
+            let (s, c) = p.rotation.sin_cos();
+            part.outline.iter().map(|q| { let x = if p.mirror { -q.x } else { q.x }; pt(c * x - s * q.y + p.offset.x, s * x + c * q.y + p.offset.y) }).collect()
+        }).collect();
+        assert_eq!(placed.len(), 8);
+        for o in &placed {
+            assert!(o.iter().all(|q| q.x > 0.0 && q.x < 10.0 && q.y > 0.0 && q.y < 6.0), "{o:?}");
+        }
+        let paths: Vec<PathD> = placed.iter().map(|o| to_path(o)).collect();
+        for a in 0..paths.len() {
+            for b in a + 1..paths.len() {
+                let both = clipper2_rust::intersect_d(&vec![paths[a].clone()], &vec![paths[b].clone()], FillRule::NonZero, PREC);
+                assert!(both.iter().map(|p| area(p).abs()).sum::<f64>() < 1e-6, "parts {a} and {b} overlap");
+            }
+        }
+    }
 
     /// placed outline of part i
     fn placed(parts: &[NestPart], out: &[NestPlacement], i: usize) -> Vec<Pt> {

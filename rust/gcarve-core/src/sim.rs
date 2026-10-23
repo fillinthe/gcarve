@@ -82,6 +82,14 @@ fn stamp(hf: &mut HeightField, t: &Tool, cx: f64, cy: f64, d: f64) {
             if dist > r {
                 continue;
             }
+            if let Some(rise) = t.form_rise(dist) {
+                let cut = d - rise; // a drawn form cutter: its own edge
+                let cell = &mut hf.depth[row + ix as usize];
+                if cut > *cell as f64 {
+                    *cell = cut as f32;
+                }
+                continue;
+            }
             let cut = match t.kind {
                 ToolType::VBit => d - dist / tan_half,
                 ToolType::BallNose => d - (r - (r * r - dist * dist).max(0.0).sqrt()),
@@ -178,6 +186,29 @@ pub fn simulate(paths: &[SimPath], m: &Material, cells: usize) -> HeightField {
 
 /// Wood colour (rgb 0..1, before lighting) of a cell cut `d` deep into a board `t` thick: the uncut surface is a
 /// darker weathered tan, cut faces are fresh light wood that darkens with depth.
+/// `wood` in the board material's own colours (VCarve's material textures, as plain colours): walnut, cherry, oak,
+/// maple, pine, MDF, plastics and aluminium by name; anything else is the default plywood look
+pub fn wood_of(kind: &str, d: f64, t: f64) -> (f64, f64, f64) {
+    let k = kind.to_lowercase();
+    // (uncut surface, freshly cut just below it); deeper cuts darken towards half of the cut colour
+    let (top, cut) = match () {
+        _ if k.contains("walnut") => ((0.36, 0.25, 0.18), (0.55, 0.40, 0.28)),
+        _ if k.contains("cherry") || k.contains("mahogany") => ((0.62, 0.36, 0.24), (0.85, 0.60, 0.45)),
+        _ if k.contains("oak") => ((0.70, 0.55, 0.36), (0.90, 0.78, 0.58)),
+        _ if k.contains("maple") || k.contains("birch") || k.contains("poplar") => ((0.86, 0.76, 0.58), (0.97, 0.91, 0.78)),
+        _ if k.contains("pine") || k.contains("cedar") || k.contains("fir") => ((0.86, 0.70, 0.45), (0.96, 0.86, 0.65)),
+        _ if k.contains("mdf") => ((0.55, 0.42, 0.30), (0.70, 0.56, 0.42)),
+        _ if k.contains("hdpe") || k.contains("acrylic") || k.contains("plastic") || k.contains("pvc") => ((0.92, 0.92, 0.92), (0.80, 0.81, 0.84)),
+        _ if k.contains("alumin") => ((0.75, 0.77, 0.80), (0.88, 0.90, 0.92)),
+        _ => return wood(d, t),
+    };
+    if d <= 1e-5 {
+        return top;
+    }
+    let f = 1.0 - 0.5 * (d / t.max(1e-6)).min(1.0);
+    (cut.0 * f, cut.1 * f, cut.2 * f)
+}
+
 pub fn wood(d: f64, t: f64) -> (f64, f64, f64) {
     if d > 1e-5 {
         let k = (d / t.max(1e-6)).min(1.0);
@@ -221,11 +252,29 @@ pub fn shade_into(hf: &HeightField, m: &Material, img: &mut Vec<u8>, r: CellRect
             let (nx, ny, nz) = (gx / nl, gy / nl, 1.0 / nl);
             let lambert = (nx * lx + ny * ly + nz * lz).max(0.0);
             let light = 0.35 + 0.65 * lambert;
-            let (br, bg, bb) = wood(d, m.t);
+            let (br, bg, bb) = wood_of(&m.kind, d, m.t);
             img[o] = byte(br * light * 255.0);
             img[o + 1] = byte(bg * light * 255.0);
             img[o + 2] = byte(bb * light * 255.0);
             img[o + 3] = 255;
+        }
+    }
+}
+
+/// Lithophane view (VCarve "Lithophane" preview colour): the board lit from behind, so what is left of it glows
+/// warm white where it is thin and goes dark where it is thick (light falls off by e every 0.04 in of wood).
+/// Through-cuts are full light.
+pub fn shade_backlit_into(hf: &HeightField, m: &Material, img: &mut Vec<u8>, r: CellRect) {
+    let size = hf.nx as usize * hf.ny as usize * 4;
+    if img.len() != size {
+        *img = vec![0; size];
+    }
+    for iy in r.iy0.max(0)..=r.iy1.min(hf.ny - 1) {
+        for ix in r.ix0.max(0)..=r.ix1.min(hf.nx - 1) {
+            let left = (m.t - hf.at(ix, iy) as f64).max(0.0);
+            let light = (-left / 0.04).exp();
+            let o = ((hf.ny - 1 - iy) as usize * hf.nx as usize + ix as usize) * 4;
+            img[o..o + 4].copy_from_slice(&[(255.0 * light) as u8, (240.0 * light) as u8, (205.0 * light) as u8, 255]);
         }
     }
 }
@@ -239,6 +288,37 @@ pub fn shade(hf: &HeightField, m: &Material) -> Vec<u8> {
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn a_drawn_form_cutter_carves_its_own_shape() {
+        use crate::geom::pt;
+        // a stepped bit drawn as a side view: 0.2 wide at the tip, a 0.1 step up, out to 0.5 radius (drawn anywhere)
+        let profile = [pt(10.0, 5.0), pt(10.2, 5.0), pt(10.2, 5.1), pt(10.5, 5.1), pt(10.5, 5.6)];
+        let form = Tool::form_from_profile(&profile);
+        assert_eq!(form.first().copied(), Some([0.0, 0.0]));
+        let t = Tool { kind: ToolType::EndMill, diameter: 1.0, form, ..Default::default() };
+        assert!(t.form_rise(0.1).is_some_and(|h| h.abs() < 1e-9) && t.form_rise(0.3).is_some_and(|h| (h - 0.1).abs() < 1e-9) && t.form_rise(0.6).is_none());
+        let mut hf = HeightField { nx: 200, ny: 200, res: 0.01, x0: 0.0, y0: 0.0, depth: vec![0.0; 40_000] };
+        stamp(&mut hf, &t, 1.0, 1.0, 0.3);
+        let at = |dist: f64| hf.depth[100 * 200 + (100.0 + dist / 0.01) as usize] as f64;
+        assert!((at(0.05) - 0.3).abs() < 1e-6 && (at(0.35) - 0.2).abs() < 1e-6, "{} {}", at(0.05), at(0.35));
+    }
+
+    #[test]
+    fn the_preview_takes_the_boards_colour() {
+        assert_eq!(wood_of("Baltic birch plywood", 0.0, 0.75), wood_of("Maple", 0.0, 0.75));
+        assert!(wood_of("Walnut", 0.0, 0.75).0 < 0.4 && wood_of("Plywood", 0.1, 0.75) == wood(0.1, 0.75));
+        assert!(wood_of("Oak", 0.6, 0.75).0 < wood_of("Oak", 0.05, 0.75).0, "deeper is darker");
+    }
+
+    #[test]
+    fn backlit_thin_wood_glows_and_thick_wood_is_dark() {
+        let m = Material { t: 0.25, ..Default::default() };
+        let hf = HeightField { nx: 3, ny: 1, res: 0.1, x0: 0.0, y0: 0.0, depth: vec![0.0, 0.22, 0.25] };
+        let mut img = Vec::new();
+        shade_backlit_into(&hf, &m, &mut img, CellRect { ix0: 0, iy0: 0, ix1: 2, iy1: 0 });
+        assert!(img[0] < 5 && img[4] > 100 && img[8] == 255, "{img:?}"); // 0.03 in left lets e^-0.75 ≈ 47 % through
+    }
+
     use super::*;
 
     #[test]

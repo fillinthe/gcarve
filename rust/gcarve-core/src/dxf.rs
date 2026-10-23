@@ -215,7 +215,7 @@ fn import(text: &str, keep_text: bool) -> ImportResult {
             note += &format!(" {n} {t}");
         }
     }
-    ImportResult { contours, layers, note, texts: texts.unwrap_or_default() }
+    ImportResult { contours, layers, note, texts: texts.unwrap_or_default(), images: Vec::new() }
 }
 
 /// Boundary loops of a HATCH (closed polylines, and chains of line / arc edges), in the entity's own coordinates.

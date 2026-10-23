@@ -50,7 +50,7 @@ fn path(v: &Value) -> Toolpath {
             Move { kind: kind(a[0].as_u64().unwrap()), x: a[1].as_f64(), y: a[2].as_f64(), z: a[3].as_f64(), i: f(&a[4]), j: f(&a[5]) }
         })
         .collect();
-    Toolpath { name: v["name"].as_str().unwrap().into(), tool: v["tool"].as_i64().unwrap() as i32, feed_xy: f(&v["feed_xy"]), feed_z: f(&v["feed_z"]), moves }
+    Toolpath { name: v["name"].as_str().unwrap().into(), tool: v["tool"].as_i64().unwrap() as i32, feed_xy: f(&v["feed_xy"]), feed_z: f(&v["feed_z"]), moves, comp: 0 }
 }
 fn paths(v: &Value) -> Vec<Toolpath> {
     v.as_array().unwrap().iter().map(path).collect()

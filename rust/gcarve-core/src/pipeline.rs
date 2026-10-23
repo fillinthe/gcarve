@@ -236,7 +236,14 @@ pub fn regenerate_some(doc: &Document, want: &dyn Fn(usize) -> bool) -> Generate
                 _ => cam::CamResult { paths: Vec::new(), warnings: vec![format!("{}: 3D model not loaded", op.name)] },
             }
         } else {
-            let cs = doc.contours_of(&doc.op_shape_ids(op));
+            let mut cs = doc.contours_of(&doc.op_shape_ids(op).into_iter().filter(|id| *id != op.section).collect::<Vec<_>>());
+            // moulding: the cross-section rides along as the last contour (cam::generate_moulding)
+            let moulding = op.kind == OpType::Flute && op.section > 0;
+            match doc.find(op.section).filter(|_| moulding) {
+                Some(s) if !cs.is_empty() => cs.push(s.c.clone()),
+                None if moulding => cs.clear(),
+                _ => {}
+            }
             if cs.is_empty() {
                 cam::CamResult { paths: Vec::new(), warnings: Vec::new() }
             } else {
@@ -244,6 +251,9 @@ pub fn regenerate_some(doc: &Document, want: &dyn Fn(usize) -> bool) -> Generate
             }
         };
         cam::array_copies(op, &mut r.paths);
+        if let Some(rl) = (op.project_on > 0 && op.kind != OpType::Relief).then(|| doc.find_relief(op.project_on)).flatten().filter(|rl| !rl.height.is_empty()) {
+            crate::relief::project_paths(&mut r.paths, rl);
+        }
         g.minutes.push(r.paths.iter().map(|tp| crate::order::estimate_minutes_with(tp, tp.feed_xy, tp.feed_z, mo)).sum());
         g.paths.push(r.paths);
         g.warnings.extend(r.warnings);
@@ -424,16 +434,42 @@ pub struct Tiling {
 
 /// `export`, optionally split into tiles (one set of files per tile).
 pub fn export_tiled(doc: &Document, gen: &Generated, project: &str, timestamp: &str, air_cut_raise: f64, post: &PostDef, tiling: Option<Tiling>) -> ExportResult {
+    export_tiled_with(doc, gen, project, timestamp, air_cut_raise, post, tiling, false)
+}
+
+/// `export_tiled`; `ghost` = the raised run with the spindle off (`cam::make_ghost`, `_GHOST` files)
+#[allow(clippy::too_many_arguments)]
+pub fn export_tiled_with(doc: &Document, gen: &Generated, project: &str, timestamp: &str, air_cut_raise: f64, post: &PostDef, tiling: Option<Tiling>, ghost: bool) -> ExportResult {
     let eff: Vec<Tool> = (0..doc.tools.len()).map(|i| tool_for_cut(doc, i)).collect();
     let mut safety = cam::safety_issues(&doc.ops, &eff, &gen.paths, &doc.material);
     safety.extend(machine_issues(doc, &eff));
     safety.extend(order_issues(doc));
     safety.extend(keep_out_issues(doc, &eff, &gen.paths));
     let mut jobs = all_jobs(doc, gen, project, timestamp);
-    if air_cut_raise > 0.0 {
+    if doc.material.merge {
+        cam::merge_jobs(&mut jobs, doc.material.t);
+    }
+    if let Some(dia) = doc.material.rotary {
+        cam::wrap_jobs(&mut jobs, dia);
+        if doc.material.rotary_y {
+            for j in &mut jobs {
+                j.a_along_y = true;
+                j.notes.push("ROTARY ALONG Y: the length is the Y axis, A turns the blank".into());
+            }
+        }
+        if !post.linear.contains("{Y}") {
+            safety.push(format!("Rotary job: the \"{}\" post writes plain numbers and can't name an A axis; choose a G-code post for the rotary.", post.name));
+        }
+        if tiling.is_some() {
+            safety.push("Tiling doesn't apply to a rotary job: the files are NOT tiled.".into());
+        }
+    }
+    if ghost {
+        cam::make_ghost(&mut jobs, air_cut_raise.max(cam::air_cut_raise(&doc.material)));
+    } else if air_cut_raise > 0.0 {
         cam::make_air_cut(&mut jobs, air_cut_raise);
     }
-    if let Some(t) = tiling {
+    if let Some(t) = tiling.filter(|_| doc.material.rotary.is_none()) {
         if doc.material.origin != 0 {
             safety.push("Tiling needs XY zero at the board's bottom-left corner (Board settings): the files are NOT tiled.".into());
         } else if t.len <= t.overlap || t.len <= 0.0 {
@@ -441,6 +477,9 @@ pub fn export_tiled(doc: &Document, gen: &Generated, project: &str, timestamp: &
         } else {
             jobs = cam::tile_jobs(&jobs, t.along_x, t.len, t.overlap, if t.along_x { doc.material.w } else { doc.material.h });
         }
+    }
+    if let Some(h) = doc.material.home {
+        cam::go_home(&mut jobs, h);
     }
     let mo = motion(doc);
     let files = post_jobs(&jobs, post);

@@ -6,7 +6,7 @@ use crate::units;
 use eframe::egui;
 use gcarve_core::document::Shape;
 use gcarve_core::geom::{bounds, flatten, pt, transformed, Affine, Contour, Pt, Rect};
-use gcarve_core::nest::{nest_shapes, NestPart};
+use gcarve_core::nest::NestPart;
 use gcarve_core::project::{load_clip, save_clip};
 use gcarve_core::vecops::{boolean_op, close_contour, dogbone, fillet_contours, join_open, offset_contours, simplify_contours, BoolOp};
 use std::collections::{BTreeMap, BTreeSet};
@@ -211,6 +211,16 @@ impl Canvas {
         self.mutated();
     }
 
+    /// right-click a dimension › Make Horizontal / Vertical / Aligned
+    pub fn set_dimension_axis(&mut self, i: usize, axis: i32) {
+        if i < self.doc.dimensions.len() {
+            self.doc.checkpoint();
+            self.doc.dimensions[i].axis = axis;
+            self.doc.apply_driven_dimensions();
+            self.mutated();
+        }
+    }
+
     pub fn remove_dimension(&mut self, i: usize) {
         if i >= self.doc.dimensions.len() {
             return;
@@ -301,6 +311,13 @@ impl Canvas {
     pub fn select_all(&mut self) {
         self.sel = self.doc.shapes.iter().filter(|s| self.doc.shape_editable(s)).map(|s| s.id).collect();
         self.sel_changed();
+    }
+
+    /// Edit › Vector Selector (VCarve's): selects the editable vectors of this sheet that pass every filter
+    pub fn select_matching(&mut self, f: &VecFilter) {
+        self.sel = self.doc.shapes.iter().filter(|s| self.doc.shape_editable(s) && f.matches(s)).map(|s| s.id).collect();
+        self.sel_changed();
+        self.status = format!("Vector Selector: {} vector(s) selected.", self.sel.len());
     }
 
     fn sel_centre(&self) -> Option<Pt> {
@@ -484,6 +501,211 @@ impl Canvas {
         }
         self.replace_selection(out, "Simplify", false);
         self.status = format!("Simplify: {before} → {after} nodes.");
+    }
+
+    /// Vectors › Distort › Bend Along Curve (`two` = false: the one selected open vector is the curve) / Fit Between
+    /// Two Curves (the two selected open vectors: the higher one is the top). The other selected shapes are mapped
+    /// from their bounding box onto the curve(s); the curves stay. (Below.)
+    ///
+    /// Vectors › Distort › Fit Into Four Corners: one selected closed shape with exactly four corners (straight
+    /// sides, drawn or node-edited into any skew) is the box; the other selected shapes are stretched from their
+    /// bounding box onto it (corner pin). When several selected shapes have four corners, the biggest is the box.
+    pub fn distort_four_corners(&mut self) {
+        let quad = self
+            .sel
+            .iter()
+            .filter_map(|id| self.doc.find(*id))
+            .filter(|s| s.c.closed && s.c.nodes.len() == 4 && s.c.nodes.iter().all(|n| !n.has_in && !n.has_out))
+            .max_by(|a, b| { let (ra, rb) = (bounds(&a.c), bounds(&b.c)); (ra.w() * ra.h()).total_cmp(&(rb.w() * rb.h())) })
+            .map(|s| s.id);
+        let (Some(q), true) = (quad, self.sel.len() > 1) else {
+            self.status = "Fit Into Four Corners: select the shapes and a four-corner box (straight sides) to fit them into.".into();
+            return;
+        };
+        // corners: the lower two are the bottom edge, the upper two the top, each left to right
+        let mut p: Vec<Pt> = self.doc.find(q).unwrap().c.nodes.iter().map(|n| n.p).collect();
+        p.sort_by(|a, b| a.y.total_cmp(&b.y));
+        let (mut lo, mut hi) = ([p[0], p[1]], [p[2], p[3]]);
+        lo.sort_by(|a, b| a.x.total_cmp(&b.x));
+        hi.sort_by(|a, b| a.x.total_cmp(&b.x));
+        let ids: Vec<i32> = self.sel.iter().copied().filter(|id| *id != q).collect();
+        let mut frame = Rect::default();
+        for id in &ids {
+            frame.add_rect(&bounds(&self.doc.find(*id).unwrap().c));
+        }
+        let shapes: Vec<Contour> = ids.iter().map(|id| self.doc.find(*id).unwrap().c.clone()).collect();
+        let out = gcarve_core::vecops::distort(&shapes, frame, &lo, Some(&hi));
+        self.doc.checkpoint();
+        for (id, c) in ids.iter().zip(out) {
+            self.doc.find_mut(*id).unwrap().c = c;
+        }
+        self.status = format!("Distort: {} shape(s) fitted into the four corners", ids.len());
+        self.mutated();
+    }
+
+    pub fn distort_selection(&mut self, two: bool) {
+        let open: Vec<i32> = self.sel.iter().copied().filter(|id| self.doc.find(*id).is_some_and(|s| !s.c.closed)).collect();
+        let want = if two { 2 } else { 1 };
+        if open.len() != want {
+            self.status = if two { "Fit Between Two Curves: select the shapes and exactly two open curves (top and bottom)." } else { "Bend Along Curve: select the shapes and one open curve." }.into();
+            return;
+        }
+        let mut curves: Vec<(Vec<Pt>, f64)> = open.iter().map(|id| {
+            let c = &self.doc.find(*id).unwrap().c;
+            let mut p = flatten(c, 0.002);
+            if p.len() >= 2 && p[0].x > p[p.len() - 1].x {
+                p.reverse(); // left to right, so the shapes read the right way round
+            }
+            let b = bounds(c);
+            (p, (b.y0 + b.y1) / 2.0)
+        }).collect();
+        curves.sort_by(|a, b| a.1.total_cmp(&b.1));
+        let ids: Vec<i32> = self.sel.iter().copied().filter(|id| !open.contains(id)).collect();
+        let mut frame = Rect::default();
+        for id in &ids {
+            frame.add_rect(&bounds(&self.doc.find(*id).unwrap().c));
+        }
+        if ids.is_empty() || frame.is_empty() {
+            self.status = "Distort: select the shapes to distort as well as the curve(s).".into();
+            return;
+        }
+        let shapes: Vec<Contour> = ids.iter().map(|id| self.doc.find(*id).unwrap().c.clone()).collect();
+        let out = gcarve_core::vecops::distort(&shapes, frame, &curves[0].0, curves.get(1).map(|c| c.0.as_slice()));
+        self.doc.checkpoint();
+        for (id, c) in ids.iter().zip(out) {
+            self.doc.find_mut(*id).unwrap().c = c;
+        }
+        self.status = format!("Distort: {} shape(s) {}", ids.len(), if two { "fitted between the curves" } else { "bent along the curve" });
+        self.mutated();
+    }
+
+    /// Vectors › Shelf-Pin Holes… (VCarve's drill bank, the system-32 kind): in every selected closed part, two rows
+    /// of `dia` holes `pitch` apart along its long side, `inset` in from both long edges, the first and last at least
+    /// `margin` from the ends (the run centred). Circles on the "Shelf pins" layer, for a Drill toolpath.
+    pub fn shelf_pin_holes(&mut self, dia: f64, pitch: f64, inset: f64, margin: f64) {
+        let parts: Vec<Rect> = self.sel.iter().filter_map(|id| self.doc.find(*id)).filter(|s| s.c.closed).map(|s| bounds(&s.c)).collect();
+        if parts.is_empty() || pitch <= 0.0 || dia <= 0.0 {
+            self.status = "Shelf-pin holes: select the cabinet sides (closed shapes) first.".into();
+            return;
+        }
+        self.doc.checkpoint();
+        let layer = self.doc.layer_named("Shelf pins");
+        let mut ids = BTreeSet::new();
+        let mut skipped = 0;
+        for r in parts {
+            let along_x = r.w() >= r.h();
+            let (len, wid) = if along_x { (r.w(), r.h()) } else { (r.h(), r.w()) };
+            let run = len - 2.0 * margin;
+            if run < 0.0 || wid < 2.0 * inset + dia {
+                skipped += 1;
+                continue;
+            }
+            let n = (run / pitch).floor() as usize + 1;
+            let start = (len - (n - 1) as f64 * pitch) / 2.0; // centred along the part
+            for row in [inset, wid - inset] {
+                for k in 0..n {
+                    let a = start + k as f64 * pitch;
+                    let (cx, cy) = if along_x { (r.x0 + a, r.y0 + row) } else { (r.x0 + row, r.y0 + a) };
+                    ids.insert(self.doc.add(gcarve_core::geom::make_ellipse(cx, cy, dia / 2.0, dia / 2.0), Some(layer)));
+                }
+            }
+        }
+        let n = ids.len();
+        self.sel = ids;
+        self.sel_changed();
+        self.status = if skipped > 0 { format!("Shelf-pin holes: {n} holes; {skipped} part(s) too small for the margins and inset") } else { format!("Shelf-pin holes: {n} holes, selected: add a Drill toolpath") };
+        self.mutated();
+    }
+
+    /// Vectors › Rotary Layout… (VCarve's Wrapped Spiral / Wrapped Fluting, rotary jobs): `starts` lines evenly round
+    /// the blank from X `x0` to `x1` on the unrolled board. `pitch` = X travel per turn (a spiral, negative = left
+    /// hand), 0 = straight flutes along the blank. A spiral is cut into pieces at the seam (Y = 0 / once round), as
+    /// it crosses the board's top and comes back in at the bottom. Open lines on "Rotary layout", selected, for a
+    /// Flute / V-Carve / Profile on the line.
+    pub fn rotary_layout(&mut self, starts: usize, pitch: f64, x0: f64, x1: f64) {
+        let Some(_) = self.doc.material.rotary else {
+            self.status = "Rotary layout: turn on Job Setup › Rotary first.".into();
+            return;
+        };
+        let circ = self.doc.material.h;
+        let (x0, x1) = (x0.min(x1), x0.max(x1));
+        if starts == 0 || starts > 64 || x1 - x0 < 1e-6 {
+            self.status = "Rotary layout: 1 to 64 starts over a length above zero.".into();
+            return;
+        }
+        let mut lines: Vec<Vec<Pt>> = Vec::new();
+        for k in 0..starts {
+            let mut y = circ * k as f64 / starts as f64;
+            if pitch.abs() < 1e-9 {
+                lines.push(vec![pt(x0, y), pt(x1, y)]);
+                continue;
+            }
+            let s = circ / pitch; // Y per X
+            let mut x = x0;
+            while x < x1 - 1e-9 && lines.len() < 20_000 {
+                let to_seam = if s > 0.0 { (circ - y) / s } else { -y / s };
+                let xe = (x + to_seam.max(0.0)).min(x1);
+                let ye = y + s * (xe - x);
+                if xe - x > 1e-9 {
+                    lines.push(vec![pt(x, y), pt(xe, ye)]);
+                }
+                x = xe;
+                y = if s > 0.0 && (ye - circ).abs() < 1e-9 { 0.0 } else if s < 0.0 && ye.abs() < 1e-9 { circ } else { ye };
+            }
+        }
+        self.doc.checkpoint();
+        let layer = self.doc.layer_named("Rotary layout");
+        let ids: BTreeSet<i32> = lines.iter().map(|l| self.doc.add(gcarve_core::geom::make_polyline(l, false), Some(layer))).collect();
+        let n = ids.len();
+        self.sel = ids;
+        self.sel_changed();
+        self.status = format!("Rotary layout: {n} line(s) on \"Rotary layout\", selected: add a Flute or V-Carve on them");
+        self.mutated();
+    }
+
+    /// Vectors › Vector Texture…: wavy lines filling the selected closed shapes, added next to them (same layer)
+    pub fn texture_selection(&mut self, spacing: f64, amplitude: f64, wavelength: f64, angle: f64, vary: f64) {
+        let shapes = self.sel_contours();
+        let lines = gcarve_core::vecops::vector_texture(&shapes, spacing, amplitude, wavelength, angle, vary);
+        let n = lines.len();
+        if n == 0 {
+            self.status = "Vector Texture: select one or more closed shapes to fill.".into();
+            return;
+        }
+        let layer = self.selected().and_then(|id| self.doc.find(id)).map(|s| s.layer);
+        self.doc.checkpoint();
+        let group = self.doc.new_group_id();
+        let mut ids = BTreeSet::new();
+        for c in lines {
+            let id = self.doc.add(c, layer);
+            if let Some(s) = self.doc.find_mut(id) {
+                s.group = group;
+            }
+            ids.insert(id);
+        }
+        self.sel = ids;
+        self.sel_changed();
+        self.status = format!("Vector Texture: {n} lines added as one group. Cut them with a V-bit or ball nose (Profile on the line, or Flute).");
+        self.mutated();
+    }
+
+    /// Vectors › Simplify › Fit Arcs and Curves (VCarve "Fit curves to vectors"): runs of points that lie on an arc
+    /// become arcs (Bézier nodes with handles) within `tol` inches; straight runs lose their extra points
+    pub fn fit_curves_selection(&mut self, tol: f64) {
+        if self.sel.is_empty() {
+            return;
+        }
+        let input = self.sel_contours();
+        let before: usize = input.iter().map(|c| c.nodes.len()).sum();
+        // straight runs first (simplify flattens curves), then arcs through what is left
+        let out: Vec<Contour> = simplify_contours(&input, tol / 4.0).iter().map(|c| gcarve_core::vecops::refit_arcs(c, tol)).collect();
+        let after: usize = out.iter().map(|c| c.nodes.len()).sum();
+        if after >= before {
+            self.status = format!("Fit curves: nothing to fit at this tolerance ({before} nodes).");
+            return;
+        }
+        self.replace_selection(out, "Fit curves", false);
+        self.status = format!("Fit curves: {before} → {after} nodes.");
     }
 
     /// Vectors ▸ Check Vectors: selects the open, duplicate and tiny vectors of this sheet and says what to do
@@ -753,11 +975,38 @@ impl Canvas {
 
     /// True-shape nesting of the selection on the active board. Inner shapes (box inside another selected shape)
     /// and group members travel with their parent. Returns (placed, ids that did not fit).
-    pub fn nest_selection(&mut self, gap: f64, margin: f64, rot_step_deg: i32) -> (usize, Vec<i32>) {
+    /// `corner` = where the packing starts (VCarve "Nest From"): 0 bottom-left, 1 bottom-right, 2 top-left, 3 top-right
+    pub fn nest_selection(&mut self, gap: f64, margin: f64, rot_step_deg: i32, corner: u8) -> (usize, Vec<i32>) {
+        let mirror = self.nest_mirror;
         if self.sel.is_empty() {
             return (0, Vec::new());
         }
-        let ids: Vec<i32> = self.sel.iter().copied().collect();
+        self.doc.checkpoint();
+        let mut ids: Vec<i32> = self.sel.iter().copied().collect();
+        // nest boundary: the largest selected closed shape (an offcut's outline) stays put and holds the rest
+        let boundary_id = self.nest_boundary.then(|| ids.iter().copied().filter(|id| self.doc.find(*id).is_some_and(|s| s.c.closed)).max_by(|a, b| {
+            let ar = |id: &i32| { let r = bounds(&self.doc.find(*id).unwrap().c); r.w() * r.h() };
+            ar(a).total_cmp(&ar(b))
+        })).flatten();
+        if let Some(b) = boundary_id {
+            ids.retain(|id| *id != b);
+            if ids.is_empty() {
+                return (0, Vec::new());
+            }
+        }
+        // another corner: mirror the parts so that corner is bottom-left, nest, mirror back (shapes keep their look)
+        let (w, h) = (self.doc.material.w, self.doc.material.h);
+        let flip = Affine::translate(if corner & 1 == 1 { w } else { 0.0 }, if corner & 2 == 2 { h } else { 0.0 }) * Affine::scale(if corner & 1 == 1 { -1.0 } else { 1.0 }, if corner & 2 == 2 { -1.0 } else { 1.0 });
+        let mirror_all = |doc: &mut gcarve_core::document::Document| {
+            if corner != 0 {
+                for id in &ids {
+                    if let Some(s) = doc.find_mut(*id) {
+                        s.c = transformed(&s.c, &flip);
+                    }
+                }
+            }
+        };
+        mirror_all(&mut self.doc);
         let n = ids.len();
         let boxes: Vec<Rect> = ids.iter().map(|id| bounds(&self.doc.find(*id).unwrap().c)).collect();
         let area = |b: &Rect| b.w() * b.h();
@@ -827,16 +1076,44 @@ impl Canvas {
             }
             parts.push(NestPart { outline });
         }
-        let places = nest_shapes(&parts, self.doc.material.w, self.doc.material.h, gap, margin, rot_step_deg);
-        self.doc.checkpoint();
+        let fence: Option<Vec<Pt>> = boundary_id.and_then(|b| self.doc.find(b)).map(|s| {
+            let mut p = flatten(&s.c, 0.002);
+            p.pop();
+            p.into_iter().map(|q| flip.apply(q)).collect()
+        });
+        // filler part (VCarve's): copies of the smallest part fill what space is left; they come last (smallest)
+        let n_parts = parts.len();
+        let filler = self.nest_filler.then(|| (0..n_parts).min_by(|a, b| poly_area(&parts[*a].outline).total_cmp(&poly_area(&parts[*b].outline)))).flatten();
+        let mut family: Vec<Shape> = Vec::new();
+        if let Some(k) = filler {
+            let a = poly_area(&parts[k].outline).max(1e-6);
+            let spare = (self.doc.material.w * self.doc.material.h - parts.iter().map(|p| poly_area(&p.outline)).sum::<f64>()).max(0.0);
+            for _ in 0..((spare / a) as usize).min(300) {
+                parts.push(parts[k].clone());
+            }
+            family = ids.iter().enumerate().filter(|(i, _)| top(*i) == roots[k]).filter_map(|(_, id)| self.doc.find(*id).cloned()).collect();
+        }
+        let places = gcarve_core::nest::nest_shapes_with(&parts, self.doc.material.w, self.doc.material.h, gap, margin, rot_step_deg, mirror, fence.as_deref());
+        let mut fillers = 0;
+        for p in places.iter().skip(n_parts).filter(|p| p.placed) {
+            let m = flip * Affine::translate(p.offset.x, p.offset.y) * Affine::rotate(p.rotation) * Affine::scale(if p.mirror { -1.0 } else { 1.0 }, 1.0);
+            let group = if family.iter().any(|s| s.group != 0) { self.doc.new_group_id() } else { 0 };
+            for s in &family {
+                let id = self.doc.add(transformed(&s.c, &m), Some(s.layer));
+                self.doc.find_mut(id).unwrap().group = group;
+            }
+            fillers += 1;
+        }
         let mut placed = 0;
         let mut unplaced = Vec::new();
+        let mut moved: Vec<(Vec<Pt>, Affine)> = Vec::new(); // each placed part: its old outline and its move (board coordinates)
         for (k, &root) in roots.iter().enumerate() {
             if !places[k].placed {
                 unplaced.extend((0..n).filter(|&i| top(i) == root).map(|i| ids[i]));
                 continue;
             }
-            let m = Affine::translate(places[k].offset.x, places[k].offset.y) * Affine::rotate(places[k].rotation);
+            let m = Affine::translate(places[k].offset.x, places[k].offset.y) * Affine::rotate(places[k].rotation) * Affine::scale(if places[k].mirror { -1.0 } else { 1.0 }, 1.0);
+            moved.push((parts[k].outline.iter().map(|q| flip.apply(*q)).collect(), flip * m * flip));
             for (i, id) in ids.iter().enumerate() {
                 if top(i) == root {
                     let s = self.doc.find_mut(*id).unwrap();
@@ -845,17 +1122,49 @@ impl Canvas {
             }
             placed += 1;
         }
+        mirror_all(&mut self.doc);
+        let backs = self.follow_on_back_sides(&moved);
         self.status = if placed == roots.len() { format!("Nested {placed} part(s) on the board") } else { format!("Nested {placed} of {} part(s); the rest don't fit on this board", roots.len()) };
+        if fillers > 0 {
+            self.status += &format!(", plus {fillers} filler cop{} of the smallest part", if fillers == 1 { "y" } else { "ies" });
+        }
+        if backs > 0 {
+            self.status += &format!("; {backs} back-side vector{} moved with {}", if backs == 1 { "" } else { "s" }, if backs == 1 { "its part" } else { "their parts" });
+        }
         self.mutated();
         (placed, unplaced)
     }
 
+    /// Two-sided jobs: the vectors on this sheet's back side (Vectors › New Back Side) that lie under a nested part
+    /// (seen through the flip) get the same move, mirrored, so both faces still meet. Returns how many moved.
+    /// ponytail: parts that overflow onto another sheet leave their back-side vectors where they were.
+    fn follow_on_back_sides(&mut self, moved: &[(Vec<Pt>, Affine)]) -> usize {
+        let front = self.doc.active_sheet;
+        let (w, h) = (self.doc.material.w, self.doc.material.h);
+        let backs: Vec<(i32, bool)> = (0..self.doc.sheets.len()).filter_map(|j| self.doc.sheets[j].back_of.filter(|b| b.0 == front).map(|b| (j as i32, b.1))).collect();
+        let mut n = 0;
+        for (sheet, lr) in backs {
+            let f = if lr { Affine::translate(w, 0.0) * Affine::scale(-1.0, 1.0) } else { Affine::translate(0.0, h) * Affine::scale(1.0, -1.0) };
+            for s in self.doc.shapes.iter_mut().filter(|s| s.sheet == sheet) {
+                let b = bounds(&s.c);
+                let c = f.apply(pt((b.x0 + b.x1) / 2.0, (b.y0 + b.y1) / 2.0));
+                let inside = |o: &Vec<Pt>| gcarve_core::geom::point_in_poly(c, o.len(), |i| (o[i].x, o[i].y));
+                let area = |o: &Vec<Pt>| { let r = bounds(&gcarve_core::geom::make_polyline(o, true)); r.w() * r.h() };
+                if let Some((_, t)) = moved.iter().filter(|(o, _)| inside(o)).min_by(|a, b| area(&a.0).total_cmp(&area(&b.0))) {
+                    s.c = transformed(&s.c, &(f * *t * f));
+                    n += 1;
+                }
+            }
+        }
+        n
+    }
+
     /// Nest, moving leftovers onto the next sheet (a new one with the same board when needed), until all fit.
-    pub fn nest_selection_sheets(&mut self, gap: f64, margin: f64, rot_step_deg: i32) -> usize {
+    pub fn nest_selection_sheets(&mut self, gap: f64, margin: f64, rot_step_deg: i32, corner: u8) -> usize {
         let mut total = 0;
         let mut last_unplaced = usize::MAX;
         for _ in 0..50 {
-            let (placed, rest) = self.nest_selection(gap, margin, rot_step_deg);
+            let (placed, rest) = self.nest_selection(gap, margin, rot_step_deg, corner);
             total += placed;
             if rest.is_empty() {
                 break;
@@ -869,7 +1178,7 @@ impl Canvas {
             let next = self.doc.active_sheet + 1;
             if next >= self.doc.sheets.len() as i32 {
                 self.doc.sync_sheet();
-                let m = gcarve_core::document::Material { name: String::new(), ..self.doc.material.clone() };
+                let m = gcarve_core::document::Material { name: String::new(), back_of: None, ..self.doc.material.clone() };
                 self.doc.sheets.push(m);
             }
             for id in &rest {
@@ -885,6 +1194,48 @@ impl Canvas {
         self.mutated();
         total
     }
+}
+
+/// area of a closed outline (shoelace), always positive
+fn poly_area(p: &[Pt]) -> f64 {
+    (0..p.len()).map(|i| { let (a, b) = (p[i], p[(i + 1) % p.len()]); a.x * b.y - b.x * a.y }).sum::<f64>().abs() / 2.0
+}
+
+/// Vector Selector filters; lengths in inches, `None` = no limit
+#[derive(Clone, Default)]
+pub struct VecFilter {
+    /// 0 any, 1 open, 2 closed, 3 circles
+    pub kind: u8,
+    /// longest side of the bounding box
+    pub larger: Option<f64>,
+    pub smaller: Option<f64>,
+    /// layer index; None = any
+    pub layer: Option<i32>,
+}
+
+impl VecFilter {
+    pub fn matches(&self, s: &Shape) -> bool {
+        let b = bounds(&s.c);
+        let size = (b.x1 - b.x0).max(b.y1 - b.y0);
+        let kind = match self.kind {
+            1 => !s.c.closed,
+            2 => s.c.closed,
+            3 => is_circle(&s.c),
+            _ => true,
+        };
+        kind && self.larger.is_none_or(|v| size > v) && self.smaller.is_none_or(|v| size < v) && self.layer.is_none_or(|l| s.layer == l)
+    }
+}
+
+/// closed, as wide as tall, every outline point within 1 % of the radius from the centre
+fn is_circle(c: &Contour) -> bool {
+    let b = bounds(c);
+    let (w, h) = (b.x1 - b.x0, b.y1 - b.y0);
+    if !c.closed || w <= 0.0 || (w - h).abs() > 0.01 * w {
+        return false;
+    }
+    let (cx, cy, r) = ((b.x0 + b.x1) / 2.0, (b.y0 + b.y1) / 2.0, w / 2.0);
+    flatten(c, r * 0.001).iter().all(|p| ((p.x - cx).hypot(p.y - cy) - r).abs() < 0.01 * r)
 }
 
 #[cfg(test)]
@@ -971,10 +1322,134 @@ mod tests {
         c.select_all();
         c.doc.material.w = 4.0;
         c.doc.material.h = 6.0;
-        let placed = c.nest_selection_sheets(0.1, 0.1, 90);
+        let placed = c.nest_selection_sheets(0.1, 0.1, 90, 0);
         assert!(placed == 11 && c.doc.sheets.len() >= 2, "{placed} parts, {} sheets", c.doc.sheets.len());
         c.ungroup_selection();
         assert!(!c.selection_has_group());
+    }
+
+    #[test]
+    fn nesting_a_two_sided_part_moves_its_back_side_too() {
+        let mut c = canvas();
+        c.doc.material.w = 20.0;
+        c.doc.material.h = 10.0;
+        let part = c.add_shape(make_rect(10.0, 6.0, 12.0, 8.0));
+        c.doc.sync_sheet();
+        c.doc.sheets.push(gcarve_core::document::Material { back_of: Some((0, true)), ..c.doc.material.clone() });
+        // on the back (flipped left to right) a hole under the part's middle (front 11, 7 → back 9, 7), and one elsewhere
+        let hole = c.doc.add(make_ellipse(9.0, 7.0, 0.3, 0.3), None);
+        let other = c.doc.add(make_ellipse(3.0, 2.0, 0.3, 0.3), None);
+        for id in [hole, other] {
+            c.doc.find_mut(id).unwrap().sheet = 1;
+        }
+        c.sel = BTreeSet::from([part]);
+        c.sel_changed();
+        c.nest_selection(0.0, 0.5, 90, 0);
+        let pb = bounds(&c.doc.find(part).unwrap().c);
+        assert!(pb.x0 < 1.0 && pb.y0 < 1.0, "{pb:?}");
+        let (mx, my) = ((pb.x0 + pb.x1) / 2.0, (pb.y0 + pb.y1) / 2.0);
+        let hb = bounds(&c.doc.find(hole).unwrap().c);
+        assert!(((hb.x0 + hb.x1) / 2.0 - (20.0 - mx)).abs() < 1e-6 && ((hb.y0 + hb.y1) / 2.0 - my).abs() < 1e-6, "{hb:?} for part at {mx}, {my}");
+        let ob = bounds(&c.doc.find(other).unwrap().c);
+        assert!(((ob.x0 + ob.x1) / 2.0 - 3.0).abs() < 1e-9, "a back vector under no part stays");
+        assert!(c.status.contains("back-side"), "{}", c.status);
+    }
+}
+
+#[cfg(test)]
+mod nest_corner_tests {
+    use super::*;
+    use gcarve_core::geom::make_rect;
+
+    #[test]
+    fn nesting_from_the_top_right_packs_into_that_corner() {
+        let mut c = Canvas::default();
+        c.doc.material.w = 20.0;
+        c.doc.material.h = 10.0;
+        let a = c.doc.add(make_rect(1.0, 1.0, 3.0, 2.0), None);
+        c.sel = BTreeSet::from([a]);
+        let undo_to = bounds(&c.doc.find(a).unwrap().c);
+        c.nest_selection(0.0, 0.5, 0, 3);
+        let b = bounds(&c.doc.find(a).unwrap().c);
+        assert!((b.x1 - 19.5).abs() < 0.01 && (b.y1 - 9.5).abs() < 0.01 && (b.w() - 2.0).abs() < 1e-6, "{b:?}");
+        c.undo();
+        assert_eq!(bounds(&c.doc.find(a).unwrap().c), undo_to);
+        // distort: three bars bent along an arch keep their order and end up on the arch
+        let mut d = Canvas::default();
+        let bars: Vec<i32> = (0..3).map(|k| d.doc.add(make_rect(k as f64 * 2.0, 0.0, k as f64 * 2.0 + 1.5, 1.0), None)).collect();
+        let arch: Vec<Pt> = (0..=40).map(|i| { let a = PI - PI * i as f64 / 40.0; pt(20.0 + 6.0 * a.cos(), 6.0 * a.sin()) }).collect();
+        let curve = d.doc.add(gcarve_core::geom::make_polyline(&arch, false), None);
+        d.sel = bars.iter().copied().chain([curve]).collect();
+        d.distort_selection(false);
+        assert!(d.status.contains("bent"), "{}", d.status);
+        let mid = bounds(&d.doc.find(bars[1]).unwrap().c);
+        assert!(mid.y0 > 5.3 && mid.y1 > 6.9 && (((mid.x0 + mid.x1) / 2.0) - 20.0).abs() < 0.5, "{mid:?}"); // on the arch, standing 1 in tall at its top
+        if let Ok(out) = std::env::var("GCARVE_DISTORT_SVG") {
+            let items: Vec<_> = d.doc.shapes.iter().map(|s| (&s.c, "")).collect();
+            std::fs::write(out, gcarve_core::svg::export_svg(&items, 30.0, 10.0)).unwrap();
+        }
+        // four corners: a 2 x 1 bar into a skewed box keeps to its corners
+        let mut q = Canvas::default();
+        let bar = q.doc.add(make_rect(0.0, 0.0, 2.0, 1.0), None);
+        let quad = q.doc.add(gcarve_core::geom::make_polyline(&[pt(10.0, 0.0), pt(16.0, 1.0), pt(15.0, 5.0), pt(11.0, 4.0)], true), None);
+        q.sel = BTreeSet::from([bar, quad]);
+        q.distort_four_corners();
+        assert!(q.status.contains("four corners"), "{}", q.status);
+        let b = bounds(&q.doc.find(bar).unwrap().c);
+        assert!((b.x0 - 10.0).abs() < 0.01 && (b.x1 - 16.0).abs() < 0.01 && b.y0.abs() < 0.01 && (b.y1 - 5.0).abs() < 0.01, "{b:?}");
+        // rotary layout: a 2-start spiral, 4 in per turn, over 8 in of a 2 in blank = 2 × 2 turns, each piece once round
+        let mut rl = Canvas::default();
+        rl.doc.material.rotary = Some(2.0);
+        rl.doc.material.h = PI * 2.0;
+        rl.rotary_layout(2, 4.0, 0.0, 8.0);
+        let pieces: Vec<Rect> = rl.sel.iter().map(|id| bounds(&rl.doc.find(*id).unwrap().c)).collect();
+        assert_eq!(pieces.len(), 2 * 2 + 1, "{}", rl.status); // the half-turn-offset start is split once more
+        assert!(pieces.iter().all(|b| b.y0 >= -1e-9 && b.y1 <= PI * 2.0 + 1e-9 && b.x1 <= 8.0 + 1e-9));
+        let along: f64 = pieces.iter().map(|b| b.w()).sum();
+        assert!((along - 16.0).abs() < 1e-6, "{along}");
+        rl.rotary_layout(6, 0.0, 1.0, 5.0);
+        assert_eq!(rl.sel.len(), 6);
+        // shelf pins: a 30 x 11.25 side gets two rows centred along its length, 1.26 in apart
+        let mut sp = Canvas::default();
+        let side = sp.doc.add(make_rect(0.0, 0.0, 30.0, 11.25), None);
+        sp.sel = BTreeSet::from([side]);
+        sp.shelf_pin_holes(5.0 / 25.4, 32.0 / 25.4, 37.0 / 25.4, 3.0);
+        let holes: Vec<Rect> = sp.sel.iter().map(|id| bounds(&sp.doc.find(*id).unwrap().c)).collect();
+        assert_eq!(holes.len(), 2 * 20, "{}", sp.status); // 24 in of run between the 3 in margins: 20 holes 32 mm apart
+        assert!(holes.iter().all(|b| ((b.y0 + b.y1) / 2.0 - 37.0 / 25.4).abs() < 1e-6 || ((b.y0 + b.y1) / 2.0 - (11.25 - 37.0 / 25.4)).abs() < 1e-6));
+        let xs: Vec<f64> = holes.iter().map(|b| (b.x0 + b.x1) / 2.0).collect();
+        assert!((xs.iter().cloned().fold(f64::MAX, f64::min) + xs.iter().cloned().fold(f64::MIN, f64::max) - 30.0).abs() < 1e-6, "centred");
+        // filler: one 4 x 4 part and a 1 x 1 part on a 6 x 6 board: the gaps take more 1 x 1 copies
+        let mut f = Canvas::default();
+        f.doc.material.w = 6.0;
+        f.doc.material.h = 6.0;
+        let big = f.doc.add(make_rect(0.0, 0.0, 4.0, 4.0), None);
+        let small = f.doc.add(make_rect(10.0, 0.0, 11.0, 1.0), None);
+        f.sel = BTreeSet::from([big, small]);
+        f.nest_filler = true;
+        let (placed, _) = f.nest_selection(0.0, 0.0, 0, 0);
+        assert_eq!(placed, 2);
+        // ponytail: exact fits (zero gap, parts flush to each other) are not always found, so not all 19 spots fill
+        assert!(f.doc.shapes.len() >= 2 + 8 && f.status.contains("filler"), "{} shapes, {}", f.doc.shapes.len(), f.status);
+        assert!(f.doc.shapes.iter().all(|s| { let b = bounds(&s.c); b.x0 >= -1e-6 && b.y0 >= -1e-6 && b.x1 <= 6.0 + 1e-6 && b.y1 <= 6.0 + 1e-6 }));
+        let bb = bounds(&f.doc.find(big).unwrap().c);
+        assert!(f.doc.shapes.iter().filter(|s| s.id != big).all(|s| { let b = bounds(&s.c); b.x0 >= bb.x1 - 1e-6 || b.x1 <= bb.x0 + 1e-6 || b.y0 >= bb.y1 - 1e-6 || b.y1 <= bb.y0 + 1e-6 }), "a filler sits on the big part");
+        // inside an offcut: the triangle stays, the squares land inside it (from the top-right corner too)
+        let tri = c.doc.add(gcarve_core::geom::make_polyline(&[pt(10.0, 0.0), pt(20.0, 0.0), pt(20.0, 10.0)], true), None);
+        let sq: Vec<i32> = (0..3).map(|k| c.doc.add(make_rect(k as f64 * 2.0, 0.0, k as f64 * 2.0 + 1.0, 1.0), None)).collect();
+        let before = bounds(&c.doc.find(tri).unwrap().c);
+        c.sel = sq.iter().copied().chain([tri]).collect();
+        c.nest_boundary = true;
+        for corner in [0, 3] {
+            let (placed, _) = c.nest_selection(0.1, 0.0, 0, corner);
+            assert_eq!(placed, 3);
+            assert_eq!(bounds(&c.doc.find(tri).unwrap().c), before);
+            for id in &sq {
+                let b = bounds(&c.doc.find(*id).unwrap().c);
+                // inside the triangle (10,0) (20,0) (20,10): on the board strip and under its slope y = x - 10
+                assert!(b.x0 >= 10.0 - 1e-6 && b.y0 >= -1e-6 && b.x1 <= 20.0 + 1e-6 && b.y1 <= b.x0 - 10.0 + 1e-6, "corner {corner}: {b:?}");
+            }
+        }
     }
 }
 
@@ -1024,6 +1499,23 @@ mod vector_tool_tests {
         c.ctx_at = pt(2.5, 0.0);
         c.trim_here();
         assert!(c.doc.find(path).is_none() && c.status.starts_with("Trimmed"), "{}", c.status);
+        // Vector Selector: closed / open / circles / size
+        let ring = c.doc.add(gcarve_core::geom::make_ellipse(60.0, 0.0, 2.0, 2.0), None);
+        let big = c.doc.add(make_rect(70.0, 0.0, 80.0, 10.0), None);
+        c.select_matching(&VecFilter { kind: 3, ..Default::default() });
+        assert_eq!(c.sel, BTreeSet::from([ring]));
+        c.select_matching(&VecFilter { kind: 2, larger: Some(5.0), ..Default::default() });
+        assert_eq!(c.sel, BTreeSet::from([big]));
+        c.select_matching(&VecFilter { kind: 1, ..Default::default() });
+        assert!(!c.sel.is_empty() && c.sel.iter().all(|id| !c.doc.find(*id).unwrap().c.closed));
+        // Fit curves: a 72-point polyline circle becomes a few arc nodes that stay on the circle
+        let dense: Vec<Pt> = (0..72).map(|i| { let a = i as f64 * PI / 36.0; pt(90.0 + 3.0 * a.cos(), 3.0 * a.sin()) }).collect();
+        let circ = c.doc.add(gcarve_core::geom::make_polyline(&dense, true), None);
+        c.sel = BTreeSet::from([circ]);
+        c.fit_curves_selection(0.005);
+        let fitted = &c.doc.find(*c.sel.iter().next().unwrap()).unwrap().c;
+        assert!(fitted.nodes.len() <= 12 && c.status.starts_with("Fit curves: 72"), "{} nodes, {}", fitted.nodes.len(), c.status);
+        assert!(flatten(fitted, 0.001).iter().all(|p| ((p.x - 90.0).hypot(p.y) - 3.0).abs() < 0.01));
         // Simplify: a polyline with a needless middle point loses it
         let wiggly = c.doc.add(make_polyline(&[pt(30.0, 0.0), pt(35.0, 0.0001), pt(40.0, 0.0)], false), None);
         c.sel = BTreeSet::from([wiggly]);
@@ -1036,5 +1528,29 @@ mod vector_tool_tests {
         c.mirror_copy(true);
         let b = bounds(&c.doc.find(*c.sel.iter().next().unwrap()).unwrap().c);
         assert!((b.x0 - 52.0).abs() < 1e-9 && (b.x1 - 54.0).abs() < 1e-9 && (b.y1 - 3.0).abs() < 1e-9, "{b:?}");
+    }
+}
+
+#[cfg(test)]
+mod rotary_sample {
+    /// GCARVE_ROTARY_OUT=x.tlp: a 4-start barley twist V-fluted on a 3 in blank (rotary 3D view screenshots)
+    #[test]
+    #[ignore]
+    fn rotary_sample() {
+        let Ok(out) = std::env::var("GCARVE_ROTARY_OUT") else { return };
+        let mut c = crate::canvas::Canvas::default();
+        let m = &mut c.doc.material;
+        m.rotary = Some(3.0);
+        m.w = 12.0;
+        m.h = std::f64::consts::PI * 3.0;
+        m.t = 1.5;
+        c.rotary_layout(4, 5.0, 1.0, 11.0);
+        let ids: Vec<i32> = c.sel.iter().copied().collect();
+        c.doc.tools.push(gcarve_core::document::Tool { name: "V90".into(), kind: gcarve_core::document::ToolType::VBit, angle: 90.0, diameter: 0.5, stepdown: 0.1, feed_xy: 100.0, feed_z: 30.0, rpm: 18000, ..Default::default() });
+        let tool = (c.doc.tools.len() - 1) as i32;
+        let mut op = crate::dialogs::op::new_op(&c.doc, gcarve_core::document::OpType::Flute, &ids);
+        (op.depth, op.tool) = (0.25, tool);
+        c.doc.ops.push(op);
+        std::fs::write(out, gcarve_core::project::save_project(&c.doc)).unwrap();
     }
 }

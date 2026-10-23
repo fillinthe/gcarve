@@ -88,7 +88,12 @@ window.gcGate = (async () => {
   // the download fills the bar (the size of the uncompressed program is stamped in by build-web.sh); without it, or
   // when the body can't be streamed, the bar keeps sweeping
   const program = async () => {
-    const r = await fetch("./gcarve_bg.wasm?v=BUILD"), size = +"RAWSIZE";
+    // a dropped connection ("Failed to fetch") gets two more tries before the start fails
+    let r;
+    for (let i = 1; ; i++) {
+      try { r = await fetch("./gcarve_bg.wasm?v=BUILD"); break; } catch (e) { if (i >= 3) throw e; await new Promise(f => setTimeout(f, 1000 * i)); }
+    }
+    const size = +"RAWSIZE";
     const bar = document.querySelector("#loading .bar i");
     if (!r.ok || !r.body || !(size > 0) || !bar) return r;
     bar.style.animation = "none"; bar.style.width = "2%"; bar.style.transition = "width .2s";

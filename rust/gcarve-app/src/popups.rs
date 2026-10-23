@@ -379,6 +379,16 @@ impl Canvas {
             self.open_dim_popup(i, at);
             close = true;
         }
+        crate::widgets::menu_separator(ui);
+        let cur = self.doc.dimensions.get(i).map_or(0, |d| d.axis);
+        // the other two kinds (a tick glyph is missing from the web font)
+        for (axis, label) in [(0, "Make Aligned (straight distance)"), (1, "Make Horizontal (X only)"), (2, "Make Vertical (Y only)")].into_iter().filter(|(a, _)| *a != cur) {
+            if crate::widgets::menu_item(ui, label, "").clicked() {
+                self.set_dimension_axis(i, axis);
+                close = true;
+            }
+        }
+        crate::widgets::menu_separator(ui);
         if crate::widgets::menu_item(ui, "Delete Dimension", "").clicked() {
             self.remove_dimension(i);
             close = true;
@@ -416,6 +426,24 @@ pub struct Dialogs {
     nest: Option<[String; 2]>,
     nest_rot: usize,
     nest_overflow: bool,
+    /// 0 bottom-left, 1 bottom-right, 2 top-left, 3 top-right
+    nest_corner: u8,
+    nest_mirror: bool,
+    nest_boundary: bool,
+    nest_filler: bool,
+    /// Shelf-pin holes: diameter, pitch, inset, end margin texts
+    pins: Option<[String; 4]>,
+    /// rotary layout: starts, pitch, from X, to X
+    rlayout: Option<[String; 4]>,
+    /// Plate Production: the list (one plate per line), first line = headings, gap text
+    plates: Option<(String, bool, String)>,
+    /// Vector Texture: spacing, amplitude, wavelength texts + angle, randomness
+    texture: Option<[String; 3]>,
+    texture_angle: f64,
+    texture_vary: f64,
+    /// Vector Selector: filter + larger / smaller texts
+    selector: Option<[String; 2]>,
+    sel_filter: crate::edit_ops::VecFilter,
 }
 
 impl Dialogs {
@@ -449,6 +477,16 @@ impl Dialogs {
                 self.nest = Some([units::text(doc, 0.25), units::text(doc, 0.5)]);
                 self.nest_rot = 1;
                 self.nest_overflow = true;
+            }
+            Request::Selector => self.selector = Some([String::new(), String::new()]),
+            Request::RotaryLayout => self.rlayout = Some([String::from("1"), units::text(doc, 4.0), units::text(doc, 0.0), units::text(doc, doc.material.w)]),
+            Request::Pins => self.pins = Some([units::text(doc, 5.0 / 25.4), units::text(doc, 32.0 / 25.4), units::text(doc, 37.0 / 25.4), units::text(doc, 3.0)]),
+            Request::Plates => self.plates = Some(("name,room\nAnn,101\nBo,102".into(), true, units::text(doc, 0.25))),
+            Request::Texture => {
+                self.texture = Some([units::text(doc, 0.25), units::text(doc, 0.06), units::text(doc, 1.5)]);
+                if self.texture_vary == 0.0 {
+                    self.texture_vary = 0.3;
+                }
             }
             Request::Text(on_path) => self.text.open_new(canvas, on_path),
             Request::EditText(id) => self.text.open_for(canvas, id),
@@ -503,6 +541,184 @@ impl Dialogs {
             }
             if keep {
                 self.offset = Some(f);
+            }
+        }
+
+        if let Some(mut f) = self.pins.take() {
+            let (mut keep, mut ok) = (true, false);
+            W::Dialog::new("Shelf-Pin Holes").show(ctx, |ui| {
+                egui::Grid::new("pins").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
+                    for (i, label) in ["Hole diameter", "Hole spacing", "In from the front and back edges", "Clear of the ends"].iter().enumerate() {
+                        ui.label(format!("{label} ({doc_unit})"));
+                        units::num_field(ui, label, &mut f[i], &canvas.doc, true, 110.0);
+                        ui.end_row();
+                    }
+                });
+                ui.label(egui::RichText::new("Two rows of holes along each selected cabinet side (system 32: 5 mm holes 32 mm apart, 37 mm in). They are added as circles on the \"Shelf pins\" layer: drill them with a Drill toolpath on that layer.").small().color(crate::theme::TEXT_DIM));
+                let (o, c) = W::ok_cancel(ui);
+                ok |= o;
+                keep &= !c;
+            });
+            if ok {
+                let v: Vec<Result<f64, String>> = f.iter().map(|t| units::get(&canvas.doc, t, true)).collect();
+                match v.iter().find_map(|r| r.as_ref().err()) {
+                    Some(e) => canvas.status = e.clone(),
+                    None => {
+                        let n: Vec<f64> = v.into_iter().map(Result::unwrap).collect();
+                        canvas.shelf_pin_holes(n[0], n[1], n[2], n[3]);
+                        keep = false;
+                    }
+                }
+            }
+            if keep {
+                self.pins = Some(f);
+            }
+        }
+
+        if let Some(mut f) = self.rlayout.take() {
+            let (mut keep, mut ok) = (true, false);
+            W::Dialog::new("Rotary Layout").show(ctx, |ui| {
+                egui::Grid::new("rlayout").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
+                    for (i, label) in ["Starts (lines round the blank)", "Pitch: length per turn, 0 = straight", "From X", "To X"].iter().enumerate() {
+                        ui.label(if i == 0 { label.to_string() } else { format!("{label} ({doc_unit})") });
+                        units::num_field(ui, label, &mut f[i], &canvas.doc, i > 0, 110.0);
+                        ui.end_row();
+                    }
+                });
+                ui.label(egui::RichText::new("Lines on the unrolled blank: a spiral (barley twist, rope) or flutes along it, evenly round. A negative pitch twists the other way. Put a Flute or V-Carve toolpath on them.").small().color(crate::theme::TEXT_DIM));
+                let (o, c) = W::ok_cancel(ui);
+                ok |= o;
+                keep &= !c;
+            });
+            if ok {
+                let v: Vec<Result<f64, String>> = f.iter().enumerate().map(|(i, t)| units::get(&canvas.doc, t, i > 0)).collect();
+                match v.iter().find_map(|r| r.as_ref().err()) {
+                    Some(e) => canvas.status = e.clone(),
+                    None => {
+                        let n: Vec<f64> = v.into_iter().map(Result::unwrap).collect();
+                        canvas.rotary_layout(n[0].round().max(0.0) as usize, n[1], n[2], n[3]);
+                        keep = false;
+                    }
+                }
+            }
+            if keep {
+                self.rlayout = Some(f);
+            }
+        }
+
+        if let Some((mut list, mut heads, mut gap)) = self.plates.take() {
+            let (mut keep, mut ok) = (true, false);
+            W::Dialog::new("Plate Production").show(ctx, |ui| {
+                ui.set_max_width(460.0);
+                ui.label(egui::RichText::new("Select the master plate (its outline, text, anything). In its text, {1} is a row's first field, {2} the second, or use a heading like {name}. One plate is made per line below, beside and then below the master.").small().color(crate::theme::TEXT_DIM));
+                ui.add(egui::TextEdit::multiline(&mut list).desired_width(440.0).desired_rows(8).hint_text("Ann,101\nBo,102"));
+                W::checkbox(ui, &mut heads, "First line is headings");
+                ui.horizontal(|ui| {
+                    ui.label(format!("Gap between plates ({doc_unit})"));
+                    units::num_field(ui, "plgap", &mut gap, &canvas.doc, true, 110.0);
+                });
+                let (o, c) = W::ok_cancel(ui);
+                ok |= o;
+                keep &= !c;
+            });
+            if ok {
+                // fields split on tabs (pasted from a spreadsheet) or commas
+                let mut rows: Vec<Vec<String>> = list.lines().filter(|l| !l.trim().is_empty()).map(|l| l.split(if l.contains('\t') { '\t' } else { ',' }).map(str::to_string).collect()).collect();
+                let headings = if heads && !rows.is_empty() { rows.remove(0) } else { Vec::new() };
+                match units::get(&canvas.doc, &gap, true) {
+                    Ok(g) => {
+                        canvas.plate_production(&rows, &headings, g);
+                        keep = false;
+                    }
+                    Err(e) => canvas.status = e,
+                }
+            }
+            if keep {
+                self.plates = Some((list, heads, gap));
+            }
+        }
+
+        if let Some(mut f) = self.texture.take() {
+            let (mut keep, mut ok) = (true, false);
+            W::Dialog::new("Vector Texture").show(ctx, |ui| {
+                egui::Grid::new("vtexture").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
+                    for (i, label) in ["Line spacing", "Wave height", "Wave length"].iter().enumerate() {
+                        ui.label(format!("{label} ({doc_unit})"));
+                        units::num_field(ui, label, &mut f[i], &canvas.doc, true, 110.0);
+                        ui.end_row();
+                    }
+                    ui.label("Angle");
+                    ui.add(egui::DragValue::new(&mut self.texture_angle).range(0.0..=179.0).suffix("°"));
+                    ui.end_row();
+                    ui.label("Randomness");
+                    ui.add(egui::Slider::new(&mut self.texture_vary, 0.0..=1.0).fixed_decimals(2));
+                    ui.end_row();
+                });
+                ui.label(egui::RichText::new("Fills the selected closed shapes with wavy lines (holes stay clear), added as one group. Cut them with a V-bit or ball nose: Profile on the line, or Flute.").small().color(crate::theme::TEXT_DIM));
+                let (o, c) = W::ok_cancel(ui);
+                ok |= o;
+                keep &= !c;
+            });
+            if ok {
+                let v: Vec<Result<f64, String>> = f.iter().map(|t| units::get(&canvas.doc, t, true)).collect();
+                match v.iter().find_map(|r| r.as_ref().err()) {
+                    Some(e) => canvas.status = e.clone(),
+                    None => {
+                        let n: Vec<f64> = v.into_iter().map(Result::unwrap).collect();
+                        canvas.texture_selection(n[0], n[1], n[2], self.texture_angle, self.texture_vary);
+                        keep = false;
+                    }
+                }
+            }
+            if keep {
+                self.texture = Some(f);
+            }
+        }
+
+        if let Some(mut f) = self.selector.take() {
+            let (mut keep, mut ok) = (true, false);
+            W::Dialog::new("Vector Selector").show(ctx, |ui| {
+                egui::Grid::new("selector").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
+                    ui.label("Kind");
+                    ui.horizontal(|ui| {
+                        for (v, t) in [(0, "Any"), (1, "Open"), (2, "Closed"), (3, "Circles")] {
+                            W::radio_value(ui, &mut self.sel_filter.kind, v, t);
+                        }
+                    });
+                    ui.end_row();
+                    ui.label(format!("Larger than ({doc_unit})"));
+                    units::num_field(ui, "lg", &mut f[0], &canvas.doc, true, 110.0);
+                    ui.end_row();
+                    ui.label(format!("Smaller than ({doc_unit})"));
+                    units::num_field(ui, "sm", &mut f[1], &canvas.doc, true, 110.0);
+                    ui.end_row();
+                    ui.label("Layer");
+                    let name = |l: Option<i32>| l.and_then(|i| canvas.doc.layers.get(i as usize)).map_or("Any layer".to_string(), |l| l.name.clone());
+                    egui::ComboBox::from_id_salt("sel_layer").selected_text(name(self.sel_filter.layer)).show_ui(ui, |ui| {
+                        ui.selectable_value(&mut self.sel_filter.layer, None, "Any layer");
+                        for i in 0..canvas.doc.layers.len() as i32 {
+                            ui.selectable_value(&mut self.sel_filter.layer, Some(i), name(Some(i)));
+                        }
+                    });
+                    ui.end_row();
+                });
+                ui.label(egui::RichText::new("Size = the longest side. Leave a size blank for no limit. Only this sheet's unlocked vectors are picked.").small().color(crate::theme::TEXT_DIM));
+                let (o, c) = W::ok_cancel(ui);
+                ok |= o;
+                keep &= !c;
+            });
+            if ok {
+                let size = |t: &str| if t.trim().is_empty() { Ok(None) } else { units::get(&canvas.doc, t, true).map(Some) };
+                match (size(&f[0]), size(&f[1])) {
+                    (Ok(larger), Ok(smaller)) => {
+                        canvas.select_matching(&crate::edit_ops::VecFilter { larger, smaller, ..self.sel_filter.clone() });
+                        keep = false;
+                    }
+                    (Err(e), _) | (_, Err(e)) => canvas.status = e,
+                }
+            }
+            if keep {
+                self.selector = Some(f);
             }
         }
 
@@ -702,7 +918,7 @@ impl Dialogs {
             let mut ok = false;
             W::Dialog::new("Nest on Board").show(ctx, |ui| {
                 ui.set_max_width(400.0);
-                ui.add(egui::Label::new(RichText::new("True-shape nesting: parts are packed by their real outlines from the bottom-left, largest first, so curved and angled parts interlock. Shapes inside another selected shape (holes, inner cuts) move with it.").color(crate::theme::TEXT.gamma_multiply(0.6))).wrap());
+                ui.add(egui::Label::new(RichText::new("True-shape nesting: parts are packed by their real outlines from the chosen corner, largest first, so curved and angled parts interlock. Shapes inside another selected shape (holes, inner cuts) move with it.").color(crate::theme::TEXT.gamma_multiply(0.6))).wrap());
                 egui::Grid::new("nest").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
                     ui.label(format!("Gap between parts ({doc_unit})"));
                     units::num_field(ui, "gap", &mut f[0], &canvas.doc, true, 110.0);
@@ -718,7 +934,18 @@ impl Dialogs {
                         }
                     });
                     ui.end_row();
+                    ui.label("Nest from");
+                    let corners = ["Bottom-left", "Bottom-right", "Top-left", "Top-right"];
+                    W::combo_box("corner").selected_text(corners[self.nest_corner as usize]).width(200.0).show_ui(ui, |ui| {
+                        for (i, l) in corners.iter().enumerate() {
+                            ui.selectable_value(&mut self.nest_corner, i as u8, *l);
+                        }
+                    });
+                    ui.end_row();
                 });
+                W::checkbox(ui, &mut self.nest_boundary, "Inside the largest selected shape (an offcut)").tip("Draw or trace the offcut's outline, select it with the parts: it stays where it is and the parts nest inside it");
+                W::checkbox(ui, &mut self.nest_filler, "Fill the rest with copies of the smallest part").tip("Filler part: after the selection is placed, copies of its smallest part go wherever they still fit");
+                W::checkbox(ui, &mut self.nest_mirror, "Mirror parts for a better fit").tip("Only for parts that can be cut either way round (no text, no one-sided edge profile)");
                 W::checkbox(ui, &mut self.nest_overflow, "Overflow onto more sheets").tip("Parts that don't fit go to the next sheet (a new one is added with the same board)");
                 ui.label(RichText::new(if self.nest_overflow { "Parts that don't fit this sheet are nested on following sheets." } else { "One sheet; parts that don't fit are left where they are." }).size(11.0).color(crate::theme::TEXT.gamma_multiply(0.5)));
                 let (o, c) = W::ok_cancel(ui);
@@ -729,10 +956,13 @@ impl Dialogs {
                 match (units::get(&canvas.doc, &f[0], true), units::get(&canvas.doc, &f[1], true)) {
                     (Ok(g), Ok(m)) => {
                         let rot = [0, 90, 45, 15][self.nest_rot];
+                        canvas.nest_mirror = self.nest_mirror;
+                        canvas.nest_boundary = self.nest_boundary;
+                        canvas.nest_filler = self.nest_filler;
                         if self.nest_overflow {
-                            canvas.nest_selection_sheets(g, m, rot);
+                            canvas.nest_selection_sheets(g, m, rot, self.nest_corner);
                         } else {
-                            canvas.nest_selection(g, m, rot);
+                            canvas.nest_selection(g, m, rot, self.nest_corner);
                         }
                         keep = false;
                     }

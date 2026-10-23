@@ -86,7 +86,7 @@ impl Dialogs {
             "texture" => self.op = kind(Texture),
             "photo" => {
                 self.op = kind(Photo);
-                let bytes = std::fs::read(concat!(env!("CARGO_MANIFEST_DIR"), "/../../app/branding/appicon-1024.png")).unwrap_or_default();
+                let bytes = std::fs::read(dev_file("app/branding/appicon-1024.png")).unwrap_or_default();
                 if let (Some(d), Ok((g, w, h))) = (self.op.as_mut(), trace::load_gray("icon", &bytes, 600)) {
                     d.set_photo(&g, w, h);
                 }
@@ -118,11 +118,11 @@ impl Dialogs {
             "makeit" => self.make_it = Some(community::MakeIt::new(&canvas.doc, "Showcase sign").with_reasons(vec!["It was set up for a ShopBot PRSalpha; you use a CAMaster Panther.".into(), "Not in your bit library: 1/8 End Mill (0.125 inch).".into()])),
             "share" => self.share = Some(community::ShareDialog::new(&canvas.doc, "Showcase sign")),
             "trace" => {
-                let bytes = std::fs::read(concat!(env!("CARGO_MANIFEST_DIR"), "/../../app/branding/appicon-1024.png")).unwrap_or_default();
+                let bytes = std::fs::read(dev_file("app/branding/appicon-1024.png")).unwrap_or_default();
                 self.trace = trace::TraceDialog::new("appicon-1024.png", &bytes, &canvas.doc).ok();
             }
             "gimport" => {
-                let text = std::fs::read_to_string(concat!(env!("CARGO_MANIFEST_DIR"), "/../../reference/01_V90.tap")).unwrap_or_default();
+                let text = std::fs::read_to_string(dev_file("reference/01_V90.tap")).unwrap_or_default();
                 self.gimport = Some(gimport::GcodeImportDialog::new("01_V90.tap", text, &canvas.doc));
             }
             #[cfg(not(target_arch = "wasm32"))]
@@ -165,6 +165,13 @@ impl Dialogs {
                         }
                     }
                 }
+                "sheetlogo" => match crate::setupsheet::logo_uri(&name, &bytes) {
+                    Ok(uri) => {
+                        crate::store::save(crate::setupsheet::LOGO_KEY, &uri);
+                        *host.message = format!("Setup sheets now carry {name} as your logo.");
+                    }
+                    Err(e) => *host.message = e,
+                },
                 "boardphoto" => match boardphoto::BoardPhotoDialog::new(&name, &bytes) {
                     Ok(d) => self.board_photo = Some(d),
                     Err(e) => *host.message = e,
@@ -188,8 +195,11 @@ impl Dialogs {
                     self.tools = Some(tools::ToolsDialog::new(&host.canvas.doc, d.op.tool.max(0) as usize));
                 }
                 d.open_bits = false;
+                if std::mem::take(&mut d.open_selector) {
+                    host.canvas.requests.push(crate::canvas::Request::Selector);
+                }
                 if std::mem::take(&mut d.pick_photo) {
-                    host.files.pick_into(ctx, "Picture (PNG, JPEG)", &["png", "jpg", "jpeg"], "photo");
+                    host.files.pick_into(ctx, "Picture (PNG, JPEG, WebP)", crate::files::IMAGE_EXTS, "photo");
                 }
                 self.op = Some(d);
             }
@@ -275,7 +285,7 @@ impl Dialogs {
         if let Some(mut d) = self.share.take() {
             if d.ui(ctx, host) {
                 if std::mem::take(&mut d.want_photo) {
-                    host.files.pick_into(ctx, "Photos (PNG, JPEG)", crate::files::IMAGE_EXTS, "communityphoto");
+                    host.files.pick_into(ctx, "Photos (PNG, JPEG, WebP)", crate::files::IMAGE_EXTS, "communityphoto");
                 }
                 self.share = Some(d);
             }
@@ -527,6 +537,13 @@ pub fn material_combo(ui: &mut egui::Ui, id: &str, text: &mut String, width: f32
         }
     });
     changed
+}
+
+/// a sample file of the source tree for the GCARVE_DIALOG screenshot hooks, found at run time (`cargo run` sets
+/// CARGO_MANIFEST_DIR), so no build path is compiled into the program
+fn dev_file(rel: &str) -> std::path::PathBuf {
+    let crate_dir = std::env::var("CARGO_MANIFEST_DIR").unwrap_or_else(|_| "rust/gcarve-app".into());
+    std::path::Path::new(&crate_dir).join("../..").join(rel)
 }
 
 #[cfg(test)]

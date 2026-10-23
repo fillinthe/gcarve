@@ -39,6 +39,8 @@ pub struct OpDialog {
     by_width: bool,
     /// Bits… pressed this frame (Dialogs opens the Tool Library)
     pub open_bits: bool,
+    /// Selector… pressed: the Vector Selector opens (its pick becomes this new toolpath's shapes)
+    pub open_selector: bool,
     /// Photo: Picture… pressed this frame (Dialogs opens the file picker)
     pub pick_photo: bool,
     /// tool count when the library was opened from here: on close the bit added there is picked
@@ -136,6 +138,8 @@ impl OpDialog {
         f.set_bound("glueGap", b, op.glue_gap);
         f.set_bound("inlayMargin", b, op.inlay_margin);
         f.set_bound("rampIn", b, op.ramp_in);
+        f.set("dragKnife", if op.drag_knife > 0.0 { op.drag_knife } else { 0.25 });
+        f.set("rounding", if op.rounding > 0.0 { op.rounding } else { doc.material.rotary.unwrap_or(3.0) });
         f.set_bound("rampOut", b, op.ramp_out);
         f.set_bound("rampLength", b, op.ramp_length);
         f.set_bound("chamferWidth", b, if op.chamfer_width > 0.0 { op.chamfer_width } else { 0.125 });
@@ -156,6 +160,7 @@ impl OpDialog {
             by_spacing: op.tab_spacing > 0.0,
             by_width: op.chamfer_width > 0.0 || op.kind != OpType::Chamfer,
             open_bits: false,
+            open_selector: false,
             pick_photo: false,
             place_tabs: false,
             drag_tab: None,
@@ -197,6 +202,12 @@ impl OpDialog {
         op.glue_gap = f.get_or("glueGap", doc, op.glue_gap).max(0.0);
         op.inlay_margin = f.get_or("inlayMargin", doc, op.inlay_margin).max(0.0);
         op.ramp_in = f.get_or("rampIn", doc, op.ramp_in).max(0.0);
+        if op.drag_knife > 0.0 {
+            op.drag_knife = f.get_or("dragKnife", doc, op.drag_knife).max(0.001);
+        }
+        if op.rounding > 0.0 {
+            op.rounding = f.get_or("rounding", doc, op.rounding).max(0.01);
+        }
         op.ramp_out = f.get_or("rampOut", doc, op.ramp_out).max(0.0);
         op.rough = k == OpType::Relief && op.rough;
         op.rough_stepdown = super::eval_len(&self.rough_step, doc).unwrap_or(op.rough_stepdown).max(0.0);
@@ -341,6 +352,9 @@ impl OpDialog {
                             } else {
                                 ui.label(format!("{shapes} shape(s)"));
                             }
+                            if ui.button("Selector…").on_hover_text("Vector Selector: pick shapes by kind (open, closed, circles), size and layer").clicked() {
+                                self.open_selector = true;
+                            }
                             if self.index.is_some() && ui.add_enabled(have_sel, egui::Button::new("Use current selection")).clicked() {
                                 self.op.shape_ids = selected.clone();
                                 self.scope = 0;
@@ -364,6 +378,23 @@ impl OpDialog {
                         }
                     });
                     ui.end_row();
+                    if !matches!(self.op.kind, OpType::Relief | OpType::Photo | OpType::Imported) {
+                        ui.label("Order").on_hover_text("Normally the shapes are cut in the order with the least travel between them. Tick this to cut them in the order they were drawn (VCarve: use vector selection order).");
+                        crate::widgets::checkbox(ui, &mut self.op.keep_order, "Cut shapes in the order they were drawn");
+                        ui.end_row();
+                    }
+                    // project onto a 3D model: only when the drawing has one, and not for the 3D toolpath itself
+                    if !doc.reliefs.is_empty() && self.op.kind != OpType::Relief {
+                        ui.label("Follow 3D model").on_hover_text("Project the toolpath onto the model: every cut is measured down from the model's surface instead of the flat board top (engraving or V-carving on a carved sign)");
+                        let name = |id: i32| if id <= 0 { "No (flat board)".to_string() } else { doc.find_relief(id).map_or(format!("Model #{id} (gone)"), |r| r.name.clone()) };
+                        egui::ComboBox::from_id_salt("project-on").selected_text(name(self.op.project_on)).width(280.0).show_ui(ui, |ui| {
+                            ui.selectable_value(&mut self.op.project_on, 0, name(0));
+                            for r in &doc.reliefs {
+                                ui.selectable_value(&mut self.op.project_on, r.id, &r.name);
+                            }
+                        });
+                        ui.end_row();
+                    }
                     if self.op.tool >= 0 {
                         ui.label("");
                         ui.vertical(|ui| {
@@ -384,6 +415,20 @@ impl OpDialog {
                             if ui.button(if self.op.photo.is_empty() { "Choose picture…" } else { "Change picture…" }).clicked() {
                                 self.pick_photo = true;
                             }
+                            // VCarve's sketch carving from a 3D model: the model lit from the upper left becomes the picture
+                            let models: Vec<&gcarve_core::document::Relief> = doc.reliefs.iter().filter(|r| !r.height.is_empty()).collect();
+                            if !models.is_empty() {
+                                ui.menu_button("From a 3D model", |ui| {
+                                    for r in &models {
+                                        if ui.button(&r.name).on_hover_text("Its shading as a sketch: draw a rectangle over the model and select it, so the picture lands on the model").clicked() {
+                                            let (px, w, h) = gcarve_core::photo::shaded_relief(r, 600);
+                                            self.set_photo(&px, w, h);
+                                            self.op.sketch = true;
+                                            ui.close();
+                                        }
+                                    }
+                                });
+                            }
                             if !self.op.photo.is_empty() {
                                 hint(ui, &format!("{} × {} px", self.op.photo_w, self.op.photo_h));
                             }
@@ -397,6 +442,21 @@ impl OpDialog {
                         ui.end_row();
                         ui.label("Tones");
                         crate::widgets::checkbox(ui, &mut self.op.photo_invert, "Invert: light parts carve deep (dark wood, light picture)");
+                        ui.end_row();
+                        ui.label("Style");
+                        ui.horizontal(|ui| {
+                            crate::widgets::radio_value(ui, &mut self.op.sketch, false, "Photo (depth follows the tone)");
+                            crate::widgets::radio_value(ui, &mut self.op.sketch, true, "Sketch (cross-hatching)");
+                        });
+                        ui.end_row();
+                        ui.label("Brightness");
+                        ui.add(egui::Slider::new(&mut self.op.photo_brightness, -0.5..=0.5).fixed_decimals(2)).tip("Higher = lighter picture, shallower carving");
+                        ui.end_row();
+                        ui.label("Contrast");
+                        ui.add(egui::Slider::new(&mut self.op.photo_contrast, 0.5..=2.5).fixed_decimals(2)).tip("Higher = darks deeper and lights shallower");
+                        ui.end_row();
+                        ui.label("Gamma");
+                        ui.add(egui::Slider::new(&mut self.op.photo_gamma, 0.4..=2.5).fixed_decimals(2)).tip("Higher = lighter mid tones; lower = darker mid tones");
                         ui.end_row();
                         ui.label("");
                         hint(ui, "Carves the picture with a V-bit, row by row: darker means deeper and wider. It fills the selected shape (draw a rectangle the size you want). Rows are spaced so full black grooves just touch; a 60° or 90° bit and a fine-grained, light-coloured board work best.");
@@ -624,6 +684,31 @@ impl OpDialog {
                             hint(ui, "Cuts along each vector with the bit (round-nose bits make classic flutes). Set both ramps longer than the vector for a full-length lens shape.");
                         });
                         ui.end_row();
+                        // moulding: an open vector of this sheet as the profile swept along the selected rails
+                        ui.label("Cross-section").on_hover_text("Moulding: draw the profile as an open vector (its width across the rail, lower = deeper below the top), pick it here, and select the rails. The bit carves that shape along every rail; a ball nose gives the smoothest result.");
+                        let open: Vec<(i32, String)> = doc.shapes.iter().filter(|s| !s.c.closed && s.sheet == doc.active_sheet).map(|s| {
+                            let b = gcarve_core::geom::bounds(&s.c);
+                            (s.id, format!("Vector #{} ({} × {})", s.id, crate::units::text(doc, b.w()), crate::units::text(doc, b.h())))
+                        }).collect();
+                        let name = |id: i32| if id <= 0 { "None (plain flute)".to_string() } else { open.iter().find(|(i, _)| *i == id).map_or(format!("Vector #{id} (missing)"), |(_, n)| n.clone()) };
+                        egui::ComboBox::from_id_salt("section").selected_text(name(self.op.section)).width(300.0).show_ui(ui, |ui| {
+                            ui.selectable_value(&mut self.op.section, 0, name(0));
+                            for (id, n) in &open {
+                                ui.selectable_value(&mut self.op.section, *id, n);
+                            }
+                        });
+                        ui.end_row();
+                        if self.op.section > 0 {
+                            ui.label("Clearing bit").tip("A larger end mill roughs the shape first, staying the allowance above it; the bit above then finishes in one pass at full depth. Two files, one per bit: run the clearing bit's first.");
+                            tool_combo(ui, "mould-clear", &mut self.op.clear_tool, &doc.tools, Some("None (the bit above does it all)"), 300.0);
+                            ui.end_row();
+                            ui.label(unit_label("Leave for the finish", doc));
+                            ui.horizontal(|ui| {
+                                self.f.ui(ui, "allowance", doc);
+                                hint(ui, "with a clearing bit; 0 = 0.02 in");
+                            });
+                            ui.end_row();
+                        }
                     }
                     if is_bore {
                         ui.label(unit_label("Bore allowance", doc));
@@ -650,6 +735,17 @@ impl OpDialog {
                         ui.scope(|ui| {
                             ui.set_width(300.0);
                             hint(ui, "Engraving fill: with a V-bit or engraving bit the lines are spaced by how wide the bit cuts at this depth. Keep the depth shallow (0.01 to 0.03 in).");
+                        });
+                        ui.end_row();
+                    }
+                    if is_pocket && doc.material.rotary.is_some() {
+                        let mut on = self.op.rounding > 0.0;
+                        ui.label("Rounding");
+                        ui.horizontal(|ui| {
+                            if crate::widgets::checkbox(ui, &mut on, "Square blank, side").tip("Rotary: turn a square blank round. The bit spirals the length of the selected shape from the square's corners down to the job's diameter, a stepdown per pass. Draw a rectangle across the part of the blank to round and pick it. Travel heights must clear the corners.").changed() {
+                                self.op.rounding = if on { self.f.get_or("rounding", doc, 3.0).max(0.01) } else { 0.0 };
+                            }
+                            ui.add_enabled_ui(on, |ui| self.f.ui(ui, "rounding", doc));
                         });
                         ui.end_row();
                     }
@@ -681,6 +777,23 @@ impl OpDialog {
                         ui.horizontal(|ui| {
                             self.f.ui(ui, "rampIn", doc);
                             hint(ui, "0 = off: arc radius in the waste");
+                        });
+                        ui.end_row();
+                        let mut knife = self.op.drag_knife > 0.0;
+                        ui.label("Drag knife");
+                        ui.horizontal(|ui| {
+                            if crate::widgets::checkbox(ui, &mut knife, "Blade offset").tip("For a drag knife in the spindle: one pass on the line, the holder swings round each sharp corner so the blade turns in place. Set the knife's RPM to 0 in the Tool Library: the G-code then never turns the spindle on.").changed() {
+                                self.op.drag_knife = if knife { self.f.get_or("dragKnife", doc, 0.25).max(0.001) } else { 0.0 };
+                            }
+                            ui.add_enabled_ui(knife, |ui| self.f.ui(ui, "dragKnife", doc));
+                        });
+                        ui.end_row();
+                        ui.label("Keyhole slot");
+                        crate::widgets::checkbox(ui, &mut self.op.keyhole, "Cut as a keyhole slot").tip("For a keyhole cutter: draw a line from where the screw goes in to where it should hang. The bit plunges once to full depth at the line's start, runs along it, comes back and lifts where it went in.");
+                        ui.end_row();
+                        ui.label("Cutter compensation");
+                        ui.add_enabled_ui(self.op.side != Side::On, |ui| {
+                            crate::widgets::checkbox(ui, &mut self.op.cutter_comp, "G41 / G42 for trimming the size at the machine").tip("Writes G41 (climb) or G42 round each cut so the operator can make the part a hair bigger or smaller with the machine's D offset. The path is already the bit's centre: D must hold only the wear (0 = the size drawn), not the bit's radius. Only Mach / LinuxCNC / Fanuc-style posts write it; GRBL and WinCNC files leave it out.");
                         });
                         ui.end_row();
                         ui.label("Start point");

@@ -62,6 +62,25 @@ pub fn boolean_op(op: BoolOp, subjects: &[Contour], clips: &[Contour]) -> Vec<Co
     from_paths(&simplify_paths(&r, TOL / 2.0, true))
 }
 
+/// Paint closed shapes in order: each step adds (dark) or scrapes away (clear) its shapes, holes made by an earlier
+/// clear step stay holes. Gerber's LPD / LPC polarity; also any stencil stack.
+pub fn paint_layers(steps: &[(bool, Vec<Contour>)]) -> Vec<Contour> {
+    let solid = |k: &Contour| {
+        let mut p = to_path(k);
+        if !clipper2_rust::is_positive(&p) {
+            p.reverse();
+        }
+        p
+    };
+    // Clipper's results keep outers positive and holes negative, so the running result is never re-oriented
+    let mut acc: PathsD = Vec::new();
+    for (dark, shapes) in steps {
+        let s: PathsD = shapes.iter().filter(|k| k.closed).map(solid).collect();
+        acc = if *dark { union_subjects_d(&[acc, s].concat(), FillRule::NonZero, PREC) } else { difference_d(&acc, &s, FillRule::NonZero, PREC) };
+    }
+    from_paths(&simplify_paths(&acc, TOL / 2.0, true))
+}
+
 /// One outline from overlapping shapes that keeps their holes (letters of a script font): a non-zero union without
 /// the solid-everything orientation fix `boolean_op` does, so counters (the hole in an "o") stay holes.
 /// ponytail: results are polylines, like the other booleans.
@@ -72,7 +91,25 @@ pub fn weld_keep_holes(input: &[Contour]) -> Vec<Contour> {
 
 /// Offset closed contours outward (+) or inward (-). Open contours get a closed outline around the stroke.
 pub fn offset_contours(input: &[Contour], delta: f64, round_corners: bool) -> Vec<Contour> {
-    let jt = if round_corners { JoinType::Round } else { JoinType::Miter };
+    offset_contours_with(input, delta, if round_corners { Corner::Round } else { Corner::Sharp })
+}
+
+/// How offset outlines turn the corners: an arc, a point (mitred), or cut straight across (beveled).
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum Corner {
+    Round,
+    Sharp,
+    Bevel,
+}
+
+/// `offset_contours` with a choice of corner (LightBurn's Offset Shapes: rounded / sharp / bevel).
+pub fn offset_contours_with(input: &[Contour], delta: f64, corner: Corner) -> Vec<Contour> {
+    let round_corners = corner == Corner::Round;
+    let jt = match corner {
+        Corner::Round => JoinType::Round,
+        Corner::Sharp => JoinType::Miter,
+        Corner::Bevel => JoinType::Bevel,
+    };
     let (closed, open): (Vec<&Contour>, Vec<&Contour>) = input.iter().partition(|c| c.closed);
     let mut out = Vec::new();
     if !closed.is_empty() {
@@ -320,6 +357,127 @@ pub fn trim_at(all: &[&Contour], target: usize, at: Pt) -> Option<Vec<Contour>> 
         }
         Some(out)
     }
+}
+
+/// Distort (VCarve "Distort Object"): the shapes, as laid out in `frame` (their bounding box), are mapped so the
+/// frame's bottom edge runs along `bottom` and its top edge along `top`: X goes along the curves by arc length, Y
+/// across from one to the other. With no `top`, the shapes bend along `bottom` keeping their height (the frame's
+/// bottom on the curve, "up" = the curve's left side). Curves are flattened to 0.002 in, then arcs fitted again.
+pub fn distort(shapes: &[Contour], frame: crate::geom::Rect, bottom: &[Pt], top: Option<&[Pt]>) -> Vec<Contour> {
+    if bottom.len() < 2 || frame.w() <= 1e-9 {
+        return shapes.to_vec();
+    }
+    let walker = |pts: &[Pt]| {
+        let mut cum = vec![0.0];
+        for i in 1..pts.len() {
+            cum.push(cum[i - 1] + dist(pts[i - 1], pts[i]));
+        }
+        cum
+    };
+    let along = |pts: &[Pt], cum: &[f64], f: f64| -> (Pt, Pt) {
+        let total = *cum.last().unwrap();
+        let s = (f * total).clamp(0.0, total);
+        let i = cum.partition_point(|&c| c <= s).clamp(1, pts.len() - 1);
+        let seg = cum[i] - cum[i - 1];
+        let t = if seg > 1e-12 { (s - cum[i - 1]) / seg } else { 0.0 };
+        let d = pts[i] - pts[i - 1];
+        let l = d.x.hypot(d.y).max(1e-12);
+        (pts[i - 1] + d * t, pt(-d.y / l, d.x / l))
+    };
+    let (cb, ct) = (walker(bottom), top.map(walker));
+    let h = frame.h().max(1e-9);
+    shapes
+        .iter()
+        .map(|c| {
+            let mut p = flatten(c, 0.002);
+            if c.closed && p.len() > 1 && dist(p[0], p[p.len() - 1]) < 1e-9 {
+                p.pop();
+            }
+            // straight edges bend too: a point every 1/200 of the frame (at least 0.01 in) along every edge
+            let step = (frame.w().max(frame.h()) / 200.0).max(0.01);
+            let n = p.len();
+            let mut dense = Vec::with_capacity(n * 4);
+            for i in 0..n {
+                let (a, b) = (p[i], p[(i + 1) % n]);
+                if i + 1 == n && !c.closed {
+                    dense.push(a);
+                    break;
+                }
+                let k = (dist(a, b) / step).ceil().max(1.0) as usize;
+                dense.extend((0..k).map(|j| a + (b - a) * (j as f64 / k as f64)));
+            }
+            let moved: Vec<Pt> = dense
+                .iter()
+                .map(|q| {
+                    let f = (q.x - frame.x0) / frame.w();
+                    let (b, n) = along(bottom, &cb, f);
+                    match (top, &ct) {
+                        (Some(tp), Some(tc)) => {
+                            let (t, _) = along(tp, tc, f);
+                            b + (t - b) * ((q.y - frame.y0) / h)
+                        }
+                        _ => b + n * (q.y - frame.y0),
+                    }
+                })
+                .collect();
+            refit_arcs(&make_polyline(&moved, c.closed), 0.002)
+        })
+        .collect()
+}
+
+/// Vector texture (VCarve "Create Vector Texture"): wavy lines `spacing` apart filling the closed `shapes` (even-odd,
+/// so holes stay clear), at `angle_deg`. Each line is a sine wave of `amplitude` and `wavelength`; `vary` 0..1 adds
+/// randomness to each line's phase, height and drift (fixed seed: the same settings give the same texture).
+/// Returns open polylines cut at the shape outlines.
+pub fn vector_texture(shapes: &[Contour], spacing: f64, amplitude: f64, wavelength: f64, angle_deg: f64, vary: f64) -> Vec<Contour> {
+    let polys: Vec<Vec<Pt>> = shapes.iter().filter(|c| c.closed).map(|c| flatten(c, 0.002)).filter(|p| p.len() >= 3).collect();
+    if polys.is_empty() || spacing <= 0.0 {
+        return Vec::new();
+    }
+    let inside = |q: Pt| polys.iter().filter(|p| crate::geom::point_in_poly(q, p.len(), |i| (p[i].x, p[i].y))).count() % 2 == 1;
+    let (sa, ca) = angle_deg.to_radians().sin_cos();
+    let to_xy = |u: f64, w: f64| pt(u * ca - w * sa, u * sa + w * ca);
+    let (mut u0, mut u1, mut w0, mut w1) = (f64::MAX, f64::MIN, f64::MAX, f64::MIN);
+    for p in polys.iter().flatten() {
+        let (u, w) = (p.x * ca + p.y * sa, -p.x * sa + p.y * ca);
+        (u0, u1, w0, w1) = (u0.min(u), u1.max(u), w0.min(w), w1.max(w));
+    }
+    let wl = wavelength.max(0.05);
+    let step = (wl / 24.0).clamp(0.005, 0.1);
+    let vary = vary.clamp(0.0, 1.0);
+    let mut seed: u64 = 0x2545_F491_4F6C_DD1D;
+    let mut rnd = move || {
+        seed ^= seed << 13;
+        seed ^= seed >> 7;
+        seed ^= seed << 17;
+        (seed >> 11) as f64 / (1u64 << 53) as f64
+    };
+    let mut out = Vec::new();
+    let mut w = w0 - amplitude + spacing / 2.0;
+    while w < w1 + amplitude {
+        let phase = vary * rnd() * std::f64::consts::TAU;
+        let amp = amplitude * (1.0 - 0.5 * vary * rnd());
+        let drift = vary * (rnd() - 0.5) * spacing;
+        let n = ((u1 - u0) / step).ceil() as usize + 1;
+        let mut run: Vec<Pt> = Vec::new();
+        for k in 0..=n {
+            let u = u0 + k as f64 * step;
+            let f = (u - u0) / (u1 - u0).max(1e-9);
+            let q = to_xy(u, w + drift * f + amp * (std::f64::consts::TAU * u / wl + phase).sin());
+            if inside(q) {
+                run.push(q);
+            } else if run.len() >= 2 {
+                out.push(make_polyline(&std::mem::take(&mut run), false));
+            } else {
+                run.clear();
+            }
+        }
+        if run.len() >= 2 {
+            out.push(make_polyline(&run, false));
+        }
+        w += spacing;
+    }
+    out
 }
 
 /// Fewer nodes (VCarve "Fit curves to vectors" for the straight-line case): each contour becomes a polyline that
@@ -588,6 +746,35 @@ pub fn dogbone(input: &Contour, r: f64, inside: bool, tbone: bool) -> Contour {
 
 #[cfg(test)]
 mod fillet_tests {
+    #[test]
+    fn distort_bends_along_a_curve_and_fits_between_two() {
+        use crate::geom::{bounds, make_rect, Rect};
+        let sq = make_rect(0.0, 0.0, 2.0, 1.0);
+        let frame = Rect { x0: 0.0, y0: 0.0, x1: 2.0, y1: 1.0 };
+        // between a lower line y = 0 and an upper line y = 3 from x 10 to 14: twice as wide, three times as tall
+        let out = distort(std::slice::from_ref(&sq), frame, &[pt(10.0, 0.0), pt(14.0, 0.0)], Some(&[pt(10.0, 3.0), pt(14.0, 3.0)]));
+        let b = bounds(&out[0]);
+        assert!((b.x0 - 10.0).abs() < 1e-6 && (b.x1 - 14.0).abs() < 1e-6 && (b.y1 - 3.0).abs() < 1e-6, "{b:?}");
+        // bent along a vertical line going up: the shape stands on its left side of the line, 1 high = 1 to the left
+        let up = distort(&[sq], frame, &[pt(0.0, 0.0), pt(0.0, 2.0)], None);
+        let b = bounds(&up[0]);
+        assert!((b.x0 + 1.0).abs() < 1e-6 && b.x1.abs() < 1e-6 && (b.y1 - 2.0).abs() < 1e-6, "{b:?}");
+    }
+
+    #[test]
+    fn a_vector_texture_fills_the_shape_and_keeps_out_of_holes() {
+        use crate::geom::{bounds, make_ellipse, make_rect};
+        let shapes = [make_rect(0.0, 0.0, 10.0, 6.0), make_ellipse(5.0, 3.0, 1.5, 1.5)];
+        let lines = vector_texture(&shapes, 0.5, 0.15, 2.0, 0.0, 0.3);
+        assert!(lines.len() >= 20, "{}", lines.len());
+        for l in &lines {
+            let b = bounds(l);
+            assert!(!l.closed && b.x0 >= -1e-9 && b.x1 <= 10.0 + 1e-9 && b.y0 >= -1e-9 && b.y1 <= 6.0 + 1e-9, "{b:?}");
+            assert!(l.nodes.iter().all(|n| crate::geom::dist(n.p, pt(5.0, 3.0)) > 1.45), "a line runs through the hole");
+        }
+        assert_eq!(lines.len(), vector_texture(&shapes, 0.5, 0.15, 2.0, 0.0, 0.3).len(), "same settings, same texture");
+    }
+
     use super::*;
     use crate::geom::{flatten, make_polyline, pt};
 

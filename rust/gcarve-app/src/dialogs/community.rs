@@ -326,7 +326,7 @@ fn jpeg(rgba: &[u8], w: u32, h: u32) -> Option<Vec<u8>> {
     Some(out)
 }
 
-/// a photo for the page: a PNG or JPEG, at most 1600 px on its long side, as JPEG
+/// a photo for the page: a PNG, JPEG or WebP, at most 1600 px on its long side, as JPEG
 pub fn photo_jpeg(bytes: &[u8]) -> Result<Vec<u8>, String> {
     let img = image::load_from_memory(bytes).map_err(|e| format!("Not a picture GCarve can read: {e}"))?;
     let img = if img.width().max(img.height()) > 1600 { img.resize(1600, 1600, image::imageops::FilterType::Triangle) } else { img };

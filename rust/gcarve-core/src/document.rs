@@ -67,6 +67,40 @@ pub struct Tool {
     pub radius: f64,
     /// length of the flutes (inches); 0 = not known. A cut deeper than this rubs the shank (export safety check).
     pub cut_length: f64,
+    /// Tool Library folder ("V-bits", "Amana"); empty = none (JSON "group" when set, Rust only)
+    pub group: String,
+    /// custom form cutter (VCarve "Custom Form Cutters"): the cutting edge in side view as [radius, height above the
+    /// tip] points by radius, from a drawn profile; empty = the shape of `kind` (JSON "form" when set, Rust only)
+    pub form: Vec<[f64; 2]>,
+}
+
+impl Tool {
+    /// Height of the drawn form's cutting edge above the tip at `r` from the axis (straight between points);
+    /// None = no form, or outside the bit
+    pub fn form_rise(&self, r: f64) -> Option<f64> {
+        let f = &self.form;
+        if f.len() < 2 || r > f[f.len() - 1][0] + 1e-9 {
+            return None;
+        }
+        let i = f.partition_point(|p| p[0] < r).clamp(1, f.len() - 1);
+        let (a, b) = (f[i - 1], f[i]);
+        let t = if b[0] > a[0] { ((r - a[0]) / (b[0] - a[0])).clamp(0.0, 1.0) } else { 0.0 };
+        Some(a[1] + (b[1] - a[1]) * t)
+    }
+
+    /// A form from a drawn side-view profile (inches): the leftmost point is the axis, the lowest the tip; where the
+    /// line doubles back the points are taken in order of radius. Diameter follows the widest point.
+    pub fn form_from_profile(pts: &[crate::geom::Pt]) -> Vec<[f64; 2]> {
+        if pts.len() < 2 {
+            return Vec::new();
+        }
+        let (x0, y0) = (pts.iter().map(|p| p.x).fold(f64::MAX, f64::min), pts.iter().map(|p| p.y).fold(f64::MAX, f64::min));
+        let mut f: Vec<[f64; 2]> = pts.iter().map(|p| [p.x - x0, p.y - y0]).collect();
+        f.sort_by(|a, b| a[0].total_cmp(&b[0]).then(a[1].total_cmp(&b[1])));
+        // a vertical step keeps both ends (lower first): just past that radius the edge is at the upper one
+        f.dedup_by(|b, a| (b[0] - a[0]).abs() < 1e-9 && (b[1] - a[1]).abs() < 1e-9);
+        f
+    }
 }
 
 impl Default for Tool {
@@ -87,6 +121,8 @@ impl Default for Tool {
             slot: 0,
             radius: 0.0,
             cut_length: 0.0,
+            group: String::new(),
+            form: Vec::new(),
         }
     }
 }
@@ -116,6 +152,21 @@ pub struct Material {
     pub bind: Bind,
     /// the sheet's name ("Doors", "12a"); empty = "Sheet N" (JSON "name" when set, Rust only)
     pub name: String,
+    /// VCarve "Home Position": where the bit parks at the end of each file, X / Y from the XY zero, at the travel
+    /// height (JSON "home" [x, y] when set, Rust only); None = it stays where the last cut ended
+    pub home: Option<[f64; 2]>,
+    /// VCarve "Merged toolpath": in each bit's file the toolpaths of every operation are cut in one shortest tour,
+    /// cut-outs (down to the board's bottom) last (JSON "merge" when set, Rust only)
+    pub merge: bool,
+    /// two-sided jobs: this sheet is the back of sheet `.0`, the board flipped left to right (`.1` true) or top to
+    /// bottom; the front's outlines show mirrored under it (JSON "backOf" {sheet, lr}, Rust only)
+    pub back_of: Option<(i32, bool)>,
+    /// VCarve "Rotary job": a round blank of this diameter turned by an A axis along X. The board is its surface
+    /// unrolled (w = length, h = circumference π·d); at export Y becomes A in degrees. JSON "rotary", Rust only
+    pub rotary: Option<f64>,
+    /// rotary axis along the machine's Y instead of X: the drawing is the same (length left to right), only the
+    /// G-code letters change (X words → Y, Y → A). JSON "rotaryAlongY" when set, Rust only
+    pub rotary_y: bool,
 }
 
 /// What GCarve needs from a machine record (copied into the project so it travels with it). 0 = not published.
@@ -158,6 +209,11 @@ impl Default for Material {
             machine: None,
             bind: Bind::new(),
             name: String::new(),
+            home: None,
+            merge: false,
+            back_of: None,
+            rotary: None,
+            rotary_y: false,
         }
     }
 }
@@ -272,6 +328,13 @@ pub struct Op {
     pub photo_w: u32,
     pub photo_h: u32,
     pub photo_invert: bool,
+    /// Photo tone (VCarve "Edit Picture"): brightness −1..1 (lighter = shallower), contrast around mid grey (1 =
+    /// as is), gamma on the darkness (> 1 = lighter mid tones). JSON in "photo" when not the defaults (Rust only)
+    pub photo_brightness: f64,
+    pub photo_contrast: f64,
+    pub photo_gamma: f64,
+    /// Photo as VCarve "Sketch Carving": cross-hatching at one depth instead of rows of varying depth (JSON in "photo")
+    pub sketch: bool,
     /// pocket: clear with back-and-forth rows along `raster_angle` (then one lap round the walls) instead of rings
     pub raster: bool,
     /// bore: > 0 = thread mill: one helix rising from the bottom, this far per turn (the thread pitch); 0 = plain bore
@@ -279,6 +342,28 @@ pub struct Op {
     /// profile: each cut starts at the point of the ring nearest the vector's first node (Node tool ▸ right-click a
     /// node ▸ Make Start Point) instead of the lowest point
     pub start_first: bool,
+    /// profile (inside / outside): G41 / G42 round the cuts so the size can be trimmed at the machine with a wear
+    /// offset in D (the moves stay the bit-centre path; JSON "cutterComp", Rust only)
+    pub cutter_comp: bool,
+    /// profile: keyhole slot for a keyhole cutter (VCarve's Keyhole gadget): one plunge to full depth at each
+    /// vector's start (the screw entry), along it, back the same way, lift where it went in (JSON "keyhole", Rust only)
+    pub keyhole: bool,
+    /// profile: drag knife with this blade offset (tip behind the pivot), inches; 0 = off. One pass on the line,
+    /// swivels round sharp corners, spindle kept off (the bit's RPM 0). JSON "dragKnife", Rust only
+    pub drag_knife: f64,
+    /// pocket on a rotary job: VCarve "Rounding" — the blank is square with this side (inches); the bit spirals the
+    /// pocket shape's length from the square's corners down to the job's diameter. 0 = a normal pocket. JSON
+    /// "rounding", Rust only
+    pub rounding: f64,
+    /// flute: VCarve "Moulding": this open vector is the cross-section (its width across the rail, its height = depth
+    /// below the top) swept along every rail; 0 = a plain flute. JSON "section", Rust only
+    pub section: i32,
+    /// VCarve "Project toolpath onto 3D model": every cutting move rides this 3D model's surface (its id); 0 = flat.
+    /// JSON "projectOn", Rust only
+    pub project_on: i32,
+    /// VCarve "Use vector selection order": shapes are cut in the order they were drawn, not reordered for the
+    /// shortest travel (JSON "keepOrder", Rust only)
+    pub keep_order: bool,
     /// profile: tabs placed by hand (document points on the shape's outline): a cut that has some of them near it
     /// uses them instead of `tab_count` evenly spaced tabs (JSON "tabPoints", Rust only)
     pub tab_points: Vec<[f64; 2]>,
@@ -345,11 +430,22 @@ impl Default for Op {
             gcode: String::new(),
             photo: String::new(),
             photo_w: 0,
+            photo_brightness: 0.0,
+            photo_contrast: 1.0,
+            sketch: false,
+            photo_gamma: 1.0,
             photo_h: 0,
             photo_invert: false,
             raster: false,
             thread_pitch: 0.0,
             start_first: false,
+            cutter_comp: false,
+            keyhole: false,
+            drag_knife: 0.0,
+            rounding: 0.0,
+            section: 0,
+            project_on: 0,
+            keep_order: false,
             tab_corners: false,
             tab_spacing: 0.0,
             sheet_scope: -1,
@@ -420,7 +516,18 @@ pub struct Shape {
     pub bind: Bind,
     /// glyph outline of a TextItem (Document::texts); 0 = plain vector
     pub text: i32,
+    /// where a size change grows from (owner 2026-10-22: "give them an anchor"): 0..8 = column (left / centre /
+    /// right) + 3 × row (bottom / middle / top); 0 = bottom-left, the old behaviour. JSON "anchor" when set
+    pub anchor: i32,
 }
+
+/// the anchor point's place in a box: (0 left … 1 right, 0 bottom … 1 top)
+pub fn anchor_frac(anchor: i32) -> (f64, f64) {
+    let a = anchor.clamp(0, 8);
+    (f64::from(a % 3) / 2.0, f64::from(a / 3) / 2.0)
+}
+
+pub const ANCHOR_NAMES: [&str; 9] = ["bottom-left", "bottom centre", "bottom-right", "middle left", "centre", "middle right", "top-left", "top centre", "top-right"];
 
 /// Editable text: the glyph Shapes carry its id, so editing regenerates them in place.
 #[derive(Clone, Debug, PartialEq)]
@@ -444,6 +551,21 @@ pub struct TextItem {
     pub weld: bool,
     /// block text turned by this many degrees, counter-clockwise (Rust only; Qt sets it level)
     pub angle: f64,
+    /// block text: line pitch as a multiple of the font's own (1 = normal; JSON "lineSpacing" when not 1, Rust only)
+    pub line_spacing: f64,
+    /// block text bent round a circle of this radius (VCarve "text arching"): > 0 = arched up (letters on top of
+    /// the circle), < 0 = bowed down; 0 = straight. First line only. JSON "arch" when set, Rust only
+    pub arch: f64,
+    /// extra gap after each character of `text` (by char index, newlines counted), inches: kerning by hand.
+    /// JSON "kerns" when any is set, Rust only
+    pub kerns: Vec<f64>,
+}
+
+impl TextItem {
+    /// extra gap after character `i` of the text (0 when none set)
+    pub fn kern(&self, i: usize) -> f64 {
+        self.kerns.get(i).copied().unwrap_or(0.0)
+    }
 }
 
 impl Default for TextItem {
@@ -462,6 +584,9 @@ impl Default for TextItem {
             align: 0,
             weld: false,
             angle: 0.0,
+            line_spacing: 1.0,
+            arch: 0.0,
+            kerns: Vec::new(),
         }
     }
 }
@@ -504,6 +629,41 @@ pub struct Dimension {
     pub label: String,
     /// length expression: when both ends are anchored, the geometry is moved to match. Empty = measure only
     pub drive: String,
+    /// 0 aligned (the straight distance), 1 horizontal (X only), 2 vertical (Y only), 3 angle at `vertex` between
+    /// the arms to a and b (`offset` = arc radius). JSON "axis" when set, Rust only
+    pub axis: i32,
+    /// angular dimensions: the corner (JSON "vertex")
+    pub vertex: Pt,
+}
+
+impl Dimension {
+    /// the two points the dimension line runs between: a, and b moved onto a's level (horizontal) or a's X
+    /// (vertical); the extension line from b still starts at b
+    pub fn ends(&self) -> (Pt, Pt) {
+        match self.axis {
+            1 => (self.a, pt(self.b.x, self.a.y)),
+            2 => (self.a, pt(self.a.x, self.b.y)),
+            _ => (self.a, self.b),
+        }
+    }
+    pub fn length(&self) -> f64 {
+        let (a, b) = self.ends();
+        dist(a, b)
+    }
+    /// angular: the arms' directions (radians) and the sweep from a's arm to b's, the smaller way round (signed)
+    pub fn arc(&self) -> (f64, f64) {
+        let a0 = (self.a.y - self.vertex.y).atan2(self.a.x - self.vertex.x);
+        let a1 = (self.b.y - self.vertex.y).atan2(self.b.x - self.vertex.x);
+        let mut sweep = (a1 - a0).rem_euclid(std::f64::consts::TAU);
+        if sweep > std::f64::consts::PI {
+            sweep -= std::f64::consts::TAU;
+        }
+        (a0, sweep)
+    }
+    /// angular: degrees between the arms (0..180)
+    pub fn degrees(&self) -> f64 {
+        self.arc().1.abs().to_degrees()
+    }
 }
 
 impl Default for Dimension {
@@ -518,6 +678,8 @@ impl Default for Dimension {
             node_b: -1,
             label: String::new(),
             drive: String::new(),
+            axis: 0,
+            vertex: Pt::default(),
         }
     }
 }
@@ -894,8 +1056,10 @@ impl Document {
             if b.is_empty() {
                 continue;
             }
-            let (x, y) = (box_x.unwrap_or(b.x0), box_y.unwrap_or(b.y0));
             let (w, h) = (box_w.unwrap_or(b.w()), box_h.unwrap_or(b.h()));
+            // a bound size grows away from the shape's anchor; a bound x / y says where the bottom-left goes instead
+            let (fx, fy) = anchor_frac(s.anchor);
+            let (x, y) = (box_x.unwrap_or(b.x0 + fx * (b.w() - w)), box_y.unwrap_or(b.y0 + fy * (b.h() - h)));
             let sx = if b.w() > 1e-9 && w > 0.0 { w / b.w() } else { 1.0 };
             let sy = if b.h() > 1e-9 && h > 0.0 { h / b.h() } else { 1.0 };
             if (sx - 1.0).abs() > 1e-12 || (sy - 1.0).abs() > 1e-12 || (x - b.x0).abs() > 1e-12 || (y - b.y0).abs() > 1e-12 {
@@ -945,9 +1109,19 @@ impl Document {
             };
             let (na, nb) = (d.node_a as usize, d.node_b as usize);
             let (a, b) = (self.shapes[ia].c.nodes[na].p, self.shapes[ib].c.nodes[nb].p);
-            let cur = dist(a, b);
-            let dir = if cur > 1e-12 { (b - a) * (1.0 / cur) } else { pt(1.0, 0.0) };
-            let delta = (a + dir * l) - b;
+            if d.axis == 3 {
+                continue; // angles measure only
+            }
+            let side = |v: f64| if v < 0.0 { -1.0 } else { 1.0 };
+            let delta = match d.axis {
+                1 => pt(a.x + side(b.x - a.x) * l - b.x, 0.0), // horizontal: only X changes
+                2 => pt(0.0, a.y + side(b.y - a.y) * l - b.y),
+                _ => {
+                    let cur = dist(a, b);
+                    let dir = if cur > 1e-12 { (b - a) * (1.0 / cur) } else { pt(1.0, 0.0) };
+                    (a + dir * l) - b
+                }
+            };
             if delta.x.abs() < 1e-12 && delta.y.abs() < 1e-12 {
                 continue;
             }
@@ -1163,6 +1337,39 @@ pub(crate) fn clamp(v: i32, lo: i32, hi: i32) -> i32 {
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn a_bound_size_grows_away_from_the_anchor() {
+        let mut doc = Document::default();
+        doc.variables.push(Variable { name: "w".into(), expr: "2".into() });
+        let id = doc.add(crate::geom::make_rect(4.0, 4.0, 6.0, 5.0), None);
+        let s = doc.find_mut(id).unwrap();
+        s.bind.insert("w".into(), "w".into());
+        s.anchor = 8; // top-right stays put
+        doc.variables[0].expr = "5".into();
+        doc.apply_bindings();
+        let b = crate::geom::bounds(&doc.find(id).unwrap().c);
+        assert!((b.x1 - 6.0).abs() < 1e-9 && (b.x0 - 1.0).abs() < 1e-9 && (b.y1 - 5.0).abs() < 1e-9, "{b:?}");
+        doc.find_mut(id).unwrap().anchor = 4; // centre: grows both ways
+        doc.variables[0].expr = "3".into();
+        doc.apply_bindings();
+        let b = crate::geom::bounds(&doc.find(id).unwrap().c);
+        assert!((b.x0 - 2.0).abs() < 1e-9 && (b.x1 - 5.0).abs() < 1e-9, "{b:?}");
+    }
+
+    #[test]
+    fn horizontal_and_vertical_dimensions_measure_and_drive_one_axis() {
+        let mut doc = Document::default();
+        let a = doc.add(crate::geom::make_rect(0.0, 0.0, 1.0, 1.0), None);
+        let b = doc.add(crate::geom::make_rect(4.0, 3.0, 5.0, 4.0), None);
+        // node 0 of each rect = its bottom-left corner: (0,0) and (4,3)
+        let dim = |axis| Dimension { a: pt(0.0, 0.0), b: pt(4.0, 3.0), shape_a: a, node_a: 0, shape_b: b, node_b: 0, axis, ..Default::default() };
+        assert_eq!([dim(0).length(), dim(1).length(), dim(2).length()], [5.0, 4.0, 3.0]);
+        doc.dimensions.push(Dimension { drive: "6".into(), ..dim(1) });
+        doc.apply_driven_dimensions();
+        let p = doc.find(b).unwrap().c.nodes[0].p;
+        assert!((p.x - 6.0).abs() < 1e-9 && (p.y - 3.0).abs() < 1e-9, "{p:?}");
+    }
+
     use super::*;
     use crate::geom::make_rect;
 

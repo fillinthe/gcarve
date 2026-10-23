@@ -6,7 +6,7 @@
 use crate::playback::Player;
 use crate::widgets::TipExt;
 use eframe::egui::{self, Color32, Mesh, Pos2, Rect, Sense, Shape, Stroke};
-use gcarve_core::sim::{wood, HeightField};
+use gcarve_core::sim::{wood_of, HeightField};
 
 /// ponytail: CPU mesh; ≤ 60k quads keeps a frame under a few ms. A GPU callback when boards get huge.
 /// mesh size cap: the browser draws on one thread, so it gets fewer squares (each square = one block of sim cells)
@@ -50,7 +50,8 @@ impl Grid {
     /// the surface reaches the window's edges: the uncut rim around the field joins it there, and a cut near the
     /// edge keeps its outer wall (with vertices at block centres a half-block strip was left open along every edge and
     /// the board box showed through it as a lower ledge: owner, 2026-10-20).
-    fn build(hf: &HeightField, t: f64, cells: [usize; 4], step: usize) -> Grid {
+    fn build(hf: &HeightField, m: &gcarve_core::document::Material, cells: [usize; 4], step: usize) -> Grid {
+        let t = m.t;
         let (w, h) = (cells[2].saturating_sub(cells[0]).max(1), cells[3].saturating_sub(cells[1]).max(1));
         let nx = w.div_ceil(step) + 1;
         let ny = h.div_ceil(step) + 1;
@@ -80,7 +81,7 @@ impl Grid {
                 } else {
                     g.pz.push(-d as f32);
                     g.col.push(Color32::BLACK); // set per frame (`shade`)
-                    let (r, gr, b) = wood(d, t);
+                    let (r, gr, b) = wood_of(&m.kind, d, t);
                     let (gx, gy) = ((at(ix + 1, iy) - at(ix.saturating_sub(1), iy)) / (2.0 * res), (at(ix, iy + 1) - at(ix, iy.saturating_sub(1))) / (2.0 * res));
                     g.lit.push(Some(([r as f32, gr as f32, b as f32], [gx as f32, gy as f32])));
                 }
@@ -102,6 +103,20 @@ impl Grid {
                 let lambert = ((gx * light[0] + gy * light[1] + light[2]) / (gx * gx + gy * gy + 1.0).sqrt()).max(0.0);
                 let k = (0.35 + 0.65 * lambert) * 255.0;
                 *c = Color32::from_rgb((wood[0] * k) as u8, (wood[1] * k) as u8, (wood[2] * k) as u8);
+            }
+        }
+    }
+
+    /// Rotary jobs: the same, with each normal turned with the surface (θ = y / radius round the axis along X).
+    fn shade_rotary(&mut self, light: [f32; 3], zs: f32, radius: f32) {
+        for i in 0..self.col.len() {
+            if let Some((wood, [gx, gy])) = self.lit[i] {
+                let (s, c) = (self.py[i] / radius).sin_cos();
+                let (gx, gy) = (gx * zs, gy * zs);
+                let n = [gx, gy * c + s, -gy * s + c];
+                let lambert = ((n[0] * light[0] + n[1] * light[1] + n[2] * light[2]) / (gx * gx + gy * gy + 1.0).sqrt()).max(0.0);
+                let k = (0.35 + 0.65 * lambert) * 255.0;
+                self.col[i] = Color32::from_rgb((wood[0] * k) as u8, (wood[1] * k) as u8, (wood[2] * k) as u8);
             }
         }
     }
@@ -297,9 +312,10 @@ impl View3d {
         let m = &p.material;
         (self.bw, self.bh, self.bt) = (m.w, m.h, m.t);
         // while the cut plays the surface is rebuilt every frame: a lighter mesh then, the full one when it stops
-        let budget = if p.playing { PLAYING_QUADS } else { MAX_QUADS };
+        // rotary: every frame sorts the triangles, so the lighter mesh always
+        let budget = if p.playing || m.rotary.is_some() { PLAYING_QUADS } else { MAX_QUADS };
         let all = [0, 0, hf.nx.max(1) as usize, hf.ny.max(1) as usize];
-        self.coarse = Grid::build(hf, m.t, all, Grid::step_for(all, budget));
+        self.coarse = Grid::build(hf, m, all, Grid::step_for(all, budget));
         self.coarse.budget = budget;
         self.detail = None;
         // skirt: board box + the uncut rim between the field and the board edge
@@ -326,6 +342,11 @@ impl View3d {
         let r11 = add(fx1, fy1, 0.0, top);
         let r01 = add(fx0, fy1, 0.0, top);
         self.skirt.clear();
+        if m.rotary.is_some() {
+            self.skirt_v.clear(); // the cylinder's uncut surface and ends are made per frame (`rotary_skirt`)
+            self.frame = p.frame;
+            return;
+        }
         self.skirt.push([b00, b01, b11]);
         self.skirt.push([b00, b11, b10]);
         for s in [[b00, b10, t10, t00], [b10, b11, t11, t10], [b11, b01, t01, t11], [b01, b00, t00, t01]] {
@@ -388,7 +409,8 @@ impl View3d {
                 self.zoom_at(factor, at, rect.center());
             }
         }
-        let stopped = !p.playing && self.coarse.budget < MAX_QUADS;
+        let rot = p.material.rotary.map(|d| d / 2.0).filter(|r| *r > 1e-6);
+        let stopped = !p.playing && self.coarse.budget < MAX_QUADS && rot.is_none();
         if self.frame != p.frame || self.coarse.px.is_empty() || stopped {
             self.rebuild(p);
         }
@@ -396,19 +418,34 @@ impl View3d {
         let (yaw, pitch) = (self.yaw.to_radians(), self.pitch.to_radians());
         let (cy, sy, cp, sp) = (yaw.cos(), yaw.sin(), pitch.cos(), pitch.sin());
         let (cxw, cyw) = (self.bw / 2.0, self.bh / 2.0);
-        let r = self.bw.hypot(self.bh) * 0.55 + self.bt;
+        let r = match rot {
+            Some(rr) => self.bw.hypot(2.0 * rr) * 0.55,
+            None => self.bw.hypot(self.bh) * 0.55 + self.bt,
+        };
         let scale = rect.width().min(rect.height()) as f64 / (2.0 * r) * self.zoom;
         let (ox, oy) = ((rect.center().x + self.pan.x) as f64, (rect.center().y + self.pan.y) as f64);
         // perspective: camera on the orbit at the distance where a 35° view frames the same radius as the orthographic one
         let dist = if self.perspective { r / (35f64.to_radians() / 2.0).tan() } else { f64::INFINITY };
-        let project = |x: f64, y: f64, z: f64| {
-            let (x, y, z) = (x - cxw, y - cyw, z * self.z_scale);
+        // board point → screen point and how far toward the camera it is. Rotary: the board is the blank's surface
+        // unrolled, so it wraps round an axis along X (θ = y / radius, depth into the radius); the axis is the centre
+        let zsc = self.z_scale;
+        let cam = |x: f64, y: f64, z: f64| {
+            let (x, y, z) = match rot {
+                Some(rr) => {
+                    let rho = (rr + z * zsc).max(0.0);
+                    let (s, c) = (y / rr).sin_cos();
+                    (x - cxw, rho * s, rho * c)
+                }
+                None => (x - cxw, y - cyw, z * zsc),
+            };
             let rx = x * cy - y * sy;
             let ry = x * sy + y * cy;
             let vy = ry * sp + z * cp;
-            let k = if dist.is_finite() { dist / (dist - (z * sp - ry * cp)).max(dist * 0.05) } else { 1.0 }; // toward the camera = bigger
-            Pos2::new((ox + rx * k * scale) as f32, (oy - vy * k * scale) as f32)
+            let toward = z * sp - ry * cp;
+            let k = if dist.is_finite() { dist / (dist - toward).max(dist * 0.05) } else { 1.0 }; // toward the camera = bigger
+            (Pos2::new((ox + rx * k * scale) as f32, (oy - vy * k * scale) as f32), toward)
         };
+        let project = |x: f64, y: f64, z: f64| cam(x, y, z).0;
         // the 2D shader's light (upper left, slightly above), fixed to the screen instead of the board
         let (la, lb, lc) = (-0.45 / 1.0003, 0.6 / 1.0003, 0.66 / 1.0003); // along screen right, screen up, towards the viewer
         let light = [(la * cy + lb * sy * sp - lc * sy * cp) as f32, (-la * sy + lb * cy * sp - lc * cy * cp) as f32, (lb * cp + lc * sp) as f32];
@@ -419,7 +456,7 @@ impl View3d {
         if view != self.last_view {
             (self.last_view, self.quiet) = (view, now);
         }
-        if p.playing || self.coarse.step <= 1 {
+        if p.playing || self.coarse.step <= 1 || rot.is_some() {
             self.detail = None;
         } else if now - self.quiet < 0.3 {
             ui.ctx().request_repaint_after(std::time::Duration::from_millis(320));
@@ -444,10 +481,13 @@ impl View3d {
             if win[2] - win[0] < 4 || win[3] - win[1] < 4 || step >= self.coarse.step {
                 self.detail = None;
             } else if self.detail.as_ref().is_none_or(|d| d.cells != win || d.step != step) {
-                self.detail = Some(Grid::build(hf, p.material.t, win, step));
+                self.detail = Some(Grid::build(hf, &p.material, win, step));
             }
         }
         let mut mesh = Mesh::default();
+        if let Some(rr) = rot {
+            self.rotary_skirt(&p.material, rr, light, zs);
+        }
         for (v, c) in &self.skirt_v {
             mesh.colored_vertex(project(v[0] as f64, v[1] as f64, v[2] as f64), *c);
         }
@@ -458,11 +498,23 @@ impl View3d {
         // cy > 0 (then the last row goes first), columns as x grows when sy > 0. The other way round a pocket's near
         // wall is painted over the board in front of it and the pocket reads as a raised block.
         let order = (sy <= 0.0, cy <= 0.0);
-        self.coarse.shade(light, zs);
+        match rot {
+            Some(rr) => self.coarse.shade_rotary(light, zs, rr as f32),
+            None => self.coarse.shade(light, zs),
+        }
         self.coarse.emit(&mut mesh, &project, order, self.detail.as_ref().map(|d| d.cells));
         if let Some(d) = &mut self.detail {
             d.shade(light, zs);
             d.emit(&mut mesh, &project, order, None);
+        }
+        if rot.is_some() {
+            // a cylinder has no far-corner-first grid order: sort the triangles back to front instead
+            // ponytail: per-frame sort of ≤ 120k triangles (a few ms); cache it per camera if it shows up in profiles
+            let depth: Vec<f64> = self.skirt_v.iter().map(|(v, _)| cam(v[0] as f64, v[1] as f64, v[2] as f64).1).chain((0..self.coarse.px.len()).map(|i| cam(self.coarse.px[i] as f64, self.coarse.py[i] as f64, self.coarse.pz[i] as f64).1)).collect();
+            let mut tris: Vec<[u32; 3]> = mesh.indices.as_chunks::<3>().0.to_vec();
+            let key = |t: &[u32; 3]| t.iter().map(|i| depth[*i as usize]).sum::<f64>();
+            tris.sort_by(|a, b| key(a).total_cmp(&key(b)));
+            mesh.indices = tris.into_iter().flatten().collect();
         }
         painter.add(Shape::mesh(mesh));
         if paths {
@@ -550,6 +602,54 @@ impl View3d {
         }
         row.label(egui::RichText::new(format!("Z ×{:.1}", self.z_scale)).size(11.0).color(crate::theme::TEXT.gamma_multiply(0.7)));
         painter.text(rect.left_bottom() + egui::vec2(10.0, -10.0), egui::Align2::LEFT_BOTTOM, format!("{} · double-click resets", crate::mouse::get().hint()), crate::theme::font(11.0), crate::theme::TEXT.gamma_multiply(0.5));
+    }
+
+    /// Rotary: the blank's uncut surface outside the simulated field (bands round the cylinder) and its two end
+    /// faces (fans to the axis), lit like the surface; rebuilt per frame because the light follows the camera.
+    fn rotary_skirt(&mut self, m: &gcarve_core::document::Material, rr: f64, light: [f32; 3], zs: f32) {
+        const SEGS: usize = 96;
+        self.skirt_v.clear();
+        self.skirt.clear();
+        let top = wood_of(&m.kind, 0.0, m.t);
+        let lit = |y: f64| {
+            let (s, c) = ((y / rr) as f32).sin_cos();
+            let l = (s * light[1] + c * light[2]).max(0.0);
+            let k = (0.35 + 0.65 * l) * 255.0;
+            Color32::from_rgb((top.0 as f32 * k) as u8, (top.1 as f32 * k) as u8, (top.2 as f32 * k) as u8)
+        };
+        let (w, h) = (m.w, m.h);
+        let (fx0, fy0, fx1, fy1) = self.coarse.field();
+        for (x0, x1, y0, y1) in [(0.0, w, 0.0, fy0), (0.0, w, fy1, h), (0.0, fx0, fy0, fy1), (fx1, w, fy0, fy1)] {
+            if x1 - x0 < 1e-6 || y1 - y0 < 1e-6 {
+                continue;
+            }
+            let n = ((y1 - y0) / (h / SEGS as f64)).ceil().max(1.0) as usize;
+            for k in 0..=n {
+                let y = y0 + (y1 - y0) * k as f64 / n as f64;
+                self.skirt_v.push(([x0 as f32, y as f32, 0.0], lit(y)));
+                self.skirt_v.push(([x1 as f32, y as f32, 0.0], lit(y)));
+                if k > 0 {
+                    let b = (self.skirt_v.len() - 4) as u32;
+                    self.skirt.push([b, b + 1, b + 3]);
+                    self.skirt.push([b, b + 3, b + 2]);
+                }
+            }
+        }
+        // the end faces: a fan from the axis (z = -radius / exaggeration puts it on the axis) to the rim
+        for (x, n_axis) in [(0.0, -1.0f32), (w, 1.0)] {
+            let l = (n_axis * light[0]).max(0.0);
+            let k = (0.3 + 0.55 * l) * 255.0;
+            let col = Color32::from_rgb((top.0 as f32 * k) as u8, (top.1 as f32 * k) as u8, (top.2 as f32 * k) as u8);
+            let centre = self.skirt_v.len() as u32;
+            self.skirt_v.push(([x as f32, 0.0, (-rr / f64::from(zs)) as f32], col));
+            for k in 0..=SEGS {
+                self.skirt_v.push(([x as f32, (h * k as f64 / SEGS as f64) as f32, 0.0], col));
+                if k > 0 {
+                    let b = self.skirt_v.len() as u32 - 2;
+                    self.skirt.push([centre, b, b + 1]);
+                }
+            }
+        }
     }
 
     /// The board follows the pointer: dragging down tips its top towards the viewer.

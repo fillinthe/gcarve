@@ -340,7 +340,7 @@ pub fn generate_relief(op: &Op, finish_tool: &Tool, rough_tool: Option<&Tool>, r
     let sample = 0.004_f64.max((r.w / r.nx as f64).min(r.h / r.ny as f64)); // along-line sampling
     let along_x = op.raster_angle % 180 == 0;
     if let (true, Some(rt)) = (op.rough, rough_tool) {
-        let mut rough = Toolpath { name: format!("{} [rough]", op.name), tool: op.clear_tool, feed_xy: rt.feed_xy, feed_z: rt.feed_z, moves: Vec::new() };
+        let mut rough = Toolpath { name: format!("{} [rough]", op.name), tool: op.clear_tool, feed_xy: rt.feed_xy, feed_z: rt.feed_z, moves: Vec::new(), comp: 0 };
         let sd = if op.rough_stepdown > 0.0 { op.rough_stepdown } else { rt.stepdown };
         let mut z = -sd;
         while z > -r.depth - 1e-9 {
@@ -351,8 +351,54 @@ pub fn generate_relief(op: &Op, finish_tool: &Tool, rough_tool: Option<&Tool>, r
             res.paths.push(rough);
         }
     }
-    let mut fin = Toolpath { name: op.name.clone(), tool: -1, feed_xy: finish_tool.feed_xy, feed_z: finish_tool.feed_z, moves: Vec::new() };
+    let mut fin = Toolpath { name: op.name.clone(), tool: -1, feed_xy: finish_tool.feed_xy, feed_z: finish_tool.feed_z, moves: Vec::new(), comp: 0 };
     raster(r, m, along_x, sample, &inside_clip, finish_tool, op.stepover, &mut fin, 0.0, 0.0, false);
     res.paths.push(fin);
     res
+}
+
+/// Project toolpath onto a 3D model: every cutting move (below the surface) is cut into short steps whose depth is
+/// measured down from the model's surface there instead of from the flat board top; rapids and lifts stay as they are.
+pub fn project_paths(paths: &mut [crate::job::Toolpath], r: &Relief) {
+    use crate::job::{Move, MoveType};
+    const STEP: f64 = 0.02;
+    for tp in paths {
+        let (mut x, mut y, mut z) = (0.0, 0.0, f64::MAX);
+        let mut out = Vec::with_capacity(tp.moves.len() * 2);
+        for m in &tp.moves {
+            let (nx, ny, nz) = (m.x.unwrap_or(x), m.y.unwrap_or(y), m.z.unwrap_or(z));
+            let cutting = m.kind == MoveType::Linear && (nz < 0.0 || z < 0.0) && z != f64::MAX;
+            if cutting {
+                let n = ((nx - x).hypot(ny - y) / STEP).ceil().max(1.0) as usize;
+                for k in 1..=n {
+                    let f = k as f64 / n as f64;
+                    let (px, py, pz) = (x + (nx - x) * f, y + (ny - y) * f, z + (nz - z) * f);
+                    let dz = if pz < 0.0 { r.surface_at(px, py) } else { 0.0 };
+                    out.push(Move::linear(Some(px), Some(py), Some(pz + dz)));
+                }
+            } else {
+                out.push(*m);
+            }
+            (x, y, z) = (nx, ny, nz);
+        }
+        tp.moves = out;
+    }
+}
+
+#[cfg(test)]
+mod project_tests {
+    use super::*;
+
+    #[test]
+    fn a_projected_toolpath_rides_the_model_surface() {
+        use crate::job::{Move, Toolpath};
+        // a flat-topped model 0.5 deep whose right half is all the way down
+        let r = Relief { id: 1, x: 0.0, y: 0.0, w: 4.0, h: 2.0, depth: 0.5, nx: 4, ny: 2, height: vec![1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0], ..Default::default() };
+        let mut tp = vec![Toolpath { moves: vec![Move::rapid(Some(0.5), Some(1.0), Some(0.2)), Move::linear(None, None, Some(-0.1)), Move::linear(Some(3.5), None, None), Move::rapid(None, None, Some(0.2))], ..Default::default() }];
+        project_paths(&mut tp, &r);
+        let z_at = |x: f64| tp[0].moves.iter().filter(|m| m.x.is_some_and(|mx| (mx - x).abs() < 0.011) && m.z.is_some()).map(|m| m.z.unwrap()).next();
+        assert!((z_at(1.0).unwrap() + 0.1).abs() < 1e-9, "on the top: as drawn");
+        assert!((z_at(3.0).unwrap() + 0.6).abs() < 1e-9, "down in the low half: 0.1 below its surface");
+        assert_eq!(tp[0].moves.last().unwrap().z, Some(0.2), "the lift stays");
+    }
 }
