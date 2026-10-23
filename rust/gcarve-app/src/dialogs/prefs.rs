@@ -394,6 +394,24 @@ impl Prefs {
             }
             section(ui, "Mouse");
             mouse_ui(ui);
+            section(ui, "Setup sheet");
+            note(ui, "Your shop's name and logo at the top of every printed setup sheet. Kept on this device.");
+            ui.horizontal(|ui| {
+                ui.label("Shop name");
+                let mut shop = crate::store::load(crate::setupsheet::SHOP_KEY).unwrap_or_default();
+                if ui.add(egui::TextEdit::singleline(&mut shop).desired_width(200.0).hint_text("e.g. Pete's Woodshop")).changed() {
+                    crate::store::save(crate::setupsheet::SHOP_KEY, &shop);
+                }
+            });
+            ui.horizontal(|ui| {
+                let has_logo = crate::store::load(crate::setupsheet::LOGO_KEY).is_some_and(|l| !l.is_empty());
+                if ui.add(crate::widgets::Button::new(if has_logo { "Change logo…" } else { "Choose a logo…" })).clicked() {
+                    host.files.pick_into(ctx, "Logo (PNG, JPEG, WebP)", crate::files::IMAGE_EXTS, "sheetlogo");
+                }
+                if has_logo && ui.add(crate::widgets::Button::new("Remove logo").flat()).clicked() {
+                    crate::store::remove(crate::setupsheet::LOGO_KEY);
+                }
+            });
             section(ui, "New documents");
             note(ui, "Used by every new tab; opened files keep their own board. Synced to your GCarve account when signed in.");
             let doc = &host.canvas.doc;

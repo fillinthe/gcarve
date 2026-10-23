@@ -72,7 +72,7 @@ impl Files {
         let dialog = if import {
             rfd::AsyncFileDialog::new().set_title("Import into this document").add_filter("All supported", IMPORT_EXTS).add_filter("Vector files", VECTOR_EXTS).add_filter("LightBurn project", &["lbrn2"]).add_filter("GSketch model", &["gsk"]).add_filter("G-code", GCODE_EXTS).add_filter("Images to trace", IMAGE_EXTS).add_filter("3D models", &["stl", "3mf"])
         } else {
-            rfd::AsyncFileDialog::new().add_filter("All supported", OPEN_EXTS).add_filter("GCarve project", &["tlp"]).add_filter("VCarve project", &["crv"]).add_filter("GSketch model", &["gsk"]).add_filter("Vector files", VECTOR_EXTS).add_filter("LightBurn project", &["lbrn2"]).add_filter("G-code", GCODE_EXTS)
+            rfd::AsyncFileDialog::new().add_filter("All supported", OPEN_EXTS).add_filter("GCarve project", &["tlp"]).add_filter("Job template", &["tlpt"]).add_filter("VCarve project", &["crv"]).add_filter("GSketch model", &["gsk"]).add_filter("Vector files", VECTOR_EXTS).add_filter("LightBurn project", &["lbrn2"]).add_filter("G-code", GCODE_EXTS)
         };
         let tx = self.tx.clone();
         let ctx = ctx.clone();
@@ -367,10 +367,10 @@ pub const GCODE_EXTS: &[&str] = &["tap", "nc", "gcode", "ngc", "cnc"];
 /// drawings read as vectors (the "Vector files" filter)
 pub const VECTOR_EXTS: &[&str] = &["svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl"];
 /// what Import takes (everything Open does but whole projects), and Open
-pub const IMPORT_EXTS: &[&str] = &["svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl", "lbrn2", "gsk", "stl", "3mf", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg"];
-pub const OPEN_EXTS: &[&str] = &["tlp", "crv", "svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl", "lbrn2", "gsk", "stl", "3mf", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg"];
+pub const IMPORT_EXTS: &[&str] = &["svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl", "lbrn2", "gsk", "stl", "3mf", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg", "webp", "csv"];
+pub const OPEN_EXTS: &[&str] = &["tlp", "tlpt", "crv", "csv", "svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl", "lbrn2", "gsk", "stl", "3mf", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg", "webp"];
 /// Pictures File ▸ Open / Import send to Trace Image (dialogs/trace.rs).
-pub const IMAGE_EXTS: &[&str] = &["png", "jpg", "jpeg"];
+pub const IMAGE_EXTS: &[&str] = &["png", "jpg", "jpeg", "webp"];
 
 pub enum Loaded {
     /// G-code: the app shows the import dialog (bits confirmed by the user)
@@ -468,6 +468,19 @@ pub fn load(doc: &mut Document, name: &str, bytes: &[u8]) -> Loaded {
             Ok(d) => Loaded::Project(Box::new(d), String::new()),
             Err(e) => Loaded::Error(e),
         },
+        // a job template (VCarve .crvt): a project that always opens as a new one, so it is never saved over
+        // a cut list: parts as labelled rectangles above the board; the app nests them onto sheets (cutlist.rs)
+        "csv" => match crate::cutlist::parse(doc, &text) {
+            Ok(parts) => {
+                let n = crate::cutlist::add(doc, &parts).len();
+                Loaded::Imported(n, format!("cut list: {} parts", parts.iter().map(|p| p.qty).sum::<usize>()))
+            }
+            Err(e) => Loaded::Error(format!("Cut list: {e}")),
+        },
+        "tlpt" => match project::load_project(&text) {
+            Ok(d) => Loaded::Project(Box::new(d), "a job template, opened as a new project (Save asks where it goes)".into()),
+            Err(e) => Loaded::Error(e),
+        },
         "crv" => match gcarve_core::crv::import_crv(bytes) {
             Ok((d, note)) => Loaded::Project(Box::new(d), note),
             Err(e) => Loaded::Error(e),
@@ -508,7 +521,7 @@ pub fn load(doc: &mut Document, name: &str, bytes: &[u8]) -> Loaded {
         "step" | "stp" | "sldprt" | "sldasm" | "iges" | "igs" | "f3d" | "ipt" | "3dm" => Loaded::Error(format!(
             "GCarve can't read .{ext} (3D CAD) files. In your CAD program export the outline you want to cut as DXF, DWG or SVG (or the shape as STL) and open that."
         )),
-        _ => Loaded::Error(format!("GCarve can't open .{ext} files. It opens GCarve projects (.tlp), VCarve projects (.crv), SVG, DXF, AutoCAD DWG, PDF, Illustrator (.ai) and EPS, HPGL plot files (.plt), LightBurn (.lbrn2), 3D models (.stl .3mf), G-code (.tap .nc .gcode) and pictures (PNG, JPEG) to trace.")),
+        _ => Loaded::Error(format!("GCarve can't open .{ext} files. It opens GCarve projects (.tlp) and job templates (.tlpt), VCarve projects (.crv), SVG, DXF, AutoCAD DWG, PDF, Illustrator (.ai) and EPS, HPGL plot files (.plt), LightBurn (.lbrn2), 3D models (.stl .3mf), G-code (.tap .nc .gcode) and pictures (PNG, JPEG, WebP) to trace.")),
     }
 }
 
@@ -725,5 +738,19 @@ mod gsk_tests {
         assert!(sq.c.closed && (r.w() - 1.0).abs() < 1e-6 && (r.h() - 1.0).abs() < 1e-6);
         assert!(doc.shapes.iter().any(|s| s.layer == p2 && !s.c.closed));
         assert!(OPEN_EXTS.contains(&"plt") && IMPORT_EXTS.contains(&"hpgl"));
+    }
+
+    #[test]
+    fn a_job_template_opens_as_a_new_project() {
+        let mut src = Document::default();
+        src.material.w = 24.0;
+        src.add(gcarve_core::geom::make_rect(1.0, 1.0, 2.0, 2.0), None);
+        let text = gcarve_core::project::save_project(&src);
+        let mut doc = Document::default();
+        // the note marks it as not a plain .tlp, so the app opens it unsaved with no path (never saved over)
+        match load(&mut doc, "sign.tlpt", text.as_bytes()) {
+            Loaded::Project(d, note) => assert!(d.material.w == 24.0 && d.shapes.len() == 1 && note.contains("job template")),
+            _ => panic!("not opened as a project"),
+        }
     }
 }

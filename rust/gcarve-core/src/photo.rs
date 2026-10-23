@@ -73,9 +73,55 @@ impl Gray {
     }
 }
 
+/// A 3D model drawn as a lit picture for Sketch carving (VCarve "Sketch Carving" from a model): light from the
+/// upper left, flat tops and the base white (nothing carved), slopes turned away darker. Grey pixels, row 0 at the
+/// top, at most `max_px` on the long side.
+pub fn shaded_relief(r: &crate::document::Relief, max_px: usize) -> (Vec<u8>, usize, usize) {
+    let (nx, ny) = (r.nx.max(0) as usize, r.ny.max(0) as usize);
+    if nx < 2 || ny < 2 || r.height.len() < nx * ny {
+        return (Vec::new(), 0, 0);
+    }
+    let k = (nx.max(ny) as f64 / max_px as f64).max(1.0);
+    let (w, h) = (((nx as f64 / k) as usize).max(2), ((ny as f64 / k) as usize).max(2));
+    let at = |x: f64, y: f64| r.height[(y.round() as usize).min(ny - 1) * nx + (x.round() as usize).min(nx - 1)] as f64;
+    let (cell_x, cell_y) = (r.w / nx as f64, r.h / ny as f64);
+    let l = { let (x, y, z) = (-1.0f64, 1.0, 1.5); let n = (x * x + y * y + z * z).sqrt(); (x / n, y / n, z / n) };
+    let mut px = vec![255u8; w * h];
+    for row in 0..h {
+        for col in 0..w {
+            let (x, y) = (col as f64 * k, (h - 1 - row) as f64 * k); // y up in the model
+            if at(x, y) <= 1e-3 {
+                continue; // the base: not carved
+            }
+            let dzdx = (at(x + k, y) - at((x - k).max(0.0), y)) * r.depth / (2.0 * k * cell_x);
+            let dzdy = (at(x, y + k) - at(x, (y - k).max(0.0))) * r.depth / (2.0 * k * cell_y);
+            let n = { let (a, b) = (-dzdx, -dzdy); let m = (a * a + b * b + 1.0).sqrt(); (a / m, b / m, 1.0 / m) };
+            let lit = (n.0 * l.0 + n.1 * l.1 + n.2 * l.2).max(0.0) / l.2; // flat = 1
+            px[row * w + col] = (lit.min(1.0) * 255.0).round() as u8;
+        }
+    }
+    (px, w, h)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn a_shaded_model_is_white_on_flats_and_dark_on_the_slopes_facing_away() {
+        // a 4 in square pyramid, 0.5 deep, on a 1 in margin of base
+        let n: usize = 120;
+        let height = (0..n * n).map(|i| { let (x, y) = ((i % n) as f64 / n as f64 * 6.0 - 3.0, (i / n) as f64 / n as f64 * 6.0 - 3.0); (1.0 - x.abs().max(y.abs()) / 2.0).max(0.0) as f32 }).collect();
+        let r = crate::document::Relief { w: 6.0, h: 6.0, depth: 0.5, nx: n as i32, ny: n as i32, height, ..Default::default() };
+        let (px, w, h) = shaded_relief(&r, 60);
+        assert_eq!((w, h), (60, 60));
+        let g = |x: usize, row: usize| px[row * w + x];
+        assert_eq!(g(2, 2), 255, "base");
+        // the face towards the light (left, x small) is lighter than the right face; the top face (row small = y up)
+        // lighter than the bottom one
+        assert!(g(18, 30) > g(42, 30) + 40, "{} {}", g(18, 30), g(42, 30));
+        assert!(g(30, 18) > g(30, 42) + 40, "{} {}", g(30, 18), g(30, 42));
+    }
 
     #[test]
     fn base64_round_trip() {

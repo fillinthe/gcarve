@@ -96,6 +96,25 @@ impl Canvas {
         Some(j)
     }
 
+    /// A back side (Material::back_of): the front sheet's vectors, mirrored the way the board is flipped, as faint
+    /// dashed lines under this sheet's own, so holes and cut-outs line up from both faces.
+    pub fn paint_front_side(&self, painter: &egui::Painter) {
+        let Some((front, lr)) = self.doc.material.back_of else { return };
+        let Some(view) = &self.view else { return };
+        if self.showing_all_sheets() || front < 0 || front as usize >= self.doc.sheets.len() || front == self.doc.active_sheet {
+            return;
+        }
+        let (w, h) = (self.doc.material.w, self.doc.material.h);
+        let flip = if lr { geom::Affine { a: -1.0, d: 1.0, e: w, ..Default::default() } } else { geom::Affine { a: 1.0, d: -1.0, f: h, ..Default::default() } };
+        let stroke = Stroke::new(1.0, Color32::from_rgba_unmultiplied(120, 170, 230, 110));
+        for s in self.doc.shapes.iter().filter(|s| s.sheet == front) {
+            let pts = self.screen_pts(view, &geom::transformed(&s.c, &flip));
+            for w in pts.windows(2) {
+                painter.add(egui::Shape::dashed_line(&[w[0], w[1]], stroke, 4.0, 4.0));
+            }
+        }
+    }
+
     /// The other sheets' boards, names and shapes (fainter), the active sheet's name and the drop target while a
     /// selection is dragged over another board. Drawn under the active sheet.
     pub fn paint_other_sheets(&self, painter: &egui::Painter, dragging: bool, hover: Option<Pt>) {
@@ -169,6 +188,24 @@ impl Canvas {
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn a_back_side_remembers_its_front_and_survives_save_and_removal() {
+        let mut c = Canvas::default();
+        c.doc.material.w = 10.0;
+        c.doc.add(gcarve_core::geom::make_polyline(&[gcarve_core::geom::pt(4.0, 0.5), gcarve_core::geom::pt(6.5, 0.5), gcarve_core::geom::pt(4.0, 2.5)], true), None); // a right triangle across the middle: its mirror on the back points the other way
+        c.doc.sync_sheet();
+        let mut back = gcarve_core::document::Material { back_of: Some((0, true)), ..c.doc.material.clone() };
+        back.name = "Back".into();
+        c.doc.sheets.push(back);
+        let text = gcarve_core::project::save_project(&c.doc);
+        let d = gcarve_core::project::load_project(&text).unwrap();
+        assert_eq!(d.sheets[1].back_of, Some((0, true)));
+        assert_eq!(d.sheets[0].back_of, None);
+        if let Ok(out) = std::env::var("GCARVE_BACKSIDE_OUT") {
+            std::fs::write(out, text).unwrap(); // a two-sided project for a screenshot (GCARVE_SHEET=1)
+        }
+    }
+
     use super::*;
     use gcarve_core::geom::{bounds, make_rect};
     use std::collections::BTreeSet;

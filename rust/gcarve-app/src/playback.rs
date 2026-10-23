@@ -6,7 +6,7 @@ use eframe::egui::{self, ColorImage, TextureOptions};
 use gcarve_core::document::{Document, Material, Tool};
 use gcarve_core::job::{MoveType, Toolpath};
 use gcarve_core::pipeline::{tool_for_cut, Generated};
-use gcarve_core::sim::{shade_into, sim_grid, sim_stamp, CellRect, HeightField};
+use gcarve_core::sim::{shade_backlit_into, shade_into, sim_grid, sim_stamp, CellRect, HeightField};
 
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Seg {
@@ -74,10 +74,58 @@ pub struct Player {
     pub frame: u64,
     /// carving to the finished part a slice per frame (`finish_step`), so the window keeps drawing a progress bar
     finishing: bool,
+    /// 2D picture lit from behind (lithophane), not from above
+    pub backlit: bool,
+    /// two-sided job, back sheet: the front's toolpaths flipped into this sheet's coordinates (set before `update`)
+    pub front: Vec<(Toolpath, Tool)>,
+    /// per cell: how deep the front already cut from the other face (a cell is through when both meet)
+    below: Vec<f32>,
 }
 
 /// moves stamped per frame while finishing: big jobs take a few seconds either way, but the window stays alive
 const FINISH_MOVES_PER_FRAME: usize = 3000;
+
+/// Two-sided jobs: on a back sheet, the front sheet's toolpaths (visible ones, as they cut) mirrored the way the
+/// board is flipped, so the back's simulation starts with them already in the board. Empty on other sheets.
+pub fn front_side_paths(doc: &Document) -> Vec<(Toolpath, Tool)> {
+    let Some((front, lr)) = doc.material.back_of else { return Vec::new() };
+    if front < 0 || front as usize >= doc.sheets.len() || front == doc.active_sheet {
+        return Vec::new();
+    }
+    let mut d = doc.clone();
+    d.sync_sheet();
+    d.set_active_sheet(front);
+    let gen = gcarve_core::pipeline::regenerate(&d);
+    let eff: Vec<Tool> = (0..d.tools.len()).map(|i| tool_for_cut(&d, i)).collect();
+    let (w, h) = (doc.material.w, doc.material.h);
+    let mut out = Vec::new();
+    for (op, ps) in d.ops.iter().zip(&gen.paths) {
+        if !op.visible {
+            continue;
+        }
+        for tp in ps {
+            let Some(tool) = usize::try_from(if tp.tool >= 0 { tp.tool } else { op.tool }).ok().and_then(|i| eff.get(i)) else { continue };
+            let mut tp = tp.clone();
+            for m in &mut tp.moves {
+                if lr {
+                    m.x = m.x.map(|x| w - x);
+                    m.i = -m.i;
+                } else {
+                    m.y = m.y.map(|y| h - y);
+                    m.j = -m.j;
+                }
+                // a mirror turns arcs the other way round
+                m.kind = match m.kind {
+                    gcarve_core::job::MoveType::ArcCw => gcarve_core::job::MoveType::ArcCcw,
+                    gcarve_core::job::MoveType::ArcCcw => gcarve_core::job::MoveType::ArcCw,
+                    k => k,
+                };
+            }
+            out.push((tp, tool.clone()));
+        }
+    }
+    out
+}
 
 impl Player {
     pub fn ready(&self) -> bool {
@@ -141,7 +189,17 @@ impl Player {
         }
         self.material = doc.material.clone();
         let paths: Vec<(&Toolpath, &Tool)> = sps.iter().map(|(tp, i)| (*tp, &self.tools[*i])).collect();
-        self.hf = sim_grid(&paths, &doc.material, 1_500_000);
+        // a back side: the grid also spans the front's cuts, which come through as holes where they go deep enough
+        let front: Vec<(&Toolpath, &Tool)> = self.front.iter().map(|(tp, t)| (tp, t)).collect();
+        let all: Vec<(&Toolpath, &Tool)> = paths.iter().copied().chain(front.iter().copied()).collect();
+        self.hf = sim_grid(&all, &doc.material, 1_500_000);
+        self.below = if front.is_empty() {
+            Vec::new()
+        } else {
+            let f = gcarve_core::sim::simulate(&front, &doc.material, 800_000);
+            let hf = &self.hf;
+            (0..hf.nx * hf.ny).map(|i| f.sample(hf.x0 + ((i % hf.nx) as f64 + 0.5) * hf.res, hf.y0 + ((i / hf.nx) as f64 + 0.5) * hf.res)).collect()
+        };
         self.view.rect = Some([self.hf.x0, self.hf.y0, self.hf.nx as f64 * self.hf.res, self.hf.ny as f64 * self.hf.res]);
         self.rgba.clear();
         self.reset();
@@ -174,7 +232,8 @@ impl Player {
     pub fn reset(&mut self) {
         self.finishing = false;
         self.hf.depth.iter_mut().for_each(|d| *d = 0.0);
-        shade_into(&self.hf, &self.material, &mut self.rgba, CellRect { ix0: 0, iy0: 0, ix1: self.hf.nx - 1, iy1: self.hf.ny - 1 });
+        self.through(CellRect { ix0: 0, iy0: 0, ix1: self.hf.nx - 1, iy1: self.hf.ny - 1 });
+        self.shade(CellRect { ix0: 0, iy0: 0, ix1: self.hf.nx - 1, iy1: self.hf.ny - 1 });
         self.pos = 0.0;
         self.next = 0;
         self.partial = 0.0;
@@ -221,7 +280,8 @@ impl Player {
         if r.is_empty() {
             return;
         }
-        shade_into(&self.hf, &self.material, &mut self.rgba, r);
+        self.through(r);
+        self.shade(r);
         let Some(tex) = &mut self.view.texture else { return };
         // the shaded image has row 0 at the top (max y); the dirty rect is in y-up cells
         let (ax, bx) = (0.max(r.ix0 - 1) as usize, ((self.hf.nx - 1).min(r.ix1 + 1)) as usize);
@@ -259,6 +319,40 @@ impl Player {
             self.pause()
         } else {
             self.play()
+        }
+    }
+
+    /// cells the front and back cuts meet in go right through the board (shown as holes, 2D and 3D)
+    fn through(&mut self, r: CellRect) {
+        if self.below.len() != self.hf.depth.len() {
+            return;
+        }
+        let t = self.material.t as f32;
+        for iy in r.iy0.max(0)..=r.iy1.min(self.hf.ny - 1) {
+            for ix in r.ix0.max(0)..=r.ix1.min(self.hf.nx - 1) {
+                let i = (iy * self.hf.nx + ix) as usize;
+                if self.hf.depth[i] + self.below[i] >= t - 1e-4 {
+                    self.hf.depth[i] = t;
+                }
+            }
+        }
+    }
+
+    fn shade(&mut self, r: CellRect) {
+        if self.backlit {
+            shade_backlit_into(&self.hf, &self.material, &mut self.rgba, r);
+        } else {
+            shade_into(&self.hf, &self.material, &mut self.rgba, r);
+        }
+    }
+
+    /// Simulate › Show › Lithophane: the whole picture again in the other light
+    pub fn set_backlit(&mut self, on: bool) {
+        if self.backlit != on {
+            self.backlit = on;
+            self.shade(CellRect { ix0: 0, iy0: 0, ix1: self.hf.nx - 1, iy1: self.hf.ny - 1 });
+            self.texture_full_refresh();
+            self.rev += 1;
         }
     }
 
@@ -320,6 +414,36 @@ impl Player {
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn a_back_side_simulates_with_the_fronts_cut_outs() {
+        use gcarve_core::document::{Op, OpType, Side};
+        // front (sheet 0): a 2 in square cut right through at the left; back (sheet 1, flipped left to right): a
+        // shallow pocket elsewhere. The back's simulation shows the square as a hole on the right.
+        let mut d = Document::default();
+        d.material.w = 12.0;
+        d.material.h = 6.0;
+        d.tools = vec![Tool { name: "E".into(), diameter: 0.25, stepdown: 1.0, rpm: 18000, ..Default::default() }];
+        let sq = d.add(gcarve_core::geom::make_rect(1.0, 2.0, 3.0, 4.0), None);
+        d.ops.push(Op { kind: OpType::Profile, name: "Out".into(), depth: 0.8, side: Side::Outside, shape_ids: vec![sq], ..Default::default() });
+        d.sync_sheet();
+        d.sheets.push(Material { back_of: Some((0, true)), ..d.material.clone() });
+        d.set_active_sheet(1);
+        let pk = d.add(gcarve_core::geom::make_rect(5.0, 2.0, 6.0, 3.0), None);
+        d.ops.push(Op { kind: OpType::Pocket, name: "Pk".into(), depth: 0.1, shape_ids: vec![pk], ..Default::default() });
+        let front = front_side_paths(&d);
+        assert!(!front.is_empty());
+        let fx: Vec<f64> = front.iter().flat_map(|(tp, _)| tp.moves.iter().filter_map(|m| m.x)).collect();
+        assert!(fx.iter().all(|x| *x > 8.5), "mirrored to the right: {:?}", fx.iter().fold(f64::MAX, |a, b| a.min(*b)));
+        let gen = gcarve_core::pipeline::regenerate(&d);
+        let mut p = Player { front, ..Default::default() };
+        let ctx = egui::Context::default();
+        p.update(&ctx, &d, &gen, 1, false);
+        // the profile ring of the square (mirrored to x 9..11) is through at the start, before the back cuts anything
+        let ix = ((9.0 - 0.13 - p.hf.x0) / p.hf.res) as i32;
+        let iy = ((3.0 - p.hf.y0) / p.hf.res) as i32;
+        assert!((p.hf.at(ix, iy) - 0.75).abs() < 1e-4, "{}", p.hf.at(ix, iy));
+    }
+
     use super::*;
     use gcarve_core::job::Move;
 

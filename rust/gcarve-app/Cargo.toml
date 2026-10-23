@@ -28,7 +28,7 @@ serde = { version = "1", features = ["derive"] }
 crc32fast = "1"      # checksums for the .zip of a web export (already in the tree through png)
 serde_json = "1"   # G-code header timestamp (same wording as the Qt app)
 rfd = "0.17"   # file picker: native dialogs, and the browser's file input on the web
-image = { version = "0.25", default-features = false, features = ["png", "jpeg"] }   # Trace Image (dialogs/trace.rs)
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "webp"] }   # Trace Image (dialogs/trace.rs)
 png = "0.17"   # setup sheet picture (and the dev screenshot)
 eframe = { version = "0.36", default-features = false, features = ["default_fonts", "glow", "accesskit", "wayland", "x11", "links"] } # links: without it ctx.open_url does nothing on the desktop (Donate, Download, sign-in through the browser)
 ehttp = "0.6.0"

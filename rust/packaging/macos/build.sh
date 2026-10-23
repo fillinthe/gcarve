@@ -3,6 +3,8 @@
 # Sign identity: GCARVE_CODESIGN_IDENTITY (e.g. "GCarve Dev"), default ad-hoc ("-").
 . "$(dirname "$0")/../env.sh"
 cd "$RUST"
+# no build-machine paths in the binary
+export RUSTFLAGS="${RUSTFLAGS:-} --remap-path-prefix=$HOME=/home --remap-path-prefix=$REPO=/gcarve"
 MIN_X86=10.13   # Rust's x86_64-apple-darwin floor is 10.12
 MIN_ARM=11.0    # first macOS on Apple silicon
 rustup target add aarch64-apple-darwin x86_64-apple-darwin >/dev/null

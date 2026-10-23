@@ -46,6 +46,8 @@ struct ExportDlg {
     tile_y: bool,
     tile_len: String,
     tile_overlap: String,
+    /// also write a ghost run of every file: spindle off, bit raised above the board (remembered: store "export-ghost")
+    ghost: bool,
     #[cfg(not(target_arch = "wasm32"))]
     folder: Option<PathBuf>,
 }
@@ -289,7 +291,7 @@ impl App {
                     app.canvas.tool = *tool;
                 }
             }
-            let req = match dialog.as_str() { "text" => Some(Request::Text(false)), "offset" => Some(Request::Offset), "dogbone" => Some(Request::Dogbone), "array" => Some(Request::Array), "align" => Some(Request::Align), "nest" => Some(Request::Nest), _ => None };
+            let req = match dialog.as_str() { "text" => Some(Request::Text(false)), "offset" => Some(Request::Offset), "dogbone" => Some(Request::Dogbone), "array" => Some(Request::Array), "align" => Some(Request::Align), "nest" => Some(Request::Nest), "selector" => Some(Request::Selector), "vtexture" => Some(Request::Texture), "plates" => Some(Request::Plates), "shelfpins" => Some(Request::Pins), "rotarylayout" => Some(Request::RotaryLayout), _ => None };
             app.canvas.requests.extend(req);
             if dialog == "shapemenu" || dialog == "sizepopup" {
                 app.canvas.shot_hook = dialog.clone();
@@ -402,9 +404,10 @@ impl App {
         // per-document chrome
         self.shell.op_sel = None;
         self.shell.edit_for = None;
-        let speed = self.player.speed;
+        let (speed, backlit) = (self.player.speed, self.player.backlit);
         self.player = Player::default();
         self.player.speed = speed;
+        self.player.backlit = backlit;
     }
 
     fn switch_tab(&mut self, i: usize) {
@@ -580,7 +583,7 @@ impl App {
                 self.canvas.dirty = false;
                 self.gen_rev = self.canvas.rev.wrapping_sub(1);
                 let tlp = note.is_empty();
-                self.name = name.trim_end_matches(".tlp").trim_end_matches(".crv").to_string();
+                self.name = name.trim_end_matches(".tlpt").trim_end_matches(".tlp").trim_end_matches(".crv").to_string();
                 self.cloud_id.clear();
                 self.message = if tlp { format!("Opened {name}: {} shapes, {} toolpaths", self.canvas.doc.shapes.len(), self.canvas.doc.ops.len()) } else { format!("Opened {name}: {note}") };
                 if !tlp {
@@ -618,6 +621,14 @@ impl App {
                 self.canvas.mutated();
                 self.canvas.view = None;
                 self.message = format!("{name}: {n} shapes. {note}");
+                if note.starts_with("cut list") {
+                    // the new parts and their labels: nested onto this board and as many more sheets as they need
+                    let cut = self.canvas.doc.layers.iter().position(|l| l.name == "Cut list" || l.name == "Part labels");
+                    let off_board = self.canvas.doc.material.h + 1.0;
+                    self.canvas.sel = self.canvas.doc.shapes.iter().filter(|s| cut.is_some() && gcarve_core::geom::bounds(&s.c).y0 > off_board && s.sheet == self.canvas.doc.active_sheet).map(|s| s.id).collect();
+                    let placed = self.canvas.nest_selection_sheets(0.25, 0.5, 90, 0);
+                    self.message = format!("{name}: {note}, nested on {} sheet(s) ({placed} placed). Apply a toolpath template to the \"Cut list\" layer to cut them all.", self.canvas.doc.sheets.len().max(1));
+                }
             }
             Loaded::Image => match dialogs::trace::TraceDialog::new(&name, &bytes, &self.canvas.doc) {
                 Ok(d) => self.cam.trace = Some(d),
@@ -667,8 +678,10 @@ fn tool_id(t: Tool) -> &'static str {
         Tool::Polyline => "tool:polyline",
         Tool::Pen => "tool:curve",
         Tool::Arc => "tool:arc",
+        Tool::Freehand => "tool:freehand",
         Tool::Measure => "tool:measure",
         Tool::Dimension => "tool:dimension",
+        Tool::Angle => "tool:angle",
         Tool::Text => "tool:text",
     }
 }
@@ -710,6 +723,17 @@ impl App {
 
     /// Every toolpath of the document as it is now (export, setup sheet, Send to Control), worked out here if the
     /// previews held only some of them.
+    /// What File › Export Vectors and Send to GBurn take: the selection, or every visible vector of this sheet, with
+    /// its layer name
+    fn export_items(&self) -> Vec<(&gcarve_core::geom::Contour, &str)> {
+        let (doc, picked) = (&self.canvas.doc, &self.canvas.sel);
+        doc.shapes
+            .iter()
+            .filter(|s| doc.shape_visible(s) && (picked.is_empty() || picked.contains(&s.id)))
+            .map(|s| (&s.c, doc.layers.get(s.layer as usize).map_or("", |l| l.name.as_str())))
+            .collect()
+    }
+
     fn full_gen(&mut self) {
         let n = self.canvas.doc.ops.len();
         if self.gen_rev == self.canvas.rev && self.gen_draft.is_none() && self.gen.is_some() && self.gen_cov.len() == n && self.gen_cov.iter().all(|c| *c) {
@@ -818,19 +842,43 @@ impl App {
                 self.cloud.refresh(ctx);
             }
             ("saveas", _) => self.save_as(),
+            // a .tlpt: this drawing, board, machine, layers and toolpaths as the start of new jobs
+            ("jobtemplate", _) => files::save(&format!("{}.tlpt", self.name), gcarve_core::project::save_project(&self.canvas.doc).into_bytes(), self.files.msg_tx.clone()),
             // File ▸ Export Vectors: the selection, or every visible vector of this sheet
             ("vexport", kind) => {
                 let doc = &self.canvas.doc;
-                let picked = &self.canvas.sel;
-                let shapes: Vec<&gcarve_core::document::Shape> = doc.shapes.iter().filter(|s| doc.shape_visible(s) && (picked.is_empty() || picked.contains(&s.id))).collect();
-                if shapes.is_empty() {
+                let items = self.export_items();
+                if items.is_empty() {
                     self.message = "Nothing to export: draw or select some vectors first.".into();
                 } else {
-                    let items: Vec<(&gcarve_core::geom::Contour, &str)> = shapes.iter().map(|s| (&s.c, doc.layers.get(s.layer as usize).map_or("", |l| l.name.as_str()))).collect();
-                    let text = if kind == "svg" { gcarve_core::svg::export_svg(&items, doc.material.w, doc.material.h) } else { gcarve_core::dxf::export_dxf(&items) };
-                    match if kind == "dwg" { files::dxf_to_dwg(&text) } else { Ok(text.into_bytes()) } {
+                    let (w, h) = (doc.material.w, doc.material.h);
+                    let made = match kind {
+                        "svg" => Ok(gcarve_core::svg::export_svg(&items, w, h).into_bytes()),
+                        "pdf" => Ok(gcarve_core::pdf::export_pdf(&items, w, h)),
+                        "dwg" => files::dxf_to_dwg(&gcarve_core::dxf::export_dxf(&items)),
+                        _ => Ok(gcarve_core::dxf::export_dxf(&items).into_bytes()),
+                    };
+                    match made {
                         Ok(bytes) => files::save(&format!("{}.{kind}", self.name), bytes, self.files.msg_tx.clone()),
                         Err(e) => self.message = e,
+                    }
+                }
+            }
+            // File › Send to GBurn (laser): the selection, or every visible vector of this sheet, as SVG with its
+            // layers; signed in it waits in the account (server handover.go) and GBurn opens it, else a download
+            ("sendgburn", _) => {
+                let items = self.export_items();
+                if items.is_empty() {
+                    self.message = "Nothing to send: draw or select some vectors first.".into();
+                } else {
+                    let svg = gcarve_core::svg::export_svg(&items, self.canvas.doc.material.w, self.canvas.doc.material.h);
+                    if self.cloud.signed_in() {
+                        self.cloud.handover(ctx, "gburn", &self.name.clone(), svg);
+                        self.message = "Sending to GBurn…".into();
+                    } else {
+                        files::save(&format!("{}-laser.svg", self.name), svg.into_bytes(), self.files.msg_tx.clone());
+                        self.message = "Saved as SVG: import it in GBurn (sign in to send drawings straight across).".into();
+                        ctx.open_url(egui::OpenUrl::new_tab("https://gburn.app/app/"));
                     }
                 }
             }
@@ -911,6 +959,13 @@ impl App {
                 self.full_gen();
                 self.start_export(true);
             }
+            ("previewimage", _) => {
+                self.full_gen();
+                match self.gen.as_ref().and_then(|g| crate::setupsheet::preview_png(&self.canvas.doc, g, 4_000_000)) {
+                    Some(bytes) => files::save(&format!("{}_preview.png", self.name), bytes, self.files.msg_tx.clone()),
+                    None => self.message = "Nothing to preview: add a toolpath first.".into(),
+                }
+            }
             ("setupsheet", _) => {
                 self.full_gen();
                 if let Some(html) = self.setup_sheet(0.0, &[]) {
@@ -940,8 +995,8 @@ impl App {
                 }
             }
             ("boardphoto", "remove") => self.canvas.board_photo = None,
-            ("boardphoto", _) => self.files.pick_into(ctx, "Photo of the board (PNG, JPEG)", files::IMAGE_EXTS, "boardphoto"),
-            ("trace", _) => self.files.pick_into(ctx, "Images (.png, .jpg)", files::IMAGE_EXTS, "image"),
+            ("boardphoto", _) => self.files.pick_into(ctx, "Photo of the board (PNG, JPEG, WebP)", files::IMAGE_EXTS, "boardphoto"),
+            ("trace", _) => self.files.pick_into(ctx, "Images (.png, .jpg, .webp)", files::IMAGE_EXTS, "image"),
             ("prefs", _) => self.cam.prefs_open = true,
             ("vars", _) => self.cam.vars = Some(Default::default()),
             ("var", "add") => {
@@ -1023,10 +1078,18 @@ impl App {
             ("join", _) => self.canvas.join_selection(),
             ("validate", _) => self.canvas.check_vectors(),
             ("extend", _) => self.canvas.extend_selection(),
+            ("distort", "4") => self.canvas.distort_four_corners(),
+            ("distort", n) => self.canvas.distort_selection(n == "2"),
+            ("fitcurves", v) => self.canvas.fit_curves_selection(v.parse().unwrap_or(0.005)),
             ("simplify", v) => self.canvas.simplify_selection(v.parse().unwrap_or(0.005)),
             ("close", _) => self.canvas.close_selection(),
             ("offset", _) => self.dialogs.request(Request::Offset, &self.canvas),
             ("dogbone", _) => self.dialogs.request(Request::Dogbone, &self.canvas),
+            ("selector", _) => self.dialogs.request(Request::Selector, &self.canvas),
+            ("vtexture", _) => self.dialogs.request(Request::Texture, &self.canvas),
+            ("plates", _) => self.dialogs.request(Request::Plates, &self.canvas),
+            ("shelfpins", _) => self.dialogs.request(Request::Pins, &self.canvas),
+            ("rotarylayout", _) => self.dialogs.request(Request::RotaryLayout, &self.canvas),
             ("align", _) => self.dialogs.request(Request::Align, &self.canvas),
             ("array", _) => self.dialogs.request(Request::Array, &self.canvas),
             ("nest", _) => self.dialogs.request(Request::Nest, &self.canvas),
@@ -1111,7 +1174,7 @@ impl App {
                 let doc = &mut self.canvas.doc;
                 doc.checkpoint();
                 doc.sync_sheet();
-                doc.sheets.push(gcarve_core::document::Material { name: String::new(), ..doc.material.clone() }); // a new sheet starts unnamed
+                doc.sheets.push(gcarve_core::document::Material { name: String::new(), back_of: None, ..doc.material.clone() }); // a new sheet starts unnamed, not anyone's back
                 doc.set_active_sheet(doc.sheets.len() as i32 - 1);
                 self.canvas.touch();
             }
@@ -1127,7 +1190,8 @@ impl App {
                 let flip = if lr { gcarve_core::geom::Affine { a: -1.0, d: 1.0, e: w, ..Default::default() } } else { gcarve_core::geom::Affine { a: 1.0, d: -1.0, f: h, ..Default::default() } };
                 let picked = &self.canvas.sel;
                 let copies: Vec<(gcarve_core::geom::Contour, i32)> = doc.shapes.iter().filter(|s| s.sheet == from && (picked.is_empty() || picked.contains(&s.id))).map(|s| (gcarve_core::geom::transformed(&s.c, &flip), s.layer)).collect();
-                doc.sheets.push(gcarve_core::document::Material { name: String::new(), ..doc.material.clone() }); // a new sheet starts unnamed
+                let back_name = format!("Back of {}", doc.sheet_name(from as usize));
+                doc.sheets.push(gcarve_core::document::Material { name: back_name, back_of: Some((from, lr)), ..doc.material.clone() });
                 doc.set_active_sheet(doc.sheets.len() as i32 - 1);
                 let n = copies.len();
                 self.canvas.sel = copies.into_iter().map(|(c, layer)| doc.add(c, Some(layer))).collect();
@@ -1144,6 +1208,14 @@ impl App {
                         if s.sheet == i { s.sheet = to } else if s.sheet > i { s.sheet -= 1 }
                     }
                     doc.sheets.remove(i as usize);
+                    // back sides keep pointing at their front (gone: they become plain sheets)
+                    for m in &mut doc.sheets {
+                        m.back_of = match m.back_of {
+                            Some((f, _)) if f == i => None,
+                            Some((f, lr)) if f > i => Some((f - 1, lr)),
+                            other => other,
+                        };
+                    }
                     doc.set_active_sheet(to);
                     self.canvas.touch();
                 }
@@ -1466,6 +1538,13 @@ impl eframe::App for App {
                         self.message = e;
                     }
                 },
+                // GBurn opens it after the sign-in hand-off (the web app's own session, or the hub's for the desktop)
+                Reply::HandoverSent(Ok(id)) => {
+                    let base = if Cloud::web() { "" } else { "https://gworkshop.app" };
+                    ctx.open_url(egui::OpenUrl::new_tab(format!("{base}/api/auth/handoff?to=https://gburn.app&next=/app/%3Fimport%3D{id}")));
+                    self.message = "Sent to GBurn: it opens in a new tab (the drawing waits there for 30 minutes)".into();
+                }
+                Reply::HandoverSent(Err(e)) => self.message = format!("Send to GBurn: {e}"),
                 _ => {}
             }
         }
@@ -1656,6 +1735,9 @@ impl eframe::App for App {
                     ctx.request_repaint();
                 } else {
                     self.sim_wait = false;
+                    if self.player.rev != self.gen_rev {
+                        self.player.front = crate::playback::front_side_paths(&self.canvas.doc); // a back side starts with the front's cuts
+                    }
                     self.player.update(&ctx, &self.canvas.doc, g, self.gen_rev, !self.watch_pending); // gen_rev: the paths `g` were built from
                 }
             }
@@ -2055,6 +2137,11 @@ impl App {
             ui.separator();
             ui.checkbox(&mut s.rapids, "Rapid moves (red)");
             ui.checkbox(&mut s.cutter, "Cutter");
+            ui.separator();
+            let mut lit = self.player.backlit;
+            if ui.checkbox(&mut lit, "Lithophane (lit from behind, 2D)").on_hover_text("Thin wood glows, thick wood stays dark: how a lithophane looks against a window").changed() {
+                self.player.set_backlit(lit);
+            }
             if !self.canvas.show_paths {
                 ui.label(RichText::new("The status bar's Paths switch is off: toolpaths stay hidden").color(theme::TEXT_DIM).size(11.0));
             }
@@ -2068,6 +2155,11 @@ impl App {
 
     /// The export files for the current state: (files, safety issues, per-file (tools, toolpaths))
     fn export_files(&self, raise: f64, tiling: Option<pipeline::Tiling>) -> Option<pipeline::ExportResult> {
+        self.export_files_with(raise, tiling, false)
+    }
+
+    /// `ghost`: the raised, spindle-off twin of every file (`_GHOST`)
+    fn export_files_with(&self, raise: f64, tiling: Option<pipeline::Tiling>, ghost: bool) -> Option<pipeline::ExportResult> {
         let gen = self.gen.as_ref()?;
         let ts = chrono::Local::now().format("%I:%M %p, %A %B %-d %Y").to_string();
         let post = pipeline::active_post(&self.canvas.doc, &|id| self.posts.find(id));
@@ -2084,9 +2176,9 @@ impl App {
                 draft_tool: -1,
             };
             let name = format!("{}_{}", self.name, g.replace(|c: char| !c.is_alphanumeric() && c != '-' && c != '_', "-"));
-            return Some(pipeline::export_tiled(&doc, &only, &name, &ts, raise, &post, tiling));
+            return Some(pipeline::export_tiled_with(&doc, &only, &name, &ts, raise, &post, tiling, ghost));
         }
-        Some(pipeline::export_tiled(&self.canvas.doc, gen, &self.name, &ts, raise, &post, tiling))
+        Some(pipeline::export_tiled_with(&self.canvas.doc, gen, &self.name, &ts, raise, &post, tiling, ghost))
     }
 
     fn export_tiling(&self, d: &ExportDlg) -> Option<pipeline::Tiling> {
@@ -2122,6 +2214,7 @@ impl App {
             tile_y: self.canvas.doc.material.h > self.canvas.doc.material.w,
             tile_len: units::text(&self.canvas.doc, 24.0),
             tile_overlap: units::text(&self.canvas.doc, 1.0),
+            ghost: !air_cut && crate::store::load("export-ghost").as_deref() == Some("1"),
             #[cfg(not(target_arch = "wasm32"))]
             folder,
         });
@@ -2194,6 +2287,9 @@ impl App {
                 }
             });
             crate::widgets::checkbox(ui, &mut d.sheet, format!("Setup sheet ({}_setup.html: printable job sheet for the operator)", self.name));
+            if !d.air && crate::widgets::checkbox(ui, &mut d.ghost, format!("Ghost run of every file too (_GHOST: spindle off, bit {} above the board) to watch the moves first", units::text(&self.canvas.doc, gcarve_core::cam::air_cut_raise(&self.canvas.doc.material)))).changed() {
+                crate::store::save("export-ghost", if d.ghost { "1" } else { "0" });
+            }
             ui.horizontal_wrapped(|ui| {
                 ui.label(RichText::new("Check every file before you cut: watch the simulation and run an air cut on new jobs. GCarve comes without warranty;").small().color(theme::TEXT_DIM));
                 ui.hyperlink_to(RichText::new("terms").small(), "https://gcarve.app/terms/#gcode");
@@ -2237,6 +2333,14 @@ impl App {
                     self.cloud.event_detail("export", &format!("{} file(s), {}", r.files.len(), self.canvas.doc.material.post));
                 }
                 let mut files: Vec<(String, Vec<u8>)> = r.files.into_iter().enumerate().map(|(i, f)| (pipeline::clean_file_name(d.names.get(i).map(String::as_str).unwrap_or(""), &f.filename), f.text.into_bytes())).collect();
+                if d.ghost && !d.air {
+                    // the ghost twins, named after the real files: "<name>_GHOST.<ext>"
+                    if let Some(g) = self.export_files_with(0.0, self.export_tiling(&d), true) {
+                        let twin = |real: &str| real.rsplit_once('.').map_or(format!("{real}_GHOST"), |(stem, ext)| format!("{stem}_GHOST.{ext}"));
+                        let named: Vec<(String, Vec<u8>)> = g.files.into_iter().enumerate().map(|(i, f)| (files.get(i).map_or(f.filename.clone(), |(n, _)| twin(n)), f.text.into_bytes())).collect();
+                        files.extend(named);
+                    }
+                }
                 if d.sheet {
                     // the sheet describes the whole job (its own file names when the export is tiled)
                     if let Some(html) = self.setup_sheet(self.export_raise(&d), if d.tile { &[] } else { &d.names }) {

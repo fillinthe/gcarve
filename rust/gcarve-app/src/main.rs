@@ -11,7 +11,8 @@ mod bands;
 mod bitbrowser;
 mod canvas;
 mod catalog;
-mod control; // GCarve Control (machine screen): `gcarve --control [file]`, `?control` on the web
+mod control;
+mod cutlist; // GCarve Control (machine screen): `gcarve --control [file]`, `?control` on the web
 mod edit_ops;
 mod files;
 mod guides;

@@ -478,8 +478,59 @@ fn finish(mut paths: Vec<Contour>, empty: &str) -> ImportResult {
     r
 }
 
+/// File › Export Vectors › PDF (VCarve "PDF Export"): one page the size of the board, inches → points, every
+/// vector a black hairline stroke with its curves kept. Layers are not written (a PDF viewer has no use for them).
+pub fn export_pdf(items: &[(&Contour, &str)], w: f64, h: f64) -> Vec<u8> {
+    let n = |v: f64| { let s = format!("{:.3}", v * 72.0); s.trim_end_matches('0').trim_end_matches('.').to_string() };
+    let p = |q: crate::geom::Pt| format!("{} {}", n(q.x), n(q.y));
+    let mut content = String::from("0 0 0 RG 0.5 w 1 J 1 j\n");
+    for (c, _) in items {
+        if c.nodes.is_empty() {
+            continue;
+        }
+        content += &format!("{} m\n", p(c.nodes[0].p));
+        for i in 0..crate::geom::seg_count(c) {
+            let s = crate::geom::segment(c, i);
+            content += &if s.curve { format!("{} {} {} c\n", p(s.c1), p(s.c2), p(s.p1)) } else { format!("{} l\n", p(s.p1)) };
+        }
+        content += if c.closed { "h S\n" } else { "S\n" };
+    }
+    let objs = [
+        "<< /Type /Catalog /Pages 2 0 R >>".to_string(),
+        "<< /Type /Pages /Kids [3 0 R] /Count 1 >>".to_string(),
+        format!("<< /Type /Page /Parent 2 0 R /MediaBox [0 0 {} {}] /Contents 4 0 R /Resources << >> >>", n(w), n(h)),
+        format!("<< /Length {} >>\nstream\n{content}endstream", content.len()),
+    ];
+    let mut out = b"%PDF-1.4\n".to_vec();
+    let mut offsets = Vec::new();
+    for (k, o) in objs.iter().enumerate() {
+        offsets.push(out.len());
+        out.extend(format!("{} 0 obj\n{o}\nendobj\n", k + 1).bytes());
+    }
+    let xref = out.len();
+    out.extend(format!("xref\n0 {}\n0000000000 65535 f \n", objs.len() + 1).bytes());
+    for o in offsets {
+        out.extend(format!("{o:010} 00000 n \n").bytes());
+    }
+    out.extend(format!("trailer\n<< /Size {} /Root 1 0 R >>\nstartxref\n{xref}\n%%EOF\n", objs.len() + 1).bytes());
+    out
+}
+
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn exported_pdf_reads_back_with_its_curves() {
+        use crate::geom::{make_ellipse, make_polyline, make_rect};
+        let (rect, circle, line) = (make_rect(1.0, 1.0, 3.0, 2.0), make_ellipse(6.0, 4.0, 1.5, 1.5), make_polyline(&[pt(1.0, 0.5), pt(2.0, 5.0)], false));
+        let pdf = super::export_pdf(&[(&rect, ""), (&circle, ""), (&line, "")], 12.0, 8.0);
+        let back = super::import_pdf(&pdf);
+        assert_eq!(back.contours.len(), 3, "{}", back.note);
+        // the import puts the artwork corner at 0,0: sizes and gaps stay
+        let b: Vec<_> = back.contours.iter().map(bounds).collect();
+        assert!(((b[0].x1 - b[0].x0) - 2.0).abs() < 0.002 && ((b[1].x1 - b[1].x0) - 3.0).abs() < 0.002 && ((b[1].x0 - b[0].x0) - 3.5).abs() < 0.002, "{b:?}");
+        assert!(back.contours[1].nodes.iter().any(|n| n.has_out) && !back.contours[2].closed);
+    }
+
     use super::*;
 
     fn pdf_with(content: &[u8], flate: bool) -> Vec<u8> {

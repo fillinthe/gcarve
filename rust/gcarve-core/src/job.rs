@@ -37,12 +37,14 @@ pub struct Toolpath {
     pub feed_xy: f64, // inches/min
     pub feed_z: f64,
     pub moves: Vec<Move>,
+    /// cutter compensation the post writes round the cutting moves: 41 = G41 (cutter left), 42 = G42, 0 = none
+    pub comp: u8,
 }
 
 /// No bit override by default (`tool` -1 = the operation's bit): 0 would send the moves to the first bit's file.
 impl Default for Toolpath {
     fn default() -> Self {
-        Toolpath { name: String::new(), tool: -1, feed_xy: 0.0, feed_z: 0.0, moves: Vec::new() }
+        Toolpath { name: String::new(), tool: -1, feed_xy: 0.0, feed_z: 0.0, moves: Vec::new(), comp: 0 }
     }
 }
 
@@ -63,6 +65,10 @@ pub struct Job {
     pub notes: Vec<String>,
     /// tool-changer slot of the bit (T number in tool-change posts); 0 = numbered in order
     pub slot: i32,
+    /// rotary job: the moves' Y is the A axis in degrees, written as A by the posts
+    pub a_axis: bool,
+    /// rotary along the machine's Y: the posts write the X words (the length) as Y and the Y words as A
+    pub a_along_y: bool,
 }
 
 impl Default for Job {
@@ -77,6 +83,8 @@ impl Default for Job {
             z_zero: "Material Surface".into(),
             notes: Vec::new(),
             slot: 0,
+            a_axis: false,
+            a_along_y: false,
         }
     }
 }

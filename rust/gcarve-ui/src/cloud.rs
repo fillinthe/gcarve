@@ -96,6 +96,10 @@ pub enum Reply {
     CommunityOpened { slug: String, title: String, json: String },
     /// Share to Community answered: the project page's path (waiting for review), or why not
     CommunityShared(Result<String, String>),
+    /// a drawing left for another app of the same account (POST /api/handover): its id, or why not
+    HandoverSent(Result<String, String>),
+    /// a drawing another app left (GET /api/handover/{id}): name, sending app's data (e.g. SVG text)
+    HandoverData { name: String, data: String },
     Error(String),
 }
 
@@ -543,6 +547,26 @@ impl Cloud {
         }
         let place = if Self::web() { "web" } else { "desktop" };
         post_error(&self.base, &format!("{kind}: {message}"), place);
+    }
+
+    /// Leave `data` for app `to` ("gburn", "gcarve", "gsketch") in this account for 30 minutes (server handover.go);
+    /// the other app opens it once with `take_handover`.
+    pub fn handover(&mut self, ctx: &egui::Context, to: &str, name: &str, data: String) {
+        self.request(ctx, "POST", "/api/handover", Some(serde_json::json!({"to": to, "name": name, "data": data})), |status, text| {
+            let v: serde_json::Value = serde_json::from_str(text).unwrap_or_default();
+            Reply::HandoverSent(match v.get("id").and_then(|i| i.as_str()) {
+                Some(id) if status < 400 => Ok(id.to_string()),
+                _ => Err(v.get("error").and_then(|e| e.as_str()).map_or_else(|| format!("Sending failed ({status})"), String::from)),
+            })
+        });
+    }
+
+    pub fn take_handover(&mut self, ctx: &egui::Context, id: &str) {
+        self.request(ctx, "GET", &format!("/api/handover/{id}"), None, |status, text| {
+            let v: serde_json::Value = serde_json::from_str(text).unwrap_or_default();
+            let get = |k: &str| v.get(k).and_then(|x| x.as_str()).unwrap_or_default().to_string();
+            if status < 400 { Reply::HandoverData { name: get("name"), data: get("data") } } else { Reply::Error(get("error")) }
+        });
     }
 
     pub fn send_request(&mut self, ctx: &egui::Context, kind: &str, subject: &str, body: &str, email: &str) {

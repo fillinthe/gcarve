@@ -200,13 +200,28 @@ impl Canvas {
         let mut best = self.px(HIT_PX) as f32 + 2.0;
         let mut hit = None;
         for (i, dm) in self.doc.dimensions.iter().enumerate() {
-            let d = dm.b - dm.a;
-            let l = dist(dm.a, dm.b);
+            if dm.axis == 3 {
+                // on the arc: right distance from the corner, inside the sweep
+                let w = view.to_doc(s);
+                let (a0, sweep) = dm.arc();
+                let t = (w.y - dm.vertex.y).atan2(w.x - dm.vertex.x);
+                let rel = (t - a0).rem_euclid(std::f64::consts::TAU);
+                let within = if sweep >= 0.0 { rel <= sweep } else { rel >= std::f64::consts::TAU + sweep };
+                let dd = ((dist(w, dm.vertex) - dm.offset.abs()).abs() * f64::from(view.zoom)) as f32;
+                if within && dd < best {
+                    best = dd;
+                    hit = Some(i);
+                }
+                continue;
+            }
+            let (ea, eb) = dm.ends();
+            let d = eb - ea;
+            let l = dist(ea, eb);
             if l < 1e-9 {
                 continue;
             }
             let n = pt(-d.y / l, d.x / l);
-            let (a2, b2) = (view.to_screen(dm.a + n * dm.offset), view.to_screen(dm.b + n * dm.offset));
+            let (a2, b2) = (view.to_screen(ea + n * dm.offset), view.to_screen(eb + n * dm.offset));
             let v = b2 - a2;
             let len2 = v.length_sq();
             let t = if len2 > 0.0 { ((s - a2).dot(v) / len2).clamp(0.0, 1.0) } else { 0.0 };
@@ -776,6 +791,28 @@ impl Canvas {
                     status = format!("{status}   {}", if self.arc_pts.len() == 1 { "click the arc's end" } else { "click a point the arc passes through" });
                 }
             }
+            Tool::Freehand => {
+                if drag_started {
+                    self.freehand = vec![press_w];
+                }
+                if !self.freehand.is_empty() {
+                    if let Some(w) = hover_w {
+                        // a point every 2 screen px is plenty: the fit smooths the rest
+                        if self.freehand.last().is_some_and(|l| dist(*l, w) * self.zoom() >= 2.0) {
+                            self.freehand.push(w);
+                        }
+                    }
+                    let pts: Vec<egui::Pos2> = self.freehand.iter().map(|p| view.to_screen(*p)).collect();
+                    painter.add(Shape::line(pts, Stroke::new(1.5, theme::ACCENT)));
+                    status = format!("{status}   draw; end where you started to close the shape");
+                    if resp.drag_stopped() {
+                        let stroke = std::mem::take(&mut self.freehand);
+                        if let Some(c) = freehand_contour(&stroke, self.px(SNAP_PX) / self.zoom()) {
+                            self.add_shape(c);
+                        }
+                    }
+                }
+            }
             Tool::Measure => {
                 if clicked {
                     if let Some(w) = hover_w {
@@ -829,6 +866,44 @@ impl Canvas {
                     let off = if self.dim_pts.len() == 2 { dim_offset(a, b, hw) } else { 0.5 };
                     self.paint_dimension(painter, &view, &Dimension { a, b, offset: off, ..Default::default() }, true, true);
                     status = format!("{status}   {}", if self.dim_pts.len() == 1 { "click the second point" } else { "click where the dimension line goes" });
+                }
+            }
+            Tool::Angle => {
+                if clicked {
+                    if let Some(w) = hover_w {
+                        let sn = self.snap_at(w, &BTreeSet::new());
+                        if self.dim_pts.len() < 2 {
+                            if self.dim_pts.last().is_none_or(|f| dist(*f, sn.to) > 1e-9) {
+                                self.dim_pts.push(sn.to);
+                                self.dim_anchors.push(if sn.node >= 0 { (sn.shape, sn.node) } else { (-1, -1) });
+                            }
+                        } else {
+                            // corner, first arm, second arm: the arc sits at the first arm's distance (at most 2 in)
+                            let (v, a, b) = (self.dim_pts[0], self.dim_pts[1], sn.to);
+                            let (sa, sb) = (self.dim_anchors[1], if sn.node >= 0 { (sn.shape, sn.node) } else { (-1, -1) });
+                            let r = (dist(v, a).min(dist(v, b)) * 0.6).clamp(0.05, 2.0);
+                            self.doc.checkpoint();
+                            let d = Dimension { a, b, vertex: v, offset: r, axis: 3, shape_a: sa.0, node_a: sa.1, shape_b: sb.0, node_b: sb.1, ..Default::default() };
+                            self.status = format!("Angle added: {:.1}°", d.degrees());
+                            self.doc.dimensions.push(d);
+                            self.dim_pts.clear();
+                            self.dim_anchors.clear();
+                            self.mutated();
+                        }
+                    }
+                }
+                if let (Some(&v), Some(hw)) = (self.dim_pts.first(), hover_w) {
+                    let to = hover_snap.map(|s| s.to).unwrap_or(hw);
+                    if self.dim_pts.len() == 1 {
+                        painter.add(Shape::dashed_line(&[view.to_screen(v), view.to_screen(to)], Stroke::new(1.0, theme::ACCENT), 4.0, 3.0));
+                    } else {
+                        let a = self.dim_pts[1];
+                        let r = (dist(v, a).min(dist(v, to)) * 0.6).clamp(0.05, 2.0);
+                        self.paint_dimension(painter, &view, &Dimension { a, b: to, vertex: v, offset: r, axis: 3, ..Default::default() }, true, true);
+                    }
+                    status = format!("{status}   {}", if self.dim_pts.len() == 1 { "click a point on the first arm" } else { "click a point on the second arm" });
+                } else {
+                    status = format!("{status}   click the corner of the angle");
                 }
             }
             Tool::Text => {
@@ -985,8 +1060,35 @@ pub fn shift_node_binds(bind: &mut gcarve_core::document::Bind, at: i32, delta: 
     }
 }
 
+/// a freehand stroke as a vector: closed when it ends within `close` of its start, straight runs thinned, round
+/// runs fitted with arcs (0.01 in); None for a stroke too short to keep
+pub(crate) fn freehand_contour(stroke: &[Pt], close: f64) -> Option<gcarve_core::geom::Contour> {
+    if stroke.len() < 3 {
+        return None;
+    }
+    let closed = stroke.len() > 8 && dist(stroke[0], stroke[stroke.len() - 1]) <= close;
+    let raw = make_polyline(if closed { &stroke[..stroke.len() - 1] } else { stroke }, closed);
+    let thin = gcarve_core::vecops::simplify_contours(&[raw], 0.0025).pop()?;
+    let c = gcarve_core::vecops::refit_arcs(&thin, 0.01);
+    (gcarve_core::geom::bounds(&c).w().max(gcarve_core::geom::bounds(&c).h()) > 0.01).then_some(c)
+}
+
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn a_freehand_loop_closes_into_a_few_curves() {
+        use gcarve_core::geom::{bounds, pt};
+        // a hand-drawn circle of 2 in radius, 200 points with a little wobble, ending just short of the start
+        let stroke: Vec<_> = (0..200).map(|i| { let a = i as f64 / 199.0 * 6.2; let r = 2.0 + 0.003 * (i as f64 * 1.7).sin(); pt(r * a.cos(), r * a.sin()) }).collect();
+        let c = super::freehand_contour(&stroke, 0.3).unwrap();
+        let b = bounds(&c);
+        assert!(c.closed && c.nodes.len() < 40 && (b.w() - 4.0).abs() < 0.1, "{} nodes, {b:?}", c.nodes.len());
+        // an open wiggle stays open; a click (two points) is no shape
+        let line: Vec<_> = (0..50).map(|i| pt(i as f64 * 0.1, 0.0)).collect();
+        assert!(!super::freehand_contour(&line, 0.3).unwrap().closed);
+        assert!(super::freehand_contour(&line[..2], 0.3).is_none());
+    }
+
     use super::*;
     use gcarve_core::geom::make_rect;
 

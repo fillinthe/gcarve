@@ -185,7 +185,7 @@ fn vectric_pp_import() {
     assert!(m3.rapid == "N{N}G0{X}{Y}{Z}" && m3.plunge == "N{N}G1{Z}F{f}" && m3.first_linear == "N{N}G1{X}{Y}{Z}F{f}" && m3.feed_change == "N{N}F{f}" && !m3.arcs);
     let tpp = Toolpath {
         name: "p".into(),
-        tool: -1,
+        tool: -1, comp: 0,
         feed_xy: 100.0,
         feed_z: 50.0,
         moves: vec![
@@ -221,7 +221,7 @@ fn circle(c: (f64, f64), rad: f64, n: usize, z: f64, ccw: bool) -> Toolpath {
         l(c.0 + rad * a.cos(), c.1 + rad * a.sin(), N)
     }));
     moves.push(r(N, N, 0.5));
-    Toolpath { name: "c".into(), tool: -1, feed_xy: 100.0, feed_z: 50.0, moves }
+    Toolpath { name: "c".into(), tool: -1, comp: 0, feed_xy: 100.0, feed_z: 50.0, moves }
 }
 
 #[test]

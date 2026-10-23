@@ -164,7 +164,15 @@ fn properties(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas) {
         });
     }
     if sel > 0 {
-        theme::checkbox(ui, &mut sh.lock_aspect, "Keep proportions").tip("Changing W also scales H (and the reverse)");
+        ui.horizontal(|ui| {
+            theme::checkbox(ui, &mut sh.lock_aspect, "Keep proportions").tip("Changing W also scales H (and the reverse)");
+            ui.add_space(8.0);
+            ui.label(RichText::new("Grows from").color(theme::TEXT_DIM)).on_hover_text("Where a size change holds still: type a new W or H, or change a variable, and the shape grows away from this point. Bottom-left keeps the old behaviour.");
+            let mut a = canvas.selection_anchor();
+            if anchor_picker(ui, &mut a) {
+                canvas.set_selection_anchor(a);
+            }
+        });
     }
     // exact rotation around the pivot (the frame's crosshair: drag it to turn around another point)
     if sel > 0 {
@@ -1004,4 +1012,24 @@ mod usage_tests {
         assert_eq!(u[2].0, vec![1, 2], "a layer on every sheet");
         assert!(u[2].1.contains(&0));
     }
+}
+
+/// A 3 × 3 dot picker for a shape's anchor (`Shape::anchor`): 0 bottom-left … 8 top-right. True when clicked.
+fn anchor_picker(ui: &mut egui::Ui, value: &mut i32) -> bool {
+    let (rect, _) = ui.allocate_exact_size(egui::vec2(44.0, 44.0), egui::Sense::hover());
+    let p = ui.painter();
+    p.rect(rect.shrink(4.0), 3.0, theme::FIELD, egui::Stroke::new(1.0, theme::BORDER_STRONG), egui::StrokeKind::Inside);
+    let mut changed = false;
+    for a in 0..9 {
+        let (fx, fy) = gcarve_core::document::anchor_frac(a);
+        let c = egui::pos2(rect.left() + 8.0 + fx as f32 * (rect.width() - 16.0), rect.bottom() - 8.0 - fy as f32 * (rect.height() - 16.0));
+        let r = ui.interact(egui::Rect::from_center_size(c, egui::vec2(13.0, 13.0)), ui.id().with(("anchor", a)), egui::Sense::click()).on_hover_text(format!("Grow from the {}", gcarve_core::document::ANCHOR_NAMES[a as usize]));
+        let on = *value == a;
+        p.circle_filled(c, if on { 4.5 } else { 2.5 }, if on { theme::ACCENT } else if r.hovered() { theme::TEXT } else { theme::TEXT_DIM });
+        if r.clicked() {
+            *value = a;
+            changed = true;
+        }
+    }
+    changed
 }

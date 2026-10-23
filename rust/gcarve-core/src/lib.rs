@@ -14,6 +14,7 @@ pub mod feeds;
 pub mod gcode;
 pub mod geom;
 pub mod gimport;
+pub mod gerber;
 pub mod hpgl;
 pub mod grbl;
 pub mod job;

@@ -31,6 +31,12 @@ pub struct JobDialog {
     mine: Vec<crate::library::CustomMachine>,
     editing: Option<(Option<usize>, crate::library::CustomMachine)>,
     share: (usize, super::share::ShareBox),
+    /// park at a home position at the end of each file (fields homeX / homeY)
+    home_on: bool,
+    merge: bool,
+    /// rotary job (field rotDia = the blank's diameter)
+    rotary_on: bool,
+    rotary_y: bool,
 }
 
 impl JobDialog {
@@ -170,7 +176,11 @@ impl JobDialog {
         f.set_bound("t", &m.bind, m.t);
         f.set_bound("safeZ", &m.bind, m.safe_z);
         f.set_bound("retractZ", &m.bind, m.retract_z);
-        JobDialog { kind: m.kind.clone(), f, origin: m.origin, z_bottom: m.z_bottom, auto_feeds: m.auto_feeds, machine: m.machine.clone(), post: None, browser: Default::default(), machine_only: false, mine: crate::library::machines(), editing: None, share: Default::default() }
+        let home = m.home.unwrap_or([0.0, 0.0]);
+        f.set("homeX", home[0]);
+        f.set("homeY", home[1]);
+        f.set("rotDia", m.rotary.unwrap_or(3.0));
+        JobDialog { home_on: m.home.is_some(), merge: m.merge, rotary_on: m.rotary.is_some(), rotary_y: m.rotary_y, kind: m.kind.clone(), f, origin: m.origin, z_bottom: m.z_bottom, auto_feeds: m.auto_feeds, machine: m.machine.clone(), post: None, browser: Default::default(), machine_only: false, mine: crate::library::machines(), editing: None, share: Default::default() }
     }
 
     fn apply(&self, m: &mut Material, doc: &Document) {
@@ -181,6 +191,13 @@ impl JobDialog {
         m.safe_z = self.f.get_or("safeZ", doc, m.safe_z);
         m.retract_z = self.f.get_or("retractZ", doc, m.retract_z);
         m.bind = self.f.bindings(&["w", "h", "t", "safeZ", "retractZ"]);
+        m.merge = self.merge;
+        m.rotary = self.rotary_on.then(|| self.f.get_or("rotDia", doc, 3.0).max(0.05));
+        m.rotary_y = self.rotary_on && self.rotary_y;
+        if let Some(dia) = m.rotary {
+            m.h = std::f64::consts::PI * dia; // the unrolled surface: once round the blank
+        }
+        m.home = self.home_on.then(|| [self.f.get_or("homeX", doc, 0.0), self.f.get_or("homeY", doc, 0.0)]);
         m.origin = self.origin.clamp(0, 4);
         m.z_bottom = self.z_bottom;
         m.auto_feeds = self.auto_feeds;
@@ -294,6 +311,30 @@ impl JobDialog {
                 ui.vertical(|ui| {
                     crate::widgets::radio_value(ui, &mut self.z_bottom, false, "Touch off on top of the board");
                     crate::widgets::radio_value(ui, &mut self.z_bottom, true, "Touch off on the spoilboard / table");
+                });
+                ui.end_row();
+                ui.label("Rotary").on_hover_text("A round blank turned by an A axis (along X, or Y below). Design on the board as the blank's surface unrolled: its height becomes once round (π × diameter). The G-code then sends Y as A in degrees.");
+                ui.horizontal(|ui| {
+                    crate::widgets::checkbox(ui, &mut self.rotary_on, "A-axis job, blank diameter");
+                    ui.add_enabled_ui(self.rotary_on, |ui| self.f.ui(ui, "rotDia", doc));
+                });
+                ui.end_row();
+                if self.rotary_on {
+                    ui.label("");
+                    crate::widgets::checkbox(ui, &mut self.rotary_y, "The axis lies along the machine's Y").tip("Draw the same way (the length left to right); the G-code writes the length as Y and the turn as A.");
+                    ui.end_row();
+                }
+                ui.label("Cut order").on_hover_text("Merged toolpaths: per bit, every toolpath in one shortest tour instead of toolpath by toolpath; anything cut right through the board still comes last");
+                crate::widgets::checkbox(ui, &mut self.merge, "Merge toolpaths that share a bit (shortest travel, cut-outs last)");
+                ui.end_row();
+                ui.label("At the end").on_hover_text("Home position: where the bit parks when a file is done, measured from your X/Y zero, at the travel height");
+                ui.horizontal(|ui| {
+                    crate::widgets::checkbox(ui, &mut self.home_on, "Park the bit at X");
+                    ui.add_enabled_ui(self.home_on, |ui| {
+                        self.f.ui(ui, "homeX", doc);
+                        ui.label("Y");
+                        self.f.ui(ui, "homeY", doc);
+                    });
                 });
                 ui.end_row();
                 ui.label("");

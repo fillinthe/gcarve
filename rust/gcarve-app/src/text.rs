@@ -73,7 +73,39 @@ fn place(contours: &[Contour], m: &Affine, out: &mut Vec<Contour>) {
 /// Glyph outlines for a text item (inches). Block text is centred on `centre`; curved text follows `path`.
 /// Returns the contours and a note (e.g. characters dropped past the end of an open curve).
 pub fn build_text(t: &TextItem, centre: Pt, path: Option<&Contour>) -> (Vec<Contour>, String) {
+    if path.is_none() && t.arch.abs() > 1e-6 && !t.text.trim().is_empty() && t.height > 0.0 {
+        return arched(t, centre);
+    }
     build(t, centre, path, None)
+}
+
+/// Arched block text: the first line laid along a circle of radius |arch| through `centre` (on its top when arch > 0,
+/// its bottom when < 0), centred on that point, by the curved-text layout.
+fn arched(t: &TextItem, centre: Pt) -> (Vec<Contour>, String) {
+    let face = face(&t.family, t.bold);
+    let cap = face.capital_height().filter(|&c| c > 0).unwrap_or(face.ascender()) as f64;
+    let k = t.height / cap;
+    let line = t.text.lines().next().unwrap_or("");
+    let n = line.chars().count();
+    let width = line_glyphs(&face, line, t.spacing / k).last().map_or(0.0, |(g, x)| (x + g.advance) * k) + (0..n.saturating_sub(1)).map(|i| t.kern(i)).sum::<f64>();
+    let r = t.arch.abs().max(t.height);
+    let up = t.arch > 0.0;
+    // the arc runs left to right over the top (clockwise) or under the bottom (anticlockwise), half a turn each way
+    let (c, mid) = if up { (pt(centre.x, centre.y - r), std::f64::consts::FRAC_PI_2) } else { (pt(centre.x, centre.y + r), -std::f64::consts::FRAC_PI_2) };
+    let half = std::f64::consts::PI * 0.999;
+    let n = 360;
+    let pts: Vec<Pt> = (0..=n).map(|i| {
+        let f = i as f64 / n as f64;
+        let a = if up { mid + half - 2.0 * half * f } else { mid - half + 2.0 * half * f };
+        pt(c.x + r * a.cos(), c.y + r * a.sin())
+    }).collect();
+    let arc = gcarve_core::geom::make_polyline(&pts, false);
+    let along = TextItem { start_offset: r * half - width / 2.0, above: true, ..t.clone() };
+    let (contours, mut note) = build(&along, centre, Some(&arc), None);
+    if t.text.lines().count() > 1 {
+        note = "Arched text uses the first line only".into();
+    }
+    (contours, note)
 }
 
 /// Text found in an imported drawing (SVG `<text>`, DXF TEXT / MTEXT) becomes editable text in the default font,
@@ -112,9 +144,21 @@ fn build(t: &TextItem, centre: Pt, path: Option<&Contour>, anchor: Option<(i32, 
     let spacing_units = t.spacing / k;
 
     let Some(path) = path else {
-        let line_h = face.height() as f64 + face.line_gap() as f64;
+        let line_h = (face.height() as f64 + face.line_gap() as f64) * t.line_spacing;
         let mut raw = Vec::new();
-        let lines: Vec<Vec<(Glyph, f64)>> = t.text.lines().map(|l| line_glyphs(&face, l, spacing_units)).collect();
+        // kerning by hand: each character's own extra gap pushes everything after it on its line
+        let mut first = 0; // char index of the line's first character in the whole text
+        let lines: Vec<Vec<(Glyph, f64)>> = t
+            .text
+            .split('\n')
+            .map(|l| {
+                let l = l.strip_suffix('\r').unwrap_or(l);
+                let mut extra = 0.0;
+                let g = line_glyphs(&face, l, spacing_units).into_iter().enumerate().map(|(i, (g, x))| { let at = x + extra; extra += t.kern(first + i) / k; (g, at) }).collect();
+                first += l.chars().count() + 1;
+                g
+            })
+            .collect();
         let width = |l: &[(Glyph, f64)]| l.last().map_or(0.0, |(g, x)| x + g.advance);
         let widest = lines.iter().map(|l| width(l)).fold(0.0, f64::max);
         for (i, line) in lines.iter().enumerate() {
@@ -198,7 +242,7 @@ fn build(t: &TextItem, centre: Pt, path: Option<&Contour>, anchor: Option<(i32, 
         let ang = tan.y.atan2(tan.x);
         let m = Affine::translate(p.x, p.y) * Affine::rotate(ang) * Affine::translate(-adv / 2.0, 0.0) * Affine::scale(k, k) * italic;
         place(&g.contours, &m, &mut contours);
-        s += adv + t.spacing;
+        s += adv + t.spacing + t.kern(ci);
     }
     if t.weld {
         contours = gcarve_core::vecops::weld_keep_holes(&contours);
@@ -316,6 +360,62 @@ impl Canvas {
     }
 
     /// Centre of a text item's glyphs (where an edit regenerates it).
+    /// Vectors › Plate Production… (VCarve's): the selection is the master plate; every row of `rows` makes a copy
+    /// to its right, then row by row downwards, with {1} {2}… (or {heading}) in its texts replaced by that row's
+    /// fields. Stops at the board's bottom edge. Returns the plates made (one undo step).
+    pub fn plate_production(&mut self, rows: &[Vec<String>], headings: &[String], gap: f64) -> usize {
+        let r = self.sel_rect;
+        let master: Vec<gcarve_core::document::Shape> = self.sel.iter().filter_map(|id| self.doc.find(*id).cloned()).collect();
+        let texts: Vec<TextItem> = self.doc.texts.iter().filter(|t| t.text.contains('{') && t.path_shape == 0 && master.iter().any(|s| s.text == t.id)).cloned().collect();
+        if r.is_empty() || texts.is_empty() {
+            self.status = "Plate Production: select the master plate, with {1} (first field), {2}… or {heading} in its text.".into();
+            return 0;
+        }
+        let (w, h) = (r.w() + gap, r.h() + gap);
+        let per_line = (((self.doc.material.w - r.x0 + gap) / w).floor() as usize).max(1);
+        self.doc.checkpoint();
+        let mut made = 0;
+        for (k, row) in rows.iter().enumerate() {
+            let slot = k + 1; // the master keeps the first spot
+            let (dx, dy) = ((slot % per_line) as f64 * w, -((slot / per_line) as f64) * h);
+            if r.y0 + dy < -1e-9 {
+                self.status = format!("Plate Production: {made} plates made; the other {} don't fit on the board below the master.", rows.len() - made);
+                self.mutated();
+                return made;
+            }
+            let group = self.doc.new_group_id();
+            let shift = Affine::translate(dx, dy);
+            for s in master.iter().filter(|s| s.text == 0 || !texts.iter().any(|t| t.id == s.text)) {
+                let id = self.doc.add(transformed(&s.c, &shift), Some(s.layer));
+                self.doc.find_mut(id).unwrap().group = group;
+            }
+            for src in &texts {
+                let Some((c, layer)) = self.text_centre(src.id) else { continue };
+                let mut text = src.text.clone();
+                for (i, field) in row.iter().enumerate() {
+                    text = text.replace(&format!("{{{}}}", i + 1), field.trim());
+                    if let Some(hd) = headings.get(i).filter(|h| !h.trim().is_empty()) {
+                        text = text.replace(&format!("{{{}}}", hd.trim()), field.trim());
+                    }
+                }
+                let t = TextItem { id: self.doc.next_text_id, text, ..src.clone() };
+                self.doc.next_text_id += 1;
+                let (contours, _) = build_text(&t, pt(c.x + dx, c.y + dy), None);
+                for g in contours {
+                    let id = self.doc.add(g, Some(layer));
+                    let s = self.doc.find_mut(id).unwrap();
+                    s.text = t.id;
+                    s.group = group;
+                }
+                self.doc.texts.push(t);
+            }
+            made += 1;
+        }
+        self.status = format!("Plate Production: {made} plates made next to the master.");
+        self.mutated();
+        made
+    }
+
     fn text_centre(&self, id: i32) -> Option<(Pt, i32)> {
         let mut b = Rect::default();
         let mut layer = -1;
@@ -334,6 +434,7 @@ pub struct TextDialog {
     item: TextItem,
     height: String,
     spacing: String,
+    arch: String,
     start: String,
     on_path: bool,
     path_choice: i32,
@@ -355,6 +456,7 @@ impl TextDialog {
         self.item.height = ((doc.material.w.min(doc.material.h) / 10.0 * 2.0).round() / 2.0).clamp(0.5, 3.0);
         self.height = units::text(doc, self.item.height);
         self.spacing = units::text(doc, 0.0);
+        self.arch = units::text(doc, 0.0);
         self.start = units::text(doc, 0.0);
         self.path_choice = canvas.sel.iter().next().copied().unwrap_or(0);
         self.on_path = on_path && self.path_choice > 0;
@@ -368,6 +470,7 @@ impl TextDialog {
         let doc = &canvas.doc;
         self.height = units::text(doc, t.height);
         self.spacing = units::text(doc, t.spacing);
+        self.arch = units::text(doc, t.arch);
         self.start = units::text(doc, t.start_offset);
         self.on_path = t.path_shape > 0;
         self.path_choice = t.path_shape;
@@ -462,6 +565,40 @@ impl TextDialog {
                 ui.label(format!("Letter spacing ({u})"));
                 units::num_field(ui, "sp", &mut self.spacing, &canvas.doc, true, 110.0);
                 ui.end_row();
+                ui.add_enabled(!self.on_path, egui::Label::new(format!("Arch radius ({u})")));
+                ui.add_enabled_ui(!self.on_path, |ui| {
+                    ui.horizontal(|ui| {
+                        units::num_field(ui, "arch", &mut self.arch, &canvas.doc, true, 110.0);
+                        ui.label(dim("0 = straight; negative bows it down"));
+                    })
+                });
+                ui.end_row();
+                // kerning by hand: the gap after each letter, nudged one by one (inches, + = wider)
+                ui.label("Letter gaps").on_hover_text("Drag a number to open or close the gap after that letter (in inches). Most fonts space well already: this is for the few pairs that look off at sign size, like AV or To.");
+                let chars: Vec<char> = self.item.text.chars().collect();
+                self.item.kerns.resize(chars.len(), 0.0);
+                ui.vertical(|ui| {
+                    egui::ScrollArea::horizontal().id_salt("kerns").max_width(330.0).show(ui, |ui| {
+                        ui.horizontal(|ui| {
+                            for (i, ch) in chars.iter().enumerate().take(80) {
+                                if *ch == '\n' || *ch == '\r' || i + 1 == chars.len() || chars[i + 1] == '\n' {
+                                    continue; // no gap after the last letter of a line
+                                }
+                                ui.vertical(|ui| {
+                                    ui.label(egui::RichText::new(format!("{ch}{}", chars[i + 1])).monospace());
+                                    ui.add(egui::DragValue::new(&mut self.item.kerns[i]).speed(0.002).range(-self.item.height..=self.item.height).fixed_decimals(3));
+                                });
+                            }
+                        });
+                    });
+                    if self.item.kerns.iter().any(|k| *k != 0.0) && ui.small_button("Reset gaps").clicked() {
+                        self.item.kerns.iter_mut().for_each(|k| *k = 0.0);
+                    }
+                });
+                ui.end_row();
+                ui.add_enabled(!self.on_path, egui::Label::new("Line spacing"));
+                ui.add_enabled(!self.on_path, egui::DragValue::new(&mut self.item.line_spacing).range(0.3..=10.0).speed(0.02).fixed_decimals(2).suffix(" × normal"));
+                ui.end_row();
                 ui.add_enabled(on, egui::Label::new("Side"));
                 ui.add_enabled(on, crate::widgets::CheckBox::new(&mut self.item.above, "Letters stand on the curve (else hang below)"));
                 ui.end_row();
@@ -477,7 +614,7 @@ impl TextDialog {
         });
         if ok {
             let doc = &canvas.doc;
-            let vals = [units::get(doc, &self.height, true), units::get(doc, &self.spacing, true), units::get(doc, &self.start, true)];
+            let vals = [units::get(doc, &self.height, true), units::get(doc, &self.spacing, true), units::get(doc, &self.start, true), units::get(doc, &self.arch, true)];
             if let Some(Err(e)) = vals.iter().find(|v| v.is_err()) {
                 canvas.status = e.clone();
                 return;
@@ -486,6 +623,7 @@ impl TextDialog {
             t.height = vals[0].clone().unwrap();
             t.spacing = vals[1].clone().unwrap();
             t.start_offset = vals[2].clone().unwrap();
+            t.arch = vals[3].clone().unwrap();
             t.path_shape = if self.on_path { self.path_choice } else { 0 };
             let (centre, layer) = if t.id != 0 {
                 canvas.text_centre(t.id).map(|(c, l)| (c, Some(l))).unwrap_or((canvas.view_centre(), None))
@@ -517,6 +655,26 @@ pub fn outline_bounds(t: &TextItem) -> Rect {
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn plates_fill_their_texts_from_the_rows() {
+        let mut c = Canvas::default();
+        c.doc.material.w = 30.0;
+        c.doc.material.h = 20.0;
+        let plate = c.doc.add(gcarve_core::geom::make_rect(1.0, 15.0, 7.0, 18.0), None);
+        c.place_text(TextItem { text: "{name} {2}".into(), height: 1.0, ..Default::default() }, pt(4.0, 16.5), None);
+        c.sel.insert(plate);
+        c.sel_changed();
+        let rows = vec![vec!["Ann".to_string(), "101".to_string()], vec!["Bo".to_string(), "102".to_string()], vec!["Cy".to_string(), "103".to_string()], vec!["Di".to_string(), "104".to_string()], vec!["Ed".to_string(), "105".to_string()]];
+        let made = c.plate_production(&rows, &["name".to_string(), "room".to_string()], 0.5);
+        assert_eq!(made, 5);
+        let words: Vec<&str> = c.doc.texts.iter().map(|t| t.text.as_str()).collect();
+        assert!(words.contains(&"Ann 101") && words.contains(&"Ed 105") && words.contains(&"{name} {2}"), "{words:?}");
+        // 4 plates fit on a line of the 30 in board (master + 3), the rest start the next line lower down
+        assert_eq!(c.doc.shapes.iter().filter(|s| s.text == 0).count(), 6);
+        c.undo();
+        assert_eq!(c.doc.texts.len(), 1);
+    }
+
     use super::*;
 
     #[test]
@@ -576,6 +734,27 @@ mod tests {
         assert_eq!(c.len(), 2); // outer + hole
         let wide = TextItem { text: "HE".into(), height: 1.0, spacing: 0.5, ..Default::default() };
         assert!(outline_bounds(&wide).w() > b.w() + 0.49);
+        // kerning by hand: 0.3 in after the first of two letters makes the pair 0.3 wider
+        let tight = outline_bounds(&TextItem { text: "HE".into(), height: 1.0, ..Default::default() }).w();
+        let loose = outline_bounds(&TextItem { text: "HE".into(), height: 1.0, kerns: vec![0.3], ..Default::default() }).w();
+        assert!((loose - tight - 0.3).abs() < 1e-6, "{tight} {loose}");
+        // line spacing: two lines twice as far apart make the block taller by one more line pitch
+        let two = |line_spacing| outline_bounds(&TextItem { text: "H\nH".into(), height: 1.0, line_spacing, ..Default::default() }).h();
+        let (normal, double) = (two(1.0), two(2.0));
+        assert!(double > normal + 0.9, "{normal} {double}");
+        // arched up: the middle letters stand higher than the ends, and the word stays centred
+        let arch = |arch| build_text(&TextItem { text: "ABCDEFG".into(), height: 1.0, arch, ..Default::default() }, pt(0.0, 0.0), None).0;
+        let ys = |cs: &[gcarve_core::geom::Contour]| { let b: Vec<_> = cs.iter().map(bounds).collect(); (b.first().unwrap().y0, b.iter().map(|r| r.y1).fold(f64::MIN, f64::max)) };
+        let (end_y, top) = ys(&arch(4.0));
+        assert!(top > end_y + 0.9, "{end_y} {top}");
+        let all = arch(4.0).iter().fold(gcarve_core::geom::Rect::default(), |mut r, c| { r.add_rect(&bounds(c)); r });
+        assert!(((all.x0 + all.x1) / 2.0).abs() < 0.15, "{all:?}");
+        if let Ok(out) = std::env::var("GCARVE_ARCH_SVG") {
+            let mut cs = arch(4.0);
+            cs.extend(arch(-4.0).iter().map(|c| gcarve_core::geom::transformed(c, &Affine::translate(0.0, -3.0))));
+            let cs: Vec<_> = cs.iter().map(|c| gcarve_core::geom::transformed(c, &Affine::translate(5.0, 5.0))).collect();
+            std::fs::write(out, gcarve_core::svg::export_svg(&cs.iter().map(|c| (c, "")).collect::<Vec<_>>(), 10.0, 7.0)).unwrap();
+        }
     }
 
     #[test]

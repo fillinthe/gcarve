@@ -81,6 +81,28 @@ impl Canvas {
 
     /// Inspector X/Y/W/H (Qt setSelectionField): a variable expression binds the field on every selected shape,
     /// a plain value unbinds and places / resizes (W/H scale the other axis too with `lock_aspect`).
+    /// the anchor every selected shape shares; 0 (bottom-left) when they differ
+    pub fn selection_anchor(&self) -> i32 {
+        let mut it = self.sel.iter().filter_map(|id| self.doc.find(*id)).map(|s| s.anchor);
+        let first = it.next().unwrap_or(0);
+        if it.all(|a| a == first) { first } else { 0 }
+    }
+
+    /// Properties › Grows from: the anchor of every selected shape
+    pub fn set_selection_anchor(&mut self, anchor: i32) {
+        if self.sel.is_empty() || self.selection_anchor() == anchor {
+            return;
+        }
+        self.doc.checkpoint();
+        for id in self.sel.clone() {
+            if let Some(s) = self.doc.find_mut(id) {
+                s.anchor = anchor.clamp(0, 8);
+            }
+        }
+        self.status = format!("Sizes now grow from the {}", gcarve_core::document::ANCHOR_NAMES[anchor.clamp(0, 8) as usize]);
+        self.mutated();
+    }
+
     pub fn set_selection_field(&mut self, prop: &str, text: &str, lock_aspect: bool) {
         let r = self.sel_rect;
         if self.sel.is_empty() || r.is_empty() || !matches!(prop, "x" | "y" | "w" | "h") {
@@ -116,6 +138,10 @@ impl Canvas {
             if lock_aspect && prop == "h" && r.h() > 0.0 {
                 w = r.w() * h / r.h();
             }
+            // a typed size grows away from the selection's anchor (the shapes' shared one; mixed = bottom-left)
+            let (fx, fy) = gcarve_core::document::anchor_frac(self.selection_anchor());
+            x += fx * (r.w() - w);
+            y += fy * (r.h() - h);
             let sx = if r.w() > 0.0 && w > 0.0 { w / r.w() } else { 1.0 };
             let sy = if r.h() > 0.0 && h > 0.0 { h / r.h() } else { 1.0 };
             let m = Affine::translate(x, y) * Affine::scale(sx, sy) * Affine::translate(-r.x0, -r.y0);
@@ -284,6 +310,21 @@ impl Canvas {
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn a_typed_width_grows_from_the_selection_anchor() {
+        let mut c = Canvas::default();
+        let id = c.doc.add(gcarve_core::geom::make_rect(2.0, 2.0, 4.0, 3.0), None);
+        c.sel = std::collections::BTreeSet::from([id]);
+        c.sel_changed();
+        c.set_selection_anchor(2); // bottom-right
+        c.set_selection_field("w", "4", false);
+        let b = gcarve_core::geom::bounds(&c.doc.find(id).unwrap().c);
+        assert!((b.x1 - 4.0).abs() < 1e-9 && (b.x0 - 0.0).abs() < 1e-9, "{b:?}");
+        c.undo();
+        c.undo();
+        assert_eq!(c.doc.find(id).unwrap().anchor, 0);
+    }
+
     use super::*;
     use gcarve_core::geom::{bounds, make_rect};
 

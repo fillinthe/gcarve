@@ -182,6 +182,8 @@ struct Ctx<'a> {
     z: Option<f64>,
     f: Option<f64>,
     after_rapid: bool,
+    /// rotary job: Y carries A-axis degrees, never scaled to mm
+    a_axis: bool,
 }
 
 impl Ctx<'_> {
@@ -213,12 +215,13 @@ impl Ctx<'_> {
         if self.def.modal_axes && !force && last.is_some_and(|l| (l - v).abs() < 1e-12) {
             return String::new();
         }
-        format!("{letter}{}", fmt(v * self.scale, self.def.decimals))
+        let k = if letter == "Y" && self.a_axis { 1.0 } else { self.scale };
+        format!("{letter}{}", fmt(v * k, self.def.decimals))
     }
 }
 
 /// arcs -> lines when the post can't take them, or arcs split when the sweep is too large
-fn linearize(m: &Move, from: Pt, max_sweep_deg: f64, allow_arcs: bool) -> Vec<Move> {
+pub(crate) fn linearize(m: &Move, from: Pt, max_sweep_deg: f64, allow_arcs: bool) -> Vec<Move> {
     let ctr = from + pt(m.i, m.j);
     let to = pt(m.x.unwrap_or(from.x), m.y.unwrap_or(from.y));
     let r = dist(ctr, from);
@@ -304,7 +307,7 @@ fn emit_move(out: &mut String, c: &mut Ctx, m: &Move, feed_xy: f64, feed_z: f64)
     let fword = if m.kind != MoveType::Rapid && feed_changed && d.feed_change.is_empty() { format!("F{}", fmt(feed * sc, d.feed_decimals)) } else { String::new() };
     s = s.replace("{F}", &fword);
     s = s.replace("{x}", &fmt(m.x.or(c.x).unwrap_or(0.0) * sc, d.decimals));
-    s = s.replace("{y}", &fmt(m.y.or(c.y).unwrap_or(0.0) * sc, d.decimals));
+    s = s.replace("{y}", &fmt(m.y.or(c.y).unwrap_or(0.0) * if c.a_axis { 1.0 } else { sc }, d.decimals));
     s = s.replace("{z}", &fmt(m.z.or(c.z).unwrap_or(0.0) * sc, d.decimals));
     s = s.replace("{i}", &fmt(m.i * sc, d.decimals));
     s = s.replace("{j}", &fmt(m.j * sc, d.decimals));
@@ -363,7 +366,20 @@ fn emit_job(out: &mut String, c: &mut Ctx, job: &Job, tool_num: i32) {
         c.emit_lines(out, &d.path_start);
         c.f = None; // force a feed word at the start of each path
         let mut cur = pt(c.x.unwrap_or(0.0), c.y.unwrap_or(0.0));
+        // cutter compensation: on at the first straight cutting move after each plunge, off before each rapid
+        let comp = tp.comp != 0 && knows_comp(d);
+        let mut comp_on = false;
         for m in &tp.moves {
+            if comp {
+                let xy = m.x.is_some_and(|x| (x - cur.x).abs() > 1e-9) || m.y.is_some_and(|y| (y - cur.y).abs() > 1e-9);
+                if comp_on && m.kind == MoveType::Rapid {
+                    c.emit_lines(out, "G40\n");
+                    comp_on = false;
+                } else if !comp_on && m.kind == MoveType::Linear && xy {
+                    c.emit_lines(out, &format!("G{} D{{TOOLNUM}}\n", tp.comp));
+                    comp_on = true;
+                }
+            }
             if matches!(m.kind, MoveType::ArcCw | MoveType::ArcCcw) {
                 for mm in linearize(m, cur, d.max_arc_sweep_deg, d.arcs) {
                     emit_move(out, c, &mm, tp.feed_xy, tp.feed_z);
@@ -374,8 +390,17 @@ fn emit_job(out: &mut String, c: &mut Ctx, job: &Job, tool_num: i32) {
                 cur = pt(m.x.unwrap_or(cur.x), m.y.unwrap_or(cur.y));
             }
         }
+        if comp_on {
+            c.emit_lines(out, "G40\n");
+        }
         c.emit_lines(out, &d.path_end);
     }
+}
+
+/// Posts that cancel cutter compensation in their header (G40: the Mach / LinuxCNC / Fanuc-style families) can write
+/// G41 / G42; GRBL, WinCNC's exact writer, ShopBot and the rest leave it out.
+pub fn knows_comp(d: &PostDef) -> bool {
+    d.header.contains("G40")
 }
 
 /// header notes as comments in the post's style ("({})", "[{}]", ";{}"...); posts without comments skip them
@@ -468,6 +493,51 @@ pub fn spindle_safe_tool_change(block: &str) -> String {
 
 /// Renders one or more files. With `tool_change` empty: one file per job (tool). Otherwise a single combined file.
 pub fn post_jobs(jobs: &[Job], def: &PostDef) -> Vec<PostOutput> {
+    let mut outs = render_jobs(jobs, def);
+    // a bit at 0 RPM (drag knife) never turns the spindle on: its file loses every spindle-on line (the spindle-off
+    // at the end stays). A combined tool-change file only when every job in it is at 0 RPM.
+    let combined = outs.len() != jobs.len();
+    for (k, o) in outs.iter_mut().enumerate() {
+        let still = if combined { jobs.iter().all(|j| j.rpm <= 0) } else { jobs.get(k).is_some_and(|j| j.rpm <= 0) };
+        if still {
+            o.text = o.text.split_inclusive('\n').filter(|l| !spindle_on(l)).collect();
+        }
+        // rotary: the Y words carry A-axis degrees (cam::wrap_jobs); written as A
+        if let Some(j) = jobs.first().filter(|j| j.a_axis) {
+            o.text = o.text.split_inclusive('\n').map(|l| y_to_a(l, j.a_along_y)).collect();
+        }
+    }
+    outs
+}
+
+/// "G1 X1.5 Y90.0 Z-0.1" -> "G1 X1.5 A90.0 Z-0.1": a Y axis word (Y then a number, not inside a word or comment
+/// text such as "[Y zero]") becomes A; with `along_y` an X axis word becomes Y as well (the axis lies along Y)
+fn y_to_a(line: &str, along_y: bool) -> String {
+    let b = line.as_bytes();
+    let mut out = String::with_capacity(line.len());
+    let mut in_comment = false;
+    for (i, &c) in b.iter().enumerate() {
+        match c {
+            b'(' | b'[' | b';' => in_comment = true,
+            b')' | b']' => in_comment = false,
+            _ => {}
+        }
+        let word = !in_comment && b.get(i + 1).is_some_and(|n| n.is_ascii_digit() || *n == b'-' || *n == b'+' || *n == b'.') && (i == 0 || !b[i - 1].is_ascii_alphabetic());
+        out.push(match c {
+            b'Y' | b'y' if word => 'A',
+            b'X' | b'x' if word && along_y => 'Y',
+            _ => c as char,
+        });
+    }
+    out
+}
+
+/// spindle on: M3 / M03 / M4 / M04 (any G-code), C6 (ShopBot), !MC1 (Roland)
+fn spindle_on(l: &str) -> bool {
+    has_word(l, &["M3", "M03", "M4", "M04", "C6", "!MC1"], true, true) && !spindle_off(l)
+}
+
+fn render_jobs(jobs: &[Job], def: &PostDef) -> Vec<PostOutput> {
     let mut outs = Vec::new();
     if jobs.is_empty() {
         return outs;
@@ -493,7 +563,7 @@ pub fn post_jobs(jobs: &[Job], def: &PostDef) -> Vec<PostOutput> {
             ("FEEDXY", "0".into()),
             ("FEEDZ", "0".into()),
         ];
-        Ctx { def, scale, vars: vars.into_iter().map(|(k, v)| (k.to_string(), v)).collect(), x: None, y: None, z: None, f: None, after_rapid: true }
+        Ctx { def, scale, vars: vars.into_iter().map(|(k, v)| (k.to_string(), v)).collect(), x: None, y: None, z: None, f: None, after_rapid: true, a_axis: j.a_axis }
     };
     if def.tool_change.is_empty() {
         for (n, j) in (1..).zip(jobs) {
@@ -1028,6 +1098,22 @@ pub fn post_from_vectric_pp(text: &str) -> Result<PostDef, String> {
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn a_zero_rpm_job_never_turns_the_spindle_on_in_any_post() {
+        use crate::job::{Job, Move, Toolpath};
+        let tp = Toolpath { name: "K".into(), feed_xy: 100.0, feed_z: 30.0, moves: vec![Move::rapid(Some(1.0), Some(1.0), Some(0.5)), Move::linear(None, None, Some(-0.05)), Move::linear(Some(2.0), None, None), Move::rapid(None, None, Some(0.5))], ..Default::default() };
+        let job = |rpm| Job { filename: "k".into(), tool: "Knife".into(), rpm, toolpaths: vec![tp.clone()], z_zero: "Material Surface".into(), ..Default::default() };
+        for def in post_library() {
+            for o in post_jobs(&[job(0)], def) {
+                assert!(!o.text.lines().any(spindle_on), "{}: spindle turned on for a knife", def.id);
+                assert!(o.text.lines().any(spindle_off), "{}: no spindle off at the end", def.id);
+            }
+            // a normal bit keeps its spindle-on
+            let normal = post_jobs(&[job(18000)], def);
+            assert!(normal.iter().any(|o| o.text.lines().any(spindle_on)) || def.id.contains("laser") || def.id.contains("marlin"), "{}: lost the spindle-on", def.id);
+        }
+    }
+
     use super::*;
 
     #[test]

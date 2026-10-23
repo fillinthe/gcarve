@@ -227,3 +227,29 @@ fn only_the_wanted_toolpaths_are_worked_out() {
     assert_eq!(some.minutes[1], all.minutes[1]);
     assert!(some.paths.iter().enumerate().all(|(i, p)| i == 1 || p.is_empty()) && some.minutes.iter().enumerate().all(|(i, m)| i == 1 || *m == 0.0));
 }
+
+#[test]
+fn a_ghost_run_never_spins_and_stays_above_the_board() {
+    use gcarve_core::gimport::read_program;
+    let doc = load_project(&std::fs::read_to_string(root().join("samples/showcase.tlp")).unwrap()).unwrap();
+    let gen = pipeline::regenerate(&doc);
+    for id in ["wincnc-single", "grbl", "mach3", "shopbot"] {
+        let post = gcarve_core::postdef::post_library().iter().find(|p| p.id.starts_with(id)).unwrap_or_else(|| panic!("post {id}"));
+        let real = pipeline::export_tiled_with(&doc, &gen, "t", "d", 0.0, post, None, false);
+        let ghost = pipeline::export_tiled_with(&doc, &gen, "t", "d", 0.0, post, None, true);
+        assert_eq!(real.files.len(), ghost.files.len(), "{id}: one ghost per real file");
+        for (r, g) in real.files.iter().zip(&ghost.files) {
+            assert!(g.filename.contains("_GHOST"), "{}", g.filename);
+            let spins = |t: &str| t.lines().any(|l| { let w = l.split_whitespace().collect::<Vec<_>>(); w.iter().any(|x| matches!(x.to_ascii_uppercase().as_str(), "M3" | "M03" | "M4" | "M04" | "C6")) });
+            assert!(spins(&r.text) || id == "shopbot", "{id}: the real file turns the spindle on");
+            assert!(!spins(&g.text), "{id}: the ghost turns the spindle on:\n{}", g.text.lines().take(12).collect::<Vec<_>>().join("\n"));
+            // no Z below the board top anywhere in the ghost (a Z word with a minus), while the real file cuts below it
+            let below = |t: &str| t.lines().filter(|l| !l.starts_with('(') && !l.starts_with('[') && !l.starts_with(';')).any(|l| l.split_whitespace().any(|w| w.starts_with("Z-") || w.starts_with("z-")));
+            assert!(below(&r.text) || id == "shopbot", "{id}: the real file never goes below the board?");
+            assert!(!below(&g.text), "{id}: the ghost goes below the board top");
+            if id != "shopbot" {
+                assert!(!read_program(&g.text, "t", &doc.material).sections.is_empty(), "{id}: the ghost reads back"); // ShopBot files aren't G-code
+            }
+        }
+    }
+}

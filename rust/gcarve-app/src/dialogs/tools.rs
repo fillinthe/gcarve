@@ -12,6 +12,8 @@ use gcarve_core::pipeline;
 pub struct ToolsDialog {
     pub cur: usize,
     name: String,
+    /// the bit's Tool Library folder
+    group: String,
     kind: ToolType,
     flutes: String,
     rpm: String,
@@ -34,7 +36,7 @@ pub struct ToolsDialog {
 
 impl ToolsDialog {
     pub fn new(doc: &Document, cur: usize) -> Self {
-        let mut d = ToolsDialog { cur: 0, name: String::new(), kind: ToolType::EndMill, flutes: "2".into(), rpm: String::new(), slot: String::new(), f: Fields::new(doc), p_material: doc.material.kind.clone(), p_rpm: String::new(), browser: Default::default(), share_one: Default::default(), share_all: Default::default(), query: String::new(), loaded_key: String::new(), editing: false, dirty_since: None };
+        let mut d = ToolsDialog { cur: 0, name: String::new(), group: String::new(), kind: ToolType::EndMill, flutes: "2".into(), rpm: String::new(), slot: String::new(), f: Fields::new(doc), p_material: doc.material.kind.clone(), p_rpm: String::new(), browser: Default::default(), share_one: Default::default(), share_all: Default::default(), query: String::new(), loaded_key: String::new(), editing: false, dirty_since: None };
         d.load(doc, cur);
         d
     }
@@ -43,6 +45,7 @@ impl ToolsDialog {
         let Some(t) = doc.tools.get(i) else { return };
         self.cur = i;
         self.name = t.name.clone();
+        self.group = t.group.clone();
         self.kind = t.kind;
         self.flutes = t.flutes.to_string();
         self.rpm = t.rpm.to_string();
@@ -79,7 +82,7 @@ impl ToolsDialog {
     /// everything the bit form edits, as one string (not the material preset fields)
     fn edit_key(&self) -> String {
         let f: String = ["diameter", "angle", "radius", "cutLength", "stepdown", "feedXY", "feedZ"].iter().map(|k| format!("{}|", self.f.text(k))).collect();
-        format!("{f}{}|{:?}|{}|{}|{}", self.name, self.kind, self.flutes, self.rpm, self.slot)
+        format!("{f}{}|{}|{:?}|{}|{}|{}", self.name, self.group, self.kind, self.flutes, self.rpm, self.slot)
     }
 
     fn spec(&self, doc: &Document) -> gcarve_core::feeds::Cutter {
@@ -98,6 +101,7 @@ impl ToolsDialog {
     fn tool(&self, doc: &Document, base: &Tool) -> Tool {
         Tool {
             name: self.name.clone(),
+            group: self.group.trim().to_string(),
             kind: self.kind,
             diameter: self.f.get_or("diameter", doc, base.diameter).max(0.001),
             angle: self.f.raw_or("angle", base.angle),
@@ -126,6 +130,8 @@ impl ToolsDialog {
             Import,
             Export,
             AddBit(Tool),
+            /// a drawn side profile for this bit (None = back to the plain shape)
+            Form(Option<Vec<gcarve_core::geom::Pt>>),
         }
         let mut act: Option<Act> = None;
         let doc = &host.canvas.doc;
@@ -140,7 +146,10 @@ impl ToolsDialog {
         let unit_name = crate::units::name(doc);
         let used = |i: usize| doc.ops.iter().filter(|o| o.tool as usize == i || (o.clear_tool >= 0 && o.clear_tool as usize == i)).count();
         let q = self.query.trim().to_lowercase();
-        let shown: Vec<usize> = (0..doc.tools.len()).filter(|&i| q.is_empty() || format!("{} {}", doc.tools[i].name, kind_label(&doc.tools[i])).to_lowercase().contains(&q)).collect();
+        let mut shown: Vec<usize> = (0..doc.tools.len()).filter(|&i| q.is_empty() || format!("{} {} {}", doc.tools[i].name, kind_label(&doc.tools[i]), doc.tools[i].group).to_lowercase().contains(&q)).collect();
+        // folders: bits without one first, then each folder A–Z under its heading (list order kept inside)
+        shown.sort_by(|&a, &b| doc.tools[a].group.to_lowercase().cmp(&doc.tools[b].group.to_lowercase()));
+        let foldered = shown.iter().any(|&i| !doc.tools[i].group.is_empty());
         crate::widgets::Dialog::new("Tool Library").width(900.0).open(&mut open).close_footer().show(ctx, |ui| {
             ui.horizontal_top(|ui| {
                 // ---- the library: search, rows with size / type / use, then the actions
@@ -151,8 +160,14 @@ impl ToolsDialog {
                     egui::ScrollArea::vertical().max_height(crate::widgets::list_height(ui, 250.0)).id_salt("tools-list").show(ui, |ui| {
                         ui.set_width(290.0);
                         ui.spacing_mut().item_spacing.y = 2.0;
+                        let mut heading: Option<String> = None;
                         for &i in &shown {
                             let t = &doc.tools[i];
+                            if foldered && heading.as_deref() != Some(t.group.to_lowercase().as_str()) {
+                                heading = Some(t.group.to_lowercase());
+                                ui.add_space(4.0);
+                                ui.label(RichText::new(if t.group.is_empty() { "No folder" } else { t.group.as_str() }).small().family(crate::widgets::bold_family()).color(crate::theme::TEXT_DIM));
+                            }
                             let (r, resp) = ui.allocate_exact_size(egui::vec2(ui.available_width(), 44.0), egui::Sense::click());
                             let on = i == self.cur;
                             if on || resp.hovered() {
@@ -223,6 +238,21 @@ impl ToolsDialog {
                         }
                         ui.vertical(|ui| {
                             ui.add(crate::widgets::field(&mut self.name).desired_width(440.0).font(crate::theme::font(15.0)));
+                            ui.horizontal(|ui| {
+                                ui.label(RichText::new("Folder").small().color(crate::theme::TEXT_DIM));
+                                ui.add(crate::widgets::field(&mut self.group).desired_width(150.0).hint_text("none (e.g. V-bits)"));
+                                // VCarve's tool name format: a pattern of the bit's own numbers, kept on this device
+                                let mut fmt = crate::store::load(NAME_FMT_KEY).unwrap_or_else(|| DEFAULT_NAME_FMT.into());
+                                if ui.add(crate::widgets::field(&mut fmt).desired_width(205.0)).on_hover_text("Name pattern: {type} {diameter} {angle} {flutes} {radius}").changed() {
+                                    crate::store::save(NAME_FMT_KEY, &fmt);
+                                }
+                                if ui.button("Name it").on_hover_text("Rename this bit from the pattern").clicked() {
+                                    if let Some(t) = doc.tools.get(self.cur) {
+                                        let shown = Tool { kind: self.kind, diameter: self.f.get_or("diameter", doc, t.diameter), angle: self.f.raw_or("angle", t.angle), radius: self.f.get_or("radius", doc, t.radius), flutes: self.flutes.trim().parse().unwrap_or(t.flutes), ..t.clone() };
+                                        self.name = bit_name(&shown, &fmt, doc);
+                                    }
+                                }
+                            });
                             let n = used(self.cur);
                             let text = if n == 0 { "Not used by any toolpath in this project".to_string() } else { format!("Used by {n} toolpath{} in this project", if n == 1 { "" } else { "s" }) };
                             ui.label(RichText::new(text).small().color(crate::theme::TEXT_DIM));
@@ -235,6 +265,20 @@ impl ToolsDialog {
                                 ui.spacing_mut().item_spacing.x = 2.0;
                                 for (k, label) in [(ToolType::EndMill, "End mill"), (ToolType::VBit, "V-bit"), (ToolType::BallNose, "Ball nose"), (ToolType::RoundOver, "Round-over")] {
                                     ui.selectable_value(&mut self.kind, k, label);
+                                }
+                            });
+                            // custom form cutter: the selected open vector, drawn as the bit's side view from the tip
+                            ui.horizontal(|ui| {
+                                let form = doc.tools.get(self.cur).map_or(0, |t| t.form.len());
+                                if form > 0 {
+                                    ui.label(RichText::new(format!("Drawn profile ({form} points)")).small());
+                                    if ui.small_button("Clear").clicked() {
+                                        act = Some(Act::Form(None));
+                                    }
+                                }
+                                let pick = host.canvas.sel.iter().filter_map(|id| doc.find(*id)).find(|s| !s.c.closed);
+                                if ui.add_enabled(pick.is_some(), egui::Button::new(if form > 0 { "Replace from selection" } else { "Profile from selected vector" }).small()).on_hover_text("Form cutter (ogee, cove, …): draw the right half of the bit's side view as an open vector, the tip lowest and the axis at its left end, select it, then press this. The simulation and Moulding then use that shape.").clicked() {
+                                    act = Some(Act::Form(pick.map(|s| gcarve_core::geom::flatten(&s.c, 0.002))));
                                 }
                             });
                             ui.add_space(4.0);
@@ -397,6 +441,17 @@ impl ToolsDialog {
                 self.load(doc, i.saturating_sub(1));
                 saved = true;
             }
+            Some(Act::Form(pts)) => {
+                doc.checkpoint();
+                let t = &mut doc.tools[self.cur];
+                t.form = pts.map(|p| Tool::form_from_profile(&p)).unwrap_or_default();
+                if let Some(w) = t.form.last().map(|p| p[0]) {
+                    t.diameter = (2.0 * w).max(0.001); // the bit is as wide as its drawn edge
+                }
+                let i = self.cur;
+                self.load(doc, i);
+                saved = true;
+            }
             Some(Act::Duplicate) => {
                 doc.checkpoint();
                 let mut t = doc.tools[self.cur].clone();
@@ -523,6 +578,22 @@ pub fn slot_text(slot: i32) -> String {
 }
 
 /// "End mill", "V-bit 90°", "Ball nose", "Round-over"
+const NAME_FMT_KEY: &str = "bit-name-format";
+const DEFAULT_NAME_FMT: &str = "{diameter} {type} {flutes}F";
+
+/// a bit's name from a pattern: {type} {diameter} (project units) {angle} {flutes} {radius}
+fn bit_name(t: &Tool, fmt: &str, doc: &Document) -> String {
+    let kind = match t.kind {
+        ToolType::EndMill => "End Mill",
+        ToolType::VBit => "V-Bit",
+        ToolType::BallNose => "Ball Nose",
+        ToolType::RoundOver => "Round-over",
+    };
+    let len = |v: f64| crate::units::fmt(doc, v);
+    let out = fmt.replace("{type}", kind).replace("{diameter}", &len(t.diameter)).replace("{angle}", &format!("{}°", super::fmt_len(t.angle))).replace("{flutes}", &t.flutes.to_string()).replace("{radius}", &len(if t.radius > 0.0 { t.radius } else { t.diameter / 2.0 }));
+    out.split_whitespace().collect::<Vec<_>>().join(" ")
+}
+
 fn kind_label(t: &Tool) -> String {
     match t.kind {
         ToolType::EndMill => "End mill".into(),
@@ -546,6 +617,13 @@ fn card(ui: &mut egui::Ui, title: &str, width: f32, add: impl FnOnce(&mut egui::
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn a_bit_is_named_from_the_pattern() {
+        let doc = Document::default();
+        let t = Tool { kind: ToolType::VBit, diameter: 0.5, angle: 60.0, flutes: 2, ..Default::default() };
+        assert_eq!(super::bit_name(&t, "{angle} {type} {diameter} {flutes}F", &doc), format!("60° V-Bit {} 2F", crate::units::fmt(&doc, 0.5)));
+    }
+
     use super::*;
 
     #[test]

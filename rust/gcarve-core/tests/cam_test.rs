@@ -822,3 +822,19 @@ fn tabs_by_spacing_give_big_parts_more_tabs() {
     // about 49 in round: 8 tabs (a tab across the start of the loop can count twice here)
     assert!((8..=9).contains(&big.iter().sum::<usize>()), "a 12 × 12 part gets about 8 tabs, {big:?}");
 }
+
+#[test]
+fn sketch_carving_hatches_dark_parts_at_one_depth() {
+    // a 4-step gray ramp, black on the left to white on the right, filling a 4 x 2 rectangle
+    let px = [0u8, 70, 150, 255, 0, 70, 150, 255];
+    let op = Op { kind: OpType::Photo, name: "Sketch".into(), depth: 0.03, sketch: true, photo: gcarve_core::photo::b64_encode(&px), photo_w: 4, photo_h: 2, ..Default::default() };
+    let vbit = &default_tools()[2];
+    let r = generate(&op, vbit, &[make_rect(0.0, 0.0, 4.0, 2.0)], &mat(), None);
+    assert!(r.warnings.is_empty(), "{:?}", r.warnings);
+    let cuts: Vec<&Move> = r.paths.iter().flat_map(|p| &p.moves).filter(|m| m.kind == MoveType::Linear).collect();
+    assert!(cuts.iter().all(|m| (m.z.unwrap() + 0.03).abs() < 1e-9), "one depth only");
+    let in_quarter = |q: f64| cuts.iter().filter(|m| m.x.unwrap() >= q && m.x.unwrap() < q + 1.0).count();
+    let (black, dark, light, white) = (in_quarter(0.0), in_quarter(1.0), in_quarter(2.0), in_quarter(3.5));
+    // the picture blends between its pixels: compare the black, mid and light bands, and the white edge stays bare
+    assert!(black > dark && dark > light && white == 0, "{black} {dark} {light} {white}");
+}

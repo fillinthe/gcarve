@@ -506,7 +506,7 @@ fn cut_path(path: &[Pt], closed: bool, op: &Op, tool: &Tool, m: &Material, warn:
         }
     }
 
-    let mut tp = Toolpath { name: op.name.clone(), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new() };
+    let mut tp = Toolpath { name: op.name.clone(), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new(), comp: 0 };
     rapid_to(&mut tp, out[0].xy, Some(m.retract_z));
     for p in &out {
         let last = tp.moves.last().unwrap();
@@ -678,7 +678,10 @@ pub fn generate_profile(op: &Op, tool: &Tool, contours: &[Contour], m: &Material
                     None => res.warnings.push(format!("{}: no room for the lead-in in a small shape, plunging on the line there", op.name)),
                 }
             }
-            let tp = cut_path(&pts, true, op, tool, m, &mut res.warnings);
+            let mut tp = cut_path(&pts, true, op, tool, m, &mut res.warnings);
+            if op.cutter_comp && waste_outside.is_some() {
+                tp.comp = if op.climb { 41 } else { 42 };
+            }
             if split == 0 {
                 res.paths.push(tp);
             } else if let Some(all) = &mut merged {
@@ -688,6 +691,9 @@ pub fn generate_profile(op: &Op, tool: &Tool, contours: &[Contour], m: &Material
             }
         }
         res.paths.extend(merged);
+    }
+    if op.cutter_comp && !crate::postdef::find_post(&m.post).is_some_and(crate::postdef::knows_comp) {
+        res.warnings.push(format!("{}: this machine's post can't write cutter compensation (G41/G42): the file has none", op.name));
     }
     // name repeats VCarve-style: "Profile", "Profile [1]", ...
     for (i, p) in res.paths.iter_mut().enumerate().skip(1) {
@@ -787,7 +793,7 @@ pub fn generate_pocket(op: &Op, tool: &Tool, contours: &[Contour], m: &Material)
     let stepdown = if op.stepdown > 0.0 { op.stepdown } else { tool.stepdown };
     let passes = passes_for(op.depth, stepdown);
     let pf = passes as f64;
-    let mut tp = Toolpath { name: op.name.clone(), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new() };
+    let mut tp = Toolpath { name: op.name.clone(), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new(), comp: 0 };
 
     let mut cur = rings[0][0];
     rapid_to(&mut tp, cur, Some(m.retract_z));
@@ -929,7 +935,7 @@ fn pocket_raster(op: &Op, tool: &Tool, boundary: &PathsD, step: f64, m: &Materia
     let inside_boundary = |q: Pt| boundary.iter().filter(|p| inside(q, p)).count() % 2 == 1;
     let stepdown = if op.stepdown > 0.0 { op.stepdown } else { tool.stepdown };
     let passes = passes_for(op.depth, stepdown);
-    let mut tp = Toolpath { name: op.name.clone(), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new() };
+    let mut tp = Toolpath { name: op.name.clone(), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new(), comp: 0 };
     for k in 0..passes {
         let (z_prev, z) = (-op.depth * k as f64 / passes as f64, -op.depth * (k + 1) as f64 / passes as f64);
         let mut cur: Option<Pt> = None;
@@ -1009,6 +1015,296 @@ fn peck_drill(tp: &mut Toolpath, ctr: Pt, op: &Op, m: &Material) {
 }
 
 /// Drills at the centre of each shape's bounding box (circles -> their centre). Full retract between pecks.
+/// darkness 0..1 through the op's brightness, contrast and gamma (defaults leave it as is)
+fn photo_tone(op: &Op, t: f64) -> f64 {
+    let c = if op.photo_contrast > 0.0 { op.photo_contrast } else { 1.0 };
+    let g = if op.photo_gamma > 0.0 { op.photo_gamma } else { 1.0 };
+    ((t - 0.5) * c + 0.5 - op.photo_brightness).clamp(0.0, 1.0).powf(g)
+}
+
+/// Moulding (VCarve "Moulding Toolpath"): the open `section` vector, laid across each rail (its width centred on the
+/// rail, its top = the board surface, lower = deeper), is carved along every rail. Passes `stepover` × bit apart
+/// across the width; each pass's height is where the bit (end mill, ball nose or V-bit) first touches the profile
+/// within its own width (drop cutter, so it never cuts into the shape); depth passes `stepdown` apart when deeper.
+/// With a clearing bit (a larger end mill, `op.clear_tool`) that roughs first, staying `op.allowance` (default 0.02 in)
+/// above the profile in its own toolpath, and the op's bit then finishes in one pass at full depth.
+pub fn generate_moulding(op: &Op, tool: &Tool, rails: &[Contour], section: &Contour, m: &Material, clear_tool: Option<&Tool>) -> CamResult {
+    let mut res = CamResult::default();
+    let sp = flatten(section, TOL);
+    let b = bounds(section);
+    if sp.len() < 2 || b.w() < 1e-6 {
+        res.warnings.push(format!("{}: the cross-section must be an open vector with some width: draw its profile from left to right", op.name));
+        return res;
+    }
+    let rough = clear_tool.filter(|c| c.kind == crate::document::ToolType::EndMill && c.diameter > tool.diameter + 1e-6);
+    if let Some(big) = rough {
+        let leave = if op.allowance > 0.0 { op.allowance } else { 0.02 };
+        let rop = Op { stepover: 0.4, ..op.clone() };
+        for mut tp in moulding_sweep(&rop, big, rails, &sp, b, m, leave, false) {
+            tp.name = format!("{} [clear]", tp.name);
+            tp.tool = op.clear_tool;
+            res.paths.push(tp);
+        }
+    }
+    res.paths.extend(moulding_sweep(op, tool, rails, &sp, b, m, 0.0, rough.is_some()));
+    for (i, p) in res.paths.iter_mut().enumerate().skip(1) {
+        if !p.name.ends_with("[clear]") {
+            p.name = indexed_name(&op.name, i);
+        }
+    }
+    res
+}
+
+/// The moulding passes for one bit: tips `leave` above the profile; `one_pass` = straight to full depth (finishing
+/// after a clearing bit)
+#[allow(clippy::too_many_arguments)]
+fn moulding_sweep(op: &Op, tool: &Tool, rails: &[Contour], sp: &[Pt], b: Rect, m: &Material, leave: f64, one_pass: bool) -> Vec<Toolpath> {
+    use crate::document::ToolType;
+    let mut out = Vec::new();
+    // depth below the top at a distance u across (0 = the rail): the deepest point of the profile there
+    let width = b.w();
+    let depth_at = |u: f64| -> f64 {
+        let x = u + b.x0 + width / 2.0;
+        let mut d: Option<f64> = None;
+        for w in sp.windows(2) {
+            let (a, c) = (w[0], w[1]);
+            if (a.x - x) * (c.x - x) <= 0.0 && (a.x - c.x).abs() > 1e-12 {
+                let y = a.y + (c.y - a.y) * (x - a.x) / (c.x - a.x);
+                d = Some(d.map_or(b.y1 - y, |v: f64| v.max(b.y1 - y)));
+            }
+        }
+        d.unwrap_or(0.0).min(m.t)
+    };
+    let r = tool.diameter / 2.0;
+    let tan_half = (tool.angle / 2.0).to_radians().tan().max(1e-6);
+    // the tip's lowest height at offset s without the bit's side cutting below the profile anywhere under it
+    let tip_at = |s: f64| -> f64 {
+        let n = 24;
+        let mut z = f64::MIN;
+        for k in 0..=n {
+            let du = -r + 2.0 * r * k as f64 / n as f64;
+            let rise = match tool.kind {
+                _ if !tool.form.is_empty() => match tool.form_rise(du.abs()) {
+                    Some(h) => h,
+                    None => continue, // outside the drawn form
+                },
+                ToolType::BallNose => r - (r * r - du * du).max(0.0).sqrt(),
+                ToolType::VBit => du.abs() / tan_half,
+                _ => 0.0,
+            };
+            z = z.max(-depth_at(s + du) - rise);
+        }
+        (z + leave).min(0.0)
+    };
+    let step = (tool.diameter * if op.stepover > 0.0 { op.stepover } else { 0.15 }).max(0.002);
+    let n = ((width / step).ceil() as usize).max(1);
+    let offsets: Vec<f64> = (0..=n).map(|k| -width / 2.0 + width * k as f64 / n as f64).collect();
+    let stepdown = if op.stepdown > 0.0 { op.stepdown } else { tool.stepdown }.max(0.005);
+    let deepest = offsets.iter().map(|s| -tip_at(*s)).fold(0.0, f64::max);
+    let levels = if one_pass { 1 } else { passes_for(deepest, stepdown) };
+    for rail in rails {
+        let p = flatten(rail, TOL);
+        if p.len() < 2 {
+            continue;
+        }
+        let mut tp = Toolpath { name: op.name.clone(), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new(), comp: 0 };
+        for level in 1..=levels {
+            let floor = -deepest * level as f64 / levels as f64;
+            for (i, s) in offsets.iter().enumerate() {
+                let z = tip_at(*s).max(floor);
+                if z > -1e-4 {
+                    continue; // nothing to cut on this line at this level
+                }
+                let mut line = offset_line(&p, *s, rail.closed);
+                if !rail.closed && i % 2 == 1 {
+                    line.reverse(); // zig-zag across the width
+                }
+                rapid_to(&mut tp, line[0], Some(m.retract_z));
+                cut_to(&mut tp, line[0], Some(z));
+                for q in line.iter().skip(1) {
+                    cut_to(&mut tp, *q, None);
+                }
+                rapid_to(&mut tp, *line.last().unwrap(), Some(m.retract_z));
+            }
+        }
+        if !tp.moves.is_empty() {
+            out.push(tp);
+        }
+    }
+    out
+}
+
+/// `p` moved sideways by `d` (left of its direction is +), corners mitred; closed lines wrap round
+fn offset_line(p: &[Pt], d: f64, closed: bool) -> Vec<Pt> {
+    let n = p.len();
+    let norm = |a: Pt, b: Pt| { let l = dist(a, b).max(1e-12); pt(-(b.y - a.y) / l, (b.x - a.x) / l) };
+    let mut out: Vec<Pt> = (0..n)
+        .map(|i| {
+            let prev = if i > 0 { Some(norm(p[i - 1], p[i])) } else if closed { Some(norm(p[n - 1], p[0])) } else { None };
+            let next = if i + 1 < n { Some(norm(p[i], p[i + 1])) } else if closed { Some(norm(p[n - 1], p[0])) } else { None };
+            let nn = match (prev, next) {
+                (Some(a), Some(b)) => {
+                    let m = pt(a.x + b.x, a.y + b.y);
+                    let k = 1.0 + a.x * b.x + a.y * b.y; // miter: (a+b) / (1 + a·b)
+                    if k > 0.2 { m * (1.0 / k) } else { a }
+                }
+                (Some(a), None) | (None, Some(a)) => a,
+                _ => pt(0.0, 0.0),
+            };
+            p[i] + nn * d
+        })
+        .collect();
+    if closed && n > 1 && dist(out[0], out[n - 1]) > 1e-9 {
+        out.push(out[0]);
+    }
+    out
+}
+
+/// Drag knife (VCarve's gadget): the blade tip trails the holder's pivot by `op.drag_knife`, so the pivot runs that
+/// far past each point of the line, and at a corner sharper than 10° it swings round the corner point at that radius
+/// before going on (the blade turns in place). One pass at full depth; the spindle stays off (RPM 0 on the bit).
+pub fn generate_drag_knife(op: &Op, tool: &Tool, contours: &[Contour], m: &Material) -> CamResult {
+    let mut res = CamResult::default();
+    if !depth_checks(op, m, &mut res) {
+        return res;
+    }
+    let o = op.drag_knife;
+    let tol = 10f64.to_radians();
+    for c in contours {
+        let mut pts = flatten(c, TOL);
+        pts.dedup_by(|a, b| dist(*a, *b) < 1e-6);
+        if c.closed && pts.len() > 2 && dist(pts[0], pts[pts.len() - 1]) < 1e-6 {
+            pts.pop();
+        }
+        if pts.len() < 2 {
+            continue;
+        }
+        if c.closed {
+            pts.push(pts[0]);
+            pts.push(pts[1]); // once more along the first segment, so its corner gets its swivel too
+        }
+        let dir = |a: Pt, b: Pt| { let l = dist(a, b).max(1e-12); pt((b.x - a.x) / l, (b.y - a.y) / l) };
+        let mut tp = Toolpath { name: indexed_name(&op.name, res.paths.len()), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new(), comp: 0 };
+        let d0 = dir(pts[0], pts[1]);
+        let start = pts[0] + d0 * o;
+        rapid_to(&mut tp, start, Some(m.retract_z));
+        cut_to(&mut tp, start, Some(-op.depth));
+        for i in 1..pts.len() {
+            let din = dir(pts[i - 1], pts[i]);
+            cut_to(&mut tp, pts[i] + din * o, None);
+            if let Some(&next) = pts.get(i + 1) {
+                let dout = dir(pts[i], next);
+                let (a0, mut turn) = (din.y.atan2(din.x), dout.y.atan2(dout.x) - din.y.atan2(din.x));
+                turn = (turn + PI).rem_euclid(2.0 * PI) - PI; // the short way round
+                if turn.abs() > tol {
+                    let n = ((turn.abs() / 10f64.to_radians()).ceil() as usize).max(2);
+                    for k in 1..=n {
+                        let a = a0 + turn * k as f64 / n as f64;
+                        cut_to(&mut tp, pts[i] + pt(a.cos(), a.sin()) * o, None);
+                    }
+                }
+            }
+        }
+        let last = last_xy(&tp, start);
+        rapid_to(&mut tp, last, Some(m.retract_z));
+        res.paths.push(tp);
+    }
+    if tool.rpm > 0 {
+        res.warnings.push(format!("{}: a drag knife must not spin: set the bit's spindle speed (RPM) to 0, so the G-code never turns the spindle on", op.name));
+    }
+    res
+}
+
+/// Keyhole slots (Profile with `keyhole`): the cutter's wide head can only go down where the screw goes in, so each
+/// vector is cut in one pass at full depth from its first point to its end and back again, lifting at the start.
+/// A closed vector runs once round. Draw the slot as a line from the screw entry towards where the screw should hang.
+pub fn generate_keyhole(op: &Op, tool: &Tool, contours: &[Contour], m: &Material) -> CamResult {
+    let mut res = CamResult::default();
+    if !depth_checks(op, m, &mut res) {
+        return res;
+    }
+    for c in contours {
+        let pts = flatten(c, TOL);
+        if pts.len() < 2 {
+            continue;
+        }
+        let mut tp = Toolpath { name: indexed_name(&op.name, res.paths.len()), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new(), comp: 0 };
+        rapid_to(&mut tp, pts[0], Some(m.retract_z));
+        cut_to(&mut tp, pts[0], Some(-op.depth));
+        for p in pts.iter().skip(1) {
+            cut_to(&mut tp, *p, None);
+        }
+        if !c.closed {
+            for p in pts.iter().rev().skip(1) {
+                cut_to(&mut tp, *p, None);
+            }
+        }
+        rapid_to(&mut tp, pts[0], Some(m.retract_z));
+        res.paths.push(tp);
+    }
+    res
+}
+
+/// VCarve "Rounding" (Pocket with `rounding` on a rotary job): a square blank of side `op.rounding` turned on the A
+/// axis is cut round to the job's diameter. Z0 is the finished surface, so the square's corners stand
+/// (side·√2 − diameter) / 2 above it. Each pass spirals the X length of the selected shapes, one bit stepover per
+/// turn, then the next pass comes back a stepdown lower; the last is at Z0. On the unrolled board a turn runs from
+/// Y 0 to Y = circumference and then a "seam" move back to Y 0 at the same X / Z, which `wrap_jobs` turns into
+/// carrying on round (A keeps counting up) instead of turning back.
+/// ponytail: no roughing / finishing split or climb choice; add when a user asks.
+pub fn generate_rounding(op: &Op, tool: &Tool, contours: &[Contour], m: &Material) -> CamResult {
+    let mut res = CamResult::default();
+    let Some(dia) = m.rotary else {
+        res.warnings.push(format!("{}: rounding needs a rotary job (Job Setup › Rotary)", op.name));
+        return res;
+    };
+    let top = (op.rounding * std::f64::consts::SQRT_2 - dia) / 2.0;
+    if top <= 1e-6 {
+        res.warnings.push(format!("{}: a {} in square already fits inside the {} in diameter: nothing to round", op.name, op.rounding, dia));
+        return res;
+    }
+    let mut span = Rect::default();
+    for c in contours {
+        span.add_rect(&bounds(c));
+    }
+    if span.is_empty() || span.w() <= 0.0 {
+        res.warnings.push(format!("{}: select a shape across the length to round", op.name));
+        return res;
+    }
+    if m.retract_z < top + 0.05 {
+        res.warnings.push(format!("{}: the travel heights must clear the blank's corners, {:.3} in above the zero", op.name, top));
+    }
+    let circ = std::f64::consts::PI * dia;
+    let step = (tool.diameter * if op.stepover > 0.0 { op.stepover.min(1.0) } else { 0.5 }).max(0.005);
+    let down = if op.stepdown > 0.0 { op.stepdown } else if tool.stepdown > 0.0 { tool.stepdown } else { tool.diameter / 2.0 }.max(0.01);
+    let mut levels: Vec<f64> = Vec::new();
+    let mut z = top;
+    while z > 1e-9 {
+        z = (z - down).max(0.0);
+        levels.push(z);
+    }
+    let turns = (span.w() / step).ceil().max(1.0) as usize;
+    let dx = span.w() / turns as f64;
+    let mut tp = Toolpath { name: op.name.clone(), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new(), comp: 0 };
+    rapid_to(&mut tp, pt(span.x0, 0.0), Some(m.retract_z));
+    let mut x = span.x0;
+    for (k, z) in levels.iter().enumerate() {
+        let dir = if k % 2 == 0 { 1.0 } else { -1.0 };
+        cut_to(&mut tp, pt(x, 0.0), Some(*z));
+        for _ in 0..turns {
+            x += dir * dx;
+            cut_to(&mut tp, pt(x, circ), None);
+            tp.moves.push(Move::linear(None, Some(0.0), None)); // the seam: the same place on the blank
+        }
+        // one more turn at the end so the far edge is cut all the way round
+        cut_to(&mut tp, pt(x, circ), None);
+        tp.moves.push(Move::linear(None, Some(0.0), None));
+    }
+    rapid_to(&mut tp, pt(x, 0.0), Some(m.retract_z));
+    res.paths.push(tp);
+    res
+}
+
 pub fn generate_drill(op: &Op, tool: &Tool, contours: &[Contour], m: &Material) -> CamResult {
     let mut res = CamResult::default();
     if !depth_checks(op, m, &mut res) {
@@ -1023,7 +1319,7 @@ pub fn generate_drill(op: &Op, tool: &Tool, contours: &[Contour], m: &Material) 
             res.warnings.push(format!("{}: a hole is bigger than the drill, only its centre is drilled", op.name));
         }
         let ctr = pt((b.x0 + b.x1) / 2.0, (b.y0 + b.y1) / 2.0);
-        let mut tp = Toolpath { name: indexed_name(&op.name, res.paths.len()), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new() };
+        let mut tp = Toolpath { name: indexed_name(&op.name, res.paths.len()), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new(), comp: 0 };
         peck_drill(&mut tp, ctr, op, m);
         res.paths.push(tp);
     }
@@ -1398,7 +1694,7 @@ pub fn generate_vcarve(op: &Op, tool: &Tool, contours: &[Contour], m: &Material,
         }
     }
 
-    let mut tp = Toolpath { name: op.name.clone(), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new() };
+    let mut tp = Toolpath { name: op.name.clone(), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new(), comp: 0 };
     let mut first = true;
     let mut cur = Pt::default();
     {
@@ -1627,7 +1923,7 @@ pub fn generate_flute(op: &Op, tool: &Tool, contours: &[Contour], m: &Material) 
             a *= k;
             b *= k;
         }
-        let mut tp = Toolpath { name: indexed_name(&op.name, res.paths.len()), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new() };
+        let mut tp = Toolpath { name: indexed_name(&op.name, res.paths.len()), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new(), comp: 0 };
         rapid_to(&mut tp, pts[0], Some(m.retract_z));
         for p in 0..passes {
             let d = op.depth * (p as f64 + 1.0) / passes as f64;
@@ -1716,7 +2012,7 @@ pub fn generate_chamfer(op: &Op, tool: &Tool, contours: &[Contour], m: &Material
         if closed {
             pts.push(pts[0]);
         }
-        let mut tp = Toolpath { name: op.name.clone(), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new() };
+        let mut tp = Toolpath { name: op.name.clone(), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new(), comp: 0 };
         rapid_to(&mut tp, pts[0], Some(m.retract_z));
         for k in 0..passes {
             let z = -(start + d * (k as f64 + 1.0) / passes as f64);
@@ -1860,7 +2156,7 @@ pub fn generate_prism(op: &Op, tool: &Tool, contours: &[Contour], m: &Material) 
         lp.rotate_left(s0);
         zs.rotate_left(s0);
         let passes = passes_for(ring_deep, stepdown);
-        let mut tp = Toolpath { name: op.name.clone(), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new() };
+        let mut tp = Toolpath { name: op.name.clone(), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new(), comp: 0 };
         rapid_to(&mut tp, lp[0], Some(m.retract_z));
         for k in 0..passes {
             let floor_z = if k + 1 == passes { -1e300 } else { -stepdown * (k as f64 + 1.0) };
@@ -1974,7 +2270,7 @@ pub fn generate_bore(op: &Op, tool: &Tool, contours: &[Contour], m: &Material) -
         let ctr = pt((b.x0 + b.x1) / 2.0, (b.y0 + b.y1) / 2.0);
         let hole = b.w().min(b.h());
         let r = hole / 2.0 - tool.diameter / 2.0 - op.allowance;
-        let mut tp = Toolpath { name: indexed_name(&op.name, res.paths.len()), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new() };
+        let mut tp = Toolpath { name: indexed_name(&op.name, res.paths.len()), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new(), comp: 0 };
         if r <= 1e-6 {
             // hole no bigger than the bit: straight (peck) drill instead
             res.warnings.push(format!("{}: hole is not larger than the bit, drilled straight", op.name));
@@ -2047,7 +2343,7 @@ pub fn generate_texture(op: &Op, tool: &Tool, contours: &[Contour], m: &Material
         seed ^= seed << 17;
         (seed >> 11) as f64 / (1u64 << 53) as f64
     };
-    let mut tp = Toolpath { name: op.name.clone(), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new() };
+    let mut tp = Toolpath { name: op.name.clone(), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new(), comp: 0 };
     let mut row = 0;
     let mut v = v0 + spacing / 2.0;
     while v < v1 {
@@ -2137,53 +2433,65 @@ pub fn generate_photo(op: &Op, tool: &Tool, contours: &[Contour], m: &Material) 
     let tan_half = (tool.angle / 2.0).to_radians().tan();
     let spacing = (2.0 * depth * tan_half).max(0.01);
     let step = (spacing / 2.0).min(0.02);
-    let (sa, ca) = (op.raster_angle as f64).to_radians().sin_cos();
-    let to_xy = |u: f64, v: f64| pt(u * ca - v * sa, u * sa + v * ca);
-    let (mut u0, mut u1, mut v0, mut v1) = (f64::MAX, f64::MIN, f64::MAX, f64::MIN);
-    for p in region.iter().flatten() {
-        let (u, v) = (p.x * ca + p.y * sa, -p.x * sa + p.y * ca);
-        (u0, u1, v0, v1) = (u0.min(u), u1.max(u), v0.min(v), v1.max(v));
-    }
-    let mut tp = Toolpath { name: op.name.clone(), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new() };
-    let mut row = 0;
-    let mut v = v0 + spacing / 2.0;
-    while v < v1 {
-        let mut runs: Vec<Vec<(Pt, f64)>> = Vec::new();
-        let mut run: Vec<(Pt, f64)> = Vec::new();
-        let n = ((u1 - u0) / step).ceil() as usize;
-        for k in 0..=n {
-            let q = to_xy(u0 + k as f64 * step, v);
-            let (fu, fv) = ((q.x - ix) / iw, (q.y - iy) / ih);
-            let mut d = 0.0;
-            if (0.0..=1.0).contains(&fu) && (0.0..=1.0).contains(&fv) && inside_region(&region, &boxes, q) {
-                let dark = ((img.dark(fu, fv) - lo) / (hi - lo)).clamp(0.0, 1.0);
-                d = depth * if op.photo_invert { 1.0 - dark } else { dark };
+    // photo: one set of rows, depth from the tone. Sketch (VCarve "Sketch Carving"): cross-hatching at one shallow
+    // depth, lines three widths apart; each darker tone adds a layer at another angle (light = bare wood)
+    let base = op.raster_angle as f64;
+    let layers: Vec<(f64, Option<f64>)> = if op.sketch { vec![(base + 45.0, Some(0.2)), (base - 45.0, Some(0.42)), (base, Some(0.64)), (base + 90.0, Some(0.84))] } else { vec![(base, None)] };
+    let spacing = if op.sketch { spacing * 3.0 } else { spacing };
+    let mut tp = Toolpath { name: op.name.clone(), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new(), comp: 0 };
+    for (angle, level) in layers {
+        let (sa, ca) = angle.to_radians().sin_cos();
+        let to_xy = |u: f64, v: f64| pt(u * ca - v * sa, u * sa + v * ca);
+        let (mut u0, mut u1, mut v0, mut v1) = (f64::MAX, f64::MIN, f64::MAX, f64::MIN);
+        for p in region.iter().flatten() {
+            let (u, v) = (p.x * ca + p.y * sa, -p.x * sa + p.y * ca);
+            (u0, u1, v0, v1) = (u0.min(u), u1.max(u), v0.min(v), v1.max(v));
+        }
+        let mut row = 0;
+        let mut v = v0 + spacing / 2.0;
+        while v < v1 {
+            let mut runs: Vec<Vec<(Pt, f64)>> = Vec::new();
+            let mut run: Vec<(Pt, f64)> = Vec::new();
+            let n = ((u1 - u0) / step).ceil() as usize;
+            for k in 0..=n {
+                let q = to_xy(u0 + k as f64 * step, v);
+                let (fu, fv) = ((q.x - ix) / iw, (q.y - iy) / ih);
+                let mut d = 0.0;
+                if (0.0..=1.0).contains(&fu) && (0.0..=1.0).contains(&fv) && inside_region(&region, &boxes, q) {
+                    let dark = ((img.dark(fu, fv) - lo) / (hi - lo)).clamp(0.0, 1.0);
+                    let tone = photo_tone(op, if op.photo_invert { 1.0 - dark } else { dark });
+                    d = match level {
+                        None => depth * tone,
+                        Some(l) if tone > l => depth,
+                        _ => 0.0,
+                    };
+                }
+                if d >= MIN_DEPTH {
+                    run.push((q, -d));
+                } else if !run.is_empty() {
+                    runs.push(std::mem::take(&mut run));
+                }
             }
-            if d >= MIN_DEPTH {
-                run.push((q, -d));
-            } else if !run.is_empty() {
-                runs.push(std::mem::take(&mut run));
+            if !run.is_empty() {
+                runs.push(run);
             }
-        }
-        if !run.is_empty() {
-            runs.push(run);
-        }
-        if row % 2 == 1 {
-            runs.reverse();
-            runs.iter_mut().for_each(|r| r.reverse());
-        }
-        for (i, r) in runs.iter().enumerate() {
-            rapid_to(&mut tp, r[0].0, Some(if i == 0 { m.retract_z } else { HOP }));
-            for &(q, z) in r {
-                cut_to(&mut tp, q, Some(z));
+            if row % 2 == 1 {
+                runs.reverse();
+                runs.iter_mut().for_each(|r| r.reverse());
             }
-            rapid_to(&mut tp, r[r.len() - 1].0, Some(HOP));
+            for (i, r) in runs.iter().enumerate() {
+                rapid_to(&mut tp, r[0].0, Some(if i == 0 { m.retract_z } else { HOP }));
+                for &(q, z) in r {
+                    cut_to(&mut tp, q, Some(z));
+                }
+                rapid_to(&mut tp, r[r.len() - 1].0, Some(HOP));
+            }
+            if let Some(r) = runs.last() {
+                rapid_to(&mut tp, r[r.len() - 1].0, Some(m.retract_z));
+            }
+            v += spacing;
+            row += 1;
         }
-        if let Some(r) = runs.last() {
-            rapid_to(&mut tp, r[r.len() - 1].0, Some(m.retract_z));
-        }
-        v += spacing;
-        row += 1;
     }
     if tp.moves.is_empty() {
         res.warnings.push(format!("{}: the picture is too light to carve at this depth", op.name));
@@ -2196,23 +2504,34 @@ pub fn generate_photo(op: &Op, tool: &Tool, contours: &[Contour], m: &Material) 
 /// Dispatch on op.kind (not Relief: see relief.rs), then shortest travel order, the safe-rapid net and naming.
 pub fn generate(op: &Op, tool: &Tool, contours: &[Contour], m: &Material, clear_tool: Option<&Tool>) -> CamResult {
     let mut r = match op.kind {
+        OpType::Pocket if op.rounding > 0.0 => generate_rounding(op, tool, contours, m),
         OpType::Pocket => generate_pocket_two(op, tool, contours, m, clear_tool),
         OpType::Drill => generate_drill(op, tool, contours, m),
         OpType::VCarve => generate_vcarve(op, tool, contours, m, clear_tool),
         OpType::Bore => generate_bore(op, tool, contours, m),
         OpType::Inlay => generate_inlay(op, tool, contours, m, clear_tool),
+        OpType::Flute if op.section > 0 => match contours.split_last() {
+            Some((section, rails)) => generate_moulding(op, tool, rails, section, m, clear_tool),
+            None => CamResult::default(),
+        },
         OpType::Flute => generate_flute(op, tool, contours, m),
         OpType::Chamfer => generate_chamfer(op, tool, contours, m),
         OpType::Prism => generate_prism(op, tool, contours, m),
         OpType::Texture => generate_texture(op, tool, contours, m),
         OpType::Photo => generate_photo(op, tool, contours, m),
+        OpType::Profile if op.keyhole => generate_keyhole(op, tool, contours, m),
+        OpType::Profile if op.drag_knife > 0.0 => generate_drag_knife(op, tool, contours, m),
         _ => generate_profile(op, tool, contours, m),
     };
     for tp in &mut r.paths {
-        optimize_order(tp, Pt::default()); // shortest rapid travel between shapes; depth passes keep their order
+        if !op.keep_order {
+            optimize_order(tp, Pt::default()); // shortest rapid travel between shapes; depth passes keep their order
+        }
         enforce_safe_rapids(tp, m.retract_z);
     }
-    order_toolpaths(&mut r.paths, Pt::default()); // one path per shape (profiles): visit them in a short tour too
+    if !op.keep_order {
+        order_toolpaths(&mut r.paths, Pt::default()); // one path per shape (profiles): visit them in a short tour too
+    }
     // ponytail: like the C++ engine, "[clearance]" / "[female]" suffixes count as indexed names and get renumbered
     let prefix = format!("{} [", op.name);
     let mut n = 0;
@@ -2386,7 +2705,7 @@ pub fn safety_issues(ops: &[Op], tools: &[Tool], generated: &[Vec<Toolpath>], m:
             if tp.feed_xy <= 0.0 || tp.feed_z <= 0.0 {
                 add(format!("{who}: feed rate is zero."));
             }
-            if t.rpm <= 0 {
+            if t.rpm <= 0 && op.drag_knife <= 0.0 {
                 add(format!("{who}: spindle speed is zero."));
             }
             let margin = t.diameter / 2.0 + 0.01;
@@ -2427,8 +2746,90 @@ pub fn air_cut_raise(m: &Material) -> f64 {
     1.0_f64.max(m.t + 0.0625 + 0.25)
 }
 
+/// Ghost run (owner 2026-10-22): the air cut with the spindle kept off, so the machine traces every move of the
+/// job in the air and anyone can watch what the real file will do. `_GHOST` names; the posts write no spindle-on
+/// for a job at 0 RPM.
+pub fn make_ghost(jobs: &mut [Job], dz: f64) {
+    make_air_cut(jobs, dz);
+    for j in jobs {
+        j.rpm = 0;
+        j.filename = j.filename.replace("_AIRCUT", "_GHOST");
+        j.notes.retain(|n| !n.starts_with("AIR CUT TEST"));
+        j.notes.insert(0, "GHOST RUN - NOT FOR CUTTING: the spindle stays off, every move runs above the board".into());
+    }
+}
+
 /// Air-cut test: every Z raised by dz so the whole program runs above the board with the normal Z zero.
 /// Files get an _AIRCUT suffix and a header warning.
+/// Merged toolpaths: each job's (one bit's) toolpaths, whatever operation made them, go in one shortest tour; the
+/// ones that cut down to the board's bottom (cut-outs: parts come loose) follow all the others, in their own tour.
+/// Each toolpath keeps its feeds. `t` = board thickness; Z zero on the table puts the bottom at 0, else at -t.
+/// ponytail: one thickness for all jobs (the active sheet's): sheets of other thicknesses only decide "cut-out" by it
+pub fn merge_jobs(jobs: &mut [Job], t: f64) {
+    for j in jobs {
+        let bottom = if j.z_zero == "Table" { 0.0 } else { -t };
+        let through = |tp: &Toolpath| tp.moves.iter().filter_map(|m| m.z).fold(f64::MAX, f64::min) <= bottom + 0.002;
+        let (cutouts, inner): (Vec<Toolpath>, Vec<Toolpath>) = std::mem::take(&mut j.toolpaths).into_iter().partition(|tp| through(tp));
+        let mut at = Pt::default();
+        for group in [inner, cutouts] {
+            let ends = |tp: &Toolpath, first: bool| {
+                let ms: Vec<_> = tp.moves.iter().filter(|m| m.x.is_some() && m.y.is_some()).collect();
+                ms.get(if first { 0 } else { ms.len().saturating_sub(1) }).map_or(at, |m| pt(m.x.unwrap(), m.y.unwrap()))
+            };
+            let (starts, stops): (Vec<Pt>, Vec<Pt>) = group.iter().map(|tp| (ends(tp, true), ends(tp, false))).unzip();
+            let order = crate::order::order_blocks(&starts, &stops, at);
+            let mut group: Vec<Option<Toolpath>> = group.into_iter().map(Some).collect();
+            for k in order {
+                at = stops[k];
+                j.toolpaths.push(group[k].take().unwrap());
+            }
+        }
+    }
+}
+
+/// Rotary jobs: the moves are on the unrolled surface (Y = distance round the blank, `diameter` across); here every
+/// arc becomes short lines and Y turns into the A axis in degrees (one turn = π·diameter), so the posts write A.
+pub fn wrap_jobs(jobs: &mut [Job], diameter: f64) {
+    let circ = std::f64::consts::PI * diameter.max(1e-6);
+    for j in jobs {
+        j.a_axis = true;
+        j.notes.push(format!("ROTARY: A axis along X, blank {diameter:.3} in across; A = degrees round it, Y is not used"));
+        for tp in &mut j.toolpaths {
+            let (mut x, mut y) = (0.0, 0.0);
+            let mut turned = 0.0; // whole turns carried over seam moves (rounding), in inches round
+            let mut out = Vec::with_capacity(tp.moves.len());
+            for m in &tp.moves {
+                let parts = if matches!(m.kind, crate::job::MoveType::ArcCw | crate::job::MoveType::ArcCcw) { crate::postdef::linearize(m, pt(x, y), 90.0, false) } else { vec![*m] };
+                for p in parts {
+                    // a seam move: only Y, straight back once round = the same place on the blank, so A carries on
+                    // counting instead of turning back a whole turn
+                    if p.kind == crate::job::MoveType::Linear && p.x.is_none() && p.z.is_none() && p.y.is_some_and(|v| (y - v - circ).abs() < 1e-6) {
+                        turned += circ;
+                        y = p.y.unwrap();
+                        continue;
+                    }
+                    x = p.x.unwrap_or(x);
+                    y = p.y.unwrap_or(y);
+                    out.push(Move { y: p.y.map(|v| (v + turned) / circ * 360.0), ..p });
+                }
+            }
+            tp.moves = out;
+        }
+    }
+}
+
+/// Home position: each job ends with the bit at its highest Z of the job (the travel height) over `home`, which is
+/// measured from the XY zero like every move of the job.
+pub fn go_home(jobs: &mut [Job], home: [f64; 2]) {
+    for j in jobs {
+        let top = j.toolpaths.iter().flat_map(|tp| tp.moves.iter().filter_map(|m| m.z)).fold(f64::MIN, f64::max);
+        if let Some(tp) = j.toolpaths.last_mut().filter(|_| top > f64::MIN) {
+            tp.moves.push(crate::job::Move::rapid(None, None, Some(top)));
+            tp.moves.push(crate::job::Move::rapid(Some(home[0]), Some(home[1]), None));
+        }
+    }
+}
+
 pub fn make_air_cut(jobs: &mut [Job], dz: f64) {
     for j in jobs {
         for tp in &mut j.toolpaths {
@@ -2782,10 +3183,214 @@ mod last_pass_tests {
         let (x1, y1) = start(true);
         assert!((x1 - 4.0).abs() < 1e-6 && (y1 - 4.0).abs() < 1e-6, "{x1} {y1}");
     }
+
+    #[test]
+    fn cutter_compensation_wraps_each_pass_and_only_where_the_post_knows_it() {
+        use crate::postdef::{find_post, post_jobs};
+        let sq = crate::geom::make_rect(1.0, 1.0, 5.0, 5.0);
+        let tool = Tool { diameter: 0.25, ..Default::default() };
+        let op = Op { kind: OpType::Profile, name: "P".into(), depth: 0.5, stepdown: 0.25, side: Side::Outside, cutter_comp: true, climb: true, ..Default::default() };
+        let gcode = |post: &str| {
+            let m = Material { w: 10.0, h: 10.0, t: 0.75, post: post.into(), ..Default::default() };
+            let r = generate_profile(&op, &tool, std::slice::from_ref(&sq), &m);
+            let job = Job { filename: "t".into(), slot: 3, toolpaths: r.paths, ..Default::default() };
+            (post_jobs(&[job], find_post(post).unwrap()).remove(0).text, r.warnings)
+        };
+        let (mach, w) = gcode("mach3-in");
+        assert!(w.is_empty(), "{w:?}");
+        let lines: Vec<&str> = mach.lines().collect();
+        let on: Vec<usize> = (0..lines.len()).filter(|&i| lines[i] == "G41 D3").collect();
+        let off: Vec<usize> = (0..lines.len()).filter(|&i| lines[i] == "G40").collect();
+        assert!(!on.is_empty(), "{mach}");
+        // every G41 follows the plunge (the line before moves only Z) and is cancelled before the next rapid
+        for &i in &on {
+            assert!(!lines[i - 1].contains('X') && lines[i - 1].contains('Z'), "{}", lines[i - 1]);
+            let next_off = off.iter().find(|&&k| k > i).expect("cancelled");
+            assert!(!lines[i + 1..*next_off].iter().any(|l| l.starts_with("G0 ")), "rapid with comp on");
+        }
+        // conventional = G42; a post without G40 in its header (GRBL) writes none and says so
+        let (grbl, w) = gcode("grbl-in");
+        assert!(!grbl.contains("G41") && !grbl.contains("G40") && w.iter().any(|w| w.contains("cutter compensation")));
+    }
 }
 
 #[cfg(test)]
 mod tab_tests {
+    #[test]
+    fn a_rotary_job_turns_y_into_a_axis_degrees() {
+        use crate::job::{Job, Move, Toolpath};
+        // a 2 in blank: once round is 2π in, so a quarter of that is A90; an arc becomes lines
+        let quarter = std::f64::consts::PI / 2.0;
+        let tp = Toolpath { name: "W".into(), feed_xy: 100.0, feed_z: 30.0, moves: vec![Move::rapid(Some(1.0), Some(0.0), Some(0.2)), Move::linear(None, None, Some(-0.1)), Move::linear(Some(1.0), Some(quarter), None), Move { kind: crate::job::MoveType::ArcCcw, x: Some(1.0), y: Some(quarter + 1.0), i: 0.0, j: 0.5, ..Default::default() }, Move::rapid(None, None, Some(0.2))], ..Default::default() };
+        let mut jobs = vec![Job { filename: "w".into(), tool: "E".into(), rpm: 18000, toolpaths: vec![tp], z_zero: "Material Surface".into(), ..Default::default() }];
+        wrap_jobs(&mut jobs, 2.0);
+        let ys: Vec<f64> = jobs[0].toolpaths[0].moves.iter().filter_map(|m| m.y).collect();
+        assert!(ys.iter().any(|y| (y - 90.0).abs() < 1e-9), "{ys:?}");
+        assert!(jobs[0].toolpaths[0].moves.iter().all(|m| !matches!(m.kind, crate::job::MoveType::ArcCw | crate::job::MoveType::ArcCcw)));
+        for def in crate::postdef::post_library().iter().filter(|d| d.linear.contains("{Y}")) {
+            for o in crate::postdef::post_jobs(&jobs, def) {
+                let moves: Vec<&str> = o.text.lines().filter(|l| l.contains('X') && !l.contains('(') && !l.contains('[') && !l.contains(';')).collect();
+                assert!(moves.iter().all(|l| !l.split_whitespace().any(|w| w.starts_with('Y') && w[1..].starts_with(|c: char| c.is_ascii_digit() || c == '-'))), "{}: a Y word left", def.id);
+                assert!(o.text.contains("A90") || o.text.contains("A 90") || o.text.contains("A90.0"), "{}: no A90 in the file", def.id);
+            }
+        }
+        // the axis along Y: X1 becomes Y1, Y (degrees) still A, no X left
+        jobs[0].a_along_y = true;
+        let mach3 = crate::postdef::find_post("mach3-in").unwrap();
+        let text = &crate::postdef::post_jobs(&jobs, mach3)[0].text;
+        let moves: Vec<&str> = text.lines().filter(|l| l.starts_with("G0") || l.starts_with("G1")).collect();
+        assert!(moves.iter().any(|l| l.contains("Y1.0") || l.contains("Y1 ")) && moves.iter().any(|l| l.contains("A90")), "{text}");
+        assert!(moves.iter().all(|l| !l.split_whitespace().any(|w| w.starts_with('X'))), "{text}");
+    }
+
+    #[test]
+    fn rounding_spirals_a_square_blank_down_to_the_diameter_and_a_keeps_counting() {
+        use crate::geom::make_rect;
+        // a 2 in square to a 2 in round: the corners stand (2√2 − 2) / 2 ≈ 0.414 in proud
+        let m = Material { rotary: Some(2.0), w: 10.0, h: std::f64::consts::PI * 2.0, safe_z: 0.8, retract_z: 0.6, ..Default::default() };
+        let tool = Tool { name: "E".into(), diameter: 0.5, stepdown: 0.25, feed_xy: 100.0, feed_z: 30.0, ..Default::default() };
+        let op = Op { kind: OpType::Pocket, name: "Round".into(), depth: 0.1, rounding: 2.0, stepover: 0.5, ..Default::default() };
+        let r = generate(&op, &tool, &[make_rect(1.0, 0.0, 6.0, m.h)], &m, None);
+        assert!(r.warnings.is_empty(), "{:?}", r.warnings);
+        let zs: Vec<f64> = r.paths[0].moves.iter().filter(|mv| mv.kind == crate::job::MoveType::Linear).filter_map(|mv| mv.z).collect();
+        assert!((zs[0] - (0.414_213_562 - 0.25)).abs() < 1e-6 && zs.last().unwrap().abs() < 1e-12, "{zs:?}");
+        let xs: Vec<f64> = r.paths[0].moves.iter().filter_map(|mv| mv.x).collect();
+        assert!(xs.iter().all(|x| (1.0 - 1e-9..=6.0 + 1e-9).contains(x)), "stays on the length");
+        let mut jobs = vec![crate::job::Job { filename: "r".into(), tool: "E".into(), rpm: 18000, toolpaths: r.paths.clone(), z_zero: "Material Surface".into(), ..Default::default() }];
+        wrap_jobs(&mut jobs, 2.0);
+        let a: Vec<f64> = jobs[0].toolpaths[0].moves.iter().filter_map(|mv| mv.y).collect();
+        assert!(a.windows(2).all(|w| w[1] >= w[0] - 1e-9), "A only ever turns forward");
+        assert!((a.last().unwrap() - 360.0 * (2.0 * 21.0)).abs() < 1e-6, "2 passes of 20 turns + 1: {}", a.last().unwrap());
+    }
+
+    #[test]
+    fn keep_order_cuts_shapes_in_drawing_order() {
+        use crate::document::{Material, Op, OpType, Side, Tool};
+        use crate::geom::make_rect;
+        let m = Material { w: 48.0, h: 24.0, t: 0.75, ..Default::default() };
+        let shapes = [make_rect(40.0, 1.0, 41.0, 2.0), make_rect(1.0, 1.0, 2.0, 2.0), make_rect(20.0, 1.0, 21.0, 2.0)];
+        let tool = Tool { diameter: 0.25, stepdown: 0.5, ..Default::default() };
+        let firsts = |keep| {
+            let op = Op { kind: OpType::Profile, name: "P".into(), depth: 0.1, side: Side::On, keep_order: keep, ..Default::default() };
+            generate(&op, &tool, &shapes, &m, None).paths.iter().map(|p| p.moves.iter().find_map(|mv| mv.x).unwrap().round() as i32).collect::<Vec<_>>()
+        };
+        assert_eq!(firsts(false).first(), Some(&1), "nearest first by default");
+        let kept = firsts(true);
+        assert!(kept[0] >= 39 && kept[1] <= 2 && (19..=21).contains(&kept[2]), "{kept:?}");
+    }
+
+    #[test]
+    fn a_moulding_carves_the_cross_section_along_the_rail() {
+        use crate::document::{Material, Op, OpType, Tool, ToolType};
+        use crate::geom::{make_polyline, pt};
+        let m = Material { w: 24.0, h: 12.0, t: 0.75, ..Default::default() };
+        // a half-round cove 1 in wide, 0.5 deep, swept along a straight 10 in rail
+        let cove: Vec<_> = (0..=32).map(|k| { let a = std::f64::consts::PI * k as f64 / 32.0; pt(-0.5 * a.cos(), -0.5 * a.sin()) }).collect();
+        let rail = make_polyline(&[pt(2.0, 6.0), pt(12.0, 6.0)], false);
+        let op = Op { kind: OpType::Flute, name: "M".into(), section: 99, stepover: 0.2, ..Default::default() };
+        let ball = Tool { kind: ToolType::BallNose, diameter: 0.25, stepdown: 0.25, ..Default::default() };
+        let r = generate(&op, &ball, &[rail, make_polyline(&cove, false)], &m, None);
+        let zs: Vec<(f64, f64)> = r.paths[0].moves.iter().filter_map(|mv| Some((mv.y?, mv.z?))).filter(|(_, z)| *z < 0.0).collect();
+        // deepest in the middle (≈ 0.5), shallow at the sides, never below the cove's surface (ball tip at y)
+        let deepest = zs.iter().map(|(_, z)| *z).fold(0.0, f64::min);
+        assert!(deepest < -0.45 && deepest > -0.5 - 1e-6, "{deepest}");
+        for (y, z) in &zs {
+            let u = (y - 6.0).abs();
+            let surface = -(0.25f64 - u * u).max(0.0).sqrt();
+            assert!(*z >= surface - 1e-6, "gouges at offset {u}: {z} < {surface}");
+        }
+        assert!(zs.iter().any(|(y, _)| (y - 6.0).abs() > 0.3), "passes cover the width");
+        // a 1/2 in end mill clears first, never closer than the allowance; then the ball nose finishes in one pass
+        let em = Tool { kind: ToolType::EndMill, diameter: 0.5, stepdown: 0.25, ..Default::default() };
+        let op2 = Op { tool: 1, clear_tool: 0, allowance: 0.03, ..op.clone() };
+        let r2 = generate(&op2, &ball, &[make_polyline(&[pt(2.0, 6.0), pt(12.0, 6.0)], false), make_polyline(&cove, false)], &m, Some(&em));
+        let clear = r2.paths.iter().find(|p| p.tool == 0).expect("a clearing toolpath");
+        let finish = r2.paths.iter().find(|p| p.tool == -1).expect("the finish");
+        for mv in &clear.moves {
+            if let (Some(y), Some(z)) = (mv.y, mv.z) {
+                for k in 0..=20 {
+                    let u = (y - 6.0) + 0.25 * (k as f64 / 10.0 - 1.0); // under the flat end mill (radius 0.25)
+                    let surface = if u.abs() < 0.5 { -(0.25f64 - u * u).max(0.0).sqrt() } else { 0.0 };
+                    assert!(z >= surface + 0.03 - 1e-6 || z >= 0.0, "clearing bit too close at {u}: {z}");
+                }
+            }
+        }
+        let finish_depths: std::collections::BTreeSet<i64> = finish.moves.iter().filter_map(|mv| mv.z).filter(|z| *z < 0.0).map(|z| (z * 1e4).round() as i64).collect();
+        let plain_depths = zs.iter().map(|(_, z)| (z * 1e4).round() as i64).collect::<std::collections::BTreeSet<_>>();
+        assert!(finish_depths.len() <= plain_depths.len(), "finish has no extra depth passes");
+        assert!(r2.paths.iter().position(|p| p.tool == 0) < r2.paths.iter().position(|p| p.tool == -1), "clear before finish");
+    }
+
+    #[test]
+    fn a_drag_knife_swings_round_corners_and_never_spins() {
+        use crate::document::{Material, Op, OpType, Side, Tool};
+        use crate::geom::{dist, make_rect, pt};
+        let m = Material { w: 12.0, h: 12.0, t: 0.75, ..Default::default() };
+        let op = Op { kind: OpType::Profile, name: "K".into(), depth: 0.05, side: Side::On, drag_knife: 0.25, ..Default::default() };
+        let knife = Tool { name: "Knife".into(), diameter: 0.0625, rpm: 0, stepdown: 1.0, ..Default::default() };
+        let r = generate(&op, &knife, &[make_rect(2.0, 2.0, 6.0, 6.0)], &m, None);
+        assert!(r.warnings.is_empty(), "{:?}", r.warnings);
+        let mv = &r.paths[0].moves;
+        // one depth only, and at each of the 4 corners the pivot circles the corner at the blade offset
+        assert!(mv.iter().filter_map(|m| m.z).filter(|z| *z < 0.0).all(|z| (z + 0.05).abs() < 1e-9));
+        for c in [pt(2.0, 2.0), pt(6.0, 2.0), pt(6.0, 6.0), pt(2.0, 6.0)] {
+            let on_circle = mv.iter().filter(|m| m.x.is_some() && m.y.is_some() && (dist(pt(m.x.unwrap(), m.y.unwrap()), c) - 0.25).abs() < 1e-6).count();
+            assert!(on_circle >= 3, "corner {c:?}: {on_circle}");
+        }
+        // the safety check takes RPM 0 for a knife; a spinning one gets a warning
+        assert!(safety_issues(std::slice::from_ref(&op), std::slice::from_ref(&knife), std::slice::from_ref(&r.paths), &m).iter().all(|s| !s.contains("spindle speed")));
+        assert!(!generate(&op, &Tool { rpm: 18000, ..knife }, &[make_rect(2.0, 2.0, 6.0, 6.0)], &m, None).warnings.is_empty());
+    }
+
+    #[test]
+    fn merged_toolpaths_take_the_short_way_and_cut_parts_out_last() {
+        use crate::job::{Job, Move, Toolpath};
+        let cut = |name: &str, x: f64, z: f64| Toolpath { name: name.into(), moves: vec![Move::rapid(Some(x), Some(1.0), Some(0.5)), Move::linear(None, None, Some(z)), Move::linear(Some(x + 1.0), None, None), Move::rapid(None, None, Some(0.5))], ..Default::default() };
+        let mut jobs = vec![Job { toolpaths: vec![cut("cut-out", 0.0, -0.75), cut("far pocket", 40.0, -0.2), cut("near pocket", 2.0, -0.2)], ..Default::default() }];
+        merge_jobs(&mut jobs, 0.75);
+        let names: Vec<&str> = jobs[0].toolpaths.iter().map(|t| t.name.as_str()).collect();
+        assert_eq!(names, ["near pocket", "far pocket", "cut-out"]);
+    }
+
+    #[test]
+    fn photo_tone_brightness_contrast_gamma() {
+        let op = |b: f64, c: f64, g: f64| Op { photo_brightness: b, photo_contrast: c, photo_gamma: g, ..Default::default() };
+        let id = op(0.0, 1.0, 1.0);
+        assert!([0.0, 0.3, 1.0].iter().all(|t| (photo_tone(&id, *t) - t).abs() < 1e-12));
+        assert!(photo_tone(&op(0.2, 1.0, 1.0), 0.5) < 0.5 && photo_tone(&op(0.0, 2.0, 1.0), 0.7) > 0.7 && photo_tone(&op(0.0, 1.0, 2.0), 0.5) < 0.3);
+    }
+
+    #[test]
+    fn each_file_ends_at_the_home_position_at_travel_height() {
+        use crate::job::{Job, Move, Toolpath};
+        let tp = Toolpath { moves: vec![Move::rapid(Some(1.0), Some(1.0), Some(0.8)), Move::linear(None, None, Some(-0.2)), Move::rapid(None, None, Some(0.8))], ..Default::default() };
+        let mut jobs = vec![Job { toolpaths: vec![tp], ..Default::default() }];
+        go_home(&mut jobs, [0.0, 20.0]);
+        let mv = &jobs[0].toolpaths[0].moves;
+        let n = mv.len();
+        assert_eq!((mv[n - 2].z, mv[n - 1].x, mv[n - 1].y, mv[n - 1].z), (Some(0.8), Some(0.0), Some(20.0), None));
+    }
+
+    #[test]
+    fn a_keyhole_plunges_once_runs_the_slot_and_comes_back() {
+        use crate::document::{Material, Op, OpType, Side, Tool};
+        use crate::geom::{make_polyline, pt};
+        let m = Material { w: 12.0, h: 8.0, t: 0.75, ..Default::default() };
+        let op = Op { kind: OpType::Profile, name: "K".into(), depth: 0.4, side: Side::On, keyhole: true, ..Default::default() };
+        let tool = Tool { name: "Keyhole".into(), diameter: 0.375, stepdown: 0.1, ..Default::default() };
+        let slot = make_polyline(&[pt(6.0, 4.0), pt(6.0, 4.5)], false);
+        let r = generate(&op, &tool, &[slot], &m, None);
+        let mv = &r.paths[0].moves;
+        let zs: Vec<f64> = mv.iter().filter_map(|m| m.z).collect();
+        // one depth only (no stepdown passes), cut down at the start, back at the start before lifting
+        assert!(zs.iter().filter(|z| **z < 0.0).all(|z| (*z + 0.4).abs() < 1e-9), "{zs:?}");
+        let downs: Vec<_> = mv.iter().filter(|m| m.z.is_some_and(|z| z < 0.0)).collect();
+        assert_eq!((downs[0].x, downs[0].y), (Some(6.0), Some(4.0)));
+        let last_cut = mv.iter().rev().find(|m| m.kind == crate::job::MoveType::Linear).unwrap();
+        assert_eq!((last_cut.x, last_cut.y), (Some(6.0), Some(4.0)));
+        assert!(mv.iter().any(|m| m.y == Some(4.5)));
+    }
+
     use super::*;
 
     #[test]

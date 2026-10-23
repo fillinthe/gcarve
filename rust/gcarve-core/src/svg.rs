@@ -18,6 +18,17 @@ pub struct ImportResult {
     pub note: String,
     /// live text, only from the `_with_text` importers (the plain ones count it as skipped in the note)
     pub texts: Vec<ImportText>,
+    /// embedded pictures (LightBurn projects)
+    pub images: Vec<ImportImage>,
+}
+
+/// A picture embedded in a drawing: the file's bytes as base64 (PNG, JPEG…) and where its corners land.
+#[derive(Clone, Debug, Default, PartialEq)]
+pub struct ImportImage {
+    pub data: String,
+    /// inches, Y up, in the same frame as the contours: the picture's bottom-left, bottom-right, top-right, top-left
+    pub corners: [Pt; 4],
+    pub layer: String,
 }
 
 /// A line (or block) of text found in a drawing, for the app to set in a font: the core has none.
@@ -606,7 +617,7 @@ fn import(text: &str, keep_text: bool) -> ImportResult {
     if out.skipped > 0 {
         note += &format!("; skipped {} use/image", out.skipped); // C++ wording (golden); uses that resolve are drawn
     }
-    ImportResult { contours, layers, note, texts: out.keep.unwrap_or_default() }
+    ImportResult { contours, layers, note, texts: out.keep.unwrap_or_default(), images: Vec::new() }
 }
 
 /// The characters between a `<text …>` tag ending at `from` and its `</text>`: inner tags dropped (a new `<tspan>`

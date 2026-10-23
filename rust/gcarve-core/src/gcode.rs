@@ -152,6 +152,8 @@ pub fn interpret_line(raw: &str, st: &mut GState, out: &mut Vec<GMotion>, line_n
                 }
                 921 => {}
                 170 | 400 | 490 | 540 | 800 | 940 | 610 | 640 => {}
+                // cutter compensation: our files keep the bit-centre path, D holds only the wear, so the preview ignores it
+                410 | 420 => {}
                 200 => n.inches = true,
                 210 => n.inches = false,
                 530 => g53 = true,
@@ -178,7 +180,7 @@ pub fn interpret_line(raw: &str, st: &mut GState, out: &mut Vec<GMotion>, line_n
             b'J' => j = Some(v),
             b'P' => p = Some(v),
             b'L' => l = v as i32,
-            b'N' | b'T' | b'H' | b'K' => {}
+            b'N' | b'T' | b'H' | b'K' | b'D' => {}
             _ => return Err(format!("unsupported word {}", c as char)),
         }
     }
