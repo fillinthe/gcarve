@@ -260,8 +260,18 @@ fn lengths(xy: &[Pt]) -> Vec<f64> {
     s
 }
 
+/// Depth per pass: the toolpath's own, else the bit's, else half the bit's width; never under 0.005 in. A stepdown of 0
+/// (a bit edited to 0, or a project file) meant ~2 billion passes: the app froze, the web build ran out of memory.
+pub fn step_down(op_stepdown: f64, tool: &Tool) -> f64 {
+    let s = if op_stepdown > 0.0 { op_stepdown } else if tool.stepdown > 0.0 { tool.stepdown } else { tool.diameter / 2.0 };
+    if s.is_finite() { s.max(0.005) } else { 0.125 }
+}
+
 fn passes_for(depth: f64, stepdown: f64) -> i32 {
-    ((depth / stepdown - 1e-9).ceil() as i32).max(1)
+    if !(stepdown > 0.0 && depth.is_finite()) {
+        return 1;
+    }
+    ((depth / stepdown - 1e-9).ceil() as i32).clamp(1, 10_000)
 }
 
 /// Distance along `path` (`lens` = cumulative lengths) of the point nearest `p`, when the path comes within `reach`.
@@ -335,7 +345,7 @@ fn off_corners(c: f64, corners: &[f64], half: f64, reach: f64, l: f64, closed: b
 
 /// Builds the moves for one cutter path. closed: pts[0] == pts.last().
 fn cut_path(path: &[Pt], closed: bool, op: &Op, tool: &Tool, m: &Material, warn: &mut Vec<String>) -> Toolpath {
-    let stepdown = if op.stepdown > 0.0 { op.stepdown } else { tool.stepdown };
+    let stepdown = step_down(op.stepdown, tool);
     let passes = passes_for(op.depth, stepdown);
     let lens = lengths(path);
     let l = *lens.last().unwrap();
@@ -742,6 +752,15 @@ pub fn generate_pocket(op: &Op, tool: &Tool, contours: &[Contour], m: &Material)
         res.warnings.push(format!("{}: pocket is too small for the tool", op.name));
         return res;
     }
+    if op.adaptive && !matches!(tool.kind, ToolType::VBit | ToolType::BallNose | ToolType::RoundOver) {
+        match pocket_adaptive(op, tool, &boundary, m) {
+            Ok(tp) => {
+                res.paths.push(tp);
+                return res;
+            }
+            Err(why) => res.warnings.push(format!("{}: adaptive clearing: {why}; cut with rings instead", op.name)),
+        }
+    }
     if op.raster {
         res.paths.push(pocket_raster(op, tool, &boundary, step, m));
         return res;
@@ -790,7 +809,7 @@ pub fn generate_pocket(op: &Op, tool: &Tool, contours: &[Contour], m: &Material)
         return res;
     }
 
-    let stepdown = if op.stepdown > 0.0 { op.stepdown } else { tool.stepdown };
+    let stepdown = step_down(op.stepdown, tool);
     let passes = passes_for(op.depth, stepdown);
     let pf = passes as f64;
     let mut tp = Toolpath { name: op.name.clone(), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new(), comp: 0 };
@@ -906,6 +925,127 @@ pub fn generate_pocket_two(op: &Op, tool: &Tool, contours: &[Contour], m: &Mater
 /// `boundary` (the bit-centre region), then one lap round every wall to take off the scallops the row ends leave.
 /// ponytail: a row that can't reach the next one in a straight line inside the pocket (islands, narrow necks) lifts
 /// and rapids; chain the row pieces region by region if pockets with many islands lift too much.
+/// The separate parts of a region (outer ring + the holes inside it), each as its own set of paths.
+fn split_islands(region: &PathsD) -> Vec<PathsD> {
+    let mut groups: Vec<PathsD> = region.iter().filter(|p| is_positive(p)).map(|p| vec![p.clone()]).collect();
+    for hole in region.iter().filter(|p| !is_positive(p)) {
+        let at = pt(hole[0].x, hole[0].y);
+        if let Some(g) = groups.iter_mut().find(|g| inside(at, &g[0])) {
+            g.push(hole.clone());
+        }
+    }
+    groups
+}
+
+/// Adaptive clearing (adaptive.rs): the bit's load stays at `stepover` of its diameter everywhere. One plan per separate
+/// part of the pocket (geometry is the same for every depth pass), a helix in at each part's roomiest spot, constant-load
+/// runs linked by short moves at depth where the way is already cut, then a lap round the walls on every pass.
+/// Radial chip thinning: at a sideways cut of `engage` the chip is thinner than at full width, so the feed can rise
+/// by 1 / sqrt(1 - (1 - 2·engage / D)²) for the same chip. Capped at 1.5× (the bit's saved feed is a slot value
+/// rounded for safety) and at the machine's feed limit.
+fn chip_thinning(engage: f64, diameter: f64, feed: f64, m: &Material) -> f64 {
+    let k = 1.0 - 2.0 * engage / diameter;
+    let up = if k.abs() < 1.0 { (1.0 / (1.0 - k * k).sqrt()).clamp(1.0, 1.5) } else { 1.0 };
+    let limit = m.machine.as_ref().map_or(0.0, |l| l.feed_xy);
+    let faster = feed * up;
+    if limit > 0.0 { faster.min(limit).max(feed) } else { faster }
+}
+
+fn pocket_adaptive(op: &Op, tool: &Tool, boundary: &PathsD, m: &Material) -> Result<Toolpath, String> {
+    use crate::adaptive::{plan, Params};
+    let r = tool.diameter / 2.0;
+    let params = Params { radius: r, engage: clampf(op.stepover, 0.03, 0.5) * tool.diameter, climb: op.climb, max_steps: 400_000 };
+    let polys = |ps: &PathsD| -> Vec<Vec<Pt>> { ps.iter().map(pts_of).collect() };
+    let mut parts = Vec::new();
+    for g in split_islands(boundary) {
+        let material = offset_region(&g, r); // what the bit can reach from this part
+        let mut p = plan(&polys(&g), &polys(&material), &params)?;
+        // the path as long straight pieces and arcs of few points: the posts turn them into G2 / G3
+        for c in &mut p.comps {
+            for run in &mut c.runs {
+                let open: PathD = run.pts.iter().map(|q| PointD::new(q.x, q.y)).collect();
+                let slim = simplify_paths(&vec![open], 0.0012, false);
+                if let Some(s) = slim.first().filter(|s| s.len() >= 2) {
+                    run.pts = pts_of(s);
+                }
+            }
+        }
+        parts.push((g, p));
+    }
+    let stepdown = step_down(op.stepdown, tool);
+    let passes = passes_for(op.depth, stepdown);
+    let mut tp = Toolpath { name: op.name.clone(), tool: -1, feed_xy: if op.feed_boost { chip_thinning(params.engage, tool.diameter, tool.feed_xy, m) } else { tool.feed_xy }, feed_z: tool.feed_z, moves: Vec::new(), comp: 0 };
+    let mut cur: Option<Pt> = None;
+    for (g, p) in &parts {
+        for comp in &p.comps {
+            let start = pt(comp.entry.x + comp.helix, comp.entry.y);
+            for k in 0..passes {
+                let (z_prev, z) = (-op.depth * k as f64 / passes as f64 + 0.0, -op.depth * (k + 1) as f64 / passes as f64);
+                if let Some(c) = cur {
+                    rapid_to(&mut tp, c, Some(m.retract_z));
+                }
+                rapid_to(&mut tp, start, Some(m.retract_z));
+                cut_to(&mut tp, start, Some(z_prev)); // down through the part already cut above
+                if comp.helix > 0.0 {
+                    // a shallow helix about the entry: the hole it leaves is wider than the bit, so the first cut out is light
+                    let pitch = (2.0 * PI * comp.helix * 3f64.to_radians().tan()).max(0.02);
+                    let turns = ((z_prev - z) / pitch).ceil().max(1.0);
+                    let n = (turns * 18.0) as usize;
+                    for i in 1..=n {
+                        let a = 2.0 * PI * turns * i as f64 / n as f64 * if op.climb { 1.0 } else { -1.0 };
+                        cut_to(&mut tp, pt(comp.entry.x + comp.helix * a.cos(), comp.entry.y + comp.helix * a.sin()), Some(z_prev + (z - z_prev) * i as f64 / n as f64));
+                    }
+                } else {
+                    cut_to(&mut tp, start, Some(z));
+                }
+                cur = Some(start);
+                for (ri, run) in comp.runs.iter().enumerate() {
+                    if ri > 0 {
+                        let q = run.pts[0];
+                        if run.down {
+                            cut_to(&mut tp, q, Some(z));
+                        } else {
+                            rapid_to(&mut tp, cur.unwrap(), Some(m.retract_z));
+                            rapid_to(&mut tp, q, Some(m.retract_z));
+                            cut_to(&mut tp, q, Some(z));
+                        }
+                    }
+                    for &q in &run.pts[1..] {
+                        cut_to(&mut tp, q, Some(z));
+                    }
+                    cur = run.pts.last().copied();
+                }
+                // the walls: one lap round every edge of this part (outer rings CCW, island rings CW = climb)
+                for ring in g {
+                    let mut ring = ring.clone();
+                    if !op.climb {
+                        ring.reverse();
+                    }
+                    let mut pts = pts_of(&ring);
+                    let from = cur.unwrap();
+                    let bi = (0..pts.len()).min_by(|&a, &b| dist(from, pts[a]).total_cmp(&dist(from, pts[b]))).unwrap_or(0);
+                    pts.rotate_left(bi);
+                    pts.push(pts[0]);
+                    rapid_to(&mut tp, from, Some(m.retract_z));
+                    rapid_to(&mut tp, pts[0], Some(m.retract_z));
+                    cut_to(&mut tp, pts[0], Some(z));
+                    for &q in &pts[1..] {
+                        cut_to(&mut tp, q, Some(z));
+                    }
+                    cur = Some(pts[0]);
+                }
+            }
+        }
+    }
+    if let Some(c) = cur {
+        rapid_to(&mut tp, c, Some(m.retract_z));
+    }
+    if tp.moves.is_empty() {
+        return Err("nothing to clear".into());
+    }
+    Ok(tp)
+}
+
 fn pocket_raster(op: &Op, tool: &Tool, boundary: &PathsD, step: f64, m: &Material) -> Toolpath {
     let (sn, cs) = (op.raster_angle as f64).to_radians().sin_cos();
     let rot = |p: Pt| pt(p.x * cs + p.y * sn, -p.x * sn + p.y * cs); // rows become horizontal
@@ -933,7 +1073,7 @@ fn pocket_raster(op: &Op, tool: &Tool, boundary: &PathsD, step: f64, m: &Materia
         }
     }
     let inside_boundary = |q: Pt| boundary.iter().filter(|p| inside(q, p)).count() % 2 == 1;
-    let stepdown = if op.stepdown > 0.0 { op.stepdown } else { tool.stepdown };
+    let stepdown = step_down(op.stepdown, tool);
     let passes = passes_for(op.depth, stepdown);
     let mut tp = Toolpath { name: op.name.clone(), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new(), comp: 0 };
     for k in 0..passes {
@@ -1099,7 +1239,7 @@ fn moulding_sweep(op: &Op, tool: &Tool, rails: &[Contour], sp: &[Pt], b: Rect, m
     let step = (tool.diameter * if op.stepover > 0.0 { op.stepover } else { 0.15 }).max(0.002);
     let n = ((width / step).ceil() as usize).max(1);
     let offsets: Vec<f64> = (0..=n).map(|k| -width / 2.0 + width * k as f64 / n as f64).collect();
-    let stepdown = if op.stepdown > 0.0 { op.stepdown } else { tool.stepdown }.max(0.005);
+    let stepdown = step_down(op.stepdown, tool);
     let deepest = offsets.iter().map(|s| -tip_at(*s)).fold(0.0, f64::max);
     let levels = if one_pass { 1 } else { passes_for(deepest, stepdown) };
     for rail in rails {
@@ -1276,7 +1416,7 @@ pub fn generate_rounding(op: &Op, tool: &Tool, contours: &[Contour], m: &Materia
     }
     let circ = std::f64::consts::PI * dia;
     let step = (tool.diameter * if op.stepover > 0.0 { op.stepover.min(1.0) } else { 0.5 }).max(0.005);
-    let down = if op.stepdown > 0.0 { op.stepdown } else if tool.stepdown > 0.0 { tool.stepdown } else { tool.diameter / 2.0 }.max(0.01);
+    let down = step_down(op.stepdown, tool).max(0.01);
     let mut levels: Vec<f64> = Vec::new();
     let mut z = top;
     while z > 1e-9 {
@@ -1307,6 +1447,14 @@ pub fn generate_rounding(op: &Op, tool: &Tool, contours: &[Contour], m: &Materia
 
 pub fn generate_drill(op: &Op, tool: &Tool, contours: &[Contour], m: &Material) -> CamResult {
     let mut res = CamResult::default();
+    // countersink: the cone is `countersink` wide at the surface when its tip is that deep
+    let sunk;
+    let op = if op.countersink > 0.0 && tool.kind == ToolType::VBit {
+        sunk = Op { depth: op.countersink / 2.0 / (tool.angle / 2.0).to_radians().tan().max(1e-6), peck: 0.0, ..op.clone() };
+        &sunk
+    } else {
+        op
+    };
     if !depth_checks(op, m, &mut res) {
         return res;
     }
@@ -1700,7 +1848,7 @@ pub fn generate_vcarve(op: &Op, tool: &Tool, contours: &[Contour], m: &Material,
     {
         // deep carves in layers like VCarve: at each pass depth L above the deepest point, one lap of the outline
         // inset to where the carve is L deep, so the final skeleton pass doesn't take the whole V in one go
-        let stepdown = if op.stepdown > 0.0 { op.stepdown } else { tool.stepdown };
+        let stepdown = step_down(op.stepdown, tool);
         let mut deepest: f64 = 0.0;
         for sp in skeleton.iter().flatten() {
             deepest = deepest.max(max_depth.min(start + sp.r / tan_half));
@@ -1904,7 +2052,7 @@ pub fn generate_flute(op: &Op, tool: &Tool, contours: &[Contour], m: &Material) 
     if !depth_checks(op, m, &mut res) {
         return res;
     }
-    let stepdown = if op.stepdown > 0.0 { op.stepdown } else { tool.stepdown };
+    let stepdown = step_down(op.stepdown, tool);
     let passes = passes_for(op.depth, stepdown);
     for c in contours {
         let pts = flatten(c, TOL);
@@ -1976,7 +2124,7 @@ pub fn generate_chamfer(op: &Op, tool: &Tool, contours: &[Contour], m: &Material
     if tool.diameter > 0.0 && d * tan_half > tool.diameter / 2.0 + 1e-9 {
         res.warnings.push(format!("{}: chamfer is wider than the bit's V (use a wider bit)", op.name));
     }
-    let stepdown = if op.stepdown > 0.0 { op.stepdown } else { tool.stepdown };
+    let stepdown = step_down(op.stepdown, tool);
     let passes = passes_for(d, stepdown);
 
     let polys: Vec<PathD> = contours.iter().map(to_path).collect();
@@ -2111,7 +2259,7 @@ pub fn generate_prism(op: &Op, tool: &Tool, contours: &[Contour], m: &Material) 
             Pt::default()
         }
     };
-    let stepdown = if op.stepdown > 0.0 { op.stepdown } else { tool.stepdown };
+    let stepdown = step_down(op.stepdown, tool);
     let mut deepest: f64 = 0.0;
     let mut near: Vec<usize> = Vec::new();
     for ring in &region {
@@ -2231,9 +2379,10 @@ pub fn generate_inlay(op: &Op, tool: &Tool, contours: &[Contour], m: &Material, 
 /// (from the shape's bounds); `op.allowance` leaves material for a second, finishing pass.
 fn thread_mill(tp: &mut Toolpath, ctr: Pt, r: f64, op: &Op, m: &Material) {
     const SEGS: i32 = 36;
-    let turns = (op.depth / op.thread_pitch).ceil().max(1.0) as i32;
+    let pitch = op.thread_pitch.max(0.005); // a 1e-8 pitch overflowed turns × SEGS
+    let turns = ((op.depth / pitch).ceil().max(1.0) as i32).min(5_000);
     let z_bot = -op.depth;
-    let z_top = z_bot + turns as f64 * op.thread_pitch;
+    let z_top = z_bot + turns as f64 * pitch;
     let on = |a: f64| pt(ctr.x + r * a.cos(), ctr.y + r * a.sin());
     // half circle of diameter r from the centre to the helix start (angle 0), arriving along +y like the helix
     let half = |tp: &mut Toolpath, a0: f64, z: f64| {
@@ -2248,7 +2397,7 @@ fn thread_mill(tp: &mut Toolpath, ctr: Pt, r: f64, op: &Op, m: &Material) {
     half(tp, PI, z_bot); // centre -> (r, 0) via below
     for k in 1..=turns * SEGS {
         let a = 2.0 * PI * k as f64 / SEGS as f64;
-        cut_to(tp, on(a), Some(z_bot + op.thread_pitch * k as f64 / SEGS as f64));
+        cut_to(tp, on(a), Some(z_bot + pitch * k as f64 / SEGS as f64));
     }
     half(tp, 0.0, z_top); // (r, 0) -> centre via above
     rapid_to(tp, ctr, Some(m.retract_z));
@@ -2261,7 +2410,7 @@ pub fn generate_bore(op: &Op, tool: &Tool, contours: &[Contour], m: &Material) -
     if !depth_checks(op, m, &mut res) {
         return res;
     }
-    let pitch = if op.stepdown > 0.0 { op.stepdown } else { tool.stepdown }; // depth per revolution
+    let pitch = step_down(op.stepdown, tool); // depth per revolution
     for c in contours {
         let b = bounds(c);
         if b.is_empty() {
@@ -2736,6 +2885,10 @@ pub fn safety_issues(ops: &[Op], tools: &[Tool], generated: &[Vec<Toolpath>], m:
             if t.kind != ToolType::VBit && t.cut_length > 0.0 && -zmin > t.cut_length + 1e-3 {
                 add(format!("{who}: cuts {:.3} in deep but the bit's flutes are only {:.3} in long: the shank would rub (burning, a broken bit). Use a longer bit or a shallower cut.", -zmin, t.cut_length));
             }
+            // the holder is wider than the bit: past the stick-out it sits on the board (V-bits too)
+            if t.stick_out > 0.0 && -zmin > t.stick_out + 1e-3 {
+                add(format!("{who}: cuts {:.3} in deep but the bit sticks out only {:.3} in: the collet / holder would hit the board. Pull the bit out further or cut shallower.", -zmin, t.stick_out));
+            }
         }
     }
     out
@@ -2854,7 +3007,7 @@ pub fn tile_jobs(jobs: &[Job], along_x: bool, tile_len: f64, overlap: f64, board
     if stride <= 0.0 || tile_len <= 0.0 || board_len <= tile_len {
         return jobs.to_vec();
     }
-    let n = ((board_len - overlap) / stride).ceil().max(1.0) as usize;
+    let n = ((board_len - overlap) / stride).ceil().clamp(1.0, 1000.0) as usize; // an overlap just under the tile made millions
     let mut out = Vec::new();
     for k in 0..n {
         let (a, b) = (k as f64 * stride, k as f64 * stride + tile_len);
@@ -3150,6 +3303,16 @@ mod last_pass_tests {
     }
 
     #[test]
+    fn a_countersink_goes_as_deep_as_the_cone_is_wide_at_the_surface() {
+        let op = Op { kind: OpType::Drill, name: "C".into(), depth: 0.7, countersink: 0.5, ..Default::default() };
+        let tool = Tool { kind: ToolType::VBit, angle: 90.0, diameter: 0.75, ..Default::default() };
+        let m = Material { w: 4.0, h: 4.0, t: 0.75, ..Default::default() };
+        let r = generate_drill(&op, &tool, &[crate::geom::make_ellipse(2.0, 2.0, 0.1, 0.1)], &m);
+        let low = r.paths[0].moves.iter().filter_map(|mv| mv.z).fold(0.0, f64::min);
+        assert!((low + 0.25).abs() < 1e-9, "{low}"); // 90 degrees: depth = width / 2
+    }
+
+    #[test]
     fn thread_mill_rises_one_pitch_per_turn_from_the_bottom() {
         let op = Op { kind: OpType::Bore, name: "T".into(), depth: 0.4, thread_pitch: 0.1, ..Default::default() };
         let tool = Tool { diameter: 0.25, ..Default::default() };
@@ -3416,5 +3579,45 @@ mod tab_tests {
         if (corners[1] - corners[0]) > 1.0 {
             assert_eq!(off_corners(mid, &corners, 0.3, 1.0, l, true), mid);
         }
+    }
+}
+
+#[cfg(test)]
+mod stepdown_guard {
+    use super::*;
+    use crate::document::{Material, Op, OpType, Side, Tool};
+
+    /// A bit whose stepdown was edited to 0 (or a project file saying so) froze the app: every toolpath type now
+    /// falls back to half the bit's width.
+    #[test]
+    fn a_stepdown_of_zero_cuts_in_a_few_passes() {
+        let tool = Tool { diameter: 0.25, stepdown: 0.0, feed_xy: 100.0, feed_z: 30.0, ..Default::default() };
+        let m = Material::default();
+        let sq = [crate::geom::make_rect(1.0, 1.0, 3.0, 3.0)];
+        for kind in [OpType::Profile, OpType::Pocket, OpType::Bore] {
+            let op = Op { kind, name: "Z".into(), depth: 0.5, side: Side::Outside, ..Default::default() };
+            let moves: usize = generate(&op, &tool, &sq, &m, None).paths.iter().map(|p| p.moves.len()).sum();
+            assert!(moves > 0 && moves < 50_000, "{kind:?}: {moves} moves");
+        }
+        assert_eq!(step_down(0.0, &tool), 0.125);
+        assert_eq!(passes_for(0.5, 0.0), 1);
+        assert_eq!(passes_for(f64::INFINITY, 0.1), 1);
+    }
+}
+
+
+#[cfg(test)]
+mod chip_thinning_tests {
+    use super::*;
+    use crate::document::MachineLimits;
+    #[test]
+    fn thin_cuts_feed_faster_but_never_past_the_cap_or_the_machine() {
+        let m = Material::default();
+        assert!((chip_thinning(0.5, 0.5, 100.0, &m) - 100.0).abs() < 1e-9); // half width: no thinning
+        let f = chip_thinning(0.06, 0.5, 100.0, &m); // 12 %
+        assert!(f > 140.0 && f <= 150.0, "{f}");
+        let mut lim = Material::default();
+        lim.machine = Some(MachineLimits { feed_xy: 120.0, ..Default::default() });
+        assert_eq!(chip_thinning(0.06, 0.5, 100.0, &lim), 120.0);
     }
 }

@@ -30,7 +30,8 @@ pub fn load_stl(data: &[u8]) -> Result<Vec<Triangle>, String> {
     let ascii = data.starts_with(b"solid") && data.windows(5).any(|w| w == b"facet");
     if !ascii && data.len() >= 84 {
         let n = u32::from_le_bytes(data[80..84].try_into().unwrap()) as usize;
-        if 84 + n * 50 == data.len() {
+        // checked: on 32-bit (web, Windows 7 x86) a made-up count wrapped the sum and passed, then reserve() panicked
+        if n.checked_mul(50).and_then(|b| b.checked_add(84)) == Some(data.len()) {
             out.reserve(n);
             for i in 0..n {
                 let f = |k: usize| {
@@ -341,7 +342,7 @@ pub fn generate_relief(op: &Op, finish_tool: &Tool, rough_tool: Option<&Tool>, r
     let along_x = op.raster_angle % 180 == 0;
     if let (true, Some(rt)) = (op.rough, rough_tool) {
         let mut rough = Toolpath { name: format!("{} [rough]", op.name), tool: op.clear_tool, feed_xy: rt.feed_xy, feed_z: rt.feed_z, moves: Vec::new(), comp: 0 };
-        let sd = if op.rough_stepdown > 0.0 { op.rough_stepdown } else { rt.stepdown };
+        let sd = crate::cam::step_down(op.rough_stepdown, rt); // never 0: z -= 0 looped for ever
         let mut z = -sd;
         while z > -r.depth - 1e-9 {
             raster(r, m, along_x, sample, &inside_clip, rt, op.rough_stepover, &mut rough, op.allowance, z.max(-r.depth), true);
@@ -382,6 +383,114 @@ pub fn project_paths(paths: &mut [crate::job::Toolpath], r: &Relief) {
             (x, y, z) = (nx, ny, nz);
         }
         tp.moves = out;
+    }
+}
+
+/// Height field from the relief's picture: brightness is height (white = the board's surface, black = `depth` down),
+/// or the other way round for a lithophane (`pic_invert`). Auto levels stretch the picture's own range over the whole
+/// depth; smoothing is a box blur of `pic_smooth` pixels. The grid is the picture's own pixels (rows flipped: y is up).
+/// A picture that doesn't decode leaves the height empty ("file missing" in the dialog).
+pub fn rasterize_picture(r: &mut Relief) {
+    r.height.clear();
+    (r.nx, r.ny) = (0, 0);
+    let Some(g) = crate::photo::Gray::from_op(r.pic_w, r.pic_h, &r.pic).filter(|g| g.w >= 2 && g.h >= 2 && g.w.max(g.h) <= 4000) else { return };
+    let (lo, hi) = if r.pic_levels {
+        let (dark_lo, dark_hi) = g.levels(); // darkness range; brightness is its mirror
+        (1.0 - dark_hi, 1.0 - dark_lo)
+    } else {
+        (0.0, 1.0)
+    };
+    let mut v: Vec<f32> = g.px.iter().map(|&p| (((f64::from(p) / 255.0 - lo) / (hi - lo).max(1e-6)).clamp(0.0, 1.0)) as f32).collect();
+    // box blur, rows then columns (clamped edges)
+    let k = r.pic_smooth.min(20) as i64;
+    if k > 0 {
+        let blur = |src: &[f32], w: usize, h: usize, horizontal: bool| -> Vec<f32> {
+            let mut out = vec![0.0; src.len()];
+            let (len, lines) = if horizontal { (w, h) } else { (h, w) };
+            for line in 0..lines {
+                let at = |i: usize| if horizontal { src[line * w + i] } else { src[i * w + line] };
+                for i in 0..len {
+                    let (a, b) = ((i as i64 - k).max(0) as usize, (i as i64 + k).min(len as i64 - 1) as usize);
+                    let s: f32 = (a..=b).map(at).sum();
+                    let val = s / (b - a + 1) as f32;
+                    if horizontal { out[line * w + i] = val } else { out[i * w + line] = val }
+                }
+            }
+            out
+        };
+        v = blur(&blur(&v, g.w, g.h, true), g.w, g.h, false);
+    }
+    if r.pic_invert {
+        v.iter_mut().for_each(|x| *x = 1.0 - *x);
+    }
+    r.nx = g.w as i32;
+    r.ny = g.h as i32;
+    r.height = (0..g.h).rev().flat_map(|row| v[row * g.w..(row + 1) * g.w].to_vec()).collect(); // row 0 of the picture = top = highest y
+}
+
+#[cfg(test)]
+mod picture_tests {
+    use super::*;
+    use crate::photo::b64_encode;
+
+    fn from(px: &[u8], w: u32, h: u32) -> Relief {
+        Relief { w: 4.0, h: 2.0, depth: 0.3, pic: b64_encode(px), pic_w: w, pic_h: h, pic_levels: false, pic_smooth: 0, ..Default::default() }
+    }
+
+    #[test]
+    fn a_picture_becomes_a_height_field_light_high_or_dark_high() {
+        // 2 × 2: top row black, white; bottom row grey, white
+        let mut r = from(&[0, 255, 128, 255], 2, 2);
+        rasterize_picture(&mut r);
+        assert_eq!((r.nx, r.ny), (2, 2));
+        // y is up: the picture's bottom row comes first
+        let g = 128.0 / 255.0;
+        assert!((r.at(0, 0) - g).abs() < 1e-6 && r.at(1, 0) == 1.0 && r.at(0, 1) == 0.0 && r.at(1, 1) == 1.0, "{:?}", r.height);
+        r.pic_invert = true;
+        rasterize_picture(&mut r);
+        assert!(r.at(0, 1) == 1.0 && r.at(1, 1) == 0.0 && (r.at(0, 0) - (1.0 - g)).abs() < 1e-6, "{:?}", r.height);
+        // a picture that isn't there leaves nothing to cut
+        r.pic = "!!".into();
+        rasterize_picture(&mut r);
+        assert!(r.height.is_empty() && r.nx == 0);
+    }
+
+    #[test]
+    fn auto_levels_use_the_whole_depth_and_smoothing_softens_steps() {
+        // a dull picture (greys 100..160) spreads from 0 to 1
+        let px: Vec<u8> = (0..100u32).map(|i| 100 + (i % 10) as u8 * 6).collect();
+        let mut r = from(&px, 10, 10);
+        r.pic_levels = true;
+        rasterize_picture(&mut r);
+        let (lo, hi) = r.height.iter().fold((1.0f32, 0.0f32), |(a, b), &x| (a.min(x), b.max(x)));
+        assert!(lo < 0.05 && hi > 0.95, "{lo} {hi}");
+        // a hard step: smoothing leaves values between, and keeps 0..1
+        let step: Vec<u8> = (0..60u32).map(|i| if i % 6 < 3 { 0 } else { 255 }).collect();
+        let mut s = from(&step, 6, 10);
+        rasterize_picture(&mut s);
+        let sharp = s.height.iter().filter(|&&x| x > 0.01 && x < 0.99).count();
+        s.pic_smooth = 1;
+        rasterize_picture(&mut s);
+        let soft = s.height.iter().filter(|&&x| x > 0.01 && x < 0.99).count();
+        assert!(sharp == 0 && soft > 10 && s.height.iter().all(|&x| (0.0..=1.0).contains(&x)), "{sharp} {soft}");
+    }
+
+    /// The ball-nose finish of a picture relief goes deepest where the picture is dark, and stays above the surface
+    /// where it is white: a 3D look at what the picture will carve.
+    #[test]
+    fn a_picture_relief_cuts_deep_where_it_is_dark() {
+        use crate::document::{Material, Op, OpType, Tool, ToolType};
+        // left half black, right half white
+        let px: Vec<u8> = (0..400).map(|i| if i % 20 < 10 { 0 } else { 255 }).collect();
+        let mut r = Relief { id: 1, x: 1.0, y: 1.0, w: 2.0, h: 2.0, depth: 0.3, pic: b64_encode(&px), pic_w: 20, pic_h: 20, pic_levels: false, pic_smooth: 0, ..Default::default() };
+        rasterize_picture(&mut r);
+        let op = Op { kind: OpType::Relief, name: "R".into(), relief: 1, stepover: 0.2, rough: false, ..Default::default() };
+        let tool = Tool { kind: ToolType::BallNose, diameter: 0.125, stepdown: 0.1, feed_xy: 80.0, feed_z: 30.0, ..Default::default() };
+        let res = generate_relief(&op, &tool, None, &r, &Material::default(), None);
+        let cuts: Vec<(f64, f64)> = res.paths.iter().flat_map(|p| p.moves.iter()).filter_map(|m| Some((m.x?, m.z?))).collect();
+        let left = cuts.iter().filter(|(x, _)| *x < 1.8).map(|c| c.1).fold(0.0, f64::min);
+        let right = cuts.iter().filter(|(x, _)| *x > 2.2).map(|c| c.1).fold(0.0, f64::min);
+        assert!(left < -0.28 && right > -0.02, "dark half deepest {left}, white half {right}");
     }
 }
 

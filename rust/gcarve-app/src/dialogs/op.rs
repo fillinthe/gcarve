@@ -119,6 +119,21 @@ impl OpDialog {
         }
         Self::from_op(doc, op, None, &ids)
     }
+    /// Surface the board: a raster Pocket over `shape` with the widest end mill, shallow, along the board's long side
+    pub fn surface(doc: &Document, shape: i32) -> Self {
+        let mut op = new_op(doc, OpType::Pocket, &[shape]);
+        op.name = "Surface the board".into();
+        op.raster = true;
+        op.raster_angle = if doc.material.h > doc.material.w { 90 } else { 0 };
+        op.depth = 0.04;
+        op.stepdown = op.depth;
+        op.stepover = 0.8;
+        let widest = doc.tools.iter().enumerate().filter(|(_, t)| t.kind == ToolType::EndMill).max_by(|a, b| a.1.diameter.total_cmp(&b.1.diameter));
+        if let Some((i, _)) = widest {
+            op.tool = i as i32;
+        }
+        Self::from_op(doc, op, None, &[shape])
+    }
     pub fn edit(doc: &Document, i: usize, selected: &[i32]) -> Self {
         Self::from_op(doc, doc.ops[i].clone(), Some(i), selected)
     }
@@ -132,6 +147,7 @@ impl OpDialog {
         f.set_bound("tabHeight", b, op.tab_height);
         f.set_bound("allowance", b, op.allowance);
         f.set_bound("threadPitch", b, op.thread_pitch);
+        f.set_bound("countersink", b, op.countersink);
         f.set_bound("peck", b, op.peck);
         f.set_bound("flatDepth", b, if op.flat_depth > 0.0 { op.flat_depth } else { op.depth / 2.0 });
         f.set_bound("startDepth", b, op.start_depth);
@@ -188,8 +204,9 @@ impl OpDialog {
         op.tab_spacing = if self.by_spacing { f.get_or("tabSpacing", doc, op.tab_spacing).max(0.0) } else { 0.0 };
         op.tab_width = f.get_or("tabWidth", doc, op.tab_width).max(0.0);
         op.tab_height = f.get_or("tabHeight", doc, op.tab_height).max(0.0);
-        op.stepover = if k == OpType::Texture { (self.stepover_pct as f64 / 100.0).clamp(0.2, 3.0) } else if k == OpType::Relief { (self.stepover_pct as f64 / 100.0).clamp(0.02, 1.0) } else { (self.stepover_pct as f64 / 100.0).clamp(0.05, 1.0) };
+        op.stepover = if k == OpType::Texture { (self.stepover_pct as f64 / 100.0).clamp(0.2, 3.0) } else if k == OpType::Relief { (self.stepover_pct as f64 / 100.0).clamp(0.02, 1.0) } else if k == OpType::Pocket && op.adaptive { (self.stepover_pct as f64 / 100.0).clamp(0.03, 0.5) } else { (self.stepover_pct as f64 / 100.0).clamp(0.05, 1.0) };
         op.allowance = f.get_or("allowance", doc, op.allowance).max(0.0);
+        op.countersink = if k == OpType::Drill { f.get_or("countersink", doc, op.countersink).max(0.0) } else { 0.0 };
         op.thread_pitch = if k == OpType::Bore { f.get_or("threadPitch", doc, op.thread_pitch).max(0.0) } else { 0.0 };
         op.peck = if self.peck { f.get_or("peck", doc, op.peck).max(0.0) } else { 0.0 };
         let v_like = k == OpType::VCarve || k == OpType::Inlay;
@@ -753,17 +770,36 @@ impl OpDialog {
                         ui.label("Clearing bit").tip("A larger end mill clears most of the pocket first; the bit above then cuts only the corners and narrow parts it couldn't reach. Two files, one per bit: run the clearing bit's first.");
                         tool_combo(ui, "pocket-clear", &mut self.op.clear_tool, &doc.tools, Some("None (the bit above does it all)"), 300.0);
                         ui.end_row();
-                        ui.label("Clearing").tip("Rings follow the pocket's outline inward. Rows go back and forth across it, then once round the walls: quicker on big open pockets.");
+                        ui.label("Clearing").tip("Rings follow the pocket's outline inward. Rows go back and forth across it, then once round the walls: quicker on big open pockets. Adaptive keeps the bit's sideways load the same everywhere (no spikes in corners and narrow necks), so it can cut deep and fast and the bit lasts: it starts with a helix and works outward.");
+                        let mut mode: i32 = if self.op.adaptive { 2 } else { i32::from(self.op.raster) };
                         ui.horizontal(|ui| {
-                            combo(ui, "clearing", &mut self.op.raster, &[(false, "Rings (offset)"), (true, "Rows (raster)")], 160.0);
+                            let before = mode;
+                            combo(ui, "clearing", &mut mode, &[(0, "Rings (offset)"), (1, "Rows (raster)"), (2, "Adaptive (constant load)")], 190.0);
+                            if mode != before {
+                                (self.op.raster, self.op.adaptive) = (mode == 1, mode == 2);
+                                if mode == 2 && self.stepover_pct > 30 {
+                                    self.stepover_pct = 12; // a rings-sized stepover would be a heavy cut here
+                                }
+                            }
                             if self.op.raster {
                                 ui.label("at");
                                 ui.add(egui::DragValue::new(&mut self.op.raster_angle).range(0..=179).suffix("°"));
                             }
                         });
                         ui.end_row();
-                        ui.label("Stepover (%)");
-                        ui.add(crate::widgets::SpinBox::new(&mut self.stepover_pct, 5..=100).step(5.0));
+                        if self.op.adaptive {
+                            ui.label("Load (% of bit)").tip("How wide each cut is, as a share of the bit's diameter, kept the same everywhere. 10–15 % is typical in wood: deep cuts (a stepdown of one bit diameter or more) at a good feed. Larger = faster but heavier.");
+                            ui.horizontal(|ui| {
+                                ui.add(crate::widgets::SpinBox::new(&mut self.stepover_pct, 3..=50));
+                                hint(ui, "end mills only; a V-bit or ball nose cuts rings");
+                            });
+                            ui.end_row();
+                            ui.label("");
+                            ui.checkbox(&mut self.op.feed_boost, "Feed up for the thin cut").tip("Chip thinning: a thin cut leaves a thinner chip, so the feed can rise up to 1.5× (within the machine's limit). Off = the bit's own feed.");
+                        } else {
+                            ui.label("Stepover (%)");
+                            ui.add(crate::widgets::SpinBox::new(&mut self.stepover_pct, 5..=100).step(5.0));
+                        }
                         ui.end_row();
                         ui.label(unit_label("Pocket allowance", doc));
                         ui.horizontal(|ui| {
@@ -844,6 +880,12 @@ impl OpDialog {
                         ui.add_enabled(self.peck, egui::Label::new(unit_label("Peck depth", doc)));
                         let peck = self.peck;
                         ui.add_enabled_ui(peck, |ui| self.f.ui(ui, "peck", doc));
+                        ui.end_row();
+                        ui.label(unit_label("Countersink width", doc));
+                        ui.horizontal(|ui| {
+                            self.f.ui(ui, "countersink", doc);
+                            hint(ui, "0 = plain hole. With a V-bit: the width of the cone at the surface; the depth follows from the bit's angle");
+                        });
                         ui.end_row();
                     }
                     if is_profile {

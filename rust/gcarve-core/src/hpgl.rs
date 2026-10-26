@@ -95,6 +95,7 @@ pub fn import_hpgl(text: &str) -> ImportResult {
             b"AA" | b"AR" => {
                 // arc round a centre from the pen, `sweep` degrees (positive = anticlockwise); drawn when the pen is down
                 if let [cx, cy, sweep, ..] = nums[..] {
+                    let sweep = if sweep.is_finite() { sweep.clamp(-360.0, 360.0) } else { 0.0 }; // a damaged file's 1e14° hung the import
                     let c = if &cmd == b"AR" { pt(at.x + to_in(cx), at.y + to_in(cy)) } else { pt(to_in(cx), to_in(cy)) };
                     let (rad, a0) = ((at.x - c.x).hypot(at.y - c.y), (at.y - c.y).atan2(at.x - c.x));
                     let steps = ((sweep.abs() / 5.0).ceil() as usize).max(1);

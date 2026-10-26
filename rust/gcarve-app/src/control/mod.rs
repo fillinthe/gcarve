@@ -102,7 +102,9 @@ fn web_queue() -> Vec<(String, String)> {
 pub fn send(doc: &Document, gen: Option<&Generated>, project: &str) -> String {
     let Some(gen) = gen.filter(|g| g.paths.iter().any(|p| !p.is_empty())) else { return "Nothing to send: add a toolpath first.".into() };
     let ts = chrono::Local::now().format("%I:%M %p, %A %B %-d %Y").to_string();
-    let post = gcarve_core::find_post("grbl-in").expect("grbl-in post").clone();
+    let mut post = gcarve_core::find_post("grbl-in").expect("grbl-in post").clone();
+    // one file for the whole job: Control stops at each M6 for a manual bit change (grbl itself refuses M6)
+    post.tool_change = "({TOOLNAME})\nM5\nG0 Z{SAFEZ}\nT{TOOLNUM} M6\nM3 S{RPM}\nG4 P2\n".into();
     let r = pipeline::export(doc, gen, project, &ts, 0.0, &post);
     let n = r.files.len();
     #[cfg(not(target_arch = "wasm32"))]

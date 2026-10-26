@@ -75,6 +75,8 @@ impl<'o> Dialog<'o> {
     pub fn show<R>(self, ctx: &egui::Context, add: impl FnOnce(&mut Ui) -> R) -> R {
         let Dialog { title, id, open, modeless, width, close, flush } = self;
         let closed = std::cell::Cell::new(false);
+        // a dialog that can be closed always shows a × in its title bar (a modeless one has no Esc and maybe no footer)
+        let closable = open.is_some();
         let frame = egui::Frame::new().fill(PANEL).corner_radius(10).stroke(Stroke::new(1.0, BORDER_STRONG)).shadow(ctx.global_style().visuals.window_shadow);
         let title2 = title.clone();
         let body = |ui: &mut Ui| {
@@ -111,6 +113,21 @@ impl<'o> Dialog<'o> {
                 let w = ui.min_rect().width();
                 let g = ui.painter().layout_no_wrap(title2, bold(FONT_SIZE + 3.0), TEXT);
                 ui.painter().galley(pos2(top.x + 20.0, top.y + 23.0 - g.size().y / 2.0), g, TEXT);
+                if closable {
+                    let x = Rect::from_center_size(pos2(top.x + w - 25.0, top.y + 23.0), vec2(28.0, 28.0));
+                    let resp = ui.interact(x, id.with("close×"), Sense::click()).on_hover_text("Close");
+                    if resp.hovered() {
+                        ui.painter().rect_filled(x, 6.0, RAISED);
+                    }
+                    let (c, r) = (x.center(), 5.0);
+                    let col = if resp.hovered() { TEXT } else { TEXT_DIM };
+                    for d in [vec2(r, r), vec2(r, -r)] {
+                        ui.painter().line_segment([c - d, c + d], Stroke::new(1.6, col));
+                    }
+                    if resp.clicked() {
+                        closed.set(true);
+                    }
+                }
                 ui.painter().rect_filled(Rect::from_min_size(pos2(top.x + 1.0, top.y + 45.0), vec2(w - 2.0, 1.0)), 0.0, BORDER);
                 r.inner
             })
@@ -241,11 +258,13 @@ pub struct Button {
     flat: bool,
     min_width: f32,
     icon: Option<(&'static str, bool)>,
+    /// a colour of its own: (colour, solid). Outlined = a tint and a border in it; solid = filled with it
+    tone: Option<(Color32, bool)>,
 }
 
 impl Button {
     pub fn new(text: impl Into<String>) -> Self {
-        Button { text: text.into(), primary: false, flat: false, min_width: 0.0, icon: None }
+        Button { text: text.into(), primary: false, flat: false, min_width: 0.0, icon: None, tone: None }
     }
     /// app/icons glyph before the text (`after`: behind it), in the text colour: arrows the web fonts lack (⇤ ⤒ ⇄)
     pub fn icon(mut self, name: &'static str, after: bool) -> Self {
@@ -260,6 +279,11 @@ impl Button {
         self.flat = true;
         self
     }
+    /// a colour of its own (GBurn: amber outline = moves the machine, solid = fires the laser or stops it)
+    pub fn tone(mut self, colour: Color32, solid: bool) -> Self {
+        self.tone = Some((colour, solid));
+        self
+    }
     pub fn min_width(mut self, w: f32) -> Self {
         self.min_width = w;
         self
@@ -269,8 +293,10 @@ impl Button {
 impl Widget for Button {
     fn ui(self, ui: &mut Ui) -> Response {
         let g = galley(ui, &self.text, font(FONT_SIZE));
-        let iw = if self.icon.is_some() { 14.0 + 5.0 } else { 0.0 };
-        let (rect, resp) = ui.allocate_exact_size(vec2((g.size().x + iw + 28.0).max(self.min_width), CONTROL_HEIGHT), Sense::click());
+        // an icon alone: just the icon with narrow sides (fits a 36 px cell), no gap for text
+        let iw = if self.icon.is_some() { 14.0 + if self.text.is_empty() { 0.0 } else { 5.0 } } else { 0.0 };
+        let pad = if self.text.is_empty() && self.icon.is_some() { 14.0 } else { 28.0 };
+        let (rect, resp) = ui.allocate_exact_size(vec2((g.size().x + iw + pad).max(self.min_width), CONTROL_HEIGHT), Sense::click());
         let on = ui.is_enabled();
         let (hov, down) = (resp.hovered() && on, resp.is_pointer_button_down_on() && on);
         let fill = if !on {
@@ -286,10 +312,23 @@ impl Widget for Button {
         } else {
             RAISED
         };
-        let border = if self.flat && !hov { Stroke::NONE } else { Stroke::new(1.0, if resp.has_focus() { ACCENT } else if self.primary { ACCENT_HOVER } else { BORDER }) };
+        let mut border = if self.flat && !hov { Stroke::NONE } else { Stroke::new(1.0, if resp.has_focus() { ACCENT } else if self.primary { ACCENT_HOVER } else { BORDER }) };
+        let mut fill = fill;
+        let mut col = if !on { TEXT_DISABLED } else if self.primary { Color32::WHITE } else { TEXT };
+        if let (Some((c, solid)), true) = (self.tone, on) {
+            let k = if down { 0.75 } else if hov { 0.9 } else { 1.0 };
+            if solid {
+                fill = Color32::from_rgb((c.r() as f32 * k) as u8, (c.g() as f32 * k) as u8, (c.b() as f32 * k) as u8);
+                border = Stroke::new(1.0, fill);
+                col = if c.r() as u32 + c.g() as u32 + c.b() as u32 > 480 { Color32::from_gray(24) } else { Color32::WHITE };
+            } else {
+                fill = c.gamma_multiply(if down { 0.38 } else if hov { 0.28 } else { 0.16 });
+                border = Stroke::new(1.0, c.gamma_multiply(0.85));
+                col = c;
+            }
+        }
         let p = ui.painter();
         p.rect(rect, RADIUS, fill, border, StrokeKind::Inside);
-        let col = if !on { TEXT_DISABLED } else if self.primary { Color32::WHITE } else { TEXT };
         let left = rect.center().x - (g.size().x + iw) / 2.0;
         let text_x = match self.icon {
             Some((name, after)) => {
@@ -346,7 +385,8 @@ pub struct Combo {
 }
 
 pub fn combo_box(id: impl std::hash::Hash + std::fmt::Debug) -> Combo {
-    Combo { inner: egui::ComboBox::from_id_salt(id).height(320.0).icon(|ui, rect, _v, _open| chevron(ui.painter(), rect, if ui.is_enabled() { TEXT_DIM } else { TEXT_DISABLED })), width: 100.0 }
+    // a long choice (another language) is cut short in the closed box instead of widening it
+    Combo { inner: egui::ComboBox::from_id_salt(id).height(320.0).truncate().icon(|ui, rect, _v, _open| chevron(ui.painter(), rect, if ui.is_enabled() { TEXT_DIM } else { TEXT_DISABLED })), width: 100.0 }
 }
 
 impl Combo {
@@ -423,8 +463,10 @@ pub fn checkbox(ui: &mut Ui, on: &mut bool, label: impl Into<WidgetText>) -> Res
 
 /// style/Switch.qml: 36×20 pill with a 16 px knob, label after it
 pub fn switch(ui: &mut Ui, on: &mut bool, label: &str) -> Response {
-    let g = galley(ui, label, font(FONT_SIZE));
-    let (rect, mut resp) = ui.allocate_exact_size(vec2(36.0 + 8.0 + g.size().x + 8.0, 22.0), Sense::click());
+    // a long label (another language, a narrow panel) wraps under itself instead of widening the row
+    let room = (ui.available_width() - 52.0).max(60.0);
+    let g = ui.painter().layout(label.to_owned(), font(FONT_SIZE), TEXT, room);
+    let (rect, mut resp) = ui.allocate_exact_size(vec2(36.0 + 8.0 + g.size().x + 8.0, (g.size().y + 4.0).max(22.0)), Sense::click());
     if resp.clicked() {
         *on = !*on;
         resp.mark_changed();
@@ -494,10 +536,13 @@ impl<'a, N: egui::emath::Numeric> SpinBox<'a, N> {
 impl<N: egui::emath::Numeric> Widget for SpinBox<'_, N> {
     fn ui(self, ui: &mut Ui) -> Response {
         let enabled = ui.is_enabled();
-        let (rect, mut resp) = ui.allocate_exact_size(vec2(self.width, CONTROL_HEIGHT), Sense::hover());
+        let fmt = |v: f64| format!("{v:.*}", self.decimals);
+        // never narrower than the value it shows needs beside the − + buttons (64 px of padding and buttons)
+        let widest: String = format!("{:>2}", fmt(self.v.to_f64())).chars().take(10).collect();
+        let need = 64.0 + ui.painter().layout_no_wrap(widest, font(FONT_SIZE), TEXT).size().x + 8.0;
+        let (rect, mut resp) = ui.allocate_exact_size(vec2(self.width.max(need), CONTROL_HEIGHT), Sense::hover());
         let id = resp.id;
         let p = ui.painter().clone();
-        let fmt = |v: f64| format!("{v:.*}", self.decimals);
         let edit_id = id.with("edit");
         let focused = ui.memory(|m| m.has_focus(edit_id));
         p.rect(rect, RADIUS, if enabled { FIELD } else { BG }, Stroke::new(1.0, if focused { ACCENT } else { BORDER }), StrokeKind::Inside);

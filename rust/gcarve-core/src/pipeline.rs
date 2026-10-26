@@ -368,20 +368,23 @@ pub fn export(doc: &Document, gen: &Generated, project: &str, timestamp: &str, a
     export_tiled(doc, gen, project, timestamp, air_cut_raise, post, None)
 }
 
+/// Height (inches above the board top) clamps and screw heads are taken to reach when the layer gives none, for the holder check.
+const CLAMP_TOP: f64 = 1.0;
+
 /// Toolpaths that come down near a clamp, screw or other no-go area (closed shapes of the active sheet on a layer
 /// marked Keep out): any move below safe Z that passes within the bit's radius of one. Sampled every 0.05 in.
 pub fn keep_out_issues(doc: &Document, tools: &[Tool], paths: &[Vec<Toolpath>]) -> Vec<String> {
     use crate::geom::{dist_to_segment, flatten, point_in_poly, pt, Pt, Rect};
-    let zones: Vec<(Vec<Pt>, Rect, &str)> = doc
+    let zones: Vec<(Vec<Pt>, Rect, &str, f64)> = doc
         .shapes
         .iter()
         .filter(|s| s.sheet == doc.active_sheet && s.c.closed)
-        .filter_map(|s| doc.layers.get(s.layer as usize).filter(|l| l.keep_out).map(|l| (s, l.name.as_str())))
-        .map(|(s, name)| {
+        .filter_map(|s| doc.layers.get(s.layer as usize).filter(|l| l.keep_out).map(|l| (s, l.name.as_str(), if l.clamp_height > 0.0 { l.clamp_height } else { CLAMP_TOP })))
+        .map(|(s, name, top)| {
             let p = flatten(&s.c, 0.01);
             let mut r = Rect::default();
             p.iter().for_each(|q| r.add(*q));
-            (p, r, name)
+            (p, r, name, top)
         })
         .collect();
     let mut out: Vec<String> = Vec::new();
@@ -393,9 +396,12 @@ pub fn keep_out_issues(doc: &Document, tools: &[Tool], paths: &[Vec<Toolpath>]) 
         for tp in gen {
             let ti = if tp.tool >= 0 { tp.tool } else { op.tool };
             let Some(t) = usize::try_from(ti).ok().and_then(|i| tools.get(i)) else { continue };
-            let r = t.diameter / 2.0;
-            let hit = |q: Pt| {
-                zones.iter().find(|(poly, b, _)| {
+            // the holder is wider than the bit: from where it comes down to clamp height its radius counts
+            let (r_bit, r_holder) = (t.diameter / 2.0, t.holder_dia.max(t.diameter) / 2.0);
+            // the holder counts inside a zone when its clamps reach above the tip + stick-out
+            let hit = |q: Pt, tip: f64| {
+                zones.iter().find(|(poly, b, _, top)| {
+                    let r = if t.stick_out > 0.0 && tip + t.stick_out < *top { r_holder } else { r_bit };
                     q.x >= b.x0 - r && q.x <= b.x1 + r && q.y >= b.y0 - r && q.y <= b.y1 + r
                         && (point_in_poly(q, poly.len(), |i| (poly[i].x, poly[i].y)) || (0..poly.len()).any(|i| dist_to_segment(q, poly[i], poly[(i + 1) % poly.len()]) < r))
                 })
@@ -406,14 +412,14 @@ pub fn keep_out_issues(doc: &Document, tools: &[Tool], paths: &[Vec<Toolpath>]) 
                 let (nx, ny, nz) = (mv.x.unwrap_or(x), mv.y.unwrap_or(y), mv.z.unwrap_or(z));
                 if z.min(nz) < low {
                     let n = ((nx - x).hypot(ny - y) / 0.05).ceil().max(1.0) as usize;
-                    found = (0..=n).find_map(|k| hit(pt(x + (nx - x) * k as f64 / n as f64, y + (ny - y) * k as f64 / n as f64)));
+                    found = (0..=n).find_map(|k| hit(pt(x + (nx - x) * k as f64 / n as f64, y + (ny - y) * k as f64 / n as f64), z.min(nz)));
                 }
                 (x, y, z) = (nx, ny, nz);
                 if found.is_some() {
                     break;
                 }
             }
-            if let Some((_, _, name)) = found {
+            if let Some((_, _, name, _)) = found {
                 let s = format!("{} ({}): comes down inside a keep-out area (layer \"{name}\"): clamp or screw in the way.", tp.name, t.name);
                 if !out.contains(&s) {
                     out.push(s);

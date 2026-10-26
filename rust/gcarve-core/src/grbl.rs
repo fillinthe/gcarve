@@ -16,11 +16,16 @@ pub const FEED_100: u8 = 0x90;
 pub const FEED_PLUS_10: u8 = 0x91;
 pub const FEED_MINUS_10: u8 = 0x92;
 /// spindle (laser power) overrides
+pub const RAPID_100: u8 = 0x95;
+pub const RAPID_50: u8 = 0x96;
+pub const RAPID_25: u8 = 0x97;
 pub const SPINDLE_100: u8 = 0x99;
 pub const SPINDLE_PLUS_10: u8 = 0x9A;
 pub const SPINDLE_MINUS_10: u8 = 0x9B;
 /// controller serial RX buffer (character-counting protocol)
 pub const RX_BUFFER: usize = 128;
+/// `GrblStreamer::in_flight` marker for a line that is not the program's
+const FOREIGN: usize = usize::MAX;
 
 const fn v3(x: f64, y: f64, z: f64) -> Vec3 {
     Vec3 { x, y, z }
@@ -61,6 +66,8 @@ pub struct MachineStatus {
     pub feed: f64,
     pub rpm: f64,
     pub feed_ov: i32,
+    /// rapid override, % (100 / 50 / 25)
+    pub rapid_ov: i32,
     /// spindle / laser power override, %
     pub spindle_ov: i32,
     pub valid: bool,
@@ -68,7 +75,7 @@ pub struct MachineStatus {
 
 impl Default for MachineStatus {
     fn default() -> Self {
-        MachineStatus { state: "Unknown".into(), mpos: Vec3::default(), wco: Vec3::default(), feed: 0.0, rpm: 0.0, feed_ov: 100, spindle_ov: 100, valid: false }
+        MachineStatus { state: "Unknown".into(), mpos: Vec3::default(), wco: Vec3::default(), feed: 0.0, rpm: 0.0, feed_ov: 100, rapid_ov: 100, spindle_ov: 100, valid: false }
     }
 }
 
@@ -99,6 +106,9 @@ pub fn parse_status(line: &str, st: &mut MachineStatus) -> bool {
             "F" if !v.is_empty() => st.feed = v[0],
             "Ov" if !v.is_empty() => {
                 st.feed_ov = v[0] as i32;
+                if v.len() >= 2 {
+                    st.rapid_ov = v[1] as i32;
+                }
                 if v.len() >= 3 {
                     st.spindle_ov = v[2] as i32;
                 }
@@ -121,6 +131,27 @@ pub fn parse_setting(line: &str) -> Option<(i32, f64)> {
 }
 
 /// Strips comments/whitespace, uppercases; "" for nothing to send.
+/// the text of a line's first comment, "(…)" or "; …"
+fn comment_of(raw: &str) -> Option<String> {
+    let t = if let Some(a) = raw.find('(') { raw[a + 1..].split(')').next() } else { raw.find(';').map(|a| &raw[a + 1..]) }?;
+    Some(t.trim().to_string()).filter(|t| !t.is_empty())
+}
+
+/// the digits after a word letter in a cleaned line ("T2M6" → "2"), not inside another word's number
+fn word(clean: &str, letter: char) -> Option<String> {
+    let k = clean.find(letter)?;
+    let d: String = clean[k + 1..].chars().take_while(char::is_ascii_digit).collect();
+    Some(d).filter(|d| !d.is_empty())
+}
+
+/// M6 / M06 (not M60…) in a cleaned line
+pub fn is_tool_change(clean: &str) -> bool {
+    clean.match_indices('M').any(|(k, _)| {
+        let d: String = clean[k + 1..].chars().take_while(char::is_ascii_digit).collect();
+        d.parse::<u32>() == Ok(6)
+    })
+}
+
 pub fn clean_line(raw: &str) -> String {
     let mut out = String::new();
     let mut paren = 0;
@@ -313,10 +344,12 @@ impl GrblSim {
         self.gs.spindle_on = false;
         self.gs.motion = 0;
         self.gs.absolute = true;
-        self.gs.inches = true;
+        self.gs.inches = false; // like a real controller: millimetres after a reset (G21)
         self.gs.program_end = false;
         self.gs.pos = self.st.wpos();
         self.st.feed_ov = 100;
+        self.st.rapid_ov = 100;
+        self.st.spindle_ov = 100;
         self.alarm = alarm;
         self.st.state = if alarm { "Alarm" } else { "Idle" }.into();
         self.out += "\r\nGrbl 1.1f ['$' for help]\r\n";
@@ -345,7 +378,7 @@ impl GrblSim {
             None if self.gs.spindle_on => self.gs.rpm,
             None => 0.0,
         };
-        self.out += &format!("<{}|MPos:{}|FS:{feed:.0},{rpm:.0}|WCO:{}|Ov:{},100,{}>\r\n", self.st.state, fmt3(self.st.mpos), fmt3(self.st.wco), self.st.feed_ov, self.st.spindle_ov);
+        self.out += &format!("<{}|MPos:{}|FS:{feed:.0},{rpm:.0}|WCO:{}|Ov:{},{},{}>\r\n", self.st.state, fmt3(self.st.mpos), fmt3(self.st.wco), self.st.feed_ov, self.st.rapid_ov, self.st.spindle_ov);
     }
 
     /// from the host
@@ -388,6 +421,9 @@ impl GrblSim {
                 FEED_100 => self.st.feed_ov = 100,
                 FEED_PLUS_10 => self.st.feed_ov = (self.st.feed_ov + 10).min(200),
                 FEED_MINUS_10 => self.st.feed_ov = (self.st.feed_ov - 10).max(10),
+                RAPID_100 => self.st.rapid_ov = 100,
+                RAPID_50 => self.st.rapid_ov = 50,
+                RAPID_25 => self.st.rapid_ov = 25,
                 SPINDLE_100 => self.st.spindle_ov = 100,
                 SPINDLE_PLUS_10 => self.st.spindle_ov = (self.st.spindle_ov + 10).min(200),
                 SPINDLE_MINUS_10 => self.st.spindle_ov = (self.st.spindle_ov - 10).max(10),
@@ -637,7 +673,9 @@ impl GrblSim {
         while seconds > 1e-9 && !self.queue.is_empty() {
             let s = self.queue[0];
             let len = len3(s.a, s.b);
-            let ipm = s.ipm * if self.jogging || self.homing { 1.0 } else { f64::from(self.st.feed_ov) / 100.0 };
+            // rapids run at the rapid limit: the rapid override scales those, the feed override the cuts
+            let ov = if self.jogging || self.homing { 100 } else if s.ipm >= self.cfg.rapid_ipm - 1e-6 { self.st.rapid_ov } else { self.st.feed_ov };
+            let ipm = s.ipm * f64::from(ov) / 100.0;
             let can = ipm / 60.0 * seconds;
             let left = len - self.seg_done;
             if can >= left {
@@ -679,6 +717,11 @@ impl GrblSim {
 pub struct GrblStreamer {
     lines: Vec<String>,
     src: Vec<i32>,
+    /// tool changes (M6): (index of the first line after it, what to put in); sending stops there until `next_tool`
+    stops: Vec<(usize, String)>,
+    /// lengths of the operator's own lines (jog, probe, MDI) still waiting for their "ok": they share the controller's
+    /// buffer and reply in order with the program's lines (`in_flight` holds FOREIGN for them)
+    foreign: VecDeque<usize>,
     in_flight: VecDeque<usize>,
     next: usize,
     acked: usize,
@@ -689,20 +732,69 @@ pub struct GrblStreamer {
 
 impl GrblStreamer {
     /// comments/blank lines are dropped before sending
+    /// An M6 line is never sent (grbl 1.1 refuses it, error:20): the stream stops there for a manual change.
     pub fn load<S: AsRef<str>>(&mut self, lines: &[S]) {
+        // the operator's lines still on their way keep their place: their "ok" must not count as a program line's
+        let (keep, kept) = (std::mem::take(&mut self.foreign), self.in_flight.iter().filter(|&&i| i == FOREIGN).count());
         *self = GrblStreamer::default();
+        self.foreign = keep;
+        self.in_flight.extend(std::iter::repeat_n(FOREIGN, kept));
+        self.buf_used = self.foreign.iter().sum();
+        let (mut tool, mut note) = (String::new(), String::new());
         for (i, l) in lines.iter().enumerate() {
-            let c = clean_line(l.as_ref());
+            let raw = l.as_ref();
+            if let Some(n) = comment_of(raw) {
+                note = n; // the post names the bit in a comment just before the change
+            }
+            let c = clean_line(raw);
+            if let Some(t) = word(&c, 'T') {
+                tool = t;
+            }
+            if is_tool_change(&c) {
+                let what = match (tool.is_empty(), note.is_empty()) {
+                    (false, false) => format!("T{tool}: {note}"),
+                    (false, true) => format!("T{tool}"),
+                    (true, false) => note.clone(),
+                    _ => "the next bit".into(),
+                };
+                self.stops.push((self.lines.len(), what));
+                continue;
+            }
             if !c.is_empty() {
                 self.lines.push(c);
                 self.src.push(i as i32 + 1);
             }
         }
     }
+    /// free bytes in the controller's input buffer, by our count
+    pub fn room(&self) -> usize {
+        (RX_BUFFER - 1).saturating_sub(self.buf_used)
+    }
+    /// One of our own lines (not the program's) written to the controller: it takes buffer room and gets one reply.
+    pub fn foreign_line(&mut self, len_with_newline: usize) {
+        self.foreign.push_back(len_with_newline);
+        self.buf_used += len_with_newline;
+        self.in_flight.push_back(FOREIGN);
+    }
+    /// the bit to put in when sending has reached a tool change and everything before it is done
+    pub fn tool_wait(&self) -> Option<&str> {
+        self.stops.first().filter(|(at, _)| self.next == *at && self.acked == *at && !self.lines.is_empty()).map(|(_, w)| w.as_str())
+    }
+    /// the bit is in: send on to the next change
+    pub fn next_tool(&mut self) {
+        if self.tool_wait().is_some() {
+            self.stops.remove(0);
+            self.running = self.next < self.lines.len();
+        }
+    }
+    /// tool changes still ahead
+    pub fn tool_changes_left(&self) -> usize {
+        self.stops.len()
+    }
     /// bytes to write now (may be empty)
     pub fn next_chunk(&mut self) -> String {
         let mut out = String::new();
-        while self.running && self.next < self.lines.len() {
+        while self.running && self.next < self.lines.len() && self.stops.first().is_none_or(|(at, _)| self.next < *at) {
             let need = self.lines[self.next].len() + 1;
             if self.buf_used + need > RX_BUFFER - 1 {
                 break;
@@ -722,6 +814,11 @@ impl GrblStreamer {
             return false;
         }
         let Some(i) = self.in_flight.pop_front() else { return false };
+        if i == FOREIGN {
+            // the reply to one of our own lines: the program's count is untouched; an error is the caller's to show
+            self.buf_used -= self.foreign.pop_front().unwrap_or(0);
+            return !err;
+        }
         self.buf_used -= self.lines[i].len() + 1;
         self.acked += 1;
         if err {
@@ -736,6 +833,7 @@ impl GrblStreamer {
     /// forget queued lines (after a reset)
     pub fn stop(&mut self) {
         self.in_flight.clear();
+        self.foreign.clear();
         self.buf_used = 0;
         self.running = false;
     }
@@ -769,6 +867,30 @@ impl GrblStreamer {
     pub fn pause(&mut self) {
         self.running = false;
     }
+}
+
+/// Spoilboard surfacing (GCarve Control): a back-and-forth raster over `w` × `h` inches from the work zero (the bit's
+/// centre reaches every edge, so the whole area is flattened), `passes` × `depth` deep, rows `stepover` (0..1) of the
+/// bit apart. Inches, G20; ends lifted with the spindle off (the spindle rule for every program).
+#[allow(clippy::too_many_arguments)]
+pub fn surfacing_program(w: f64, h: f64, dia: f64, stepover: f64, depth: f64, passes: u32, feed: f64, rpm: f64) -> String {
+    let step = (dia * stepover.clamp(0.05, 0.95)).max(0.01);
+    let rows = ((h / step).ceil() as usize).clamp(1, 10_000); // ponytail: cap keeps a typo from making a huge file
+    let mut g = format!("(Spoilboard surfacing: {w:.3} x {h:.3} in, {dia:.3} in bit, {passes} x {depth:.4} in)\nG90 G20 G17 G94\nM3 S{rpm:.0}\nG4 P3\nG0 Z0.25\n");
+    for p in 1..=passes.clamp(1, 50) {
+        let z = -depth * f64::from(p);
+        g += &format!("G0 X0 Y0\nG1 Z{z:.4} F{:.1}\n", (feed / 3.0).max(1.0));
+        for r in 0..=rows {
+            let y = (h * r as f64 / rows as f64).min(h);
+            let x = if r % 2 == 0 { w } else { 0.0 };
+            if r > 0 {
+                g += &format!("G1 Y{y:.4} F{feed:.1}\n");
+            }
+            g += &format!("G1 X{x:.4} F{feed:.1}\n");
+        }
+        g += "G0 Z0.25\n";
+    }
+    g + "M5\nG0 Z0.5\nM30\n"
 }
 
 /// Resume a program at `line` (1-based, the first line to run). Replays the modal state of lines 1..line-1 and returns
@@ -1012,5 +1134,83 @@ mod tests {
         assert!(parse_status("<Idle|WPos:0,0,0>", &mut st) && near(st.mpos.x, 1.0));
         assert!(!parse_status("ok", &mut st));
         assert_eq!(clean_line(" g1 x1 (c) ; tail"), "G1X1");
+    }
+
+    #[test]
+    fn a_tool_change_stops_the_stream_until_the_bit_is_in() {
+        let prog = ["G90 G20", "(1/4 End Mill)", "T1 M6", "M3 S18000", "G1 X1 F50", "M5", "(1/8 Ball Nose)", "T2 M06", "M3 S16000", "G1 X2", "M5", "M30"];
+        let mut s = GrblStreamer::default();
+        s.load(&prog);
+        assert!(!s.lines.iter().any(|l| is_tool_change(l)), "M6 is never sent");
+        assert_eq!(s.tool_changes_left(), 2);
+        // the first change comes right after "G90 G20": that line goes, then the stream waits
+        s.start();
+        assert_eq!(s.next_chunk(), "G90G20\n");
+        assert!(s.tool_wait().is_none(), "not until the line before it is done");
+        s.on_response("ok");
+        assert_eq!(s.tool_wait(), Some("T1: 1/4 End Mill"));
+        assert_eq!(s.next_chunk(), "", "nothing more is sent while the bit is changed");
+        s.next_tool();
+        assert_eq!(s.next_chunk(), "M3S18000\nG1X1F50\nM5\n");
+        for _ in 0..3 {
+            s.on_response("ok");
+        }
+        assert_eq!(s.tool_wait(), Some("T2: 1/8 Ball Nose"));
+        s.next_tool();
+        assert!(s.next_chunk().starts_with("M3S16000"));
+        assert!(!is_tool_change("M60") && is_tool_change("T3M6") && !is_tool_change("G1X6"));
+    }
+
+    #[test]
+    fn the_rapid_override_slows_rapids_only() {
+        let travel = |ov: Option<u8>| {
+            let mut r = Rig::new();
+            r.send("$X");
+            if let Some(b) = ov {
+                r.sim.receive(&[b]);
+            }
+            r.send("G20 G90 G0 X10");
+            r.pump(0.3);
+            r.pump(0.0); // the status after the move
+            (r.ms.mpos.x, r.ms.rapid_ov)
+        };
+        let (fast, ov) = travel(None);
+        let (slow, ov25) = travel(Some(RAPID_25));
+        assert!(fast > 1.0 && slow < fast * 0.3 && ov == 100 && ov25 == 25, "{fast} {slow} {ov} {ov25}");
+    }
+
+    #[test]
+    fn surfacing_covers_the_area_in_passes_and_ends_with_the_spindle_off() {
+        let g = surfacing_program(20.0, 10.0, 1.0, 0.4, 0.02, 2, 120.0, 18000.0);
+        let p = parse_program(&g, 1000.0);
+        assert!(p.errors.is_empty() && p.spindle_off_at_end, "{:?}", p.errors);
+        assert!((p.min.x).abs() < 1e-9 && (p.max.x - 20.0).abs() < 1e-9 && (p.max.y - 10.0).abs() < 1e-9);
+        assert!((p.min.z + 0.04).abs() < 1e-9, "two passes of 0.02: {}", p.min.z);
+        // rows at most 40 % of the bit apart
+        let ys: Vec<f64> = p.motions.iter().filter(|m| m.kind != MoveType::Rapid && m.to.z < 0.0).map(|m| m.to.y).collect();
+        let mut rows: Vec<f64> = ys.clone();
+        rows.sort_by(f64::total_cmp);
+        rows.dedup_by(|a, b| (*a - *b).abs() < 1e-6);
+        assert!(rows.windows(2).all(|w| w[1] - w[0] <= 0.4 + 1e-9) && rows.len() >= 26, "{rows:?}");
+    }
+
+    #[test]
+    fn our_own_commands_never_count_as_program_lines() {
+        let mut s = GrblStreamer::default();
+        s.foreign_line("G20 G90\n".len()); // e.g. sent at Continue after a tool change, before the program goes on
+        s.load(&["G1 X1", "G1 X2"]);
+        s.start();
+        let room = s.room();
+        assert_eq!(s.next_chunk(), "G1X1\nG1X2\n");
+        assert!(s.room() < room);
+        assert!(s.on_response("ok"), "the ok for our own line");
+        assert_eq!(s.acked(), 0, "…is not the program's");
+        assert!(!s.done());
+        s.on_response("ok");
+        s.on_response("ok");
+        assert!(s.done() && s.room() == RX_BUFFER - 1, "every byte accounted for");
+        // an error on our own line is not a program error (the caller shows it)
+        s.foreign_line(4);
+        assert!(!s.on_response("error:20") && s.error().is_empty());
     }
 }

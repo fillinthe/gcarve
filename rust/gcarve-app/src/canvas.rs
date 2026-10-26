@@ -72,6 +72,7 @@ pub enum Request {
     Pins,
     /// Vectors › Rotary Layout…
     RotaryLayout,
+    BoxMaker,
     /// new text; true = along the selected curve
     Text(bool),
     EditText(i32),
@@ -399,9 +400,9 @@ impl Canvas {
         let mut rect = self.view_area(self.last_rect);
         rect.max.y -= self.bottom_inset;
         match b {
-            Some(b) if rect.width() > 0.0 && b.w() > 0.0 && b.h() > 0.0 => {
+            Some(b) if rect.width() > 0.0 && b.w() > 0.0 && b.h() > 0.0 && b.w().is_finite() && b.h().is_finite() => {
                 let m = if rect.width() < 500.0 { 24.0 } else { 80.0 }; // phones: every pixel counts
-                let zoom = (((rect.width() - m) as f64 / b.w()).min((rect.height() - m) as f64 / b.h())).max(1.0) as f32;
+                let zoom = (((rect.width() - m) as f64 / b.w()).min((rect.height() - m) as f64 / b.h())).clamp(1.0, MAX_ZOOM as f64) as f32;
                 let c = rect.center();
                 let mid = pt((b.x0 + b.x1) / 2.0, (b.y0 + b.y1) / 2.0);
                 self.view = Some(View { zoom, origin: c + egui::vec2(-(mid.x as f32) * zoom, mid.y as f32 * zoom) });
@@ -411,11 +412,14 @@ impl Canvas {
     }
 
     pub fn zoom_board(&mut self, rect: Rect) {
+        if !(self.doc.material.w > 0.0 && self.doc.material.h > 0.0) {
+            return self.zoom_fit(); // no board to fit (a size bound to 0): an infinite zoom broke the rulers
+        }
         let mut rect = self.view_area(rect);
         rect.max.y -= self.bottom_inset;
         let (w, h) = (self.doc.material.w, self.doc.material.h);
         let m = if rect.width() < 500.0 { 24.0 } else { 80.0 }; // Qt zoomBoard: 40 px margin (phones: 12)
-        let zoom = ((rect.width() - m) / w as f32).min((rect.height() - m) / h as f32).max(1.0);
+        let zoom = ((rect.width() - m) / w as f32).min((rect.height() - m) / h as f32).clamp(1.0, MAX_ZOOM);
         let origin = Pos2::new(rect.center().x - w as f32 * zoom / 2.0, rect.center().y + h as f32 * zoom / 2.0);
         self.view = Some(View { zoom, origin });
     }
@@ -617,17 +621,8 @@ impl Canvas {
         }
         let view = self.view.as_ref().unwrap();
         let k = 1.0 / self.doc.bare_unit_in; // display units per inch
-        let px_per_unit = view.zoom as f64 / k;
-        let mut step = 10f64.powf((70.0 / px_per_unit).log10().floor());
-        for f in [1.0, 2.0, 5.0, 10.0] {
-            if f * step * px_per_unit >= 70.0 {
-                step *= f;
-                break;
-            }
-        }
-        let sub: i64 = if step * px_per_unit / 10.0 >= 5.0 { 10 } else if step * px_per_unit / 5.0 >= 5.0 { 5 } else { 2 };
+        let Some((step, sub, dec)) = ruler_scale(view.zoom as f64 / k) else { return };
         let minor = step / sub as f64;
-        let dec = (-(step.log10() + 1e-9).floor()).max(0.0) as usize;
         let (bg, tick, text) = (c(0x2b2b2b), c(0x8a8a8a), c(0xb0b0b0));
         let top = Rect::from_min_max(rect.min, egui::pos2(rect.right(), rect.top() + r));
         let left = Rect::from_min_max(rect.min, egui::pos2(rect.left() + r, rect.bottom()));
@@ -1090,9 +1085,49 @@ fn split_at_reversals(mut pts: Vec<Pos2>, closed: bool) -> Result<Vec<Pos2>, Vec
     Err(pieces)
 }
 
+/// most pixels per inch a fit gives (a speck or a 0-size board made it infinite)
+const MAX_ZOOM: f32 = 1e6;
+
+/// ruler labels: (step, minor ticks per step, decimals) for 1 / 2 / 5 × 10^n labels at least 70 px apart;
+/// None when the scale is not a usable number (a decimals count from an infinite zoom crashed the web app)
+fn ruler_scale(px_per_unit: f64) -> Option<(f64, i64, usize)> {
+    if !(px_per_unit.is_finite() && px_per_unit > 0.0) {
+        return None;
+    }
+    let mut step = 10f64.powf((70.0 / px_per_unit).log10().floor());
+    for f in [1.0, 2.0, 5.0, 10.0] {
+        if f * step * px_per_unit >= 70.0 {
+            step *= f;
+            break;
+        }
+    }
+    if !(step.is_finite() && step > 0.0) {
+        return None;
+    }
+    let sub: i64 = if step * px_per_unit / 10.0 >= 5.0 { 10 } else if step * px_per_unit / 5.0 >= 5.0 { 5 } else { 2 };
+    Some((step, sub, ((-(step.log10() + 1e-9).floor()).max(0.0) as usize).min(9)))
+}
+
 #[cfg(test)]
 mod stroke_tests {
     use super::*;
+
+    #[test]
+    fn a_board_or_drawing_of_no_size_never_breaks_the_zoom_or_the_rulers() {
+        for z in [f64::INFINITY, 0.0, f64::NAN, -3.0] {
+            assert!(ruler_scale(z).is_none(), "{z}");
+        }
+        let (step, _, dec) = ruler_scale(1e12).unwrap();
+        assert!(step > 0.0 && dec <= 9);
+        assert_eq!(ruler_scale(20.0).map(|r| (r.0, r.2)), Some((5.0, 0)));
+        let mut c = Canvas::default();
+        c.doc.material.w = 0.0;
+        c.zoom_board(Rect::from_min_size(egui::Pos2::ZERO, egui::vec2(800.0, 600.0)));
+        assert!(c.view.as_ref().is_none_or(|v| v.zoom.is_finite() && v.zoom <= MAX_ZOOM));
+        c.doc.material.w = 1e-30;
+        c.zoom_board(Rect::from_min_size(egui::Pos2::ZERO, egui::vec2(800.0, 600.0)));
+        assert!(c.view.as_ref().is_some_and(|v| v.zoom <= MAX_ZOOM));
+    }
 
     #[test]
     fn delete_takes_back_the_last_polyline_point() {

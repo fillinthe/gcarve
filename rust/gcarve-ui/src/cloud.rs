@@ -166,6 +166,8 @@ pub struct Cloud {
     pub projects: Vec<ProjectInfo>,
     pub error: String,
     pub busy: u32,
+    /// bumped whenever who is signed in changes: a 401 to a request sent before that is stale, not "your sign-in expired"
+    auth_gen: std::sync::Arc<std::sync::atomic::AtomicU64>,
     /// the last sign-in needs the authenticator code (two-step sign-in)
     pub need_code: bool,
     pub checked: bool,
@@ -205,7 +207,7 @@ impl Cloud {
         let base = web_sys::window().and_then(|w| w.location().origin().ok()).unwrap_or_default();
         #[cfg(not(target_arch = "wasm32"))]
         let base = std::env::var("GCARVE_CLOUD_URL").unwrap_or_else(|_| "https://gcarve.app".into());
-        let mut c = Cloud { base, user: None, ent: Entitlements::default(), projects: Vec::new(), error: String::new(), busy: 0, need_code: false, checked: false, require_signin: false, expired: false, storage: None, docs: "projects", device: None, token: String::new(), tx, rx };
+        let mut c = Cloud { base, user: None, ent: Entitlements::default(), projects: Vec::new(), error: String::new(), busy: 0, auth_gen: Default::default(), need_code: false, checked: false, require_signin: false, expired: false, storage: None, docs: "projects", device: None, token: String::new(), tx, rx };
         c.token = c.load_token();
         c
     }
@@ -253,6 +255,11 @@ impl Cloud {
             } else if let Some(dir) = p.parent() {
                 let _ = std::fs::create_dir_all(dir);
                 let _ = std::fs::write(&p, &self.token);
+                #[cfg(unix)]
+                {
+                    use std::os::unix::fs::PermissionsExt;
+                    let _ = std::fs::set_permissions(&p, std::fs::Permissions::from_mode(0o600)); // a sign-in, not for other users
+                }
             }
         }
     }
@@ -276,9 +283,12 @@ impl Cloud {
         let tx = self.tx.clone();
         let ctx = ctx.clone();
         let auth = path.starts_with("/api/auth/");
+        let (gen, sent_at) = (self.auth_gen.clone(), self.auth_gen.load(std::sync::atomic::Ordering::Relaxed));
         ehttp::fetch(req, move |r| {
             let reply = match r {
-                Ok(resp) if resp.status == 401 && !auth => Reply::Expired, // the sign-in timed out (idle) or was ended elsewhere
+                // the sign-in timed out (idle) or was ended elsewhere; unless someone signed in since this was sent
+                Ok(resp) if resp.status == 401 && !auth && gen.load(std::sync::atomic::Ordering::Relaxed) == sent_at => Reply::Expired,
+                Ok(resp) if resp.status == 401 && !auth => Reply::Error(String::new()),
                 Ok(resp) => on(resp.status, resp.text().unwrap_or("")),
                 Err(e) => Reply::Error(format!("Can't reach {} right now ({e}). Check the connection; your drawing is safe on this computer.", crate::store::app())),
             };
@@ -542,6 +552,9 @@ impl Cloud {
     /// error log (admin overview, 30 days), with a short category and the wording shown, never file names or
     /// content: callers pass messages through `scrub`. Web always; desktop only when signed in.
     pub fn report(&self, kind: &str, message: &str) {
+        if kind != "crash" {
+            crate::help::note_problem(message); // the status bar offers "Report this" for it
+        }
         if !Self::web() && self.user.is_none() {
             return;
         }
@@ -622,7 +635,7 @@ impl Cloud {
                 ctx3.request_repaint();
             });
         });
-        self.busy = self.busy.saturating_sub(1);
+        // busy goes back down when its one reply is polled
     }
 
     /// Drain replies; returns opened/saved events for the app to act on.
@@ -655,6 +668,9 @@ impl Cloud {
                     self.error = e;
                 }
                 Reply::Auth(a) => {
+                    if a.user.is_some() {
+                        self.auth_gen.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+                    }
                     self.checked = true;
                     self.need_code = a.two_factor;
                     if a.confirm {
@@ -686,11 +702,13 @@ impl Cloud {
                     }
                 }
                 Reply::Expired => {
+                    self.auth_gen.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
                     self.expired = self.user.take().is_some() || self.expired;
                     self.token.clear();
                     self.store_token();
                 }
                 Reply::SignedOut => {
+                    self.auth_gen.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
                     crate::store::save(VERIFIED_KEY, "");
                     self.user = None;
                     self.projects.clear();

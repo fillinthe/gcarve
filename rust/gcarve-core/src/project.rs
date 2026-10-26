@@ -140,6 +140,12 @@ pub fn tool_to_json(t: &Tool) -> Value {
     if !t.form.is_empty() {
         o.as_object_mut().unwrap().insert("form".into(), json!(t.form));
     }
+    if t.stick_out > 0.0 {
+        o.as_object_mut().unwrap().insert("stickOut".into(), json!(t.stick_out));
+    }
+    if t.holder_dia > 0.0 {
+        o.as_object_mut().unwrap().insert("holderDia".into(), json!(t.holder_dia));
+    }
     if t.cut_length > 0.0 {
         o.as_object_mut().unwrap().insert("cutLength".into(), json!(t.cut_length));
     }
@@ -169,6 +175,8 @@ pub fn tool_from_json(o: &Value) -> Tool {
     t.slot = int(o, "slot", 0).max(0);
     t.radius = num(o, "radius", 0.0).max(0.0);
     t.cut_length = num(o, "cutLength", 0.0).max(0.0);
+    t.stick_out = num(o, "stickOut", 0.0).max(0.0);
+    t.holder_dia = num(o, "holderDia", 0.0).max(0.0);
     t.group = s(o, "group", "").trim().to_string();
     t.form = arr(get(o, "form")).iter().filter_map(|p| Some([p.get(0)?.as_f64()?, p.get(1)?.as_f64()?])).collect();
     if let Some(m) = get(o, "chipLoads").as_object() {
@@ -301,6 +309,12 @@ pub(crate) fn op_json(op: &Op, tools: &[Tool]) -> Value {
     if op.raster {
         m.insert("raster".into(), json!(true));
     }
+    if op.feed_boost {
+        m.insert("feedBoost".into(), json!(true));
+    }
+    if op.adaptive {
+        m.insert("adaptive".into(), json!(true));
+    }
     if op.start_first {
         m.insert("startFirst".into(), json!(true));
     }
@@ -330,6 +344,9 @@ pub(crate) fn op_json(op: &Op, tools: &[Tool]) -> Value {
     }
     if op.thread_pitch > 0.0 {
         m.insert("threadPitch".into(), json!(op.thread_pitch));
+    }
+    if op.countersink > 0.0 {
+        m.insert("countersink".into(), json!(op.countersink));
     }
     if op.tab_corners {
         m.insert("tabAvoidCorners".into(), json!(true));
@@ -429,7 +446,10 @@ pub(crate) fn op_from(o: &Value, tool_count: i32) -> Op {
         photo_gamma: num(get(o, "photo"), "gamma", 1.0).clamp(0.1, 5.0),
         sketch: flag(get(o, "photo"), "sketch", false),
         raster: flag(o, "raster", false),
+        adaptive: flag(o, "adaptive", false),
+        feed_boost: flag(o, "feedBoost", false),
         thread_pitch: num(o, "threadPitch", 0.0).max(0.0),
+        countersink: num(o, "countersink", 0.0).max(0.0),
         start_first: flag(o, "startFirst", false),
         cutter_comp: flag(o, "cutterComp", false),
         keyhole: flag(o, "keyhole", false),
@@ -483,6 +503,11 @@ fn material_json(m: &Material) -> Value {
     if !m.name.is_empty() {
         o.as_object_mut().unwrap().insert("name".into(), json!(m.name));
     }
+    for (k, v) in [("price", m.price), ("rate", m.rate)] {
+        if v > 0.0 {
+            o.as_object_mut().unwrap().insert(k.into(), json!(v));
+        }
+    }
     o
 }
 fn material_from(o: &Value) -> Material {
@@ -504,6 +529,8 @@ fn material_from(o: &Value) -> Material {
         rotary: get(o, "rotary").as_f64().filter(|d| *d > 0.0),
         rotary_y: get(o, "rotaryAlongY").as_bool().unwrap_or(false),
         back_of: get(o, "backOf").as_object().map(|_| (int(get(o, "backOf"), "sheet", 0), flag(get(o, "backOf"), "lr", true))),
+        price: num(o, "price", 0.0).max(0.0),
+        rate: num(o, "rate", 0.0).max(0.0),
         home: get(o, "home").as_array().filter(|a| a.len() == 2).and_then(|a| Some([a[0].as_f64()?, a[1].as_f64()?])),
     }
 }
@@ -547,8 +574,13 @@ pub fn save_project(d: &Document) -> String {
         .reliefs
         .iter()
         .map(|r| {
-            json!({"id": r.id, "name": r.name, "source": r.source, "x": r.x, "y": r.y, "w": r.w, "h": r.h, "depth": r.depth,
-                   "mirror": r.mirror})
+            let mut o = json!({"id": r.id, "name": r.name, "source": r.source, "x": r.x, "y": r.y, "w": r.w, "h": r.h, "depth": r.depth,
+                   "mirror": r.mirror});
+            if !r.pic.is_empty() {
+                // a relief made from a picture carries it (Rust only; Qt ignores the key and loads no height)
+                o.as_object_mut().unwrap().insert("picture".into(), json!({"w": r.pic_w, "h": r.pic_h, "gray": r.pic, "invert": r.pic_invert, "smooth": r.pic_smooth, "levels": r.pic_levels}));
+            }
+            o
         })
         .collect();
     let layers: Vec<Value> =
@@ -556,6 +588,9 @@ pub fn save_project(d: &Document) -> String {
             let mut o = json!({"name": l.name, "color": l.color, "visible": l.visible, "locked": l.locked});
             if l.keep_out {
                 o.as_object_mut().unwrap().insert("keepOut".into(), json!(true)); // only when set (Rust only)
+            }
+            if l.clamp_height > 0.0 {
+                o.as_object_mut().unwrap().insert("clampHeight".into(), json!(l.clamp_height));
             }
             o
         }).collect();
@@ -641,7 +676,17 @@ pub fn load_project(text: &str) -> Result<Document, String> {
             h: num(o, "h", 4.0),
             depth: num(o, "depth", 0.25),
             mirror: flag(o, "mirror", false),
+            pic: s(get(o, "picture"), "gray", ""),
+            pic_w: int(get(o, "picture"), "w", 0).max(0) as u32,
+            pic_h: int(get(o, "picture"), "h", 0).max(0) as u32,
+            pic_invert: flag(get(o, "picture"), "invert", false),
+            pic_smooth: int(get(o, "picture"), "smooth", 1).clamp(0, 20) as u32,
+            pic_levels: flag(get(o, "picture"), "levels", true),
             ..Default::default()
+        })
+        .map(|mut r| {
+            crate::relief::rasterize_picture(&mut r); // a picture's height field is rebuilt on every load, on every device
+            r
         })
         .collect();
     out.guides = arr(get(&root, "guides")).iter().map(|o| (flag(o, "v", false), num(o, "at", 0.0))).collect();
@@ -661,6 +706,7 @@ pub fn load_project(text: &str) -> Result<Document, String> {
             visible: flag(o, "visible", true),
             locked: flag(o, "locked", false),
             keep_out: flag(o, "keepOut", false),
+            clamp_height: num(o, "clampHeight", 0.0),
         })
         .collect();
     if out.layers.is_empty() {

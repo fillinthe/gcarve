@@ -25,6 +25,7 @@ mod inspector;
 mod layers;
 mod machinebrowser;
 mod mouse;
+mod onboarding;
 mod library;
 mod shell;
 mod tabs;
@@ -65,7 +66,7 @@ fn main() -> eframe::Result {
     // start (signed in only, see app.rs `report_last_crash`)
     std::panic::set_hook(Box::new(|info| {
         eprintln!("{info}");
-        store::save("crash.txt", &format!("v{} {}: {info}", env!("CARGO_PKG_VERSION"), std::env::consts::OS));
+        store::save("crash.txt", &format!("v{} {}: {info} {}", env!("CARGO_PKG_VERSION"), std::env::consts::OS, app::command_trail()));
     }));
     let options = eframe::NativeOptions {
         viewport: eframe::egui::ViewportBuilder::default().with_title("GCarve").with_inner_size(dev_size().unwrap_or([1500.0, 900.0])).with_min_inner_size(if dev_size().is_some() { [320.0, 400.0] } else { [900.0, 500.0] }).with_icon(window_icon()),
@@ -79,15 +80,17 @@ fn main() {
     use eframe::wasm_bindgen::JsCast;
     // a crash is reported to the site's error log (admin overview) as well as the browser console
     std::panic::set_hook(Box::new(|info| {
-        let msg = info.to_string();
+        let trail = app::command_trail();
+        let msg = if trail.is_empty() { info.to_string() } else { format!("{info} ({trail})") };
         web_sys::console::error_1(&msg.clone().into());
+        store::save("crash.txt", &format!("v{} web: {msg}", env!("CARGO_PKG_VERSION"))); // offered as a report after Reload
         // the canvas stops answering after a panic: say so, and offer the reload (unsaved work is restored by recover.rs)
         if let Some(doc) = web_sys::window().and_then(|w| w.document()) {
             if doc.get_element_by_id("gcarve-crash").is_none() {
                 if let Ok(el) = doc.create_element("div") {
                     el.set_id("gcarve-crash");
                     let _ = el.set_attribute("style", "position:fixed;left:50%;top:16px;transform:translateX(-50%);z-index:9999;background:#3a1f1a;color:#fff;border:1px solid #e0603c;border-radius:8px;padding:12px 16px;font:14px system-ui,sans-serif;max-width:90vw");
-                    el.set_inner_html("GCarve hit a problem and stopped. It has been reported. <a href=\"\" style=\"color:#8ec5ff\">Reload</a> to continue: a copy of your drawing from a few seconds ago is offered back when it restarts.");
+                    el.set_inner_html("GCarve hit a problem and stopped. It has been reported. <a href=\"\" style=\"color:#8ec5ff\">Reload</a> to continue: a copy of your drawing from a few seconds ago is offered back, and you can tell us what you were doing.");
                     if let Some(body) = doc.body() {
                         let _ = body.append_child(&el);
                     }

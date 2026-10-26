@@ -54,6 +54,8 @@ impl ToolsDialog {
         self.f.set_raw("angle", t.angle);
         self.f.set_fine("radius", t.radius);
         self.f.set_fine("cutLength", t.cut_length);
+        self.f.set_fine("stickOut", t.stick_out);
+        self.f.set_fine("holderDia", t.holder_dia);
         self.f.set("stepdown", t.stepdown);
         self.f.set_raw("feedXY", t.feed_xy);
         self.f.set_raw("feedZ", t.feed_z);
@@ -81,7 +83,7 @@ impl ToolsDialog {
 
     /// everything the bit form edits, as one string (not the material preset fields)
     fn edit_key(&self) -> String {
-        let f: String = ["diameter", "angle", "radius", "cutLength", "stepdown", "feedXY", "feedZ"].iter().map(|k| format!("{}|", self.f.text(k))).collect();
+        let f: String = ["diameter", "angle", "radius", "cutLength", "stickOut", "holderDia", "stepdown", "feedXY", "feedZ"].iter().map(|k| format!("{}|", self.f.text(k))).collect();
         format!("{f}{}|{}|{:?}|{}|{}|{}", self.name, self.group, self.kind, self.flutes, self.rpm, self.slot)
     }
 
@@ -107,6 +109,8 @@ impl ToolsDialog {
             angle: self.f.raw_or("angle", base.angle),
             radius: self.f.get_or("radius", doc, base.radius).max(0.0),
             cut_length: self.f.get_or("cutLength", doc, base.cut_length).max(0.0),
+            stick_out: self.f.get_or("stickOut", doc, base.stick_out).max(0.0),
+            holder_dia: self.f.get_or("holderDia", doc, base.holder_dia).max(0.0),
             stepdown: self.f.get_or("stepdown", doc, base.stepdown).max(0.0),
             feed_xy: self.f.raw_or("feedXY", base.feed_xy).max(0.0),
             feed_z: self.f.raw_or("feedZ", base.feed_z).max(0.0),
@@ -129,7 +133,7 @@ impl ToolsDialog {
             RemovePreset,
             Import,
             Export,
-            AddBit(Tool),
+            AddBit(Box<Tool>),
             /// a drawn side profile for this bit (None = back to the plain shape)
             Form(Option<Vec<gcarve_core::geom::Pt>>),
         }
@@ -304,6 +308,12 @@ impl ToolsDialog {
                                     self.f.ui_sized(ui, "cutLength", doc, 100.0, true);
                                     ui.end_row();
                                 }
+                                ui.label(unit_label("Stick-out", doc)).on_hover_text("How far the bit sticks out of the collet. Export warns when a toolpath cuts deeper, because the holder would hit the board. 0 = not known.");
+                                self.f.ui_sized(ui, "stickOut", doc, 100.0, true);
+                                ui.end_row();
+                                ui.label(unit_label("Holder width", doc)).on_hover_text("Width of the collet / holder. With the stick-out, export warns when the holder would reach a clamp or screw (keep-out layer) at the height of a clamp. 0 = not known.");
+                                self.f.ui_sized(ui, "holderDia", doc, 100.0, true);
+                                ui.end_row();
                                 ui.label("Flutes");
                                 ui.add(crate::widgets::field(&mut self.flutes).desired_width(60.0));
                                 ui.end_row();
@@ -403,7 +413,7 @@ impl ToolsDialog {
             });
         });
         if let Some(t) = self.browser.ui(ctx) {
-            act = Some(Act::AddBit(t));
+            act = Some(Act::AddBit(Box::new(t)));
         }
         let doc = &mut host.canvas.doc;
         let mut saved = false;
@@ -484,7 +494,7 @@ impl ToolsDialog {
             }
             Some(Act::AddBit(t)) => {
                 doc.checkpoint();
-                doc.tools.push(t);
+                doc.tools.push(*t);
                 let n = doc.tools.len() - 1;
                 let slots = toollib::machine_slots(doc);
                 toollib::assign_slots(&mut doc.tools, n, slots);

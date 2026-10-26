@@ -67,6 +67,12 @@ pub struct Tool {
     pub radius: f64,
     /// length of the flutes (inches); 0 = not known. A cut deeper than this rubs the shank (export safety check).
     pub cut_length: f64,
+    /// how far the bit sticks out of the collet / holder (inches); 0 = not known. A cut deeper than this drives the
+    /// holder into the board (JSON "stickOut" when set, Rust only)
+    pub stick_out: f64,
+    /// width of the collet / holder (inches); 0 = not known. With stick-out, its radius counts against keep-out areas
+    /// when the holder comes down to clamp height (JSON "holderDia" when set, Rust only)
+    pub holder_dia: f64,
     /// Tool Library folder ("V-bits", "Amana"); empty = none (JSON "group" when set, Rust only)
     pub group: String,
     /// custom form cutter (VCarve "Custom Form Cutters"): the cutting edge in side view as [radius, height above the
@@ -121,6 +127,8 @@ impl Default for Tool {
             slot: 0,
             radius: 0.0,
             cut_length: 0.0,
+            stick_out: 0.0,
+            holder_dia: 0.0,
             group: String::new(),
             form: Vec::new(),
         }
@@ -167,6 +175,17 @@ pub struct Material {
     /// rotary axis along the machine's Y instead of X: the drawing is the same (length left to right), only the
     /// G-code letters change (X words → Y, Y → A). JSON "rotaryAlongY" when set, Rust only
     pub rotary_y: bool,
+    /// what the board costs and the shop's rate per hour of machine time (JSON "price" / "rate" when set, Rust
+    /// only): the setup sheet and the toolpath list show the job's cost when either is set
+    pub price: f64,
+    pub rate: f64,
+}
+
+impl Material {
+    /// board price + machine time at the shop rate; None when neither is set
+    pub fn cost(&self, minutes: f64) -> Option<f64> {
+        (self.price > 0.0 || self.rate > 0.0).then(|| self.price + self.rate * minutes / 60.0)
+    }
 }
 
 /// What GCarve needs from a machine record (copied into the project so it travels with it). 0 = not published.
@@ -214,6 +233,8 @@ impl Default for Material {
             back_of: None,
             rotary: None,
             rotary_y: false,
+            price: 0.0,
+            rate: 0.0,
         }
     }
 }
@@ -337,8 +358,16 @@ pub struct Op {
     pub sketch: bool,
     /// pocket: clear with back-and-forth rows along `raster_angle` (then one lap round the walls) instead of rings
     pub raster: bool,
+    /// pocket: adaptive clearing (constant load: `stepover` is the width of the cut, as a fraction of the bit) instead of
+    /// rings (JSON "adaptive", Rust only; Qt cuts rings)
+    pub adaptive: bool,
+    /// adaptive pocket: feed up for the thin cut (chip thinning, JSON "feedBoost", Rust only; off by default)
+    pub feed_boost: bool,
     /// bore: > 0 = thread mill: one helix rising from the bottom, this far per turn (the thread pitch); 0 = plain bore
     pub thread_pitch: f64,
+    /// drill with a V-bit: > 0 = countersink this wide at the surface; the depth follows from the bit's angle
+    /// (JSON "countersink" when set, Rust only)
+    pub countersink: f64,
     /// profile: each cut starts at the point of the ring nearest the vector's first node (Node tool ▸ right-click a
     /// node ▸ Make Start Point) instead of the lowest point
     pub start_first: bool,
@@ -437,7 +466,10 @@ impl Default for Op {
             photo_h: 0,
             photo_invert: false,
             raster: false,
+            adaptive: false,
+            feed_boost: false,
             thread_pitch: 0.0,
+            countersink: 0.0,
             start_first: false,
             cutter_comp: false,
             keyhole: false,
@@ -480,6 +512,17 @@ pub struct Relief {
     pub ny: i32,
     /// 0 = base .. 1 = top, row-major, y up (nx*ny)
     pub height: Vec<f32>,
+    /// made from a picture instead of a 3D model (Rust only): 8-bit grey as base64, row 0 at the top. The picture is
+    /// saved in the project, so it comes back on every device (a model is re-read from its file).
+    pub pic: String,
+    pub pic_w: u32,
+    pub pic_h: u32,
+    /// dark parts stand high (a lithophane: thick where dark) instead of light parts
+    pub pic_invert: bool,
+    /// blur radius in picture pixels (0 = none), against grain and noise stepping the surface
+    pub pic_smooth: u32,
+    /// stretch the picture's own light / dark range over the whole depth (2nd to 98th percentile)
+    pub pic_levels: bool,
 }
 
 impl Default for Relief {
@@ -497,6 +540,12 @@ impl Default for Relief {
             nx: 0,
             ny: 0,
             height: Vec::new(),
+            pic: String::new(),
+            pic_w: 0,
+            pic_h: 0,
+            pic_invert: false,
+            pic_smooth: 1,
+            pic_levels: true,
         }
     }
 }
@@ -694,11 +743,13 @@ pub struct Layer {
     /// clamps, screws, hold-downs: closed shapes on this layer are no-go areas, checked at export
     /// (`pipeline::keep_out_issues`)
     pub keep_out: bool,
+    /// how high (inches above the board) the clamps on a keep-out layer reach; 0 = the default 1 in (JSON "clampHeight")
+    pub clamp_height: f64,
 }
 
 impl Default for Layer {
     fn default() -> Self {
-        Layer { name: "Layer 1".into(), color: "#d7dae0".into(), visible: true, locked: false, keep_out: false }
+        Layer { name: "Layer 1".into(), color: "#d7dae0".into(), visible: true, locked: false, keep_out: false, clamp_height: 0.0 }
     }
 }
 

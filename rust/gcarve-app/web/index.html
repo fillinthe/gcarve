@@ -78,6 +78,8 @@ window.gcGate = (async () => {
   // load failures and script errors go to the site's error log (admin overview); once per page, no personal data
   let reported = 0;
   const report = (source, message) => {
+    // errors from a visitor's browser extensions (wallets, translators…) reach this handler too: not ours
+    if (/metamask|-extension:\/\/|ResizeObserver loop|^Script error\.?$/i.test(String(message))) return;
     if (reported++ > 2) return;
     try { fetch("/api/error", { method: "POST", headers: { "Content-Type": "application/json" }, keepalive: true,
       body: JSON.stringify({ source, message: String(message).slice(0, 300), where: navigator.userAgent.slice(0, 120) }) }); } catch (_) {}

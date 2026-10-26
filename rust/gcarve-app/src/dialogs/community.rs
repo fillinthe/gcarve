@@ -562,7 +562,7 @@ mod tests {
 mod seeds {
     use super::*;
     use crate::canvas::Canvas;
-    use gcarve_core::document::{Op, OpType, Side, TextItem};
+    use gcarve_core::document::{Op, OpType, Side};
     use gcarve_core::geom::{make_ellipse, make_rect, pt, Contour};
     use gcarve_core::vecops::{fillet_contours, make_star};
 
@@ -597,25 +597,11 @@ mod seeds {
         Op { side: Side::Outside, tabs: true, tab_count: tabs, ..op(OpType::Profile, "Cut out", END_MILL, ids, depth) }
     }
 
-    fn text(c: &mut Canvas, s: &str, h: f64, at: (f64, f64)) -> Vec<i32> {
-        let n = c.place_text(TextItem { text: s.into(), family: "Liberation Sans".into(), height: h, bold: true, align: 1, ..Default::default() }, pt(at.0, at.1), None);
-        assert!(n > 0);
-        let id = c.doc.texts.last().unwrap().id;
-        c.doc.shapes.iter().filter(|s| s.text == id).map(|s| s.id).collect()
-    }
-
-    /// a sign: carved text, a V-groove border, cut out with rounded corners
-    fn sign(words: &str, w: f64, h: f64, cap: f64, wood: &str) -> Canvas {
+    /// a sign from the Sign Wizard (File › New Sign…)
+    fn sign(words: &str, w: f64, h: f64, wood: &str) -> Canvas {
         let mut c = Canvas::default();
         board(&mut c, w, h, 0.75, wood);
-        let letters = text(&mut c, words, cap, (w / 2.0, h / 2.0));
-        let border = c.doc.add(rounded(0.85, 0.85, w - 0.85, h - 0.85, 0.5), None);
-        let outline = c.doc.add(rounded(0.3, 0.3, w - 0.3, h - 0.3, 0.8), None);
-        c.doc.ops = vec![
-            Op { flat_depth: 0.2, ..op(OpType::VCarve, "Letters", V90, letters, 0.2) },
-            Op { side: Side::On, ..op(OpType::Profile, "Border groove", V90, vec![border], 0.1) },
-            cut_out(vec![outline], 0.75, 4),
-        ];
+        super::super::sign::build(&mut c, &super::super::sign::SignSpec { words: words.into(), w, h, t: 0.75, shape: 1, border: true, family: "Liberation Sans".into(), bold: true });
         c
     }
 
@@ -665,8 +651,8 @@ mod seeds {
             c
         };
         let list = [
-            (sign("WELCOME", 24.0, 8.0, 2.4, "Pine"), "Welcome sign (24 × 8 in)", "A classic porch sign: bold V-carved letters, a V-groove border and rounded corners. Cut from a 3/4 in pine or cedar board. Stain or paint the letters before the final sanding for crisp edges.", "sign, v-carve, outdoor, beginner"),
-            (sign("742", 14.0, 7.0, 3.6, "Cedar"), "House number sign", "Large V-carved house numbers with a groove border. Change the text to your own number in GCarve (double-click the numbers), then make it. Cedar or another outdoor wood; seal it well.", "sign, v-carve, house number, outdoor, beginner"),
+            (sign("WELCOME", 24.0, 8.0, "Pine"), "Welcome sign (24 × 8 in)", "A classic porch sign: bold V-carved letters, a V-groove border and rounded corners. Cut from a 3/4 in pine or cedar board. Stain or paint the letters before the final sanding for crisp edges.", "sign, v-carve, outdoor, beginner"),
+            (sign("742", 14.0, 7.0, "Cedar"), "House number sign", "Large V-carved house numbers with a groove border. Change the text to your own number in GCarve (double-click the numbers), then make it. Cedar or another outdoor wood; seal it well.", "sign, v-carve, house number, outdoor, beginner"),
             (coasters(), "Star coasters (set of 4)", "Four 4 in round coasters with a V-carved star, cut out with tabs from one 10 × 10 in, 1/2 in thick board. A quick first project and a good gift; finish with food-safe oil.", "coaster, v-carve, gift, beginner, kitchen"),
             (cutting_board(), "Cutting board with juice groove", "A 15 × 10 in cutting board with a ball-nose juice groove and rounded corners. Use a glued-up hardwood blank (maple, walnut, cherry) and finish with mineral oil.", "kitchen, cutting board, ball nose, gift"),
             (showcase("showcase.tlp"), "Sampler board: every toolpath type", "One board that shows what each toolpath does: profile, pocket, drill, V-carve lettering, bore, flute and more. Handy for testing a new machine or bit set before a real job.", "sampler, test, v-carve, pocket, beginner"),

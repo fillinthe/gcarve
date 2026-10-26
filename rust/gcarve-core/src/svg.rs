@@ -20,6 +20,8 @@ pub struct ImportResult {
     pub texts: Vec<ImportText>,
     /// embedded pictures (LightBurn projects)
     pub images: Vec<ImportImage>,
+    /// parallel to `contours` (or empty): shapes with the same non-zero number were one group in the file (LightBurn's Groups)
+    pub groups: Vec<u32>,
 }
 
 /// A picture embedded in a drawing: the file's bytes as base64 (PNG, JPEG…) and where its corners land.
@@ -617,7 +619,7 @@ fn import(text: &str, keep_text: bool) -> ImportResult {
     if out.skipped > 0 {
         note += &format!("; skipped {} use/image", out.skipped); // C++ wording (golden); uses that resolve are drawn
     }
-    ImportResult { contours, layers, note, texts: out.keep.unwrap_or_default(), images: Vec::new() }
+    ImportResult { contours, layers, note, texts: out.keep.unwrap_or_default(), images: Vec::new(), groups: Vec::new() }
 }
 
 /// The characters between a `<text …>` tag ending at `from` and its `</text>`: inner tags dropped (a new `<tspan>`

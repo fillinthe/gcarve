@@ -276,6 +276,10 @@ pub fn setup_sheet_html(s: &SetupSheet) -> String {
         o += &format!("<tr><th>Safe Z</th><td>{}</td></tr>\n", f.len(m.safe_z));
         o += &format!("<tr><th>Post</th><td>{}</td></tr>\n", esc(&s.post));
         o += &format!("<tr><th>Run time</th><td><b>{}</b> <small>(estimate)</small></td></tr>\n", format_minutes(total));
+        if let Some(c) = m.cost(total) {
+            // ponytail: dollars only; a currency setting when someone outside the US asks
+            o += &format!("<tr><th>Cost</th><td><b>${c:.2}</b> <small>(board ${:.2} + machine at ${:.2}/h)</small></td></tr>\n", m.price, m.rate);
+        }
         o += &format!("</tbody></table>\n<figure class=\"pic\">{}</figure>\n</div>\n", picture_svg(p));
         o += &format!(
             "<table class=\"run\"><thead><tr><th class=\"n\">#</th><th>File</th><th>Tool</th>{}<th>Toolpaths</th><th class=\"n\">Depth {u}</th><th class=\"n\">Feed {fu}</th><th class=\"n\">Plunge {fu}</th><th class=\"n\">RPM</th><th class=\"n\">Time</th></tr></thead>\n<tbody>\n",

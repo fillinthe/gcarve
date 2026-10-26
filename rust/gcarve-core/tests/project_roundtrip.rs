@@ -56,12 +56,18 @@ fn round_trip_and_rejects() {
     d.tools[0].presets.push(FeedPreset { material: "MDF".into(), feed_xy: 250.0, feed_z: 90.0, stepdown: 0.2, rpm: 16000 });
     d.ops.push(Op { name: "Outer cut".into(), shape_ids: vec![a, b], tabs: true, entry: Entry::Ramp, ..Default::default() });
     d.ops.push(Op { kind: OpType::VCarve, side: Side::On, clear_tool: 1, layer_scope: l2, ..Default::default() });
+    d.ops.push(Op { kind: OpType::Pocket, name: "Adaptive".into(), shape_ids: vec![a, b], adaptive: true, stepover: 0.12, ..Default::default() });
     d.texts.push(TextItem { id: 3, text: "Hi \"there\"\n".into(), ..Default::default() });
     d.next_text_id = 4;
     d.constraints.push(Constraint { anchor: a, target: b, kind: "above".into(), expr: "1".into() });
     d.dimensions.push(Dimension { a: pt(0.0, 0.0), b: pt(2.0, 0.0), shape_a: a, node_a: 0, ..Default::default() });
     d.reliefs.push(Relief { id: 1, name: "pyr".into(), source: "/x/pyramid.stl".into(), mirror: true, ..Default::default() });
-    d.next_relief_id = 2;
+    // a relief made from a picture carries it and gets its height field back on load
+    let mut pic = Relief { id: 2, name: "photo".into(), source: "photo.png".into(), w: 3.0, h: 2.0, pic: gcarve_core::photo::b64_encode(&[0, 80, 160, 255, 255, 160, 80, 0]), pic_w: 4, pic_h: 2, pic_invert: true, pic_smooth: 2, pic_levels: false, ..Default::default() };
+    gcarve_core::relief::rasterize_picture(&mut pic);
+    assert_eq!((pic.nx, pic.ny), (4, 2));
+    d.reliefs.push(pic);
+    d.next_relief_id = 3;
 
     let saved = save_project(&d);
     std::fs::write(format!("{}/rust_features.tlp", env!("CARGO_TARGET_TMPDIR")), &saved).unwrap(); // opened by the C++ app

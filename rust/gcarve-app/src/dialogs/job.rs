@@ -37,6 +37,14 @@ pub struct JobDialog {
     /// rotary job (field rotDia = the blank's diameter)
     rotary_on: bool,
     rotary_y: bool,
+    /// board price and shop rate per hour (plain numbers, dollars)
+    price: String,
+    rate: String,
+}
+
+/// the shop rate is the shop's, not the project's: new drawings start with the last one set on this device
+pub fn last_rate() -> f64 {
+    crate::store::load("shop-rate").and_then(|t| t.trim().parse().ok()).unwrap_or(0.0)
 }
 
 impl JobDialog {
@@ -180,11 +188,13 @@ impl JobDialog {
         f.set("homeX", home[0]);
         f.set("homeY", home[1]);
         f.set("rotDia", m.rotary.unwrap_or(3.0));
-        JobDialog { home_on: m.home.is_some(), merge: m.merge, rotary_on: m.rotary.is_some(), rotary_y: m.rotary_y, kind: m.kind.clone(), f, origin: m.origin, z_bottom: m.z_bottom, auto_feeds: m.auto_feeds, machine: m.machine.clone(), post: None, browser: Default::default(), machine_only: false, mine: crate::library::machines(), editing: None, share: Default::default() }
+        JobDialog { home_on: m.home.is_some(), merge: m.merge, rotary_on: m.rotary.is_some(), rotary_y: m.rotary_y, price: money(m.price), rate: money(m.rate), kind: m.kind.clone(), f, origin: m.origin, z_bottom: m.z_bottom, auto_feeds: m.auto_feeds, machine: m.machine.clone(), post: None, browser: Default::default(), machine_only: false, mine: crate::library::machines(), editing: None, share: Default::default() }
     }
 
     fn apply(&self, m: &mut Material, doc: &Document) {
         m.kind = self.kind.trim().to_string();
+        let cash = |t: &str| t.trim().trim_start_matches('$').replace(',', "").parse::<f64>().unwrap_or(0.0).max(0.0);
+        (m.price, m.rate) = (cash(&self.price), cash(&self.rate));
         m.w = self.f.get_or("w", doc, m.w).max(0.01);
         m.h = self.f.get_or("h", doc, m.h).max(0.01);
         m.t = self.f.get_or("t", doc, m.t).max(0.01);
@@ -268,6 +278,13 @@ impl JobDialog {
                 ui.end_row();
                 ui.label("Material");
                 material_combo(ui, "kind", &mut self.kind, 220.0);
+                ui.end_row();
+                ui.label("Board price ($)").tip("What this board costs you. With a shop rate, the setup sheet and the toolpath list show the job's cost.");
+                ui.horizontal(|ui| {
+                    ui.add(crate::widgets::field(&mut self.price).hint_text("0").desired_width(70.0));
+                    ui.label("Shop rate ($ / hour)").tip("Your charge per hour of machine time. Kept on this device for new drawings.");
+                    ui.add(crate::widgets::field(&mut self.rate).hint_text("0").desired_width(70.0));
+                });
                 ui.end_row();
                 ui.label(unit_label("Board width X", doc));
                 ui.horizontal(|ui| {
@@ -447,7 +464,12 @@ impl JobDialog {
         // new drawings start with this machine too (prefs::NewDoc::apply)
         let m = &host.canvas.doc.material;
         super::prefs::set_last_machine(m.machine.as_ref(), &m.post);
+        crate::store::save("shop-rate", &m.rate.to_string());
     }
+}
+
+fn money(v: f64) -> String {
+    if v > 0.0 { format!("{v:.2}") } else { String::new() }
 }
 
 /// XY zero picker: a little board with the five datum positions (0 BL, 1 BR, 2 TL, 3 TR, 4 centre).

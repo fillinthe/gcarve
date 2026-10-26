@@ -40,7 +40,7 @@ pub struct Gray {
 impl Gray {
     pub fn from_op(w: u32, h: u32, b64: &str) -> Option<Gray> {
         let px = b64_decode(b64);
-        (w > 0 && h > 0 && px.len() == (w * h) as usize).then_some(Gray { w: w as usize, h: h as usize, px })
+        (w > 0 && h > 0 && px.len() as u64 == u64::from(w) * u64::from(h)).then_some(Gray { w: w as usize, h: h as usize, px })
     }
 
     /// Auto levels: the picture's own darkness range (2nd to 98th percentile), stretched to 0..1 by `dark`
