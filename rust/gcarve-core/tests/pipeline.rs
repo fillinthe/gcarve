@@ -253,3 +253,30 @@ fn a_ghost_run_never_spins_and_stays_above_the_board() {
         }
     }
 }
+
+#[test]
+fn a_wide_holder_near_a_clamp_is_flagged_where_the_bare_bit_clears() {
+    use gcarve_core::geom::make_rect;
+    let mut doc = load_project(&std::fs::read_to_string(root().join("samples/compare/compare.tlp")).unwrap()).unwrap();
+    let gen = pipeline::regenerate(&doc);
+    let mut tools: Vec<_> = doc.tools.clone();
+    // find the closest approach: put a small clamp 0.3 in outside the board's left edge, below every cut
+    let l = doc.layer_named("Clamps");
+    doc.layers[l as usize].keep_out = true;
+    doc.add(make_rect(-1.3, 0.0, -0.3, doc.material.h), Some(l));
+    for t in tools.iter_mut() {
+        t.stick_out = 0.5;
+        t.holder_dia = t.diameter;
+    }
+    let before = pipeline::keep_out_issues(&doc, &tools, &gen.paths);
+    for t in tools.iter_mut() {
+        t.holder_dia = 4.0; // a router holder: reaches over the clamp from the board's edge
+    }
+    let after = pipeline::keep_out_issues(&doc, &tools, &gen.paths);
+    assert!(after.len() > before.len(), "{before:?} / {after:?}");
+    // bits that stick out 3 in keep the holder above clamps only 0.5 in tall: only the bare bit counts again
+    doc.layers[l as usize].clamp_height = 0.5;
+    tools.iter_mut().for_each(|t| t.stick_out = 3.0);
+    let low = pipeline::keep_out_issues(&doc, &tools, &gen.paths);
+    assert_eq!(low.len(), before.len(), "{before:?} / {low:?}");
+}

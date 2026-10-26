@@ -288,6 +288,46 @@ mod photo_look {
         save_sim(&[(&r.paths, &tool)], &m, &out);
     }
 
+    /// Visual check of sketch carving from a 3D model: GCARVE_SKETCH_STL=model.stl GCARVE_SKETCH_OUT=prefix
+    /// cargo test -p gcarve-app sketch_from_model_sim -- --ignored → prefix-shade.png (the picture) + prefix-sim.png
+    #[test]
+    #[ignore]
+    fn sketch_from_model_sim() {
+        use gcarve_core::document::{Material, Op, OpType, Relief, Tool, ToolType};
+        let (Ok(stl), Ok(out)) = (std::env::var("GCARVE_SKETCH_STL"), std::env::var("GCARVE_SKETCH_OUT")) else { return };
+        let tris = gcarve_core::relief::load_stl(&std::fs::read(stl).unwrap()).unwrap();
+        let (x0, x1, y0, y1) = tris.iter().flat_map(|t| [t.a, t.b, t.c]).fold((1e300, -1e300, 1e300, -1e300), |b, p| (p.x.min(b.0), p.x.max(b.1), p.y.min(b.2), p.y.max(b.3)));
+        let mut r = Relief { w: 12.0, h: 12.0 * (y1 - y0) / (x1 - x0), depth: 0.4, ..Default::default() };
+        gcarve_core::relief::rasterize_relief(&tris, &mut r, 400_000);
+        let (g, w, h) = gcarve_core::photo::shaded_relief(&r, 600);
+        image::GrayImage::from_raw(w as u32, h as u32, g.clone()).unwrap().save(format!("{out}-shade.png")).unwrap();
+        let op = Op { kind: OpType::Photo, name: "S".into(), depth: 0.04, sketch: true, photo: gcarve_core::photo::b64_encode(&g), photo_w: w as u32, photo_h: h as u32, ..Default::default() };
+        let tool = Tool { name: "V30".into(), kind: ToolType::VBit, diameter: 0.25, angle: 30.0, ..Default::default() };
+        let m = Material { w: r.w, h: r.h, t: 0.75, ..Default::default() };
+        let res = gcarve_core::cam::generate(&op, &tool, &[gcarve_core::geom::make_rect(0.0, 0.0, m.w, m.h)], &m, None);
+        save_sim(&[(&res.paths, &tool)], &m, &format!("{out}-sim.png"));
+    }
+
+    /// Visual check of a relief made from a picture: GCARVE_RELIEF_PIC=photo.jpg GCARVE_RELIEF_OUT=out.png [GCARVE_RELIEF_INVERT=1]
+    /// cargo test -p gcarve-app relief_picture_sim -- --ignored (ball-nose finish simulated in wood)
+    #[test]
+    #[ignore]
+    fn relief_picture_sim() {
+        use gcarve_core::document::{Material, Op, OpType, Relief, Tool, ToolType};
+        let (Ok(pic), Ok(out)) = (std::env::var("GCARVE_RELIEF_PIC"), std::env::var("GCARVE_RELIEF_OUT")) else { return };
+        let (gray, w, h) = super::load_gray(&pic, &std::fs::read(&pic).unwrap(), 500).unwrap();
+        let aspect = w as f64 / h as f64;
+        let m = Material { w: 8.0 * aspect.max(1.0), h: 8.0 / aspect.min(1.0), t: 0.75, ..Default::default() };
+        let mut r = Relief { id: 1, w: 7.0 * aspect.min(1.0).max(0.5) * aspect.max(1.0) / aspect.max(1.0), h: 0.0, x: 0.5, y: 0.5, depth: 0.25, pic: gcarve_core::photo::b64_encode(&gray), pic_w: w as u32, pic_h: h as u32, pic_invert: std::env::var("GCARVE_RELIEF_INVERT").is_ok(), ..Default::default() };
+        r.w = (m.w - 1.0).min((m.h - 1.0) * aspect);
+        r.h = r.w / aspect;
+        gcarve_core::relief::rasterize_picture(&mut r);
+        let op = Op { kind: OpType::Relief, name: "R".into(), relief: 1, stepover: 0.12, rough: false, ..Default::default() };
+        let tool = Tool { kind: ToolType::BallNose, diameter: 0.125, stepdown: 0.1, feed_xy: 80.0, feed_z: 30.0, ..Default::default() };
+        let res = gcarve_core::relief::generate_relief(&op, &tool, None, &r, &m, None);
+        save_sim(&[(&res.paths, &tool)], &m, &out);
+    }
+
     fn save_sim(cuts: &[(&Vec<gcarve_core::Toolpath>, &gcarve_core::document::Tool)], m: &gcarve_core::document::Material, out: &str) {
         let paths: Vec<_> = cuts.iter().flat_map(|(ps, t)| ps.iter().map(move |p| (p, *t))).collect();
         let hf = gcarve_core::sim::simulate(&paths, m, 1_200_000);

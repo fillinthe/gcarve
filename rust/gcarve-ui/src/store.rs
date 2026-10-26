@@ -54,7 +54,12 @@ pub fn save(key: &str, text: &str) {
         if let Some(dir) = p.parent() {
             let _ = std::fs::create_dir_all(dir);
         }
-        let _ = std::fs::write(p, text);
+        // write beside it, then swap in: a crash or power cut mid-write left a cut-short tools.json / recovery copy
+        let tmp = p.with_extension("tmp-write");
+        if std::fs::write(&tmp, text).is_ok() && std::fs::rename(&tmp, &p).is_err() {
+            let _ = std::fs::remove_file(&tmp);
+            let _ = std::fs::write(&p, text);
+        }
     }
     #[cfg(target_arch = "wasm32")]
     if let Some(s) = web_sys::window().and_then(|w| w.local_storage().ok().flatten()) {

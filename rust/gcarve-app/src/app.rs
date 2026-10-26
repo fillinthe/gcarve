@@ -132,6 +132,7 @@ pub struct App {
     jobs: crate::jobs::Jobs,
     // ---- tabs, files, window ----
     doc_id: u64,                 // id of the current document (DocState::id)
+    cloud_saving: Option<(u64, u64)>, // the cloud save in flight: (document id, its canvas.rev when sent)
     next_doc_id: u64,
     tabs: Vec<Option<DocState>>, // tab order; None = the current document (in the fields above)
     cur: usize,
@@ -203,6 +204,7 @@ impl App {
         let ui_state = if shot { UiState::default() } else { UiState::load() }; // screenshots use the stock layout (Qt: temp settings)
         let prefs = if shot { dialogs::prefs::Prefs::default() } else { dialogs::prefs::Prefs::load() }; // screenshots: stock settings (Qt: temp settings)
         gcarve_ui::help::init("fillinthe/gcarve", env!("CARGO_PKG_VERSION"));
+        gcarve_ui::help::offer_crash_reports(); // "it stopped last time: tell us?" (crash.txt from the panic hooks)
         gcarve_ui::help::set_download_page("https://gcarve.app/download/");
         let mut app = App { files, mode, canvas: new_canvas(&prefs), left_open: ui_state.tool_rail, right_open: ui_state.side_panel, status: String::new(), message: "Open a VCarve project (.crv), an SVG, DXF or PDF, or draw with R / E / P.".into(), name: "Untitled".into(), shell: Shell::new(), frame: 0, gen: None, gen_rev: 0, gen_cov: Vec::new(), edit_seen: (0, None), edit_at: 0.0, show_paths: shot || crate::store::load("show-paths").as_deref() != Some("0"), all_paths: std::env::var("GCARVE_ALL_PATHS").map_or(shot || crate::store::load("design-all-paths").as_deref() == Some("1"), |v| v == "1"), lib_ready: false, lib_pushed: 0, shares: Vec::new(), shares_open: false, gen_draft: None, export: None, cloud: Cloud::new(), cloud_id: String::new(), account: Default::default(), help: Default::default(), movie: std::env::var("GCARVE_MOVIE").ok().map(|d| (d.into(), 0, std::env::var("GCARVE_MOVIE_FRAMES").ok().and_then(|n| n.parse().ok()).unwrap_or(600), false)), projects: Default::default(), dialogs: Dialogs::default(), select_all_on_load: false, prev_tool: Tool::Select, dev_measure: false,
             prefs_seen: prefs.synced.clone(), prefs_push_at: None, prefs_from_server: false,
@@ -210,7 +212,7 @@ impl App {
             project_path: None,
             #[cfg(not(target_arch = "wasm32"))]
             jobs: crate::jobs::Jobs::load(),
-            doc_id: 1, next_doc_id: 2, tabs: vec![None], cur: 0, recent: if cfg!(target_arch = "wasm32") { Vec::new() } else { files::recent() }, confirm: None, after_save: None, palette: Palette::default(), open_at_start: None, share_start: 0, title: String::new(), about_open: false, ops_before: None, counted_toolpath: false, counted_open: false, staff: false, smoke_step: 0, smoke_note: String::new(), guide: Default::default(), ui_state };
+            doc_id: 1, cloud_saving: None, next_doc_id: 2, tabs: vec![None], cur: 0, recent: if cfg!(target_arch = "wasm32") { Vec::new() } else { files::recent() }, confirm: None, after_save: None, palette: Palette::default(), open_at_start: None, share_start: 0, title: String::new(), about_open: false, ops_before: None, counted_toolpath: false, counted_open: false, staff: false, smoke_step: 0, smoke_note: String::new(), guide: Default::default(), ui_state };
         // keyboard zoom is the canvas's (⌘+ / ⌘− / ⌘0), not the whole UI's
         cc.egui_ctx.options_mut(|o| o.zoom_with_keyboard = false);
         // ---- CAM dialogs / simulation ----
@@ -291,7 +293,7 @@ impl App {
                     app.canvas.tool = *tool;
                 }
             }
-            let req = match dialog.as_str() { "text" => Some(Request::Text(false)), "offset" => Some(Request::Offset), "dogbone" => Some(Request::Dogbone), "array" => Some(Request::Array), "align" => Some(Request::Align), "nest" => Some(Request::Nest), "selector" => Some(Request::Selector), "vtexture" => Some(Request::Texture), "plates" => Some(Request::Plates), "shelfpins" => Some(Request::Pins), "rotarylayout" => Some(Request::RotaryLayout), _ => None };
+            let req = match dialog.as_str() { "text" => Some(Request::Text(false)), "offset" => Some(Request::Offset), "dogbone" => Some(Request::Dogbone), "array" => Some(Request::Array), "align" => Some(Request::Align), "nest" => Some(Request::Nest), "selector" => Some(Request::Selector), "vtexture" => Some(Request::Texture), "plates" => Some(Request::Plates), "shelfpins" => Some(Request::Pins), "rotarylayout" => Some(Request::RotaryLayout), "boxmaker" => Some(Request::BoxMaker), _ => None };
             app.canvas.requests.extend(req);
             if dialog == "shapemenu" || dialog == "sizepopup" {
                 app.canvas.shot_hook = dialog.clone();
@@ -313,6 +315,8 @@ fn new_canvas(prefs: &dialogs::prefs::Prefs) -> Canvas {
     let mut c = Canvas::default();
     c.doc.tools = crate::toollib::load();
     prefs.synced.new_doc.apply(&mut c);
+    c.doc.material.rate = dialogs::job::last_rate();
+    c.doc.sync_sheet();
     c.rev = 1;
     c
 }
@@ -644,7 +648,9 @@ impl App {
                 self.cam.gimport = Some(dialogs::gimport::GcodeImportDialog::new(&name, text, &self.canvas.doc));
             }
             Loaded::Error(e) => {
-                self.cloud.report("open", &files::scrub(&e, &name));
+                if !e.starts_with(files::NO_ARCHIVES) {
+                    self.cloud.report("open", &files::scrub(&e, &name));
+                }
                 self.message = e;
             }
         }
@@ -754,6 +760,10 @@ impl App {
                 v.origin.y += if m == Mode::Simulate { -28.0 } else { 28.0 };
             }
         }
+        if m == Mode::Simulate && !self.shell.tour.simulated {
+            self.shell.tour.simulated = true;
+            self.shell.tour.save();
+        }
         self.mode = m;
         self.show_sim = false;
         match m {
@@ -812,6 +822,7 @@ impl App {
 
     /// Shell command ids (Main.qml tbRun / railActivate). Unknown ids report "not available yet" in the status bar.
     fn run(&mut self, ctx: &egui::Context, id: &str) {
+        note_command(id);
         let (head, arg) = id.split_once(':').unwrap_or((id, ""));
         match (head, arg) {
             ("new", _) => self.new_tab(),
@@ -821,6 +832,11 @@ impl App {
                 self.cloud.refresh(ctx);
             }
             ("open", _) => self.files.pick(ctx, false),
+            // a starter project from the community site (the empty board's Next card): opens like "Open in GCarve"
+            ("sample", slug) if !slug.is_empty() => {
+                self.cloud.community_open(ctx, slug);
+                self.status = "Opening the sample project…".into();
+            }
             // the showcase sign, built in (also on the web and signed out: nothing is uploaded)
             ("demo", _) => {
                 if !self.staff {
@@ -1019,6 +1035,7 @@ impl App {
                 self.view_3d = !self.view_3d;
             }
             ("spacemouse", _) => crate::spacemouse::connect(true),
+            ("sign", _) => self.cam.sign = Some(dialogs::sign::SignDialog::new(&self.canvas.doc)),
             ("makeit", _) => self.cam.make_it = Some(dialogs::community::MakeIt::new(&self.canvas.doc, &self.name)),
             ("community", _) => ctx.open_url(egui::OpenUrl::new_tab("https://gworkshop.app/projects/")),
             ("communityshare", _) => {
@@ -1035,6 +1052,10 @@ impl App {
             ("support", _) => ctx.open_url(egui::OpenUrl::new_tab("https://gcarve.app/support/?from=app")),
             ("request", _) => self.help.open_report(&self.cloud, "suggestion"),
             ("bug", _) => self.help.open_report(&self.cloud, "bug"),
+            ("reportproblem", _) => {
+                let p = gcarve_ui::help::recent_problem(ctx.input(|i| i.time)).unwrap_or_default();
+                self.help.open_problem(&self.cloud, &format!("{p}\n{}", command_trail()), false);
+            }
             ("update", _) => self.help.open_update(ctx),
             ("panels", _) => self.right_open = !self.right_open,
             ("fold", "right") => self.right_open = false,
@@ -1076,7 +1097,15 @@ impl App {
             ("subtract", _) => self.canvas.subtract_selection(),
             ("intersect", _) => self.canvas.intersect_selection(),
             ("join", _) => self.canvas.join_selection(),
+            ("tour", v) => {
+                self.shell.tour.dismissed = v == "hide";
+                self.shell.tour.save();
+            }
             ("validate", _) => self.canvas.check_vectors(),
+            ("surface", _) => {
+                let id = self.canvas.add_surface_rect();
+                self.cam.op = Some(dialogs::op::OpDialog::surface(&self.canvas.doc, id));
+            }
             ("extend", _) => self.canvas.extend_selection(),
             ("distort", "4") => self.canvas.distort_four_corners(),
             ("distort", n) => self.canvas.distort_selection(n == "2"),
@@ -1089,6 +1118,7 @@ impl App {
             ("vtexture", _) => self.dialogs.request(Request::Texture, &self.canvas),
             ("plates", _) => self.dialogs.request(Request::Plates, &self.canvas),
             ("shelfpins", _) => self.dialogs.request(Request::Pins, &self.canvas),
+            ("boxmaker", _) => self.dialogs.request(Request::BoxMaker, &self.canvas),
             ("rotarylayout", _) => self.dialogs.request(Request::RotaryLayout, &self.canvas),
             ("align", _) => self.dialogs.request(Request::Align, &self.canvas),
             ("array", _) => self.dialogs.request(Request::Array, &self.canvas),
@@ -1449,10 +1479,19 @@ impl eframe::App for App {
         }
         for ev in self.cloud.poll(&ctx) {
             match ev {
+                // the answer belongs to the document that was sent, wherever it is now (switching tabs or opening
+                // another project during a slow upload gave that one the cloud id: its next Save overwrote the first)
                 Reply::Saved { id, name } => {
-                    self.cloud_id = id;
-                    self.name = name.clone();
-                    self.canvas.dirty = false;
+                    let (doc, rev) = self.cloud_saving.take().unwrap_or((self.doc_id, self.canvas.rev));
+                    if doc == self.doc_id {
+                        self.cloud_id = id;
+                        self.name = name.clone();
+                        self.canvas.dirty &= self.canvas.rev != rev; // edits made while it uploaded stay unsaved
+                    } else if let Some(d) = self.tabs.iter_mut().flatten().find(|d| d.id == doc) {
+                        d.cloud_id = id;
+                        d.name = name.clone();
+                        d.canvas.dirty &= d.canvas.rev != rev;
+                    }
                     self.message = format!("Saved to the cloud: {name}");
                 }
                 Reply::Prefs(Some(p)) => {
@@ -1645,7 +1684,22 @@ impl eframe::App for App {
             if d == "snap" {
                 egui::Popup::open_id(&ctx, shell::snap_popup()); // dev: the status-bar Snap popover
             }
-            if matches!(d.as_str(), "update" | "bug" | "donate") {
+            #[cfg(not(target_arch = "wasm32"))]
+            if d == "relief-picture" {
+                if let Ok(p) = std::env::var("GCARVE_RELIEF_PIC") {
+                    self.dev_relief_picture(&p);
+                }
+            }
+            if d == "crash" || d == "problem" {
+                // dev: the after-a-crash form / "Report this" with a sample problem and the status-bar button
+                let sample = "panicked at gcarve-core/src/cam.rs:263:5: capacity overflow (after: open, board, tab:toolpaths)";
+                if d == "crash" {
+                    self.help.open_problem(&self.cloud, &format!("v{} {}: {sample}", env!("CARGO_PKG_VERSION"), std::env::consts::OS), true);
+                } else {
+                    self.cloud.report("open", "Cannot open sign.svg: the file is not an SVG drawing");
+                    self.message = "Cannot open sign.svg: the file is not an SVG drawing".into();
+                }
+            } else if matches!(d.as_str(), "update" | "bug" | "donate") {
                 self.shell.push(&d); // dev: the Help dialogs (GCARVE_VERSION=0.1.0 shows "Update available")
             } else {
                 self.cam.open_named(if d == "prefs-newdoc" { "prefs" } else { &d }, &self.canvas);
@@ -1912,7 +1966,9 @@ impl App {
             crate::recover::set_open(open);
             self.last_open = open;
         }
-        let dirty = self.canvas.dirty;
+        // unsaved work in any tab counts: switching to a saved tab cleared the copy (and the web's leave-page
+        // warning) while another tab still had changes. The copy is still of the tab being edited.
+        let dirty = self.canvas.dirty || self.tabs.iter().flatten().any(|d| d.canvas.dirty);
         if dirty != self.last_dirty {
             crate::recover::set_dirty(dirty);
             self.last_dirty = dirty;
@@ -1922,7 +1978,7 @@ impl App {
             }
         }
         let now = ctx.input(|i| i.time);
-        if dirty && self.canvas.rev != self.recover_rev {
+        if self.canvas.dirty && self.canvas.rev != self.recover_rev {
             self.recover_rev = self.canvas.rev;
             self.recover_at = Some(now + 3.0);
             ctx.request_repaint_after(std::time::Duration::from_secs(3));
@@ -2046,6 +2102,22 @@ impl App {
         if std::mem::take(&mut self.cam.go_simulate) {
             self.set_mode(Mode::Simulate);
         }
+        if let Some(spec) = self.cam.new_sign.take() {
+            self.open_target();
+            self.message = dialogs::sign::build(&mut self.canvas, &spec);
+            self.name = spec.words.lines().next().unwrap_or("Sign").to_string();
+            self.gen_rev = self.canvas.rev.wrapping_sub(1);
+            self.shell.push("zoom:board");
+        }
+    }
+
+    /// dev (GCARVE_DIALOG=relief-picture + GCARVE_RELIEF_PIC=file): a picture relief, the dialog open on it
+    #[cfg(not(target_arch = "wasm32"))]
+    fn dev_relief_picture(&mut self, path: &str) {
+        let Ok(bytes) = std::fs::read(path) else { return };
+        let mut host = Host { canvas: &mut self.canvas, files: &self.files, message: &mut self.message, posts: &mut self.posts, templates: &mut self.templates, cloud: &mut self.cloud, jobs: &mut self.jobs };
+        dialogs::relief::import_picture(path, &bytes, &mut host);
+        self.cam.relief = Some(dialogs::relief::ReliefDialog::default());
     }
 
     fn import_stl(&mut self, name: &str, bytes: &[u8]) {
@@ -2329,6 +2401,10 @@ impl App {
         }
         if ok {
             if let Some(r) = self.export_files(self.export_raise(&d), self.export_tiling(&d)) {
+                if !self.shell.tour.exported {
+                    self.shell.tour.exported = true;
+                    self.shell.tour.save();
+                }
                 if !self.staff {
                     self.cloud.event_detail("export", &format!("{} file(s), {}", r.files.len(), self.canvas.doc.material.post));
                 }
@@ -2396,6 +2472,7 @@ impl App {
             self.projects.show(&self.name.clone());
             self.cloud.refresh(ctx);
         } else {
+            self.cloud_saving = Some((self.doc_id, self.canvas.rev));
             self.cloud.save_project(ctx, &self.cloud_id.clone(), &self.name.clone(), None, &project::save_project(&self.canvas.doc));
         }
     }
@@ -2461,10 +2538,16 @@ impl App {
         let json = || project::save_project(&self.canvas.doc);
         match act {
             Action::Open(id) => self.cloud.open_project(ctx, &id),
-            Action::SaveNew(name, folder) => self.cloud.save_project(ctx, "", &name, Some(&folder), &json()),
+            Action::SaveNew(name, folder) => {
+                let j = json();
+                self.cloud_saving = Some((self.doc_id, self.canvas.rev));
+                self.cloud.save_project(ctx, "", &name, Some(&folder), &j);
+            }
             Action::Replace(id) => {
                 let name = self.projects.name.trim().to_string();
-                self.cloud.save_project(ctx, &id, &name, None, &json());
+                let j = json();
+                self.cloud_saving = Some((self.doc_id, self.canvas.rev));
+                self.cloud.save_project(ctx, &id, &name, None, &j);
             }
             Action::FromComputer => self.files.pick(ctx, false),
             Action::Download => files::save(&format!("{}.tlp", self.name), json().into_bytes(), self.files.msg_tx.clone()),
@@ -2503,6 +2586,25 @@ pub(crate) fn demo_project() -> Vec<u8> {
         ops.sort_by_key(|op| op["name"] == "Cut out");
     }
     serde_json::to_vec(&v).unwrap_or_else(|_| raw.to_vec())
+}
+
+
+/// the last few commands run, for crash reports (a panic alone says where, never what the user was doing)
+static TRAIL: std::sync::Mutex<Vec<String>> = std::sync::Mutex::new(Vec::new());
+
+fn note_command(id: &str) {
+    if let Ok(mut t) = TRAIL.lock() {
+        // command ids only (texts typed into a name or a sheet name stay out of the report)
+        t.push(id.split(':').next().unwrap_or(id).chars().take(40).collect());
+        if t.len() > 8 {
+            t.remove(0);
+        }
+    }
+}
+
+/// "after: open, zoomboard, job" (empty when nothing ran yet)
+pub fn command_trail() -> String {
+    TRAIL.lock().map(|t| if t.is_empty() { String::new() } else { format!("after: {}", t.join(", ")) }).unwrap_or_default()
 }
 
 #[cfg(test)]
@@ -2565,6 +2667,11 @@ impl App {
             let files = self.export_files(0.0, None).map_or(0, |r| r.files.iter().filter(|f| f.text.len() > 200).count());
             if made < 6 || files == 0 || tiled <= files {
                 return say(format!("SMOKE FAIL stage 1: {made} toolpaths, {files} files, {tiled} tiled"));
+            }
+            // the first-time guide ticks the steps the demo covers (a drawing, a toolpath) and still has the rest to do
+            let ticks: Vec<bool> = self.shell.tour.steps(&self.canvas.doc).iter().map(|s| s.4).collect();
+            if !(ticks[0] && ticks[2]) || ticks.iter().all(|t| *t) {
+                return say(format!("SMOKE FAIL stage 1: first-time guide steps {ticks:?}"));
             }
             self.smoke_note = format!("{made} toolpaths {cut} moves {files} files {tiled} tiled");
             // stage 2: the newer options on the same job (raster + two-bit pocket, lead-in + last pass, mirrored sheet)

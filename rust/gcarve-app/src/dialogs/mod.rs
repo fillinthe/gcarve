@@ -13,6 +13,7 @@ pub mod prefs;
 pub mod projects;
 pub mod relief;
 pub mod shapes;
+pub mod sign;
 pub mod share;
 pub mod templates;
 pub mod tools;
@@ -63,6 +64,9 @@ pub struct Dialogs {
     /// Make It applied: the app shows the simulation
     pub go_simulate: bool,
     pub shapes: Option<shapes::ShapesDialog>,
+    /// File › New Sign…; on OK the spec waits in `new_sign` for the app (it opens a new tab)
+    pub sign: Option<sign::SignDialog>,
+    pub new_sign: Option<sign::SignSpec>,
     #[cfg(not(target_arch = "wasm32"))]
     pub jobs: Option<jobs::JobsDialog>,
 }
@@ -115,6 +119,7 @@ impl Dialogs {
             "constraint" => self.constraint = Some(vars::ConstraintDialog::new(canvas)),
             "templates" => self.templates = Some(templates::TemplatesDialog::new("Showcase sign")),
             "shapes" => self.shapes = Some(shapes::ShapesDialog::new(&canvas.doc)),
+            "sign" => self.sign = Some(sign::SignDialog::new(&canvas.doc)),
             "makeit" => self.make_it = Some(community::MakeIt::new(&canvas.doc, "Showcase sign").with_reasons(vec!["It was set up for a ShopBot PRSalpha; you use a CAMaster Panther.".into(), "Not in your bit library: 1/8 End Mill (0.125 inch).".into()])),
             "share" => self.share = Some(community::ShareDialog::new(&canvas.doc, "Showcase sign")),
             "trace" => {
@@ -148,6 +153,7 @@ impl Dialogs {
                 },
                 "post" => posts::import_file(&name, &bytes, host),
                 "stl" => relief::import_file(&name, &bytes, host),
+                "relief-picture" => relief::import_picture(&name, &bytes, host),
                 "template" => templates::import_file(&name, &bytes, host),
                 "font" => {
                     *host.message = match crate::text::add_font(bytes) {
@@ -260,6 +266,13 @@ impl Dialogs {
         if let Some(mut d) = self.shapes.take() {
             if d.ui(ctx, host) {
                 self.shapes = Some(d);
+            }
+        }
+        if let Some(mut d) = self.sign.take() {
+            if d.ui(ctx, host) {
+                self.sign = Some(d);
+            } else {
+                self.new_sign = d.done.take();
             }
         }
         if let Some(mut d) = self.trace.take() {

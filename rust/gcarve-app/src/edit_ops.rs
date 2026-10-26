@@ -5,7 +5,7 @@ use crate::canvas::{Canvas, Drag};
 use crate::units;
 use eframe::egui;
 use gcarve_core::document::Shape;
-use gcarve_core::geom::{bounds, flatten, pt, transformed, Affine, Contour, Pt, Rect};
+use gcarve_core::geom::{bounds, flatten, make_rect, pt, transformed, Affine, Contour, Pt, Rect};
 use gcarve_core::nest::NestPart;
 use gcarve_core::project::{load_clip, save_clip};
 use gcarve_core::vecops::{boolean_op, close_contour, dogbone, fillet_contours, join_open, offset_contours, simplify_contours, BoolOp};
@@ -123,6 +123,18 @@ impl Canvas {
             }
         }
         units
+    }
+
+    /// Toolpaths ▸ Surface the Board: a rectangle the size of the board on the "Surface" layer, selected, for a
+    /// raster pocket with a big bit that planes the top flat (spoilboard or rough stock). Returns its id.
+    pub fn add_surface_rect(&mut self) -> i32 {
+        self.doc.checkpoint();
+        let (w, h) = (self.doc.material.w, self.doc.material.h);
+        let layer = self.doc.layer_named("Surface");
+        let id = self.doc.add(make_rect(0.0, 0.0, w, h), Some(layer));
+        self.sel = BTreeSet::from([id]);
+        self.mutated();
+        id
     }
 
     pub fn group_selection(&mut self) {
@@ -600,7 +612,7 @@ impl Canvas {
                 skipped += 1;
                 continue;
             }
-            let n = (run / pitch).floor() as usize + 1;
+            let n = ((run / pitch).floor() as usize + 1).min(2_000); // a typed 1e-6 pitch made millions of circles
             let start = (len - (n - 1) as f64 * pitch) / 2.0; // centred along the part
             for row in [inset, wid - inset] {
                 for k in 0..n {
@@ -660,6 +672,41 @@ impl Canvas {
         self.sel = ids;
         self.sel_changed();
         self.status = format!("Rotary layout: {n} line(s) on \"Rotary layout\", selected: add a Flute or V-Carve on them");
+        self.mutated();
+    }
+
+    /// Vectors › Box Maker…: the finger-jointed panels (`boxjoint::panels`) laid flat in rows across the board, on the
+    /// "Box" layer, each panel its own group, selected: Profile (outside) them through the board.
+    pub fn box_maker(&mut self, spec: gcarve_core::boxjoint::BoxSpec) {
+        use gcarve_core::geom::{transformed, Affine};
+        if spec.t <= 0.0 || [spec.w, spec.d, spec.h].iter().any(|&v| v < 4.0 * spec.t) {
+            self.status = "Box Maker: each size must be at least 4 × the board thickness.".into();
+            return;
+        }
+        let gap = (spec.bit * 2.0).max(0.5);
+        let max_w = self.doc.material.w.max(spec.w.max(spec.d) + gap);
+        self.doc.checkpoint();
+        let layer = self.doc.layer_named("Box");
+        let (mut x, mut y, mut row) = (gap / 2.0, gap / 2.0, 0.0f64);
+        let mut ids = BTreeSet::new();
+        let panels = gcarve_core::boxjoint::panels(&spec);
+        for (_, a, b, cs) in &panels {
+            if x + a > max_w && x > gap {
+                (x, y, row) = (gap / 2.0, y + row + gap, 0.0);
+            }
+            let group = self.doc.new_group_id();
+            for c in cs {
+                let id = self.doc.add(transformed(c, &Affine::translate(x, y)), Some(layer));
+                if let Some(s) = self.doc.find_mut(id) {
+                    s.group = group;
+                }
+                ids.insert(id);
+            }
+            (x, row) = (x + a + gap, row.max(*b));
+        }
+        self.sel = ids;
+        self.sel_changed();
+        self.status = format!("Box Maker: {} panels on the \"Box\" layer, selected: add a Profile (outside, through the board). Nest them to use less board.", panels.len());
         self.mutated();
     }
 
@@ -1250,6 +1297,36 @@ mod tests {
     }
 
     #[test]
+    fn surfacing_the_board_plans_rows_over_all_of_it_with_the_widest_end_mill() {
+        let mut c = canvas();
+        c.doc.material.w = 20.0;
+        c.doc.material.h = 10.0;
+        c.doc.tools.clear();
+        let mut small = gcarve_core::document::Tool::default();
+        small.diameter = 0.25;
+        let mut big = small.clone();
+        big.diameter = 1.5;
+        c.doc.tools.push(small);
+        c.doc.tools.push(big);
+        let id = c.add_surface_rect();
+        let (_, op) = crate::dialogs::op::OpDialog::surface(&c.doc, id).draft(&c.doc).unwrap();
+        assert!(op.raster && op.tool == 1 && op.shape_ids == vec![id]);
+        c.doc.ops.push(op);
+        let gen = gcarve_core::pipeline::regenerate(&c.doc);
+        let (mut x0, mut x1, mut y0, mut y1) = (f64::MAX, f64::MIN, f64::MAX, f64::MIN);
+        for tp in gen.paths.iter().flatten() {
+            for m in &tp.moves {
+                x0 = x0.min(m.x.unwrap_or(x0));
+                x1 = x1.max(m.x.unwrap_or(x1));
+                y0 = y0.min(m.y.unwrap_or(y0));
+                y1 = y1.max(m.y.unwrap_or(y1));
+            }
+        }
+        // the bit centre reaches the walls' inset by its radius: the whole board gets cut
+        assert!(x0 <= 0.76 && x1 >= 19.24 && y0 <= 0.76 && y1 >= 9.24, "{x0} {x1} {y0} {y1}");
+    }
+
+    #[test]
     fn clipboard_round_trip_keeps_toolpaths_and_tools() {
         let mut c = canvas();
         let a = c.add_shape(make_rect(0.0, 0.0, 2.0, 1.0));
@@ -1477,6 +1554,27 @@ mod marquee_tests {
 mod vector_tool_tests {
     use super::*;
     use gcarve_core::geom::{make_polyline, make_rect};
+
+    #[test]
+    fn the_box_maker_lays_its_panels_flat_apart_on_the_box_layer() {
+        let mut c = Canvas::default();
+        let spec = gcarve_core::boxjoint::BoxSpec { w: 10.0, d: 6.0, h: 4.0, t: 0.75, finger: 1.5, play: 0.005, lid: true, bit: 0.25 };
+        c.box_maker(spec);
+        assert_eq!(c.sel.len(), 6);
+        let boxes: Vec<_> = c.sel.iter().map(|id| bounds(&c.doc.find(*id).unwrap().c)).collect();
+        for (i, a) in boxes.iter().enumerate() {
+            assert!(a.x0 >= 0.0 && a.y0 >= 0.0, "on the board");
+            for b in &boxes[i + 1..] {
+                assert!(a.x1 <= b.x0 || b.x1 <= a.x0 || a.y1 <= b.y0 || b.y1 <= a.y0, "{a:?} overlaps {b:?}");
+            }
+        }
+        let layer = c.doc.find(*c.sel.first().unwrap()).unwrap().layer;
+        assert_eq!(c.doc.layers[layer as usize].name, "Box");
+        // too small for its board: refused, nothing added
+        let n = c.doc.shapes.len();
+        c.box_maker(gcarve_core::boxjoint::BoxSpec { h: 1.0, ..spec });
+        assert_eq!(c.doc.shapes.len(), n);
+    }
 
     #[test]
     fn copies_along_a_vector_trim_and_check() {

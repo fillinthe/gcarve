@@ -435,6 +435,8 @@ pub struct Dialogs {
     pins: Option<[String; 4]>,
     /// rotary layout: starts, pitch, from X, to X
     rlayout: Option<[String; 4]>,
+    /// Box Maker: width, depth, height, thickness, finger, play, bit texts + lid
+    boxm: Option<([String; 7], bool)>,
     /// Plate Production: the list (one plate per line), first line = headings, gap text
     plates: Option<(String, bool, String)>,
     /// Vector Texture: spacing, amplitude, wavelength texts + angle, randomness
@@ -480,6 +482,12 @@ impl Dialogs {
             }
             Request::Selector => self.selector = Some([String::new(), String::new()]),
             Request::RotaryLayout => self.rlayout = Some([String::from("1"), units::text(doc, 4.0), units::text(doc, 0.0), units::text(doc, doc.material.w)]),
+            Request::BoxMaker => {
+                let t = doc.material.t;
+                let tool = doc.tools.iter().filter(|k| k.kind == gcarve_core::document::ToolType::EndMill).map(|k| k.diameter).fold(0.0, f64::max);
+                let v = [8.0, 5.0, 3.5, t, (2.0 * t).max(0.5), 0.005, if tool > 0.0 { tool } else { 0.25 }];
+                self.boxm = Some((v.map(|x| units::text(doc, x)), true));
+            }
             Request::Pins => self.pins = Some([units::text(doc, 5.0 / 25.4), units::text(doc, 32.0 / 25.4), units::text(doc, 37.0 / 25.4), units::text(doc, 3.0)]),
             Request::Plates => self.plates = Some(("name,room\nAnn,101\nBo,102".into(), true, units::text(doc, 0.25))),
             Request::Texture => {
@@ -603,6 +611,38 @@ impl Dialogs {
             }
             if keep {
                 self.rlayout = Some(f);
+            }
+        }
+
+        if let Some((mut f, mut lid)) = self.boxm.take() {
+            let (mut keep, mut ok) = (true, false);
+            W::Dialog::new("Box Maker").show(ctx, |ui| {
+                egui::Grid::new("boxm").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
+                    for (i, label) in ["Width (outside)", "Depth (outside)", "Height (outside)", "Board thickness", "Finger width", "Fit play (slots wider by)", "Bit diameter (dogbones, 0 = none)"].iter().enumerate() {
+                        ui.label(format!("{label} ({doc_unit})"));
+                        units::num_field(ui, label, &mut f[i], &canvas.doc, true, 110.0);
+                        ui.end_row();
+                    }
+                });
+                W::checkbox(ui, &mut lid, "Lid (jointed like the bottom)");
+                ui.label(egui::RichText::new("Six panels (five without a lid) with finger joints, laid flat on the \"Box\" layer. Measure the board: the thickness sets the finger depth. Cut them with a Profile outside, through the board.").small().color(crate::theme::TEXT_DIM));
+                let (o, c) = W::ok_cancel(ui);
+                ok |= o;
+                keep &= !c;
+            });
+            if ok {
+                let v: Vec<Result<f64, String>> = f.iter().map(|t| units::get(&canvas.doc, t, true)).collect();
+                match v.iter().find_map(|r| r.as_ref().err()) {
+                    Some(e) => canvas.status = e.clone(),
+                    None => {
+                        let n: Vec<f64> = v.into_iter().map(Result::unwrap).collect();
+                        canvas.box_maker(gcarve_core::boxjoint::BoxSpec { w: n[0], d: n[1], h: n[2], t: n[3], finger: n[4], play: n[5].max(0.0), lid, bit: n[6].max(0.0) });
+                        keep = false;
+                    }
+                }
+            }
+            if keep {
+                self.boxm = Some((f, lid));
             }
         }
 

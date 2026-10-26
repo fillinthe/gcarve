@@ -538,6 +538,11 @@ fn safety_net_and_air_cut() {
     assert!(safety_issues(&[op_out()], &short, std::slice::from_ref(&ro.paths), &m).iter().any(|s| s.contains("flutes are only 0.250")));
     short[op_out().tool as usize].cut_length = 1.0;
     assert!(safety_issues(&[op_out()], &short, std::slice::from_ref(&ro.paths), &m).is_empty());
+    // holder: a short stick-out is warned about, a long one is not
+    short[op_out().tool as usize].stick_out = 0.25;
+    assert!(safety_issues(&[op_out()], &short, std::slice::from_ref(&ro.paths), &m).iter().any(|s| s.contains("sticks out only 0.250")));
+    short[op_out().tool as usize].stick_out = 2.0;
+    assert!(safety_issues(&[op_out()], &short, std::slice::from_ref(&ro.paths), &m).is_empty());
     let low_safe = Material { safe_z: 0.0, ..m.clone() };
     assert!(!safety_issues(&[op_out()], &default_tools(), std::slice::from_ref(&ro.paths), &low_safe).is_empty());
     let mut aj = build_jobs(&[op_out()], &default_tools(), &[ro.paths], &m, "t");

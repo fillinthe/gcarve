@@ -46,6 +46,8 @@ impl ReliefDialog {
         let mut import = false;
         let mut apply = false;
         let mut mirror: Option<bool> = None;
+        let mut picture = false;
+        let mut pic_edit: Option<(bool, u32, bool)> = None;
         let doc = &host.canvas.doc;
         if !doc.reliefs.is_empty() {
             self.cur = self.cur.min(doc.reliefs.len() - 1);
@@ -99,12 +101,31 @@ impl ReliefDialog {
                             mirror = Some(m);
                         }
                         ui.end_row();
+                        // a relief made from a picture: how its brightness becomes height
+                        if let Some(r) = doc.reliefs.get(self.cur).filter(|r| !r.pic.is_empty()) {
+                            let (mut inv, mut smooth, mut levels) = (r.pic_invert, r.pic_smooth, r.pic_levels);
+                            ui.label("Picture");
+                            let mut changed = crate::widgets::checkbox(ui, &mut inv, "Dark parts stand high").on_hover_text("Off: light parts stay high (white = the surface). On: a lithophane, thick where dark and thin where light, to hold up to a light behind it").changed();
+                            ui.end_row();
+                            ui.label("Smoothing");
+                            changed |= ui.add(egui::DragValue::new(&mut smooth).range(0..=20).suffix(" px")).on_hover_text("Blurs grain and noise so the surface doesn't step").changed();
+                            ui.end_row();
+                            ui.label("");
+                            changed |= crate::widgets::checkbox(ui, &mut levels, "Auto contrast").on_hover_text("Stretches the picture's own light and dark over the whole depth").changed();
+                            ui.end_row();
+                            if changed {
+                                pic_edit = Some((inv, smooth, levels));
+                            }
+                        }
                     });
                 });
             });
             ui.horizontal(|ui| {
                 if ui.button("Import STL…").clicked() {
                     import = true;
+                }
+                if ui.button("From a picture…").on_hover_text("A photo or logo becomes the height: light parts stay high, dark parts are carved deep (or the other way round for a lithophane)").clicked() {
+                    picture = true;
                 }
                 if ui.add_enabled(have, egui::Button::new("Remove")).clicked() {
                     remove = true;
@@ -115,10 +136,21 @@ impl ReliefDialog {
                     }
                 });
             });
-            hint(ui, "The model's XY footprint is stretched to the width and height; its height range maps to the depth. Use a ball-nose bit for finishing and an end mill for roughing.");
+            hint(ui, "The model's (or picture's) footprint is stretched to the width and height; its height range maps to the depth. Use a ball-nose bit for finishing and an end mill for roughing. A lithophane: tick Dark parts stand high, cut it from white acrylic or Corian and keep the thinnest part about 1 / 16 in thick (board thickness minus depth).");
         });
         if import {
             host.files.pick_into(ctx, "3D models (.stl .3mf)", &["stl", "3mf"], "stl");
+        }
+        if picture {
+            host.files.pick_into(ctx, "Pictures (.png .jpg .webp)", &["png", "jpg", "jpeg", "webp"], "relief-picture");
+        }
+        if let Some((inv, smooth, levels)) = pic_edit.filter(|_| have) {
+            let doc = &mut host.canvas.doc;
+            doc.checkpoint();
+            let r = &mut doc.reliefs[self.cur];
+            (r.pic_invert, r.pic_smooth, r.pic_levels) = (inv, smooth, levels);
+            gcarve_core::relief::rasterize_picture(r);
+            host.canvas.touch();
         }
         if (apply || mirror.is_some()) && have {
             let doc = &mut host.canvas.doc;
@@ -211,11 +243,41 @@ pub fn import_file(name: &str, bytes: &[u8], host: &mut Host) {
     *host.message = format!("Imported 3D model {stem} ({} triangles). Place it in the 3D Models dialog, then add a 3D Model toolpath.", tris.len());
 }
 
-/// Desktop: reliefs saved as a source path get their height field back after a project load.
+/// A picture becomes a relief (light = high, or dark = high for a lithophane): sized like an imported model, half the
+/// board, keeping the picture's shape, centred. The picture is kept in the project (≤ 600 px), so it comes back anywhere.
+pub fn import_picture(name: &str, bytes: &[u8], host: &mut Host) {
+    let (gray, w, h) = match super::trace::load_gray(name, bytes, 600) {
+        Ok(g) => g,
+        Err(e) => {
+            host.cloud.report("relief picture", &crate::files::scrub(&e, name));
+            *host.message = format!("Cannot read the picture: {e}");
+            return;
+        }
+    };
+    let doc = &mut host.canvas.doc;
+    let stem = std::path::Path::new(name).file_stem().map(|s| s.to_string_lossy().into_owned()).unwrap_or_else(|| name.to_string());
+    let mut r = Relief { id: doc.next_relief_id, name: stem.clone(), source: name.to_string(), pic: gcarve_core::photo::b64_encode(&gray), pic_w: w as u32, pic_h: h as u32, ..Default::default() };
+    doc.next_relief_id += 1;
+    let aspect = w as f64 / h as f64;
+    let (max_w, max_h) = (doc.material.w * 0.5, doc.material.h * 0.5);
+    r.w = max_w.min(max_h * aspect);
+    r.h = r.w / aspect;
+    r.x = (doc.material.w - r.w) / 2.0;
+    r.y = (doc.material.h - r.h) / 2.0;
+    r.depth = 0.2f64.min(doc.material.t * 0.5);
+    gcarve_core::relief::rasterize_picture(&mut r);
+    doc.checkpoint();
+    doc.reliefs.push(r);
+    host.canvas.touch();
+    *host.message = format!("Made a relief from {stem}. Set its depth and size in 3D Models, then add a 3D Model toolpath (a ball-nose bit finishes it best).");
+}
+
+/// Desktop: reliefs saved as a source path get their height field back after a project load (a picture's is rebuilt
+/// by the project loader on every device).
 #[cfg(not(target_arch = "wasm32"))]
 pub fn rehydrate(doc: &mut Document) {
     for r in &mut doc.reliefs {
-        if r.height.is_empty() && !r.source.is_empty() {
+        if r.height.is_empty() && r.pic.is_empty() && !r.source.is_empty() {
             if let Ok(tris) = std::fs::read(&r.source).map_err(|e| e.to_string()).and_then(|b| load_stl(&b)) {
                 rasterize_relief(&tris, r, CELLS);
             }

@@ -16,6 +16,33 @@ static ASSET: Mutex<Option<String>> = Mutex::new(None);
 /// where "Update now" sends people when the download or opening fails (`set_download_page`; default the release page)
 static PAGE: OnceLock<&'static str> = OnceLock::new();
 static UPDATE: Mutex<Upd> = Mutex::new(Upd::Idle);
+/// The last problem the app showed (Cloud::report notes every one): (what went wrong, when it was first seen on screen,
+/// egui seconds; None until the next frame). The status bar offers "Report this" for a while after.
+static PROBLEM: Mutex<Option<(String, Option<f64>)>> = Mutex::new(None);
+
+/// Apps that want the "it stopped last time" report form at start (crash.txt from their panic hook) call this once.
+/// Off by default: GSketch offers its own.
+pub fn offer_crash_reports() {
+    CRASH_OFFER.store(true, std::sync::atomic::Ordering::Relaxed);
+}
+static CRASH_OFFER: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+
+/// Something went wrong in front of the user: remember it so they can report it in one click.
+pub fn note_problem(text: &str) {
+    *PROBLEM.lock().unwrap_or_else(|e| e.into_inner()) = Some((text.chars().take(2000).collect(), None));
+}
+
+/// The problem to offer a report for: shown in the last 90 s and not reported or dismissed yet.
+pub fn recent_problem(now: f64) -> Option<String> {
+    let mut p = PROBLEM.lock().unwrap_or_else(|e| e.into_inner());
+    let (text, at) = p.as_mut()?;
+    let at = *at.get_or_insert(now);
+    (now - at < 90.0).then(|| text.clone())
+}
+
+fn forget_problem() {
+    *PROBLEM.lock().unwrap_or_else(|e| e.into_inner()) = None;
+}
 
 #[derive(Clone, PartialEq)]
 enum Upd {
@@ -148,6 +175,10 @@ pub struct Help {
 
 struct Report {
     title: &'static str,
+    /// what the app sends along (the error, or the crash), shown read-only and added to the message
+    attached: String,
+    /// a crash from the last run: say so, and "Don't send" closes it for good
+    crash: bool,
     kind: &'static str,
     subject: String,
     body: String,
@@ -160,7 +191,17 @@ impl Help {
     /// kind: "bug" | "suggestion" | "question"
     pub fn open_report(&mut self, cloud: &Cloud, kind: &'static str) {
         let title = if kind == "bug" { "Report a bug" } else { "Request a change" };
-        self.report = Some(Report { title, kind, subject: String::new(), body: String::new(), email: cloud.user.as_ref().map(|u| u.email.clone()).unwrap_or_default(), sending: false, result: None });
+        self.report = Some(Report { title, attached: String::new(), crash: false, kind, subject: String::new(), body: String::new(), email: cloud.user.as_ref().map(|u| u.email.clone()).unwrap_or_default(), sending: false, result: None });
+    }
+
+    /// "Report this": the report form with the problem attached (`crash` = the last run ended in a crash).
+    pub fn open_problem(&mut self, cloud: &Cloud, problem: &str, crash: bool) {
+        let app = crate::store::app();
+        let first = problem.lines().next().unwrap_or("").trim();
+        let subject = if crash { format!("{app} closed unexpectedly") } else { format!("Problem: {}", first.chars().take(70).collect::<String>()) };
+        let title = if crash { "Sorry, it stopped last time" } else { "Report this problem" };
+        self.report = Some(Report { title, attached: problem.trim().to_string(), crash, kind: "bug", subject, body: String::new(), email: cloud.user.as_ref().map(|u| u.email.clone()).unwrap_or_default(), sending: false, result: None });
+        forget_problem();
     }
 
     pub fn open_update(&mut self, ctx: &egui::Context) {
@@ -174,6 +215,9 @@ impl Help {
         if let Some(d) = &mut self.report {
             d.sending = false;
             d.result = Some(r.map(|id| format!("Sent (#{id}). Thanks! The answer comes by email and on your account page.")));
+            if d.crash && matches!(d.result, Some(Ok(_))) {
+                crate::store::remove("crash.txt");
+            }
             if matches!(d.result, Some(Ok(_))) {
                 d.subject.clear();
                 d.body.clear();
@@ -187,6 +231,12 @@ impl Help {
         static STARTED: OnceLock<()> = OnceLock::new();
         if !quiet && !Cloud::web() && STARTED.set(()).is_ok() {
             check(ctx);
+        }
+        static CRASH: OnceLock<()> = OnceLock::new();
+        if !quiet && CRASH_OFFER.load(std::sync::atomic::Ordering::Relaxed) && CRASH.set(()).is_ok() {
+            if let Some(c) = crate::store::load("crash.txt").filter(|c| !c.trim().is_empty()) {
+                self.open_problem(cloud, &c, true);
+            }
         }
         self.report_ui(ctx, cloud);
         self.update_ui(ctx);
@@ -205,7 +255,14 @@ impl Help {
         let signed_in = cloud.user.is_some();
         let app = crate::store::app();
         widgets::Dialog::new(d.title).id("report").open(&mut open).close_footer().width(460.0).show(ctx, |ui| {
-            ui.add(egui::Label::new(RichText::new(format!("Report a problem, ask for a feature or ask a question. It goes straight to the people building {app}. The version and system are added for you.")).small().color(theme::TEXT_DIM)).wrap());
+            let intro = if d.crash {
+                format!("{app} hit a problem and closed last time. Telling us what you were doing helps us fix it: the technical details below go with it.")
+            } else if !d.attached.is_empty() {
+                format!("Tell us what you were doing when this happened. It goes straight to the people building {app}, with the details below, the version and the system.")
+            } else {
+                format!("Report a problem, ask for a feature or ask a question. It goes straight to the people building {app}. The version and system are added for you.")
+            };
+            ui.add(egui::Label::new(RichText::new(intro).small().color(theme::TEXT_DIM)).wrap());
             egui::Grid::new("req").num_columns(2).spacing([12.0, 8.0]).show(ui, |ui| {
                 ui.label("Type");
                 let items = [("bug", "Problem / bug"), ("suggestion", "Feature or change"), ("question", "Question")];
@@ -219,21 +276,31 @@ impl Help {
                 ui.add(widgets::field(&mut d.subject).desired_width(330.0).hint_text("e.g. Export stops at 50%"));
                 ui.end_row();
                 ui.label("Details");
-                ui.add(egui::TextEdit::multiline(&mut d.body).desired_width(330.0).desired_rows(6).hint_text("What happened, and what did you expect? Steps to reproduce help a lot."));
+                ui.add(egui::TextEdit::multiline(&mut d.body).desired_width(330.0).desired_rows(if d.attached.is_empty() { 6 } else { 4 }).hint_text(if d.attached.is_empty() { "What happened, and what did you expect? Steps to reproduce help a lot." } else { "What were you doing? (optional, but it helps a lot)" }));
                 ui.end_row();
+                if !d.attached.is_empty() {
+                    ui.label("Sent along");
+                    egui::ScrollArea::vertical().id_salt("attached").max_height(90.0).show(ui, |ui| {
+                        ui.add(egui::Label::new(RichText::new(&d.attached).monospace().small().color(theme::TEXT_DIM)).wrap());
+                    });
+                    ui.end_row();
+                }
                 if !signed_in {
                     ui.label("Your email");
                     ui.add(widgets::field(&mut d.email).desired_width(330.0).hint_text("so we can answer"));
                     ui.end_row();
                 }
             });
-            let ok = d.body.trim().len() >= 5 && (signed_in || d.email.contains('@'));
+            // with the problem attached the note is optional (the server wants a few words: the details count)
+            let ok = (d.body.trim().len() >= 5 || !d.attached.is_empty()) && (signed_in || d.email.contains('@'));
             ui.horizontal(|ui| {
                 if ui.add_enabled(ok && !d.sending, egui::Button::new(if d.sending { "Sending…" } else { "Send" })).clicked() {
                     d.sending = true;
                     d.result = None;
                     let sys = format!("\n\n— {app} {} · {} {}{}", version(), std::env::consts::OS, std::env::consts::ARCH, if Cloud::web() { " · web" } else { "" });
-                    cloud.send_request(ctx, d.kind, d.subject.trim(), &format!("{}{sys}", d.body.trim()), d.email.trim());
+                    let note = if d.body.trim().is_empty() { "(no note)" } else { d.body.trim() };
+                    let details = if d.attached.is_empty() { String::new() } else { format!("\n\nDetails:\n{}", d.attached) };
+                    cloud.send_request(ctx, d.kind, d.subject.trim(), &format!("{note}{details}{sys}"), d.email.trim());
                 }
                 if signed_in && ui.link("Your requests and answers").clicked() {
                     cloud.open_web(ctx, "/dashboard/");
@@ -250,6 +317,9 @@ impl Help {
             }
         });
         if !open {
+            if self.report.as_ref().is_some_and(|d| d.crash) {
+                crate::store::remove("crash.txt"); // dismissed: don't ask again for that crash
+            }
             self.report = None;
         }
     }

@@ -39,6 +39,10 @@ pub struct Link {
     last_poll: f64,
     /// bumped when the program changes (preview cache key)
     pub program_rev: u64,
+    /// the tool change already announced (once per change)
+    tool_said: String,
+    /// held after a program line was rejected: Resume is refused until Stop / a new start
+    stopped_on_error: bool,
 }
 
 impl Default for Link {
@@ -62,6 +66,8 @@ impl Default for Link {
             last_tick: None,
             last_poll: 0.0,
             program_rev: 0,
+            tool_said: String::new(),
+            stopped_on_error: false,
         }
     }
 }
@@ -182,7 +188,9 @@ impl Link {
         {
             self.disconnect();
             let name = port.split(" — ").next().unwrap_or(port).to_string();
-            match serialport::new(&name, baud).timeout(std::time::Duration::from_millis(1)).open() {
+            // 250 ms: on Windows the timeout covers a whole write, and 128 bytes take ~11 ms at 115200 (1 ms cut writes
+            // short and dropped the link mid-job); reads only take what bytes_to_read says is there, so never wait
+            match serialport::new(&name, baud).timeout(std::time::Duration::from_millis(250)).open() {
                 Ok(p) => {
                     self.transport = Some(Transport::Serial(p, name));
                     self.last_tick = None;
@@ -260,8 +268,17 @@ impl Link {
             None => {}
         }
     }
+    /// The operator's own lines (jog, probe, zero, MDI…): booked with the streamer so their replies are never taken
+    /// for the program's (a stray "ok" made it send past the controller's buffer and end jobs a line early).
     fn send(&mut self, text: &str) {
+        for l in text.split_inclusive('\n').filter(|l| !l.trim().is_empty()) {
+            self.streamer.foreign_line(l.len() + usize::from(!l.ends_with('\n')));
+        }
         self.write(text.as_bytes());
+    }
+    /// program lines from the streamer (already booked)
+    fn send_program(&mut self, chunk: &str) {
+        self.write(chunk.as_bytes());
     }
 
     /// Every frame: advance the simulator (`now` = seconds, any monotonic clock), move bytes, poll status at 10 Hz,
@@ -369,6 +386,14 @@ impl Link {
             self.write(&[grbl::RESET]); // fresh controller state, prints the Grbl banner (then $$ for the travel)
         }
         self.incoming(&incoming);
+        #[cfg(target_arch = "wasm32")]
+        {
+            // while a job runs, hiding the tab holds the feed at once (no frames = nothing feeds the controller)
+            super::webserial::on_hide(if self.streaming && self.streamer.tool_wait().is_none() { &[grbl::HOLD] } else { &[] });
+            if super::webserial::held_on_hide() {
+                self.add_log("Paused: this tab was hidden while the job ran. Press Resume to carry on (keep the tab in front)");
+            }
+        }
         if now - self.last_poll >= 0.1 {
             self.last_poll = now;
             self.write(&[grbl::STATUS]); // status reports at 10 Hz
@@ -378,6 +403,11 @@ impl Link {
 
     fn incoming(&mut self, bytes: &[u8]) {
         self.inbuf.extend_from_slice(bytes);
+        if self.inbuf.len() > 4096 && !self.inbuf.contains(&b'\n') {
+            // no line ends in 4 KB: not grbl talking (wrong speed, noise); don't let it grow for ever
+            self.inbuf.clear();
+            self.add_log("Unreadable data from the controller: check the baud rate (grbl: 115200)");
+        }
         while let Some(nl) = self.inbuf.iter().position(|&b| b == b'\n') {
             let raw: Vec<u8> = self.inbuf.drain(..=nl).collect();
             let l = String::from_utf8_lossy(&raw).trim_end_matches(['\r', '\n']).to_string();
@@ -402,6 +432,7 @@ impl Link {
                 self.add_log(self.last_error.clone());
                 self.streaming = false;
                 self.write(&[grbl::HOLD]); // the controller may still have moves queued: hold them
+                self.stopped_on_error = true; // …and never resume them: the rejected line is missing from the job
             }
             return;
         }
@@ -429,7 +460,7 @@ impl Link {
             // [PRB:x,y,z:1] = touched; set Z so the plate top reads the plate thickness, then lift
             self.probing = false;
             if l.ends_with(":1]") {
-                self.send(&format!("G10 L20 P1 Z{:.4}\nG91 G0 Z{:.4}\nG90\n", self.probe_plate, self.probe_lift));
+                self.send(&format!("G20 G10 L20 P1 Z{:.4}\nG20 G91 G0 Z{:.4}\nG90\n", self.probe_plate, self.probe_lift));
                 self.zeroed[2] = true;
                 self.add_log(format!("Z zeroed by the touch plate (plate {} in)", self.probe_plate));
             } else {
@@ -464,16 +495,72 @@ impl Link {
         if !self.streaming {
             return;
         }
+        if let Some(t) = self.tool_wait() {
+            if self.tool_said != t {
+                self.send("M5\n"); // the post stops it before a change; never leave it to the file
+                self.add_log(format!("Tool change: put in {t}, then touch off Z and press Continue"));
+                self.tool_said = t;
+            }
+            return;
+        }
         let chunk = self.streamer.next_chunk();
-        self.send(&chunk);
+        if !chunk.is_empty() {
+            // until the controller's next report: lines just sent mean it's busy (a stale "Idle" ended short jobs
+            // and the restart after a tool change as "finished" while the machine was still moving)
+            self.st.state = "Run".into();
+        }
+        self.send_program(&chunk);
         if self.streamer.done() && self.idle() {
             self.streaming = false;
             self.add_log(format!("Program finished: {}", self.program_name));
         }
     }
 
+    /// idle and free for the operator's commands: no program running, or one waiting at a tool change
     fn ready(&self) -> bool {
-        self.connected() && !self.streaming && self.idle()
+        self.connected() && (!self.streaming || self.streamer.tool_wait().is_some()) && self.idle()
+    }
+
+    /// the bit to put in, while a program waits at a tool change (M6) with the machine stopped
+    pub fn tool_wait(&self) -> Option<String> {
+        self.streamer.tool_wait().filter(|_| self.streaming && self.idle()).map(str::to_string)
+    }
+
+    /// the new bit is in (and touched off): put the program's units back and carry on
+    pub fn continue_after_tool(&mut self) {
+        if self.tool_wait().is_none() {
+            return;
+        }
+        // our own commands (probe, jog) may have switched to inches: the program's last unit word wins again
+        let upto = (self.streamer.source_line().max(1) as usize).min(self.program.lines.len());
+        let mm = self.program.lines[..upto].iter().rev().map(|l| grbl::clean_line(l)).find(|l| l.contains("G20") || l.contains("G21")).is_some_and(|l| l.contains("G21"));
+        self.send(if mm { "G21 G90\n" } else { "G20 G90\n" });
+        self.add_log("Tool change done: carrying on");
+        self.tool_said.clear();
+        self.streamer.next_tool();
+        self.pump();
+    }
+
+    /// Outline: the cut's outer box traced at a safe height (above the program's highest point, at least 0.25 in),
+    /// then back over the start corner, so the operator sees the job fits the board before anything spins.
+    pub fn outline(&mut self) {
+        if !self.ready() || self.streaming {
+            return;
+        }
+        let cuts: Vec<_> = self.program.motions.iter().filter(|m| m.kind != MoveType::Rapid && !m.machine_coords).collect();
+        if cuts.is_empty() {
+            self.last_error = "Load a program first: the outline follows its cuts".into();
+            return;
+        }
+        let (mut x0, mut y0, mut x1, mut y1) = (f64::MAX, f64::MAX, f64::MIN, f64::MIN);
+        for m in &cuts {
+            for p in [m.from, m.to] {
+                (x0, y0, x1, y1) = (x0.min(p.x), y0.min(p.y), x1.max(p.x), y1.max(p.y));
+            }
+        }
+        let z = self.program.max.z.max(0.25);
+        self.add_log(format!("Outline: {:.2} x {:.2} in at Z {z:.2}", x1 - x0, y1 - y0));
+        self.send(&format!("G20 G90 G0 Z{z:.4}\nG0 X{x0:.4} Y{y0:.4}\nG0 X{x1:.4}\nG0 Y{y1:.4}\nG0 X{x0:.4}\nG0 Y{y0:.4}\n"));
     }
 
     pub fn home(&mut self) {
@@ -490,8 +577,12 @@ impl Link {
     }
     /// inches, relative
     pub fn jog(&mut self, dx: f64, dy: f64, dz: f64, feed: f64) {
-        if !self.connected() || self.streaming || !(self.idle() || self.state() == "Jog") {
+        let busy = self.streaming && self.streamer.tool_wait().is_none(); // jogging is fine at a tool change
+        if !self.connected() || busy || !(self.idle() || self.state() == "Jog") {
             return;
+        }
+        if self.streamer.room() < 64 {
+            return; // jogs still waiting for the controller: never more than its buffer holds
         }
         self.send(&format!("$J=G91 G20 X{dx:.4} Y{dy:.4} Z{dz:.4} F{:.0}\n", feed.max(1.0)));
     }
@@ -527,12 +618,13 @@ impl Link {
         self.probe_lift = lift.max(0.05);
         self.last_error.clear();
         self.add_log("Probing Z…");
-        self.send(&format!("G91 G38.2 Z{:.4} F{:.1}\nG90\n", -max_travel.abs(), feed.max(1.0)));
+        // G20 on every line with numbers in inches: grbl starts in mm, and a program may have left G21 set
+        self.send(&format!("G20 G91 G38.2 Z{:.4} F{:.1}\nG90\n", -max_travel.abs(), feed.max(1.0)));
     }
     /// lift to the top, then to the back-left corner
     pub fn park(&mut self) {
         if self.ready() {
-            self.send(&format!("G53 G0 Z0\nG53 G0 X0 Y{:.3}\n", self.travel.y));
+            self.send(&format!("G53 G0 Z0\nG20 G53 G0 X0 Y{:.3}\n", self.travel.y));
         }
     }
     /// M3 at low speed, dwell, then off
@@ -645,6 +737,7 @@ impl Link {
         self.streamer.load(&lines);
         self.streamer.start();
         self.streaming = true;
+        self.stopped_on_error = false;
         self.last_error.clear();
         self.add_log(format!("Started {}", self.program_name));
         self.pump();
@@ -658,6 +751,10 @@ impl Link {
         }
     }
     pub fn resume(&mut self) {
+        if self.stopped_on_error {
+            self.add_log("A line was rejected: Resume would run the moves after it without it. Press Stop, fix the file, then start again (or from a line)");
+            return;
+        }
         if self.connected() {
             self.write(&[grbl::RESUME]);
             self.add_log("Resume");
@@ -670,6 +767,7 @@ impl Link {
         }
         self.write(&[grbl::HOLD, grbl::RESET]);
         self.streamer.stop();
+        self.stopped_on_error = false;
         if self.streaming {
             self.add_log("Stopped by the operator");
         }
@@ -683,10 +781,26 @@ impl Link {
             _ => grbl::FEED_100,
         }]);
     }
+    /// 100, 50 or 25 %
+    pub fn override_rapid(&mut self, pct: i32) {
+        self.write(&[match pct {
+            25 => grbl::RAPID_25,
+            50 => grbl::RAPID_50,
+            _ => grbl::RAPID_100,
+        }]);
+    }
+    /// +1 / -1 = +-10 %, 0 = 100 %
+    pub fn override_spindle(&mut self, step: i32) {
+        self.write(&[match step.signum() {
+            1 => grbl::SPINDLE_PLUS_10,
+            -1 => grbl::SPINDLE_MINUS_10,
+            _ => grbl::SPINDLE_100,
+        }]);
+    }
     /// MDI
     pub fn send_command(&mut self, line: &str) {
         let l = line.trim();
-        if !self.connected() || self.streaming || l.is_empty() {
+        if !self.connected() || (self.streaming && self.tool_wait().is_none()) || l.is_empty() {
             return;
         }
         self.add_log(format!("> {l}"));
@@ -727,6 +841,55 @@ mod tests {
             l.update(*t);
         }
         run(l, t, |l| l.idle() || l.alarm());
+    }
+
+    /// A two-bit job in one file (Send to Control): it stops at the M6 with the spindle off, the operator re-probes Z
+    /// (in inches although the program runs in mm), Continue puts the program's mm back and the job finishes.
+    #[test]
+    fn a_tool_change_waits_for_the_new_bit_and_keeps_the_programs_units() {
+        let mut l = Link::default();
+        let mut t = 0.0;
+        let prog = "G90 G21\nM3 S18000\nG0 X0 Y0 Z5\nG1 Z-2 F500\nG1 X50 F1000\nG0 Z20\n(1/8 End Mill)\nM5\nG0 Z20\nT2 M6\nM3 S16000\nG4 P1\nG0 X10 Y10 Z5\nG1 Z-1 F300\nG1 X40 F800\nG0 Z20\nM5\nM30\n";
+        assert!(l.load_program("two-bits.nc", prog));
+        l.connect_sim();
+        settle(&mut l, &mut t);
+        l.home();
+        settle(&mut l, &mut t);
+        l.jog(10.0, 10.0, -3.0, 3000.0);
+        settle(&mut l, &mut t);
+        l.zero_axes("XYZ");
+        settle(&mut l, &mut t);
+        l.jog(0.0, 0.0, 1.0, 3000.0);
+        settle(&mut l, &mut t);
+        // Outline: round the cuts' box (X 0..50 mm, Y 0..10 mm) above the highest point (Z 20 mm), back at the corner
+        l.outline();
+        let mut far = 0.0_f64;
+        for _ in 0..400 {
+            t += 0.05;
+            l.update(t);
+            far = far.max(l.st.wpos().x);
+        }
+        let w = l.st.wpos();
+        assert!((far - 50.0 / 25.4).abs() < 1e-3 && w.x.abs() < 1e-3 && w.y.abs() < 1e-3 && (w.z - 20.0 / 25.4).abs() < 1e-3, "outline: far {far} end {w:?}");
+        assert!(l.start(1));
+        run(&mut l, &mut t, |l| l.tool_wait().is_some());
+        assert_eq!(l.tool_wait().as_deref(), Some("T2: 1/8 End Mill"));
+        settle(&mut l, &mut t);
+        assert!(!l.sim().unwrap().spindle_on(), "spindle off at the change");
+        // the job outline / jog / probe work while it waits; probe with a 0.5 in plate: Z must read 0.5 in, not 0.5 mm
+        let z_mm = l.st.mpos.z;
+        l.sim().unwrap().set_probe_z(z_mm - 1.0); // plate top 1 in below the bit
+        l.probe_z(0.5, 2.0, 10.0, 0.2);
+        run(&mut l, &mut t, |l| !l.probing);
+        settle(&mut l, &mut t);
+        assert!((l.st.wco.z - (z_mm - 1.0 - 0.5)).abs() < 1e-3, "plate read in inches: wco z {} (bit at {z_mm})", l.st.wco.z);
+        l.continue_after_tool();
+        run(&mut l, &mut t, |l| !l.streaming);
+        assert!(l.last_error.is_empty(), "{}", l.last_error);
+        // the second bit cut in mm again: 40 mm = 1.575 in along X from X 10 mm
+        assert!(l.log.iter().any(|s| s.starts_with("Program finished")), "{}", l.log.join("\n"));
+        assert!((l.st.wpos().x - 40.0 / 25.4).abs() < 1e-3, "x {}\n{}", l.st.wpos().x, l.log.join("\n"));
+        assert_eq!(l.log.iter().filter(|s| s.starts_with("Tool change: put in")).count(), 1, "announced once");
     }
 
     /// tests/control_smoke + the --dialog control-run flow: connect, home, jog, zero, start check, stream, hold/resume,

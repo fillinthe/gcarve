@@ -7,9 +7,11 @@ pub use gcarve_ui::palette::{Command, Palette};
 /// Main.qml tbDefs order
 const TB: [&str; 40] = ["new", "open", "jobs", "save", "undo", "redo", "copy", "paste", "clone", "group", "delete", "fliph", "flipv", "rotate", "align", "array", "nest", "link", "weld", "subtract", "intersect", "offset", "dogbone", "join", "close", "paths", "width", "sim", "watch", "vars", "tools", "posts", "board", "export", "edittext", "tocurves", "opedit", "opdelete", "restart", "view3d"];
 const TOOLS: [(&str, &str, &str); 14] = [("Select", "V", "tool:select"), ("Nodes", "N", "tool:nodes"), ("Rect", "R", "tool:rect"), ("Ellipse", "E", "tool:ellipse"), ("Polygon", "G", "tool:polygon"), ("Star", "S", "tool:star"), ("Polyline", "P", "tool:polyline"), ("Curve", "B", "tool:curve"), ("Arc", "A", "tool:arc"), ("Freehand", "H", "tool:freehand"), ("Measure", "M", "tool:measure"), ("Dimension", "D", "tool:dimension"), ("Angle", "L", "tool:angle"), ("Text", "T", "tool:text")];
-const VIEWS: [(&str, &str, &str); 50] = [
+const VIEWS: [(&str, &str, &str); 54] = [
+    ("Getting started guide (checklist)", "", "tour:show"),
     ("How do I…? (help)", "", "guide"),
     ("Check vectors (open, duplicate, tiny)", "", "validate"),
+    ("Surface the board (plane the top flat)", "", "surface"),
     ("Extend open vectors to the next vector", "", "extend"),
     ("Simplify vectors: fine (fewer nodes)", "", "simplify:0.001"),
     ("Simplify vectors: medium", "", "simplify:0.005"),
@@ -23,6 +25,8 @@ const VIEWS: [(&str, &str, &str); 50] = [
     ("Distort: fit shapes into four corners (corner pin)", "", "distort:4"),
     ("Plate production (name plates / badges from a list)…", "", "plates"),
     ("Shelf-pin holes (drill bank, system 32)…", "", "shelfpins"),
+    ("Box maker: finger-jointed box…", "", "boxmaker"),
+    ("New sign: carved words, border, cut out…", "", "sign"),
     ("Rotary layout: wrapped spiral or flutes…", "", "rotarylayout"),
     ("Copy along a vector (array)…", "", "array"),
     ("Export vectors as SVG", "", "vexport:svg"),

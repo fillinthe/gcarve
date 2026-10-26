@@ -42,6 +42,8 @@ pub struct ControlApp {
     start: Option<StartDialog>,
     /// settings dialog buffers (travel x/y/z, plate, probe max, probe feed, lift, warm rpm, warm s)
     settings: Option<[String; 9]>,
+    /// spoilboard surfacing dialog buffers (width, length, bit, stepover %, depth per pass, passes, feed, rpm)
+    surfacing: Option<[String; 8]>,
     started_at: Option<f64>,
     demo: Option<(u32, f64)>,
     #[cfg_attr(not(feature = "screenshot"), allow(dead_code))]
@@ -120,6 +122,7 @@ impl ControlApp {
             queue_scan: 0.0,
             start: None,
             settings: None,
+            surfacing: None,
             started_at: None,
             demo: None,
             shot_frame: 0,
@@ -129,7 +132,7 @@ impl ControlApp {
         if let Some((_, key)) = app.queue.first().cloned() {
             app.load_queued(&key); // just sent from the design tab
         }
-        // dev hooks (Qt --dialog control-sim|control-start|control-run, GCARVE_SHOT_MS)
+        // dev hooks (Qt --dialog control-sim|control-start|control-run, + control-surface; GCARVE_SHOT_MS)
         #[cfg(not(target_arch = "wasm32"))]
         {
             app.shot_ms = std::env::var("GCARVE_SHOT_MS").ok().and_then(|v| v.parse().ok());
@@ -138,6 +141,10 @@ impl ControlApp {
                 Ok("control-start") => {
                     app.link.connect_sim();
                     app.open_start();
+                }
+                Ok("control-surface") => {
+                    app.link.connect_sim();
+                    app.surfacing = Some(["24", "24", "1.0", "40", "0.02", "1", "100", "18000"].map(String::from));
                 }
                 Ok("control-run") => {
                     app.link.connect_sim();
@@ -206,7 +213,12 @@ impl ControlApp {
             return;
         }
         let (s, f) = (self.cfg.jog_step, self.cfg.jog_feed);
-        let pressed = ctx.input(|i| [egui::Key::Escape, egui::Key::Space, egui::Key::ArrowLeft, egui::Key::ArrowRight, egui::Key::ArrowUp, egui::Key::ArrowDown, egui::Key::PageUp, egui::Key::PageDown].map(|k| i.key_pressed(k)));
+        // first press only: key_pressed also fires on auto-repeat (~30 a second), which queued jog after jog while a
+        // key was held and kept the machine moving after it was let go
+        let pressed = ctx.input(|i| {
+            [egui::Key::Escape, egui::Key::Space, egui::Key::ArrowLeft, egui::Key::ArrowRight, egui::Key::ArrowUp, egui::Key::ArrowDown, egui::Key::PageUp, egui::Key::PageDown]
+                .map(|k| i.events.iter().any(|e| matches!(e, egui::Event::Key { key, pressed: true, repeat: false, .. } if *key == k)))
+        });
         if pressed[0] {
             self.link.stop();
             return;
@@ -289,7 +301,7 @@ impl ControlApp {
 
     fn left(&mut self, ui: &mut egui::Ui) {
         let l = &mut self.link;
-        let (idle, free) = (l.idle(), !l.streaming);
+        let (idle, free) = (l.idle(), !l.streaming || l.tool_wait().is_some()); // a tool change frees jog / zero / probe
         ui.spacing_mut().item_spacing.y = 10.0;
         section(ui, "POSITION (work, in)");
         let (w, m) = (l.st.wpos(), l.st.mpos);
@@ -409,6 +421,9 @@ impl ControlApp {
             let name = if self.link.program_name.is_empty() { "No program".to_string() } else { self.link.program_name.clone() };
             ui.add(egui::Label::new(name).truncate());
         });
+        if button(ui, free, "Surface the spoilboard…").on_hover_text("Makes a flattening program for the area you give: zero X/Y at its corner and Z on the spoilboard top first").clicked() {
+            self.surfacing = Some(["24", "24", "1.0", "40", "0.02", "1", "100", "18000"].map(String::from));
+        }
         if !self.queue.is_empty() {
             ui.label(RichText::new("From GCarve").size(11.0).color(theme::TEXT_DIM));
             let mut pick = None;
@@ -451,6 +466,23 @@ impl ControlApp {
             let secs = (now - self.started_at.unwrap_or(now)).max(0.0) as u64;
             dim(ui, format!("Line {} of {} · about {} min left · {}:{:02} elapsed", self.link.progress_line(), p.lines.len(), self.link.minutes_left().ceil(), secs / 60, secs % 60));
         }
+        // a program waiting at a tool change (M6): what to put in, then carry on
+        if let Some(bit) = self.link.tool_wait() {
+            egui::Frame::new().fill(theme::WARNING.gamma_multiply(0.18)).stroke(egui::Stroke::new(1.0, theme::WARNING)).corner_radius(6).inner_margin(10).show(ui, |ui| {
+                ui.set_width(ui.available_width());
+                ui.label(RichText::new("Tool change").family(crate::widgets::bold_family()).color(theme::WARNING));
+                ui.add(egui::Label::new(RichText::new(format!("Put in {bit}.")).size(14.0)).wrap());
+                small_wrap(ui, "The spindle is off. Change the bit, touch off Z again (Probe Z or zero Z by hand: the new bit is a different length), then Continue.");
+                ui.horizontal(|ui| {
+                    if filled(ui, self.link.idle(), "Continue", OK_GREEN, 110.0).clicked() {
+                        self.link.continue_after_tool();
+                    }
+                    if ui.button("Stop the job").clicked() {
+                        self.link.stop();
+                    }
+                });
+            });
+        }
         ui.horizontal(|ui| {
             if filled(ui, self.link.connected() && free && !self.link.program_name.is_empty(), "Start", OK_GREEN, 90.0).clicked() {
                 self.open_start();
@@ -460,12 +492,35 @@ impl ControlApp {
                 if hold { self.link.resume() } else { self.link.pause() }
             }
         });
-        section(ui, &format!("FEED OVERRIDE {}%", self.link.st.feed_ov));
         let c = self.link.connected();
+        if ui.add_enabled(c && free && !self.link.program.motions.is_empty(), egui::Button::new("Outline the job")).on_hover_text("Traces the cut's outer box above the board, bit up and spindle off: check it fits before you start").clicked() {
+            self.link.outline();
+        }
+        section(ui, &format!("FEED {}% · RAPID {}% · SPINDLE {}%", self.link.st.feed_ov, self.link.st.rapid_ov, self.link.st.spindle_ov));
+        let row = |ui: &mut egui::Ui, name: &str| {
+            ui.add_sized([56.0, 20.0], egui::Label::new(RichText::new(name).size(11.0).color(theme::TEXT_DIM)));
+        };
         ui.horizontal(|ui| {
+            row(ui, "Feed");
             for (t, s) in [("−10%", -1), ("100%", 0), ("+10%", 1)] {
                 if button(ui, c, t).clicked() {
                     self.link.override_feed(s);
+                }
+            }
+        });
+        ui.horizontal(|ui| {
+            row(ui, "Rapid");
+            for p in [25, 50, 100] {
+                if button(ui, c, &format!("{p}%")).clicked() {
+                    self.link.override_rapid(p);
+                }
+            }
+        });
+        ui.horizontal(|ui| {
+            row(ui, "Spindle");
+            for (t, s) in [("−10%", -1), ("100%", 0), ("+10%", 1)] {
+                if button(ui, c, t).clicked() {
+                    self.link.override_spindle(s);
                 }
             }
         });
@@ -487,6 +542,34 @@ impl ControlApp {
             let cmd = std::mem::take(&mut self.mdi);
             self.link.send_command(&cmd);
             r.request_focus();
+        }
+    }
+
+    fn surfacing_ui(&mut self, ctx: &egui::Context) {
+        let Some(buf) = &mut self.surfacing else { return };
+        let (mut ok, mut close) = (false, false);
+        crate::widgets::Dialog::new("Surface the spoilboard").show(ctx, |ui| {
+            small_wrap(ui, "Flattens the area from the work zero: set X/Y zero at its front-left corner and Z zero on the spoilboard top. The bit's centre goes to every edge, so the whole area is cut.");
+            egui::Grid::new("surfacing").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
+                for (i, (label, unit)) in [("Width (X)", "in"), ("Length (Y)", "in"), ("Bit diameter", "in"), ("Stepover", "%"), ("Depth per pass", "in"), ("Passes", ""), ("Feed", "in/min"), ("Spindle", "rpm")].into_iter().enumerate() {
+                    ui.label(label);
+                    theme::unit_field(ui, &mut buf[i], unit, 120.0);
+                    ui.end_row();
+                }
+            });
+            (ok, close) = crate::widgets::ok_cancel(ui);
+        });
+        if ok {
+            let v: Vec<f64> = buf.iter().map(|s| num(s).unwrap_or(0.0)).collect();
+            if v[0] <= 0.0 || v[1] <= 0.0 || v[2] <= 0.0 || v[4] <= 0.0 || v[6] <= 0.0 {
+                self.link.last_error = "Surfacing: width, length, bit, depth and feed must be above zero".into();
+            } else {
+                let g = gcarve_core::grbl::surfacing_program(v[0], v[1], v[2], v[3] / 100.0, v[4], v[5].max(1.0) as u32, v[6], v[7]);
+                self.link.load_program("Spoilboard surfacing.nc", &g);
+            }
+        }
+        if ok || close {
+            self.surfacing = None;
         }
     }
 
@@ -657,6 +740,7 @@ impl eframe::App for ControlApp {
             });
         });
         self.settings_ui(&ctx);
+        self.surfacing_ui(&ctx);
         self.start_ui(&ctx);
         crate::widgets::focus_ring(&ctx);
     }

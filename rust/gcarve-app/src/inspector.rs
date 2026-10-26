@@ -229,6 +229,10 @@ fn properties(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas) {
 /// Nothing selected: what to do next for this job, with the buttons for it
 fn next_step(ui: &mut egui::Ui, sh: &mut Shell, canvas: &Canvas) {
     let doc = &canvas.doc;
+    if sh.tour.active(doc) {
+        tour_card(ui, sh, doc);
+        return;
+    }
     let (text, buttons): (&str, &[(&str, &str)]) = if doc.shapes.is_empty() {
         ("Draw with the tools on the left, or open a VCarve project (.crv) or an SVG, DXF, PDF, image or G-code file.", &[("Import…", "import"), ("Board…", "board")])
     } else if doc.ops.is_empty() {
@@ -247,6 +251,73 @@ fn next_step(ui: &mut egui::Ui, sh: &mut Shell, canvas: &Canvas) {
                 }
             }
         });
+        // a blank board stops most first visitors: a finished project to change is an easier start
+        if doc.shapes.is_empty() {
+            ui.add_space(6.0);
+            ui.label(RichText::new("Or start from a ready project:").size(12.0).color(theme::TEXT_DIM));
+            starter_buttons(ui, sh);
+        }
+    });
+}
+
+/// The first-time guide (onboarding.rs): five steps, ticked as the job moves; the first open step has the button.
+fn tour_card(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Document) {
+    let steps = sh.tour.steps(doc);
+    let first = steps.iter().position(|s| !s.4);
+    egui::Frame::new().fill(theme::FIELD).corner_radius(6).inner_margin(10).show(ui, |ui| {
+        ui.set_width(ui.available_width());
+        ui.horizontal(|ui| {
+            ui.label(RichText::new(format!("GETTING STARTED  {} / 5", steps.iter().filter(|s| s.4).count())).size(10.0).family(crate::widgets::bold_family()).color(theme::ACCENT));
+            ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                // at the top where people look first; stays hidden for good (tour.json), Help › Getting Started brings it back
+                if ui.small_button("Skip the guide").on_hover_text("Hides it for good. Help › Getting Started Guide shows it again").clicked() {
+                    sh.push("tour:hide");
+                }
+            });
+        });
+        for (i, (title, hint, cmd, button, done)) in steps.iter().enumerate() {
+            ui.add_space(4.0);
+            let (mark, color) = if *done { ("✓", theme::ACCENT) } else { ("○", theme::TEXT_DIM) };
+            ui.horizontal(|ui| {
+                ui.label(RichText::new(mark).color(color));
+                ui.label(RichText::new(*title).size(13.0).color(if *done { theme::TEXT_DIM } else { theme::TEXT }));
+            });
+            if first == Some(i) {
+                ui.add(egui::Label::new(RichText::new(*hint).size(12.0).color(theme::TEXT_DIM)).wrap());
+                ui.horizontal(|ui| {
+                    if ui.button(*button).clicked() {
+                        sh.push(*cmd);
+                    }
+                    if i == 0 && ui.button("Import…").clicked() {
+                        sh.push("import");
+                    }
+                });
+                if i == 0 {
+                    ui.label(RichText::new("Or start from a ready project:").size(12.0).color(theme::TEXT_DIM));
+                    starter_buttons(ui, sh);
+                }
+            }
+        }
+    });
+}
+
+/// starter projects posted by GCarve on the community site (gworkshop.app/projects), by slug
+// ponytail: fixed list; read them from /api/community when there are more than a handful
+const STARTERS: &[(&str, &str)] = &[
+    ("Welcome sign", "welcome-sign-24-8-in-1h40s"),
+    ("House number", "house-number-sign-umuha"),
+    ("Coasters", "star-coasters-set-of-4-eu0so"),
+    ("Cutting board", "cutting-board-with-juice-groove-zniyj"),
+];
+
+/// one button per starter project (the start card and the empty board's Next card)
+pub(crate) fn starter_buttons(ui: &mut egui::Ui, sh: &mut Shell) {
+    ui.horizontal_wrapped(|ui| {
+        for (label, slug) in STARTERS {
+            if ui.button(*label).on_hover_text("Opens with its toolpaths set: change the text or size, check it in Simulate, export").clicked() {
+                sh.push(format!("sample:{slug}"));
+            }
+        }
     });
 }
 
@@ -307,6 +378,7 @@ fn layers(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas) {
         Visible(usize),
         Locked(usize),
         KeepOut(usize),
+        ClampHeight(usize, f64),
     }
     let mut acts = Vec::new();
     let w = ui.available_width();
@@ -360,6 +432,16 @@ fn layers(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas) {
                     acts.push(Act::KeepOut(i));
                     ui.close();
                 }
+                if l.keep_out {
+                    ui.label(RichText::new("How tall the clamps are").small().color(theme::TEXT_DIM));
+                    for h in [0.5, 1.0, 2.0, 3.0] {
+                        let mut on = (if l.clamp_height > 0.0 { l.clamp_height } else { 1.0 } - h).abs() < 1e-6;
+                        if crate::widgets::menu_check(ui, &format!("{h} in above the board"), "", &mut on).on_hover_text("The export check counts the bit holder's width, not just the bit, below this height").clicked() {
+                            acts.push(Act::ClampHeight(i, h));
+                            ui.close();
+                        }
+                    }
+                }
                 crate::widgets::menu_separator(ui);
                 ui.label(RichText::new("Toolpath for the whole layer").small().color(theme::TEXT_DIM));
                 for (k, kind) in KIND_TYPES.iter().enumerate() {
@@ -404,6 +486,11 @@ fn layers(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas) {
             }
             Act::Locked(i) => {
                 canvas.doc.layers[i].locked ^= true;
+                canvas.mutated();
+            }
+            Act::ClampHeight(i, h) => {
+                canvas.doc.checkpoint();
+                canvas.doc.layers[i].clamp_height = h;
                 canvas.mutated();
             }
             Act::KeepOut(i) => {
@@ -649,6 +736,17 @@ fn toolpaths(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Option
                 }
             }
         }
+    }
+    // the job's time and, with a board price or shop rate (Job Setup), its cost
+    if let Some(g) = gen.filter(|_| !doc.ops.is_empty()) {
+        let mins: f64 = g.minutes.iter().sum();
+        let t = if mins < 90.0 { format!("{mins:.0} min") } else { format!("{:.1} h", mins / 60.0) };
+        let line = match doc.material.cost(mins) {
+            Some(c) => format!("This sheet: about {t} · ${c:.2}"),
+            None => format!("This sheet: about {t}"),
+        };
+        ui.add_space(4.0);
+        ui.label(RichText::new(line).size(11.0).color(theme::TEXT_DIM)).tip("Machine time estimate. Set a board price and shop rate in Job Setup to see the cost.");
     }
     // a new folder at the end of the folder list (the dropdown row has no room)
     if sh.tp_group == VIEW_FOLDERS && !doc.ops.is_empty() && sh.new_folder.is_none() {

@@ -7,7 +7,7 @@ members = ["gcarve-core", "gcarve-ui", "gcarve-app"]
 
 [workspace.package]
 edition = "2021"
-version = "0.1.15"
+version = "0.1.16"
 license = "LicenseRef-Proprietary"
 rust-version = "1.89"   # boostvoronoi needs 1.87, File::try_lock (Control single instance) 1.89
 

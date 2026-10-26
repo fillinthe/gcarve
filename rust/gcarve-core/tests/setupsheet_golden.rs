@@ -57,3 +57,17 @@ fn showcase_setup_sheet_matches_the_cpp_engine() {
     let named = pipeline::setup_sheet(&doc, &gen, "showcase", "d", 0.0, &post, &["mine.tap".to_string()], &mut |_, _| None);
     assert!(named.contains("<td class=\"file\">mine.tap</td>"));
 }
+
+#[test]
+fn a_board_price_and_shop_rate_put_the_cost_on_the_sheet_and_survive_a_save() {
+    let mut doc = load_project(&std::fs::read_to_string(root().join("samples/showcase.tlp")).unwrap()).unwrap();
+    assert!(doc.material.cost(30.0).is_none(), "nothing set: no cost");
+    (doc.material.price, doc.material.rate) = (12.5, 60.0);
+    assert_eq!(doc.material.cost(30.0), Some(42.5));
+    doc.sync_sheet();
+    let doc = load_project(&gcarve_core::project::save_project(&doc)).unwrap();
+    assert_eq!((doc.material.price, doc.material.rate), (12.5, 60.0));
+    let gen = pipeline::regenerate(&doc);
+    let html = pipeline::setup_sheet(&doc, &gen, "showcase", "d", 0.0, &active_post(&doc, &|_| None), &[], &mut |_, _| None);
+    assert!(html.contains("<tr><th>Cost</th><td><b>$") && html.contains("board $12.50 + machine at $60.00/h"));
+}

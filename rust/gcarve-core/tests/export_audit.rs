@@ -23,6 +23,8 @@ fn showcase() -> Document {
     let vbit = doc.tools.iter().position(|t| t.kind == gcarve_core::document::ToolType::VBit).unwrap_or(0) as i32;
     doc.ops.push(Op { kind: OpType::Texture, name: "Texture".into(), shape_ids: vec![id], tool: ball, depth: 0.05, ramp_length: 0.5, stepover: 0.8, vary: 0.5, ..Default::default() });
     let px: Vec<u8> = (0..64 * 48).map(|i| ((i % 64) * 4) as u8).collect(); // left dark, right light
+    let em = doc.tools.iter().position(|t| t.kind == gcarve_core::document::ToolType::EndMill).unwrap_or(0) as i32;
+    doc.ops.push(Op { kind: OpType::Pocket, name: "Adaptive".into(), shape_ids: vec![id], tool: em, depth: 0.2, stepdown: 0.1, stepover: 0.15, adaptive: true, climb: true, ..Default::default() });
     doc.ops.push(Op { kind: OpType::Photo, name: "Photo".into(), shape_ids: vec![id], tool: vbit, depth: 0.06, photo: gcarve_core::photo::b64_encode(&px), photo_w: 64, photo_h: 48, ..Default::default() });
     doc
 }

@@ -445,6 +445,29 @@ pub fn dxf_to_dwg(dxf: &str) -> Result<Vec<u8>, String> {
     .map_err(|_| "Could not write the DWG file. Export DXF instead.".to_string())?
 }
 
+/// Start of the message for a refused archive (the app doesn't send that one to the problem log: it is not a fault).
+pub const NO_ARCHIVES: &str = "Zip and other archive files are not accepted.";
+
+/// What a file is when it is an archive (by its ending, or by its first bytes whatever it is called): .zip and
+/// friends are refused outright. A .3mf is a zip inside by design and is the one container let through (a 3D model).
+fn archive_kind(ext: &str, bytes: &[u8]) -> Option<&'static str> {
+    match ext {
+        "zip" => return Some("zip"),
+        "7z" => return Some("7z"),
+        "rar" => return Some("rar"),
+        "gz" | "tgz" | "bz2" | "xz" | "tar" => return Some("compressed archive"),
+        _ => {}
+    }
+    let magic = |m: &[u8]| bytes.starts_with(m);
+    if magic(b"PK\x03\x04") || magic(b"PK\x05\x06") {
+        return (ext != "3mf").then_some("zip");
+    }
+    if magic(&[0x1f, 0x8b]) || magic(b"7z\xbc\xaf\x27\x1c") || magic(b"Rar!\x1a\x07") {
+        return Some("compressed archive");
+    }
+    None
+}
+
 /// .tlp and VCarve .crv replace the document; .svg / .dxf / .pdf / .ai add to it (layers from the file).
 pub fn load(doc: &mut Document, name: &str, bytes: &[u8]) -> Loaded {
     // a browser tab has a few GB at most, and the importers copy the text: refuse the absurd before reading it
@@ -452,6 +475,9 @@ pub fn load(doc: &mut Document, name: &str, bytes: &[u8]) -> Loaded {
         return Loaded::Error(format!("That file is {} MB; GCarve opens files up to {} MB. A drawing this big is usually full of pictures or far too many points: simplify it in the program that made it.", bytes.len() >> 20, MAX_IMPORT_BYTES >> 20));
     }
     let mut ext = name.rsplit('.').next().unwrap_or("").to_ascii_lowercase();
+    if let Some(kind) = archive_kind(&ext, bytes) {
+        return Loaded::Error(format!("{NO_ARCHIVES} This looks like a {kind} file: unpack it first and open the drawing inside (.svg, .dxf, .tlp ...)."));
+    }
     let dwg;
     let text = if ext == "dwg" {
         dwg = match dwg_to_dxf(bytes) {
@@ -752,5 +778,22 @@ mod gsk_tests {
             Loaded::Project(d, note) => assert!(d.material.w == 24.0 && d.shapes.len() == 1 && note.contains("job template")),
             _ => panic!("not opened as a project"),
         }
+    }
+}
+
+#[cfg(test)]
+mod archive_tests {
+    use super::*;
+
+    #[test]
+    fn archives_are_refused_whatever_they_are_called_but_a_3mf_passes() {
+        let mut doc = Document::default();
+        for (name, bytes) in [("job.zip", &b"anything"[..]), ("drawing.svg", b"PK\x03\x04...."), ("a.dxf", &[0x1f, 0x8b, 8, 0]), ("x.rar", b"Rar!\x1a\x07\x00"), ("model.7z", b"")] {
+            match load(&mut doc, name, bytes) {
+                Loaded::Error(e) => assert!(e.starts_with(NO_ARCHIVES), "{name}: {e}"),
+                _ => panic!("{name} was not refused"),
+            }
+        }
+        assert_eq!(archive_kind("3mf", b"PK\x03\x04"), None);
     }
 }

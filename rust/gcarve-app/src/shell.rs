@@ -247,6 +247,8 @@ pub fn op_summary(doc: &Document, op: &Op) -> (String, String) {
 }
 
 pub struct Shell {
+    /// the first-time guide (onboarding.rs)
+    pub tour: crate::onboarding::Tour,
     pub cmds: Vec<String>,
     pub side_tab: usize,
     pub op_sel: Option<usize>,
@@ -284,7 +286,7 @@ pub struct Shell {
 
 impl Shell {
     pub fn new() -> Self {
-        Shell { cmds: Vec::new(), side_tab: 0, op_sel: None, op_multi: Default::default(), folded: Default::default(), new_folder: None, sheet_rename: None, tabs_seen: None, empty_folders: Default::default(), tp_this_sheet: false, tp_layer: -1, tp_usage: (u64::MAX, Vec::new()), tp_group: 0, lock_aspect: true, rot_text: "15".into(), edit: Default::default(), edit_for: None, zoom_text: String::new(), canvas_rect: egui::Rect::ZERO, menu_rect: egui::Rect::NOTHING, snap_arrow: egui::Rect::NOTHING }
+        Shell { tour: crate::onboarding::Tour::load(), cmds: Vec::new(), side_tab: 0, op_sel: None, op_multi: Default::default(), folded: Default::default(), new_folder: None, sheet_rename: None, tabs_seen: None, empty_folders: Default::default(), tp_this_sheet: false, tp_layer: -1, tp_usage: (u64::MAX, Vec::new()), tp_group: 0, lock_aspect: true, rot_text: "15".into(), edit: Default::default(), edit_for: None, zoom_text: String::new(), canvas_rect: egui::Rect::ZERO, menu_rect: egui::Rect::NOTHING, snap_arrow: egui::Rect::NOTHING }
     }
     pub fn push(&mut self, id: impl Into<String>) {
         self.cmds.push(id.into());
@@ -584,6 +586,10 @@ pub fn status_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, synced
             }
             // Qt: the message fills the space after the cursor readout, left-aligned
             ui.allocate_ui_with_layout(egui::vec2(ui.available_width(), 20.0), egui::Layout::left_to_right(egui::Align::Center), |ui| {
+                // a problem was just shown: one click to tell us (the error goes along)
+                if gcarve_ui::help::recent_problem(ui.input(|i| i.time)).is_some() && ui.add(egui::Button::new(RichText::new("Report this…").size(11.0).color(theme::DANGER)).small()).on_hover_text("Send this problem to the people building GCarve, with the error and your version").clicked() {
+                    sh.push("reportproblem");
+                }
                 ui.add(egui::Label::new(RichText::new(message).color(theme::TEXT.gamma_multiply(0.8))).truncate());
             });
         });
@@ -634,6 +640,9 @@ pub fn empty_state(ui: &mut egui::Ui, sh: &mut Shell, rect: egui::Rect, doc: &Do
                 }
             }
         });
+        c.add_space(10.0);
+        c.label(RichText::new("OR CHANGE A READY PROJECT").size(11.0).color(theme::TEXT.gamma_multiply(0.45)));
+        crate::inspector::starter_buttons(c, sh);
         if !recent.is_empty() {
             c.add_space(10.0);
             c.label(RichText::new("RECENT").size(11.0).color(theme::TEXT.gamma_multiply(0.45)));
@@ -710,6 +719,7 @@ pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, m: &Menu
             }
             tops.push(ui.menu_button("File", |ui| {
                 item(ui, sh, "New", "⌘N", true, "new");
+                item(ui, sh, "New Sign…", "", true, "sign");
                 item(ui, sh, "Close Tab", "⌘W", true, "closetab");
                 item(ui, sh, if web { "Open / Import from Computer…" } else { "Open Project / Import…" }, "⌘O", true, "open");
                 item(ui, sh, "Import G-code…", "", true, "importgcode");
@@ -788,7 +798,7 @@ pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, m: &Menu
                 item(ui, sh, "Shapes Library…", "", true, "shapes");
                 item(ui, sh, "Trace Image…", "", true, "trace");
                 widgets::menu_separator(ui);
-                for (t, k, on, id) in [("Offset…", "", sel > 0, "offset"), ("Corners: Dogbone / Fillet…", "", sel > 0, "dogbone"), ("Join Open Vectors", "", sel > 1, "join"), ("Close Vectors", "", sel > 0, "close"), ("Extend Ends to Next Vector", "", sel > 0, "extend"), ("Vector Texture…", "", sel > 0, "vtexture"), ("Plate Production…", "", sel > 0, "plates"), ("Shelf-Pin Holes…", "", sel > 0, "shelfpins"), ("Rotary Layout (spiral, flutes)…", "", canvas.doc.material.rotary.is_some(), "rotarylayout"), ("Check Vectors (open, duplicate, tiny)", "", true, "validate")] {
+                for (t, k, on, id) in [("Offset…", "", sel > 0, "offset"), ("Corners: Dogbone / Fillet…", "", sel > 0, "dogbone"), ("Join Open Vectors", "", sel > 1, "join"), ("Close Vectors", "", sel > 0, "close"), ("Extend Ends to Next Vector", "", sel > 0, "extend"), ("Vector Texture…", "", sel > 0, "vtexture"), ("Plate Production…", "", sel > 0, "plates"), ("Shelf-Pin Holes…", "", sel > 0, "shelfpins"), ("Box Maker (finger joints)…", "", true, "boxmaker"), ("Rotary Layout (spiral, flutes)…", "", canvas.doc.material.rotary.is_some(), "rotarylayout"), ("Check Vectors (open, duplicate, tiny)", "", true, "validate")] {
                     item(ui, sh, t, k, on, id);
                 }
                 ui.add_enabled_ui(sel > 1, |ui| {
@@ -847,6 +857,7 @@ pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, m: &Menu
                 item(ui, sh, "Tool Library…", "", true, "tools");
                 item(ui, sh, "Board / Job Setup…", "", true, "board");
                 item(ui, sh, "Choose Machine…", "", true, "machine");
+                item(ui, sh, "Surface the Board…", "", true, "surface");
                 item(ui, sh, "3D Models…", "", true, "reliefs");
                 item(ui, sh, "Post-Processors…", "", true, "posts");
             }).response);
@@ -933,6 +944,7 @@ pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, m: &Menu
                 if m.admin {
                     item(ui, sh, "User Management…", "", true, "admin");
                 }
+                item(ui, sh, "Getting Started Guide", "", true, "tour:show");
                 item(ui, sh, "How Do I…?", "", true, "guide");
                 item(ui, sh, "Keyboard Shortcuts", "", true, "shortcuts");
                 item(ui, sh, "Open the Demo Project", "", true, "demo");

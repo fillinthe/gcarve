@@ -159,13 +159,16 @@ pub fn import_lbrn(text: &str) -> ImportResult {
         xf: Affine,
         verts: String,
         prims: String,
+        /// the outermost group this shape sits in (0 = none)
+        group: u32,
     }
     let identity = Affine::default();
     let mut stack: Vec<Frame> = Vec::new();
     let (mut paths, mut layers, mut skipped) = (Vec::<Contour>::new(), Vec::<String>::new(), 0usize);
+    let (mut groups, mut next_group) = (Vec::<u32>::new(), 0u32);
     // pictures: base64, corners (mm, before the mirror / move below), layer
     let mut images: Vec<(String, [Pt; 4], String)> = Vec::new();
-    let mut emit = |f: &Frame, paths: &mut Vec<Contour>, layers: &mut Vec<String>, skipped: &mut usize| {
+    let mut emit = |f: &Frame, paths: &mut Vec<Contour>, layers: &mut Vec<String>, groups: &mut Vec<u32>, skipped: &mut usize| {
         let kind = attr(&f.tag, "Type").unwrap_or("");
         let ix = attr(&f.tag, "CutIndex").unwrap_or("0");
         let layer = names.get(ix).cloned().filter(|n| !n.is_empty()).unwrap_or_else(|| format!("C{:0>2}", ix));
@@ -192,6 +195,7 @@ pub fn import_lbrn(text: &str) -> ImportResult {
         for c in local {
             paths.push(transformed(&c, &f.xf));
             layers.push(layer.clone());
+            groups.push(f.group);
         }
     };
     // shapes share vertex and primitive lists by id (copies, and paths with the same segment layout): the first
@@ -216,17 +220,22 @@ pub fn import_lbrn(text: &str) -> ImportResult {
         let inner = |name: &str| text[end..].find(&format!("</{name}>")).map(|e| text[end..end + e].to_string()).unwrap_or_default();
         if tag.starts_with("<Shape ") {
             let parent = stack.last().map_or(identity, |f| f.xf);
-            let mut f = Frame { tag: tag.to_string(), xf: parent, verts: String::new(), prims: String::new() };
+            let mut group = stack.last().map_or(0, |p| p.group);
+            if group == 0 && attr(tag, "Type") == Some("Group") && !tag.ends_with("/>") {
+                next_group += 1;
+                group = next_group;
+            }
+            let mut f = Frame { tag: tag.to_string(), xf: parent, verts: String::new(), prims: String::new(), group };
             if tag.ends_with("/>") {
                 shared(&mut f);
-                emit(&f, &mut paths, &mut layers, &mut skipped);
+                emit(&f, &mut paths, &mut layers, &mut groups, &mut skipped);
             } else {
                 stack.push(f);
             }
         } else if tag.starts_with("</Shape") {
             if let Some(mut f) = stack.pop() {
                 shared(&mut f);
-                emit(&f, &mut paths, &mut layers, &mut skipped);
+                emit(&f, &mut paths, &mut layers, &mut groups, &mut skipped);
             }
         } else if let Some(f) = stack.last_mut() {
             if tag == "<XForm>" {
@@ -264,6 +273,7 @@ pub fn import_lbrn(text: &str) -> ImportResult {
     let m = Affine { a: 1.0 / 25.4, d: 1.0 / 25.4, e: -bb.x0 / 25.4, f: -bb.y0 / 25.4, ..Default::default() };
     r.contours = paths.iter().map(|c| transformed(c, &m)).collect();
     r.layers = layers;
+    r.groups = groups;
     r.images = images.into_iter().map(|(data, corners, layer)| crate::svg::ImportImage { data, corners: corners.map(|p| m.apply(mirror.apply(p))), layer }).collect();
     r.note = format!("{:.2} × {:.2} in from LightBurn{}", bb.w() / 25.4, bb.h() / 25.4, if skipped > 0 { format!("; skipped {skipped} shapes it doesn't know") } else { String::new() });
     r
@@ -272,6 +282,16 @@ pub fn import_lbrn(text: &str) -> ImportResult {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn groups_are_numbered_by_their_outermost_group() {
+        let lb = r#"<LightBurnProject FormatVersion="1"><Shape Type="Group" CutIndex="0"><XForm>1 0 0 1 0 0</XForm><Children>
+<Shape Type="Group" CutIndex="0"><XForm>1 0 0 1 0 0</XForm><Children><Shape Type="Rect" CutIndex="0" W="10" H="10" Cr="0"><XForm>1 0 0 1 5 5</XForm></Shape></Children></Shape>
+<Shape Type="Rect" CutIndex="0" W="10" H="10" Cr="0"><XForm>1 0 0 1 30 5</XForm></Shape></Children></Shape>
+<Shape Type="Rect" CutIndex="0" W="10" H="10" Cr="0"><XForm>1 0 0 1 60 5</XForm></Shape></LightBurnProject>"#;
+        let r = import_lbrn(lb);
+        assert_eq!(r.groups, vec![1, 1, 0], "{:?} {}", r.groups, r.note);
+    }
 
     #[test]
     fn pictures_come_with_their_corners() {

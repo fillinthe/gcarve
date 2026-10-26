@@ -35,7 +35,7 @@ Get the file for your computer from the [latest release](../../releases/latest).
 
 ### First start
 
-- **macOS:** open the .dmg, drag GCarve to Applications. The app is not notarized by Apple yet, so the first time right-click it and choose **Open**.
+- **macOS:** open the .dmg, drag GCarve to Applications and double-click it. The app is signed and notarized by Apple.
 - **Windows:** unzip, run `gcarve.exe`. It is not code-signed yet, so SmartScreen may say "unknown publisher": **More info → Run anyway**. Settings live in `%APPDATA%\GCarve`. Needs OpenGL 2.0 (any graphics driver of the last ~15 years). `run-tests.cmd` in the folder is a self-check.
 - **Linux:** `tar xzf` the file, then run `./gcarve` (or `./install.sh` to add it to your applications menu). Needs OpenGL 2.0 (Mesa is fine).
 

@@ -2,7 +2,9 @@
 //! values and strings, so the same code runs on the desktop and in the browser (wasm32).
 //! Every module is checked against the C++ engine's output (golden files in `reference/` and `rust/testdata/`).
 
+pub mod adaptive;
 pub mod arcfit;
+pub mod boxjoint;
 pub mod cam;
 pub mod catalog;
 pub mod clipart;
