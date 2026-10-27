@@ -1,6 +1,8 @@
 //! File ▸ Projects (cloud): folders, open, save here, new folder, rename / move / delete. Folders are a path on
 //! each project (server `folder`); folders made here that hold nothing yet are remembered on this device per account.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use crate::cloud::{Cloud, ProjectInfo};
 use crate::theme;
 use eframe::egui::{self, RichText};
@@ -79,24 +81,24 @@ impl ProjectsDialog {
         if !self.folder.is_empty() && !folders.contains(&self.folder) {
             self.folder.clear(); // its last project moved away
         }
-        crate::widgets::Dialog::new("Open or save").open(&mut open).close_footer().width(620.0).show(ctx, |ui| {
+        crate::widgets::Dialog::new(i18n::t("Open or save")).open(&mut open).close_footer().width(620.0).show(ctx, |ui| {
             // a file from this computer first: people coming from VCarve have their .crv files there
             egui::Frame::new().fill(theme::TEXT.gamma_multiply(0.05)).corner_radius(8.0).inner_margin(12.0).show(ui, |ui| {
                 ui.set_width(ui.available_width());
                 ui.horizontal(|ui| {
-                    if ui.add(crate::widgets::Button::new("Open a file from this computer…").primary(true).min_width(250.0)).clicked() {
+                    if ui.add(crate::widgets::Button::new(i18n::t("Open a file from this computer…")).primary(true).min_width(250.0)).clicked() {
                         act = Some(Action::FromComputer);
                     }
-                    ui.label(RichText::new("or drop it anywhere on the window").color(theme::TEXT_DIM));
+                    ui.label(RichText::new(i18n::t("or drop it anywhere on the window")).color(theme::TEXT_DIM));
                 });
                 ui.add_space(4.0);
-                ui.label(RichText::new("GCarve projects (.tlp), VCarve projects (.crv), SVG, DXF, DWG, PDF, Illustrator, pictures and G-code (.tap, .nc, .gcode)").small().color(theme::TEXT_DIM));
+                ui.label(RichText::new(i18n::t("GCarve projects (.tlp), VCarve projects (.crv), SVG, DXF, DWG, PDF, Illustrator, pictures and G-code (.tap, .nc, .gcode)")).small().color(theme::TEXT_DIM));
             });
             ui.add_space(8.0);
             // breadcrumb + new folder
             ui.horizontal(|ui| {
                 let mut path = String::new();
-                if ui.link(RichText::new("My online projects").strong()).clicked() {
+                if ui.link(RichText::new(i18n::t("My online projects")).strong()).clicked() {
                     self.folder.clear();
                 }
                 for part in self.folder.clone().split('/').filter(|p| !p.is_empty()) {
@@ -107,7 +109,7 @@ impl ProjectsDialog {
                     }
                 }
                 ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                    if crate::icons::IconButton::new("add").text("New folder").tip("Make a folder here").show(ui).clicked() {
+                    if crate::icons::IconButton::new("add").text(i18n::t("New folder")).tip(i18n::t("Make a folder here")).show(ui).clicked() {
                         self.new_folder = Some(String::new());
                     }
                 });
@@ -115,15 +117,15 @@ impl ProjectsDialog {
             if let Some(mut n) = self.new_folder.take() {
                 let mut keep = true;
                 ui.horizontal(|ui| {
-                    let r = ui.add(crate::widgets::field(&mut n).hint_text("Folder name").desired_width(260.0));
+                    let r = ui.add(crate::widgets::field(&mut n).hint_text(i18n::t("Folder name")).desired_width(260.0));
                     r.request_focus();
                     let ok = !n.trim().is_empty() && !n.contains('/');
-                    if ok && (ui.button("Create").clicked() || (r.lost_focus() && ui.input(|i| i.key_pressed(egui::Key::Enter)))) {
+                    if ok && (ui.button(i18n::t("Create")).clicked() || (r.lost_focus() && ui.input(|i| i.key_pressed(egui::Key::Enter)))) {
                         let f = join(&self.folder, n.trim());
                         self.made.push(f.clone());
                         self.folder = f;
                         keep = false;
-                    } else if ui.button("Cancel").clicked() || ui.input(|i| i.key_pressed(egui::Key::Escape)) {
+                    } else if ui.button(i18n::t("Cancel")).clicked() || ui.input(|i| i.key_pressed(egui::Key::Escape)) {
                         keep = false;
                     }
                 });
@@ -133,7 +135,7 @@ impl ProjectsDialog {
             }
             if cloud.error == "sign in required" {
                 // not a mistake of the visitor's: say what an account gives instead
-                ui.label(RichText::new("Sign in (free) to keep projects online, in folders, on every computer.").color(theme::TEXT_DIM));
+                ui.label(RichText::new(i18n::t("Sign in (free) to keep projects online, in folders, on every computer.")).color(theme::TEXT_DIM));
             } else if !cloud.error.is_empty() {
                 ui.label(RichText::new(&cloud.error).color(theme::DANGER));
             }
@@ -153,10 +155,10 @@ impl ProjectsDialog {
                 let here: Vec<ProjectInfo> = cloud.projects.iter().filter(|p| p.folder == self.folder).cloned().collect();
                 if subs.is_empty() && here.is_empty() {
                     let r = ui.max_rect();
-                    let msg = if cloud.busy > 0 { "Loading…" } else if self.folder.is_empty() { "No cloud projects yet" } else { "Empty folder: save a project here" };
+                    let msg = if cloud.busy > 0 { i18n::t("Loading…") } else if self.folder.is_empty() { i18n::t("No cloud projects yet") } else { i18n::t("Empty folder: save a project here") };
                     ui.painter().text(egui::pos2(r.center().x, r.top() + 130.0), egui::Align2::CENTER_CENTER, msg, theme::font(theme::FONT_SIZE), theme::TEXT_DIM);
                 }
-                if !self.folder.is_empty() && row(ui, "open", "..", "Up one folder", theme::TEXT_DIM).clicked() {
+                if !self.folder.is_empty() && row(ui, "open", "..", i18n::t("Up one folder"), theme::TEXT_DIM).clicked() {
                     self.folder = parent(&self.folder).to_string();
                 }
                 for f in subs {
@@ -168,7 +170,7 @@ impl ProjectsDialog {
                     }
                     if n == 0 {
                         resp.context_menu(|ui| {
-                            if ui.button("Remove empty folder").clicked() {
+                            if ui.button(i18n::t("Remove empty folder")).clicked() {
                                 self.made.retain(|m| m != f && !m.starts_with(&format!("{f}/")));
                                 ui.close();
                             }
@@ -183,12 +185,12 @@ impl ProjectsDialog {
                         ui.horizontal(|ui| {
                             let r = ui.add(crate::widgets::field(&mut n).desired_width(300.0));
                             r.request_focus();
-                            if ui.button("Rename").clicked() || (r.lost_focus() && ui.input(|i| i.key_pressed(egui::Key::Enter))) {
+                            if ui.button(i18n::t("Rename")).clicked() || (r.lost_focus() && ui.input(|i| i.key_pressed(egui::Key::Enter))) {
                                 if !n.trim().is_empty() {
                                     cloud.update_project(ctx, &id, Some(n.trim()), None);
                                 }
                                 keep = false;
-                            } else if ui.button("Cancel").clicked() {
+                            } else if ui.button(i18n::t("Cancel")).clicked() {
                                 keep = false;
                             }
                         });
@@ -209,24 +211,24 @@ impl ProjectsDialog {
                         self.picked = Some(p.id.clone());
                     }
                     resp.context_menu(|ui| {
-                        if ui.button("Open").clicked() {
+                        if ui.button(i18n::t("Open")).clicked() {
                             act = Some(Action::Open(p.id.clone()));
                             ui.close();
                         }
-                        if ui.button("Rename…").clicked() {
+                        if ui.button(i18n::t("Rename…")).clicked() {
                             self.rename = Some((p.id.clone(), p.name.clone()));
                             ui.close();
                         }
-                        ui.menu_button("Move to", |ui| {
+                        ui.menu_button(i18n::t("Move to"), |ui| {
                             for f in std::iter::once(String::new()).chain(folders.iter().cloned()) {
-                                if f != p.folder && ui.button(if f.is_empty() { "My projects (top)".to_string() } else { f.replace('/', " › ") }).clicked() {
+                                if f != p.folder && ui.button(if f.is_empty() { i18n::t("My projects (top)").to_string() } else { f.replace('/', " › ") }).clicked() {
                                     cloud.update_project(ctx, &p.id, None, Some(&f));
                                     ui.close();
                                 }
                             }
                         });
                         ui.separator();
-                        if ui.button(RichText::new("Delete…").color(theme::DANGER)).clicked() {
+                        if ui.button(RichText::new(i18n::t("Delete…")).color(theme::DANGER)).clicked() {
                             self.confirm_delete = Some(p.id.clone());
                             ui.close();
                         }
@@ -234,12 +236,12 @@ impl ProjectsDialog {
                     if self.confirm_delete.as_deref() == Some(&p.id) {
                         ui.horizontal(|ui| {
                             ui.label(RichText::new(format!("Delete “{}” from the cloud?", p.name)).color(theme::DANGER));
-                            if ui.button("Delete").clicked() {
+                            if ui.button(i18n::t("Delete")).clicked() {
                                 cloud.delete_project(ctx, &p.id);
                                 cloud.refresh(ctx);
                                 self.confirm_delete = None;
                             }
-                            if ui.button("Keep").clicked() {
+                            if ui.button(i18n::t("Keep")).clicked() {
                                 self.confirm_delete = None;
                             }
                         });
@@ -249,15 +251,15 @@ impl ProjectsDialog {
             ui.separator();
             // save the current document into this folder (same name here = replace it)
             ui.horizontal(|ui| {
-                ui.label("Save as");
+                ui.label(i18n::t("Save as"));
                 ui.add(crate::widgets::field(&mut self.name).desired_width(ui.available_width() - 180.0));
                 let pick = self.picked.clone().filter(|id| cloud.projects.iter().any(|p| p.id == *id && p.folder == self.folder));
-                if ui.add_enabled(pick.is_some(), egui::Button::new("Open")).clicked() {
+                if ui.add_enabled(pick.is_some(), egui::Button::new(i18n::t("Open"))).clicked() {
                     act = pick.map(Action::Open);
                 }
                 let name = self.name.trim().to_string();
                 let same = cloud.projects.iter().find(|p| p.folder == self.folder && p.name.eq_ignore_ascii_case(&name));
-                let label = if same.is_some() { "Replace" } else { "Save here" };
+                let label = if same.is_some() { i18n::t("Replace") } else { i18n::t("Save here") };
                 if ui.add_enabled(!name.is_empty() && cloud.busy == 0, egui::Button::new(label)).clicked() {
                     act = Some(match same {
                         Some(p) => Action::Replace(p.id.clone()),
@@ -266,10 +268,10 @@ impl ProjectsDialog {
                 }
             });
             // hint on its own line: next to the two links it was cut off
-            ui.label(RichText::new("Click to pick · double-click to open · right-click to rename, move or delete").small().color(theme::TEXT_DIM));
+            ui.label(RichText::new(i18n::t("Click to pick · double-click to open · right-click to rename, move or delete")).small().color(theme::TEXT_DIM));
             ui.horizontal(|ui| {
                 ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                    if ui.link("Download .tlp").on_hover_text("Save a copy to this computer").clicked() {
+                    if ui.link(i18n::t("Download .tlp")).on_hover_text(i18n::t("Save a copy to this computer")).clicked() {
                         act = Some(Action::Download);
                     }
                 });

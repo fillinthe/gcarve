@@ -10,7 +10,7 @@ pub fn set_app(name: &'static str) {
 }
 /// The app's name given to `set_app`
 pub fn app() -> &'static str {
-    APP.get().copied().unwrap_or("GCarve")
+    APP.get().copied().unwrap_or(crate::i18n::t("GCarve"))
 }
 
 /// %APPDATA%\<App>, ~/Library/Application Support/<App>, or ~/.config/<app>

@@ -111,7 +111,7 @@ impl MouseMap {
     }
     /// the style's name, or "Custom" once anything was changed by hand
     pub fn label(&self) -> &'static str {
-        self.base.filter(|n| MouseMap::from_nav(*n).drags == self.drags && MouseMap::from_nav(*n).swipe == self.swipe).map_or("Custom", |n| n.row().2)
+        self.base.filter(|n| MouseMap::from_nav(*n).drags == self.drags && MouseMap::from_nav(*n).swipe == self.swipe).map_or(crate::i18n::t("Custom"), |n| n.row().2)
     }
     pub fn hint(&self) -> String {
         if let Some(n) = self.base.filter(|_| self.label() != "Custom") {

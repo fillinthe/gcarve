@@ -2,6 +2,8 @@
 //! (one already in the project, one from the bit library, or a new one made from the file). Nothing is guessed
 //! silently: the user sees the evidence and confirms.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use super::{combo, hint, Host};
 use eframe::egui::{self, RichText};
 use gcarve_core::document::Tool;
@@ -74,9 +76,9 @@ impl GcodeImportDialog {
         let n = self.prog.sections.len();
         crate::widgets::Dialog::new(format!("Import G-code: {}", self.name)).id("gimport").width(620.0).show(ctx, |ui| {
             if n == 0 {
-                ui.label(RichText::new("No cutting moves found in this file.").color(crate::theme::ORANGE));
+                ui.label(RichText::new(i18n::t("No cutting moves found in this file.")).color(crate::theme::ORANGE));
             } else {
-                hint(ui, "Each tool in the file becomes an imported toolpath you can simulate, check and post for any machine. Pick the bit each one used: GCarve shows what the file says about it.");
+                hint(ui, i18n::t("Each tool in the file becomes an imported toolpath you can simulate, check and post for any machine. Pick the bit each one used: GCarve shows what the file says about it."));
             }
             ui.add_space(6.0);
             egui::ScrollArea::vertical().max_height(ctx.input(|i| i.content_rect().height()) - 260.0).show(ui, |ui| {
@@ -96,11 +98,11 @@ impl GcodeImportDialog {
                                 .color(crate::theme::TEXT_DIM),
                         );
                         ui.horizontal_wrapped(|ui| {
-                            ui.label("File says:");
-                            ui.label(RichText::new(if s.tool_text.is_empty() { "(no tool comment)".to_string() } else { format!("“{}”", s.tool_text) }).monospace());
+                            ui.label(i18n::t("File says:"));
+                            ui.label(RichText::new(if s.tool_text.is_empty() { i18n::t("(no tool comment)").to_string() } else { format!("“{}”", s.tool_text) }).monospace());
                         });
                         ui.horizontal_wrapped(|ui| {
-                            ui.label("Reads as:");
+                            ui.label(i18n::t("Reads as:"));
                             ui.label(RichText::new(guess_text(&s.guess)).family(crate::widgets::bold_family()));
                             if !s.guess.source.is_empty() {
                                 ui.label(RichText::new(format!("from the {}", s.guess.source)).small().color(crate::theme::TEXT_DIM));
@@ -110,7 +112,7 @@ impl GcodeImportDialog {
                             ui.label(RichText::new(h).small().color(crate::theme::ORANGE));
                         }
                         ui.horizontal(|ui| {
-                            ui.label("Bit");
+                            ui.label(i18n::t("Bit"));
                             let mut items: Vec<(Bit, String)> = vec![(Bit::New, format!("New bit from the file: {}", gcarve_core::gimport::tool_from_section(s, "").name))];
                             items.extend(doc.tools.iter().enumerate().map(|(i, t)| (Bit::Doc(i), format!("Project: {}", t.name))));
                             items.extend(self.library.iter().enumerate().map(|(i, t)| (Bit::Lib(i), format!("Library: {}", t.name))));
@@ -125,12 +127,12 @@ impl GcodeImportDialog {
             if let Some((w, h, t)) = self.prog.board {
                 crate::widgets::checkbox(ui, &mut self.set_board, format!("Set the board to {w} × {h} × {t} in (from the file)"));
             }
-            crate::widgets::checkbox(ui, &mut self.vectors, "Bring in the cut paths as vectors (centrelines, one layer per toolpath)");
+            crate::widgets::checkbox(ui, &mut self.vectors, i18n::t("Bring in the cut paths as vectors (centrelines, one layer per toolpath)"));
             if !self.prog.errors.is_empty() {
                 ui.label(RichText::new(format!("{} line(s) GCarve can't read will be skipped, first: {}", self.prog.errors.len(), self.prog.errors[0])).small().color(crate::theme::ORANGE));
             }
-            hint(ui, "Positions are read relative to the board's XY origin and Z zero (Board settings).");
-            let (o, c) = crate::widgets::ok_cancel_text(ui, "Import");
+            hint(ui, i18n::t("Positions are read relative to the board's XY origin and Z zero (Board settings)."));
+            let (o, c) = crate::widgets::ok_cancel_text(ui, i18n::t("Import"));
             ok = o && n > 0;
             keep = !c;
         });

@@ -1,6 +1,8 @@
 //! Pointer tools (Qt app: app/canvas_input.cpp): select / move / marquee, node editing, the shape tools, polyline,
 //! pen, arc, measure, dimension, text; snapping and hit testing.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use crate::canvas::{Canvas, CtxMenu, Drag, Request, Snap, Tool, View, HIT_PX, NODE_PX, SNAP_PX};
 use crate::dialogs::prefs::{SNAP_CENTRES, SNAP_EDGE, SNAP_GRID, SNAP_MIDPOINTS, SNAP_POINTS, SNAP_QUADRANTS};
 use crate::widgets::TipExt;
@@ -42,8 +44,8 @@ fn len(p: Pt) -> f64 {
 /// Rail spin box for the Polygon (sides) / Star (points) tool, 3–64 (Qt ModeRail child column).
 pub fn rail_count(ui: &mut eframe::egui::Ui, canvas: &mut Canvas) {
     let (label, v) = match canvas.tool {
-        Tool::Polygon => ("Sides", &mut canvas.polygon_sides),
-        Tool::Star => ("Points", &mut canvas.star_points),
+        Tool::Polygon => (i18n::t("Sides"), &mut canvas.polygon_sides),
+        Tool::Star => (i18n::t("Points"), &mut canvas.star_points),
         _ => return,
     };
     ui.add_space(8.0);
@@ -246,7 +248,7 @@ impl Canvas {
     /// Size popup result (Qt addSizedShape): a shape centred at (cx, cy), inches.
     pub fn add_sized_shape(&mut self, tool: Tool, cx: f64, cy: f64, w: f64, h: f64) {
         if w <= 0.0 || h <= 0.0 {
-            self.status = "Width and height must be > 0".into();
+            self.status = i18n::t("Width and height must be > 0").into();
             return;
         }
         let c = match tool {
@@ -257,7 +259,7 @@ impl Canvas {
             _ => return,
         };
         self.add_shape(c);
-        self.status = "Added shape; use the inspector or Variables to constrain it".into();
+        self.status = i18n::t("Added shape; use the inspector or Variables to constrain it").into();
     }
 
     pub(crate) fn open_size_popup(&mut self, at: Pos2, centre: Pt) {
@@ -788,7 +790,7 @@ impl Canvas {
                     let c = if self.arc_pts.len() == 1 { make_polyline(&[self.arc_pts[0], sn.to], false) } else { arc_through(self.arc_pts[0], sn.to, self.arc_pts[1]) };
                     let pts = self.screen_pts(&view, &c);
                     painter.add(Shape::line(pts, Stroke::new(1.0, theme::ACCENT)));
-                    status = format!("{status}   {}", if self.arc_pts.len() == 1 { "click the arc's end" } else { "click a point the arc passes through" });
+                    status = format!("{status}   {}", if self.arc_pts.len() == 1 { i18n::t("click the arc's end") } else { i18n::t("click a point the arc passes through") });
                 }
             }
             Tool::Freehand => {
@@ -865,7 +867,7 @@ impl Canvas {
                     let b = self.dim_pts.get(1).copied().unwrap_or(hover_snap.map(|s| s.to).unwrap_or(hw));
                     let off = if self.dim_pts.len() == 2 { dim_offset(a, b, hw) } else { 0.5 };
                     self.paint_dimension(painter, &view, &Dimension { a, b, offset: off, ..Default::default() }, true, true);
-                    status = format!("{status}   {}", if self.dim_pts.len() == 1 { "click the second point" } else { "click where the dimension line goes" });
+                    status = format!("{status}   {}", if self.dim_pts.len() == 1 { i18n::t("click the second point") } else { i18n::t("click where the dimension line goes") });
                 }
             }
             Tool::Angle => {
@@ -901,7 +903,7 @@ impl Canvas {
                         let r = (dist(v, a).min(dist(v, to)) * 0.6).clamp(0.05, 2.0);
                         self.paint_dimension(painter, &view, &Dimension { a, b: to, vertex: v, offset: r, axis: 3, ..Default::default() }, true, true);
                     }
-                    status = format!("{status}   {}", if self.dim_pts.len() == 1 { "click a point on the first arm" } else { "click a point on the second arm" });
+                    status = format!("{status}   {}", if self.dim_pts.len() == 1 { i18n::t("click a point on the first arm") } else { i18n::t("click a point on the second arm") });
                 } else {
                     status = format!("{status}   click the corner of the angle");
                 }
@@ -1004,19 +1006,19 @@ impl Canvas {
     pub fn make_start_point(&mut self, shape: i32, node: i32) {
         let Some(s) = self.doc.find(shape) else { return };
         if !s.c.closed || node <= 0 || node as usize >= s.c.nodes.len() {
-            self.status = if s.c.closed && node == 0 { "That node already is the start point.".into() } else { "Start points are for closed shapes: pick a node of one.".into() };
+            self.status = if s.c.closed && node == 0 { i18n::t("That node already is the start point.").into() } else { i18n::t("Start points are for closed shapes: pick a node of one.").into() };
             return;
         }
         // node-level variables and dimensions are numbered by node: rotating would point them at other nodes
         if s.bind.keys().any(|k| k.as_bytes().first().is_some_and(|b| matches!(b, b'n' | b's')) && k.contains('.')) || self.doc.dimensions.iter().any(|d| d.shape_a == shape || d.shape_b == shape) {
-            self.status = "This shape has node bindings or dimensions on its nodes: remove them first, then set the start point.".into();
+            self.status = i18n::t("This shape has node bindings or dimensions on its nodes: remove them first, then set the start point.").into();
             return;
         }
         self.doc.checkpoint();
         self.doc.find_mut(shape).unwrap().c.nodes.rotate_left(node as usize);
         self.node_idx = 0;
         self.mutated();
-        self.status = "Start point set: toolpaths with \"Start at the vector's first node\" begin here.".into();
+        self.status = i18n::t("Start point set: toolpaths with \"Start at the vector's first node\" begin here.").into();
     }
 
     pub fn toggle_node_smooth(&mut self, shape: i32, node: i32) {

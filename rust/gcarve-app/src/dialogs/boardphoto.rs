@@ -3,6 +3,8 @@
 //! the four points), then shown under the drawing so parts can be placed around knots, cracks or earlier cuts. Kept
 //! for this session with the sheet it was taken of (not saved in the project).
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use super::Host;
 use eframe::egui::{self, Color32, Pos2, RichText, Stroke};
 
@@ -53,9 +55,9 @@ impl BoardPhotoDialog {
             ui.label(if next < 4 {
                 RichText::new(format!("Click corner {} of 4: the board's {}", next + 1, CORNERS[next])).strong()
             } else {
-                RichText::new("All four corners set: OK straightens the photo onto the board").strong()
+                RichText::new(i18n::t("All four corners set: OK straightens the photo onto the board")).strong()
             });
-            ui.label(RichText::new("Take the photo from above, the whole board in view; any angle works. Bottom = the edge where the X/Y zero is set (bottom-left corner).").small().color(crate::theme::TEXT_DIM));
+            ui.label(RichText::new(i18n::t("Take the photo from above, the whole board in view; any angle works. Bottom = the edge where the X/Y zero is set (bottom-left corner).")).small().color(crate::theme::TEXT_DIM));
             // the photo, fitted
             let room = egui::vec2(720.0, 460.0);
             let k = (room.x / self.w as f32).min(room.y / self.h as f32);
@@ -80,11 +82,11 @@ impl BoardPhotoDialog {
                 p.text(*q + egui::vec2(8.0, -8.0), egui::Align2::LEFT_BOTTOM, format!("{}", i + 1), crate::theme::font(13.0), Color32::WHITE);
             }
             ui.horizontal(|ui| {
-                if ui.add_enabled(!self.corners.is_empty(), egui::Button::new("Undo corner")).clicked() {
+                if ui.add_enabled(!self.corners.is_empty(), egui::Button::new(i18n::t("Undo corner"))).clicked() {
                     self.corners.pop();
                 }
                 ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                    if ui.button("Cancel").clicked() {
+                    if ui.button(i18n::t("Cancel")).clicked() {
                         done = true;
                     }
                     if ui.add_enabled(self.corners.len() == 4, crate::widgets::Button::new("OK").primary(true)).clicked() {
@@ -99,9 +101,9 @@ impl BoardPhotoDialog {
             match straighten(&self.rgba, self.w, self.h, c, m.w, m.h) {
                 Some((rgba, w, h)) => {
                     host.canvas.board_photo = Some(BoardPhoto { rgba, w, h, sheet: host.canvas.doc.active_sheet, show: true, tex: None });
-                    *host.message = "Board photo under the drawing (this session). View › Photo of the Board shows / hides it.".into();
+                    *host.message = i18n::t("Board photo under the drawing (this session). View › Photo of the Board shows / hides it.").into();
                 }
-                None => *host.message = "Those four corners don't make a board shape: try again, in the order asked".into(),
+                None => *host.message = i18n::t("Those four corners don't make a board shape: try again, in the order asked").into(),
             }
             done = true;
         }

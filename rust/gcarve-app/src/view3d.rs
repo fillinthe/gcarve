@@ -3,6 +3,8 @@
 //! (far corner first), plus the toolpath lines and the cutter marker. Mouse style = `Nav` (Fusion 360, Blender or
 //! VCarve), standard views = `VIEWS`, SpaceMouse = `spacemouse.rs` → `puck`.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use crate::playback::Player;
 use crate::widgets::TipExt;
 use eframe::egui::{self, Color32, Mesh, Pos2, Rect, Sense, Shape, Stroke};
@@ -368,7 +370,7 @@ impl View3d {
         let painter = ui.painter_at(rect);
         painter.rect_filled(rect, 0.0, crate::theme::CANVAS_BG);
         if !p.ready() {
-            painter.text(rect.center(), egui::Align2::CENTER_CENTER, "Generate toolpaths to see the carved board", egui::FontId::proportional(14.0), crate::theme::TEXT_DIM);
+            painter.text(rect.center(), egui::Align2::CENTER_CENTER, i18n::t("Generate toolpaths to see the carved board"), egui::FontId::proportional(14.0), crate::theme::TEXT_DIM);
             return;
         }
         // buttons per `Nav`; the wheel zooms toward the pointer; trackpads: two-finger swipe pans or orbits, pinch zooms
@@ -539,12 +541,12 @@ impl View3d {
         let top = Rect::from_min_max(rect.left_top() + egui::vec2(10.0, 10.0), rect.right_top() + egui::vec2(-10.0, 40.0));
         let mut row = ui.new_child(egui::UiBuilder::new().max_rect(top).layout(egui::Layout::right_to_left(egui::Align::Center)));
         row.spacing_mut().item_spacing.x = 6.0;
-        if row.add(crate::widgets::Button::new("Reset view").flat()).tip("Default angle and zoom (double-click the view does the same)").clicked() {
+        if row.add(crate::widgets::Button::new(i18n::t("Reset view")).flat()).tip(i18n::t("Default angle and zoom (double-click the view does the same)")).clicked() {
             self.reset_view();
         }
         // Ortho | Persp segmented switch (right to left: Persp first)
         row.spacing_mut().item_spacing.x = 0.0;
-        for (persp, label, tip) in [(true, "Persp", "Perspective camera: near parts look bigger"), (false, "Ortho", "Orthographic: true proportions, no foreshortening")] {
+        for (persp, label, tip) in [(true, i18n::t("Persp"), i18n::t("Perspective camera: near parts look bigger")), (false, i18n::t("Ortho"), i18n::t("Orthographic: true proportions, no foreshortening"))] {
             let on = self.perspective == persp;
             let b = crate::widgets::Button::new(label).primary(on).min_width(52.0); // Qt flat checkable: blue when checked
             if row.add(if on { b } else { b.flat() }).tip(tip).clicked() && self.perspective != persp {
@@ -553,7 +555,7 @@ impl View3d {
             }
         }
         row.spacing_mut().item_spacing.x = 6.0;
-        crate::widgets::combo_box("view3d-views").selected_text("View").width(76.0).show_ui(&mut row, |ui| {
+        crate::widgets::combo_box("view3d-views").selected_text(i18n::t("View")).width(76.0).show_ui(&mut row, |ui| {
             for (label, yaw, pitch) in VIEWS {
                 if ui.selectable_label(false, label).clicked() {
                     (self.yaw, self.pitch, self.pan) = (yaw, pitch, egui::Vec2::ZERO);
@@ -565,7 +567,7 @@ impl View3d {
         if phone {
             return;
         }
-        crate::widgets::combo_box("view3d-nav").selected_text("Mouse").width(84.0).show_ui(&mut row, |ui| {
+        crate::widgets::combo_box("view3d-nav").selected_text(i18n::t("Mouse")).width(84.0).show_ui(&mut row, |ui| {
             ui.set_min_width(230.0);
             let mut m = crate::mouse::get();
             let custom = m.label() == "Custom";
@@ -575,29 +577,29 @@ impl View3d {
                 }
             }
             if custom {
-                let _ = ui.selectable_label(true, "Custom (set in Preferences)");
+                let _ = ui.selectable_label(true, i18n::t("Custom (set in Preferences)"));
             }
             ui.separator();
-            crate::widgets::checkbox(ui, &mut m.wheel_reverse, "Reverse zoom direction");
-            if ui.selectable_label(false, "Fine-tune buttons and speeds…").clicked() {
+            crate::widgets::checkbox(ui, &mut m.wheel_reverse, i18n::t("Reverse zoom direction"));
+            if ui.selectable_label(false, i18n::t("Fine-tune buttons and speeds…")).clicked() {
                 crate::mouse::ask_prefs();
             }
             crate::mouse::set(m);
             ui.separator();
             let (line, can) = crate::spacemouse::status();
-            if can && ui.selectable_label(false, "Connect a SpaceMouse…").clicked() {
+            if can && ui.selectable_label(false, i18n::t("Connect a SpaceMouse…")).clicked() {
                 crate::spacemouse::connect(true);
             }
             if !line.is_empty() {
                 ui.add(egui::Label::new(egui::RichText::new(line).size(12.0).color(crate::theme::TEXT_DIM)).wrap());
             }
-            if crate::spacemouse::axes().is_some() && ui.selectable_label(false, "Save SpaceMouse trace (for a bug report)").clicked() {
+            if crate::spacemouse::axes().is_some() && ui.selectable_label(false, i18n::t("Save SpaceMouse trace (for a bug report)")).clicked() {
                 self.want_trace = true;
             }
         });
         row.spacing_mut().slider_width = 90.0;
         let mut z = self.z_scale;
-        if row.add(egui::Slider::new(&mut z, 0.5..=4.0).show_value(false).handle_shape(egui::style::HandleShape::Circle)).tip("Vertical exaggeration").changed() {
+        if row.add(egui::Slider::new(&mut z, 0.5..=4.0).show_value(false).handle_shape(egui::style::HandleShape::Circle)).tip(i18n::t("Vertical exaggeration")).changed() {
             self.z_scale = z;
         }
         row.label(egui::RichText::new(format!("Z ×{:.1}", self.z_scale)).size(11.0).color(crate::theme::TEXT.gamma_multiply(0.7)));

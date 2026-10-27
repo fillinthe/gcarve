@@ -99,7 +99,7 @@ impl<'o> Dialog<'o> {
                         let hit = if flush {
                             egui::Frame::new().inner_margin(egui::Margin { left: 0, right: 19, top: 2, bottom: 11 }).show(ui, |ui| {
                                 ui.set_width(ui.available_width()); // button_row aligns to the right edge of the content
-                                button_row(ui, &[("Close", false)], 84.0).is_some()
+                                button_row(ui, &[(crate::i18n::t("Close"), false)], 84.0).is_some()
                             }).inner
                         } else {
                             close_button(ui)
@@ -115,7 +115,7 @@ impl<'o> Dialog<'o> {
                 ui.painter().galley(pos2(top.x + 20.0, top.y + 23.0 - g.size().y / 2.0), g, TEXT);
                 if closable {
                     let x = Rect::from_center_size(pos2(top.x + w - 25.0, top.y + 23.0), vec2(28.0, 28.0));
-                    let resp = ui.interact(x, id.with("close×"), Sense::click()).on_hover_text("Close");
+                    let resp = ui.interact(x, id.with("close×"), Sense::click()).on_hover_text(crate::i18n::t("Close"));
                     if resp.hovered() {
                         ui.painter().rect_filled(x, 6.0, RAISED);
                     }
@@ -213,7 +213,7 @@ pub fn ok_cancel(ui: &mut Ui) -> (bool, bool) {
     ok_cancel_text(ui, "OK")
 }
 pub fn ok_cancel_text(ui: &mut Ui, ok_text: &str) -> (bool, bool) {
-    let hit = buttons(ui, &[(ok_text, true), ("Cancel", false)]);
+    let hit = buttons(ui, &[(ok_text, true), (crate::i18n::t("Cancel"), false)]);
     let (enter, esc) = ui.input(|i| (i.key_pressed(egui::Key::Enter) && !i.modifiers.shift, i.key_pressed(egui::Key::Escape)));
     let multiline = ui.ctx().memory(|m| m.focused()).and_then(|id| ui.ctx().read_response(id)).is_some_and(|r| r.rect.height() > 40.0);
     let popup = egui::Popup::is_any_open(ui.ctx()) || multiline;
@@ -221,7 +221,7 @@ pub fn ok_cancel_text(ui: &mut Ui, ok_text: &str) -> (bool, bool) {
 }
 /// single Close button (Esc)
 pub fn close_button(ui: &mut Ui) -> bool {
-    buttons(ui, &[("Close", false)]).is_some()
+    buttons(ui, &[(crate::i18n::t("Close"), false)]).is_some()
 }
 
 /// style/Popup.qml frame: panel, radius 8, strong border, 12 px padding

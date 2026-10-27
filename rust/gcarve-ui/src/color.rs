@@ -94,7 +94,7 @@ pub fn swatches(ui: &mut egui::Ui, colors: &[[u8; 3]], on: Option<[u8; 3]>, remo
             }
             if removable {
                 resp.context_menu(|ui| {
-                    if ui.button("Remove from My colours").clicked() {
+                    if ui.button(crate::i18n::t("Remove from My colours")).clicked() {
                         gone = Some(c);
                         ui.close();
                     }
@@ -127,7 +127,7 @@ pub fn editor(ui: &mut egui::Ui, id: &str, c: &mut [u8; 3]) -> bool {
         // hex: kept as typed while the box has focus, read on Enter / leaving it
         let key = egui::Id::new(("hex", id));
         let mut text: String = ui.data_mut(|d| d.get_temp(key)).unwrap_or_else(|| hex(*c));
-        let r = ui.add(egui::TextEdit::singleline(&mut text).desired_width(72.0).font(egui::TextStyle::Monospace)).on_hover_text("Hex (#a1b2c3) or R, G, B");
+        let r = ui.add(egui::TextEdit::singleline(&mut text).desired_width(72.0).font(egui::TextStyle::Monospace)).on_hover_text(crate::i18n::t("Hex (#a1b2c3) or R, G, B"));
         if r.has_focus() {
             ui.data_mut(|d| d.insert_temp(key, text.clone()));
         } else {
@@ -139,7 +139,7 @@ pub fn editor(ui: &mut egui::Ui, id: &str, c: &mut [u8; 3]) -> bool {
                 changed = true;
             }
         }
-        if eyedropper_available() && ui.button("Screen").on_hover_text("Pick a colour from anywhere on the screen (as shown, with its shading)").clicked() {
+        if eyedropper_available() && ui.button(crate::i18n::t("Screen")).on_hover_text(crate::i18n::t("Pick a colour from anywhere on the screen (as shown, with its shading)")).clicked() {
             eyedropper(ui.ctx(), id);
         }
     });
@@ -244,7 +244,7 @@ fn take_picked(id: &str) -> Option<[u8; 3]> {
 
 #[cfg(target_arch = "wasm32")]
 pub fn eyedropper_available() -> bool {
-    web_sys::window().is_some_and(|w| js_sys::Reflect::has(&w, &"EyeDropper".into()).unwrap_or(false))
+    web_sys::window().is_some_and(|w| js_sys::Reflect::has(&w, &crate::i18n::t("EyeDropper").into()).unwrap_or(false))
 }
 #[cfg(not(target_arch = "wasm32"))]
 pub fn eyedropper_available() -> bool {
@@ -257,7 +257,7 @@ fn eyedropper(ctx: &egui::Context, id: &str) {
     let (ctx, id) = (ctx.clone(), id.to_string());
     wasm_bindgen_futures::spawn_local(async move {
         let Some(w) = web_sys::window() else { return };
-        let Ok(ctor) = js_sys::Reflect::get(&w, &"EyeDropper".into()).and_then(|c| c.dyn_into::<js_sys::Function>()) else { return };
+        let Ok(ctor) = js_sys::Reflect::get(&w, &crate::i18n::t("EyeDropper").into()).and_then(|c| c.dyn_into::<js_sys::Function>()) else { return };
         let Ok(dropper) = js_sys::Reflect::construct(&ctor, &js_sys::Array::new()) else { return };
         let Ok(open) = js_sys::Reflect::get(&dropper, &"open".into()).and_then(|f| f.dyn_into::<js_sys::Function>()) else { return };
         let Ok(promise) = open.call0(&dropper).and_then(|p| p.dyn_into::<js_sys::Promise>()) else { return };

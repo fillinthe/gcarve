@@ -110,7 +110,7 @@ mod imp {
         #[cfg(target_os = "macos")]
         api.set_open_exclusive(false); // the 3Dconnexion driver, when installed, keeps the device open too
         let Some(info) = api.device_list().find(|i| VENDORS.contains(&i.vendor_id()) && i.usage_page() == 1 && i.usage() == 8) else { return Ok(None) };
-        Ok(Some((info.open_device(&api)?, info.product_string().unwrap_or("SpaceMouse").to_string())))
+        Ok(Some((info.open_device(&api)?, info.product_string().unwrap_or(crate::i18n::t("SpaceMouse")).to_string())))
     }
     /// Own thread: on macOS hidapi spins the calling thread's run loop, which re-enters the window's event handling
     /// (winit aborts). `ask` = the user pressed Connect: say so when nothing is found (the silent try at start doesn't).
@@ -173,10 +173,10 @@ pub use imp::{axes, connect, heard, state, supported};
 pub fn status() -> (String, bool) {
     let s = state();
     if let Some(name) = s.strip_prefix("open:") {
-        let quiet = if heard() { "" } else { ": nothing received yet. Move the puck; if it stays silent, quit the 3Dconnexion driver and reload" };
+        let quiet = if heard() { "" } else { crate::i18n::t(": nothing received yet. Move the puck; if it stays silent, quit the 3Dconnexion driver and reload") };
         (format!("{name} connected{quiet}"), false)
     } else if !supported() {
-        ("SpaceMouse: needs Chrome or Edge on a computer".to_string(), false)
+        (crate::i18n::t("SpaceMouse: needs Chrome or Edge on a computer").to_string(), false)
     } else {
         (s.strip_prefix("error: ").unwrap_or("").to_string(), true)
     }

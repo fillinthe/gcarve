@@ -1,6 +1,8 @@
 //! Board / Job Setup (Qt JobDialog.qml + OriginPicker.qml): material, size, thickness, safe/retract Z, XY datum,
 //! Z zero, auto feeds, post. Sheets: add / remove / switch (the shell's SheetTabs call the same `sheet_*` helpers).
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use super::{hint, material_combo, unit_label, Fields, Host};
 use crate::widgets::TipExt;
 use eframe::egui::{self, Color32, RichText, Sense, Stroke};
@@ -52,20 +54,20 @@ impl JobDialog {
     fn my_machines(&mut self, ui: &mut egui::Ui, cloud: &mut crate::cloud::Cloud, post_now: &str) {
         use crate::library::{save_machines, CustomMachine};
         ui.add_space(4.0);
-        ui.label(RichText::new("My machines").family(crate::widgets::bold_family()));
+        ui.label(RichText::new(i18n::t("My machines")).family(crate::widgets::bold_family()));
         let mut changed = false;
         let mut remove = None;
         for (i, m) in self.mine.iter().enumerate() {
             ui.horizontal(|ui| {
                 ui.label(&m.limits.name).on_hover_text(limits_line(&m.limits));
                 ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                    if crate::icons::IconButton::new("delete").size(14.0).padding(3.0).tip("Remove from My machines").show(ui).clicked() {
+                    if crate::icons::IconButton::new("delete").size(14.0).padding(3.0).tip(i18n::t("Remove from My machines")).show(ui).clicked() {
                         remove = Some(i);
                     }
-                    if ui.small_button("Edit").clicked() {
+                    if ui.small_button(i18n::t("Edit")).clicked() {
                         self.editing = Some((Some(i), m.clone()));
                     }
-                    if ui.small_button("Use").clicked() {
+                    if ui.small_button(i18n::t("Use")).clicked() {
                         self.machine = Some(m.limits.clone());
                         if !m.post.is_empty() {
                             self.post = Some(m.post.clone());
@@ -75,8 +77,8 @@ impl JobDialog {
             });
             if self.share.0 == i {
                 let data = || serde_json::to_value(vec![m.clone()]).unwrap_or_default();
-                self.share.1.ui(ui, cloud, "this machine", "machines", &m.limits.name, data);
-            } else if ui.small_button("Share…").clicked() {
+                self.share.1.ui(ui, cloud, i18n::t("this machine"), "machines", &m.limits.name, data);
+            } else if ui.small_button(i18n::t("Share…")).clicked() {
                 self.share = (i, super::share::ShareBox::opened());
             }
         }
@@ -86,11 +88,11 @@ impl JobDialog {
         }
         if self.editing.is_none() {
             ui.horizontal(|ui| {
-                if let Some(m) = self.machine.clone().filter(|_| ui.button("Save current as mine").on_hover_text("Keep this machine (and the chosen post) in My machines, on every device").clicked()) {
+                if let Some(m) = self.machine.clone().filter(|_| ui.button(i18n::t("Save current as mine")).on_hover_text(i18n::t("Keep this machine (and the chosen post) in My machines, on every device")).clicked()) {
                     self.editing = Some((None, CustomMachine { limits: MachineLimits { id: String::new(), ..m }, post: post_now.into() }));
                 }
-                if ui.button("New custom machine…").clicked() {
-                    let limits = MachineLimits { name: "My machine".into(), rpm_min: 6000.0, rpm_max: 18000.0, feed_xy: 400.0, feed_z: 100.0, travel_x: 48.0, travel_y: 96.0, travel_z: 6.0, ..Default::default() };
+                if ui.button(i18n::t("New custom machine…")).clicked() {
+                    let limits = MachineLimits { name: i18n::t("My machine").into(), rpm_min: 6000.0, rpm_max: 18000.0, feed_xy: 400.0, feed_z: 100.0, travel_x: 48.0, travel_y: 96.0, travel_z: 6.0, ..Default::default() };
                     self.editing = Some((None, CustomMachine { limits, post: post_now.into() }));
                 }
             });
@@ -100,11 +102,11 @@ impl JobDialog {
             egui::Frame::group(ui.style()).show(ui, |ui| {
                 let l = &mut m.limits;
                 egui::Grid::new("custom-machine").num_columns(2).spacing([10.0, 4.0]).show(ui, |ui| {
-                    ui.label("Name");
+                    ui.label(i18n::t("Name"));
                     ui.add(crate::widgets::field(&mut l.name).desired_width(220.0));
                     ui.end_row();
-                    ui.label("Spindle");
-                    ui.add(crate::widgets::field(&mut l.spindle).hint_text("e.g. 3.0 kW HSD").desired_width(220.0));
+                    ui.label(i18n::t("Spindle"));
+                    ui.add(crate::widgets::field(&mut l.spindle).hint_text(i18n::t("e.g. 3.0 kW HSD")).desired_width(220.0));
                     ui.end_row();
                     let num = |ui: &mut egui::Ui, v: &mut f64, suffix: &str, max: f64| ui.add(egui::DragValue::new(v).range(0.0..=max).suffix(suffix));
                     ui.label("RPM");
@@ -114,27 +116,27 @@ impl JobDialog {
                         num(ui, &mut l.rpm_max, "", 100000.0);
                     });
                     ui.end_row();
-                    ui.label("Max feed");
+                    ui.label(i18n::t("Max feed"));
                     ui.horizontal(|ui| {
-                        num(ui, &mut l.feed_xy, " in/min XY", 10000.0);
-                        num(ui, &mut l.feed_z, " in/min Z", 10000.0);
+                        num(ui, &mut l.feed_xy, i18n::t(" in/min XY"), 10000.0);
+                        num(ui, &mut l.feed_z, i18n::t(" in/min Z"), 10000.0);
                     });
                     ui.end_row();
-                    ui.label("Travel");
+                    ui.label(i18n::t("Travel"));
                     ui.horizontal(|ui| {
                         num(ui, &mut l.travel_x, " X", 1000.0);
                         num(ui, &mut l.travel_y, " Y", 1000.0);
-                        num(ui, &mut l.travel_z, " Z in", 100.0);
+                        num(ui, &mut l.travel_z, i18n::t(" Z in"), 100.0);
                     });
                     ui.end_row();
-                    ui.label("Tool changer");
-                    ui.add(egui::DragValue::new(&mut l.tool_slots).range(0..=99).custom_formatter(|n, _| if n < 1.0 { "manual changes".into() } else { format!("{n:.0} slots") }));
+                    ui.label(i18n::t("Tool changer"));
+                    ui.add(egui::DragValue::new(&mut l.tool_slots).range(0..=99).custom_formatter(|n, _| if n < 1.0 { i18n::t("manual changes").into() } else { format!("{n:.0} slots") }));
                     ui.end_row();
-                    ui.label("Class");
-                    let classes = [("", "Not sure"), ("industrial", "Industrial"), ("prosumer", "Prosumer"), ("hobby", "Hobby"), ("desktop", "Desktop")];
-                    egui::ComboBox::from_id_salt("machine-class").selected_text(classes.iter().find(|c| c.0 == l.class).map_or("Not sure", |c| c.1)).show_ui(ui, |ui| {
+                    ui.label(i18n::t("Class"));
+                    let classes = [("", i18n::t("Not sure")), ("industrial", i18n::t("Industrial")), ("prosumer", i18n::t("Prosumer")), ("hobby", i18n::t("Hobby")), ("desktop", i18n::t("Desktop"))];
+                    egui::ComboBox::from_id_salt("machine-class").selected_text(classes.iter().find(|c| c.0 == l.class).map_or(i18n::t("Not sure"), |c| c.1)).show_ui(ui, |ui| {
                         for (k, t) in classes {
-                            ui.selectable_value(&mut l.class, k.to_string(), t).on_hover_text("Scales suggested chip loads: hobby machines get lighter cuts");
+                            ui.selectable_value(&mut l.class, k.to_string(), t).on_hover_text(i18n::t("Scales suggested chip loads: hobby machines get lighter cuts"));
                         }
                     });
                     ui.end_row();
@@ -142,10 +144,10 @@ impl JobDialog {
                 hint(ui, &format!("Post: {} (the one chosen below when saved)", if m.post.is_empty() { "unchanged" } else { m.post.as_str() }));
                 ui.horizontal(|ui| {
                     let ok = !m.limits.name.trim().is_empty();
-                    if ui.add_enabled(ok, egui::Button::new("Save to My machines").fill(crate::theme::ACCENT)).clicked() {
+                    if ui.add_enabled(ok, egui::Button::new(i18n::t("Save to My machines")).fill(crate::theme::ACCENT)).clicked() {
                         done = Some(Some((*i, m.clone())));
                     }
-                    if ui.button("Cancel").clicked() {
+                    if ui.button(i18n::t("Cancel")).clicked() {
                         done = Some(None);
                     }
                 });
@@ -255,41 +257,41 @@ impl JobDialog {
         let sheets = doc.sheets.len();
         let active = doc.active_sheet;
         let mut sheet_act: Option<i32> = None; // -1 add, -2 remove, >= 0 switch
-        crate::widgets::Dialog::new("Board / Job Setup").show(ctx, |ui| {
+        crate::widgets::Dialog::new(i18n::t("Board / Job Setup")).show(ctx, |ui| {
             // board and heights on the left, where zero is on the right, machine and output underneath
             ui.horizontal_top(|ui| {
             ui.vertical(|ui| {
-            ui.label(RichText::new("Board").family(crate::widgets::bold_family()));
+            ui.label(RichText::new(i18n::t("Board")).family(crate::widgets::bold_family()));
             egui::Grid::new("job-board").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                ui.label("Sheet");
+                ui.label(i18n::t("Sheet"));
                 ui.horizontal(|ui| {
                     for i in 0..sheets {
                         if ui.selectable_label(i as i32 == active, doc.sheet_name(i)).clicked() {
                             sheet_act = Some(i as i32);
                         }
                     }
-                    if ui.small_button("+").tip("Add a sheet (another board with its own settings)").clicked() {
+                    if ui.small_button("+").tip(i18n::t("Add a sheet (another board with its own settings)")).clicked() {
                         sheet_act = Some(-1);
                     }
-                    if ui.add_enabled(sheets > 1, egui::Button::new("−").small()).tip("Remove this sheet (its shapes move to the first sheet)").clicked() {
+                    if ui.add_enabled(sheets > 1, egui::Button::new("−").small()).tip(i18n::t("Remove this sheet (its shapes move to the first sheet)")).clicked() {
                         sheet_act = Some(-2);
                     }
                 });
                 ui.end_row();
-                ui.label("Material");
+                ui.label(i18n::t("Material"));
                 material_combo(ui, "kind", &mut self.kind, 220.0);
                 ui.end_row();
-                ui.label("Board price ($)").tip("What this board costs you. With a shop rate, the setup sheet and the toolpath list show the job's cost.");
+                ui.label(i18n::t("Board price ($)")).tip(i18n::t("What this board costs you. With a shop rate, the setup sheet and the toolpath list show the job's cost."));
                 ui.horizontal(|ui| {
                     ui.add(crate::widgets::field(&mut self.price).hint_text("0").desired_width(70.0));
-                    ui.label("Shop rate ($ / hour)").tip("Your charge per hour of machine time. Kept on this device for new drawings.");
+                    ui.label(i18n::t("Shop rate ($ / hour)")).tip(i18n::t("Your charge per hour of machine time. Kept on this device for new drawings."));
                     ui.add(crate::widgets::field(&mut self.rate).hint_text("0").desired_width(70.0));
                 });
                 ui.end_row();
-                ui.label(unit_label("Board width X", doc));
+                ui.label(unit_label(i18n::t("Board width X"), doc));
                 ui.horizontal(|ui| {
                     self.f.ui(ui, "w", doc);
-                    if ui.add(crate::widgets::Button::new("Swap W/H").icon("swap", false)).clicked() {
+                    if ui.add(crate::widgets::Button::new(i18n::t("Swap W/H")).icon("swap", false)).clicked() {
                         let w = self.f.text("w").to_string();
                         let h = self.f.text("h").to_string();
                         self.f.map.insert("w".into(), h);
@@ -297,56 +299,56 @@ impl JobDialog {
                     }
                 });
                 ui.end_row();
-                ui.label(unit_label("Board height Y", doc));
+                ui.label(unit_label(i18n::t("Board height Y"), doc));
                 self.f.ui(ui, "h", doc);
                 ui.end_row();
-                ui.label(unit_label("Thickness", doc));
+                ui.label(unit_label(i18n::t("Thickness"), doc));
                 self.f.ui(ui, "t", doc);
                 ui.end_row();
-                ui.label(unit_label("Lift for moves", doc)).tip("Safe Z: how high above the board the bit travels between parts. Clear your clamps.");
+                ui.label(unit_label(i18n::t("Lift for moves"), doc)).tip(i18n::t("Safe Z: how high above the board the bit travels between parts. Clear your clamps."));
                 self.f.ui(ui, "safeZ", doc);
                 ui.end_row();
-                ui.label(unit_label("Small lift", doc)).tip("Retract Z: the short hop between nearby cuts of one toolpath, above the board.");
+                ui.label(unit_label(i18n::t("Small lift"), doc)).tip(i18n::t("Retract Z: the short hop between nearby cuts of one toolpath, above the board."));
                 self.f.ui(ui, "retractZ", doc);
                 ui.end_row();
             });
             });
             ui.add_space(18.0);
             ui.vertical(|ui| {
-            ui.label(RichText::new("Where you zero the machine").family(crate::widgets::bold_family()));
+            ui.label(RichText::new(i18n::t("Where you zero the machine")).family(crate::widgets::bold_family()));
             egui::Grid::new("job-zero").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                ui.label("X and Y").on_hover_text("XY zero (datum): the point of the board you set as X0 Y0 on the machine");
+                ui.label(i18n::t("X and Y")).on_hover_text(i18n::t("XY zero (datum): the point of the board you set as X0 Y0 on the machine"));
                 let (w, h) = (self.f.get_or("w", doc, 1.5), self.f.get_or("h", doc, 1.0));
                 let aspect = if w > 0.0 && h > 0.0 { w / h } else { 1.5 };
                 let row_h = (96.0 / aspect.clamp(0.5, 3.0)).round() as f32 + 8.0; // the picker's height: label centred on it
                 ui.allocate_ui_with_layout(egui::vec2(0.0, row_h), egui::Layout::left_to_right(egui::Align::Center), |ui| {
                     origin_picker(ui, &mut self.origin, aspect);
-                    ui.label(RichText::new(format!("{}{}", ORIGIN_NAMES[self.origin as usize], if self.origin == 4 { " of the board" } else { " corner" })).color(crate::theme::TEXT_DIM));
+                    ui.label(RichText::new(format!("{}{}", ORIGIN_NAMES[self.origin as usize], if self.origin == 4 { i18n::t(" of the board") } else { i18n::t(" corner") })).color(crate::theme::TEXT_DIM));
                 });
                 ui.end_row();
-                ui.label("Z (bit height)").on_hover_text("Z zero: where you touch the bit off");
+                ui.label(i18n::t("Z (bit height)")).on_hover_text(i18n::t("Z zero: where you touch the bit off"));
                 ui.vertical(|ui| {
-                    crate::widgets::radio_value(ui, &mut self.z_bottom, false, "Touch off on top of the board");
-                    crate::widgets::radio_value(ui, &mut self.z_bottom, true, "Touch off on the spoilboard / table");
+                    crate::widgets::radio_value(ui, &mut self.z_bottom, false, i18n::t("Touch off on top of the board"));
+                    crate::widgets::radio_value(ui, &mut self.z_bottom, true, i18n::t("Touch off on the spoilboard / table"));
                 });
                 ui.end_row();
-                ui.label("Rotary").on_hover_text("A round blank turned by an A axis (along X, or Y below). Design on the board as the blank's surface unrolled: its height becomes once round (π × diameter). The G-code then sends Y as A in degrees.");
+                ui.label(i18n::t("Rotary")).on_hover_text(i18n::t("A round blank turned by an A axis (along X, or Y below). Design on the board as the blank's surface unrolled: its height becomes once round (π × diameter). The G-code then sends Y as A in degrees."));
                 ui.horizontal(|ui| {
-                    crate::widgets::checkbox(ui, &mut self.rotary_on, "A-axis job, blank diameter");
+                    crate::widgets::checkbox(ui, &mut self.rotary_on, i18n::t("A-axis job, blank diameter"));
                     ui.add_enabled_ui(self.rotary_on, |ui| self.f.ui(ui, "rotDia", doc));
                 });
                 ui.end_row();
                 if self.rotary_on {
                     ui.label("");
-                    crate::widgets::checkbox(ui, &mut self.rotary_y, "The axis lies along the machine's Y").tip("Draw the same way (the length left to right); the G-code writes the length as Y and the turn as A.");
+                    crate::widgets::checkbox(ui, &mut self.rotary_y, i18n::t("The axis lies along the machine's Y")).tip(i18n::t("Draw the same way (the length left to right); the G-code writes the length as Y and the turn as A."));
                     ui.end_row();
                 }
-                ui.label("Cut order").on_hover_text("Merged toolpaths: per bit, every toolpath in one shortest tour instead of toolpath by toolpath; anything cut right through the board still comes last");
-                crate::widgets::checkbox(ui, &mut self.merge, "Merge toolpaths that share a bit (shortest travel, cut-outs last)");
+                ui.label(i18n::t("Cut order")).on_hover_text(i18n::t("Merged toolpaths: per bit, every toolpath in one shortest tour instead of toolpath by toolpath; anything cut right through the board still comes last"));
+                crate::widgets::checkbox(ui, &mut self.merge, i18n::t("Merge toolpaths that share a bit (shortest travel, cut-outs last)"));
                 ui.end_row();
-                ui.label("At the end").on_hover_text("Home position: where the bit parks when a file is done, measured from your X/Y zero, at the travel height");
+                ui.label(i18n::t("At the end")).on_hover_text(i18n::t("Home position: where the bit parks when a file is done, measured from your X/Y zero, at the travel height"));
                 ui.horizontal(|ui| {
-                    crate::widgets::checkbox(ui, &mut self.home_on, "Park the bit at X");
+                    crate::widgets::checkbox(ui, &mut self.home_on, i18n::t("Park the bit at X"));
                     ui.add_enabled_ui(self.home_on, |ui| {
                         self.f.ui(ui, "homeX", doc);
                         ui.label("Y");
@@ -360,8 +362,8 @@ impl JobDialog {
                     // the whole setup as one paragraph, the way you'd tell someone at the machine
                     let u = |v: f64| crate::units::text(doc, v);
                     let (w, h, t) = (self.f.get_or("w", doc, doc.material.w), self.f.get_or("h", doc, doc.material.h), self.f.get_or("t", doc, doc.material.t));
-                    let corner = match self.origin { 4 => "the centre of the board".to_string(), o => format!("its {} corner", ORIGIN_NAMES[o.clamp(0, 3) as usize].to_lowercase()) };
-                    let z = if self.z_bottom { "on the spoilboard under it" } else { "on its top" };
+                    let corner = match self.origin { 4 => i18n::t("the centre of the board").to_string(), o => format!("its {} corner", ORIGIN_NAMES[o.clamp(0, 3) as usize].to_lowercase()) };
+                    let z = if self.z_bottom { i18n::t("on the spoilboard under it") } else { i18n::t("on its top") };
                     let lift = self.f.get_or("safeZ", doc, doc.material.safe_z);
                     hint(ui, &format!("At the machine: lay down a {} × {} board, {} thick, of {}. Zero X and Y at {corner} and touch the bit off {z}. Between parts the bit lifts {} above the board. The yellow marker on the drawing shows your X/Y zero.", u(w), u(h), u(t), self.kind.to_lowercase(), u(lift)));
                 });
@@ -370,9 +372,9 @@ impl JobDialog {
             });
             });
             ui.separator();
-            ui.label(RichText::new("Machine and output").family(crate::widgets::bold_family()));
+            ui.label(RichText::new(i18n::t("Machine and output")).family(crate::widgets::bold_family()));
             egui::Grid::new("job-machine").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                ui.label("Machine");
+                ui.label(i18n::t("Machine"));
                 ui.vertical(|ui| {
                     ui.set_width(380.0);
                     match &self.machine {
@@ -380,13 +382,13 @@ impl JobDialog {
                             ui.label(RichText::new(&m.name).family(crate::widgets::bold_family()));
                             ui.label(RichText::new(format!("{}{}", if m.spindle.is_empty() { String::new() } else { format!("{} · ", m.spindle) }, limits_line(m))).color(crate::theme::TEXT_DIM).small());
                         }
-                        None => hint(ui, "No machine chosen: generic limits (18,000 RPM, 600 in/min). Pick yours so suggested feeds stay inside its spindle and feed limits and export warns about anything beyond them."),
+                        None => hint(ui, i18n::t("No machine chosen: generic limits (18,000 RPM, 600 in/min). Pick yours so suggested feeds stay inside its spindle and feed limits and export warns about anything beyond them.")),
                     }
                     ui.horizontal(|ui| {
-                        if ui.button(if self.machine.is_some() { "Change machine…" } else { "Choose machine…" }).clicked() {
+                        if ui.button(if self.machine.is_some() { i18n::t("Change machine…") } else { i18n::t("Choose machine…") }).clicked() {
                             self.browser.show(self.machine.as_ref());
                         }
-                        if self.machine.is_some() && ui.button("No machine").on_hover_text("Generic limits (18,000 RPM, 600 in/min)").clicked() {
+                        if self.machine.is_some() && ui.button(i18n::t("No machine")).on_hover_text(i18n::t("Generic limits (18,000 RPM, 600 in/min)")).clicked() {
                             self.machine = None;
                         }
                     });
@@ -394,13 +396,13 @@ impl JobDialog {
                     self.my_machines(ui, host.cloud, &post_now);
                 });
                 ui.end_row();
-                ui.label("Feeds & speeds");
-                crate::widgets::checkbox(ui, &mut self.auto_feeds, "Auto-set feeds for bits with no preset for this material").tip("Uses chip-load tables (bit diameter, flutes, material type). Bits with a saved preset for the material keep it.");
+                ui.label(i18n::t("Feeds & speeds"));
+                crate::widgets::checkbox(ui, &mut self.auto_feeds, i18n::t("Auto-set feeds for bits with no preset for this material")).tip(i18n::t("Uses chip-load tables (bit diameter, flutes, material type). Bits with a saved preset for the material keep it."));
                 ui.end_row();
-                ui.label("G-code style").on_hover_text("Post-processor: the dialect your controller reads (WinCNC, GRBL, Mach3…)");
+                ui.label(i18n::t("G-code style")).on_hover_text(i18n::t("Post-processor: the dialect your controller reads (WinCNC, GRBL, Mach3…)"));
                 ui.horizontal(|ui| {
                     ui.add(egui::Label::new(&post_name).truncate());
-                    if ui.button("Choose…").clicked() {
+                    if ui.button(i18n::t("Choose…")).clicked() {
                         next = Next::Posts;
                     }
                 });
@@ -408,8 +410,8 @@ impl JobDialog {
                 ui.label("");
                 ui.vertical(|ui| {
                     ui.set_width(380.0);
-                    hint(ui, "40+ built-in machines and controllers; upload Vectric .pp or JSON posts in the chooser.");
-                    hint(ui, "Any length field accepts math and units: 4ft, 48in, 1200mm, 2*gap + 1in.");
+                    hint(ui, i18n::t("40+ built-in machines and controllers; upload Vectric .pp or JSON posts in the chooser."));
+                    hint(ui, i18n::t("Any length field accepts math and units: 4ft, 48in, 1200mm, 2*gap + 1in."));
                 });
                 ui.end_row();
             });

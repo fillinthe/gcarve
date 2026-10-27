@@ -1,6 +1,8 @@
 //! Machine browser (Job Setup ▸ Choose machine…): every machine in the database, filtered by maker, kind, size and
 //! tool changer; the detail panel picks the spindle and controller (= the post) and applies the machine.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use crate::catalog::{get, status};
 use crate::theme;
 use eframe::egui::{self, pos2, vec2, Color32, RichText};
@@ -42,7 +44,7 @@ fn size_text(m: &Machine) -> String {
     let w = &m.work_area_in;
     match (w.x, w.y) {
         (Some(x), Some(y)) => format!("{} × {} in", trim(x), trim(y)),
-        _ => "size not published".into(),
+        _ => i18n::t("size not published").into(),
     }
 }
 
@@ -58,7 +60,7 @@ fn spindle_text(s: &gcarve_core::catalog::Spindle) -> String {
         _ => String::new(),
     };
     let kw = s.power_kw.map(|k| format!(" · {} kW", trim(k))).unwrap_or_default();
-    format!("{}{kw}{rpm}", if s.name.is_empty() { "Spindle" } else { &s.name })
+    format!("{}{kw}{rpm}", if s.name.is_empty() { i18n::t("Spindle") } else { &s.name })
 }
 
 fn post_name(id: &str) -> String {
@@ -129,7 +131,7 @@ impl MachineBrowser {
         }
         let mut pick = None;
         let mut open = true;
-        crate::widgets::Dialog::new("Choose your machine").id("machine-browser").open(&mut open).close_footer().width(960.0).show(ctx, |ui| {
+        crate::widgets::Dialog::new(i18n::t("Choose your machine")).id("machine-browser").open(&mut open).close_footer().width(960.0).show(ctx, |ui| {
             if let Some(s) = status() {
                 ui.label(RichText::new(s).color(theme::TEXT_DIM));
                 return;
@@ -143,11 +145,11 @@ impl MachineBrowser {
                 self.makers = m.into_iter().map(|(k, v)| (k.to_string(), v)).collect();
             }
             ui.horizontal(|ui| {
-                let r = ui.add(crate::widgets::field(&mut self.filter.query).hint_text("Search: Shapeoko, Panther 5x10, ShopBot PRS…").desired_width(280.0));
+                let r = ui.add(crate::widgets::field(&mut self.filter.query).hint_text(i18n::t("Search: Shapeoko, Panther 5x10, ShopBot PRS…")).desired_width(280.0));
                 crate::widgets::focus_first(ui, &r);
-                let maker_label = if self.filter.maker.is_empty() { "All makers".to_string() } else { self.filter.maker.clone() };
+                let maker_label = if self.filter.maker.is_empty() { i18n::t("All makers").to_string() } else { self.filter.maker.clone() };
                 egui::ComboBox::from_id_salt("mb-maker").selected_text(maker_label).width(180.0).height(420.0).show_ui(ui, |ui| {
-                    ui.selectable_value(&mut self.filter.maker, String::new(), "All makers");
+                    ui.selectable_value(&mut self.filter.maker, String::new(), i18n::t("All makers"));
                     for (m, n) in &self.makers {
                         ui.selectable_value(&mut self.filter.maker, m.clone(), format!("{m}  ({n})"));
                     }
@@ -157,7 +159,7 @@ impl MachineBrowser {
                         ui.selectable_value(&mut self.filter.size, i, s.0);
                     }
                 });
-                crate::widgets::checkbox(ui, &mut self.filter.atc, "Tool changer");
+                crate::widgets::checkbox(ui, &mut self.filter.atc, i18n::t("Tool changer"));
             });
             ui.horizontal(|ui| {
                 for (i, (_, label)) in CLASSES.iter().enumerate() {
@@ -214,29 +216,29 @@ impl MachineBrowser {
                     ui.set_width(360.0);
                     let Some(m) = self.selected.and_then(|i| cat.machines.get(i)) else {
                         ui.add_space(60.0);
-                        ui.label(RichText::new("Pick your machine to see its details.\nIts spindle and feed limits keep suggested feeds safe, and its controller sets the post-processor.").color(theme::TEXT_DIM));
+                        ui.label(RichText::new(i18n::t("Pick your machine to see its details.\nIts spindle and feed limits keep suggested feeds safe, and its controller sets the post-processor.")).color(theme::TEXT_DIM));
                         return;
                     };
                     ui.label(RichText::new(m.title()).size(15.0).family(crate::widgets::bold_family()).color(Color32::WHITE));
                     ui.label(RichText::new(CLASSES.iter().find(|c| c.0 == m.class).map_or(m.class.as_str(), |c| c.1)).small().color(theme::TEXT_DIM));
                     ui.add_space(6.0);
                     egui::Grid::new("mb-spec").num_columns(2).spacing(vec2(14.0, 4.0)).show(ui, |ui| {
-                        ui.label(RichText::new("Work area").color(theme::TEXT_DIM));
+                        ui.label(RichText::new(i18n::t("Work area")).color(theme::TEXT_DIM));
                         let z = m.work_area_in.z.map(|z| format!(" · Z {} in", trim(z))).unwrap_or_default();
                         ui.label(format!("{}{z}", size_text(m)));
                         ui.end_row();
                         if let Some(f) = m.max_feed_ipm.xy.or(m.rapid_ipm.xy) {
-                            ui.label(RichText::new("Max feed").color(theme::TEXT_DIM));
+                            ui.label(RichText::new(i18n::t("Max feed")).color(theme::TEXT_DIM));
                             ui.label(format!("{f:.0} in/min"));
                             ui.end_row();
                         }
-                        ui.label(RichText::new("Tool changes").color(theme::TEXT_DIM));
-                        ui.label(if m.tool_change.kind.starts_with("atc") { m.tool_change.slots.map_or("Automatic (ATC)".into(), |n| format!("Automatic, {n} slots")) } else { "Manual".into() });
+                        ui.label(RichText::new(i18n::t("Tool changes")).color(theme::TEXT_DIM));
+                        ui.label(if m.tool_change.kind.starts_with("atc") { m.tool_change.slots.map_or(i18n::t("Automatic (ATC)").into(), |n| format!("Automatic, {n} slots")) } else { i18n::t("Manual").into() });
                         ui.end_row();
                     });
                     if m.spindles.len() > 1 {
                         ui.add_space(6.0);
-                        ui.label(RichText::new("Spindle").family(crate::widgets::bold_family()));
+                        ui.label(RichText::new(i18n::t("Spindle")).family(crate::widgets::bold_family()));
                         for (k, s) in m.spindles.iter().enumerate() {
                             ui.radio_value(&mut self.spindle, k, spindle_text(s));
                         }
@@ -245,20 +247,20 @@ impl MachineBrowser {
                         ui.label(format!("Spindle: {}", spindle_text(s)));
                     }
                     ui.add_space(6.0);
-                    ui.label(RichText::new("Controller").family(crate::widgets::bold_family()));
+                    ui.label(RichText::new(i18n::t("Controller")).family(crate::widgets::bold_family()));
                     if m.controllers.is_empty() {
-                        ui.label(RichText::new("Not published: the post stays as it is (choose one in Job Setup).").small().color(theme::TEXT_DIM));
+                        ui.label(RichText::new(i18n::t("Not published: the post stays as it is (choose one in Job Setup).")).small().color(theme::TEXT_DIM));
                     }
                     for (k, c) in m.controllers.iter().enumerate() {
-                        let post = c.gcarve_post.as_deref().map(post_name).unwrap_or_else(|| "no built-in post: keeps yours".into());
+                        let post = c.gcarve_post.as_deref().map(post_name).unwrap_or_else(|| i18n::t("no built-in post: keeps yours").into());
                         ui.radio_value(&mut self.controller, k, format!("{} → {post}", c.name));
                     }
                     if let Some(src) = m.sources.first() {
                         ui.add_space(4.0);
-                        ui.hyperlink_to(RichText::new("Maker's specs").small(), src);
+                        ui.hyperlink_to(RichText::new(i18n::t("Maker's specs")).small(), src);
                     }
                     ui.add_space(10.0);
-                    if ui.add(egui::Button::new(RichText::new("Use this machine").color(Color32::WHITE)).fill(theme::ACCENT)).clicked() {
+                    if ui.add(egui::Button::new(RichText::new(i18n::t("Use this machine")).color(Color32::WHITE)).fill(theme::ACCENT)).clicked() {
                         pick = Some(self.choice(m));
                     }
                 });

@@ -92,7 +92,7 @@ fn stamp(hf: &mut HeightField, t: &Tool, cx: f64, cy: f64, d: f64) {
             }
             let cut = match t.kind {
                 ToolType::VBit => d - dist / tan_half,
-                ToolType::BallNose => d - (r - (r * r - dist * dist).max(0.0).sqrt()),
+                ToolType::BallNose => d - t.ball_rise(dist),
                 // the wood keeps a quarter round: vertical at the tip, level with the surface at the rim
                 ToolType::RoundOver => {
                     let rr = if t.radius > 0.0 { t.radius.min(r) } else { r };
@@ -337,6 +337,21 @@ mod tests {
         stamp(&mut hf, &Tool { radius: 0.25, ..t }, 1.0, 1.0, 0.5);
         let at = |dist: f64| hf.depth[100 * 200 + (100.0 + dist / 0.01) as usize] as f64;
         assert!(at(0.0) == 0.5 && at(0.2) == 0.5 && at(0.4) < 0.3 && at(0.4) > 0.25, "{} {}", at(0.2), at(0.4));
+    }
+
+    #[test]
+    fn a_bowl_bit_cuts_flat_in_the_middle_and_round_at_the_corners() {
+        // 1 in ball nose with a 0.25 corner radius = a bowl bit: flat 0.5 across, then a quarter round of 0.25
+        let mut hf = HeightField { nx: 200, ny: 200, res: 0.01, x0: 0.0, y0: 0.0, depth: vec![0.0; 40_000] };
+        let t = Tool { kind: ToolType::BallNose, diameter: 1.0, radius: 0.25, ..Default::default() };
+        stamp(&mut hf, &t, 1.0, 1.0, 0.5);
+        let at = |dist: f64| hf.depth[100 * 200 + (100.0 + dist / 0.01) as usize] as f64;
+        assert!(at(0.0) == 0.5 && at(0.24) == 0.5, "flat middle");
+        let x: f64 = 0.375 + 0.005 - 0.25; // cell centre into the round
+        assert!((at(0.375) - (0.5 - (0.25 - (0.0625 - x * x).sqrt()))).abs() < 0.005, "{}", at(0.375));
+        assert!(at(0.6) == 0.0);
+        // radius 0 (or half the diameter) is still a ball
+        assert_eq!(Tool { radius: 0.0, ..t.clone() }.ball_rise(0.3), Tool { radius: 0.5, ..t }.ball_rise(0.3));
     }
 
     #[test]

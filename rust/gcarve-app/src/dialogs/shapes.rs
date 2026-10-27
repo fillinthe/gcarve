@@ -3,6 +3,8 @@
 //! Click a tile to add it centred on the board: built-ins at the width typed, saved shapes at their own size.
 //! My shapes live in the local store (desktop config folder / browser storage).
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use super::{hint, unit_label, Host};
 use crate::widgets::TipExt;
 use eframe::egui;
@@ -60,7 +62,7 @@ impl ShapesDialog {
         let doc = &host.canvas.doc;
         let width = super::eval_len(&self.width_text, doc).ok().filter(|w| *w > 0.0);
         let sel = host.canvas.sel.len();
-        crate::widgets::Dialog::new("Shapes library").open(&mut open).close_footer().width(620.0).show(ctx, |ui| {
+        crate::widgets::Dialog::new(i18n::t("Shapes library")).open(&mut open).close_footer().width(620.0).show(ctx, |ui| {
             ui.horizontal(|ui| {
                 for (i, c) in CATEGORIES.iter().chain(std::iter::once(&"My shapes")).enumerate() {
                     if ui.add(egui::Button::selectable(self.tab == i, *c)).clicked() {
@@ -71,20 +73,20 @@ impl ShapesDialog {
             crate::theme::hline(ui);
             if self.tab < CATEGORIES.len() {
                 ui.horizontal(|ui| {
-                    ui.label(unit_label("Width", doc));
+                    ui.label(unit_label(i18n::t("Width"), doc));
                     crate::units::num_field(ui, "shape-w", &mut self.width_text, doc, true, 110.0);
-                    hint(ui, "click a shape to add it, centred on the board (height keeps the proportions)");
+                    hint(ui, i18n::t("click a shape to add it, centred on the board (height keeps the proportions)"));
                 });
             } else {
                 ui.horizontal(|ui| {
-                    ui.add(crate::widgets::field(&mut self.new_name).hint_text("Name for the selection").desired_width(240.0));
+                    ui.add(crate::widgets::field(&mut self.new_name).hint_text(i18n::t("Name for the selection")).desired_width(240.0));
                     save = ui
-                        .add_enabled(sel > 0 && !self.new_name.trim().is_empty(), egui::Button::new("Save selection"))
-                        .tip("Keeps the selected shapes (and text) at their size, with any toolpaths that only use them and their bits")
+                        .add_enabled(sel > 0 && !self.new_name.trim().is_empty(), egui::Button::new(i18n::t("Save selection")))
+                        .tip(i18n::t("Keeps the selected shapes (and text) at their size, with any toolpaths that only use them and their bits"))
                         .clicked();
                 });
                 if self.saved.is_empty() {
-                    hint(ui, "Nothing saved yet. Select a part you make often (a logo, a sign blank, a jig), name it and press Save selection: it comes back with its toolpaths.");
+                    hint(ui, i18n::t("Nothing saved yet. Select a part you make often (a logo, a sign blank, a jig), name it and press Save selection: it comes back with its toolpaths."));
                 }
             }
             ui.add_space(6.0);
@@ -100,12 +102,12 @@ impl ShapesDialog {
                         }
                     } else {
                         for (i, s) in self.saved.iter().enumerate() {
-                            let r = crate::widgets::shape_tile(ui, &self.saved_preview[i], &s.name, "Click to add · right-click to delete");
+                            let r = crate::widgets::shape_tile(ui, &self.saved_preview[i], &s.name, i18n::t("Click to add · right-click to delete"));
                             if r.clicked() {
                                 add_saved = Some(i);
                             }
                             r.context_menu(|ui| {
-                                if ui.button("Delete").clicked() {
+                                if ui.button(i18n::t("Delete")).clicked() {
                                     delete = Some(i);
                                     ui.close();
                                 }

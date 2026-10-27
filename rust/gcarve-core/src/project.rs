@@ -345,6 +345,12 @@ pub(crate) fn op_json(op: &Op, tools: &[Tool]) -> Value {
     if op.thread_pitch > 0.0 {
         m.insert("threadPitch".into(), json!(op.thread_pitch));
     }
+    if op.fit_holes {
+        m.insert("fitHoles".into(), json!(true));
+    }
+    if op.skin > 0.0 {
+        m.insert("skin".into(), json!(op.skin));
+    }
     if op.countersink > 0.0 {
         m.insert("countersink".into(), json!(op.countersink));
     }
@@ -450,6 +456,8 @@ pub(crate) fn op_from(o: &Value, tool_count: i32) -> Op {
         feed_boost: flag(o, "feedBoost", false),
         thread_pitch: num(o, "threadPitch", 0.0).max(0.0),
         countersink: num(o, "countersink", 0.0).max(0.0),
+        skin: num(o, "skin", 0.0).max(0.0),
+        fit_holes: flag(o, "fitHoles", false),
         start_first: flag(o, "startFirst", false),
         cutter_comp: flag(o, "cutterComp", false),
         keyhole: flag(o, "keyhole", false),

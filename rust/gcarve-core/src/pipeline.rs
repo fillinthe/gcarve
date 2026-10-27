@@ -122,8 +122,8 @@ pub fn order_issues(doc: &Document) -> Vec<String> {
         }
         let outlines: Vec<crate::geom::Rect> = doc.contours_of(&doc.op_shape_ids(cut)).iter().filter(|c| c.closed).map(crate::geom::bounds).collect();
         let small = outlines.iter().enumerate().filter(|(k, r)| r.w() * r.h() < 16.0 && !outlines.iter().enumerate().any(|(j, o)| j != *k && o.contains(r) && o.w() * o.h() > r.w() * r.h())).count();
-        if small > 0 {
-            out.push(format!("\"{}\" cuts {small} small part{} free with no tabs: {} can shift into the bit or be thrown. Add tabs, or hold {} down.", cut.name, if small == 1 { "" } else { "s" }, if small == 1 { "it" } else { "they" }, if small == 1 { "it" } else { "them" }));
+        if small > 0 && cut.skin <= 0.0 {
+            out.push(format!("\"{}\" cuts {small} small part{} free with no tabs: {} can shift into the bit or be thrown. Add tabs or an onion skin, or hold {} down.", cut.name, if small == 1 { "" } else { "s" }, if small == 1 { "it" } else { "they" }, if small == 1 { "it" } else { "them" }));
         }
         // later toolpaths that work inside the part (another cut-out of the same shapes doesn't count)
         let later: Vec<&str> = doc.ops[i + 1..].iter().filter(|o| doc.op_shape_ids(o) != doc.op_shape_ids(cut)).filter(|o| { let r = rect_of(o); !r.is_empty() && part.contains(&r) }).map(|o| o.name.as_str()).collect();

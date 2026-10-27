@@ -12,8 +12,8 @@ pub fn blob_url(bytes: &[u8], mime: &str) -> Result<String, String> {
 
 pub fn download(name: &str, bytes: &[u8]) -> Result<(), String> {
     use eframe::wasm_bindgen::JsCast;
-    let window = web_sys::window().ok_or("no window")?;
-    let document = window.document().ok_or("no document")?;
+    let window = web_sys::window().ok_or(crate::i18n::t("no window"))?;
+    let document = window.document().ok_or(crate::i18n::t("no document"))?;
     let url = blob_url(bytes, "application/octet-stream")?;
     let a: web_sys::HtmlAnchorElement = document.create_element("a").map_err(|_| "a")?.dyn_into().map_err(|_| "a")?;
     a.set_href(&url);

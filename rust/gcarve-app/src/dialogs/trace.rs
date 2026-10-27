@@ -1,7 +1,9 @@
-//! Trace Bitmap (VCarve-style): a PNG / JPEG becomes closed vectors. Live preview over the picture while the
+//! Trace Bitmap (VCarve-style): a PNG / JPEG becomes closed vectors, or single centre lines (Centreline). Live preview over the picture while the
 //! threshold, invert, smoothing, speck size, output width and the traced part (drag a box) change; OK adds the outlines as one group on a
 //! "Traced <name>" layer, centred on the board. The tracing itself is gcarve_core::trace.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use super::{hint, unit_label, Host};
 use eframe::egui::{self, Color32, RichText, Stroke};
 use gcarve_core::geom::{bounds, transformed, Affine, Contour};
@@ -153,66 +155,70 @@ impl TraceDialog {
             let nodes: usize = self.preview.iter().map(|c| c.nodes.len()).sum();
             for c in &self.preview {
                 let pts: Vec<egui::Pos2> = c.nodes.iter().map(|n| to(n.p.x, n.p.y)).collect();
-                p.add(egui::Shape::closed_line(pts, Stroke::new(1.5, Color32::from_rgb(0xe8, 0x6a, 0x10))));
+                let st = Stroke::new(1.5, Color32::from_rgb(0xe8, 0x6a, 0x10));
+                p.add(if c.closed { egui::Shape::closed_line(pts, st) } else { egui::Shape::line(pts, st) });
             }
             ui.horizontal(|ui| {
                 let [x0, y0, x1, y1] = self.area();
-                let part = if self.crop.is_some() { format!(" · tracing a {} × {} px part", x1 - x0, y1 - y0) } else { " · drag a box on the picture to trace only part of it".into() };
+                let part = if self.crop.is_some() { format!(" · tracing a {} × {} px part", x1 - x0, y1 - y0) } else { i18n::t(" · drag a box on the picture to trace only part of it").into() };
                 ui.label(RichText::new(format!("{} outline(s), {} nodes · {} × {} px{part}", self.preview.len(), nodes, self.w, self.h)).small().color(crate::theme::TEXT_DIM));
-                if self.crop.is_some() && ui.small_button("Whole picture").clicked() {
+                if self.crop.is_some() && ui.small_button(i18n::t("Whole picture")).clicked() {
                     self.crop = None;
                     changed = true;
                 }
             });
             ui.add_space(4.0);
             egui::Grid::new("trace").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                ui.label("Trace");
+                ui.label(i18n::t("Trace"));
                 ui.horizontal(|ui| {
-                    changed |= crate::widgets::radio_value(ui, &mut self.by_colour, false, "Dark parts").changed();
-                    changed |= crate::widgets::radio_value(ui, &mut self.by_colour, true, "One colour").changed();
+                    changed |= crate::widgets::radio_value(ui, &mut self.by_colour, false, i18n::t("Dark parts")).changed();
+                    changed |= crate::widgets::radio_value(ui, &mut self.by_colour, true, i18n::t("One colour")).changed();
                 });
                 ui.end_row();
                 if self.by_colour {
-                    ui.label("Colour");
+                    ui.label(i18n::t("Colour"));
                     ui.horizontal(|ui| {
                         match self.colour {
                             Some(c) => {
                                 let (r, _) = ui.allocate_exact_size(egui::vec2(28.0, 18.0), egui::Sense::hover());
                                 ui.painter().rect_filled(r, 3.0, Color32::from_rgb(c[0], c[1], c[2]));
-                                hint(ui, "click the picture to pick another");
+                                hint(ui, i18n::t("click the picture to pick another"));
                             }
-                            None => hint(ui, "click the picture on the colour to trace"),
+                            None => hint(ui, i18n::t("click the picture on the colour to trace")),
                         }
                     });
                     ui.end_row();
-                    ui.label("Colour range");
-                    changed |= ui.add(egui::Slider::new(&mut self.tolerance, 5.0..=200.0).fixed_decimals(0)).on_hover_text("How different a pixel may be from the picked colour and still count").changed();
+                    ui.label(i18n::t("Colour range"));
+                    changed |= ui.add(egui::Slider::new(&mut self.tolerance, 5.0..=200.0).fixed_decimals(0)).on_hover_text(i18n::t("How different a pixel may be from the picked colour and still count")).changed();
                     ui.end_row();
                 }
-                ui.add_enabled(!self.by_colour, egui::Label::new("Threshold"));
+                ui.add_enabled(!self.by_colour, egui::Label::new(i18n::t("Threshold")));
                 ui.add_enabled_ui(!self.by_colour, |ui| ui.horizontal(|ui| {
                     changed |= ui.add(egui::Slider::new(&mut self.threshold, 1..=255)).changed();
-                    if ui.add_enabled(self.threshold != i32::from(self.auto), egui::Button::new("Auto")).clicked() {
+                    if ui.add_enabled(self.threshold != i32::from(self.auto), egui::Button::new(i18n::t("Auto"))).clicked() {
                         self.threshold = i32::from(self.auto);
                         changed = true;
                     }
                 }));
                 ui.end_row();
                 ui.label("");
-                changed |= crate::widgets::checkbox(ui, &mut self.opts.invert, "Trace the light parts (invert)").changed();
+                changed |= crate::widgets::checkbox(ui, &mut self.opts.invert, i18n::t("Trace the light parts (invert)")).changed();
                 ui.end_row();
-                ui.label("Smoothing");
+                ui.label("");
+                changed |= crate::widgets::checkbox(ui, &mut self.opts.centreline, i18n::t("Centreline: one line down the middle of each stroke")).on_hover_text(i18n::t("For signatures, handwriting and line drawings: single lines to engrave with a V-bit (Profile on the line), a drag knife or a pen, instead of outlines around the ink.")).changed();
+                ui.end_row();
+                ui.label(i18n::t("Smoothing"));
                 ui.horizontal(|ui| {
                     changed |= ui.add(egui::Slider::new(&mut self.opts.smooth_px, 0.3..=4.0).fixed_decimals(1)).changed();
-                    hint(ui, "higher = fewer nodes, softer corners");
+                    hint(ui, i18n::t("higher = fewer nodes, softer corners"));
                 });
                 ui.end_row();
-                ui.label("Ignore specks under");
+                ui.label(i18n::t("Ignore specks under"));
                 ui.horizontal(|ui| {
-                    changed |= ui.add(egui::Slider::new(&mut self.opts.min_area_px, 0.0..=400.0).fixed_decimals(0).suffix(" px²")).changed();
+                    changed |= ui.add(egui::Slider::new(&mut self.opts.min_area_px, 0.0..=400.0).fixed_decimals(0).suffix(i18n::t(" px²"))).changed();
                 });
                 ui.end_row();
-                ui.label(unit_label("Width", doc));
+                ui.label(unit_label(i18n::t("Width"), doc));
                 ui.horizontal(|ui| {
                     if let Some(v) = crate::units::num_field(ui, "trace-w", &mut self.width_text, doc, true, 110.0) {
                         if v > 0.0 && (v - self.opts.width_in).abs() > 1e-9 {
@@ -226,8 +232,8 @@ impl TraceDialog {
                 });
                 ui.end_row();
             });
-            hint(ui, "High-contrast artwork (logos, lettering, silhouettes) traces best. The outlines land centred on the board as one group on their own layer.");
-            let (o, c) = crate::widgets::ok_cancel_text(ui, "Add vectors");
+            hint(ui, i18n::t("High-contrast artwork (logos, lettering, silhouettes) traces best. The outlines land centred on the board as one group on their own layer."));
+            let (o, c) = crate::widgets::ok_cancel_text(ui, i18n::t("Add vectors"));
             ok = o && !self.preview.is_empty();
             keep = !c;
         });
@@ -411,5 +417,18 @@ mod crop_test {
         // the traced square spans 40 of the 100 cropped pixels: 40 % of the output width
         let b = gcarve_core::geom::bounds(&d.preview[0]);
         assert!((b.w() / d.opts.width_in - 0.4).abs() < 0.03, "{}", b.w() / d.opts.width_in);
+    }
+
+    /// look at a centreline trace: GCARVE_CENTRE_IN=picture.png GCARVE_CENTRE_OUT=overlay.svg cargo test -p gcarve-app centreline_look -- --ignored
+    #[test]
+    #[ignore]
+    fn centreline_look() {
+        let (Ok(inp), Ok(out)) = (std::env::var("GCARVE_CENTRE_IN"), std::env::var("GCARVE_CENTRE_OUT")) else { return };
+        let (g, w, h) = crate::dialogs::trace::load_gray("x", &std::fs::read(&inp).unwrap(), 1600).unwrap();
+        let o = gcarve_core::trace::TraceOptions { centreline: true, width_in: w as f64 / 100.0, ..Default::default() };
+        let lines = gcarve_core::trace::trace(&g, w, h, &o);
+        let paths: String = lines.iter().map(|c| format!("<polyline points='{}' fill='none' stroke='red' stroke-width='1.5'/>", c.nodes.iter().map(|n| format!("{},{}", n.p.x * 100.0, h as f64 - n.p.y * 100.0)).collect::<Vec<_>>().join(" "))).collect();
+        std::fs::write(out, format!("<svg xmlns='http://www.w3.org/2000/svg' width='{w}' height='{h}'><image href='file://{inp}' width='{w}' height='{h}' opacity='0.35'/>{paths}</svg>")).unwrap();
+        println!("{} lines", lines.len());
     }
 }

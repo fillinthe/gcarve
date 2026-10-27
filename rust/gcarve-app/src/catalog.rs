@@ -1,5 +1,7 @@
 //! The embedded machine + bit databases and their two pickers (Board dialog: machine; Tool Library: bits).
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use eframe::egui;
 use gcarve_core::catalog::Catalog;
 use gcarve_core::document::MachineLimits;
@@ -30,7 +32,7 @@ pub fn status() -> Option<String> {
         return None;
     }
     #[cfg(target_arch = "wasm32")]
-    return Some(FETCH_ERR.get().cloned().unwrap_or_else(|| "Loading the bit & machine database…".into()));
+    return Some(FETCH_ERR.get().cloned().unwrap_or_else(|| i18n::t("Loading the bit & machine database…").into()));
     #[cfg(not(target_arch = "wasm32"))]
     None
 }

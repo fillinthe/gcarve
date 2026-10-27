@@ -1,13 +1,15 @@
 //! ⌘K command palette: GCarve's command list (Main.qml paletteCommands): every toolbar command, tool, toolpath
 //! kind, view command, post and variable. The palette itself (filter, keys, drawing) is gcarve-ui's, shared with GSketch.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use crate::shell;
 pub use gcarve_ui::palette::{Command, Palette};
 
 /// Main.qml tbDefs order
 const TB: [&str; 40] = ["new", "open", "jobs", "save", "undo", "redo", "copy", "paste", "clone", "group", "delete", "fliph", "flipv", "rotate", "align", "array", "nest", "link", "weld", "subtract", "intersect", "offset", "dogbone", "join", "close", "paths", "width", "sim", "watch", "vars", "tools", "posts", "board", "export", "edittext", "tocurves", "opedit", "opdelete", "restart", "view3d"];
-const TOOLS: [(&str, &str, &str); 14] = [("Select", "V", "tool:select"), ("Nodes", "N", "tool:nodes"), ("Rect", "R", "tool:rect"), ("Ellipse", "E", "tool:ellipse"), ("Polygon", "G", "tool:polygon"), ("Star", "S", "tool:star"), ("Polyline", "P", "tool:polyline"), ("Curve", "B", "tool:curve"), ("Arc", "A", "tool:arc"), ("Freehand", "H", "tool:freehand"), ("Measure", "M", "tool:measure"), ("Dimension", "D", "tool:dimension"), ("Angle", "L", "tool:angle"), ("Text", "T", "tool:text")];
-const VIEWS: [(&str, &str, &str); 54] = [
+const TOOLS: [(&str, &str, &str); 14] = [("Select", "V", "tool:select"), ("Nodes", "N", "tool:nodes"), ("Rect", "R", "tool:rect"), ("Ellipse", "E", "tool:ellipse"), ("Polygon", "G", "tool:polygon"), ("Star", "S", "tool:star"), ("Polyline", "P", "tool:polyline"), ("Curve", "B", "tool:curve"), ("Arc", "A", "tool:arc"), ("Freehand", "H", "tool:freehand"), ("Measure", "M", "tool:measure"), ("Dimension", "D", "tool:dimension"), ("Angle", "L", "tool:angle"), ("Text", "T", "tool:text")]; // i18n
+const VIEWS: [(&str, &str, &str); 64] = [ // i18n
     ("Getting started guide (checklist)", "", "tour:show"),
     ("How do I…? (help)", "", "guide"),
     ("Check vectors (open, duplicate, tiny)", "", "validate"),
@@ -26,7 +28,17 @@ const VIEWS: [(&str, &str, &str); 54] = [
     ("Plate production (name plates / badges from a list)…", "", "plates"),
     ("Shelf-pin holes (drill bank, system 32)…", "", "shelfpins"),
     ("Box maker: finger-jointed box…", "", "boxmaker"),
+    ("Jigsaw puzzle: interlocking pieces…", "", "puzzle"),
+    ("Living hinge: slots so the board bends…", "", "hinge"),
+    ("Halftone from a picture: V-carved dots…", "", "halftone"),
+    ("Inlay wizard: V-bit or flat inlay, plug on its own sheet…", "", "inlay"),
+    ("QR code: a scannable code to carve…", "", "qr"),
+    ("Share project with someone (by email)…", "", "shareproject"),
     ("New sign: carved words, border, cut out…", "", "sign"),
+    ("New tray or cutting board: bowl-bit tray, hand holds, juice groove…", "", "tray"),
+    ("New cabinet doors: shaker or slab, from a cut list, nested on sheets…", "", "doors"),
+    ("New clock: numerals round a dial, movement hole, cut out…", "", "clock"),
+    ("New spoilboard: threaded-insert hole grid, surfacing…", "", "spoilboard"),
     ("Rotary layout: wrapped spiral or flutes…", "", "rotarylayout"),
     ("Copy along a vector (array)…", "", "array"),
     ("Export vectors as SVG", "", "vexport:svg"),
@@ -84,13 +96,13 @@ pub fn commands(posts: &[(String, String)], post: &str, vars: &[(String, String)
         c.push(Command { cat: "Command", text: format!("{text} — {}", tip.split(" (").next().unwrap_or(tip)), key: key.into(), id: run_id(id).into() });
     }
     for (name, key, id) in TOOLS {
-        c.push(Command { cat: "Tool", text: name.into(), key: key.into(), id: id.into() });
+        c.push(Command { cat: "Tool", text: i18n::t(name).into(), key: key.into(), id: id.into() });
     }
     for (i, (name, _, _)) in shell::KINDS.iter().take(crate::inspector::KIND_TYPES.len()).enumerate() {
-        c.push(Command { cat: "Toolpath", text: format!("{name} toolpath…"), key: String::new(), id: format!("kind:{i}") });
+        c.push(Command { cat: "Toolpath", text: i18n::tf("{name} toolpath…", &[("name", &i18n::t(name))]), key: String::new(), id: format!("kind:{i}") });
     }
     for (text, key, id) in VIEWS {
-        c.push(Command { cat: "View", text: text.into(), key: key.into(), id: id.into() });
+        c.push(Command { cat: "View", text: i18n::t(text).into(), key: key.into(), id: id.into() });
     }
     for (id, name) in posts {
         c.push(Command { cat: "Post", text: name.clone(), key: if id == post { "current".into() } else { String::new() }, id: format!("post:{id}") });

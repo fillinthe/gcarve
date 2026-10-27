@@ -2,6 +2,8 @@
 //! DogboneDialog, ArrayDialog, AlignDialog, NestDialog). The Edit and Vectors menus are built here too so the app
 //! shell only adds one call per menu.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use crate::canvas::{Canvas, CtxMenu, Request, Tool};
 use crate::text::TextDialog;
 use crate::units;
@@ -95,9 +97,9 @@ impl Canvas {
             let radial = matches!(p.tool, Tool::Polygon | Tool::Star);
             let was_fresh = p.fresh;
             let shown = popup_window("size", p.at).show(&ctx, |ui| {
-                ui.label(RichText::new(match p.tool { Tool::Rect => "Rectangle", Tool::Ellipse => "Ellipse", Tool::Polygon => "Polygon", _ => "Star" }).font(W::bold(crate::theme::FONT_SIZE)));
+                ui.label(RichText::new(match p.tool { Tool::Rect => i18n::t("Rectangle"), Tool::Ellipse => i18n::t("Ellipse"), Tool::Polygon => i18n::t("Polygon"), _ => i18n::t("Star") }).font(W::bold(crate::theme::FONT_SIZE)));
                 egui::Grid::new("size").num_columns(2).spacing([10.0, 6.0]).min_col_width(81.0).show(ui, |ui| {
-                    ui.label(if radial { "Diameter" } else { "Width" });
+                    ui.label(if radial { i18n::t("Diameter") } else { i18n::t("Width") });
                     if std::mem::take(&mut p.fresh) {
                         units::focus_next(ui.ctx());
                     }
@@ -109,7 +111,7 @@ impl Canvas {
                         p.h = p.w.clone();
                     }
                     if !radial {
-                        ui.label("Height");
+                        ui.label(i18n::t("Height"));
                         let before_h = p.h.clone();
                         units::num_field(ui, "h", &mut p.h, &self.doc, true, 120.0);
                         ui.end_row();
@@ -118,17 +120,17 @@ impl Canvas {
                         }
                     }
                 });
-                if !radial && W::checkbox(ui, &mut p.lock, if p.tool == Tool::Ellipse { "Circle (keep 1:1)" } else { "Square (keep 1:1)" }).changed() && p.lock {
+                if !radial && W::checkbox(ui, &mut p.lock, if p.tool == Tool::Ellipse { i18n::t("Circle (keep 1:1)") } else { i18n::t("Square (keep 1:1)") }).changed() && p.lock {
                     p.h = p.w.clone();
                 }
                 if radial {
                     p.h = p.w.clone();
                 }
                 egui::Grid::new("size-c").num_columns(2).spacing([10.0, 6.0]).min_col_width(81.0).show(ui, |ui| {
-                    ui.label("Centre X");
+                    ui.label(i18n::t("Centre X"));
                     units::num_field(ui, "cx", &mut p.cx, &self.doc, true, 120.0);
                     ui.end_row();
-                    ui.label("Centre Y");
+                    ui.label(i18n::t("Centre Y"));
                     units::num_field(ui, "cy", &mut p.cy, &self.doc, true, 120.0);
                     ui.end_row();
                 });
@@ -139,20 +141,20 @@ impl Canvas {
                 });
                 if p.tool == Tool::Polygon {
                     ui.horizontal(|ui| {
-                        ui.label("Sides");
+                        ui.label(i18n::t("Sides"));
                         ui.add(W::SpinBox::new(&mut self.polygon_sides, 3..=64));
                     });
                 }
                 if p.tool == Tool::Star {
                     ui.horizontal(|ui| {
-                        ui.label("Points");
+                        ui.label(i18n::t("Points"));
                         ui.add(W::SpinBox::new(&mut self.star_points, 3..=64));
-                        ui.label("Inner");
+                        ui.label(i18n::t("Inner"));
                         ui.add(W::SpinBox::new(&mut self.star_ratio, 0.05..=0.95).step(0.05).decimals(2));
                     });
                 }
-                ui.label(RichText::new("Math, units (1in + 5mm) and variables work here.").size(11.0).color(crate::theme::TEXT.gamma_multiply(0.5)));
-                let hit = W::button_row(ui, &[("Cancel", false), ("Add", true)], 0.0);
+                ui.label(RichText::new(i18n::t("Math, units (1in + 5mm) and variables work here.")).size(11.0).color(crate::theme::TEXT.gamma_multiply(0.5)));
+                let hit = W::button_row(ui, &[(i18n::t("Cancel"), false), (i18n::t("Add"), true)], 0.0);
                 ok = hit == Some(1) || ui.input(|i| i.key_pressed(egui::Key::Enter));
                 done = hit == Some(0) || ui.input(|i| i.key_pressed(egui::Key::Escape));
             });
@@ -181,7 +183,7 @@ impl Canvas {
             let mut done = false;
             let mut ok = false;
             popup_window("node", p.at).show(&ctx, |ui| {
-                ui.label(RichText::new("Node position").font(W::bold(crate::theme::FONT_SIZE)));
+                ui.label(RichText::new(i18n::t("Node position")).font(W::bold(crate::theme::FONT_SIZE)));
                 egui::Grid::new("node").num_columns(2).spacing([10.0, 6.0]).show(ui, |ui| {
                     let u = units::name(&self.doc);
                     ui.label(format!("X ({u})"));
@@ -194,8 +196,8 @@ impl Canvas {
                     ui.add_enabled_ui(p.has_next, |ui| units::num_field(ui, "len", &mut p.len, &self.doc, true, 110.0));
                     ui.end_row();
                 });
-                ui.label(RichText::new("Type a variable to keep it linked.").size(11.0).color(crate::theme::TEXT.gamma_multiply(0.5)));
-                let hit = W::button_row(ui, &[("Cancel", false), ("Apply", true)], 0.0);
+                ui.label(RichText::new(i18n::t("Type a variable to keep it linked.")).size(11.0).color(crate::theme::TEXT.gamma_multiply(0.5)));
+                let hit = W::button_row(ui, &[(i18n::t("Cancel"), false), (i18n::t("Apply"), true)], 0.0);
                 ok = hit == Some(1) || ui.input(|i| i.key_pressed(egui::Key::Enter));
                 done = hit == Some(0) || ui.input(|i| i.key_pressed(egui::Key::Escape));
             });
@@ -226,21 +228,21 @@ impl Canvas {
                 ui.label(RichText::new(format!("Dimension: {}", self.dimension_text(&d))).font(W::bold(crate::theme::FONT_SIZE)));
                 let anchored = d.shape_a >= 0 && d.shape_b >= 0;
                 egui::Grid::new("dim").num_columns(2).spacing([10.0, 6.0]).show(ui, |ui| {
-                    ui.label("Label");
+                    ui.label(i18n::t("Label"));
                     ui.add(W::field(&mut p.label).desired_width(220.0).hint_text("{v} = measured value"));
                     ui.end_row();
-                    ui.label("Drive length");
-                    ui.add_enabled(anchored, W::field(&mut p.drive).desired_width(220.0).hint_text("e.g. box-w, 4in, 2*gap"));
+                    ui.label(i18n::t("Drive length"));
+                    ui.add_enabled(anchored, W::field(&mut p.drive).desired_width(220.0).hint_text(i18n::t("e.g. box-w, 4in, 2*gap")));
                     ui.end_row();
                 });
-                let note = if !anchored { "Snap both ends to shape nodes to let this dimension drive geometry." } else if d.shape_a == d.shape_b { "Both ends on one shape: driving moves the second node." } else { "Ends on two shapes: driving moves the second shape." };
+                let note = if !anchored { i18n::t("Snap both ends to shape nodes to let this dimension drive geometry.") } else if d.shape_a == d.shape_b { i18n::t("Both ends on one shape: driving moves the second node.") } else { i18n::t("Ends on two shapes: driving moves the second shape.") };
                 ui.add(egui::Label::new(RichText::new(note).size(11.0).color(crate::theme::TEXT.gamma_multiply(0.6))).wrap());
                 ui.horizontal(|ui| {
-                    if ui.add(W::Button::new("Delete")).clicked() {
+                    if ui.add(W::Button::new(i18n::t("Delete"))).clicked() {
                         self.remove_dimension(p.index);
                         done = true;
                     }
-                    let hit = W::button_row(ui, &[("Cancel", false), ("Apply", true)], 0.0);
+                    let hit = W::button_row(ui, &[(i18n::t("Cancel"), false), (i18n::t("Apply"), true)], 0.0);
                     ok = hit == Some(1) || ui.input(|i| i.key_pressed(egui::Key::Enter));
                     done |= hit == Some(0) || ui.input(|i| i.key_pressed(egui::Key::Escape));
                 });
@@ -271,59 +273,59 @@ impl Canvas {
                 run = Some(id);
             }
         };
-        item(ui, has, "Cut", "cut");
-        item(ui, has, "Copy", "copy");
-        item(ui, true, "Paste", "paste");
-        item(ui, has, "Duplicate", "clone");
-        item(ui, has, "Delete", "delete");
+        item(ui, has, i18n::t("Cut"), "cut");
+        item(ui, has, i18n::t("Copy"), "copy");
+        item(ui, true, i18n::t("Paste"), "paste");
+        item(ui, has, i18n::t("Duplicate"), "clone");
+        item(ui, has, i18n::t("Delete"), "delete");
         crate::widgets::menu_separator(ui);
-        item(ui, group || n > 1, if group { "Ungroup" } else { "Group" }, "group:toggle");
-        item(ui, text > 0, "Edit Text…", "text:edit");
-        item(ui, text > 0, "Convert Text to Curves", "text:curves");
-        item(ui, has, "Edit Nodes", "tool:nodes");
+        item(ui, group || n > 1, if group { i18n::t("Ungroup") } else { i18n::t("Group") }, "group:toggle");
+        item(ui, text > 0, i18n::t("Edit Text…"), "text:edit");
+        item(ui, text > 0, i18n::t("Convert Text to Curves"), "text:curves");
+        item(ui, has, i18n::t("Edit Nodes"), "tool:nodes");
         crate::widgets::menu_separator(ui);
-        crate::widgets::submenu(ui, "Move to Layer", |ui| {
+        crate::widgets::submenu(ui, i18n::t("Move to Layer"), |ui| {
             for (i, (name, here)) in layers.iter().enumerate() {
                 if ui.add_enabled_ui(has && !here, |ui| crate::widgets::menu_item(ui, &if *here { format!("✓ {name}") } else { name.clone() }, "")).inner.clicked() {
                     to_layer = Some(i as i32);
                 }
             }
             crate::widgets::menu_separator(ui);
-            if ui.add_enabled_ui(has, |ui| crate::widgets::menu_item(ui, "New Layer", "")).inner.clicked() {
+            if ui.add_enabled_ui(has, |ui| crate::widgets::menu_item(ui, i18n::t("New Layer"), "")).inner.clicked() {
                 to_layer = Some(-1);
             }
         });
-        crate::widgets::submenu(ui, "Arrange", |ui| {
-            item(ui, has, "Flip Horizontal", "fliph");
-            item(ui, has, "Flip Vertical", "flipv");
-            item(ui, has, "Rotate 90°", "rotate");
-            item(ui, has, "Centre on Board", "centre");
+        crate::widgets::submenu(ui, i18n::t("Arrange"), |ui| {
+            item(ui, has, i18n::t("Flip Horizontal"), "fliph");
+            item(ui, has, i18n::t("Flip Vertical"), "flipv");
+            item(ui, has, i18n::t("Rotate 90°"), "rotate");
+            item(ui, has, i18n::t("Centre on Board"), "centre");
             crate::widgets::menu_separator(ui);
-            item(ui, has, "Align & Distribute…", "align");
-            item(ui, has, "Array Copy…", "array");
-            item(ui, has, "Nest on Board…", "nest");
-            item(ui, n == 2, "Link Two Shapes…", "link");
-            item(ui, has && sheets > 1, "Move to Next Sheet", "sheet:next");
+            item(ui, has, i18n::t("Align & Distribute…"), "align");
+            item(ui, has, i18n::t("Array Copy…"), "array");
+            item(ui, has, i18n::t("Nest on Board…"), "nest");
+            item(ui, n == 2, i18n::t("Link Two Shapes…"), "link");
+            item(ui, has && sheets > 1, i18n::t("Move to Next Sheet"), "sheet:next");
         });
-        crate::widgets::submenu(ui, "Combine", |ui| {
-            item(ui, n > 1, "Weld", "weld");
-            item(ui, n > 1, "Subtract", "subtract");
-            item(ui, n > 1, "Intersect", "intersect");
+        crate::widgets::submenu(ui, i18n::t("Combine"), |ui| {
+            item(ui, n > 1, i18n::t("Weld"), "weld");
+            item(ui, n > 1, i18n::t("Subtract"), "subtract");
+            item(ui, n > 1, i18n::t("Intersect"), "intersect");
             crate::widgets::menu_separator(ui);
-            item(ui, has, "Offset…", "offset");
-            item(ui, has, "Corners: Dogbone / Fillet…", "dogbone");
-            item(ui, n > 1, "Join Open Vectors", "join");
-            item(ui, has, "Close Vectors", "close");
+            item(ui, has, i18n::t("Offset…"), "offset");
+            item(ui, has, i18n::t("Corners: Dogbone / Fillet…"), "dogbone");
+            item(ui, n > 1, i18n::t("Join Open Vectors"), "join");
+            item(ui, has, i18n::t("Close Vectors"), "close");
         });
-        item(ui, true, "Trim Here (to the crossings)", "trim");
-        crate::widgets::submenu(ui, "Toolpath", |ui| {
-            for (label, id) in [("Profile…", "kind:0"), ("Pocket…", "kind:1"), ("Drill…", "kind:2"), ("V-Carve…", "kind:3"), ("Bore…", "kind:4"), ("Inlay…", "kind:5"), ("Flute…", "kind:6"), ("Chamfer…", "kind:8"), ("Prism…", "kind:9"), ("Texture…", "kind:10"), ("Photo V-Carve…", "kind:11")] {
+        item(ui, true, i18n::t("Trim Here (to the crossings)"), "trim");
+        crate::widgets::submenu(ui, i18n::t("Toolpath"), |ui| {
+            for (label, id) in [(i18n::t("Profile…"), "kind:0"), (i18n::t("Pocket…"), "kind:1"), (i18n::t("Drill…"), "kind:2"), (i18n::t("V-Carve…"), "kind:3"), (i18n::t("Bore…"), "kind:4"), (i18n::t("Inlay…"), "kind:5"), (i18n::t("Flute…"), "kind:6"), (i18n::t("Chamfer…"), "kind:8"), (i18n::t("Prism…"), "kind:9"), (i18n::t("Texture…"), "kind:10"), (i18n::t("Photo V-Carve…"), "kind:11")] {
                 item(ui, has, label, id);
             }
         });
         crate::widgets::menu_separator(ui);
-        item(ui, true, "Zoom to Fit", "zoom:fit");
-        item(ui, true, "Zoom to Board", "zoom:board");
+        item(ui, true, i18n::t("Zoom to Fit"), "zoom:fit");
+        item(ui, true, i18n::t("Zoom to Board"), "zoom:board");
         if let Some(id) = run {
             if id == "trim" {
                 self.trim_here(); // needs the point the menu opened at
@@ -346,24 +348,24 @@ impl Canvas {
         let at = ui.ctx().input(|i| i.pointer.hover_pos()).unwrap_or_default();
         let smooth = self.doc.find(shape).and_then(|s| s.c.nodes.get(node as usize)).map(|n| n.has_in || n.has_out).unwrap_or(false);
         let mut close = false;
-        if crate::widgets::menu_item(ui, "Insert Node After", "").clicked() {
+        if crate::widgets::menu_item(ui, i18n::t("Insert Node After"), "").clicked() {
             self.insert_node_after(shape, node);
             close = true;
         }
-        if crate::widgets::menu_item(ui, "Remove Node", "").clicked() {
+        if crate::widgets::menu_item(ui, i18n::t("Remove Node"), "").clicked() {
             self.remove_node(shape, node);
             close = true;
         }
-        if crate::widgets::menu_item(ui, "Make Start Point", "").clicked() {
+        if crate::widgets::menu_item(ui, i18n::t("Make Start Point"), "").clicked() {
             self.make_start_point(shape, node);
             close = true;
         }
-        if crate::widgets::menu_item(ui, if smooth { "Make Corner" } else { "Make Smooth" }, "").clicked() {
+        if crate::widgets::menu_item(ui, if smooth { i18n::t("Make Corner") } else { i18n::t("Make Smooth") }, "").clicked() {
             self.toggle_node_smooth(shape, node);
             close = true;
         }
         crate::widgets::menu_separator(ui);
-        if crate::widgets::menu_item(ui, "Set Position…", "").clicked() {
+        if crate::widgets::menu_item(ui, i18n::t("Set Position…"), "").clicked() {
             self.open_node_popup(shape, node, at);
             close = true;
         }
@@ -375,21 +377,21 @@ impl Canvas {
     fn dim_menu(&mut self, ui: &mut egui::Ui, i: usize) {
         let at = ui.ctx().input(|i| i.pointer.hover_pos()).unwrap_or_default();
         let mut close = false;
-        if crate::widgets::menu_item(ui, "Edit Dimension…", "").clicked() {
+        if crate::widgets::menu_item(ui, i18n::t("Edit Dimension…"), "").clicked() {
             self.open_dim_popup(i, at);
             close = true;
         }
         crate::widgets::menu_separator(ui);
         let cur = self.doc.dimensions.get(i).map_or(0, |d| d.axis);
         // the other two kinds (a tick glyph is missing from the web font)
-        for (axis, label) in [(0, "Make Aligned (straight distance)"), (1, "Make Horizontal (X only)"), (2, "Make Vertical (Y only)")].into_iter().filter(|(a, _)| *a != cur) {
+        for (axis, label) in [(0, i18n::t("Make Aligned (straight distance)")), (1, i18n::t("Make Horizontal (X only)")), (2, i18n::t("Make Vertical (Y only)"))].into_iter().filter(|(a, _)| *a != cur) {
             if crate::widgets::menu_item(ui, label, "").clicked() {
                 self.set_dimension_axis(i, axis);
                 close = true;
             }
         }
         crate::widgets::menu_separator(ui);
-        if crate::widgets::menu_item(ui, "Delete Dimension", "").clicked() {
+        if crate::widgets::menu_item(ui, i18n::t("Delete Dimension"), "").clicked() {
             self.remove_dimension(i);
             close = true;
         }
@@ -437,6 +439,14 @@ pub struct Dialogs {
     rlayout: Option<[String; 4]>,
     /// Box Maker: width, depth, height, thickness, finger, play, bit texts + lid
     boxm: Option<([String; 7], bool)>,
+    /// Jigsaw Puzzle: width, height, columns, rows texts + the knob seed
+    puzzle: Option<([String; 4], u64)>,
+    /// Inlay Wizard: depth, gap, margin texts + flat (end mill) instead of V-bit
+    inlay: Option<([String; 3], bool)>,
+    /// Living Hinge: column spacing, slot length, bridge texts + slots run up the board
+    hinge: Option<([String; 3], bool)>,
+    /// QR Code: text, size text, invert
+    qr: Option<(String, String, bool)>,
     /// Plate Production: the list (one plate per line), first line = headings, gap text
     plates: Option<(String, bool, String)>,
     /// Vector Texture: spacing, amplitude, wavelength texts + angle, randomness
@@ -482,6 +492,13 @@ impl Dialogs {
             }
             Request::Selector => self.selector = Some([String::new(), String::new()]),
             Request::RotaryLayout => self.rlayout = Some([String::from("1"), units::text(doc, 4.0), units::text(doc, 0.0), units::text(doc, doc.material.w)]),
+            Request::Inlay => self.inlay = Some(([0.2, 0.1, 0.25].map(|v| units::text(doc, v)), false)),
+            Request::Hinge => self.hinge = Some(([0.25, 1.5, 0.25].map(|v| units::text(doc, v)), true)),
+            Request::Qr => self.qr = Some(("https://".into(), units::text(doc, 4.0), false)),
+            Request::Puzzle => {
+                let (w, h) = ((doc.material.w - 1.0).clamp(2.0, 16.0), (doc.material.h - 1.0).clamp(2.0, 12.0));
+                self.puzzle = Some(([units::text(doc, w), units::text(doc, h), "5".into(), "4".into()], 7));
+            }
             Request::BoxMaker => {
                 let t = doc.material.t;
                 let tool = doc.tools.iter().filter(|k| k.kind == gcarve_core::document::ToolType::EndMill).map(|k| k.diameter).fold(0.0, f64::max);
@@ -512,25 +529,25 @@ impl Dialogs {
         if let Some(mut f) = self.offset.take() {
             let mut keep = true;
             let mut ok = false;
-            W::Dialog::new("Offset Vectors").show(ctx, |ui| {
+            W::Dialog::new(i18n::t("Offset Vectors")).show(ctx, |ui| {
                 egui::Grid::new("offset").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
                     ui.label(format!("Distance ({doc_unit})"));
                     units::num_field(ui, "d", &mut f[0], &canvas.doc, true, 110.0);
                     ui.end_row();
-                    ui.label("Direction");
+                    ui.label(i18n::t("Direction"));
                     ui.horizontal(|ui| {
-                        W::radio_value(ui, &mut self.offset_inwards, false, "Outwards");
-                        W::radio_value(ui, &mut self.offset_inwards, true, "Inwards");
+                        W::radio_value(ui, &mut self.offset_inwards, false, i18n::t("Outwards"));
+                        W::radio_value(ui, &mut self.offset_inwards, true, i18n::t("Inwards"));
                     });
                     ui.end_row();
-                    ui.label("Corners");
+                    ui.label(i18n::t("Corners"));
                     let mut round = !self.offset_sharp;
-                    W::checkbox(ui, &mut round, "Round (else sharp)");
+                    W::checkbox(ui, &mut round, i18n::t("Round (else sharp)"));
                     self.offset_sharp = !round;
                     ui.end_row();
                     ui.label("");
                     let mut keep_orig = !self.offset_replace;
-                    W::checkbox(ui, &mut keep_orig, "Keep original vectors");
+                    W::checkbox(ui, &mut keep_orig, i18n::t("Keep original vectors"));
                     self.offset_replace = !keep_orig;
                     ui.end_row();
                 });
@@ -554,15 +571,15 @@ impl Dialogs {
 
         if let Some(mut f) = self.pins.take() {
             let (mut keep, mut ok) = (true, false);
-            W::Dialog::new("Shelf-Pin Holes").show(ctx, |ui| {
+            W::Dialog::new(i18n::t("Shelf-Pin Holes")).show(ctx, |ui| {
                 egui::Grid::new("pins").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                    for (i, label) in ["Hole diameter", "Hole spacing", "In from the front and back edges", "Clear of the ends"].iter().enumerate() {
+                    for (i, label) in ["Hole diameter", i18n::t("Hole spacing"), i18n::t("In from the front and back edges"), "Clear of the ends"].iter().enumerate() {
                         ui.label(format!("{label} ({doc_unit})"));
                         units::num_field(ui, label, &mut f[i], &canvas.doc, true, 110.0);
                         ui.end_row();
                     }
                 });
-                ui.label(egui::RichText::new("Two rows of holes along each selected cabinet side (system 32: 5 mm holes 32 mm apart, 37 mm in). They are added as circles on the \"Shelf pins\" layer: drill them with a Drill toolpath on that layer.").small().color(crate::theme::TEXT_DIM));
+                ui.label(egui::RichText::new(i18n::t("Two rows of holes along each selected cabinet side (system 32: 5 mm holes 32 mm apart, 37 mm in). They are added as circles on the \"Shelf pins\" layer: drill them with a Drill toolpath on that layer.")).small().color(crate::theme::TEXT_DIM));
                 let (o, c) = W::ok_cancel(ui);
                 ok |= o;
                 keep &= !c;
@@ -585,15 +602,15 @@ impl Dialogs {
 
         if let Some(mut f) = self.rlayout.take() {
             let (mut keep, mut ok) = (true, false);
-            W::Dialog::new("Rotary Layout").show(ctx, |ui| {
+            W::Dialog::new(i18n::t("Rotary Layout")).show(ctx, |ui| {
                 egui::Grid::new("rlayout").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                    for (i, label) in ["Starts (lines round the blank)", "Pitch: length per turn, 0 = straight", "From X", "To X"].iter().enumerate() {
+                    for (i, label) in ["Starts (lines round the blank)", i18n::t("Pitch: length per turn, 0 = straight"), i18n::t("From X"), "To X"].iter().enumerate() {
                         ui.label(if i == 0 { label.to_string() } else { format!("{label} ({doc_unit})") });
                         units::num_field(ui, label, &mut f[i], &canvas.doc, i > 0, 110.0);
                         ui.end_row();
                     }
                 });
-                ui.label(egui::RichText::new("Lines on the unrolled blank: a spiral (barley twist, rope) or flutes along it, evenly round. A negative pitch twists the other way. Put a Flute or V-Carve toolpath on them.").small().color(crate::theme::TEXT_DIM));
+                ui.label(egui::RichText::new(i18n::t("Lines on the unrolled blank: a spiral (barley twist, rope) or flutes along it, evenly round. A negative pitch twists the other way. Put a Flute or V-Carve toolpath on them.")).small().color(crate::theme::TEXT_DIM));
                 let (o, c) = W::ok_cancel(ui);
                 ok |= o;
                 keep &= !c;
@@ -614,18 +631,157 @@ impl Dialogs {
             }
         }
 
-        if let Some((mut f, mut lid)) = self.boxm.take() {
+        if let Some((mut text, mut size, mut invert)) = self.qr.take() {
             let (mut keep, mut ok) = (true, false);
-            W::Dialog::new("Box Maker").show(ctx, |ui| {
-                egui::Grid::new("boxm").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                    for (i, label) in ["Width (outside)", "Depth (outside)", "Height (outside)", "Board thickness", "Finger width", "Fit play (slots wider by)", "Bit diameter (dogbones, 0 = none)"].iter().enumerate() {
+            W::Dialog::new(i18n::t("QR Code")).show(ctx, |ui| {
+                ui.label(i18n::t("Text or web address"));
+                ui.add(crate::widgets::field(&mut text).desired_width(320.0));
+                ui.horizontal(|ui| {
+                    ui.label(format!("Size ({doc_unit})"));
+                    units::num_field(ui, "qr-size", &mut size, &canvas.doc, true, 110.0);
+                });
+                W::checkbox(ui, &mut invert, i18n::t("Light squares instead (pocket them: the dark squares stand up)"));
+                ui.label(egui::RichText::new(i18n::t("A scannable code centred on the board. Carve it about 3 in or bigger in a light wood, fill the pockets with dark paint, and leave a plain border four squares wide. Test it with your phone in Simulate.")).small().color(crate::theme::TEXT_DIM));
+                let (o, c) = W::ok_cancel(ui);
+                ok |= o;
+                keep &= !c;
+            });
+            if ok {
+                match units::get(&canvas.doc, &size, true) {
+                    Err(e) => canvas.status = e,
+                    Ok(s) => {
+                        canvas.qr_code(&text, s, invert);
+                        keep = false;
+                    }
+                }
+            }
+            if keep {
+                self.qr = Some((text, size, invert));
+            }
+        }
+
+        if let Some((mut f, mut flat)) = self.inlay.take() {
+            let (mut keep, mut ok) = (true, false);
+            W::Dialog::new(i18n::t("Inlay Wizard")).show(ctx, |ui| {
+                ui.horizontal(|ui| {
+                    ui.selectable_value(&mut flat, false, i18n::t("V-bit inlay"));
+                    ui.selectable_value(&mut flat, true, i18n::t("Flat (end mill) inlay"));
+                });
+                egui::Grid::new("inlay").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
+                    let labels = if flat { ["Pocket depth", i18n::t("Fit gap (per side)"), ""] } else { ["Pocket depth", i18n::t("Glue gap"), "Plug margin"] };
+                    for (i, label) in labels.iter().enumerate().filter(|(_, l)| !l.is_empty()) {
                         ui.label(format!("{label} ({doc_unit})"));
                         units::num_field(ui, label, &mut f[i], &canvas.doc, true, 110.0);
                         ui.end_row();
                     }
                 });
-                W::checkbox(ui, &mut lid, "Lid (jointed like the bottom)");
-                ui.label(egui::RichText::new("Six panels (five without a lid) with finger joints, laid flat on the \"Box\" layer. Measure the board: the thickness sets the finger depth. Cut them with a Profile outside, through the board.").small().color(crate::theme::TEXT_DIM));
+                let say = if flat { i18n::t("The selected shapes' corners are rounded to a 1/8 in end mill, pocketed here; the plug goes on a new sheet, mirrored and a fit gap smaller, cut 1/16 in deeper than the pocket. 0.005 in is a snug fit.") } else { i18n::t("The selected shapes are V-carved here to a flat floor; the plug goes on a new sheet, mirrored, carved from the glue gap down so it wedges in tight. A 1/4 in end mill clears the floors.") };
+                ui.label(egui::RichText::new(say).small().color(crate::theme::TEXT_DIM));
+                let (o, c) = W::ok_cancel(ui);
+                ok |= o;
+                keep &= !c;
+            });
+            if ok {
+                let v: Vec<Result<f64, String>> = f.iter().map(|t| units::get(&canvas.doc, t, true)).collect();
+                match v.iter().find_map(|r| r.as_ref().err()) {
+                    Some(e) => canvas.status = e.clone(),
+                    None => {
+                        let n: Vec<f64> = v.into_iter().map(Result::unwrap).collect();
+                        canvas.inlay(flat, n[0], n[1], n[2]);
+                        keep = false;
+                    }
+                }
+            }
+            if keep {
+                self.inlay = Some((f, flat));
+            }
+        }
+
+        if let Some((mut f, mut along_y)) = self.hinge.take() {
+            let (mut keep, mut ok) = (true, false);
+            W::Dialog::new(i18n::t("Living Hinge")).show(ctx, |ui| {
+                egui::Grid::new("hinge").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
+                    for (i, label) in ["Space between rows of slots", i18n::t("Slot length"), "Wood between slots"].iter().enumerate() {
+                        ui.label(format!("{label} ({doc_unit})"));
+                        units::num_field(ui, label, &mut f[i], &canvas.doc, true, 110.0);
+                        ui.end_row();
+                    }
+                    ui.label(i18n::t("Slots run"));
+                    ui.horizontal(|ui| {
+                        ui.selectable_value(&mut along_y, true, i18n::t("Up the board"));
+                        ui.selectable_value(&mut along_y, false, i18n::t("Across"));
+                    });
+                    ui.end_row();
+                });
+                ui.label(egui::RichText::new(i18n::t("Fills the selection's box (or the board, 1 in in from the edges) with staggered slots so the wood bends. Closer rows and shorter wood between slots bend tighter.")).small().color(crate::theme::TEXT_DIM));
+                let (o, c) = W::ok_cancel(ui);
+                ok |= o;
+                keep &= !c;
+            });
+            if ok {
+                let v: Vec<Result<f64, String>> = f.iter().map(|t| units::get(&canvas.doc, t, true)).collect();
+                match v.iter().find_map(|r| r.as_ref().err()) {
+                    Some(e) => canvas.status = e.clone(),
+                    None => {
+                        let n: Vec<f64> = v.into_iter().map(Result::unwrap).collect();
+                        canvas.living_hinge(n[0], n[1], n[2], along_y);
+                        keep = false;
+                    }
+                }
+            }
+            if keep {
+                self.hinge = Some((f, along_y));
+            }
+        }
+
+        if let Some((mut f, mut seed)) = self.puzzle.take() {
+            let (mut keep, mut ok) = (true, false);
+            W::Dialog::new(i18n::t("Jigsaw Puzzle")).show(ctx, |ui| {
+                egui::Grid::new("puzzle").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
+                    for (i, label) in ["Width", i18n::t("Height"), i18n::t("Pieces across"), "Pieces down"].iter().enumerate() {
+                        ui.label(if i < 2 { format!("{label} ({doc_unit})") } else { label.to_string() });
+                        units::num_field(ui, label, &mut f[i], &canvas.doc, i < 2, 110.0);
+                        ui.end_row();
+                    }
+                    ui.label(i18n::t("Knob shapes"));
+                    if ui.button(i18n::t("Shuffle")).tip(i18n::t("Other knob directions and shapes (the same puzzle comes back with the same number)")).clicked() {
+                        seed = seed.wrapping_mul(6364136223846793005).wrapping_add(1442695040888963407) >> 1;
+                    }
+                    ui.end_row();
+                });
+                ui.label(egui::RichText::new(i18n::t("Interlocking pieces centred on the board, on the \"Puzzle\" layer. Cut them with a Profile on the line; a thin board (1/4 in) and a 1/16 in bit work well.")).small().color(crate::theme::TEXT_DIM));
+                let (o, c) = W::ok_cancel(ui);
+                ok |= o;
+                keep &= !c;
+            });
+            if ok {
+                let v: Vec<Result<f64, String>> = f.iter().enumerate().map(|(i, t)| units::get(&canvas.doc, t, i < 2)).collect();
+                match v.iter().find_map(|r| r.as_ref().err()) {
+                    Some(e) => canvas.status = e.clone(),
+                    None => {
+                        let n: Vec<f64> = v.into_iter().map(Result::unwrap).collect();
+                        canvas.jigsaw(n[0], n[1], n[2].round().max(1.0) as usize, n[3].round().max(1.0) as usize, seed);
+                        keep = false;
+                    }
+                }
+            }
+            if keep {
+                self.puzzle = Some((f, seed));
+            }
+        }
+
+        if let Some((mut f, mut lid)) = self.boxm.take() {
+            let (mut keep, mut ok) = (true, false);
+            W::Dialog::new(i18n::t("Box Maker")).show(ctx, |ui| {
+                egui::Grid::new("boxm").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
+                    for (i, label) in ["Width (outside)", i18n::t("Depth (outside)"), i18n::t("Height (outside)"), i18n::t("Board thickness"), i18n::t("Finger width"), i18n::t("Fit play (slots wider by)"), "Bit diameter (dogbones, 0 = none)"].iter().enumerate() {
+                        ui.label(format!("{label} ({doc_unit})"));
+                        units::num_field(ui, label, &mut f[i], &canvas.doc, true, 110.0);
+                        ui.end_row();
+                    }
+                });
+                W::checkbox(ui, &mut lid, i18n::t("Lid (jointed like the bottom)"));
+                ui.label(egui::RichText::new(i18n::t("Six panels (five without a lid) with finger joints, laid flat on the \"Box\" layer. Measure the board: the thickness sets the finger depth. Cut them with a Profile outside, through the board.")).small().color(crate::theme::TEXT_DIM));
                 let (o, c) = W::ok_cancel(ui);
                 ok |= o;
                 keep &= !c;
@@ -648,11 +804,11 @@ impl Dialogs {
 
         if let Some((mut list, mut heads, mut gap)) = self.plates.take() {
             let (mut keep, mut ok) = (true, false);
-            W::Dialog::new("Plate Production").show(ctx, |ui| {
+            W::Dialog::new(i18n::t("Plate Production")).show(ctx, |ui| {
                 ui.set_max_width(460.0);
                 ui.label(egui::RichText::new("Select the master plate (its outline, text, anything). In its text, {1} is a row's first field, {2} the second, or use a heading like {name}. One plate is made per line below, beside and then below the master.").small().color(crate::theme::TEXT_DIM));
-                ui.add(egui::TextEdit::multiline(&mut list).desired_width(440.0).desired_rows(8).hint_text("Ann,101\nBo,102"));
-                W::checkbox(ui, &mut heads, "First line is headings");
+                ui.add(egui::TextEdit::multiline(&mut list).desired_width(440.0).desired_rows(8).hint_text(i18n::t("Ann,101\nBo,102")));
+                W::checkbox(ui, &mut heads, i18n::t("First line is headings"));
                 ui.horizontal(|ui| {
                     ui.label(format!("Gap between plates ({doc_unit})"));
                     units::num_field(ui, "plgap", &mut gap, &canvas.doc, true, 110.0);
@@ -680,21 +836,21 @@ impl Dialogs {
 
         if let Some(mut f) = self.texture.take() {
             let (mut keep, mut ok) = (true, false);
-            W::Dialog::new("Vector Texture").show(ctx, |ui| {
+            W::Dialog::new(i18n::t("Vector Texture")).show(ctx, |ui| {
                 egui::Grid::new("vtexture").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                    for (i, label) in ["Line spacing", "Wave height", "Wave length"].iter().enumerate() {
+                    for (i, label) in ["Line spacing", i18n::t("Wave height"), "Wave length"].iter().enumerate() {
                         ui.label(format!("{label} ({doc_unit})"));
                         units::num_field(ui, label, &mut f[i], &canvas.doc, true, 110.0);
                         ui.end_row();
                     }
-                    ui.label("Angle");
+                    ui.label(i18n::t("Angle"));
                     ui.add(egui::DragValue::new(&mut self.texture_angle).range(0.0..=179.0).suffix("°"));
                     ui.end_row();
-                    ui.label("Randomness");
+                    ui.label(i18n::t("Randomness"));
                     ui.add(egui::Slider::new(&mut self.texture_vary, 0.0..=1.0).fixed_decimals(2));
                     ui.end_row();
                 });
-                ui.label(egui::RichText::new("Fills the selected closed shapes with wavy lines (holes stay clear), added as one group. Cut them with a V-bit or ball nose: Profile on the line, or Flute.").small().color(crate::theme::TEXT_DIM));
+                ui.label(egui::RichText::new(i18n::t("Fills the selected closed shapes with wavy lines (holes stay clear), added as one group. Cut them with a V-bit or ball nose: Profile on the line, or Flute.")).small().color(crate::theme::TEXT_DIM));
                 let (o, c) = W::ok_cancel(ui);
                 ok |= o;
                 keep &= !c;
@@ -717,11 +873,11 @@ impl Dialogs {
 
         if let Some(mut f) = self.selector.take() {
             let (mut keep, mut ok) = (true, false);
-            W::Dialog::new("Vector Selector").show(ctx, |ui| {
+            W::Dialog::new(i18n::t("Vector Selector")).show(ctx, |ui| {
                 egui::Grid::new("selector").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                    ui.label("Kind");
+                    ui.label(i18n::t("Kind"));
                     ui.horizontal(|ui| {
-                        for (v, t) in [(0, "Any"), (1, "Open"), (2, "Closed"), (3, "Circles")] {
+                        for (v, t) in [(0, i18n::t("Any")), (1, i18n::t("Open")), (2, i18n::t("Closed")), (3, i18n::t("Circles"))] {
                             W::radio_value(ui, &mut self.sel_filter.kind, v, t);
                         }
                     });
@@ -732,17 +888,17 @@ impl Dialogs {
                     ui.label(format!("Smaller than ({doc_unit})"));
                     units::num_field(ui, "sm", &mut f[1], &canvas.doc, true, 110.0);
                     ui.end_row();
-                    ui.label("Layer");
-                    let name = |l: Option<i32>| l.and_then(|i| canvas.doc.layers.get(i as usize)).map_or("Any layer".to_string(), |l| l.name.clone());
+                    ui.label(i18n::t("Layer"));
+                    let name = |l: Option<i32>| l.and_then(|i| canvas.doc.layers.get(i as usize)).map_or(i18n::t("Any layer").to_string(), |l| l.name.clone());
                     egui::ComboBox::from_id_salt("sel_layer").selected_text(name(self.sel_filter.layer)).show_ui(ui, |ui| {
-                        ui.selectable_value(&mut self.sel_filter.layer, None, "Any layer");
+                        ui.selectable_value(&mut self.sel_filter.layer, None, i18n::t("Any layer"));
                         for i in 0..canvas.doc.layers.len() as i32 {
                             ui.selectable_value(&mut self.sel_filter.layer, Some(i), name(Some(i)));
                         }
                     });
                     ui.end_row();
                 });
-                ui.label(egui::RichText::new("Size = the longest side. Leave a size blank for no limit. Only this sheet's unlocked vectors are picked.").small().color(crate::theme::TEXT_DIM));
+                ui.label(egui::RichText::new(i18n::t("Size = the longest side. Leave a size blank for no limit. Only this sheet's unlocked vectors are picked.")).small().color(crate::theme::TEXT_DIM));
                 let (o, c) = W::ok_cancel(ui);
                 ok |= o;
                 keep &= !c;
@@ -766,35 +922,35 @@ impl Dialogs {
             let mut keep = true;
             let mut ok = false;
             let fillet = self.corner_style == 2;
-            W::Dialog::new("Corners").show(ctx, |ui| {
+            W::Dialog::new(i18n::t("Corners")).show(ctx, |ui| {
                 egui::Grid::new("dogbone").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                    ui.label("Style");
+                    ui.label(i18n::t("Style"));
                     ui.horizontal(|ui| {
-                        W::radio_value(ui, &mut self.corner_style, 0, "Dogbone");
-                        W::radio_value(ui, &mut self.corner_style, 1, "T-bone");
-                        W::radio_value(ui, &mut self.corner_style, 2, "Fillet (round)");
+                        W::radio_value(ui, &mut self.corner_style, 0, i18n::t("Dogbone"));
+                        W::radio_value(ui, &mut self.corner_style, 1, i18n::t("T-bone"));
+                        W::radio_value(ui, &mut self.corner_style, 2, i18n::t("Fillet (round)"));
                     });
                     ui.end_row();
                     ui.label(if fillet { format!("Radius ({doc_unit})") } else { format!("Bit diameter ({doc_unit})") });
                     units::num_field(ui, "d", &mut f[0], &canvas.doc, true, 110.0);
                     ui.end_row();
                     if fillet {
-                        ui.label("Corners");
+                        ui.label(i18n::t("Corners"));
                         ui.horizontal(|ui| {
-                            W::radio_value(ui, &mut self.fillet_which, 0, "All");
-                            W::radio_value(ui, &mut self.fillet_which, 1, "Sticking out");
-                            W::radio_value(ui, &mut self.fillet_which, 2, "Going in");
+                            W::radio_value(ui, &mut self.fillet_which, 0, i18n::t("All"));
+                            W::radio_value(ui, &mut self.fillet_which, 1, i18n::t("Sticking out"));
+                            W::radio_value(ui, &mut self.fillet_which, 2, i18n::t("Going in"));
                         });
                     } else {
-                        ui.label("Vectors are");
+                        ui.label(i18n::t("Vectors are"));
                         ui.horizontal(|ui| {
-                            W::radio_value(ui, &mut self.dogbone_inside, true, "Holes / pockets");
-                            W::radio_value(ui, &mut self.dogbone_inside, false, "Parts (cut outside)");
+                            W::radio_value(ui, &mut self.dogbone_inside, true, i18n::t("Holes / pockets"));
+                            W::radio_value(ui, &mut self.dogbone_inside, false, i18n::t("Parts (cut outside)"));
                         });
                     }
                     ui.end_row();
                 });
-                ui.label(egui::RichText::new(if fillet { "Rounds the sharp corners of closed vectors. A going-in corner rounded to your bit's radius is one the bit can cut exactly." } else { "Adds a small lobe at each corner the round bit can't reach, so square parts fit." }).small().color(crate::theme::TEXT_DIM));
+                ui.label(egui::RichText::new(if fillet { i18n::t("Rounds the sharp corners of closed vectors. A going-in corner rounded to your bit's radius is one the bit can cut exactly.") } else { i18n::t("Adds a small lobe at each corner the round bit can't reach, so square parts fit.") }).small().color(crate::theme::TEXT_DIM));
                 let (o, c) = W::ok_cancel(ui);
                 ok |= o;
                 keep &= !c;
@@ -819,27 +975,27 @@ impl Dialogs {
         if let Some(mut f) = self.array.take() {
             let mut keep = true;
             let mut ok = false;
-            W::Dialog::new("Array Copy").show(ctx, |ui| {
+            W::Dialog::new(i18n::t("Array Copy")).show(ctx, |ui| {
                 egui::Grid::new("array").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                    ui.label("Layout");
+                    ui.label(i18n::t("Layout"));
                     ui.horizontal(|ui| {
-                        W::radio_value(ui, &mut self.array_mode, 0, "Grid");
-                        W::radio_value(ui, &mut self.array_mode, 1, "Circular");
-                        W::radio_value(ui, &mut self.array_mode, 2, "Along a vector");
+                        W::radio_value(ui, &mut self.array_mode, 0, i18n::t("Grid"));
+                        W::radio_value(ui, &mut self.array_mode, 1, i18n::t("Circular"));
+                        W::radio_value(ui, &mut self.array_mode, 2, i18n::t("Along a vector"));
                     });
                     ui.end_row();
                     if self.array_mode == 2 {
-                        ui.label("Copies");
+                        ui.label(i18n::t("Copies"));
                         ui.add(W::SpinBox::new(&mut self.array_count, 2..=1000));
                         ui.end_row();
                         ui.label("");
-                        W::checkbox(ui, &mut self.array_rotate, "Turn copies to follow the vector");
+                        W::checkbox(ui, &mut self.array_rotate, i18n::t("Turn copies to follow the vector"));
                         ui.end_row();
                     } else if self.array_mode == 0 {
-                        ui.label("Columns (X)");
+                        ui.label(i18n::t("Columns (X)"));
                         ui.add(W::SpinBox::new(&mut self.array_cols, 1..=200));
                         ui.end_row();
-                        ui.label("Rows (Y)");
+                        ui.label(i18n::t("Rows (Y)"));
                         ui.add(W::SpinBox::new(&mut self.array_rows, 1..=200));
                         ui.end_row();
                         ui.label(format!("Gap X ({doc_unit})"));
@@ -849,7 +1005,7 @@ impl Dialogs {
                         units::num_field(ui, "gy", &mut f[1], &canvas.doc, true, 110.0);
                         ui.end_row();
                     } else {
-                        ui.label("Copies");
+                        ui.label(i18n::t("Copies"));
                         ui.add(W::SpinBox::new(&mut self.array_count, 2..=360));
                         ui.end_row();
                         ui.label(format!("Centre X ({doc_unit})"));
@@ -859,13 +1015,13 @@ impl Dialogs {
                         units::num_field(ui, "cy", &mut f[3], &canvas.doc, true, 110.0);
                         ui.end_row();
                         ui.label("");
-                        W::checkbox(ui, &mut self.array_rotate, "Rotate copies");
+                        W::checkbox(ui, &mut self.array_rotate, i18n::t("Rotate copies"));
                         ui.end_row();
                     }
                 });
                 let note = match self.array_mode {
-                    0 => "Gap is the space between copies, edge to edge.",
-                    2 => "Select the object(s) and the vector to follow: the longest selected vector is the path, the rest is copied evenly along it (an open path gets a copy at both ends).",
+                    0 => i18n::t("Gap is the space between copies, edge to edge."),
+                    2 => i18n::t("Select the object(s) and the vector to follow: the longest selected vector is the path, the rest is copied evenly along it (an open path gets a copy at both ends)."),
                     _ => "",
                 };
                 if !note.is_empty() {
@@ -897,14 +1053,14 @@ impl Dialogs {
 
         if self.align_open {
             let mut open = true;
-            W::Dialog::new("Align & Distribute").open(&mut open).close_footer().modeless(ctx.content_rect().right_top() + egui::vec2(-330.0, 120.0), egui::Align2::RIGHT_TOP).show(ctx, |ui| {
+            W::Dialog::new(i18n::t("Align & Distribute")).open(&mut open).close_footer().modeless(ctx.content_rect().right_top() + egui::vec2(-330.0, 120.0), egui::Align2::RIGHT_TOP).show(ctx, |ui| {
                 ui.spacing_mut().item_spacing = egui::vec2(6.0, 10.0);
                 let n = canvas.sel.len();
                 let bold = |t: &str| RichText::new(t).font(W::bold(crate::theme::FONT_SIZE));
                 ui.label(RichText::new(format!("{n} selected")).color(crate::theme::TEXT.gamma_multiply(0.7)));
-                ui.label(bold("Align to each other"));
+                ui.label(bold(i18n::t("Align to each other")));
                 egui::Grid::new("align-each").spacing([6.0, 6.0]).show(ui, |ui| {
-                    for (i, (label, mode, icon)) in [("Left", "left", "align-left"), ("Centre", "centerH", "arrows-h"), ("Right", "right", "align-right"), ("Top", "top", "align-top"), ("Middle", "centerV", "arrows-v"), ("Bottom", "bottom", "align-bottom")].into_iter().enumerate() {
+                    for (i, (label, mode, icon)) in [(i18n::t("Left"), "left", "align-left"), (i18n::t("Centre"), "centerH", "arrows-h"), (i18n::t("Right"), "right", "align-right"), (i18n::t("Top"), "top", "align-top"), (i18n::t("Middle"), "centerV", "arrows-v"), (i18n::t("Bottom"), "bottom", "align-bottom")].into_iter().enumerate() {
                         // Qt "⇤ Left" … "Right ⇥": the arrows are icons (the web fonts lack ⤒)
                         if ui.add_enabled(n >= 2, W::Button::new(label).icon(icon, label == "Right").min_width(100.0)).clicked() {
                             canvas.align_objects(mode);
@@ -914,7 +1070,7 @@ impl Dialogs {
                         }
                     }
                 });
-                ui.label(bold("Align to the board"));
+                ui.label(bold(i18n::t("Align to the board")));
                 egui::Grid::new("align-board").spacing([6.0, 6.0]).show(ui, |ui| {
                     let cells = [("top-left", "left", "top"), ("top", "centerH", "top"), ("top-right", "right", "top"), ("left", "left", "centerV"), ("centre", "center", ""), ("right", "right", "centerV"), ("bottom-left", "left", "bottom"), ("bottom", "centerH", "bottom"), ("bottom-right", "right", "bottom")];
                     for (i, (label, a, b)) in cells.into_iter().enumerate() {
@@ -929,17 +1085,17 @@ impl Dialogs {
                         }
                     }
                 });
-                ui.label(bold("Distribute"));
+                ui.label(bold(i18n::t("Distribute")));
                 ui.horizontal(|ui| {
-                    if ui.add_enabled(n >= 3, W::Button::new("Evenly ↔")).clicked() {
+                    if ui.add_enabled(n >= 3, W::Button::new(i18n::t("Evenly ↔"))).clicked() {
                         canvas.distribute_objects(true, -1.0);
                     }
-                    if ui.add_enabled(n >= 3, W::Button::new("Evenly ↕")).clicked() {
+                    if ui.add_enabled(n >= 3, W::Button::new(i18n::t("Evenly ↕"))).clicked() {
                         canvas.distribute_objects(false, -1.0);
                     }
-                    ui.label("  Gap");
+                    ui.label(i18n::t("  Gap"));
                     units::num_field(ui, "gap", &mut self.align_gap, &canvas.doc, true, 80.0);
-                    for (label, h) in [("Space ↔", true), ("Space ↕", false)] {
+                    for (label, h) in [(i18n::t("Space ↔"), true), (i18n::t("Space ↕"), false)] {
                         if ui.add_enabled(n >= 2, W::Button::new(label)).clicked() {
                             match units::get(&canvas.doc, &self.align_gap, true) {
                                 Ok(g) => canvas.distribute_objects(h, g),
@@ -948,7 +1104,7 @@ impl Dialogs {
                         }
                     }
                 });
-                ui.label(RichText::new("Gap may use variables (e.g. gap). Items keep their order; the first one stays put.").size(11.0).color(crate::theme::TEXT.gamma_multiply(0.5)));
+                ui.label(RichText::new(i18n::t("Gap may use variables (e.g. gap). Items keep their order; the first one stays put.")).size(11.0).color(crate::theme::TEXT.gamma_multiply(0.5)));
             });
             self.align_open = open;
         }
@@ -956,9 +1112,9 @@ impl Dialogs {
         if let Some(mut f) = self.nest.take() {
             let mut keep = true;
             let mut ok = false;
-            W::Dialog::new("Nest on Board").show(ctx, |ui| {
+            W::Dialog::new(i18n::t("Nest on Board")).show(ctx, |ui| {
                 ui.set_max_width(400.0);
-                ui.add(egui::Label::new(RichText::new("True-shape nesting: parts are packed by their real outlines from the chosen corner, largest first, so curved and angled parts interlock. Shapes inside another selected shape (holes, inner cuts) move with it.").color(crate::theme::TEXT.gamma_multiply(0.6))).wrap());
+                ui.add(egui::Label::new(RichText::new(i18n::t("True-shape nesting: parts are packed by their real outlines from the chosen corner, largest first, so curved and angled parts interlock. Shapes inside another selected shape (holes, inner cuts) move with it.")).color(crate::theme::TEXT.gamma_multiply(0.6))).wrap());
                 egui::Grid::new("nest").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
                     ui.label(format!("Gap between parts ({doc_unit})"));
                     units::num_field(ui, "gap", &mut f[0], &canvas.doc, true, 110.0);
@@ -966,16 +1122,16 @@ impl Dialogs {
                     ui.label(format!("Margin from board edge ({doc_unit})"));
                     units::num_field(ui, "margin", &mut f[1], &canvas.doc, true, 110.0);
                     ui.end_row();
-                    ui.label("Rotations to try");
-                    let items = ["None", "90° steps", "45° steps", "15° steps (slower)"];
+                    ui.label(i18n::t("Rotations to try"));
+                    let items = ["None", i18n::t("90° steps"), i18n::t("45° steps"), "15° steps (slower)"];
                     W::combo_box("rot").selected_text(items[self.nest_rot]).width(200.0).show_ui(ui, |ui| {
                         for (i, l) in items.iter().enumerate() {
                             ui.selectable_value(&mut self.nest_rot, i, *l);
                         }
                     });
                     ui.end_row();
-                    ui.label("Nest from");
-                    let corners = ["Bottom-left", "Bottom-right", "Top-left", "Top-right"];
+                    ui.label(i18n::t("Nest from"));
+                    let corners = ["Bottom-left", i18n::t("Bottom-right"), i18n::t("Top-left"), "Top-right"];
                     W::combo_box("corner").selected_text(corners[self.nest_corner as usize]).width(200.0).show_ui(ui, |ui| {
                         for (i, l) in corners.iter().enumerate() {
                             ui.selectable_value(&mut self.nest_corner, i as u8, *l);
@@ -983,11 +1139,11 @@ impl Dialogs {
                     });
                     ui.end_row();
                 });
-                W::checkbox(ui, &mut self.nest_boundary, "Inside the largest selected shape (an offcut)").tip("Draw or trace the offcut's outline, select it with the parts: it stays where it is and the parts nest inside it");
-                W::checkbox(ui, &mut self.nest_filler, "Fill the rest with copies of the smallest part").tip("Filler part: after the selection is placed, copies of its smallest part go wherever they still fit");
-                W::checkbox(ui, &mut self.nest_mirror, "Mirror parts for a better fit").tip("Only for parts that can be cut either way round (no text, no one-sided edge profile)");
-                W::checkbox(ui, &mut self.nest_overflow, "Overflow onto more sheets").tip("Parts that don't fit go to the next sheet (a new one is added with the same board)");
-                ui.label(RichText::new(if self.nest_overflow { "Parts that don't fit this sheet are nested on following sheets." } else { "One sheet; parts that don't fit are left where they are." }).size(11.0).color(crate::theme::TEXT.gamma_multiply(0.5)));
+                W::checkbox(ui, &mut self.nest_boundary, i18n::t("Inside the largest selected shape (an offcut)")).tip(i18n::t("Draw or trace the offcut's outline, select it with the parts: it stays where it is and the parts nest inside it"));
+                W::checkbox(ui, &mut self.nest_filler, i18n::t("Fill the rest with copies of the smallest part")).tip(i18n::t("Filler part: after the selection is placed, copies of its smallest part go wherever they still fit"));
+                W::checkbox(ui, &mut self.nest_mirror, i18n::t("Mirror parts for a better fit")).tip(i18n::t("Only for parts that can be cut either way round (no text, no one-sided edge profile)"));
+                W::checkbox(ui, &mut self.nest_overflow, i18n::t("Overflow onto more sheets")).tip(i18n::t("Parts that don't fit go to the next sheet (a new one is added with the same board)"));
+                ui.label(RichText::new(if self.nest_overflow { i18n::t("Parts that don't fit this sheet are nested on following sheets.") } else { i18n::t("One sheet; parts that don't fit are left where they are.") }).size(11.0).color(crate::theme::TEXT.gamma_multiply(0.5)));
                 let (o, c) = W::ok_cancel(ui);
                 ok |= o && !canvas.sel.is_empty();
                 keep &= !c;

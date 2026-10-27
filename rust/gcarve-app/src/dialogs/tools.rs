@@ -1,6 +1,8 @@
 //! Tool Library (Qt ToolsDialog.qml): the project's bits (= the user's saved library), per-material feed presets,
 //! chip-load suggestions and the feeds meter. Edits save the library for new projects.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use super::{feed_meter, hint, material_combo, rate_label, unit_label, Fields, Host};
 use crate::widgets::TipExt;
 use crate::toollib;
@@ -154,12 +156,12 @@ impl ToolsDialog {
         // folders: bits without one first, then each folder A–Z under its heading (list order kept inside)
         shown.sort_by(|&a, &b| doc.tools[a].group.to_lowercase().cmp(&doc.tools[b].group.to_lowercase()));
         let foldered = shown.iter().any(|&i| !doc.tools[i].group.is_empty());
-        crate::widgets::Dialog::new("Tool Library").width(900.0).open(&mut open).close_footer().show(ctx, |ui| {
+        crate::widgets::Dialog::new(i18n::t("Tool Library")).width(900.0).open(&mut open).close_footer().show(ctx, |ui| {
             ui.horizontal_top(|ui| {
                 // ---- the library: search, rows with size / type / use, then the actions
                 ui.vertical(|ui| {
                     ui.set_width(290.0);
-                    ui.add(crate::widgets::field(&mut self.query).hint_text("Search your bits…").desired_width(290.0));
+                    ui.add(crate::widgets::field(&mut self.query).hint_text(i18n::t("Search your bits…")).desired_width(290.0));
                     ui.add_space(4.0);
                     egui::ScrollArea::vertical().max_height(crate::widgets::list_height(ui, 250.0)).id_salt("tools-list").show(ui, |ui| {
                         ui.set_width(290.0);
@@ -170,7 +172,7 @@ impl ToolsDialog {
                             if foldered && heading.as_deref() != Some(t.group.to_lowercase().as_str()) {
                                 heading = Some(t.group.to_lowercase());
                                 ui.add_space(4.0);
-                                ui.label(RichText::new(if t.group.is_empty() { "No folder" } else { t.group.as_str() }).small().family(crate::widgets::bold_family()).color(crate::theme::TEXT_DIM));
+                                ui.label(RichText::new(if t.group.is_empty() { i18n::t("No folder") } else { t.group.as_str() }).small().family(crate::widgets::bold_family()).color(crate::theme::TEXT_DIM));
                             }
                             let (r, resp) = ui.allocate_exact_size(egui::vec2(ui.available_width(), 44.0), egui::Sense::click());
                             let on = i == self.cur;
@@ -190,45 +192,45 @@ impl ToolsDialog {
                             }
                         }
                         if shown.is_empty() {
-                            hint(ui, "No bit matches. Clear the search, or add one from the catalog.");
+                            hint(ui, i18n::t("No bit matches. Clear the search, or add one from the catalog."));
                         }
                     });
                     ui.add_space(6.0);
                     ui.horizontal(|ui| {
-                        if ui.add(crate::widgets::Button::new("Browse catalog…").primary(true)).tip("Whiteside, Amana, SpeTool, Onsrud and more: pick by type, maker and size").clicked() {
+                        if ui.add(crate::widgets::Button::new(i18n::t("Browse catalog…")).primary(true)).tip(i18n::t("Whiteside, Amana, SpeTool, Onsrud and more: pick by type, maker and size")).clicked() {
                             self.browser.open = true;
                         }
-                        if ui.button("New bit").tip("A blank 1/4 in end mill to fill in").clicked() {
+                        if ui.button(i18n::t("New bit")).tip(i18n::t("A blank 1/4 in end mill to fill in")).clicked() {
                             act = Some(Act::Add);
                         }
                     });
                     ui.horizontal(|ui| {
-                        if ui.button("Duplicate").clicked() {
+                        if ui.button(i18n::t("Duplicate")).clicked() {
                             act = Some(Act::Duplicate);
                         }
                         let n = used(self.cur);
-                        let del = if n > 0 { format!("Delete ({n} toolpath{} switch)", if n == 1 { "" } else { "s" }) } else { "Delete".into() };
+                        let del = if n > 0 { format!("Delete ({n} toolpath{} switch)", if n == 1 { "" } else { "s" }) } else { i18n::t("Delete").into() };
                         if ui.add_enabled(doc.tools.len() > 1, egui::Button::new(del)).clicked() {
                             act = Some(Act::Delete);
                         }
                     });
                     ui.add_space(4.0);
-                    egui::CollapsingHeader::new("Import, export, share").id_salt("tools-more").show(ui, |ui| {
+                    egui::CollapsingHeader::new(i18n::t("Import, export, share")).id_salt("tools-more").show(ui, |ui| {
                         ui.horizontal(|ui| {
-                            if ui.button("Import…").tip("GCarve bit library (.json), a Fusion 360 tools.json or a Vectric tool database (.vtdb)").clicked() {
+                            if ui.button(i18n::t("Import…")).tip(i18n::t("GCarve bit library (.json), a Fusion 360 tools.json or a Vectric tool database (.vtdb)")).clicked() {
                                 act = Some(Act::Import);
                             }
-                            if ui.button("Export…").clicked() {
+                            if ui.button(i18n::t("Export…")).clicked() {
                                 act = Some(Act::Export);
                             }
                         });
                         if let Some(t) = doc.tools.get(self.cur) {
                             let one = std::slice::from_ref(t);
-                            self.share_one.ui(ui, host.cloud, "this bit", "bits", &t.name, || crate::library::bits_json(one));
+                            self.share_one.ui(ui, host.cloud, i18n::t("this bit"), "bits", &t.name, || crate::library::bits_json(one));
                         }
                         self.share_all.ui(ui, host.cloud, "all bits", "bits", &format!("{} bits", doc.tools.len()), || crate::library::bits_json(&doc.tools));
                     });
-                    hint(ui, "Changes save as you type, to this project and to your library for new projects.");
+                    hint(ui, i18n::t("Changes save as you type, to this project and to your library for new projects."));
                 });
                 ui.separator();
                 // ---- the selected bit
@@ -243,14 +245,14 @@ impl ToolsDialog {
                         ui.vertical(|ui| {
                             ui.add(crate::widgets::field(&mut self.name).desired_width(440.0).font(crate::theme::font(15.0)));
                             ui.horizontal(|ui| {
-                                ui.label(RichText::new("Folder").small().color(crate::theme::TEXT_DIM));
-                                ui.add(crate::widgets::field(&mut self.group).desired_width(150.0).hint_text("none (e.g. V-bits)"));
+                                ui.label(RichText::new(i18n::t("Folder")).small().color(crate::theme::TEXT_DIM));
+                                ui.add(crate::widgets::field(&mut self.group).desired_width(150.0).hint_text(i18n::t("none (e.g. V-bits)")));
                                 // VCarve's tool name format: a pattern of the bit's own numbers, kept on this device
                                 let mut fmt = crate::store::load(NAME_FMT_KEY).unwrap_or_else(|| DEFAULT_NAME_FMT.into());
                                 if ui.add(crate::widgets::field(&mut fmt).desired_width(205.0)).on_hover_text("Name pattern: {type} {diameter} {angle} {flutes} {radius}").changed() {
                                     crate::store::save(NAME_FMT_KEY, &fmt);
                                 }
-                                if ui.button("Name it").on_hover_text("Rename this bit from the pattern").clicked() {
+                                if ui.button(i18n::t("Name it")).on_hover_text(i18n::t("Rename this bit from the pattern")).clicked() {
                                     if let Some(t) = doc.tools.get(self.cur) {
                                         let shown = Tool { kind: self.kind, diameter: self.f.get_or("diameter", doc, t.diameter), angle: self.f.raw_or("angle", t.angle), radius: self.f.get_or("radius", doc, t.radius), flutes: self.flutes.trim().parse().unwrap_or(t.flutes), ..t.clone() };
                                         self.name = bit_name(&shown, &fmt, doc);
@@ -258,16 +260,16 @@ impl ToolsDialog {
                                 }
                             });
                             let n = used(self.cur);
-                            let text = if n == 0 { "Not used by any toolpath in this project".to_string() } else { format!("Used by {n} toolpath{} in this project", if n == 1 { "" } else { "s" }) };
+                            let text = if n == 0 { i18n::t("Not used by any toolpath in this project").to_string() } else { format!("Used by {n} toolpath{} in this project", if n == 1 { "" } else { "s" }) };
                             ui.label(RichText::new(text).small().color(crate::theme::TEXT_DIM));
                         });
                     });
                     ui.add_space(8.0);
                     ui.horizontal_top(|ui| {
-                        card(ui, "Shape", 270.0, |ui| {
+                        card(ui, i18n::t("Shape"), 270.0, |ui| {
                             ui.horizontal_wrapped(|ui| {
                                 ui.spacing_mut().item_spacing.x = 2.0;
-                                for (k, label) in [(ToolType::EndMill, "End mill"), (ToolType::VBit, "V-bit"), (ToolType::BallNose, "Ball nose"), (ToolType::RoundOver, "Round-over")] {
+                                for (k, label) in [(ToolType::EndMill, i18n::t("End mill")), (ToolType::VBit, i18n::t("V-bit")), (ToolType::BallNose, i18n::t("Ball nose")), (ToolType::RoundOver, i18n::t("Round-over"))] {
                                     ui.selectable_value(&mut self.kind, k, label);
                                 }
                             });
@@ -276,69 +278,69 @@ impl ToolsDialog {
                                 let form = doc.tools.get(self.cur).map_or(0, |t| t.form.len());
                                 if form > 0 {
                                     ui.label(RichText::new(format!("Drawn profile ({form} points)")).small());
-                                    if ui.small_button("Clear").clicked() {
+                                    if ui.small_button(i18n::t("Clear")).clicked() {
                                         act = Some(Act::Form(None));
                                     }
                                 }
                                 let pick = host.canvas.sel.iter().filter_map(|id| doc.find(*id)).find(|s| !s.c.closed);
-                                if ui.add_enabled(pick.is_some(), egui::Button::new(if form > 0 { "Replace from selection" } else { "Profile from selected vector" }).small()).on_hover_text("Form cutter (ogee, cove, …): draw the right half of the bit's side view as an open vector, the tip lowest and the axis at its left end, select it, then press this. The simulation and Moulding then use that shape.").clicked() {
+                                if ui.add_enabled(pick.is_some(), egui::Button::new(if form > 0 { i18n::t("Replace from selection") } else { i18n::t("Profile from selected vector") }).small()).on_hover_text(i18n::t("Form cutter (ogee, cove, …): draw the right half of the bit's side view as an open vector, the tip lowest and the axis at its left end, select it, then press this. The simulation and Moulding then use that shape.")).clicked() {
                                     act = Some(Act::Form(pick.map(|s| gcarve_core::geom::flatten(&s.c, 0.002))));
                                 }
                             });
                             ui.add_space(4.0);
                             egui::Grid::new("tool-shape").num_columns(2).spacing([10.0, 6.0]).show(ui, |ui| {
-                                ui.label(unit_label("Diameter", doc));
+                                ui.label(unit_label(i18n::t("Diameter"), doc));
                                 self.f.ui_sized(ui, "diameter", doc, 100.0, true);
                                 ui.end_row();
                                 match self.kind {
                                     ToolType::VBit => {
-                                        ui.label("V angle (deg)");
+                                        ui.label(i18n::t("V angle (deg)"));
                                         self.f.ui_sized(ui, "angle", doc, 100.0, false);
                                         ui.end_row();
                                     }
-                                    ToolType::RoundOver => {
-                                        ui.label(unit_label("Round radius", doc)).on_hover_text("The radius of the round it cuts. 0 = half the diameter (a true point); smaller leaves a flat tip.");
+                                    ToolType::RoundOver | ToolType::BallNose => {
+                                        ui.label(unit_label(if self.kind == ToolType::BallNose { i18n::t("Corner radius") } else { i18n::t("Round radius") }, doc)).on_hover_text(if self.kind == ToolType::BallNose { i18n::t("0 = half the diameter (a ball). Smaller = a bowl / tray bit: flat across the middle, rounded at the corners.") } else { i18n::t("The radius of the round it cuts. 0 = half the diameter (a true point); smaller leaves a flat tip.") });
                                         self.f.ui_sized(ui, "radius", doc, 100.0, true);
                                         ui.end_row();
                                     }
                                     _ => {}
                                 }
                                 if self.kind != ToolType::VBit {
-                                    ui.label(unit_label("Cutting length", doc)).on_hover_text("How long the flutes are. Export warns when a toolpath cuts deeper. 0 = not known.");
+                                    ui.label(unit_label(i18n::t("Cutting length"), doc)).on_hover_text(i18n::t("How long the flutes are. Export warns when a toolpath cuts deeper. 0 = not known."));
                                     self.f.ui_sized(ui, "cutLength", doc, 100.0, true);
                                     ui.end_row();
                                 }
-                                ui.label(unit_label("Stick-out", doc)).on_hover_text("How far the bit sticks out of the collet. Export warns when a toolpath cuts deeper, because the holder would hit the board. 0 = not known.");
+                                ui.label(unit_label(i18n::t("Stick-out"), doc)).on_hover_text(i18n::t("How far the bit sticks out of the collet. Export warns when a toolpath cuts deeper, because the holder would hit the board. 0 = not known."));
                                 self.f.ui_sized(ui, "stickOut", doc, 100.0, true);
                                 ui.end_row();
-                                ui.label(unit_label("Holder width", doc)).on_hover_text("Width of the collet / holder. With the stick-out, export warns when the holder would reach a clamp or screw (keep-out layer) at the height of a clamp. 0 = not known.");
+                                ui.label(unit_label(i18n::t("Holder width"), doc)).on_hover_text(i18n::t("Width of the collet / holder. With the stick-out, export warns when the holder would reach a clamp or screw (keep-out layer) at the height of a clamp. 0 = not known."));
                                 self.f.ui_sized(ui, "holderDia", doc, 100.0, true);
                                 ui.end_row();
-                                ui.label("Flutes");
+                                ui.label(i18n::t("Flutes"));
                                 ui.add(crate::widgets::field(&mut self.flutes).desired_width(60.0));
                                 ui.end_row();
-                                ui.label(if slots > 0 { format!("ATC slot (1–{slots})") } else { "Tool changer slot".into() });
-                                ui.add(crate::widgets::field(&mut self.slot).desired_width(60.0)).on_hover_text("For machines with a tool changer: the pocket the bit is fetched from. 0 = manual change.");
+                                ui.label(if slots > 0 { format!("ATC slot (1–{slots})") } else { i18n::t("Tool changer slot").into() });
+                                ui.add(crate::widgets::field(&mut self.slot).desired_width(60.0)).on_hover_text(i18n::t("For machines with a tool changer: the pocket the bit is fetched from. 0 = manual change."));
                                 ui.end_row();
                             });
                         });
                         card(ui, &format!("Cutting in {board}"), 270.0, |ui| {
                             egui::Grid::new("tool-cut").num_columns(2).spacing([10.0, 6.0]).show(ui, |ui| {
-                                ui.label(rate_label("Feed XY", doc));
+                                ui.label(rate_label(i18n::t("Feed XY"), doc));
                                 self.f.ui_sized(ui, "feedXY", doc, 100.0, false);
                                 ui.end_row();
-                                ui.label(rate_label("Plunge Z", doc));
+                                ui.label(rate_label(i18n::t("Plunge Z"), doc));
                                 self.f.ui_sized(ui, "feedZ", doc, 100.0, false);
                                 ui.end_row();
-                                ui.label(unit_label("Pass depth", doc));
+                                ui.label(unit_label(i18n::t("Pass depth"), doc));
                                 self.f.ui_sized(ui, "stepdown", doc, 100.0, true);
                                 ui.end_row();
-                                ui.label("Spindle RPM");
+                                ui.label(i18n::t("Spindle RPM"));
                                 ui.add(crate::widgets::field(&mut self.rpm).desired_width(100.0));
                                 ui.end_row();
                             });
                             ui.add_space(4.0);
-                            if ui.button(format!("Suggest for {board}")).tip("Fill feed, plunge, pass depth and RPM from chip-load tables for this bit in the board material").clicked() {
+                            if ui.button(format!("Suggest for {board}")).tip(i18n::t("Fill feed, plunge, pass depth and RPM from chip-load tables for this bit in the board material")).clicked() {
                                 self.f.set_raw("feedXY", base_s.feed_xy);
                                 self.f.set_raw("feedZ", base_s.feed_z);
                                 self.f.set("stepdown", base_s.stepdown);
@@ -350,7 +352,7 @@ impl ToolsDialog {
                     feed_meter(ui, &base_a, 550.0);
                     ui.add_space(8.0);
                     // ---- feeds that depend on the board material
-                    card(ui, "Feeds by material", 550.0, |ui| {
+                    card(ui, i18n::t("Feeds by material"), 550.0, |ui| {
                         hint(ui, &format!("Toolpaths use the preset that matches the board material ({board}); otherwise the numbers above."));
                         let presets = doc.tools.get(self.cur).map(|t| t.presets.clone()).unwrap_or_default();
                         ui.horizontal_top(|ui| {
@@ -359,7 +361,7 @@ impl ToolsDialog {
                                 egui::ScrollArea::vertical().max_height(150.0).id_salt("presets").show(ui, |ui| {
                                     ui.set_width(250.0);
                                     if presets.is_empty() {
-                                        hint(ui, "No presets yet: pick a material, set the numbers, Save preset.");
+                                        hint(ui, i18n::t("No presets yet: pick a material, set the numbers, Save preset."));
                                     }
                                     for p in &presets {
                                         let on = p.material.eq_ignore_ascii_case(&self.p_material);
@@ -375,33 +377,33 @@ impl ToolsDialog {
                             });
                             ui.vertical(|ui| {
                                 egui::Grid::new("preset").num_columns(2).spacing([10.0, 6.0]).show(ui, |ui| {
-                                    ui.label("Material");
+                                    ui.label(i18n::t("Material"));
                                     material_combo(ui, "p-mat", &mut self.p_material, 190.0);
                                     ui.end_row();
-                                    ui.label(rate_label("Feed XY", doc));
+                                    ui.label(rate_label(i18n::t("Feed XY"), doc));
                                     self.f.ui_sized(ui, "pFeedXY", doc, 100.0, false);
                                     ui.end_row();
-                                    ui.label(rate_label("Plunge Z", doc));
+                                    ui.label(rate_label(i18n::t("Plunge Z"), doc));
                                     self.f.ui_sized(ui, "pFeedZ", doc, 100.0, false);
                                     ui.end_row();
-                                    ui.label(unit_label("Pass depth", doc));
+                                    ui.label(unit_label(i18n::t("Pass depth"), doc));
                                     self.f.ui_sized(ui, "pStepdown", doc, 100.0, true);
                                     ui.end_row();
-                                    ui.label("Spindle RPM");
+                                    ui.label(i18n::t("Spindle RPM"));
                                     ui.add(crate::widgets::field(&mut self.p_rpm).desired_width(100.0));
                                     ui.end_row();
                                 });
                                 ui.horizontal(|ui| {
-                                    if ui.add(crate::widgets::Button::new("Save preset").primary(true)).clicked() {
+                                    if ui.add(crate::widgets::Button::new(i18n::t("Save preset")).primary(true)).clicked() {
                                         act = Some(Act::SavePreset);
                                     }
-                                    if ui.button("Suggest").tip(format!("Fill from chip-load tables for this bit in {}", self.p_material)).clicked() {
+                                    if ui.button(i18n::t("Suggest")).tip(format!("Fill from chip-load tables for this bit in {}", self.p_material)).clicked() {
                                         self.f.set_raw("pFeedXY", pre_s.feed_xy);
                                         self.f.set_raw("pFeedZ", pre_s.feed_z);
                                         self.f.set("pStepdown", pre_s.stepdown);
                                         self.p_rpm = pre_s.rpm.to_string();
                                     }
-                                    if ui.button("Remove").clicked() {
+                                    if ui.button(i18n::t("Remove")).clicked() {
                                         act = Some(Act::RemovePreset);
                                     }
                                 });
@@ -421,7 +423,7 @@ impl ToolsDialog {
             Some(Act::Load(i)) => self.load(doc, i),
             Some(Act::Add) => {
                 doc.checkpoint();
-                let mut t = Tool { name: "New Tool".into(), ..Default::default() };
+                let mut t = Tool { name: i18n::t("New Tool").into(), ..Default::default() };
                 let s = pipeline::suggest(doc, &t);
                 (t.feed_xy, t.feed_z, t.stepdown, t.rpm) = (s.feed_xy, s.feed_z, s.stepdown, s.rpm);
                 doc.tools.push(t);
@@ -501,7 +503,7 @@ impl ToolsDialog {
                 self.load(doc, n);
                 saved = true;
             }
-            Some(Act::Import) => host.files.pick_into(ctx, "Bit library (tools.json, .vtdb)", &["json", "vtdb"], "tools"),
+            Some(Act::Import) => host.files.pick_into(ctx, i18n::t("Bit library (tools.json, .vtdb)"), &["json", "vtdb"], "tools"),
             Some(Act::Export) => crate::files::save("tools.json", gcarve_core::project::tool_library_to_json(&doc.tools).into_bytes(), host.files.msg_tx.clone()),
             _ => {}
         }
@@ -594,10 +596,10 @@ const DEFAULT_NAME_FMT: &str = "{diameter} {type} {flutes}F";
 /// a bit's name from a pattern: {type} {diameter} (project units) {angle} {flutes} {radius}
 fn bit_name(t: &Tool, fmt: &str, doc: &Document) -> String {
     let kind = match t.kind {
-        ToolType::EndMill => "End Mill",
-        ToolType::VBit => "V-Bit",
-        ToolType::BallNose => "Ball Nose",
-        ToolType::RoundOver => "Round-over",
+        ToolType::EndMill => i18n::t("End Mill"),
+        ToolType::VBit => i18n::t("V-Bit"),
+        ToolType::BallNose => i18n::t("Ball Nose"),
+        ToolType::RoundOver => i18n::t("Round-over"),
     };
     let len = |v: f64| crate::units::fmt(doc, v);
     let out = fmt.replace("{type}", kind).replace("{diameter}", &len(t.diameter)).replace("{angle}", &format!("{}°", super::fmt_len(t.angle))).replace("{flutes}", &t.flutes.to_string()).replace("{radius}", &len(if t.radius > 0.0 { t.radius } else { t.diameter / 2.0 }));
@@ -606,10 +608,10 @@ fn bit_name(t: &Tool, fmt: &str, doc: &Document) -> String {
 
 fn kind_label(t: &Tool) -> String {
     match t.kind {
-        ToolType::EndMill => "End mill".into(),
+        ToolType::EndMill => i18n::t("End mill").into(),
         ToolType::VBit => format!("V-bit {}°", super::fmt_len(t.angle)),
-        ToolType::BallNose => "Ball nose".into(),
-        ToolType::RoundOver => "Round-over".into(),
+        ToolType::BallNose => i18n::t("Ball nose").into(),
+        ToolType::RoundOver => i18n::t("Round-over").into(),
     }
 }
 

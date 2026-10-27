@@ -2,6 +2,8 @@
 //! tools.rs, document edits in edit_ops.rs, text in text.rs, popups/dialogs in popups.rs (all `impl Canvas`).
 //! Document units are inches with Y up; the screen has Y down, so every mapping goes through View.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use crate::dialogs::prefs::{GridPrefs, SnapPrefs};
 use crate::theme;
 use crate::units;
@@ -73,6 +75,10 @@ pub enum Request {
     /// Vectors › Rotary Layout…
     RotaryLayout,
     BoxMaker,
+    Puzzle,
+    Inlay,
+    Hinge,
+    Qr,
     /// new text; true = along the selected curve
     Text(bool),
     EditText(i32),
@@ -711,7 +717,7 @@ impl Canvas {
         painter.circle_stroke(o, 6.0, st);
         let font = theme::font(theme::FONT_SIZE);
         let base = o + egui::vec2(10.0, -8.0 - painter.fonts_mut(|f| f.row_height(&font)) * 0.8); // Qt drawText: y is the baseline
-        painter.text(base, egui::Align2::LEFT_TOP, if m.z_bottom { "XY0 · Z0 bed" } else { "XY0 · Z0 top" }, font, HIGHLIGHT);
+        painter.text(base, egui::Align2::LEFT_TOP, if m.z_bottom { i18n::t("XY0 · Z0 bed") } else { i18n::t("XY0 · Z0 top") }, font, HIGHLIGHT);
     }
 
     /// dashed links for the constraints touching the selection, labelled with their type and expression

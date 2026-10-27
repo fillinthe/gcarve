@@ -2,6 +2,8 @@
 //! guide shows a marker in the ruler that measures it; drag the marker to move the guide, drop it back on a ruler
 //! to remove it. Drawing and moving snap to guides (always: that is what they are for). Saved with the project.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use crate::canvas::Canvas;
 use eframe::egui::{self, Color32, Pos2, Rect, Sense, Stroke};
 use gcarve_core::geom::{pt, Pt};
@@ -34,7 +36,7 @@ impl Canvas {
         let left = Rect::from_min_max(egui::pos2(full.left(), area.top()), egui::pos2(area.left(), full.bottom()));
         let screen = |c: &Canvas, vertical: bool, at: f64| { let s = c.view.as_ref().unwrap().to_screen(pt(at, at)); if vertical { s.x } else { s.y } };
         for (strip, id, along_x) in [(top, "guide-top", true), (left, "guide-left", false)] {
-            let resp = ui.interact(strip, ui.id().with(id), Sense::drag()).on_hover_text(if along_x { "Drag down for a horizontal guide" } else { "Drag right for a vertical guide" });
+            let resp = ui.interact(strip, ui.id().with(id), Sense::drag()).on_hover_text(if along_x { i18n::t("Drag down for a horizontal guide") } else { i18n::t("Drag right for a vertical guide") });
             let Some(pos) = resp.interact_pointer_pos() else { continue };
             if resp.drag_started() {
                 // on a marker: move that guide (the top ruler carries the vertical guides' markers); else a new one

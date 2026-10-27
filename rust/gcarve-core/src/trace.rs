@@ -17,11 +17,13 @@ pub struct TraceOptions {
     pub min_area_px: f64,
     /// width of the traced image on the board, inches (height follows the aspect)
     pub width_in: f64,
+    /// single strokes along the middle of the ink (signatures, handwriting, line art to engrave) instead of outlines
+    pub centreline: bool,
 }
 
 impl Default for TraceOptions {
     fn default() -> Self {
-        TraceOptions { threshold: None, invert: false, smooth_px: 1.0, min_area_px: 16.0, width_in: 6.0 }
+        TraceOptions { threshold: None, invert: false, smooth_px: 1.0, min_area_px: 16.0, width_in: 6.0, centreline: false }
     }
 }
 
@@ -112,6 +114,10 @@ pub fn trace(gray: &[u8], w: usize, h: usize, o: &TraceOptions) -> Vec<Contour> 
         return Vec::new();
     }
     let t = o.threshold.unwrap_or_else(|| otsu(gray));
+    if o.centreline {
+        let ink: Vec<bool> = gray[..w * h].iter().map(|&g| (g < t) != o.invert).collect();
+        return centrelines(ink, w, h, o);
+    }
     let ink = |x: i64, y: i64| -> bool {
         if x < 0 || y < 0 || x >= w as i64 || y >= h as i64 {
             return false; // a blank border closes every outline
@@ -235,5 +241,134 @@ mod tests {
         // invert: the white background with the rectangle as a hole, plus the white hole as its own shape
         let inv = trace(&g, w, h, &TraceOptions { invert: true, ..o });
         assert!(inv.len() >= 2);
+    }
+}
+
+/// Centreline trace: Zhang-Suen thinning (1984) down to a one-pixel skeleton, then each run of skeleton pixels
+/// between ends and junctions becomes an open line (rings with neither become closed ones). Spurs (a junction to an
+/// end, shorter than about the stroke's width) are thinning noise and dropped, as are lines shorter than
+/// `min_area_px`'s side. Own implementation.
+fn centrelines(mut ink: Vec<bool>, w: usize, h: usize, o: &TraceOptions) -> Vec<Contour> {
+    let at = |ink: &[bool], x: i64, y: i64| x >= 0 && y >= 0 && (x as usize) < w && (y as usize) < h && ink[y as usize * w + x as usize];
+    // P2..P9 clockwise from north
+    const NB: [(i64, i64); 8] = [(0, -1), (1, -1), (1, 0), (1, 1), (0, 1), (-1, 1), (-1, 0), (-1, -1)];
+    loop {
+        let mut changed = false;
+        for pass in 0..2 {
+            let mut del = Vec::new();
+            for y in 0..h as i64 {
+                for x in 0..w as i64 {
+                    if !at(&ink, x, y) {
+                        continue;
+                    }
+                    let p: Vec<bool> = NB.iter().map(|(dx, dy)| at(&ink, x + dx, y + dy)).collect();
+                    let b = p.iter().filter(|v| **v).count();
+                    let a = (0..8).filter(|&i| !p[i] && p[(i + 1) % 8]).count();
+                    let (c1, c2) = if pass == 0 { (p[0] && p[2] && p[4], p[2] && p[4] && p[6]) } else { (p[0] && p[2] && p[6], p[0] && p[4] && p[6]) };
+                    if (2..=6).contains(&b) && a == 1 && !c1 && !c2 {
+                        del.push(y as usize * w + x as usize);
+                    }
+                }
+            }
+            changed |= !del.is_empty();
+            for i in del {
+                ink[i] = false;
+            }
+        }
+        if !changed {
+            break;
+        }
+    }
+    let nbrs = |i: usize| -> Vec<usize> {
+        let (x, y) = ((i % w) as i64, (i / w) as i64);
+        // a diagonal step that a side neighbour already links (staircases left by the thinning) is not a branch
+        NB.iter()
+            .filter(|(dx, dy)| at(&ink, x + dx, y + dy) && (*dx == 0 || *dy == 0 || !(at(&ink, x + dx, y) || at(&ink, x, y + dy))))
+            .map(|(dx, dy)| ((y + dy) as usize) * w + (x + dx) as usize)
+            .collect()
+    };
+    let node = |i: usize| nbrs(i).len() != 2; // an end or a junction
+    let mut used: std::collections::HashSet<(usize, usize)> = std::collections::HashSet::new();
+    let mut chains: Vec<(Vec<usize>, bool)> = Vec::new(); // pixels, closed
+    let walk = |start: usize, first: usize, used: &mut std::collections::HashSet<(usize, usize)>| -> (Vec<usize>, bool) {
+        let mut path = vec![start, first];
+        used.insert((start.min(first), start.max(first)));
+        let (mut prev, mut cur) = (start, first);
+        while !node(cur) && cur != start {
+            let Some(&nx) = nbrs(cur).iter().find(|&&n| n != prev && !used.contains(&(cur.min(n), cur.max(n)))) else { break };
+            used.insert((cur.min(nx), cur.max(nx)));
+            path.push(nx);
+            (prev, cur) = (cur, nx);
+        }
+        let closed = cur == start && path.len() > 3;
+        if closed {
+            path.pop();
+        }
+        (path, closed)
+    };
+    let px: Vec<usize> = (0..w * h).filter(|&i| ink[i]).collect();
+    for &i in px.iter().filter(|&&i| node(i)) {
+        for n in nbrs(i) {
+            if !used.contains(&(i.min(n), i.max(n))) {
+                chains.push(walk(i, n, &mut used));
+            }
+        }
+    }
+    for &i in &px {
+        if let Some(&n) = nbrs(i).iter().find(|&&n| !used.contains(&(i.min(n), i.max(n)))) {
+            chains.push(walk(i, n, &mut used)); // rings: no end or junction on them
+        }
+    }
+    let scale = o.width_in / w as f64;
+    let min_len = o.min_area_px.sqrt().max(3.0);
+    let ends = |c: &[usize]| [c[0], c[c.len() - 1]].iter().filter(|&&i| nbrs(i).len() == 1).count();
+    chains
+        .into_iter()
+        .filter(|(c, closed)| {
+            let len = c.windows(2).map(|p| ((p[0] % w) as f64 - (p[1] % w) as f64).hypot((p[0] / w) as f64 - (p[1] / w) as f64)).sum::<f64>();
+            // a spur (one free end on a junction) or a speck shorter than the minimum goes
+            *closed || !(len < min_len || (ends(c) == 1 && len < 2.0 * min_len))
+        })
+        .map(|(c, closed)| {
+            let pts: Vec<Pt> = c.iter().map(|&i| pt((i % w) as f64 + 0.5, (i / w) as f64 + 0.5)).collect();
+            let simple = if closed { simplify_closed(&pts, o.smooth_px) } else { let mut out = Vec::new(); dp(&pts, o.smooth_px, &mut out); out };
+            Contour { nodes: simple.iter().map(|p| Node::at(pt(p.x * scale, (h as f64 - p.y) * scale))).collect(), closed }
+        })
+        .collect()
+}
+
+#[cfg(test)]
+mod centreline_tests {
+    use super::*;
+
+    #[test]
+    fn a_thick_stroke_traces_as_one_line_down_its_middle_and_a_ring_stays_closed() {
+        // a 9 px thick horizontal bar from x 20 to 80 at y 30, and a ring of radius 15 around (50, 70)
+        let (w, h) = (100, 100);
+        let mut g = vec![255u8; w * h];
+        for y in 26..35 {
+            for x in 20..80 {
+                g[y * w + x] = 0;
+            }
+        }
+        for y in 0..h {
+            for x in 0..w {
+                let r = ((x as f64 - 50.0).powi(2) + (y as f64 - 70.0).powi(2)).sqrt();
+                if (r - 15.0).abs() < 2.5 {
+                    g[y * w + x] = 0;
+                }
+            }
+        }
+        let o = TraceOptions { centreline: true, width_in: 10.0, ..Default::default() };
+        let lines = trace(&g, w, h, &o);
+        let open: Vec<_> = lines.iter().filter(|c| !c.closed).collect();
+        let rings: Vec<_> = lines.iter().filter(|c| c.closed).collect();
+        assert_eq!((open.len(), rings.len()), (1, 1), "{lines:?}");
+        // the bar's line: along its middle (y 30.5 px from the top = 6.95 in up), most of its length
+        let b = crate::geom::bounds(open[0]);
+        assert!((b.y0 - 6.95).abs() < 0.15 && (b.y1 - 6.95).abs() < 0.15, "{b:?}");
+        assert!(b.x1 - b.x0 > 4.5, "thinning takes about half the stroke off each end: {b:?}");
+        let r = crate::geom::bounds(rings[0]);
+        assert!(((r.x1 - r.x0) - 3.0).abs() < 0.3, "ring of diameter 30 px = 3 in: {r:?}");
     }
 }

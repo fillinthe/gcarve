@@ -1,6 +1,8 @@
 //! Documents in tabs (Qt Main.qml docStack + DocCanvas): the current document lives in the App's fields; the others
 //! wait here as `DocState`. The strip over the canvas shows only with two or more tabs, like the Qt app.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use crate::canvas::Canvas;
 use crate::icons::IconButton;
 use crate::theme;
@@ -23,7 +25,7 @@ pub struct DocState {
 
 impl DocState {
     pub fn new(id: u64, canvas: Canvas) -> Self {
-        DocState { id, canvas, name: "Untitled".into(), cloud_id: String::new(), path: None, gen: None, gen_rev: 0, gen_cov: Vec::new() }
+        DocState { id, canvas, name: i18n::t("Untitled").into(), cloud_id: String::new(), path: None, gen: None, gen_rev: 0, gen_cov: Vec::new() }
     }
     /// empty and untouched: an open reuses it instead of adding a tab
     pub fn blank(c: &Canvas) -> bool {
@@ -56,13 +58,13 @@ pub fn strip(ui: &mut egui::Ui, labels: &[(String, bool)], cur: usize) -> Option
             ui.painter().with_clip_rect(clip).galley(egui::pos2(r.left() + 10.0, r.center().y - galley.size().y / 2.0), galley, if on { theme::TEXT } else { theme::TEXT.gamma_multiply(0.7) });
             let x = egui::Rect::from_center_size(egui::pos2(r.right() - 13.0, r.center().y), egui::vec2(18.0, 18.0));
             let mut c = ui.new_child(egui::UiBuilder::new().max_rect(x).layout(egui::Layout::centered_and_justified(egui::Direction::LeftToRight)));
-            if IconButton::new("remove").size(11.0).padding(3.0).tip("Close (⌘W)").show(&mut c).clicked() || resp.middle_clicked() {
+            if IconButton::new("remove").size(11.0).padding(3.0).tip(i18n::t("Close (⌘W)")).show(&mut c).clicked() || resp.middle_clicked() {
                 act = Some(TabAct::Close(i));
             } else if resp.clicked() {
                 act = Some(TabAct::Switch(i));
             }
         }
-        if IconButton::new("add").size(14.0).padding(4.0).tip("New document tab (⌘N)").show(ui).clicked() {
+        if IconButton::new("add").size(14.0).padding(4.0).tip(i18n::t("New document tab (⌘N)")).show(ui).clicked() {
             act = Some(TabAct::New);
         }
     });

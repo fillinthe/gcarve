@@ -2,6 +2,8 @@
 //! material-less cutting data their defaults, per-material rows `FeedPreset`s. Desktop reads the file with rusqlite;
 //! the browser loads sql.js from cdnjs on first use (web below). Both hand the same rows to `tools_from`.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use gcarve_core::document::{FeedPreset, Tool, ToolType};
 use std::collections::HashMap;
 
@@ -65,7 +67,7 @@ pub fn tools_from(rows: &Rows) -> (Vec<Tool>, usize) {
         let mut name = if tree.is_empty() { fmt.clone() } else { tree };
         if name.contains('{') {
             // "{Diameter|F} Down {Tool Type} ({Diameter})" -> readable name
-            let kind = if angle > 0.0 { "V-Bit" } else { "End Mill" };
+            let kind = if angle > 0.0 { i18n::t("V-Bit") } else { i18n::t("End Mill") };
             let d = format!("{}", (dia * 1e4).round() / 1e4); // Qt QString::number(dia, 'g', 4)
             name = format!("{d} {} ({d} inch)", if fmt.to_lowercase().contains("down") { format!("Down {kind}") } else { kind.to_string() });
         }
@@ -185,7 +187,7 @@ export async function gc_vtdb_rows(bytes, q1, q2, q3) {
         wasm_bindgen_futures::spawn_local(async move {
             let r = match gc_vtdb_rows(&bytes, super::Q_MATERIALS, super::Q_GEOMETRY, super::Q_CUTTING).await {
                 Ok(v) => serde_json::from_str::<super::Rows>(&v.as_string().unwrap_or_default()).map(|rows| super::tools_from(&rows)).map_err(|e| e.to_string()),
-                Err(e) => Err(e.as_string().or_else(|| js_sys::Error::from(e).message().as_string()).unwrap_or_else(|| "not a Vectric tool database".into())),
+                Err(e) => Err(e.as_string().or_else(|| js_sys::Error::from(e).message().as_string()).unwrap_or_else(|| gcarve_ui::i18n::t("not a Vectric tool database").into())),
             };
             *RESULT.lock().unwrap() = Some(r.map_err(|e| format!("Cannot read the Vectric database ({e})")));
             ctx.request_repaint();

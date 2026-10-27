@@ -13,13 +13,13 @@ pub struct Recovery {
 const KEY: &str = "recover";
 
 pub fn set_dirty(dirty: bool) {
-    page_flag("Dirty", dirty);
+    page_flag(crate::i18n::t("Dirty"), dirty);
 }
 
 /// Web: window.<app>Open while a drawing is on screen, saved or not: the page then asks before a reload or leaving
 /// too (a reload would start the app over).
 pub fn set_open(open: bool) {
-    page_flag("Open", open);
+    page_flag(crate::i18n::t("Open"), open);
 }
 
 fn page_flag(name: &str, on: bool) {
@@ -46,7 +46,7 @@ pub fn load() -> Option<Recovery> {
     if json.is_empty() {
         return None;
     }
-    Some(Recovery { name: v.get("name").and_then(|n| n.as_str()).unwrap_or("Untitled").to_string(), time_ms: v.get("time").and_then(|t| t.as_f64()).unwrap_or(0.0), json })
+    Some(Recovery { name: v.get("name").and_then(|n| n.as_str()).unwrap_or(crate::i18n::t("Untitled")).to_string(), time_ms: v.get("time").and_then(|t| t.as_f64()).unwrap_or(0.0), json })
 }
 
 pub fn clear() {
@@ -85,7 +85,7 @@ mod tests {
     fn a_recovery_copy_comes_back_until_it_is_cleared() {
         let f = std::env::temp_dir().join(format!("gcarve-recover-{}.json", std::process::id()));
         std::env::set_var("GCARVE_RECOVER_FILE", &f);
-        super::save("Door sign", "{\"x\":1}");
+        super::save(crate::i18n::t("Door sign"), "{\"x\":1}");
         let r = super::load().expect("copy");
         assert_eq!((r.name.as_str(), r.json.as_str()), ("Door sign", "{\"x\":1}"));
         assert!(!super::when(r.time_ms).is_empty());

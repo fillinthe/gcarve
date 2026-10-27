@@ -1,6 +1,8 @@
 //! Parametrics on the canvas (Qt app: canvas_param.cpp): variables, bindings of the selection / nodes, constraints.
 //! Values typed here are project-unit expressions; anything naming a variable stays bound to it.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use crate::canvas::Canvas;
 use crate::units;
 use gcarve_core::document::{Bind, Constraint, Document, Variable};
@@ -24,7 +26,7 @@ fn axis_of(kind: &str) -> char {
 
 /// Human name of a bind key (Qt variableUsage fieldNames)
 fn field_name(k: &str) -> String {
-    let fixed = [("x", "X"), ("y", "Y"), ("w", "W"), ("h", "H"), ("depth", "depth"), ("stepdown", "pass depth"), ("tabWidth", "tab width"), ("tabHeight", "tab height"), ("allowance", "allowance"), ("peck", "peck"), ("flatDepth", "flat depth"), ("t", "thickness"), ("safeZ", "safe Z"), ("retractZ", "retract Z")];
+    let fixed = [("x", "X"), ("y", "Y"), ("w", "W"), ("h", "H"), ("depth", "depth"), ("stepdown", i18n::t("pass depth")), ("tabWidth", i18n::t("tab width")), ("tabHeight", i18n::t("tab height")), ("allowance", "allowance"), ("peck", "peck"), ("flatDepth", i18n::t("flat depth")), ("t", "thickness"), ("safeZ", i18n::t("safe Z")), ("retractZ", i18n::t("retract Z"))];
     if let Some((_, n)) = fixed.iter().find(|(key, _)| *key == k) {
         return n.to_string();
     }
@@ -256,7 +258,7 @@ impl Canvas {
     /// One positional constraint per axis per target: a new one replaces the old one on the same axis.
     pub fn add_constraint(&mut self, anchor: i32, target: i32, kind: &str, expr: &str) -> bool {
         if self.doc.find(anchor).is_none() || self.doc.find(target).is_none() || anchor == target {
-            self.status = "Select two shapes to constrain.".into();
+            self.status = i18n::t("Select two shapes to constrain.").into();
             return false;
         }
         if !Document::constraint_types().iter().any(|(k, _)| *k == kind) {

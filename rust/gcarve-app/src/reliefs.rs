@@ -1,6 +1,8 @@
 //! 3D models on the board (Qt canvas_view.cpp reliefImages_ + canvas_input.cpp Drag::ReliefMove): a shaded top-down
 //! preview in each model's rectangle (cached per model), a dashed outline, and Select-tool dragging to place it.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use crate::canvas::{Canvas, Drag};
 use eframe::egui::{self, Color32, ColorImage, Pos2, Rect, Stroke, TextureHandle, TextureOptions};
 use gcarve_core::document::Relief;
@@ -66,7 +68,7 @@ impl Canvas {
         self.relief_drag = (id, pt(r.x, r.y));
         self.doc.checkpoint();
         self.drag = Drag::ReliefMove;
-        self.status = "Drag to move the 3D model; set exact size and position in Toolpaths › 3D Models".into();
+        self.status = i18n::t("Drag to move the 3D model; set exact size and position in Toolpaths › 3D Models").into();
         true
     }
 

@@ -63,7 +63,8 @@ pub struct Tool {
     /// tool-changer pocket (ATC rack slot) for machines with one; 0 = none (manual change, files numbered in order)
     pub slot: i32,
     /// round-over bits: the round's radius; 0 = half the diameter (a true point). Smaller leaves a flat tip of
-    /// diameter − 2 × radius
+    /// diameter − 2 × radius. Ball nose: the corner radius; smaller than half the diameter = a bowl / tray bit (a flat
+    /// bottom with rounded corners)
     pub radius: f64,
     /// length of the flutes (inches); 0 = not known. A cut deeper than this rubs the shank (export safety check).
     pub cut_length: f64,
@@ -81,6 +82,15 @@ pub struct Tool {
 }
 
 impl Tool {
+    /// Ball nose / bowl bit: how far above its lowest point the bit's edge is, `dist` from its axis (flat across the
+    /// middle of a bowl bit, then the corner round).
+    pub fn ball_rise(&self, dist: f64) -> f64 {
+        let r = self.diameter / 2.0;
+        let rr = if self.radius > 0.0 { self.radius.min(r) } else { r };
+        let x = (dist.abs() - (r - rr)).clamp(0.0, rr);
+        rr - (rr * rr - x * x).max(0.0).sqrt()
+    }
+
     /// Height of the drawn form's cutting edge above the tip at `r` from the axis (straight between points);
     /// None = no form, or outside the bit
     pub fn form_rise(&self, r: f64) -> Option<f64> {
@@ -368,6 +378,12 @@ pub struct Op {
     /// drill with a V-bit: > 0 = countersink this wide at the surface; the depth follows from the bit's angle
     /// (JSON "countersink" when set, Rust only)
     pub countersink: f64,
+    /// drill with a V-bit: each hole plunged until the cone is as wide as that hole (halftone dots, countersinks of
+    /// several sizes), never past `depth` (JSON "fitHoles" when set, Rust only)
+    pub fit_holes: bool,
+    /// profile: onion skin: every pass stops this far above the full depth, then one last lap per part (after all the
+    /// parts of this toolpath) cuts the skin, so small parts stay held without tabs (JSON "skin" when set, Rust only)
+    pub skin: f64,
     /// profile: each cut starts at the point of the ring nearest the vector's first node (Node tool ▸ right-click a
     /// node ▸ Make Start Point) instead of the lowest point
     pub start_first: bool,
@@ -470,6 +486,8 @@ impl Default for Op {
             feed_boost: false,
             thread_pitch: 0.0,
             countersink: 0.0,
+            skin: 0.0,
+            fit_holes: false,
             start_first: false,
             cutter_comp: false,
             keyhole: false,

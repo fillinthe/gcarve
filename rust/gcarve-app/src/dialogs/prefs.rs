@@ -2,6 +2,8 @@
 //! (the stock look must not change); saved in the config store. Plus the account-synced part (Qt Theme.synced):
 //! new-document defaults, grid and snap settings, edited here, in the status-bar Snap popover and the View menu.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use super::Host;
 use eframe::egui::{self, Color32, RichText};
 use serde::{Deserialize, Serialize};
@@ -87,7 +89,7 @@ pub struct NewDoc {
 }
 impl Default for NewDoc {
     fn default() -> Self {
-        NewDoc { board_w: 60.0, board_h: 96.0, board_t: 0.75, material: "Plywood".into(), origin: 0, z_bottom: false, units: "in".into(), post: "wincnc-single".into(), snap_on: false }
+        NewDoc { board_w: 60.0, board_h: 96.0, board_t: 0.75, material: i18n::t("Plywood").into(), origin: 0, z_bottom: false, units: "in".into(), post: "wincnc-single".into(), snap_on: false }
     }
 }
 
@@ -218,9 +220,9 @@ pub fn snap_grid_ui(ui: &mut egui::Ui, s: &mut Synced, doc: &gcarve_core::docume
     let note = |ui: &mut egui::Ui, t: &str| ui.add(egui::Label::new(RichText::new(t).size(11.0).color(crate::theme::TEXT.gamma_multiply(0.6))).wrap());
     ui.spacing_mut().item_spacing.y = 6.0;
     ui.set_max_width(300.0);
-    head(ui, "Snap to");
+    head(ui, i18n::t("Snap to"));
     egui::Grid::new("snapkinds").num_columns(2).spacing([14.0, 2.0]).show(ui, |ui| {
-        let kinds = [("Points (nodes)", SNAP_POINTS), ("Midpoints", SNAP_MIDPOINTS), ("Centres", SNAP_CENTRES), ("Quadrants", SNAP_QUADRANTS), ("On edge", SNAP_EDGE), ("Grid", SNAP_GRID)];
+        let kinds = [(i18n::t("Points (nodes)"), SNAP_POINTS), (i18n::t("Midpoints"), SNAP_MIDPOINTS), (i18n::t("Centres"), SNAP_CENTRES), (i18n::t("Quadrants"), SNAP_QUADRANTS), (i18n::t("On edge"), SNAP_EDGE), (i18n::t("Grid"), SNAP_GRID)];
         for (i, (label, bit)) in kinds.into_iter().enumerate() {
             let mut on = s.snap.kinds & bit != 0;
             if checkbox(ui, &mut on, label).changed() {
@@ -232,18 +234,18 @@ pub fn snap_grid_ui(ui: &mut egui::Ui, s: &mut Synced, doc: &gcarve_core::docume
         }
     });
     ui.horizontal(|ui| {
-        ui.label("Snap distance");
+        ui.label(i18n::t("Snap distance"));
         ui.add(SpinBox::new(&mut s.snap.px, 2.0..=50.0).width(90.0));
         ui.label("px");
     });
-    note(ui, "Measure and Dimension always snap to objects; the boxes above still apply.");
+    note(ui, i18n::t("Measure and Dimension always snap to objects; the boxes above still apply."));
     ui.add_space(8.0);
-    head(ui, "Grid");
-    checkbox(ui, &mut s.grid.show, "Show grid");
+    head(ui, i18n::t("Grid"));
+    checkbox(ui, &mut s.grid.show, i18n::t("Show grid"));
     ui.horizontal(|ui| {
-        ui.label("Spacing");
+        ui.label(i18n::t("Spacing"));
         let mut auto = s.grid.spacing <= 0.0;
-        if checkbox(ui, &mut auto, "Auto").tip("Follows the zoom (1 / 10 / 100 … of the unit)").changed() {
+        if checkbox(ui, &mut auto, i18n::t("Auto")).tip(i18n::t("Follows the zoom (1 / 10 / 100 … of the unit)")).changed() {
             s.grid.spacing = if auto { 0.0 } else { doc.bare_unit_in }; // one project unit to start from
         }
         ui.add_enabled_ui(!auto, |ui| {
@@ -254,11 +256,11 @@ pub fn snap_grid_ui(ui: &mut egui::Ui, s: &mut Synced, doc: &gcarve_core::docume
         });
     });
     ui.horizontal(|ui| {
-        ui.label("Major line every");
+        ui.label(i18n::t("Major line every"));
         ui.add(SpinBox::new(&mut s.grid.major, 1..=100).width(90.0));
         ui.label("lines");
     });
-    checkbox(ui, &mut s.grid.rulers, "Rulers");
+    checkbox(ui, &mut s.grid.rulers, i18n::t("Rulers"));
 }
 
 /// Preferences › Mouse: a style to start from, then every button / modifier cell, the wheel and the speeds
@@ -268,7 +270,7 @@ fn mouse_ui(ui: &mut egui::Ui) {
     let mut m = crate::mouse::get();
     let custom = m.label() == "Custom";
     ui.horizontal(|ui| {
-        ui.label("Style");
+        ui.label(i18n::t("Style"));
         crate::widgets::combo_box("mouse.style").selected_text(m.label()).width(170.0).show_ui(ui, |ui| {
             for (nav, _, label, _) in Nav::ALL {
                 if ui.selectable_label(!custom && m.base == Some(nav), label).clicked() {
@@ -276,14 +278,14 @@ fn mouse_ui(ui: &mut egui::Ui) {
                 }
             }
             if custom {
-                let _ = ui.selectable_label(true, "Custom");
+                let _ = ui.selectable_label(true, i18n::t("Custom"));
             }
         });
-        ui.label(RichText::new("pick one, then change any cell below").size(11.0).color(crate::theme::TEXT.gamma_multiply(0.6)));
+        ui.label(RichText::new(i18n::t("pick one, then change any cell below")).size(11.0).color(crate::theme::TEXT.gamma_multiply(0.6)));
     });
     egui::Grid::new("mouse.grid").num_columns(4).spacing([10.0, 6.0]).show(ui, |ui| {
         ui.label("");
-        for h in ["Drag", "⇧ + drag", "⌘ + drag"] {
+        for h in ["Drag", i18n::t("⇧ + drag"), "⌘ + drag"] {
             ui.label(RichText::new(crate::theme::keys(h)).size(12.0).color(crate::theme::TEXT_DIM));
         }
         ui.end_row();
@@ -294,12 +296,12 @@ fn mouse_ui(ui: &mut egui::Ui) {
             }
             ui.end_row();
         }
-        ui.label("Trackpad swipe");
-        super::combo(ui, "mouse.swipe", &mut m.swipe, &[(Act::Orbit, "Orbit"), (Act::Pan, "Pan")], 90.0);
-        ui.label(RichText::new(crate::theme::keys("⇧ swaps them")).size(11.0).color(crate::theme::TEXT_DIM));
+        ui.label(i18n::t("Trackpad swipe"));
+        super::combo(ui, "mouse.swipe", &mut m.swipe, &[(Act::Orbit, i18n::t("Orbit")), (Act::Pan, i18n::t("Pan"))], 90.0);
+        ui.label(RichText::new(crate::theme::keys(i18n::t("⇧ swaps them"))).size(11.0).color(crate::theme::TEXT_DIM));
         ui.end_row();
     });
-    for (label, v) in [("Zoom speed", &mut m.zoom_speed), ("Orbit speed", &mut m.orbit_speed)] {
+    for (label, v) in [(i18n::t("Zoom speed"), &mut m.zoom_speed), (i18n::t("Orbit speed"), &mut m.orbit_speed)] {
         ui.horizontal(|ui| {
             ui.add_sized([96.0, 20.0], egui::Label::new(label));
             ui.spacing_mut().slider_width = 180.0;
@@ -307,13 +309,13 @@ fn mouse_ui(ui: &mut egui::Ui) {
         });
     }
     ui.horizontal(|ui| {
-        crate::widgets::checkbox(ui, &mut m.wheel_reverse, "Reverse wheel zoom");
-        if ui.add(crate::widgets::Button::new("Reset mouse").flat()).clicked() {
+        crate::widgets::checkbox(ui, &mut m.wheel_reverse, i18n::t("Reverse wheel zoom"));
+        if ui.add(crate::widgets::Button::new(i18n::t("Reset mouse")).flat()).clicked() {
             m = MouseMap::from_nav(m.base.unwrap_or(Nav::Fusion));
         }
     });
     ui.allocate_ui(egui::vec2(420.0, 30.0), |ui| {
-        ui.add(egui::Label::new(RichText::new("The 3D view uses every cell. In the drawing the left button stays with the tool you're using, and an orbit drag pans (there is nothing to orbit in 2D).").size(11.0).color(crate::theme::TEXT.gamma_multiply(0.6))).wrap())
+        ui.add(egui::Label::new(RichText::new(i18n::t("The 3D view uses every cell. In the drawing the left button stays with the tool you're using, and an orbit drag pans (there is nothing to orbit in 2D).")).size(11.0).color(crate::theme::TEXT.gamma_multiply(0.6))).wrap())
     });
     crate::mouse::set(m);
 }
@@ -359,7 +361,7 @@ impl Prefs {
     pub fn ui(&mut self, ctx: &egui::Context, host: &mut Host) -> bool {
         let mut open = true;
         let before = self.clone();
-        crate::widgets::Dialog::new("Preferences").open(&mut open).close_footer().show(ctx, |ui| {
+        crate::widgets::Dialog::new(i18n::t("Preferences")).open(&mut open).close_footer().show(ctx, |ui| {
             ui.spacing_mut().item_spacing = egui::vec2(10.0, 10.0);
             let section = |ui: &mut egui::Ui, t: &str| {
                 ui.add_space(4.0);
@@ -368,9 +370,9 @@ impl Prefs {
             let note = |ui: &mut egui::Ui, t: &str| {
                 ui.allocate_ui(egui::vec2(220.0, 30.0), |ui| ui.add(egui::Label::new(RichText::new(t).size(11.0).color(crate::theme::TEXT.gamma_multiply(0.6))).wrap()));
             };
-            section(ui, "Interface");
+            section(ui, i18n::t("Interface"));
             ui.horizontal(|ui| {
-                ui.label("Scale");
+                ui.label(i18n::t("Scale"));
                 let cur = SCALES.iter().position(|s| (*s - self.ui_scale).abs() < 0.01).unwrap_or(0);
                 let mut idx = cur;
                 crate::widgets::combo_box("scale").selected_text(format!("{}%", (SCALES[cur] * 100.0).round())).width(110.0).show_ui(ui, |ui| {
@@ -379,45 +381,60 @@ impl Prefs {
                     }
                 });
                 self.ui_scale = SCALES[idx];
-                note(ui, "Whole interface, including the canvas");
+                note(ui, i18n::t("Whole interface, including the canvas"));
             });
-            section(ui, "Accessibility");
-            for (flag, label, h) in [(&mut self.large_text, "Larger text", "15 px labels and taller controls"), (&mut self.high_contrast, "High contrast", "White text, black borders, brighter blue (WCAG AA+)"), (&mut self.large_handles, "Larger handles", "Nodes, grips and snap targets are 1.7× easier to hit")] {
+            ui.horizontal(|ui| {
+                ui.label(i18n::t("Language"));
+                let cur = i18n::current();
+                let name = |c: &str| i18n::LANGS.iter().find(|l| l.0 == c).map_or("English", |l| l.1);
+                crate::widgets::combo_box("language").selected_text(name(cur)).width(140.0).show_ui(ui, |ui| {
+                    for (code, label, _) in i18n::LANGS {
+                        if ui.selectable_label(code == cur, label).clicked() && code != cur {
+                            i18n::set(code);
+                            gcarve_ui::fonts::install(ctx);
+                            gcarve_ui::fonts::fetch_cjk(ctx);
+                        }
+                    }
+                });
+                note(ui, i18n::t("Menus, dialogs and tips. Messages and the guide are still in English for now."));
+            });
+            section(ui, i18n::t("Accessibility"));
+            for (flag, label, h) in [(&mut self.large_text, i18n::t("Larger text"), i18n::t("15 px labels and taller controls")), (&mut self.high_contrast, i18n::t("High contrast"), i18n::t("White text, black borders, brighter blue (WCAG AA+)")), (&mut self.large_handles, i18n::t("Larger handles"), i18n::t("Nodes, grips and snap targets are 1.7× easier to hit"))] {
                 ui.horizontal(|ui| {
                     crate::widgets::switch(ui, flag, label);
                     note(ui, h);
                 });
             }
             ui.add_space(6.0);
-            if crate::widgets::right(ui, 140.0, |ui| ui.add(crate::widgets::Button::new("Reset to defaults").flat().min_width(140.0))).clicked() {
+            if crate::widgets::right(ui, 140.0, |ui| ui.add(crate::widgets::Button::new(i18n::t("Reset to defaults")).flat().min_width(140.0))).clicked() {
                 *self = Prefs { start_card: self.start_card, synced: self.synced.clone(), ..Prefs::default() };
             }
-            section(ui, "Mouse");
+            section(ui, i18n::t("Mouse"));
             mouse_ui(ui);
-            section(ui, "Setup sheet");
-            note(ui, "Your shop's name and logo at the top of every printed setup sheet. Kept on this device.");
+            section(ui, i18n::t("Setup sheet"));
+            note(ui, i18n::t("Your shop's name and logo at the top of every printed setup sheet. Kept on this device."));
             ui.horizontal(|ui| {
-                ui.label("Shop name");
+                ui.label(i18n::t("Shop name"));
                 let mut shop = crate::store::load(crate::setupsheet::SHOP_KEY).unwrap_or_default();
-                if ui.add(egui::TextEdit::singleline(&mut shop).desired_width(200.0).hint_text("e.g. Pete's Woodshop")).changed() {
+                if ui.add(egui::TextEdit::singleline(&mut shop).desired_width(200.0).hint_text(i18n::t("e.g. Pete's Woodshop"))).changed() {
                     crate::store::save(crate::setupsheet::SHOP_KEY, &shop);
                 }
             });
             ui.horizontal(|ui| {
                 let has_logo = crate::store::load(crate::setupsheet::LOGO_KEY).is_some_and(|l| !l.is_empty());
-                if ui.add(crate::widgets::Button::new(if has_logo { "Change logo…" } else { "Choose a logo…" })).clicked() {
-                    host.files.pick_into(ctx, "Logo (PNG, JPEG, WebP)", crate::files::IMAGE_EXTS, "sheetlogo");
+                if ui.add(crate::widgets::Button::new(if has_logo { i18n::t("Change logo…") } else { i18n::t("Choose a logo…") })).clicked() {
+                    host.files.pick_into(ctx, i18n::t("Logo (PNG, JPEG, WebP)"), crate::files::IMAGE_EXTS, "sheetlogo");
                 }
-                if has_logo && ui.add(crate::widgets::Button::new("Remove logo").flat()).clicked() {
+                if has_logo && ui.add(crate::widgets::Button::new(i18n::t("Remove logo")).flat()).clicked() {
                     crate::store::remove(crate::setupsheet::LOGO_KEY);
                 }
             });
-            section(ui, "New documents");
-            note(ui, "Used by every new tab; opened files keep their own board. Synced to your GCarve account when signed in.");
+            section(ui, i18n::t("New documents"));
+            note(ui, i18n::t("Used by every new tab; opened files keep their own board. Synced to your GCarve account when signed in."));
             let doc = &host.canvas.doc;
             let nd = &mut self.synced.new_doc;
             egui::Grid::new("newdoc").num_columns(2).spacing([12.0, 8.0]).show(ui, |ui| {
-                ui.label("Board W × H × T");
+                ui.label(i18n::t("Board W × H × T"));
                 ui.horizontal(|ui| {
                     len_field(ui, "nd.w", &mut nd.board_w, doc, 90.0);
                     ui.label("×");
@@ -426,16 +443,16 @@ impl Prefs {
                     len_field(ui, "nd.t", &mut nd.board_t, doc, 90.0);
                 });
                 ui.end_row();
-                ui.label("Material");
+                ui.label(i18n::t("Material"));
                 super::material_combo(ui, "nd.material", &mut nd.material, 220.0);
                 ui.end_row();
-                ui.label("Project units");
+                ui.label(i18n::t("Project units"));
                 let mut u = crate::units::NAMES.iter().position(|n| *n == nd.units).unwrap_or(0);
-                if super::combo(ui, "nd.units", &mut u, &[(0, "inches"), (1, "feet"), (2, "mm")], 120.0) {
+                if super::combo(ui, "nd.units", &mut u, &[(0, i18n::t("inches")), (1, i18n::t("feet")), (2, "mm")], 120.0) {
                     nd.units = crate::units::NAMES[u].into();
                 }
                 ui.end_row();
-                ui.label("XY zero");
+                ui.label(i18n::t("XY zero"));
                 let aspect = if nd.board_w > 0.0 && nd.board_h > 0.0 { nd.board_w / nd.board_h } else { 1.5 };
                 let row_h = (96.0 / aspect.clamp(0.5, 3.0)).round() as f32 + 8.0; // the picker's height (as in the Job dialog)
                 ui.allocate_ui_with_layout(egui::vec2(0.0, row_h), egui::Layout::left_to_right(egui::Align::Center), |ui| {
@@ -443,10 +460,10 @@ impl Prefs {
                     ui.label(super::job::ORIGIN_NAMES[nd.origin.clamp(0, 4) as usize]);
                 });
                 ui.end_row();
-                ui.label("Z zero");
-                super::combo(ui, "nd.z", &mut nd.z_bottom, &[(false, "Material surface (touch top)"), (true, "Machine bed (touch bottom)")], 240.0);
+                ui.label(i18n::t("Z zero"));
+                super::combo(ui, "nd.z", &mut nd.z_bottom, &[(false, i18n::t("Material surface (touch top)")), (true, i18n::t("Machine bed (touch bottom)"))], 240.0);
                 ui.end_row();
-                ui.label("Post-processor");
+                ui.label(i18n::t("Post-processor"));
                 let posts = host.posts.all();
                 let cur = posts.iter().find(|(p, _)| p.id == nd.post).map(|(p, _)| p.name.clone()).unwrap_or_else(|| nd.post.clone());
                 crate::widgets::combo_box("nd.post").width(240.0).selected_text(cur).show_ui(ui, |ui| {
@@ -457,13 +474,13 @@ impl Prefs {
                     }
                 });
                 ui.end_row();
-                ui.label("Snap");
-                crate::widgets::switch(ui, &mut nd.snap_on, "On in new documents");
+                ui.label(i18n::t("Snap"));
+                crate::widgets::switch(ui, &mut nd.snap_on, i18n::t("On in new documents"));
                 ui.end_row();
             });
-            section(ui, "Snap & grid");
+            section(ui, i18n::t("Snap & grid"));
             snap_grid_ui(ui, &mut self.synced, doc);
-            if crate::widgets::right(ui, 220.0, |ui| ui.add(crate::widgets::Button::new("Reset new-document defaults").flat().min_width(220.0))).clicked() {
+            if crate::widgets::right(ui, 220.0, |ui| ui.add(crate::widgets::Button::new(i18n::t("Reset new-document defaults")).flat().min_width(220.0))).clicked() {
                 self.synced = Synced::default();
             }
         });

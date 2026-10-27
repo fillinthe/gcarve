@@ -155,8 +155,8 @@ pub fn apply(ctx: &egui::Context) {
         s.text_styles.insert(Small, font(11.0));
         s.text_styles.insert(Heading, font(14.0));
         s.text_styles.insert(Monospace, FontId::monospace(12.0));
-        s.text_styles.insert(Name("Tip".into()), font(12.0));
-        s.text_styles.insert(Name("Caption".into()), font(10.0));
+        s.text_styles.insert(Name(crate::i18n::t("Tip").into()), font(12.0));
+        s.text_styles.insert(Name(crate::i18n::t("Caption").into()), font(10.0));
     });
 }
 
@@ -225,7 +225,7 @@ pub fn keys_pc(s: &str) -> std::borrow::Cow<'_, str> {
             out.push_str(&mods); // a lone glyph stays
             continue;
         }
-        for (g, name) in [('⌘', "Ctrl+"), ('⌃', "Meta+"), ('⌥', "Alt+"), ('⇧', "Shift+")] {
+        for (g, name) in [('⌘', crate::i18n::t("Ctrl+")), ('⌃', crate::i18n::t("Meta+")), ('⌥', crate::i18n::t("Alt+")), ('⇧', crate::i18n::t("Shift+"))] {
             if mods.contains(g) {
                 out.push_str(name);
             }

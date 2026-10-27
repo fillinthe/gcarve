@@ -3,6 +3,8 @@
 //! Safety: Start opens the start check (errors block, warnings need a tick), STOP = feed hold + reset, jogging only
 //! when idle, M5 is appended when the program leaves the spindle on.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use eframe::egui::{self, Color32, RichText};
 use crate::widgets::TipExt;
 use gcarve_core::gcode::Vec3;
@@ -64,11 +66,11 @@ fn small_wrap(ui: &mut egui::Ui, t: &str) {
 fn state_color(s: &str) -> Color32 {
     if s == "Idle" {
         OK_GREEN
-    } else if s.starts_with("Run") || s == "Jog" || s == "Home" {
+    } else if s.starts_with(i18n::t("Run")) || s == "Jog" || s == "Home" {
         theme::ACCENT
-    } else if s.starts_with("Hold") {
+    } else if s.starts_with(i18n::t("Hold")) {
         theme::WARNING
-    } else if s.starts_with("Alarm") {
+    } else if s.starts_with(i18n::t("Alarm")) {
         theme::DANGER
     } else {
         theme::TEXT_DIM
@@ -181,7 +183,7 @@ impl ControlApp {
                 self.link.connect_tcp(&self.cfg.host.clone(), self.cfg.port);
             }
             #[cfg(target_arch = "wasm32")]
-            1 => self.link.last_error = "Network connections need the desktop app (browsers can't open TCP sockets)".into(),
+            1 => self.link.last_error = i18n::t("Network connections need the desktop app (browsers can't open TCP sockets)").into(),
             _ => self.link.connect_serial(&self.cfg.serial_port.clone(), self.cfg.baud),
         }
         self.cfg.save();
@@ -239,7 +241,7 @@ impl ControlApp {
         let connected = self.link.connected();
         ui.horizontal_centered(|ui| {
             ui.spacing_mut().item_spacing.x = 8.0;
-            ui.label(RichText::new("GCarve Control").family(crate::widgets::bold_family()).size(15.0));
+            ui.label(RichText::new(i18n::t("GCarve Control")).family(crate::widgets::bold_family()).size(15.0));
             theme::vsep(ui, 24.0);
             let n = if Link::has_serial() { 3 } else { 2 };
             ui.add_enabled_ui(!connected, |ui| {
@@ -251,7 +253,7 @@ impl ControlApp {
                     }
                 });
                 if self.cfg.transport == 1 {
-                    ui.add(crate::widgets::field(&mut self.cfg.host).hint_text("controller IP").desired_width(140.0));
+                    ui.add(crate::widgets::field(&mut self.cfg.host).hint_text(i18n::t("controller IP")).desired_width(140.0));
                     ui.add(crate::widgets::field(&mut self.port_text).desired_width(60.0));
                 }
                 if self.cfg.transport == 2 && !cfg!(target_arch = "wasm32") {
@@ -270,12 +272,12 @@ impl ControlApp {
                 }
             });
             if self.cfg.transport == 2 && cfg!(target_arch = "wasm32") && !connected {
-                dim(ui, "Connect, then pick the machine in the browser's list");
+                dim(ui, i18n::t("Connect, then pick the machine in the browser's list"));
             }
-            if button(ui, !self.link.streaming, if connected { "Disconnect" } else { "Connect" }).clicked() {
+            if button(ui, !self.link.streaming, if connected { i18n::t("Disconnect") } else { i18n::t("Connect") }).clicked() {
                 if connected { self.link.disconnect() } else { self.connect() }
             }
-            if IconButton::new("board").tip("Machine settings (travel, touch plate, warm-up)").show(ui).clicked() {
+            if IconButton::new("board").tip(i18n::t("Machine settings (travel, touch plate, warm-up)")).show(ui).clicked() {
                 let c = &self.cfg;
                 self.settings = Some([c.travel[0], c.travel[1], c.travel[2], c.plate, c.probe_max, c.probe_feed, c.probe_lift, f64::from(c.warm_rpm), f64::from(c.warm_sec)].map(|v| format!("{}", (v * 1000.0).round() / 1000.0)));
             }
@@ -289,7 +291,7 @@ impl ControlApp {
             dim(ui, self.link.transport());
             ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                 // always reachable; the machine's own E-stop is still the real one
-                if filled(ui, connected, "STOP", STOP_RED, 110.0).tip("Feed hold + reset: motion and spindle stop. Use the machine's E-stop for emergencies.").clicked() {
+                if filled(ui, connected, "STOP", STOP_RED, 110.0).tip(i18n::t("Feed hold + reset: motion and spindle stop. Use the machine's E-stop for emergencies.")).clicked() {
                     self.link.stop();
                 }
                 if !self.link.last_error.is_empty() {
@@ -303,7 +305,7 @@ impl ControlApp {
         let l = &mut self.link;
         let (idle, free) = (l.idle(), !l.streaming || l.tool_wait().is_some()); // a tool change frees jog / zero / probe
         ui.spacing_mut().item_spacing.y = 10.0;
-        section(ui, "POSITION (work, in)");
+        section(ui, i18n::t("POSITION (work, in)"));
         let (w, m) = (l.st.wpos(), l.st.mpos);
         for (i, a) in ["X", "Y", "Z"].into_iter().enumerate() {
             ui.horizontal(|ui| {
@@ -314,27 +316,27 @@ impl ControlApp {
                     ui.label(RichText::new(fmt([w.x, w.y, w.z][i])).monospace().size(24.0).color(theme::TEXT));
                     ui.add(egui::Label::new(RichText::new(format!("machine {}", fmt([m.x, m.y, m.z][i]))).monospace().size(11.0).color(theme::TEXT_DIM)).extend());
                 });
-                if button(ui, idle && free, "Zero").clicked() {
+                if button(ui, idle && free, i18n::t("Zero")).clicked() {
                     l.zero_axes(a);
                 }
             });
         }
         ui.horizontal(|ui| {
-            if button(ui, idle && free, "Zero XY").clicked() {
+            if button(ui, idle && free, i18n::t("Zero XY")).clicked() {
                 l.zero_axes("XY");
             }
-            if button(ui, idle && free, "Zero XYZ").clicked() {
+            if button(ui, idle && free, i18n::t("Zero XYZ")).clicked() {
                 l.zero_axes("XYZ");
             }
         });
         ui.horizontal(|ui| {
-            if button(ui, l.connected() && free && (idle || l.alarm()), "Home").clicked() {
+            if button(ui, l.connected() && free && (idle || l.alarm()), i18n::t("Home")).clicked() {
                 l.home();
             }
-            if button(ui, l.alarm() && free, "Unlock").tip("Clear the alarm without homing (position may be wrong)").clicked() {
+            if button(ui, l.alarm() && free, i18n::t("Unlock")).tip(i18n::t("Clear the alarm without homing (position may be wrong)")).clicked() {
                 l.unlock();
             }
-            if button(ui, idle && free, "Go to X0 Y0").tip("Lifts to the top first, then moves to the work zero").clicked() {
+            if button(ui, idle && free, i18n::t("Go to X0 Y0")).tip(i18n::t("Lifts to the top first, then moves to the work zero")).clicked() {
                 l.go_to_work_zero();
             }
         });
@@ -352,7 +354,7 @@ impl ControlApp {
             }
         });
         ui.horizontal(|ui| {
-            ui.label("Jog feed");
+            ui.label(i18n::t("Jog feed"));
             if theme::unit_field(ui, &mut self.jog_feed, "in/min", 110.0).lost_focus() {
                 if let Some(v) = num(&self.jog_feed).filter(|v| *v > 0.0) {
                     self.cfg.jog_feed = v;
@@ -374,7 +376,7 @@ impl ControlApp {
                 if b(ui, "Z+") { l.jog(0.0, 0.0, s, f) }
                 ui.end_row();
                 if b(ui, "X−") { l.jog(-s, 0.0, 0.0, f) }
-                if ui.add(egui::Button::new("■").min_size(cell)).tip("Cancel jog").clicked() { l.jog_stop() }
+                if ui.add(egui::Button::new("■").min_size(cell)).tip(i18n::t("Cancel jog")).clicked() { l.jog_stop() }
                 if b(ui, "X+") { l.jog(s, 0.0, 0.0, f) }
                 gap(ui);
                 ui.end_row();
@@ -385,26 +387,26 @@ impl ControlApp {
                 ui.end_row();
             });
         });
-        small_wrap(ui, "Keys: arrows = X/Y, Page Up/Down = Z · Space = hold/resume · Esc = stop");
+        small_wrap(ui, i18n::t("Keys: arrows = X/Y, Page Up/Down = Z · Space = hold/resume · Esc = stop"));
         theme::hline(ui);
         section(ui, "TOUCH PLATE");
-        small_wrap(ui, "Put the plate under the bit, clip the lead on the bit, then probe. Z zero = the plate's underside (board top or spoilboard).");
+        small_wrap(ui, i18n::t("Put the plate under the bit, clip the lead on the bit, then probe. Z zero = the plate's underside (board top or spoilboard)."));
         ui.horizontal(|ui| {
-            if button(ui, idle && free && !l.probing, if l.probing { "Probing…" } else { "Probe Z" }).clicked() {
+            if button(ui, idle && free && !l.probing, if l.probing { i18n::t("Probing…") } else { i18n::t("Probe Z") }).clicked() {
                 l.probe_z(self.cfg.plate, self.cfg.probe_max, self.cfg.probe_feed, self.cfg.probe_lift);
             }
             dim(ui, format!("plate {:.3} in", self.cfg.plate));
         });
         theme::hline(ui);
         ui.horizontal(|ui| {
-            if button(ui, idle && free, "Park").tip("Lift to the top, then to the back-left corner").clicked() {
+            if button(ui, idle && free, i18n::t("Park")).tip(i18n::t("Lift to the top, then to the back-left corner")).clicked() {
                 l.park();
             }
             if button(ui, idle && free, "Warm up").tip(format!("{} RPM for {} s, then off", self.cfg.warm_rpm, self.cfg.warm_sec)).clicked() {
                 l.spindle_warmup(self.cfg.warm_rpm, self.cfg.warm_sec);
             }
             let on = l.st.rpm > 0.0;
-            if button(ui, idle && free, if on { "Spindle off" } else { "Spindle on" }).clicked() {
+            if button(ui, idle && free, if on { i18n::t("Spindle off") } else { i18n::t("Spindle on") }).clicked() {
                 l.spindle(!on, self.cfg.warm_rpm);
             }
         });
@@ -415,17 +417,17 @@ impl ControlApp {
         section(ui, "PROGRAM");
         let free = !self.link.streaming;
         ui.horizontal(|ui| {
-            if button(ui, free, "Open…").clicked() {
-                self.files.pick_into(ctx, "G-code", &["nc", "gcode", "ngc", "tap", "txt"], "gcode");
+            if button(ui, free, i18n::t("Open…")).clicked() {
+                self.files.pick_into(ctx, i18n::t("G-code"), &["nc", "gcode", "ngc", "tap", "txt"], "gcode");
             }
-            let name = if self.link.program_name.is_empty() { "No program".to_string() } else { self.link.program_name.clone() };
+            let name = if self.link.program_name.is_empty() { i18n::t("No program").to_string() } else { self.link.program_name.clone() };
             ui.add(egui::Label::new(name).truncate());
         });
-        if button(ui, free, "Surface the spoilboard…").on_hover_text("Makes a flattening program for the area you give: zero X/Y at its corner and Z on the spoilboard top first").clicked() {
+        if button(ui, free, i18n::t("Surface the spoilboard…")).on_hover_text(i18n::t("Makes a flattening program for the area you give: zero X/Y at its corner and Z on the spoilboard top first")).clicked() {
             self.surfacing = Some(["24", "24", "1.0", "40", "0.02", "1", "100", "18000"].map(String::from));
         }
         if !self.queue.is_empty() {
-            ui.label(RichText::new("From GCarve").size(11.0).color(theme::TEXT_DIM));
+            ui.label(RichText::new(i18n::t("From GCarve")).size(11.0).color(theme::TEXT_DIM));
             let mut pick = None;
             egui::ScrollArea::vertical().id_salt("queue").max_height(120.0).show(ui, |ui| {
                 ui.spacing_mut().item_spacing.y = 0.0;
@@ -450,8 +452,8 @@ impl ControlApp {
                     ui.label(v);
                     ui.end_row();
                 }
-                dim(ui, "Spindle off at end");
-                if p.spindle_off_at_end { ui.label("yes") } else { ui.label(RichText::new("no (M5 is added)").color(theme::WARNING)) };
+                dim(ui, i18n::t("Spindle off at end"));
+                if p.spindle_off_at_end { ui.label("yes") } else { ui.label(RichText::new(i18n::t("no (M5 is added)")).color(theme::WARNING)) };
                 ui.end_row();
             });
             ui.spacing_mut().interact_size.y = row_h;
@@ -470,30 +472,30 @@ impl ControlApp {
         if let Some(bit) = self.link.tool_wait() {
             egui::Frame::new().fill(theme::WARNING.gamma_multiply(0.18)).stroke(egui::Stroke::new(1.0, theme::WARNING)).corner_radius(6).inner_margin(10).show(ui, |ui| {
                 ui.set_width(ui.available_width());
-                ui.label(RichText::new("Tool change").family(crate::widgets::bold_family()).color(theme::WARNING));
+                ui.label(RichText::new(i18n::t("Tool change")).family(crate::widgets::bold_family()).color(theme::WARNING));
                 ui.add(egui::Label::new(RichText::new(format!("Put in {bit}.")).size(14.0)).wrap());
-                small_wrap(ui, "The spindle is off. Change the bit, touch off Z again (Probe Z or zero Z by hand: the new bit is a different length), then Continue.");
+                small_wrap(ui, i18n::t("The spindle is off. Change the bit, touch off Z again (Probe Z or zero Z by hand: the new bit is a different length), then Continue."));
                 ui.horizontal(|ui| {
-                    if filled(ui, self.link.idle(), "Continue", OK_GREEN, 110.0).clicked() {
+                    if filled(ui, self.link.idle(), i18n::t("Continue"), OK_GREEN, 110.0).clicked() {
                         self.link.continue_after_tool();
                     }
-                    if ui.button("Stop the job").clicked() {
+                    if ui.button(i18n::t("Stop the job")).clicked() {
                         self.link.stop();
                     }
                 });
             });
         }
         ui.horizontal(|ui| {
-            if filled(ui, self.link.connected() && free && !self.link.program_name.is_empty(), "Start", OK_GREEN, 90.0).clicked() {
+            if filled(ui, self.link.connected() && free && !self.link.program_name.is_empty(), i18n::t("Start"), OK_GREEN, 90.0).clicked() {
                 self.open_start();
             }
             let hold = self.link.hold();
-            if ui.add_enabled(self.link.connected() && (self.link.streaming || hold), egui::Button::new(if hold { "Resume" } else { "Hold" }).min_size(egui::vec2(90.0, 0.0))).clicked() {
+            if ui.add_enabled(self.link.connected() && (self.link.streaming || hold), egui::Button::new(if hold { i18n::t("Resume") } else { i18n::t("Hold") }).min_size(egui::vec2(90.0, 0.0))).clicked() {
                 if hold { self.link.resume() } else { self.link.pause() }
             }
         });
         let c = self.link.connected();
-        if ui.add_enabled(c && free && !self.link.program.motions.is_empty(), egui::Button::new("Outline the job")).on_hover_text("Traces the cut's outer box above the board, bit up and spindle off: check it fits before you start").clicked() {
+        if ui.add_enabled(c && free && !self.link.program.motions.is_empty(), egui::Button::new(i18n::t("Outline the job"))).on_hover_text(i18n::t("Traces the cut's outer box above the board, bit up and spindle off: check it fits before you start")).clicked() {
             self.link.outline();
         }
         section(ui, &format!("FEED {}% · RAPID {}% · SPINDLE {}%", self.link.st.feed_ov, self.link.st.rapid_ov, self.link.st.spindle_ov));
@@ -501,7 +503,7 @@ impl ControlApp {
             ui.add_sized([56.0, 20.0], egui::Label::new(RichText::new(name).size(11.0).color(theme::TEXT_DIM)));
         };
         ui.horizontal(|ui| {
-            row(ui, "Feed");
+            row(ui, i18n::t("Feed"));
             for (t, s) in [("−10%", -1), ("100%", 0), ("+10%", 1)] {
                 if button(ui, c, t).clicked() {
                     self.link.override_feed(s);
@@ -509,7 +511,7 @@ impl ControlApp {
             }
         });
         ui.horizontal(|ui| {
-            row(ui, "Rapid");
+            row(ui, i18n::t("Rapid"));
             for p in [25, 50, 100] {
                 if button(ui, c, &format!("{p}%")).clicked() {
                     self.link.override_rapid(p);
@@ -517,7 +519,7 @@ impl ControlApp {
             }
         });
         ui.horizontal(|ui| {
-            row(ui, "Spindle");
+            row(ui, i18n::t("Spindle"));
             for (t, s) in [("−10%", -1), ("100%", 0), ("+10%", 1)] {
                 if button(ui, c, t).clicked() {
                     self.link.override_spindle(s);
@@ -537,7 +539,7 @@ impl ControlApp {
             }
         });
         let ok = self.link.connected() && !self.link.streaming;
-        let r = ui.add_enabled(ok, crate::widgets::field(&mut self.mdi).hint_text("Send a command (MDI), e.g. G0 X0 Y0 — Enter to send").desired_width(f32::INFINITY));
+        let r = ui.add_enabled(ok, crate::widgets::field(&mut self.mdi).hint_text(i18n::t("Send a command (MDI), e.g. G0 X0 Y0 — Enter to send")).desired_width(f32::INFINITY));
         if r.lost_focus() && ui.input(|i| i.key_pressed(egui::Key::Enter)) {
             let cmd = std::mem::take(&mut self.mdi);
             self.link.send_command(&cmd);
@@ -548,10 +550,10 @@ impl ControlApp {
     fn surfacing_ui(&mut self, ctx: &egui::Context) {
         let Some(buf) = &mut self.surfacing else { return };
         let (mut ok, mut close) = (false, false);
-        crate::widgets::Dialog::new("Surface the spoilboard").show(ctx, |ui| {
-            small_wrap(ui, "Flattens the area from the work zero: set X/Y zero at its front-left corner and Z zero on the spoilboard top. The bit's centre goes to every edge, so the whole area is cut.");
+        crate::widgets::Dialog::new(i18n::t("Surface the spoilboard")).show(ctx, |ui| {
+            small_wrap(ui, i18n::t("Flattens the area from the work zero: set X/Y zero at its front-left corner and Z zero on the spoilboard top. The bit's centre goes to every edge, so the whole area is cut."));
             egui::Grid::new("surfacing").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                for (i, (label, unit)) in [("Width (X)", "in"), ("Length (Y)", "in"), ("Bit diameter", "in"), ("Stepover", "%"), ("Depth per pass", "in"), ("Passes", ""), ("Feed", "in/min"), ("Spindle", "rpm")].into_iter().enumerate() {
+                for (i, (label, unit)) in [(i18n::t("Width (X)"), "in"), (i18n::t("Length (Y)"), "in"), (i18n::t("Bit diameter"), "in"), (i18n::t("Stepover"), "%"), (i18n::t("Depth per pass"), "in"), (i18n::t("Passes"), ""), (i18n::t("Feed"), "in/min"), (i18n::t("Spindle"), "rpm")].into_iter().enumerate() {
                     ui.label(label);
                     theme::unit_field(ui, &mut buf[i], unit, 120.0);
                     ui.end_row();
@@ -562,10 +564,10 @@ impl ControlApp {
         if ok {
             let v: Vec<f64> = buf.iter().map(|s| num(s).unwrap_or(0.0)).collect();
             if v[0] <= 0.0 || v[1] <= 0.0 || v[2] <= 0.0 || v[4] <= 0.0 || v[6] <= 0.0 {
-                self.link.last_error = "Surfacing: width, length, bit, depth and feed must be above zero".into();
+                self.link.last_error = i18n::t("Surfacing: width, length, bit, depth and feed must be above zero").into();
             } else {
                 let g = gcarve_core::grbl::surfacing_program(v[0], v[1], v[2], v[3] / 100.0, v[4], v[5].max(1.0) as u32, v[6], v[7]);
-                self.link.load_program("Spoilboard surfacing.nc", &g);
+                self.link.load_program(i18n::t("Spoilboard surfacing.nc"), &g);
             }
         }
         if ok || close {
@@ -577,18 +579,18 @@ impl ControlApp {
         let Some(buf) = &mut self.settings else { return };
         let mut close = false;
         let mut ok = false;
-        crate::widgets::Dialog::new("Machine settings").show(ctx, |ui| {
+        crate::widgets::Dialog::new(i18n::t("Machine settings")).show(ctx, |ui| {
             egui::Grid::new("machine-settings").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
                 let rows: [(Option<&str>, &str, &str); 9] = [
-                    (Some("Travel X / Y / Z (in)"), "X", "in"),
+                    (Some(i18n::t("Travel X / Y / Z (in)")), "X", "in"),
                     (None, "Y", "in"),
-                    (None, "Z (down from the top)", "in"),
-                    (Some("Touch plate"), "Plate thickness", "in"),
-                    (None, "Max probe travel", "in"),
-                    (None, "Probe feed", "in/min"),
-                    (None, "Lift after touch", "in"),
-                    (Some("Spindle warm-up"), "RPM", "rpm"),
-                    (None, "Seconds", "s"),
+                    (None, i18n::t("Z (down from the top)"), "in"),
+                    (Some(i18n::t("Touch plate")), i18n::t("Plate thickness"), "in"),
+                    (None, i18n::t("Max probe travel"), "in"),
+                    (None, i18n::t("Probe feed"), "in/min"),
+                    (None, i18n::t("Lift after touch"), "in"),
+                    (Some(i18n::t("Spindle warm-up")), "RPM", "rpm"),
+                    (None, i18n::t("Seconds"), "s"),
                 ];
                 for (i, (head, label, unit)) in rows.into_iter().enumerate() {
                     if let Some(h) = head {
@@ -636,41 +638,41 @@ impl ControlApp {
         let lines = self.link.program.lines.len();
         let mut go = None;
         let mut cancel = false;
-        crate::widgets::Dialog::new("Start program").width(480.0).show(ctx, |ui| {
+        crate::widgets::Dialog::new(i18n::t("Start program")).width(480.0).show(ctx, |ui| {
             ui.spacing_mut().item_spacing.y = 8.0;
             let wrap = |ui: &mut egui::Ui, t: RichText| {
                 ui.add(egui::Label::new(t).wrap());
             };
             if !d.errors.is_empty() {
-                ui.label(RichText::new("Can't start:").color(theme::DANGER).font(crate::widgets::bold(theme::FONT_SIZE)));
+                ui.label(RichText::new(i18n::t("Can't start:")).color(theme::DANGER).font(crate::widgets::bold(theme::FONT_SIZE)));
                 for e in &d.errors {
                     wrap(ui, RichText::new(format!("• {e}")).color(theme::DANGER));
                 }
             } else {
                 if !d.warnings.is_empty() {
-                    ui.label(RichText::new("Check before starting:").color(theme::WARNING).font(crate::widgets::bold(theme::FONT_SIZE)));
+                    ui.label(RichText::new(i18n::t("Check before starting:")).color(theme::WARNING).font(crate::widgets::bold(theme::FONT_SIZE)));
                     for w in &d.warnings {
                         wrap(ui, RichText::new(format!("• {w}")));
                     }
                 }
-                wrap(ui, RichText::new("The spindle will start and the machine will move. Bit in, Z zero set, material held down, hands and tools clear of the machine."));
+                wrap(ui, RichText::new(i18n::t("The spindle will start and the machine will move. Bit in, Z zero set, material held down, hands and tools clear of the machine.")));
                 ui.horizontal(|ui| {
-                    theme::checkbox(ui, &mut d.from_on, "Start from line");
+                    theme::checkbox(ui, &mut d.from_on, i18n::t("Start from line"));
                     ui.add_enabled(d.from_on, crate::widgets::field(&mut d.from).desired_width(90.0));
                     dim(ui, format!("of {lines}"));
                 });
                 if d.from_on {
-                    wrap(ui, RichText::new("Resume: the machine lifts to the top, starts the spindle, moves over the restart point and feeds down slowly. Check the zero is unchanged and the bit is the same one.").color(theme::WARNING));
+                    wrap(ui, RichText::new(i18n::t("Resume: the machine lifts to the top, starts the spindle, moves over the restart point and feeds down slowly. Check the zero is unchanged and the bit is the same one.")).color(theme::WARNING));
                 }
-                theme::checkbox(ui, &mut d.ack, "I checked all of this");
+                theme::checkbox(ui, &mut d.ack, i18n::t("I checked all of this"));
             }
             ui.add_space(20.0);
             crate::widgets::right(ui, 84.0 * 2.0 + 8.0, |ui| {
                 ui.spacing_mut().item_spacing.x = 8.0;
-                if ui.add_enabled(d.errors.is_empty() && d.ack, crate::widgets::Button::new("Start").primary(true).min_width(84.0)).clicked() {
+                if ui.add_enabled(d.errors.is_empty() && d.ack, crate::widgets::Button::new(i18n::t("Start")).primary(true).min_width(84.0)).clicked() {
                     go = Some(if d.from_on { num(&d.from).map_or(1, |v| v.round().max(1.0) as usize) } else { 1 });
                 }
-                cancel = ui.add(crate::widgets::Button::new("Cancel").min_width(84.0)).clicked() || ui.input(|i| i.key_pressed(egui::Key::Escape));
+                cancel = ui.add(crate::widgets::Button::new(i18n::t("Cancel")).min_width(84.0)).clicked() || ui.input(|i| i.key_pressed(egui::Key::Escape));
             });
         });
         if let Some(line) = go {
@@ -721,7 +723,7 @@ impl eframe::App for ControlApp {
             };
             crate::shot::tick(&ctx, frame);
         }
-        let title = if self.link.program_name.is_empty() { "GCarve Control".to_string() } else { format!("GCarve Control — {}", self.link.program_name) };
+        let title = if self.link.program_name.is_empty() { i18n::t("GCarve Control").to_string() } else { format!("GCarve Control — {}", self.link.program_name) };
         ctx.send_viewport_cmd(egui::ViewportCommand::Title(title));
 
         egui::Panel::top("control-header").exact_size(34.0).frame(egui::Frame::new().fill(theme::BG).inner_margin(egui::Margin::symmetric(10, 0))).show(ui, |ui| self.header(ui));
@@ -735,7 +737,7 @@ impl eframe::App for ControlApp {
                 self.preview.ui(ui, &self.link);
                 if self.link.program_name.is_empty() {
                     let r = ui.max_rect();
-                    ui.painter().text(r.center(), egui::Align2::CENTER_CENTER, "Open a G-code file, or send one from GCarve (File › Send to GCarve Control)", egui::FontId::proportional(theme::FONT_SIZE), theme::TEXT_DIM);
+                    ui.painter().text(r.center(), egui::Align2::CENTER_CENTER, i18n::t("Open a G-code file, or send one from GCarve (File › Send to GCarve Control)"), egui::FontId::proportional(theme::FONT_SIZE), theme::TEXT_DIM);
                 }
             });
         });

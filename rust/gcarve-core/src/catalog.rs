@@ -291,6 +291,8 @@ impl Catalog {
             Some("VBit") => ToolType::VBit,
             Some("BallNose") => ToolType::BallNose,
             // point-cutting round-overs only (radius = half the diameter); bearing-guided ones have another shape
+            // bowl / tray bits: a ball nose with a smaller corner radius (flat bottom, rounded corners)
+            _ if b.family == "bowl" && b.corner_radius.is_some_and(|r| r > 0.0 && 2.0 * r < b.diameter) => ToolType::BallNose,
             _ if b.family == "roundover" && b.corner_radius.is_some_and(|r| (-0.002..0.04).contains(&(b.inch(b.diameter) - 2.0 * b.inch(r)))) => ToolType::RoundOver,
             _ => ToolType::EndMill,
         };
@@ -307,7 +309,7 @@ impl Catalog {
             rpm: rpm as i32,
             chip_loads: self.chip_loads(b),
             catalog: b.id.clone(),
-            radius: if kind == ToolType::RoundOver { b.corner_radius.map_or(0.0, |r| b.inch(r)) } else { 0.0 },
+            radius: if kind == ToolType::RoundOver || b.family == "bowl" { b.corner_radius.map_or(0.0, |r| b.inch(r)) } else { 0.0 },
             cut_length: b.cut_length.map_or(0.0, |l| b.inch(l)),
             ..Default::default()
         }

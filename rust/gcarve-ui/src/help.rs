@@ -115,7 +115,7 @@ pub fn check(ctx: &egui::Context) {
     if let Some((repo, _)) = INFO.get() {
         let ctx = ctx.clone();
         let mut req = ehttp::Request::get(format!("https://api.github.com/repos/{repo}/releases/latest"));
-        req.headers.insert("User-Agent", "GCarve");
+        req.headers.insert("User-Agent", crate::i18n::t("GCarve"));
         ehttp::fetch(req, move |r| {
             let j = r.ok().filter(|r| r.ok).and_then(|r| serde_json::from_slice::<serde_json::Value>(&r.bytes).ok());
             let tag = j.as_ref().and_then(|j| j["tag_name"].as_str()).filter(|t| t.len() <= 20);
@@ -137,18 +137,18 @@ pub fn check(ctx: &egui::Context) {
 #[cfg(not(target_arch = "wasm32"))]
 fn update_now(ctx: &egui::Context) {
     let Some(url) = ASSET.lock().ok().and_then(|a| a.clone()) else {
-        *UPDATE.lock().unwrap() = Upd::Failed("No file for this computer in the release.".into(), false);
+        *UPDATE.lock().unwrap() = Upd::Failed(crate::i18n::t("No file for this computer in the release.").into(), false);
         return;
     };
     *UPDATE.lock().unwrap() = Upd::Downloading;
     let ctx = ctx.clone();
     let mut req = ehttp::Request::get(&url);
-    req.headers.insert("User-Agent", "GCarve");
+    req.headers.insert("User-Agent", crate::i18n::t("GCarve"));
     ehttp::fetch(req, move |r| {
         let name = url.rsplit('/').next().unwrap_or("update").to_string();
         let res = r.map_err(|e| e.to_string()).and_then(|r| if r.ok && r.bytes.len() > 1_000_000 { Ok(r.bytes) } else { Err(format!("download failed ({})", r.status)) }).and_then(|bytes| {
             let home = std::env::var_os(if cfg!(windows) { "USERPROFILE" } else { "HOME" }).map(std::path::PathBuf::from);
-            let dir = home.map(|h| h.join("Downloads")).filter(|d| d.is_dir()).unwrap_or_else(std::env::temp_dir);
+            let dir = home.map(|h| h.join(crate::i18n::t("Downloads"))).filter(|d| d.is_dir()).unwrap_or_else(std::env::temp_dir);
             let path = dir.join(&name);
             std::fs::write(&path, bytes).map_err(|e| e.to_string())?;
             let target = if cfg!(target_os = "linux") { dir.clone() } else { path.clone() };
@@ -190,7 +190,7 @@ struct Report {
 impl Help {
     /// kind: "bug" | "suggestion" | "question"
     pub fn open_report(&mut self, cloud: &Cloud, kind: &'static str) {
-        let title = if kind == "bug" { "Report a bug" } else { "Request a change" };
+        let title = if kind == "bug" { crate::i18n::t("Report a bug") } else { crate::i18n::t("Request a change") };
         self.report = Some(Report { title, attached: String::new(), crash: false, kind, subject: String::new(), body: String::new(), email: cloud.user.as_ref().map(|u| u.email.clone()).unwrap_or_default(), sending: false, result: None });
     }
 
@@ -199,7 +199,7 @@ impl Help {
         let app = crate::store::app();
         let first = problem.lines().next().unwrap_or("").trim();
         let subject = if crash { format!("{app} closed unexpectedly") } else { format!("Problem: {}", first.chars().take(70).collect::<String>()) };
-        let title = if crash { "Sorry, it stopped last time" } else { "Report this problem" };
+        let title = if crash { crate::i18n::t("Sorry, it stopped last time") } else { crate::i18n::t("Report this problem") };
         self.report = Some(Report { title, attached: problem.trim().to_string(), crash, kind: "bug", subject, body: String::new(), email: cloud.user.as_ref().map(|u| u.email.clone()).unwrap_or_default(), sending: false, result: None });
         forget_problem();
     }
@@ -264,45 +264,45 @@ impl Help {
             };
             ui.add(egui::Label::new(RichText::new(intro).small().color(theme::TEXT_DIM)).wrap());
             egui::Grid::new("req").num_columns(2).spacing([12.0, 8.0]).show(ui, |ui| {
-                ui.label("Type");
-                let items = [("bug", "Problem / bug"), ("suggestion", "Feature or change"), ("question", "Question")];
+                ui.label(crate::i18n::t("Type"));
+                let items = [("bug", crate::i18n::t("Problem / bug")), ("suggestion", crate::i18n::t("Feature or change")), ("question", crate::i18n::t("Question"))];
                 widgets::combo_box("req-kind").selected_text(items.iter().find(|i| i.0 == d.kind).map_or("", |i| i.1)).width(220.0).show_ui(ui, |ui| {
                     for (v, l) in items {
                         ui.selectable_value(&mut d.kind, v, l);
                     }
                 });
                 ui.end_row();
-                ui.label("Summary");
-                ui.add(widgets::field(&mut d.subject).desired_width(330.0).hint_text("e.g. Export stops at 50%"));
+                ui.label(crate::i18n::t("Summary"));
+                ui.add(widgets::field(&mut d.subject).desired_width(330.0).hint_text(crate::i18n::t("e.g. Export stops at 50%")));
                 ui.end_row();
-                ui.label("Details");
-                ui.add(egui::TextEdit::multiline(&mut d.body).desired_width(330.0).desired_rows(if d.attached.is_empty() { 6 } else { 4 }).hint_text(if d.attached.is_empty() { "What happened, and what did you expect? Steps to reproduce help a lot." } else { "What were you doing? (optional, but it helps a lot)" }));
+                ui.label(crate::i18n::t("Details"));
+                ui.add(egui::TextEdit::multiline(&mut d.body).desired_width(330.0).desired_rows(if d.attached.is_empty() { 6 } else { 4 }).hint_text(if d.attached.is_empty() { crate::i18n::t("What happened, and what did you expect? Steps to reproduce help a lot.") } else { crate::i18n::t("What were you doing? (optional, but it helps a lot)") }));
                 ui.end_row();
                 if !d.attached.is_empty() {
-                    ui.label("Sent along");
+                    ui.label(crate::i18n::t("Sent along"));
                     egui::ScrollArea::vertical().id_salt("attached").max_height(90.0).show(ui, |ui| {
                         ui.add(egui::Label::new(RichText::new(&d.attached).monospace().small().color(theme::TEXT_DIM)).wrap());
                     });
                     ui.end_row();
                 }
                 if !signed_in {
-                    ui.label("Your email");
-                    ui.add(widgets::field(&mut d.email).desired_width(330.0).hint_text("so we can answer"));
+                    ui.label(crate::i18n::t("Your email"));
+                    ui.add(widgets::field(&mut d.email).desired_width(330.0).hint_text(crate::i18n::t("so we can answer")));
                     ui.end_row();
                 }
             });
             // with the problem attached the note is optional (the server wants a few words: the details count)
             let ok = (d.body.trim().len() >= 5 || !d.attached.is_empty()) && (signed_in || d.email.contains('@'));
             ui.horizontal(|ui| {
-                if ui.add_enabled(ok && !d.sending, egui::Button::new(if d.sending { "Sending…" } else { "Send" })).clicked() {
+                if ui.add_enabled(ok && !d.sending, egui::Button::new(if d.sending { crate::i18n::t("Sending…") } else { crate::i18n::t("Send") })).clicked() {
                     d.sending = true;
                     d.result = None;
-                    let sys = format!("\n\n— {app} {} · {} {}{}", version(), std::env::consts::OS, std::env::consts::ARCH, if Cloud::web() { " · web" } else { "" });
-                    let note = if d.body.trim().is_empty() { "(no note)" } else { d.body.trim() };
+                    let sys = format!("\n\n— {app} {} · {} {}{}", version(), std::env::consts::OS, std::env::consts::ARCH, if Cloud::web() { crate::i18n::t(" · web") } else { "" });
+                    let note = if d.body.trim().is_empty() { crate::i18n::t("(no note)") } else { d.body.trim() };
                     let details = if d.attached.is_empty() { String::new() } else { format!("\n\nDetails:\n{}", d.attached) };
                     cloud.send_request(ctx, d.kind, d.subject.trim(), &format!("{note}{details}{sys}"), d.email.trim());
                 }
-                if signed_in && ui.link("Your requests and answers").clicked() {
+                if signed_in && ui.link(crate::i18n::t("Your requests and answers")).clicked() {
                     cloud.open_web(ctx, "/dashboard/");
                 }
             });
@@ -331,7 +331,7 @@ impl Help {
         let app = crate::store::app();
         let newest = NEWEST.lock().ok().and_then(|n| n.clone());
         let failed = FAILED.lock().map(|f| *f).unwrap_or(false);
-        widgets::Dialog::new("Check for updates").id("update").open(&mut self.update_open).close_footer().width(380.0).show(ctx, |ui| {
+        widgets::Dialog::new(crate::i18n::t("Check for updates")).id("update").open(&mut self.update_open).close_footer().width(380.0).show(ctx, |ui| {
             ui.label(format!("You have {app} {}.", version()));
             match (&newest, available()) {
                 (_, Some((v, url))) => {
@@ -349,13 +349,13 @@ impl Help {
                             update_now(ctx);
                         }
                         Upd::Idle => {
-                            ui.label(RichText::new("Update now downloads it and opens it; then quit this one and install it over it. Your projects and settings stay.").small().color(theme::TEXT_DIM));
+                            ui.label(RichText::new(crate::i18n::t("Update now downloads it and opens it; then quit this one and install it over it. Your projects and settings stay.")).small().color(theme::TEXT_DIM));
                             ui.horizontal(|ui| {
                                 #[cfg(not(target_arch = "wasm32"))]
                                 if ui.add(widgets::Button::new(format!("Update now to {v}")).primary(true)).clicked() {
                                     update_now(ctx);
                                 }
-                                if ui.button("Download page").clicked() {
+                                if ui.button(crate::i18n::t("Download page")).clicked() {
                                     ctx.open_url(egui::OpenUrl::new_tab(page));
                                 }
                             });
@@ -376,7 +376,7 @@ impl Help {
                                 format!("Quit {app}, then unpack the file and run ./install.sh (or ./gcarve) from it.")
                             };
                             ui.label(how);
-                            if ui.button("Didn't open? Download page").clicked() {
+                            if ui.button(crate::i18n::t("Didn't open? Download page")).clicked() {
                                 ctx.open_url(egui::OpenUrl::new_tab(page));
                             }
                         }
@@ -386,23 +386,23 @@ impl Help {
                                 *UPDATE.lock().unwrap() = Upd::Failed(e.clone(), true);
                             }
                             ui.label(RichText::new(format!("The update couldn't be downloaded here ({e}). The download page opened in your browser: get {app} {v} there.")).color(theme::DANGER));
-                            if ui.button("Open the download page again").clicked() {
+                            if ui.button(crate::i18n::t("Open the download page again")).clicked() {
                                 ctx.open_url(egui::OpenUrl::new_tab(page));
                             }
                         }
                     }
                 }
                 (Some(_), None) => {
-                    ui.label(RichText::new("You have the newest version.").color(theme::MODE_SIMULATE));
+                    ui.label(RichText::new(crate::i18n::t("You have the newest version.")).color(theme::MODE_SIMULATE));
                 }
                 (None, _) if failed => {
-                    ui.label(RichText::new("Could not reach the update server. Check your internet connection and try again.").color(theme::DANGER));
+                    ui.label(RichText::new(crate::i18n::t("Could not reach the update server. Check your internet connection and try again.")).color(theme::DANGER));
                 }
                 _ => {
-                    ui.label("Checking…");
+                    ui.label(crate::i18n::t("Checking…"));
                 }
             }
-            if ui.button("Check again").clicked() {
+            if ui.button(crate::i18n::t("Check again")).clicked() {
                 *FAILED.lock().unwrap() = false;
                 *NEWEST.lock().unwrap() = None;
                 check(ctx);

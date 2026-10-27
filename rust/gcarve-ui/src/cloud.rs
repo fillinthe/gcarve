@@ -355,7 +355,7 @@ impl Cloud {
         let Some(d) = self.device.as_mut() else { return };
         if t > d.until {
             self.device = None;
-            self.error = "The browser sign-in took too long: press “Sign in with your browser” again.".into();
+            self.error = crate::i18n::t("The browser sign-in took too long: press “Sign in with your browser” again.").into();
             return;
         }
         ctx.request_repaint_after(std::time::Duration::from_secs(2));
@@ -552,6 +552,9 @@ impl Cloud {
     /// error log (admin overview, 30 days), with a short category and the wording shown, never file names or
     /// content: callers pass messages through `scrub`. Web always; desktop only when signed in.
     pub fn report(&self, kind: &str, message: &str) {
+        if message.trim().is_empty() {
+            return; // a quiet 401 while signed out (`Reply::Error("")`): nothing went wrong
+        }
         if kind != "crash" {
             crate::help::note_problem(message); // the status bar offers "Report this" for it
         }
@@ -614,7 +617,7 @@ impl Cloud {
         ehttp::fetch(req, move |r| {
             let v: serde_json::Value = r.ok().filter(|r| r.ok).and_then(|r| serde_json::from_slice(&r.bytes).ok()).unwrap_or_default();
             let (Some(ch), Some(bits)) = (v["challenge"].as_str(), v["bits"].as_u64()) else {
-                return fail(&tx, &ctx2, "Can't reach the server right now. Check the connection and try again.".into());
+                return fail(&tx, &ctx2, crate::i18n::t("Can't reach the server right now. Check the connection and try again.").into());
             };
             let nonce = (0u64..).find(|n| pow_ok(ch, *n, bits as u32)).unwrap_or(0);
             b["challenge"] = ch.into();
@@ -674,7 +677,7 @@ impl Cloud {
                     self.checked = true;
                     self.need_code = a.two_factor;
                     if a.confirm {
-                        self.error = "Almost done: open the link we emailed you to confirm your address, then sign in here.".into();
+                        self.error = crate::i18n::t("Almost done: open the link we emailed you to confirm your address, then sign in here.").into();
                     } else if let Some(e) = a.error {
                         if self.user.is_some() {
                             // session gone (expired / password changed elsewhere)
@@ -800,11 +803,11 @@ fn licensed_at(allowed_now: bool, has_token: bool, at: i64, now: i64) -> bool {
 fn host_label() -> String {
     #[cfg(not(target_arch = "wasm32"))]
     {
-        std::env::var("COMPUTERNAME").or_else(|_| std::env::var("HOSTNAME")).unwrap_or_else(|_| "Desktop".into())
+        std::env::var("COMPUTERNAME").or_else(|_| std::env::var("HOSTNAME")).unwrap_or_else(|_| crate::i18n::t("Desktop").into())
     }
     #[cfg(target_arch = "wasm32")]
     {
-        "Web".into()
+        crate::i18n::t("Web").into()
     }
 }
 

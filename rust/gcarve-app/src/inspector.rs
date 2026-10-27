@@ -1,6 +1,8 @@
 //! The right-hand inspector of the "modes" layout (Main.qml): Properties / Layers / Toolpaths tabs, scrolling
 //! sections, pinned Edit / Delete at the bottom. Commands go through `Shell::cmds` like the rest of the shell.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use crate::canvas::{hex, kind_color, Canvas};
 use crate::widgets::TipExt;
 use crate::icons::{self, IconButton};
@@ -17,7 +19,7 @@ pub fn inspector(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Op
     // tab bar + collapse chevron
     ui.spacing_mut().item_spacing = egui::vec2(0.0, 0.0);
     ui.horizontal(|ui| {
-        let tabs = ["Properties", "Layers", if warnings.is_empty() { "Toolpaths" } else { "Toolpaths ⚠" }];
+        let tabs = [i18n::t("Properties"), i18n::t("Layers"), if warnings.is_empty() { i18n::t("Toolpaths") } else { i18n::t("Toolpaths ⚠") }];
         let accents = [theme::MODE_DESIGN, theme::GROUP_SETUP, theme::MODE_TOOLPATHS];
         for (i, t) in tabs.iter().enumerate() {
             if theme::tab(ui, sh.side_tab == i, t, accents[i]).clicked() {
@@ -25,7 +27,7 @@ pub fn inspector(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Op
             }
         }
         ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-            if crate::shell::collapse_button(ui, false, true, "the side panel", "⇧⌘P") {
+            if crate::shell::collapse_button(ui, false, true, i18n::t("the side panel"), "⇧⌘P") {
                 sh.push("fold:right");
             }
         });
@@ -39,13 +41,13 @@ pub fn inspector(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Op
         }
         ui.horizontal(|ui| {
             let on = sh.op_sel.is_some_and(|i| i < canvas.doc.ops.len());
-            if ui.add_enabled_ui(on, |ui| IconButton::new("edit").text("Edit").show(ui)).inner.clicked() {
+            if ui.add_enabled_ui(on, |ui| IconButton::new("edit").text(i18n::t("Edit")).show(ui)).inner.clicked() {
                 sh.push(format!("opedit:{}", sh.op_sel.unwrap_or(0)));
             }
-            if ui.add_enabled_ui(on, |ui| IconButton::new("delete").text("Delete").show(ui)).inner.clicked() {
+            if ui.add_enabled_ui(on, |ui| IconButton::new("delete").text(i18n::t("Delete")).show(ui)).inner.clicked() {
                 sh.push(format!("opdelete:{}", sh.op_sel.unwrap_or(0)));
             }
-            if IconButton::new("save").size(16.0).padding(4.0).tip("Save as template… / apply a template: toolpaths, bits and variables, re-applied by layer name").show(ui).clicked() {
+            if IconButton::new("save").size(16.0).padding(4.0).tip(i18n::t("Save as template… / apply a template: toolpaths, bits and variables, re-applied by layer name")).show(ui).clicked() {
                 sh.push("templates");
             }
         });
@@ -64,9 +66,9 @@ pub fn inspector(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Op
 
 /// Measure tool: the measured segment in full (points, distance, ΔX / ΔY, angle, midpoint)
 fn measure_panel(ui: &mut egui::Ui, canvas: &Canvas) {
-    ui.label(RichText::new("Measure").family(crate::widgets::bold_family()).color(Color32::WHITE));
+    ui.label(RichText::new(i18n::t("Measure")).family(crate::widgets::bold_family()).color(Color32::WHITE));
     let Some((a, b)) = canvas.measure_seg else {
-        ui.add(egui::Label::new(RichText::new("Click two points on the drawing. It snaps to corners, midpoints, centres and edges, also with Snap off.").color(theme::TEXT_DIM)).wrap());
+        ui.add(egui::Label::new(RichText::new(i18n::t("Click two points on the drawing. It snaps to corners, midpoints, centres and edges, also with Snap off.")).color(theme::TEXT_DIM)).wrap());
         return;
     };
     let d = &canvas.doc;
@@ -83,15 +85,15 @@ fn measure_panel(ui: &mut egui::Ui, canvas: &Canvas) {
             ui.label(if strong { RichText::new(v).size(15.0).family(crate::widgets::bold_family()).color(Color32::WHITE) } else { RichText::new(v) });
             ui.end_row();
         };
-        row("Distance", f(dx.hypot(dy)), true);
+        row(i18n::t("Distance"), f(dx.hypot(dy)), true);
         row("ΔX", format!("{}{}", if dx < -1e-9 { "−" } else { "" }, f(dx.abs())), false);
         row("ΔY", format!("{}{}", if dy < -1e-9 { "−" } else { "" }, f(dy.abs())), false);
         row("Angle", format!("{ang:.2}° from +X"), false);
         row("Start", format!("X {}  Y {}", f(a.x), f(a.y)), false);
-        row(if done { "End" } else { "Pointer" }, format!("X {}  Y {}", f(b.x), f(b.y)), false);
+        row(if done { i18n::t("End") } else { i18n::t("Pointer") }, format!("X {}  Y {}", f(b.x), f(b.y)), false);
         row("Midpoint", format!("X {}  Y {}", f((a.x + b.x) / 2.0), f((a.y + b.y) / 2.0)), false);
     });
-    ui.add(egui::Label::new(RichText::new(if done { "Click again to start a new measurement · Esc clears it" } else { "Click the second point" }).small().color(theme::TEXT_DIM)).wrap());
+    ui.add(egui::Label::new(RichText::new(if done { i18n::t("Click again to start a new measurement · Esc clears it") } else { i18n::t("Click the second point") }).small().color(theme::TEXT_DIM)).wrap());
 }
 
 fn properties(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas) {
@@ -103,7 +105,7 @@ fn properties(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas) {
     }
     let sel = canvas.selection_count();
     let (uname, u, dec) = shell::unit(&canvas.doc);
-    ui.label(RichText::new(if sel > 0 { format!("{sel} selected") } else { "Nothing selected".into() }).family(crate::widgets::bold_family()).color(Color32::WHITE));
+    ui.label(RichText::new(if sel > 0 { format!("{sel} selected") } else { i18n::t("Nothing selected").into() }).family(crate::widgets::bold_family()).color(Color32::WHITE));
     // X Y / W H fields with the unit badge
     let bounds = canvas.selection_size();
     let focused = ["x", "y", "w", "h"].iter().any(|k| ui.memory(|m| m.has_focus(ui.id().with(*k))));
@@ -151,23 +153,23 @@ fn properties(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas) {
         ui.horizontal(|ui| {
             icons::paint(ui, "text", egui::Rect::from_min_size(ui.cursor().min + egui::vec2(0.0, 2.0), egui::vec2(16.0, 16.0)), 16.0, theme::TEXT.gamma_multiply(0.7));
             ui.add_space(20.0);
-            let style = format!("{}{}", if ti.bold { " Bold" } else { "" }, if ti.italic { " Italic" } else { "" });
+            let style = format!("{}{}", if ti.bold { i18n::t(" Bold") } else { "" }, if ti.italic { i18n::t(" Italic") } else { "" });
             let line = format!("{}   {}{style} · {}", ti.text.replace('\n', " "), ti.family, crate::units::fmt(&canvas.doc, ti.height));
             let w = (ui.available_width() - 56.0).max(40.0);
             ui.allocate_ui(egui::vec2(w, 20.0), |ui| ui.add(egui::Label::new(RichText::new(line).size(12.0)).truncate()));
-            if IconButton::new("pen").size(15.0).padding(3.0).tip("Convert text to curves (plain vectors)").show(ui).clicked() {
+            if IconButton::new("pen").size(15.0).padding(3.0).tip(i18n::t("Convert text to curves (plain vectors)")).show(ui).clicked() {
                 sh.push("text:curves");
             }
-            if IconButton::new("edit").size(15.0).padding(3.0).tip("Edit the text (wording, font, size)").show(ui).clicked() {
+            if IconButton::new("edit").size(15.0).padding(3.0).tip(i18n::t("Edit the text (wording, font, size)")).show(ui).clicked() {
                 sh.push("text:edit");
             }
         });
     }
     if sel > 0 {
         ui.horizontal(|ui| {
-            theme::checkbox(ui, &mut sh.lock_aspect, "Keep proportions").tip("Changing W also scales H (and the reverse)");
+            theme::checkbox(ui, &mut sh.lock_aspect, i18n::t("Keep proportions")).tip(i18n::t("Changing W also scales H (and the reverse)"));
             ui.add_space(8.0);
-            ui.label(RichText::new("Grows from").color(theme::TEXT_DIM)).on_hover_text("Where a size change holds still: type a new W or H, or change a variable, and the shape grows away from this point. Bottom-left keeps the old behaviour.");
+            ui.label(RichText::new(i18n::t("Grows from")).color(theme::TEXT_DIM)).on_hover_text(i18n::t("Where a size change holds still: type a new W or H, or change a variable, and the shape grows away from this point. Bottom-left keeps the old behaviour."));
             let mut a = canvas.selection_anchor();
             if anchor_picker(ui, &mut a) {
                 canvas.set_selection_anchor(a);
@@ -177,12 +179,12 @@ fn properties(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas) {
     // exact rotation around the pivot (the frame's crosshair: drag it to turn around another point)
     if sel > 0 {
         ui.horizontal(|ui| {
-            ui.add_sized([44.0, 20.0], egui::Label::new(RichText::new("Rotate").color(if sel > 0 { theme::TEXT } else { theme::TEXT_DISABLED })));
-            let r = theme::unit_field(ui, &mut sh.rot_text, "°", 70.0).tip("Angle in degrees; Enter turns counter-clockwise. Drag the round handle above the selection to rotate by hand (Shift = 15° steps).");
+            ui.add_sized([44.0, 20.0], egui::Label::new(RichText::new(i18n::t("Rotate")).color(if sel > 0 { theme::TEXT } else { theme::TEXT_DISABLED })));
+            let r = theme::unit_field(ui, &mut sh.rot_text, "°", 70.0).tip(i18n::t("Angle in degrees; Enter turns counter-clockwise. Drag the round handle above the selection to rotate by hand (Shift = 15° steps)."));
             let deg = sh.rot_text.trim().trim_end_matches('°').trim().parse::<f64>().ok().filter(|d| d.is_finite());
             let enter = r.lost_focus() && ui.input(|i| i.key_pressed(egui::Key::Enter));
-            let ccw = ui.add_enabled(deg.is_some(), egui::Button::new("↺")).tip("Rotate counter-clockwise by this angle around the pivot").clicked();
-            let cw = ui.add_enabled(deg.is_some(), egui::Button::new("↻")).tip("Rotate clockwise by this angle around the pivot").clicked();
+            let ccw = ui.add_enabled(deg.is_some(), egui::Button::new("↺")).tip(i18n::t("Rotate counter-clockwise by this angle around the pivot")).clicked();
+            let cw = ui.add_enabled(deg.is_some(), egui::Button::new("↻")).tip(i18n::t("Rotate clockwise by this angle around the pivot")).clicked();
             if let Some(d) = deg {
                 if enter || ccw {
                     canvas.rotate_selection(d);
@@ -211,9 +213,9 @@ fn properties(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas) {
     theme::hline(ui);
     ui.add_space(2.0);
     ui.horizontal(|ui| {
-        ui.label(RichText::new("Board").family(crate::widgets::bold_family()).color(Color32::WHITE));
+        ui.label(RichText::new(i18n::t("Board")).family(crate::widgets::bold_family()).color(Color32::WHITE));
         ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-            if IconButton::new("edit").tip("Board / job setup").show(ui).clicked() {
+            if IconButton::new("edit").tip(i18n::t("Board / job setup")).show(ui).clicked() {
                 sh.push("board");
             }
         });
@@ -234,15 +236,15 @@ fn next_step(ui: &mut egui::Ui, sh: &mut Shell, canvas: &Canvas) {
         return;
     }
     let (text, buttons): (&str, &[(&str, &str)]) = if doc.shapes.is_empty() {
-        ("Draw with the tools on the left, or open a VCarve project (.crv) or an SVG, DXF, PDF, image or G-code file.", &[("Import…", "import"), ("Board…", "board")])
+        (i18n::t("Draw with the tools on the left, or open a VCarve project (.crv) or an SVG, DXF, PDF, image or G-code file."), &[(i18n::t("Import…"), "import"), (i18n::t("Board…"), "board")])
     } else if doc.ops.is_empty() {
-        ("Click shapes to select them (drag a box for several), then add a toolpath.", &[("Select all", "selectall"), ("Add toolpath", "tab:toolpaths")])
+        (i18n::t("Click shapes to select them (drag a box for several), then add a toolpath."), &[(i18n::t("Select all"), "selectall"), (i18n::t("Add toolpath"), "tab:toolpaths")])
     } else {
-        ("Toolpaths are set: watch the cut, then export the G-code.", &[("Simulate", "mode:Simulate"), ("Export…", "export")])
+        (i18n::t("Toolpaths are set: watch the cut, then export the G-code."), &[(i18n::t("Simulate"), "mode:Simulate"), (i18n::t("Export…"), "export")])
     };
     egui::Frame::new().fill(theme::FIELD).corner_radius(6).inner_margin(10).show(ui, |ui| {
         ui.set_width(ui.available_width());
-        ui.label(RichText::new("Next").size(10.0).family(crate::widgets::bold_family()).color(theme::ACCENT));
+        ui.label(RichText::new(i18n::t("Next")).size(10.0).family(crate::widgets::bold_family()).color(theme::ACCENT));
         ui.add(egui::Label::new(RichText::new(text).size(12.0)).wrap());
         ui.horizontal(|ui| {
             for (label, cmd) in buttons {
@@ -254,7 +256,7 @@ fn next_step(ui: &mut egui::Ui, sh: &mut Shell, canvas: &Canvas) {
         // a blank board stops most first visitors: a finished project to change is an easier start
         if doc.shapes.is_empty() {
             ui.add_space(6.0);
-            ui.label(RichText::new("Or start from a ready project:").size(12.0).color(theme::TEXT_DIM));
+            ui.label(RichText::new(i18n::t("Or start from a ready project:")).size(12.0).color(theme::TEXT_DIM));
             starter_buttons(ui, sh);
         }
     });
@@ -267,10 +269,10 @@ fn tour_card(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Doc
     egui::Frame::new().fill(theme::FIELD).corner_radius(6).inner_margin(10).show(ui, |ui| {
         ui.set_width(ui.available_width());
         ui.horizontal(|ui| {
-            ui.label(RichText::new(format!("GETTING STARTED  {} / 5", steps.iter().filter(|s| s.4).count())).size(10.0).family(crate::widgets::bold_family()).color(theme::ACCENT));
+            ui.label(RichText::new(i18n::tf("GETTING STARTED  {n} / 5", &[("n", &steps.iter().filter(|s| s.4).count())])).size(10.0).family(crate::widgets::bold_family()).color(theme::ACCENT));
             ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                 // at the top where people look first; stays hidden for good (tour.json), Help › Getting Started brings it back
-                if ui.small_button("Skip the guide").on_hover_text("Hides it for good. Help › Getting Started Guide shows it again").clicked() {
+                if ui.small_button(i18n::t("Skip the guide")).on_hover_text(i18n::t("Hides it for good. Help › Getting Started Guide shows it again")).clicked() {
                     sh.push("tour:hide");
                 }
             });
@@ -288,12 +290,12 @@ fn tour_card(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Doc
                     if ui.button(*button).clicked() {
                         sh.push(*cmd);
                     }
-                    if i == 0 && ui.button("Import…").clicked() {
+                    if i == 0 && ui.button(i18n::t("Import…")).clicked() {
                         sh.push("import");
                     }
                 });
                 if i == 0 {
-                    ui.label(RichText::new("Or start from a ready project:").size(12.0).color(theme::TEXT_DIM));
+                    ui.label(RichText::new(i18n::t("Or start from a ready project:")).size(12.0).color(theme::TEXT_DIM));
                     starter_buttons(ui, sh);
                 }
             }
@@ -314,7 +316,7 @@ const STARTERS: &[(&str, &str)] = &[
 pub(crate) fn starter_buttons(ui: &mut egui::Ui, sh: &mut Shell) {
     ui.horizontal_wrapped(|ui| {
         for (label, slug) in STARTERS {
-            if ui.button(*label).on_hover_text("Opens with its toolpaths set: change the text or size, check it in Simulate, export").clicked() {
+            if ui.button(*label).on_hover_text(i18n::t("Opens with its toolpaths set: change the text or size, check it in Simulate, export")).clicked() {
                 sh.push(format!("sample:{slug}"));
             }
         }
@@ -358,12 +360,12 @@ fn tile_grid(ui: &mut egui::Ui, sh: &mut Shell, tiles: &[Tile]) {
 
 fn layers(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas) {
     ui.horizontal(|ui| {
-        ui.label(RichText::new("Layers").family(crate::widgets::bold_family()).color(Color32::WHITE));
+        ui.label(RichText::new(i18n::t("Layers")).family(crate::widgets::bold_family()).color(Color32::WHITE));
         ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-            if ui.add_enabled_ui(canvas.doc.layers.len() > 1, |ui| IconButton::new("remove").tip("Remove active layer").show(ui)).inner.clicked() {
+            if ui.add_enabled_ui(canvas.doc.layers.len() > 1, |ui| IconButton::new("remove").tip(i18n::t("Remove active layer")).show(ui)).inner.clicked() {
                 sh.push("layer:remove");
             }
-            if IconButton::new("add").tip("Add layer").show(ui).clicked() {
+            if IconButton::new("add").tip(i18n::t("Add layer")).show(ui).clicked() {
                 sh.push("layer:add");
             }
         });
@@ -399,7 +401,7 @@ fn layers(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas) {
         // picker recolour live without more steps
         let mut col = hex(&l.color);
         row.spacing_mut().interact_size = egui::vec2(14.0, 14.0);
-        if egui::color_picker::color_edit_button_srgba(&mut row, &mut col, egui::color_picker::Alpha::Opaque).tip("Layer colour").changed() {
+        if egui::color_picker::color_edit_button_srgba(&mut row, &mut col, egui::color_picker::Alpha::Opaque).tip(i18n::t("Layer colour")).changed() {
             acts.push(Act::Color(i, format!("#{:02x}{:02x}{:02x}", col.r(), col.g(), col.b()), row.input(|inp| inp.pointer.any_pressed())));
         }
         // name: edited in a buffer, renamed (one undo step) when the field loses focus
@@ -418,47 +420,47 @@ fn layers(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas) {
             row.data_mut(|d| d.remove::<String>(id));
         }
         row.with_layout(egui::Layout::right_to_left(egui::Align::Center), |row| {
-            if IconButton::new(if l.locked { "lock" } else { "unlock" }).size(15.0).padding(3.0).tip("Lock / unlock").show(row).clicked() {
+            if IconButton::new(if l.locked { "lock" } else { "unlock" }).size(15.0).padding(3.0).tip(i18n::t("Lock / unlock")).show(row).clicked() {
                 acts.push(Act::Locked(i));
             }
-            if IconButton::new(if l.visible { "eye" } else { "eye-off" }).size(15.0).padding(3.0).tip("Show / hide").show(row).clicked() {
+            if IconButton::new(if l.visible { "eye" } else { "eye-off" }).size(15.0).padding(3.0).tip(i18n::t("Show / hide")).show(row).clicked() {
                 acts.push(Act::Visible(i));
             }
             // a toolpath for the whole layer (new shapes on it join), and select everything on it
-            let add = IconButton::new("add").size(15.0).padding(3.0).tip("Add a toolpath for everything on this layer").show(row);
+            let add = IconButton::new("add").size(15.0).padding(3.0).tip(i18n::t("Add a toolpath for everything on this layer")).show(row);
             egui::Popup::menu(&add).show(|ui| {
                 let mut ko = l.keep_out;
-                if crate::widgets::menu_check(ui, "Keep out (clamps, screws)", "", &mut ko).on_hover_text("Shapes on this layer mark hold-downs: export warns when a toolpath comes down near one").clicked() {
+                if crate::widgets::menu_check(ui, i18n::t("Keep out (clamps, screws)"), "", &mut ko).on_hover_text(i18n::t("Shapes on this layer mark hold-downs: export warns when a toolpath comes down near one")).clicked() {
                     acts.push(Act::KeepOut(i));
                     ui.close();
                 }
                 if l.keep_out {
-                    ui.label(RichText::new("How tall the clamps are").small().color(theme::TEXT_DIM));
+                    ui.label(RichText::new(i18n::t("How tall the clamps are")).small().color(theme::TEXT_DIM));
                     for h in [0.5, 1.0, 2.0, 3.0] {
                         let mut on = (if l.clamp_height > 0.0 { l.clamp_height } else { 1.0 } - h).abs() < 1e-6;
-                        if crate::widgets::menu_check(ui, &format!("{h} in above the board"), "", &mut on).on_hover_text("The export check counts the bit holder's width, not just the bit, below this height").clicked() {
+                        if crate::widgets::menu_check(ui, &format!("{h} in above the board"), "", &mut on).on_hover_text(i18n::t("The export check counts the bit holder's width, not just the bit, below this height")).clicked() {
                             acts.push(Act::ClampHeight(i, h));
                             ui.close();
                         }
                     }
                 }
                 crate::widgets::menu_separator(ui);
-                ui.label(RichText::new("Toolpath for the whole layer").small().color(theme::TEXT_DIM));
+                ui.label(RichText::new(i18n::t("Toolpath for the whole layer")).small().color(theme::TEXT_DIM));
                 for (k, kind) in KIND_TYPES.iter().enumerate() {
                     if *kind == OpType::Relief {
                         continue;
                     }
-                    if crate::widgets::menu_item(ui, shell::KINDS[k].0, "").clicked() {
+                    if crate::widgets::menu_item(ui, i18n::t(shell::KINDS[k].0), "").clicked() {
                         sh.push(format!("layerop:{i}:{k}"));
                         ui.close();
                     }
                 }
             });
-            if IconButton::new("select").size(15.0).padding(3.0).tip("Select every vector on this layer (or double-click the row)").show(row).clicked() {
+            if IconButton::new("select").size(15.0).padding(3.0).tip(i18n::t("Select every vector on this layer (or double-click the row)")).show(row).clicked() {
                 sh.push(format!("layersel:{i}"));
             }
             if l.keep_out {
-                row.label(RichText::new("keep out").size(11.0).color(theme::DANGER)).tip("Clamps / screws: export warns when a toolpath comes down near these shapes");
+                row.label(RichText::new(i18n::t("keep out")).size(11.0).color(theme::DANGER)).tip(i18n::t("Clamps / screws: export warns when a toolpath comes down near these shapes"));
             }
             let tps = canvas.doc.ops.iter().filter(|o| o.layer_scope == i as i32).count();
             if tps > 0 {
@@ -470,7 +472,7 @@ fn layers(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas) {
     ui.spacing_mut().item_spacing.y = 8.0;
     if canvas.selection_count() > 0 && canvas.doc.layers.len() > 1 {
         ui.add_space(6.0);
-        if ui.button("Move selection to active layer").clicked() {
+        if ui.button(i18n::t("Move selection to active layer")).clicked() {
             canvas.move_selection_to_layer(canvas.doc.active_layer);
         }
     }
@@ -507,27 +509,27 @@ fn toolpaths(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Option
     let doc = &canvas.doc;
     let mut acts = Vec::new();
     // NEW TOOLPATH / SETUP tiles (Main.qml, same CommandGroup grid as ARRANGE / BOOLEAN; was the Toolpaths-mode rail)
-    section(ui, "NEW TOOLPATH", theme::MODE_TOOLPATHS);
+    section(ui, i18n::t("NEW TOOLPATH"), theme::MODE_TOOLPATHS);
     let kinds: Vec<Tile> = shell::KINDS.iter().take(KIND_TYPES.len()).enumerate().map(|(i, (name, icon, tip))| {
         let relief = i == 7;
         let on = if relief { !doc.reliefs.is_empty() } else { !doc.shapes.is_empty() }; // nothing selected: the dialog asks for shapes
-        Tile { id: format!("kind:{i}"), icon, text: name, tip: tip.to_string(), tint: kind_color(KIND_TYPES[i]), on, why: if relief { "Import a 3D model first" } else { "Draw or import shapes first" } }
+        Tile { id: format!("kind:{i}"), icon, text: i18n::t(name), tip: i18n::t(tip).to_string(), tint: kind_color(KIND_TYPES[i]), on, why: if relief { i18n::t("Import a 3D model first") } else { i18n::t("Draw or import shapes first") } }
     }).collect();
     tile_grid(ui, sh, &kinds);
     ui.add_space(6.0);
-    section(ui, "SETUP", theme::GROUP_SETUP);
+    section(ui, i18n::t("SETUP"), theme::GROUP_SETUP);
     let setup: Vec<Tile> = ["tools", "machine", "posts", "board"].iter().map(|id| {
         let (icon, text, tip) = shell::def(id);
         Tile { id: id.to_string(), icon, text, tip: tip.to_string(), tint: theme::GROUP_SETUP, on: true, why: "" }
     }).collect();
     tile_grid(ui, sh, &setup);
     ui.add_space(6.0);
-    section(ui, "TOOLPATHS", theme::TEXT_DIM);
+    section(ui, i18n::t("TOOLPATHS"), theme::TEXT_DIM);
     let old = canvas.paths_old;
     if doc.ops.is_empty() {
         ui.add_space(20.0);
         ui.vertical_centered(|ui| {
-            ui.add(egui::Label::new(RichText::new("Select shapes, then pick a toolpath type above.").color(theme::TEXT.gamma_multiply(0.6))).wrap());
+            ui.add(egui::Label::new(RichText::new(i18n::t("Select shapes, then pick a toolpath type above.")).color(theme::TEXT.gamma_multiply(0.6))).wrap());
         });
     }
     // what each toolpath cuts on every sheet, and on which layers (worked out again only when the document changes)
@@ -540,29 +542,29 @@ fn toolpaths(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Option
     // one row of dropdowns: view (your folders / a folder per sheet / bits), which sheet, which layer; + new folder
     ui.horizontal(|ui| {
         ui.spacing_mut().item_spacing.x = 4.0;
-        let views = [(VIEW_FOLDERS, "Folders"), (VIEW_SHEETS, "By sheet"), (VIEW_BITS, "By bit")];
-        let current = views.iter().find(|v| v.0 == sh.tp_group).map_or("Folders", |v| v.1);
+        let views = [(VIEW_FOLDERS, i18n::t("Folders")), (VIEW_SHEETS, i18n::t("By sheet")), (VIEW_BITS, i18n::t("By bit"))];
+        let current = views.iter().find(|v| v.0 == sh.tp_group).map_or(i18n::t("Folders"), |v| v.1);
         crate::widgets::combo_box("tp-view").selected_text(current).width(76.0).show_ui(ui, |ui| {
             for (g, name) in views {
                 ui.selectable_value(&mut sh.tp_group, g, name);
             }
-        }).response.tip("Folders: yours, drag toolpaths in. By sheet: a heading per sheet with the toolpaths that cut there. By bit: one G-code file per bit");
+        }).response.tip(i18n::t("Folders: yours, drag toolpaths in. By sheet: a heading per sheet with the toolpaths that cut there. By bit: one G-code file per bit"));
         if nsheets > 1 {
-            let label = if sh.tp_this_sheet { doc.sheet_name(active) } else { "All sheets".to_string() };
+            let label = if sh.tp_this_sheet { doc.sheet_name(active) } else { i18n::t("All sheets").to_string() };
             crate::widgets::combo_box("tp-sheet").selected_text(label).width(76.0).show_ui(ui, |ui| {
-                ui.selectable_value(&mut sh.tp_this_sheet, false, "All sheets");
+                ui.selectable_value(&mut sh.tp_this_sheet, false, i18n::t("All sheets"));
                 ui.selectable_value(&mut sh.tp_this_sheet, true, format!("{} (this one)", doc.sheet_name(active)));
-            }).response.tip("Every toolpath (the ones with nothing on this sheet greyed), or only the ones that cut on this sheet");
+            }).response.tip(i18n::t("Every toolpath (the ones with nothing on this sheet greyed), or only the ones that cut on this sheet"));
         }
-        let layers: Vec<(i32, String)> = std::iter::once((-1, "All layers".to_string())).chain(doc.layers.iter().enumerate().map(|(i, l)| (i as i32, l.name.clone()))).collect();
-        let current = layers.iter().find(|l| l.0 == sh.tp_layer).map_or("All layers".to_string(), |l| l.1.clone());
+        let layers: Vec<(i32, String)> = std::iter::once((-1, i18n::t("All layers").to_string())).chain(doc.layers.iter().enumerate().map(|(i, l)| (i as i32, l.name.clone()))).collect();
+        let current = layers.iter().find(|l| l.0 == sh.tp_layer).map_or(i18n::t("All layers").to_string(), |l| l.1.clone());
         crate::widgets::combo_box("tp-layer").selected_text(current).width(76.0).show_ui(ui, |ui| {
             for (i, n) in &layers {
                 ui.selectable_value(&mut sh.tp_layer, *i, n);
             }
-        }).response.tip("Only the toolpaths that cut vectors on this layer");
+        }).response.tip(i18n::t("Only the toolpaths that cut vectors on this layer"));
         ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-            if sh.tp_group == VIEW_BITS && !doc.ops.is_empty() && ui.small_button("Number").tip("Give each bit here without a tool-changer number the lowest free one (T1, T2…)").clicked() {
+            if sh.tp_group == VIEW_BITS && !doc.ops.is_empty() && ui.small_button(i18n::t("Number")).tip(i18n::t("Give each bit here without a tool-changer number the lowest free one (T1, T2…)")).clicked() {
                 acts.push(TpAct::AutoSlots);
             }
         });
@@ -571,17 +573,17 @@ fn toolpaths(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Option
     if let Some(mut name) = sh.new_folder.take() {
         let mut keep = true;
         ui.horizontal(|ui| {
-            let r = ui.add(egui::TextEdit::singleline(&mut name).hint_text("Folder name").desired_width(150.0));
+            let r = ui.add(egui::TextEdit::singleline(&mut name).hint_text(i18n::t("Folder name")).desired_width(150.0));
             r.request_focus();
             let ok = !name.trim().is_empty();
-            if ok && (ui.small_button("Make").clicked() || (r.lost_focus() && ui.input(|i| i.key_pressed(egui::Key::Enter)))) {
+            if ok && (ui.small_button(i18n::t("Make")).clicked() || (r.lost_focus() && ui.input(|i| i.key_pressed(egui::Key::Enter)))) {
                 if sh.op_multi.is_empty() {
                     sh.empty_folders.insert(name.trim().to_string());
                     keep = false;
                 } else {
                     acts.push(TpAct::GroupMany(sh.op_multi.iter().copied().collect(), name.trim().to_string()));
                 }
-            } else if ui.small_button("Cancel").clicked() || ui.input(|i| i.key_pressed(egui::Key::Escape)) {
+            } else if ui.small_button(i18n::t("Cancel")).clicked() || ui.input(|i| i.key_pressed(egui::Key::Escape)) {
                 keep = false;
             }
         });
@@ -599,20 +601,20 @@ fn toolpaths(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Option
     if !sh.op_multi.is_empty() && sh.new_folder.is_none() {
         ui.horizontal(|ui| {
             ui.label(RichText::new(format!("{} picked", sh.op_multi.len())).size(11.0).color(theme::TEXT_DIM));
-            if ui.small_button("Group…").tip("Put the picked toolpaths in a new folder").clicked() {
+            if ui.small_button(i18n::t("Group…")).tip(i18n::t("Put the picked toolpaths in a new folder")).clicked() {
                 sh.new_folder = Some(String::new());
             }
             if !names.is_empty() {
-                ui.menu_button("Move to ▾", |ui| {
+                ui.menu_button(i18n::t("Move to ▾"), |ui| {
                     for g in names.iter().map(String::as_str).chain([""]) {
-                        if ui.button(if g.is_empty() { "No folder" } else { g }).clicked() {
+                        if ui.button(if g.is_empty() { i18n::t("No folder") } else { g }).clicked() {
                             acts.push(TpAct::GroupMany(sh.op_multi.iter().copied().collect(), g.into()));
                             ui.close();
                         }
                     }
                 });
             }
-            if ui.small_button("Clear").clicked() {
+            if ui.small_button(i18n::t("Clear")).clicked() {
                 sh.op_multi.clear();
             }
         });
@@ -644,7 +646,7 @@ fn toolpaths(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Option
     let filtered = sh.tp_this_sheet || sh.tp_layer >= 0;
     if filtered && heads.iter().all(|h| h.1.is_empty()) && !doc.ops.is_empty() {
         ui.add_space(8.0);
-        ui.label(RichText::new("No toolpath matches these filters.").color(theme::TEXT_DIM));
+        ui.label(RichText::new(i18n::t("No toolpath matches these filters.")).color(theme::TEXT_DIM));
     }
     ui.spacing_mut().item_spacing.y = 0.0;
     for (head, ops) in &heads {
@@ -660,7 +662,7 @@ fn toolpaths(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Option
                     ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                         let mut v = tool.slot;
                         let r = ui.add(egui::DragValue::new(&mut v).range(0..=99).prefix("T").custom_formatter(|n, _| if n < 1.0 { "–".into() } else { format!("{n:.0}") }))
-                            .tip("Tool-changer number for this bit (T in the G-code); – = numbered in cutting order");
+                            .tip(i18n::t("Tool-changer number for this bit (T in the G-code); – = numbered in cutting order"));
                         if v != tool.slot {
                             acts.push(TpAct::Slot(*t, v, r.drag_started() || !r.dragged()));
                         }
@@ -684,10 +686,10 @@ fn toolpaths(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Option
             p.rect_filled(hr, 4.0, if drop_here { theme::ACCENT.gamma_multiply(0.35) } else if hresp.hovered() { theme::ROW_HOVER } else { Color32::TRANSPARENT });
             icons::paint(ui, if shut { "chevron-right" } else { "chevron-down" }, egui::Rect::from_min_size(hr.left_top() + egui::vec2(4.0, 5.0), egui::vec2(14.0, 14.0)), 14.0, theme::TEXT_DIM);
             let title = match head {
-                Head::Folder(n) if n.is_empty() => "Not in a folder".to_string(),
+                Head::Folder(n) if n.is_empty() => i18n::t("Not in a folder").to_string(),
                 Head::Folder(n) => n.clone(),
-                Head::Sheet(j) => format!("{}{}", doc.sheet_name(*j), if here { "  ·  this sheet" } else { "" }),
-                _ => "Cutting nothing yet".into(),
+                Head::Sheet(j) => format!("{}{}", doc.sheet_name(*j), if here { i18n::t("  ·  this sheet") } else { "" }),
+                _ => i18n::t("Cutting nothing yet").into(),
             };
             ui.painter().text(hr.left_center() + egui::vec2(22.0, 0.0), egui::Align2::LEFT_CENTER, format!("{title}  ({})", ops.len()), theme::font(12.0), if here { theme::ACCENT } else { theme::TEXT });
             if let (Some(f), Some(i)) = (&folder, hresp.dnd_release_payload::<usize>()) {
@@ -699,25 +701,25 @@ fn toolpaths(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Option
             let all_on = !ops.is_empty() && ops.iter().all(|&i| doc.ops[i].visible);
             let br = egui::Rect::from_min_max(egui::pos2(hr.right() - 56.0, hr.top()), hr.right_bottom());
             let mut b = ui.new_child(egui::UiBuilder::new().max_rect(br).layout(egui::Layout::right_to_left(egui::Align::Center)));
-            if !ops.is_empty() && IconButton::new(if all_on { "eye" } else { "eye-off" }).size(14.0).padding(3.0).tip(if all_on { "Hide every toolpath here" } else { "Show every toolpath here" }).show(&mut b).clicked() {
+            if !ops.is_empty() && IconButton::new(if all_on { "eye" } else { "eye-off" }).size(14.0).padding(3.0).tip(if all_on { i18n::t("Hide every toolpath here") } else { i18n::t("Show every toolpath here") }).show(&mut b).clicked() {
                 acts.push(TpAct::Show(ops.clone(), !all_on));
             }
             if let Some(f) = folder.as_ref().filter(|f| !f.is_empty()) {
-                if !ops.is_empty() && IconButton::new("export").size(14.0).padding(3.0).tip("Export only this folder's toolpaths").show(&mut b).clicked() {
+                if !ops.is_empty() && IconButton::new("export").size(14.0).padding(3.0).tip(i18n::t("Export only this folder's toolpaths")).show(&mut b).clicked() {
                     sh.push(format!("exportgroup:{f}"));
                 }
                 let f = f.clone();
-                hresp.tip("Click to open or shut · drag toolpaths here · right-click to rename").context_menu(|ui| {
+                hresp.tip(i18n::t("Click to open or shut · drag toolpaths here · right-click to rename")).context_menu(|ui| {
                     let id = ui.id().with(("rename-op-group", &f));
                     let mut name = ui.data(|d| d.get_temp::<String>(id)).unwrap_or_else(|| f.clone());
-                    ui.label("Rename folder");
+                    ui.label(i18n::t("Rename folder"));
                     let e = ui.text_edit_singleline(&mut name);
                     if e.lost_focus() && ui.input(|i| i.key_pressed(egui::Key::Enter)) && !name.trim().is_empty() {
                         acts.push(TpAct::Rename(f.clone(), name.trim().into()));
                         ui.close();
                     }
                     ui.data_mut(|d| d.insert_temp(id, name));
-                    if crate::widgets::menu_item(ui, "Remove the folder (its toolpaths stay)", "").clicked() {
+                    if crate::widgets::menu_item(ui, i18n::t("Remove the folder (its toolpaths stay)"), "").clicked() {
                         acts.push(TpAct::Rename(f.clone(), String::new()));
                         sh.empty_folders.remove(&f);
                         ui.close();
@@ -746,12 +748,12 @@ fn toolpaths(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Option
             None => format!("This sheet: about {t}"),
         };
         ui.add_space(4.0);
-        ui.label(RichText::new(line).size(11.0).color(theme::TEXT_DIM)).tip("Machine time estimate. Set a board price and shop rate in Job Setup to see the cost.");
+        ui.label(RichText::new(line).size(11.0).color(theme::TEXT_DIM)).tip(i18n::t("Machine time estimate. Set a board price and shop rate in Job Setup to see the cost."));
     }
     // a new folder at the end of the folder list (the dropdown row has no room)
     if sh.tp_group == VIEW_FOLDERS && !doc.ops.is_empty() && sh.new_folder.is_none() {
         ui.add_space(6.0);
-        if ui.add(egui::Label::new(RichText::new("+ New folder").size(12.0).color(theme::ACCENT)).sense(egui::Sense::click())).tip("A new, empty folder: then drag toolpaths onto it").clicked() {
+        if ui.add(egui::Label::new(RichText::new(i18n::t("+ New folder")).size(12.0).color(theme::ACCENT)).sense(egui::Sense::click())).tip(i18n::t("A new, empty folder: then drag toolpaths onto it")).clicked() {
             sh.new_folder = Some(String::new());
             sh.op_multi.clear();
         }
@@ -953,7 +955,7 @@ fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Docume
     p.text(egui::pos2(tx, rect.top() + 4.0), egui::Align2::LEFT_TOP, format!("{}  ·  {side}", op.name), theme::font(12.0), tc);
     if minutes > 0.0 {
         // rough cutting time, right-aligned on the name line
-        let t = if minutes < 1.0 { "<1 min".to_string() } else if minutes < 90.0 { format!("{minutes:.0} min") } else { format!("{:.1} h", minutes / 60.0) };
+        let t = if minutes < 1.0 { i18n::t("<1 min").to_string() } else if minutes < 90.0 { format!("{minutes:.0} min") } else { format!("{:.1} h", minutes / 60.0) };
         // from before the last edit: faded until the toolpaths are worked out again
         let g = p.layout_no_wrap(t, theme::font(11.0), tc.gamma_multiply(if old { 0.3 } else { 0.6 }));
         let at = egui::pos2(rect.right() - 34.0 - g.size().x, rect.top() + 5.0);
@@ -963,7 +965,7 @@ fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Docume
     // where it cuts, when that is not simply its picked shapes on every sheet
     let place = match (op.sheet_scope, op.all_vectors) {
         (s, true) if s >= 0 => format!("all vectors, sheet {}  ·  ", s + 1),
-        (_, true) => "all vectors  ·  ".to_string(),
+        (_, true) => i18n::t("all vectors  ·  ").to_string(),
         (s, _) if s >= 0 => format!("{} only  ·  ", doc.sheet_name(s as usize)),
         _ => String::new(),
     };
@@ -976,7 +978,7 @@ fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Docume
         let mut job = egui::text::LayoutJob::default();
         let fmt = |c: Color32| egui::TextFormat { font_id: font.clone(), color: c, ..Default::default() };
         if on.is_empty() {
-            job.append("no sheet", 0.0, fmt(theme::ORANGE));
+            job.append(i18n::t("no sheet"), 0.0, fmt(theme::ORANGE));
         } else if on.len() == used.len() && on.len() > 3 {
             job.append(&format!("all {}", on.len()), 0.0, fmt(if sh.op_sel == Some(i) { Color32::WHITE } else { theme::ACCENT }));
         } else {
@@ -993,7 +995,7 @@ fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Docume
     }
     let eye = egui::Rect::from_center_size(egui::pos2(rect.right() - 14.0, rect.center().y), egui::vec2(21.0, 21.0));
     let mut e = ui.new_child(egui::UiBuilder::new().max_rect(eye).layout(egui::Layout::centered_and_justified(egui::Direction::LeftToRight))); // new_child: `put` would advance the row cursor
-    let er = IconButton::new(if op.visible { "eye" } else { "eye-off" }).size(15.0).padding(3.0).tip(if op.visible { "Hide this toolpath's preview" } else { "Show this toolpath's preview" }).show(&mut e);
+    let er = IconButton::new(if op.visible { "eye" } else { "eye-off" }).size(15.0).padding(3.0).tip(if op.visible { i18n::t("Hide this toolpath's preview") } else { i18n::t("Show this toolpath's preview") }).show(&mut e);
     if er.clicked() {
         acts.push(TpAct::Toggle(i));
     } else if resp.double_clicked() {
@@ -1015,7 +1017,7 @@ fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Docume
     }
     resp.context_menu(|ui| {
         // the list order is the cutting order (per bit): pockets and carving before the cut-out
-        for (label, act) in [("Edit…", TpAct::Edit(i)), ("Duplicate", TpAct::Duplicate(i)), ("Cut Earlier (move up)", TpAct::Move(i, -1)), ("Cut Later (move down)", TpAct::Move(i, 1))] {
+        for (label, act) in [(i18n::t("Edit…"), TpAct::Edit(i)), (i18n::t("Duplicate"), TpAct::Duplicate(i)), (i18n::t("Cut Earlier (move up)"), TpAct::Move(i, -1)), (i18n::t("Cut Later (move down)"), TpAct::Move(i, 1))] {
             if crate::widgets::menu_item(ui, label, "").clicked() {
                 acts.push(act);
                 ui.close();
@@ -1025,7 +1027,7 @@ fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Docume
         // sheet hard)
         if doc.sheets.len() > 1 {
             crate::widgets::menu_separator(ui);
-            if op.sheet_scope >= 0 && crate::widgets::menu_item(ui, "Cut on all sheets", "").clicked() {
+            if op.sheet_scope >= 0 && crate::widgets::menu_item(ui, i18n::t("Cut on all sheets"), "").clicked() {
                 acts.push(TpAct::SheetScope(i, -1));
                 ui.close();
             }
@@ -1038,15 +1040,15 @@ fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Docume
         if op.layer_scope < 0 && !op.all_vectors && op.group_scope == 0 && own_layers.len() == 1 {
             let l = *own_layers.iter().next().unwrap_or(&0);
             let name = doc.layers.get(l as usize).map_or(String::new(), |x| x.name.clone());
-            if crate::widgets::menu_item(ui, &format!("Cut layer “{name}” on every sheet"), "").on_hover_text("Instead of its picked vectors: everything on that layer, on every sheet, including vectors added later").clicked() {
+            if crate::widgets::menu_item(ui, &format!("Cut layer “{name}” on every sheet"), "").on_hover_text(i18n::t("Instead of its picked vectors: everything on that layer, on every sheet, including vectors added later")).clicked() {
                 acts.push(TpAct::LayerEverywhere(i, l));
                 ui.close();
             }
         }
         crate::widgets::menu_separator(ui);
-        ui.label(RichText::new("Folder").small().color(theme::TEXT_DIM));
+        ui.label(RichText::new(i18n::t("Folder")).small().color(theme::TEXT_DIM));
         for g in groups.iter().map(String::as_str).chain([""]) {
-            let label = if g.is_empty() { "No folder" } else { g };
+            let label = if g.is_empty() { i18n::t("No folder") } else { g };
             if ui.radio(op.op_group == g, label).clicked() {
                 acts.push(TpAct::Group(i, g.into()));
                 ui.close();
@@ -1054,7 +1056,7 @@ fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Docume
         }
         let id = ui.id().with("new-op-group");
         let mut name = ui.data(|d| d.get_temp::<String>(id)).unwrap_or_default();
-        let r = ui.add(egui::TextEdit::singleline(&mut name).hint_text("New folder…").desired_width(160.0));
+        let r = ui.add(egui::TextEdit::singleline(&mut name).hint_text(i18n::t("New folder…")).desired_width(160.0));
         if r.lost_focus() && ui.input(|inp| inp.key_pressed(egui::Key::Enter)) && !name.trim().is_empty() {
             acts.push(TpAct::Group(i, name.trim().into()));
             name.clear();
@@ -1067,7 +1069,7 @@ fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Docume
 
 /// Board fields driven by variables (Qt Canvas::boardBindings): "W = board-w  ·  Thickness = t2"
 pub fn board_bindings(doc: &gcarve_core::document::Document) -> String {
-    [("w", "W"), ("h", "H"), ("t", "Thickness"), ("safeZ", "Safe Z"), ("retractZ", "Retract Z")]
+    [("w", "W"), ("h", "H"), ("t", i18n::t("Thickness")), ("safeZ", i18n::t("Safe Z")), ("retractZ", i18n::t("Retract Z"))]
         .iter()
         .filter_map(|(k, label)| doc.material.bind.get(*k).map(|e| format!("{label} = {e}")))
         .collect::<Vec<_>>()
