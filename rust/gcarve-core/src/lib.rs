@@ -5,6 +5,7 @@
 pub mod adaptive;
 pub mod arcfit;
 pub mod boxjoint;
+pub mod c2d;
 pub mod cam;
 pub mod catalog;
 pub mod clipart;
@@ -19,6 +20,7 @@ pub mod gimport;
 pub mod gerber;
 pub mod hpgl;
 pub mod grbl;
+pub mod jigsaw;
 pub mod job;
 pub mod nest;
 pub mod order;

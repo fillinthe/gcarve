@@ -73,6 +73,40 @@ impl Gray {
     }
 }
 
+/// Halftone: dots on a grid `spacing` apart over a picture `width` wide (height by its aspect; bottom-left at 0,0),
+/// each dot's area following the darkness (auto levels), so the tone reads right from a distance. `max` = the
+/// biggest dot's diameter as a fraction of the spacing (1 = touching), `hex` = every other row shifted half a
+/// step (rounder look, tighter packing). Dots under 4 % of the spacing are left out (white). Returns (centre, radius).
+pub fn halftone(g: &Gray, width: f64, spacing: f64, max: f64, invert: bool, hex: bool) -> Vec<(crate::geom::Pt, f64)> {
+    let mut out = Vec::new();
+    if g.w < 2 || g.h < 2 || !(width > 0.0 && spacing > 0.0 && max > 0.0) {
+        return out;
+    }
+    let height = width * g.h as f64 / g.w as f64;
+    let (lo, hi) = g.levels();
+    let row_step = if hex { spacing * 3f64.sqrt() / 2.0 } else { spacing };
+    let rows = ((height / row_step).floor() as usize + 1).min(5000);
+    let cols = ((width / spacing).floor() as usize + 1).min(5000);
+    let r_max = spacing * max / 2.0;
+    for j in 0..rows {
+        let y = j as f64 * row_step;
+        let shift = if hex && j % 2 == 1 { spacing / 2.0 } else { 0.0 };
+        for i in 0..cols {
+            let x = i as f64 * spacing + shift;
+            if x > width + 1e-9 || y > height + 1e-9 {
+                continue;
+            }
+            let d = ((g.dark(x / width, y / height) - lo) / (hi - lo).max(1e-6)).clamp(0.0, 1.0);
+            let d = if invert { 1.0 - d } else { d };
+            let r = r_max * d.sqrt(); // area ∝ darkness
+            if r >= 0.02 * spacing && out.len() < 400_000 {
+                out.push((crate::geom::pt(x, y), r));
+            }
+        }
+    }
+    out
+}
+
 /// A 3D model drawn as a lit picture for Sketch carving (VCarve "Sketch Carving" from a model): light from the
 /// upper left, flat tops and the base white (nothing carved), slopes turned away darker. Grey pixels, row 0 at the
 /// top, at most `max_px` on the long side.
@@ -106,6 +140,23 @@ pub fn shaded_relief(r: &crate::document::Relief, max_px: usize) -> (Vec<u8>, us
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn halftone_dots_grow_with_darkness_and_light_parts_stay_bare() {
+        // 100 × 50 grey ramp: white on the left, black on the right
+        let (w, h) = (100usize, 50usize);
+        let g = Gray { w, h, px: (0..w * h).map(|i| (255.0 * (1.0 - (i % w) as f64 / (w - 1) as f64)) as u8).collect() };
+        let dots = halftone(&g, 10.0, 0.5, 0.9, false, false);
+        assert!(dots.iter().all(|(p, r)| p.x <= 10.0 && p.y <= 5.0 && *r <= 0.225 + 1e-9));
+        assert!(dots.iter().all(|(p, _)| p.x > 0.4), "the white edge stays bare");
+        let r_at = |x: f64| dots.iter().filter(|(p, _)| (p.x - x).abs() < 1e-9).map(|d| d.1).next().unwrap_or(0.0);
+        assert!(r_at(2.5) < r_at(5.0) && r_at(5.0) < r_at(10.0) && (r_at(10.0) - 0.225).abs() < 1e-6);
+        // inverted: the dark side is bare instead
+        assert!(halftone(&g, 10.0, 0.5, 0.9, true, false).iter().all(|(p, _)| p.x < 9.6));
+        // hex: odd rows shifted half a step, rows closer
+        let hx = halftone(&g, 10.0, 0.5, 0.9, false, true);
+        assert!(hx.iter().any(|(p, _)| (p.y - 0.5 * 3f64.sqrt() / 2.0).abs() < 1e-9 && ((p.x - 0.25) / 0.5).fract().abs() < 1e-9));
+    }
 
     #[test]
     fn a_shaded_model_is_white_on_flats_and_dark_on_the_slopes_facing_away() {

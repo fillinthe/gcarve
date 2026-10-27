@@ -2,6 +2,8 @@
 //! scale one axis; the opposite side stays put), a rotate handle above the top edge (any angle, Shift = 15° steps)
 //! around the pivot, and the pivot itself (drag it anywhere; it starts at the selection's centre). `impl Canvas`.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use crate::canvas::{Canvas, Drag, View, HIT_PX};
 use crate::theme;
 use eframe::egui::{self, Color32, Pos2, Stroke};
@@ -100,7 +102,7 @@ impl Canvas {
         let m = match self.drag {
             Drag::Pivot => {
                 self.pivot = Some((self.snapped(w), self.sel.clone()));
-                return "Pivot: rotation centre".into();
+                return i18n::t("Pivot: rotation centre").into();
             }
             Drag::Rotate => {
                 let c = self.xf_pivot;

@@ -39,7 +39,7 @@ pub fn bar(ui: &mut Ui, keep: Rect, mut menus: impl FnMut(&mut Ui, &mut Vec<Resp
             // phones: every menu under one ☰ button (the titles don't fit in a row)
             if ui.ctx().content_rect().width() < 600.0 {
                 let mut inner = Vec::new();
-                tops.push(ui.menu_button("☰ Menu", |ui| menus(ui, &mut inner)).response);
+                tops.push(ui.menu_button(crate::i18n::t("☰ Menu"), |ui| menus(ui, &mut inner)).response);
             } else {
                 menus(ui, &mut tops);
             }
@@ -64,12 +64,12 @@ pub fn bar(ui: &mut Ui, keep: Rect, mut menus: impl FnMut(&mut Ui, &mut Vec<Resp
 pub fn search_box(ui: &mut Ui) -> bool {
     let wide = ui.ctx().content_rect().width() >= 1000.0;
     let (r, resp) = ui.allocate_exact_size(egui::vec2(if wide { 240.0 } else { 30.0 }, 22.0), egui::Sense::click());
-    let resp = resp.tip("Search every command (⌘K)");
+    let resp = resp.tip(crate::i18n::t("Search every command (⌘K)"));
     let p = ui.painter();
     p.rect(r, theme::RADIUS as f32, theme::FIELD, egui::Stroke::new(1.0, if resp.hovered() { theme::BORDER_STRONG } else { theme::BORDER }), egui::StrokeKind::Inside);
     icons::paint(ui, "search", Rect::from_min_size(r.left_top() + egui::vec2(8.0, 4.0), egui::vec2(14.0, 14.0)), 14.0, theme::TEXT_DIM);
     if wide {
-        ui.painter().text(r.left_center() + egui::vec2(28.0, 0.0), egui::Align2::LEFT_CENTER, "Search commands…", theme::font(12.0), theme::TEXT.gamma_multiply(0.55));
+        ui.painter().text(r.left_center() + egui::vec2(28.0, 0.0), egui::Align2::LEFT_CENTER, crate::i18n::t("Search commands…"), theme::font(12.0), theme::TEXT.gamma_multiply(0.55));
         let kb = Rect::from_min_max(egui::pos2(r.right() - 34.0, r.top() + 4.0), egui::pos2(r.right() - 5.0, r.bottom() - 4.0));
         ui.painter().rect_stroke(kb, 4.0, egui::Stroke::new(1.0, theme::BORDER_STRONG), egui::StrokeKind::Inside);
         ui.painter().text(kb.center(), egui::Align2::CENTER_CENTER, theme::keys("⌘K"), theme::font(10.0), theme::TEXT.gamma_multiply(0.6));

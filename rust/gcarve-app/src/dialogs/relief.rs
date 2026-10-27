@@ -1,6 +1,8 @@
 //! 3D Models (Qt ReliefDialog.qml): import STL, place / size / depth / mirror, remove, and start a 3D Model toolpath.
 //! Modeless. Reliefs are saved as source path + placement; on the desktop they are re-rasterized on load.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use super::{hint, unit_label, Fields, Host};
 use crate::widgets::TipExt;
 use eframe::egui;
@@ -57,13 +59,13 @@ impl ReliefDialog {
             }
         }
         let have = !doc.reliefs.is_empty();
-        crate::widgets::Dialog::new("3D Models").open(&mut open).close_footer().width(520.0).show(ctx, |ui| {
+        crate::widgets::Dialog::new(i18n::t("3D Models")).open(&mut open).close_footer().width(520.0).show(ctx, |ui| {
             ui.horizontal_top(|ui| {
                 ui.vertical(|ui| {
                     ui.set_width(200.0);
                     egui::ScrollArea::vertical().max_height(220.0).show(ui, |ui| {
                         if !have {
-                            hint(ui, "No 3D models yet");
+                            hint(ui, i18n::t("No 3D models yet"));
                         }
                         for (i, r) in doc.reliefs.iter().enumerate() {
                             let label = if r.height.is_empty() { format!("{}  (file missing)", r.name) } else { r.name.clone() };
@@ -75,12 +77,12 @@ impl ReliefDialog {
                 });
                 ui.add_enabled_ui(have, |ui| {
                     egui::Grid::new("relief").num_columns(2).spacing([12.0, 6.0]).show(ui, |ui| {
-                        ui.label("Name");
+                        ui.label(i18n::t("Name"));
                         if ui.add(crate::widgets::field(&mut self.name).desired_width(200.0)).lost_focus() {
                             apply = true;
                         }
                         ui.end_row();
-                        for (key, label) in [("x", "X"), ("y", "Y"), ("w", "Width"), ("h", "Height")] {
+                        for (key, label) in [("x", "X"), ("y", "Y"), ("w", i18n::t("Width")), ("h", i18n::t("Height"))] {
                             ui.label(unit_label(label, doc));
                             if self.f.ui(ui, key, doc) {
                                 apply = true;
@@ -88,30 +90,30 @@ impl ReliefDialog {
                             ui.end_row();
                         }
                         ui.label("");
-                        crate::widgets::checkbox(ui, &mut self.keep_aspect, "Keep proportions");
+                        crate::widgets::checkbox(ui, &mut self.keep_aspect, i18n::t("Keep proportions"));
                         ui.end_row();
-                        ui.label(unit_label("Depth", doc)).tip("Total carved depth: the model's top sits at the board surface, its base this far down");
+                        ui.label(unit_label(i18n::t("Depth"), doc)).tip(i18n::t("Total carved depth: the model's top sits at the board surface, its base this far down"));
                         if self.f.ui(ui, "depth", doc) {
                             apply = true;
                         }
                         ui.end_row();
                         ui.label("");
                         let mut m = doc.reliefs.get(self.cur).map(|r| r.mirror).unwrap_or(false);
-                        if crate::widgets::checkbox(ui, &mut m, "Mirror").changed() {
+                        if crate::widgets::checkbox(ui, &mut m, i18n::t("Mirror")).changed() {
                             mirror = Some(m);
                         }
                         ui.end_row();
                         // a relief made from a picture: how its brightness becomes height
                         if let Some(r) = doc.reliefs.get(self.cur).filter(|r| !r.pic.is_empty()) {
                             let (mut inv, mut smooth, mut levels) = (r.pic_invert, r.pic_smooth, r.pic_levels);
-                            ui.label("Picture");
-                            let mut changed = crate::widgets::checkbox(ui, &mut inv, "Dark parts stand high").on_hover_text("Off: light parts stay high (white = the surface). On: a lithophane, thick where dark and thin where light, to hold up to a light behind it").changed();
+                            ui.label(i18n::t("Picture"));
+                            let mut changed = crate::widgets::checkbox(ui, &mut inv, i18n::t("Dark parts stand high")).on_hover_text(i18n::t("Off: light parts stay high (white = the surface). On: a lithophane, thick where dark and thin where light, to hold up to a light behind it")).changed();
                             ui.end_row();
-                            ui.label("Smoothing");
-                            changed |= ui.add(egui::DragValue::new(&mut smooth).range(0..=20).suffix(" px")).on_hover_text("Blurs grain and noise so the surface doesn't step").changed();
+                            ui.label(i18n::t("Smoothing"));
+                            changed |= ui.add(egui::DragValue::new(&mut smooth).range(0..=20).suffix(i18n::t(" px"))).on_hover_text(i18n::t("Blurs grain and noise so the surface doesn't step")).changed();
                             ui.end_row();
                             ui.label("");
-                            changed |= crate::widgets::checkbox(ui, &mut levels, "Auto contrast").on_hover_text("Stretches the picture's own light and dark over the whole depth").changed();
+                            changed |= crate::widgets::checkbox(ui, &mut levels, i18n::t("Auto contrast")).on_hover_text(i18n::t("Stretches the picture's own light and dark over the whole depth")).changed();
                             ui.end_row();
                             if changed {
                                 pic_edit = Some((inv, smooth, levels));
@@ -121,28 +123,28 @@ impl ReliefDialog {
                 });
             });
             ui.horizontal(|ui| {
-                if ui.button("Import STL…").clicked() {
+                if ui.button(i18n::t("Import STL…")).clicked() {
                     import = true;
                 }
-                if ui.button("From a picture…").on_hover_text("A photo or logo becomes the height: light parts stay high, dark parts are carved deep (or the other way round for a lithophane)").clicked() {
+                if ui.button(i18n::t("From a picture…")).on_hover_text(i18n::t("A photo or logo becomes the height: light parts stay high, dark parts are carved deep (or the other way round for a lithophane)")).clicked() {
                     picture = true;
                 }
-                if ui.add_enabled(have, egui::Button::new("Remove")).clicked() {
+                if ui.add_enabled(have, egui::Button::new(i18n::t("Remove"))).clicked() {
                     remove = true;
                 }
                 ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                    if ui.add_enabled(have, crate::widgets::Button::new("Add 3D toolpath").primary(true)).clicked() {
+                    if ui.add_enabled(have, crate::widgets::Button::new(i18n::t("Add 3D toolpath")).primary(true)).clicked() {
                         next = Next::Toolpath;
                     }
                 });
             });
-            hint(ui, "The model's (or picture's) footprint is stretched to the width and height; its height range maps to the depth. Use a ball-nose bit for finishing and an end mill for roughing. A lithophane: tick Dark parts stand high, cut it from white acrylic or Corian and keep the thinnest part about 1 / 16 in thick (board thickness minus depth).");
+            hint(ui, i18n::t("The model's (or picture's) footprint is stretched to the width and height; its height range maps to the depth. Use a ball-nose bit for finishing and an end mill for roughing. A lithophane: tick Dark parts stand high, cut it from white acrylic or Corian and keep the thinnest part about 1 / 16 in thick (board thickness minus depth)."));
         });
         if import {
-            host.files.pick_into(ctx, "3D models (.stl .3mf)", &["stl", "3mf"], "stl");
+            host.files.pick_into(ctx, i18n::t("3D models (.stl .3mf)"), &["stl", "3mf"], "stl");
         }
         if picture {
-            host.files.pick_into(ctx, "Pictures (.png .jpg .webp)", &["png", "jpg", "jpeg", "webp"], "relief-picture");
+            host.files.pick_into(ctx, i18n::t("Pictures (.png .jpg .webp)"), &["png", "jpg", "jpeg", "webp"], "relief-picture");
         }
         if let Some((inv, smooth, levels)) = pic_edit.filter(|_| have) {
             let doc = &mut host.canvas.doc;

@@ -1,6 +1,8 @@
 //! Opening files: the picker (native dialog or the browser's file input) and drag-and-drop, both delivering
 //! (name, bytes); load() turns them into the document (.tlp = project, .svg / .dxf = import into the current one).
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 #[cfg(target_arch = "wasm32")]
 use gcarve_ui::webfile::{blob_url, download};
 use gcarve_core::document::Document;
@@ -70,9 +72,9 @@ impl Files {
         }
         #[cfg_attr(target_arch = "wasm32", allow(unreachable_code))]
         let dialog = if import {
-            rfd::AsyncFileDialog::new().set_title("Import into this document").add_filter("All supported", IMPORT_EXTS).add_filter("Vector files", VECTOR_EXTS).add_filter("LightBurn project", &["lbrn2"]).add_filter("GSketch model", &["gsk"]).add_filter("G-code", GCODE_EXTS).add_filter("Images to trace", IMAGE_EXTS).add_filter("3D models", &["stl", "3mf"])
+            rfd::AsyncFileDialog::new().set_title(i18n::t("Import into this document")).add_filter(i18n::t("All supported"), IMPORT_EXTS).add_filter(i18n::t("Vector files"), VECTOR_EXTS).add_filter(i18n::t("LightBurn project"), &["lbrn2"]).add_filter(i18n::t("GSketch model"), &["gsk"]).add_filter(i18n::t("G-code"), GCODE_EXTS).add_filter(i18n::t("Images to trace"), IMAGE_EXTS).add_filter(i18n::t("3D models"), &["stl", "3mf"])
         } else {
-            rfd::AsyncFileDialog::new().add_filter("All supported", OPEN_EXTS).add_filter("GCarve project", &["tlp"]).add_filter("Job template", &["tlpt"]).add_filter("VCarve project", &["crv"]).add_filter("GSketch model", &["gsk"]).add_filter("Vector files", VECTOR_EXTS).add_filter("LightBurn project", &["lbrn2"]).add_filter("G-code", GCODE_EXTS)
+            rfd::AsyncFileDialog::new().add_filter(i18n::t("All supported"), OPEN_EXTS).add_filter(i18n::t("GCarve project"), &["tlp"]).add_filter(i18n::t("Job template"), &["tlpt"]).add_filter(i18n::t("VCarve project"), &["crv"]).add_filter(i18n::t("Carbide Create project"), &["c2d"]).add_filter(i18n::t("GSketch model"), &["gsk"]).add_filter(i18n::t("Vector files"), VECTOR_EXTS).add_filter(i18n::t("LightBurn project"), &["lbrn2"]).add_filter(i18n::t("G-code"), GCODE_EXTS)
         };
         let tx = self.tx.clone();
         let ctx = ctx.clone();
@@ -166,7 +168,7 @@ impl Files {
     /// Save As (desktop): native dialog on its own thread; the chosen path comes back on `saved_rx` with `doc`.
     #[cfg(not(target_arch = "wasm32"))]
     pub fn save_project_as(&self, doc: u64, name: &str, bytes: Vec<u8>) {
-        let dialog = rfd::AsyncFileDialog::new().set_file_name(format!("{name}.tlp")).add_filter("GCarve project", &["tlp"]).add_filter("VCarve project", &["crv"]);
+        let dialog = rfd::AsyncFileDialog::new().set_file_name(format!("{name}.tlp")).add_filter(i18n::t("GCarve project"), &["tlp"]).add_filter(i18n::t("VCarve project"), &["crv"]);
         let (done, msg) = (self.saved_tx.clone(), self.msg_tx.clone());
         std::thread::spawn(move || {
             let Some(f) = pollster_block_on(dialog.save_file()) else { return };
@@ -339,7 +341,7 @@ pub fn open_with_os(path: &std::path::Path) {
 /// An HTML page in a new browser tab (blob URL, so it can print); Ok(false) = the tab was blocked, downloaded instead.
 #[cfg(target_arch = "wasm32")]
 pub fn open_html_tab(name: &str, html: &str) -> Result<bool, String> {
-    let window = web_sys::window().ok_or("no window")?;
+    let window = web_sys::window().ok_or(i18n::t("no window"))?;
     let url = blob_url(html.as_bytes(), "text/html;charset=utf-8")?;
     if window.open_with_url_and_target(&url, "_blank").ok().flatten().is_some() {
         return Ok(true); // the tab keeps the blob URL alive: not revoked
@@ -368,7 +370,7 @@ pub const GCODE_EXTS: &[&str] = &["tap", "nc", "gcode", "ngc", "cnc"];
 pub const VECTOR_EXTS: &[&str] = &["svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl"];
 /// what Import takes (everything Open does but whole projects), and Open
 pub const IMPORT_EXTS: &[&str] = &["svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl", "lbrn2", "gsk", "stl", "3mf", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg", "webp", "csv"];
-pub const OPEN_EXTS: &[&str] = &["tlp", "tlpt", "crv", "csv", "svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl", "lbrn2", "gsk", "stl", "3mf", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg", "webp"];
+pub const OPEN_EXTS: &[&str] = &["tlp", "tlpt", "crv", "c2d", "csv", "svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl", "lbrn2", "gsk", "stl", "3mf", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg", "webp"];
 /// Pictures File ▸ Open / Import send to Trace Image (dialogs/trace.rs).
 pub const IMAGE_EXTS: &[&str] = &["png", "jpg", "jpeg", "webp"];
 
@@ -381,6 +383,44 @@ pub enum Loaded {
     Project(Box<Document>, String),
     Imported(usize, String), // shapes added, note
     Error(String),
+}
+
+/// Carbide Create texts: set in the standard font, scaled to the width Carbide Create laid them out to (its fonts
+/// aren't in the file), standing on their bottom-left corner; toolpaths holding the text's placeholder id -(k + 1)
+/// get its letters.
+fn c2d_texts(d: &mut Document, texts: &[gcarve_core::c2d::C2dText]) {
+    use gcarve_core::geom::{bounds, Affine, Rect};
+    let mut letters: Vec<Vec<i32>> = Vec::new();
+    for t in texts {
+        let item = gcarve_core::document::TextItem { id: d.next_text_id, text: t.text.clone(), height: 1.0, ..Default::default() };
+        let (probe, _) = crate::text::build_text(&item, gcarve_core::geom::pt(0.0, 0.0), None);
+        let mut b = Rect::default();
+        probe.iter().for_each(|c| b.add_rect(&bounds(c)));
+        if probe.is_empty() || b.w() <= 0.0 {
+            letters.push(Vec::new());
+            continue;
+        }
+        let k = if t.width > 0.0 { t.width / b.w() } else { 1.0 };
+        let item = gcarve_core::document::TextItem { height: k, angle: t.angle, ..item };
+        let (glyphs, _) = crate::text::build_text(&item, gcarve_core::geom::pt(0.0, 0.0), None);
+        let mut g = Rect::default();
+        glyphs.iter().for_each(|c| g.add_rect(&bounds(c)));
+        let to = Affine::translate(t.at.x - g.x0, t.at.y - g.y0);
+        d.next_text_id += 1;
+        let group = d.new_group_id();
+        let ids: Vec<i32> = glyphs.iter().map(|c| {
+            let id = d.add(gcarve_core::geom::transformed(c, &to), None);
+            let s = d.find_mut(id).unwrap();
+            (s.text, s.group) = (item.id, group);
+            id
+        }).collect();
+        d.texts.push(item);
+        letters.push(ids);
+    }
+    for op in &mut d.ops {
+        op.shape_ids = op.shape_ids.iter().flat_map(|&id| if id < 0 { letters.get((-id - 1) as usize).cloned().unwrap_or_default() } else { vec![id] }).collect();
+    }
+    d.ops.retain(|o| !o.shape_ids.is_empty());
 }
 
 /// AutoCAD .dwg → DXF text for the DXF importer (acadrust; records it can't decode are skipped, not fatal).
@@ -399,9 +439,9 @@ fn dwg_to_dxf(bytes: &[u8]) -> Result<String, String> {
             let _ = out_pipe.as_mut().map(|o| o.read_to_end(&mut out));
             let _ = writer.join();
             return match child.wait() {
-                Ok(st) if st.success() => String::from_utf8(out).map_err(|_| "This DWG file could not be converted. Save it as DXF and open that.".to_string()),
+                Ok(st) if st.success() => String::from_utf8(out).map_err(|_| i18n::t("This DWG file could not be converted. Save it as DXF and open that.").to_string()),
                 Ok(_) if !out.is_empty() => Err(String::from_utf8_lossy(&out).into_owned()), // the helper's own message
-                _ => Err("This DWG file looks damaged: reading it failed. Save it as DXF from the program that made it and open that.".into()),
+                _ => Err(i18n::t("This DWG file looks damaged: reading it failed. Save it as DXF from the program that made it and open that.").into()),
             };
         }
     }
@@ -421,14 +461,14 @@ fn helper_exe() -> Option<PathBuf> {
 /// The in-process read (the helper process and the web build use it).
 pub(crate) fn dwg_to_dxf_inproc(bytes: &[u8]) -> Result<String, String> {
     let read = std::panic::catch_unwind(|| acadrust::DwgReader::from_stream_with_options(std::io::Cursor::new(bytes), acadrust::DwgReadOptions::failsafe()).read_with_stats())
-        .map_err(|_| "This DWG file could not be read. Save it as DXF from the program that made it and open that.".to_string())?
+        .map_err(|_| i18n::t("This DWG file could not be read. Save it as DXF from the program that made it and open that.").to_string())?
         .map_err(|e| format!("This DWG file could not be read ({e}). Save it as DXF and open that."))?;
     if !read.stats.record_stream_read {
-        return Err("This DWG file looks damaged or isn't a drawing. Save it as DXF and open that.".into());
+        return Err(i18n::t("This DWG file looks damaged or isn't a drawing. Save it as DXF and open that.").into());
     }
     let mut out = Vec::new();
     std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| acadrust::DxfWriter::new(&read.document).write_to_writer(&mut out)))
-        .map_err(|_| "This DWG file could not be converted. Save it as DXF and open that.".to_string())?
+        .map_err(|_| i18n::t("This DWG file could not be converted. Save it as DXF and open that.").to_string())?
         .map_err(|e| format!("DWG: {e}"))?;
     Ok(String::from_utf8_lossy(&out).into_owned())
 }
@@ -442,7 +482,7 @@ pub fn dxf_to_dwg(dxf: &str) -> Result<Vec<u8>, String> {
         }
         acadrust::DwgWriter::write_to_vec(&doc).map_err(|e| format!("DWG: {e}"))
     })
-    .map_err(|_| "Could not write the DWG file. Export DXF instead.".to_string())?
+    .map_err(|_| i18n::t("Could not write the DWG file. Export DXF instead.").to_string())?
 }
 
 /// Start of the message for a refused archive (the app doesn't send that one to the problem log: it is not a fault).
@@ -455,7 +495,7 @@ fn archive_kind(ext: &str, bytes: &[u8]) -> Option<&'static str> {
         "zip" => return Some("zip"),
         "7z" => return Some("7z"),
         "rar" => return Some("rar"),
-        "gz" | "tgz" | "bz2" | "xz" | "tar" => return Some("compressed archive"),
+        "gz" | "tgz" | "bz2" | "xz" | "tar" => return Some(i18n::t("compressed archive")),
         _ => {}
     }
     let magic = |m: &[u8]| bytes.starts_with(m);
@@ -463,7 +503,7 @@ fn archive_kind(ext: &str, bytes: &[u8]) -> Option<&'static str> {
         return (ext != "3mf").then_some("zip");
     }
     if magic(&[0x1f, 0x8b]) || magic(b"7z\xbc\xaf\x27\x1c") || magic(b"Rar!\x1a\x07") {
-        return Some("compressed archive");
+        return Some(i18n::t("compressed archive"));
     }
     None
 }
@@ -504,11 +544,18 @@ pub fn load(doc: &mut Document, name: &str, bytes: &[u8]) -> Loaded {
             Err(e) => Loaded::Error(format!("Cut list: {e}")),
         },
         "tlpt" => match project::load_project(&text) {
-            Ok(d) => Loaded::Project(Box::new(d), "a job template, opened as a new project (Save asks where it goes)".into()),
+            Ok(d) => Loaded::Project(Box::new(d), i18n::t("a job template, opened as a new project (Save asks where it goes)").into()),
             Err(e) => Loaded::Error(e),
         },
         "crv" => match gcarve_core::crv::import_crv(bytes) {
             Ok((d, note)) => Loaded::Project(Box::new(d), note),
+            Err(e) => Loaded::Error(e),
+        },
+        "c2d" => match gcarve_core::c2d::import_c2d(bytes) {
+            Ok((mut d, note, texts)) => {
+                c2d_texts(&mut d, &texts);
+                Loaded::Project(Box::new(d), note)
+            }
             Err(e) => Loaded::Error(e),
         },
         "svg" | "dxf" | "pdf" | "ai" | "eps" | "lbrn2" | "plt" | "hpgl" => {
@@ -547,7 +594,7 @@ pub fn load(doc: &mut Document, name: &str, bytes: &[u8]) -> Loaded {
         "step" | "stp" | "sldprt" | "sldasm" | "iges" | "igs" | "f3d" | "ipt" | "3dm" => Loaded::Error(format!(
             "GCarve can't read .{ext} (3D CAD) files. In your CAD program export the outline you want to cut as DXF, DWG or SVG (or the shape as STL) and open that."
         )),
-        _ => Loaded::Error(format!("GCarve can't open .{ext} files. It opens GCarve projects (.tlp) and job templates (.tlpt), VCarve projects (.crv), SVG, DXF, AutoCAD DWG, PDF, Illustrator (.ai) and EPS, HPGL plot files (.plt), LightBurn (.lbrn2), 3D models (.stl .3mf), G-code (.tap .nc .gcode) and pictures (PNG, JPEG, WebP) to trace.")),
+        _ => Loaded::Error(format!("GCarve can't open .{ext} files. It opens GCarve projects (.tlp) and job templates (.tlpt), VCarve projects (.crv), Carbide Create projects (.c2d), SVG, DXF, AutoCAD DWG, PDF, Illustrator (.ai) and EPS, HPGL plot files (.plt), LightBurn (.lbrn2), 3D models (.stl .3mf), G-code (.tap .nc .gcode) and pictures (PNG, JPEG, WebP) to trace.")),
     }
 }
 
@@ -555,11 +602,11 @@ pub fn load(doc: &mut Document, name: &str, bytes: &[u8]) -> Loaded {
 /// apart, with the stock thickness) come in as closed vectors, one layer per thickness ("0.75in"). The 3D model
 /// itself stays GSketch's. Returns (vectors added, note).
 pub fn import_gsk(doc: &mut Document, text: &str) -> Result<(usize, String), String> {
-    let v: serde_json::Value = serde_json::from_str(text).map_err(|_| "That .gsk file is damaged.".to_string())?;
-    if v.get("app").and_then(|a| a.as_str()) != Some("GSketch") {
-        return Err("That isn't a GSketch model.".into());
+    let v: serde_json::Value = serde_json::from_str(text).map_err(|_| i18n::t("That .gsk file is damaged.").to_string())?;
+    if v.get("app").and_then(|a| a.as_str()) != Some(i18n::t("GSketch")) {
+        return Err(i18n::t("That isn't a GSketch model.").into());
     }
-    let panels = v.get("panels").and_then(|p| p.as_array()).filter(|p| !p.is_empty()).ok_or("This GSketch model has no flat panels to cut (or it was saved by an older GSketch: open it there and save it again).")?;
+    let panels = v.get("panels").and_then(|p| p.as_array()).filter(|p| !p.is_empty()).ok_or(i18n::t("This GSketch model has no flat panels to cut (or it was saved by an older GSketch: open it there and save it again)."))?;
     let pts = |l: &serde_json::Value| -> Option<Vec<gcarve_core::geom::Pt>> {
         let a = l.as_array()?;
         let out: Option<Vec<_>> = a.iter().map(|q| Some(gcarve_core::geom::pt(q.get(0)?.as_f64()?, q.get(1)?.as_f64()?))).collect();
@@ -764,6 +811,49 @@ mod gsk_tests {
         assert!(sq.c.closed && (r.w() - 1.0).abs() < 1e-6 && (r.h() - 1.0).abs() < 1e-6);
         assert!(doc.shapes.iter().any(|s| s.layer == p2 && !s.c.closed));
         assert!(OPEN_EXTS.contains(&"plt") && IMPORT_EXTS.contains(&"hpgl"));
+    }
+
+    #[test]
+    fn a_carbide_create_project_opens_with_its_text_carved() {
+        let json = r#"{"DOCUMENT_VALUES": {"WIDTH": 203.2, "HEIGHT": 101.6, "THICKNESS": 12.7, "RETRACT": 5},
+          "RECT_OBJECTS": [{"id": "r", "position": [101.6, 50.8], "width": 190.5, "height": 88.9, "rotation": 0}], "CIRCLE_OBJECTS": [], "CURVE_OBJECTS": [], "REGULAR_POLYGON_OBJECTS": [],
+          "TEXT_OBJECTS": [{"id": "t", "text": "OAK", "font": "Futura", "position": [50.8, 25.4], "width": 101.6, "rotation": 0}],
+          "TOOLPATH_OBJECTS": [{"name": "Letters", "ofset_dir": 3, "enabled": true, "end_depth": -5, "stepdown": 2, "stepover": 1, "speeds": {"feedrate": 1000, "plungerate": 300, "rpm": 18000}, "tool": {"diameter": 12.7, "angle": 60, "corner_radius": 0, "flutes": 2, "name": "60 V"}, "elements": [{"uuid": "t"}], "uuid": "a"}]}"#;
+        let mut doc = Document::default();
+        match load(&mut doc, "plaque.c2d", json.as_bytes()) {
+            Loaded::Project(d, note) => {
+                assert!(note.starts_with("Carbide Create"), "{note}");
+                assert_eq!(d.texts.len(), 1);
+                let letters: Vec<_> = d.shapes.iter().filter(|s| s.text == d.texts[0].id).collect();
+                assert!(letters.len() >= 3, "O, A, K and the O's hole");
+                let mut b = gcarve_core::geom::Rect::default();
+                letters.iter().for_each(|s| b.add_rect(&gcarve_core::geom::bounds(&s.c)));
+                assert!((b.x0 - 2.0).abs() < 1e-6 && (b.y0 - 1.0).abs() < 1e-6 && (b.w() - 4.0).abs() < 1e-6, "as wide as Carbide Create laid it out: {b:?}");
+                let op = &d.ops[0];
+                assert!(op.shape_ids.len() == letters.len() && op.shape_ids.iter().all(|id| letters.iter().any(|s| s.id == *id)), "the V-carve got the letters");
+                let gen = gcarve_core::pipeline::regenerate(&d);
+                assert!(gen.warnings.is_empty() && !gen.paths[0].is_empty(), "{:?}", gen.warnings);
+            }
+            _ => panic!("not opened"),
+        }
+    }
+
+    /// pictures of real ones: GCARVE_C2D_DIR=folder GCARVE_C2D_OUT=folder cargo test -p gcarve-app c2d_pictures -- --ignored
+    #[test]
+    #[ignore]
+    fn c2d_pictures() {
+        let (Ok(dir), Ok(out)) = (std::env::var("GCARVE_C2D_DIR"), std::env::var("GCARVE_C2D_OUT")) else { return };
+        for e in std::fs::read_dir(dir).unwrap().flatten() {
+            let name = e.file_name().to_string_lossy().into_owned();
+            let mut doc = Document::default();
+            if let Loaded::Project(d, note) = load(&mut doc, &name, &std::fs::read(e.path()).unwrap()) {
+                let gen = gcarve_core::pipeline::regenerate(&d);
+                println!("{name}: {note}; warnings {:?}", gen.warnings);
+                if let Some((rgba, w, h, _)) = crate::setupsheet::carved(&d, &gen, 300_000) {
+                    image::RgbaImage::from_raw(w, h, rgba).unwrap().save(format!("{out}/{name}.png")).unwrap();
+                }
+            }
+        }
     }
 
     #[test]

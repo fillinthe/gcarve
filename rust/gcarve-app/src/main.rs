@@ -1,5 +1,7 @@
 //! GCarve app entry: native window (Windows, macOS, Linux) or the browser canvas (wasm32). Same App either way.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 mod app;
 mod app_icons;
 mod allsheets;
@@ -69,10 +71,10 @@ fn main() -> eframe::Result {
         store::save("crash.txt", &format!("v{} {}: {info} {}", env!("CARGO_PKG_VERSION"), std::env::consts::OS, app::command_trail()));
     }));
     let options = eframe::NativeOptions {
-        viewport: eframe::egui::ViewportBuilder::default().with_title("GCarve").with_inner_size(dev_size().unwrap_or([1500.0, 900.0])).with_min_inner_size(if dev_size().is_some() { [320.0, 400.0] } else { [900.0, 500.0] }).with_icon(window_icon()),
+        viewport: eframe::egui::ViewportBuilder::default().with_title(i18n::t("GCarve")).with_inner_size(dev_size().unwrap_or([1500.0, 900.0])).with_min_inner_size(if dev_size().is_some() { [320.0, 400.0] } else { [900.0, 500.0] }).with_icon(window_icon()),
         ..Default::default()
     };
-    eframe::run_native("GCarve", options, Box::new(|cc| Ok(Box::new(app::App::new(cc)))))
+    eframe::run_native(i18n::t("GCarve"), options, Box::new(|cc| Ok(Box::new(app::App::new(cc)))))
 }
 
 #[cfg(target_arch = "wasm32")]
@@ -89,8 +91,8 @@ fn main() {
             if doc.get_element_by_id("gcarve-crash").is_none() {
                 if let Ok(el) = doc.create_element("div") {
                     el.set_id("gcarve-crash");
-                    let _ = el.set_attribute("style", "position:fixed;left:50%;top:16px;transform:translateX(-50%);z-index:9999;background:#3a1f1a;color:#fff;border:1px solid #e0603c;border-radius:8px;padding:12px 16px;font:14px system-ui,sans-serif;max-width:90vw");
-                    el.set_inner_html("GCarve hit a problem and stopped. It has been reported. <a href=\"\" style=\"color:#8ec5ff\">Reload</a> to continue: a copy of your drawing from a few seconds ago is offered back, and you can tell us what you were doing.");
+                    let _ = el.set_attribute("style", i18n::t("position:fixed;left:50%;top:16px;transform:translateX(-50%);z-index:9999;background:#3a1f1a;color:#fff;border:1px solid #e0603c;border-radius:8px;padding:12px 16px;font:14px system-ui,sans-serif;max-width:90vw"));
+                    el.set_inner_html(i18n::t("GCarve hit a problem and stopped. It has been reported. <a href=\"\" style=\"color:#8ec5ff\">Reload</a> to continue: a copy of your drawing from a few seconds ago is offered back, and you can tell us what you were doing."));
                     if let Some(body) = doc.body() {
                         let _ = body.append_child(&el);
                     }

@@ -1,6 +1,8 @@
 //! Jobs organizer (Qt JobsDialog.qml), desktop only: job folders under the jobs root, projects inside them,
 //! G-code exports with revision history.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use super::{combo, Host};
 use crate::jobs::{Jobs, STATUSES};
 use eframe::egui::{self, Color32, RichText};
@@ -47,7 +49,7 @@ impl JobsDialog {
         const LEFT: f32 = 351.0; // RowLayout gives the 250 px preferred list the spare width too // content height: 600 px with the title and the Close footer (Qt min(600, window − 40))
         use crate::icons::IconButton;
         use crate::theme;
-        crate::widgets::Dialog::new("Jobs").open(&mut open).close_footer().flush().width(898.0).show(ctx, |ui| {
+        crate::widgets::Dialog::new(i18n::t("Jobs")).open(&mut open).close_footer().flush().width(898.0).show(ctx, |ui| {
             ui.horizontal_top(|ui| {
                 ui.spacing_mut().item_spacing = egui::vec2(0.0, 0.0);
                 // ---- left: jobs
@@ -57,7 +59,7 @@ impl JobsDialog {
                     egui::ScrollArea::vertical().max_height(list_h).min_scrolled_height(list_h).auto_shrink([false, false]).id_salt("jobs").show(ui, |ui| {
                         if jobs.jobs.is_empty() {
                             ui.add_space(list_h / 2.0 - 70.0);
-                            blank(ui, "jobs", "No jobs yet", "A job is a folder of projects that cut together. Create one, add projects, export: the G-code lands in the job with every revision kept.");
+                            blank(ui, "jobs", i18n::t("No jobs yet"), i18n::t("A job is a folder of projects that cut together. Create one, add projects, export: the G-code lands in the job with every revision kept."));
                         }
                         for (i, j) in jobs.jobs.iter().enumerate() {
                             let (r, resp) = ui.allocate_exact_size(egui::vec2(LEFT, 30.0), egui::Sense::click());
@@ -79,7 +81,7 @@ impl JobsDialog {
                     ui.horizontal(|ui| {
                         ui.set_height(44.0);
                         ui.add_space(8.0);
-                        if IconButton::new("add").text("New Job").show(ui).clicked() {
+                        if IconButton::new("add").text(i18n::t("New Job")).show(ui).clicked() {
                             self.prompt = Some((true, String::new()));
                         }
                         ui.add_space(ui.available_width() - 31.0);
@@ -104,31 +106,31 @@ impl JobsDialog {
                         ui.set_height(theme::CONTROL_HEIGHT);
                         ui.add(egui::Label::new(RichText::new(&j.name).font(crate::widgets::bold(theme::FONT_SIZE + 4.0)).color(theme::TEXT)).truncate());
                         ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                            if ui.add_enabled_ui(!j.projects.is_empty(), |ui| IconButton::new("export").text("Export All").primary(true).tip("Write G-code for every project into the job's gcode folder (saved files; earlier G-code moves to history)").show(ui)).inner.clicked() {
+                            if ui.add_enabled_ui(!j.projects.is_empty(), |ui| IconButton::new("export").text(i18n::t("Export All")).primary(true).tip(i18n::t("Write G-code for every project into the job's gcode folder (saved files; earlier G-code moves to history)")).show(ui)).inner.clicked() {
                                 act = Some(Act::ExportAll(j.path.clone()));
                             }
-                            if IconButton::new("open").tip(if cfg!(target_os = "macos") { "Show the job folder in Finder" } else { "Show the job folder in the file manager" }).show(ui).clicked() {
+                            if IconButton::new("open").tip(if cfg!(target_os = "macos") { i18n::t("Show the job folder in Finder") } else { i18n::t("Show the job folder in the file manager") }).show(ui).clicked() {
                                 act = Some(Act::Reveal(j.path.clone()));
                             }
                             let items: Vec<(&str, &str)> = STATUSES.iter().map(|s| (*s, *s)).collect();
-                            let mut cur = STATUSES.iter().find(|s| **s == j.status).copied().unwrap_or("Planned");
+                            let mut cur = STATUSES.iter().find(|s| **s == j.status).copied().unwrap_or(i18n::t("Planned"));
                             if combo(ui, "status", &mut cur, &items, 130.0) {
                                 act = Some(Act::Status(j.path.clone(), cur.to_string()));
                             }
                         });
                     });
                     let mut notes = j.notes.clone();
-                    if ui.add(crate::widgets::field(&mut notes).desired_width(w).hint_text("Notes: client, material, due date…")).lost_focus() && notes != j.notes {
+                    if ui.add(crate::widgets::field(&mut notes).desired_width(w).hint_text(i18n::t("Notes: client, material, due date…"))).lost_focus() && notes != j.notes {
                         act = Some(Act::Notes(j.path.clone(), notes));
                     }
                     ui.horizontal(|ui| {
-                        ui.label(RichText::new("Projects").family(crate::widgets::bold_family()).color(theme::TEXT_DIM));
+                        ui.label(RichText::new(i18n::t("Projects")).family(crate::widgets::bold_family()).color(theme::TEXT_DIM));
                         ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                             ui.spacing_mut().item_spacing.x = 2.0;
-                            if IconButton::new("add").text("Add…").tip("Copy an existing project file into this job").show(ui).clicked() {
+                            if IconButton::new("add").text(i18n::t("Add…")).tip(i18n::t("Copy an existing project file into this job")).show(ui).clicked() {
                                 act = Some(Act::Add(j.path.clone()));
                             }
-                            if IconButton::new("new").text("New").tip("New project saved into this job (opens in a tab)").show(ui).clicked() {
+                            if IconButton::new("new").text(i18n::t("New")).tip(i18n::t("New project saved into this job (opens in a tab)")).show(ui).clicked() {
                                 self.prompt = Some((false, String::new()));
                             }
                         });
@@ -138,7 +140,7 @@ impl JobsDialog {
                         ui.spacing_mut().item_spacing.y = 2.0;
                         if j.projects.is_empty() {
                             ui.add_space(list_h / 2.0 - 70.0);
-                            blank(ui, "board", "No projects in this job", "Add an existing .tlp or start a new one. Export sends G-code to the job's gcode folder; the file name stays the same and older versions move to history.");
+                            blank(ui, "board", i18n::t("No projects in this job"), i18n::t("Add an existing .tlp or start a new one. Export sends G-code to the job's gcode folder; the file name stays the same and older versions move to history."));
                         }
                         for p in &j.projects {
                             egui::Frame::new().fill(theme::BG).stroke(egui::Stroke::new(1.0, theme::BORDER)).corner_radius(theme::RADIUS).inner_margin(egui::Margin::symmetric(10, 8)).show(ui, |ui| {
@@ -150,10 +152,10 @@ impl JobsDialog {
                                     ui.label(RichText::new(&p.name).family(crate::widgets::bold_family()).color(theme::TEXT));
                                     ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                                         ui.spacing_mut().item_spacing.x = 4.0;
-                                        if IconButton::new("export").size(15.0).padding(3.0).tip("Export this project's G-code into the job (from the saved file)").show(ui).clicked() {
+                                        if IconButton::new("export").size(15.0).padding(3.0).tip(i18n::t("Export this project's G-code into the job (from the saved file)")).show(ui).clicked() {
                                             act = Some(Act::Export(p.path.clone()));
                                         }
-                                        if IconButton::new("open").size(15.0).padding(3.0).tip("Open in a tab").show(ui).clicked() {
+                                        if IconButton::new("open").size(15.0).padding(3.0).tip(i18n::t("Open in a tab")).show(ui).clicked() {
                                             act = Some(Act::Open(p.path.clone()));
                                         }
                                         ui.add_space(4.0);
@@ -161,11 +163,11 @@ impl JobsDialog {
                                             ui.label(RichText::new(format!("rev {}", p.revision)).size(11.0).family(crate::widgets::bold_family()).color(theme::MODE_SIMULATE));
                                         }
                                         if p.stale {
-                                            ui.label(RichText::new("⚠ changed since export").size(11.0).color(theme::WARNING));
+                                            ui.label(RichText::new(i18n::t("⚠ changed since export")).size(11.0).color(theme::WARNING));
                                         }
                                     });
                                 });
-                                let line = format!("Saved {}{}", p.modified, if p.exported.is_empty() { "  ·  not exported yet".to_string() } else { format!("  ·  G-code {} ({} file{})", p.exported, p.files, if p.files == 1 { "" } else { "s" }) });
+                                let line = format!("Saved {}{}", p.modified, if p.exported.is_empty() { i18n::t("  ·  not exported yet").to_string() } else { format!("  ·  G-code {} ({} file{})", p.exported, p.files, if p.files == 1 { "" } else { "s" }) });
                                 ui.add(egui::Label::new(RichText::new(line).size(11.0).color(theme::TEXT.gamma_multiply(0.7))).truncate());
                                 if p.revision > 1 {
                                     let on = self.history_open.as_ref() == Some(&p.path);
@@ -184,7 +186,7 @@ impl JobsDialog {
                                                 ui.add_space(14.0);
                                                 ui.add_sized([28.0, 16.0], egui::Label::new(RichText::new(format!("r{}", r.rev)).size(11.0).family(crate::widgets::bold_family()).color(theme::TEXT.gamma_multiply(0.8))));
                                                 ui.label(RichText::new(format!("{}  ·  {}", r.name, r.time)).size(11.0).color(theme::TEXT.gamma_multiply(0.7)));
-                                                if IconButton::new("open").size(13.0).padding(2.0).tip("Show this revision in the file manager").show(ui).clicked() {
+                                                if IconButton::new("open").size(13.0).padding(2.0).tip(i18n::t("Show this revision in the file manager")).show(ui).clicked() {
                                                     act = Some(Act::Reveal(r.path.clone()));
                                                 }
                                             });
@@ -202,7 +204,7 @@ impl JobsDialog {
         });
         // one small prompt serves new job / new project (Qt namePrompt)
         if let Some((is_job, text)) = &mut self.prompt {
-            let (title, hint_text) = if *is_job { ("New job", "Job name (e.g. Smith sign)") } else { ("New project", "Project name") };
+            let (title, hint_text) = if *is_job { (i18n::t("New job"), i18n::t("Job name (e.g. Smith sign)")) } else { (i18n::t("New project"), i18n::t("Project name")) };
             let mut keep = true;
             let (ok, cancel) = crate::widgets::Dialog::new(title).id("jobs-prompt").open(&mut keep).show(ctx, |ui| {
                 let r = ui.add(crate::widgets::field(text).desired_width(320.0).hint_text(hint_text));
@@ -228,7 +230,7 @@ impl JobsDialog {
                 self.note = jobs.status.clone();
             }
             Some(Act::Root) => {
-                if let Some(d) = rfd::FileDialog::new().set_title("Jobs folder").pick_folder() {
+                if let Some(d) = rfd::FileDialog::new().set_title(i18n::t("Jobs folder")).pick_folder() {
                     jobs.set_root(d);
                 }
             }
@@ -238,7 +240,7 @@ impl JobsDialog {
             Some(Act::Export(p)) => self.note = jobs.export_project(&p, host.posts),
             Some(Act::Reveal(p)) => Jobs::reveal(&p),
             Some(Act::Add(job)) => {
-                if let Some(f) = rfd::FileDialog::new().add_filter("GCarve project", &["tlp"]).pick_file() {
+                if let Some(f) = rfd::FileDialog::new().add_filter(i18n::t("GCarve project"), &["tlp"]).pick_file() {
                     jobs.add_project(&job, &f);
                     self.note = jobs.status.clone();
                 }

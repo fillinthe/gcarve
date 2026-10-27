@@ -1,6 +1,8 @@
 //! File ▸ Setup Sheet… and the Export dialog's "Setup sheet" box: the printable job sheet (gcarve-core setupsheet)
 //! with the shaded simulation as its picture. Desktop: opened in the default browser to print; web: a new tab.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use gcarve_core::document::Document;
 use gcarve_core::pipeline::{self, Generated, SheetPicture};
 use gcarve_core::postdef::PostDef;
@@ -94,14 +96,14 @@ pub fn open(project: &str, html: &str) -> String {
         match std::fs::write(&path, html) {
             Ok(()) => {
                 crate::files::open_with_os(&path);
-                "Setup sheet opened in your browser".into()
+                i18n::t("Setup sheet opened in your browser").into()
             }
             Err(e) => format!("Cannot write {}: {e}", path.display()),
         }
     }
     #[cfg(target_arch = "wasm32")]
     match crate::files::open_html_tab(&name, html) {
-        Ok(true) => "Setup sheet opened in a new tab".into(),
+        Ok(true) => i18n::t("Setup sheet opened in a new tab").into(),
         Ok(false) => format!("Downloaded {name}"),
         Err(e) => e,
     }

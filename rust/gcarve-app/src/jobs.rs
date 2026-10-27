@@ -3,6 +3,8 @@
 //! (`<file>.r<N>.<stamp>.<ext>`). Exported file names are prefixed with the project stem. Desktop only (file system).
 #![cfg(not(target_arch = "wasm32"))]
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use gcarve_core::{pipeline, project};
 use std::path::{Path, PathBuf};
 
@@ -90,7 +92,7 @@ impl Jobs {
         let root = std::env::temp_dir().join("gcarve-shot-jobs");
         let _ = std::fs::remove_dir_all(&root);
         let mut j = Jobs { root, jobs: Vec::new(), status: String::new() };
-        if let Some(job) = j.create("Smith sign") {
+        if let Some(job) = j.create(i18n::t("Smith sign")) {
             let src = std::env::args().skip(1).find(|a| a.ends_with(".tlp")).map(PathBuf::from);
             if let Some(p) = src.and_then(|s| j.add_project(&job, &s)) {
                 j.export_project(&p, &crate::posts::UserPosts::default());
@@ -100,7 +102,7 @@ impl Jobs {
     }
 
     pub fn load() -> Self {
-        let root = crate::store::load("jobs-root.txt").map(|s| PathBuf::from(s.trim())).filter(|p| !p.as_os_str().is_empty()).unwrap_or_else(|| std::env::var("HOME").map(|h| PathBuf::from(h).join("Documents/GCarve Jobs")).unwrap_or_else(|_| PathBuf::from("GCarve Jobs")));
+        let root = crate::store::load("jobs-root.txt").map(|s| PathBuf::from(s.trim())).filter(|p| !p.as_os_str().is_empty()).unwrap_or_else(|| std::env::var("HOME").map(|h| PathBuf::from(h).join(i18n::t("Documents/GCarve Jobs"))).unwrap_or_else(|_| PathBuf::from(i18n::t("GCarve Jobs"))));
         let mut j = Jobs { root, jobs: Vec::new(), status: String::new() };
         j.refresh();
         j
@@ -164,14 +166,14 @@ impl Jobs {
                     stale: matches!((exported, modified), (Some(e), Some(m)) if m > e + std::time::Duration::from_secs(2)),
                 });
             }
-            self.jobs.push(JobInfo { name: job.file_name().map(|n| n.to_string_lossy().into_owned()).unwrap_or_default(), path: job, status: meta.get("status").and_then(|v| v.as_str()).unwrap_or("Planned").to_string(), notes: meta.get("notes").and_then(|v| v.as_str()).unwrap_or("").to_string(), projects });
+            self.jobs.push(JobInfo { name: job.file_name().map(|n| n.to_string_lossy().into_owned()).unwrap_or_default(), path: job, status: meta.get("status").and_then(|v| v.as_str()).unwrap_or(i18n::t("Planned")).to_string(), notes: meta.get("notes").and_then(|v| v.as_str()).unwrap_or("").to_string(), projects });
         }
     }
 
     pub fn create(&mut self, name: &str) -> Option<PathBuf> {
         let clean: String = name.trim().chars().map(|c| if matches!(c, '/' | '\\' | ':') { '-' } else { c }).collect();
         if clean.is_empty() {
-            self.status = "Give the job a name".into();
+            self.status = i18n::t("Give the job a name").into();
             return None;
         }
         let job = self.root.join(&clean);
@@ -216,7 +218,7 @@ impl Jobs {
 
     /// Export the *saved* project file's G-code into `<job>/gcode`, archiving earlier revisions.
     pub fn export_project(&mut self, project: &Path, user_posts: &crate::posts::UserPosts) -> String {
-        let Some(job) = self.job_for(project) else { return "Not inside a job folder".into() };
+        let Some(job) = self.job_for(project) else { return i18n::t("Not inside a job folder").into() };
         let r = (|| -> Result<String, String> {
             let text = std::fs::read_to_string(project).map_err(|e| e.to_string())?;
             let doc = project::load_project(&text)?;
@@ -231,7 +233,7 @@ impl Jobs {
     pub fn export_job(&mut self, job: &Path, user_posts: &crate::posts::UserPosts) -> String {
         let projects: Vec<PathBuf> = self.jobs.iter().find(|j| j.path == job).map(|j| j.projects.iter().map(|p| p.path.clone()).collect()).unwrap_or_default();
         if projects.is_empty() {
-            self.status = "No projects in this job yet".into();
+            self.status = i18n::t("No projects in this job yet").into();
             return self.status.clone();
         }
         let notes: Vec<String> = projects.iter().map(|p| format!("{}: {}", p.file_stem().unwrap_or_default().to_string_lossy(), self.export_project(p, user_posts))).collect();
@@ -252,7 +254,7 @@ pub fn export_to_dir(doc: &gcarve_core::document::Document, stem: &str, dir: &Pa
     let post = pipeline::active_post(doc, &|id| user_posts.find(id));
     let r = pipeline::export(doc, &gen, stem, &ts, 0.0, &post);
     if r.files.is_empty() {
-        return Err("nothing to export".into());
+        return Err(i18n::t("nothing to export").into());
     }
     std::fs::create_dir_all(dir).map_err(|e| e.to_string())?;
     let mut names = Vec::new();

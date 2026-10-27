@@ -603,6 +603,16 @@ pub fn generate_profile(op: &Op, tool: &Tool, contours: &[Contour], m: &Material
         return res;
     }
     let r = tool.diameter / 2.0;
+    // onion skin: the passes stop `skin` short; one lap per part at full depth (`skin_op`) comes after all of them.
+    // Tabs are off with it: the skin holds the parts, and a tab cut from both depths would come out wrong.
+    let skin = op.skin > 0.0 && op.skin < op.depth;
+    if skin && op.tabs {
+        res.warnings.push(format!("{}: onion skin holds the parts, tabs are left out", op.name));
+    }
+    let skin_op = Op { stepdown: op.depth, tabs: false, entry: Entry::Plunge, ..op.clone() };
+    let held = Op { depth: op.depth - op.skin, tabs: false, ..op.clone() };
+    let op = if skin { &held } else { op };
+    let mut skin_path: Option<Toolpath> = None;
     let polys: Vec<PathD> = contours.iter().map(to_path).collect();
     // bounding boxes: the hole test below is shapes × shapes, and a box test first makes it cheap on big drawings
     let boxes: Vec<[f64; 4]> = polys
@@ -692,6 +702,14 @@ pub fn generate_profile(op: &Op, tool: &Tool, contours: &[Contour], m: &Material
             if op.cutter_comp && waste_outside.is_some() {
                 tp.comp = if op.climb { 41 } else { 42 };
             }
+            if skin && n >= split {
+                let mut s = cut_path(&pts, true, &skin_op, tool, m, &mut res.warnings);
+                s.comp = tp.comp;
+                match &mut skin_path {
+                    Some(all) => all.moves.extend(s.moves),
+                    None => skin_path = Some(Toolpath { name: format!("{} (skin)", skin_op.name), ..s }),
+                }
+            }
             if split == 0 {
                 res.paths.push(tp);
             } else if let Some(all) = &mut merged {
@@ -709,6 +727,7 @@ pub fn generate_profile(op: &Op, tool: &Tool, contours: &[Contour], m: &Material
     for (i, p) in res.paths.iter_mut().enumerate().skip(1) {
         p.name = indexed_name(&op.name, i);
     }
+    res.paths.extend(skin_path); // last: `generate` keeps it there
     res
 }
 
@@ -1228,7 +1247,7 @@ fn moulding_sweep(op: &Op, tool: &Tool, rails: &[Contour], sp: &[Pt], b: Rect, m
                     Some(h) => h,
                     None => continue, // outside the drawn form
                 },
-                ToolType::BallNose => r - (r * r - du * du).max(0.0).sqrt(),
+                ToolType::BallNose => tool.ball_rise(du),
                 ToolType::VBit => du.abs() / tan_half,
                 _ => 0.0,
             };
@@ -1458,12 +1477,21 @@ pub fn generate_drill(op: &Op, tool: &Tool, contours: &[Contour], m: &Material) 
     if !depth_checks(op, m, &mut res) {
         return res;
     }
+    let fit = op.fit_holes && tool.kind == ToolType::VBit;
+    let tan_half = (tool.angle / 2.0).to_radians().tan().max(1e-6);
     for c in contours {
         let b = bounds(c);
         if b.is_empty() {
             continue;
         }
-        if b.w() > tool.diameter * 1.05 || b.h() > tool.diameter * 1.05 {
+        let sized;
+        let op = if fit {
+            sized = Op { depth: (b.w().min(b.h()) / 2.0 / tan_half).min(op.depth), peck: 0.0, ..op.clone() };
+            &sized
+        } else {
+            op
+        };
+        if !fit && (b.w() > tool.diameter * 1.05 || b.h() > tool.diameter * 1.05) {
             res.warnings.push(format!("{}: a hole is bigger than the drill, only its centre is drilled", op.name));
         }
         let ctr = pt((b.x0 + b.x1) / 2.0, (b.y0 + b.y1) / 2.0);
@@ -2678,9 +2706,12 @@ pub fn generate(op: &Op, tool: &Tool, contours: &[Contour], m: &Material, clear_
         }
         enforce_safe_rapids(tp, m.retract_z);
     }
+    // the onion skin lap frees the parts: it stays after everything else of this toolpath
+    let skin = r.paths.last().is_some_and(|p| p.name == format!("{} (skin)", op.name)).then(|| r.paths.pop()).flatten();
     if !op.keep_order {
         order_toolpaths(&mut r.paths, Pt::default()); // one path per shape (profiles): visit them in a short tour too
     }
+    r.paths.extend(skin);
     // ponytail: like the C++ engine, "[clearance]" / "[female]" suffixes count as indexed names and get renumbered
     let prefix = format!("{} [", op.name);
     let mut n = 0;
@@ -3300,6 +3331,45 @@ mod last_pass_tests {
         // off: the same op without an allowance is unchanged (one ring on the line)
         let plain = generate_profile(&Op { allowance: 0.0, ..op.clone() }, &tool, &sq, &m);
         assert!(plain.paths[0].moves.iter().filter(|mv| mv.kind == MoveType::Linear).all(|mv| (off(&mv) - 0.125).abs() < 0.002));
+    }
+
+    #[test]
+    fn an_onion_skin_holds_every_part_until_one_last_lap_cuts_them_all_free() {
+        let sq = |x: f64| make_polyline(&[pt(x, 1.0), pt(x + 2.0, 1.0), pt(x + 2.0, 3.0), pt(x, 3.0)], true);
+        let parts = [sq(1.0), sq(5.0), sq(9.0)];
+        let tool = Tool { diameter: 0.25, stepdown: 0.25, feed_xy: 100.0, feed_z: 30.0, ..Default::default() };
+        let m = Material { w: 14.0, h: 4.0, t: 0.75, ..Default::default() };
+        let op = Op { kind: OpType::Profile, name: "Cut out".into(), side: Side::Outside, depth: 0.75, skin: 0.02, tabs: true, tab_count: 2, tab_height: 0.1, tab_width: 0.25, climb: true, ..Default::default() };
+        let res = generate(&op, &tool, &parts, &m, None);
+        assert!(res.warnings.iter().any(|w| w.contains("tabs are left out")));
+        let low = |tp: &Toolpath| tp.moves.iter().filter_map(|mv| mv.z).fold(0.0, f64::min);
+        let (skin, rest) = res.paths.split_last().unwrap();
+        assert_eq!(skin.name, "Cut out (skin)", "the skin lap comes last");
+        assert_eq!(rest.len(), 3);
+        assert!(rest.iter().all(|tp| (low(tp) + 0.73).abs() < 1e-9), "the parts stay held by the skin");
+        assert!((low(skin) + 0.75).abs() < 1e-9);
+        // one full-depth lap per part, nothing in between, no tabs left on it
+        let deep = skin.moves.iter().filter(|mv| mv.kind == MoveType::Linear && mv.z.is_some_and(|z| z < -0.74)).count();
+        assert!(deep >= 3 * 4, "{deep}");
+        assert!(skin.moves.iter().filter(|mv| mv.kind == MoveType::Linear).all(|mv| mv.z.is_none_or(|z| z < -0.74 || z > -0.73)), "no tab steps");
+        // through `project` and back
+        let mut doc = crate::document::Document::default();
+        doc.ops.push(op);
+        let back = crate::project::load_project(&crate::project::save_project(&doc)).unwrap();
+        assert_eq!(back.ops[0].skin, 0.02);
+    }
+
+    #[test]
+    fn fitted_v_bit_holes_go_as_deep_as_each_hole_is_wide() {
+        let op = Op { kind: OpType::Drill, name: "D".into(), depth: 0.3, fit_holes: true, ..Default::default() };
+        let tool = Tool { kind: ToolType::VBit, angle: 90.0, diameter: 0.5, ..Default::default() };
+        let m = Material { w: 4.0, h: 4.0, t: 0.75, ..Default::default() };
+        let holes = [crate::geom::make_ellipse(1.0, 1.0, 0.05, 0.05), crate::geom::make_ellipse(2.0, 1.0, 0.2, 0.2), crate::geom::make_ellipse(3.0, 1.0, 0.5, 0.5)];
+        let r = generate_drill(&op, &tool, &holes, &m);
+        assert!(r.warnings.is_empty(), "{:?}", r.warnings);
+        let low: Vec<f64> = r.paths.iter().map(|p| p.moves.iter().filter_map(|mv| mv.z).fold(0.0, f64::min)).collect();
+        assert!((low[0] + 0.05).abs() < 1e-3 && (low[1] + 0.2).abs() < 1e-3, "{low:?}");
+        assert!((low[2] + 0.3).abs() < 1e-9, "never past the depth");
     }
 
     #[test]

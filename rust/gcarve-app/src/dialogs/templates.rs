@@ -1,6 +1,8 @@
 //! Toolpath templates (Qt TemplatesDialog.qml): save the current toolpaths as a template, apply one to this document
 //! (summary lists what was skipped), rename / delete / import / export. Library: crate::templates.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use super::{hint, Host};
 use crate::icons::IconButton;
 use crate::widgets::TipExt;
@@ -27,14 +29,14 @@ impl TemplatesDialog {
         let mut open = true;
         let (mut apply, mut export, mut delete, mut rename, mut save, mut import) = (None, None, None, None, false, false);
         let has_ops = !host.canvas.doc.ops.is_empty();
-        crate::widgets::Dialog::new("Toolpath templates").open(&mut open).close_footer().width(600.0).show(ctx, |ui| {
-            ui.label(RichText::new("Save the current toolpaths as a template").family(crate::widgets::bold_family()));
+        crate::widgets::Dialog::new(i18n::t("Toolpath templates")).open(&mut open).close_footer().width(600.0).show(ctx, |ui| {
+            ui.label(RichText::new(i18n::t("Save the current toolpaths as a template")).family(crate::widgets::bold_family()));
             ui.horizontal(|ui| {
-                let a = ui.add(crate::widgets::field(&mut self.name).desired_width(220.0).hint_text("Template name"));
-                let b = ui.add(crate::widgets::field(&mut self.description).desired_width(290.0).hint_text("Description (optional)"));
+                let a = ui.add(crate::widgets::field(&mut self.name).desired_width(220.0).hint_text(i18n::t("Template name")));
+                let b = ui.add(crate::widgets::field(&mut self.description).desired_width(290.0).hint_text(i18n::t("Description (optional)")));
                 let enter = (a.lost_focus() || b.lost_focus()) && ui.input(|i| i.key_pressed(egui::Key::Enter));
                 let can = has_ops && !self.name.trim().is_empty();
-                save = ui.add_enabled(can, egui::Button::new("Save")).tip("Toolpaths, their bits and the variables they use; each toolpath remembers its layer").clicked() || (enter && can);
+                save = ui.add_enabled(can, egui::Button::new(i18n::t("Save"))).tip(i18n::t("Toolpaths, their bits and the variables they use; each toolpath remembers its layer")).clicked() || (enter && can);
             });
             if !self.summary.is_empty() {
                 let text = RichText::new(&self.summary).size(12.0);
@@ -42,7 +44,7 @@ impl TemplatesDialog {
             }
             crate::theme::hline(ui);
             if host.templates.items.is_empty() {
-                hint(ui, "No templates yet. Templates keep toolpaths, their bits and variables; applied to another design, each toolpath uses the shapes on the layer of the same name.");
+                hint(ui, i18n::t("No templates yet. Templates keep toolpaths, their bits and variables; applied to another design, each toolpath uses the shapes on the layer of the same name."));
             }
             egui::ScrollArea::vertical().max_height(340.0).show(ui, |ui| {
                 ui.set_width(600.0);
@@ -67,16 +69,16 @@ impl TemplatesDialog {
                                 let desc = if e.t.description.is_empty() { String::new() } else { format!("  ·  {}", e.t.description) };
                                 ui.label(RichText::new(format!("{n} toolpath{}{desc}", if n == 1 { "" } else { "s" })).small().color(crate::theme::TEXT_DIM));
                             });
-                            if ui.button("Apply").clicked() {
+                            if ui.button(i18n::t("Apply")).clicked() {
                                 apply = Some(i);
                             }
-                            if IconButton::new("export").size(15.0).padding(4.0).tip("Export to a .gctemplate file").show(ui).clicked() {
+                            if IconButton::new("export").size(15.0).padding(4.0).tip(i18n::t("Export to a .gctemplate file")).show(ui).clicked() {
                                 export = Some(i);
                             }
-                            if IconButton::new("edit").size(15.0).padding(4.0).tip("Rename").show(ui).clicked() {
+                            if IconButton::new("edit").size(15.0).padding(4.0).tip(i18n::t("Rename")).show(ui).clicked() {
                                 self.renaming = Some((i, e.t.name.clone()));
                             }
-                            if IconButton::new("delete").size(15.0).padding(4.0).tip("Delete").show(ui).clicked() {
+                            if IconButton::new("delete").size(15.0).padding(4.0).tip(i18n::t("Delete")).show(ui).clicked() {
                                 delete = Some(i);
                             }
                         });
@@ -87,8 +89,8 @@ impl TemplatesDialog {
                 }
             });
             ui.horizontal(|ui| {
-                import = ui.button("Import…").tip("Add a .gctemplate file to the library").clicked();
-                hint(ui, if host.templates.account { "Stored in your GCarve account." } else if cfg!(target_arch = "wasm32") { "Stored in this browser (sign in to keep them in your account)." } else { "Stored in the GCarve settings folder." });
+                import = ui.button(i18n::t("Import…")).tip(i18n::t("Add a .gctemplate file to the library")).clicked();
+                hint(ui, if host.templates.account { i18n::t("Stored in your GCarve account.") } else if cfg!(target_arch = "wasm32") { i18n::t("Stored in this browser (sign in to keep them in your account).") } else { i18n::t("Stored in the GCarve settings folder.") });
             });
         });
         if save {
@@ -124,7 +126,7 @@ impl TemplatesDialog {
             host.templates.remove(i);
         }
         if import {
-            host.files.pick_into(ctx, "Toolpath templates (.gctemplate)", &["gctemplate"], "template");
+            host.files.pick_into(ctx, i18n::t("Toolpath templates (.gctemplate)"), &["gctemplate"], "template");
         }
         open
     }

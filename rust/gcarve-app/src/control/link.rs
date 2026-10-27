@@ -2,6 +2,8 @@
 //! C++ `app/machine.*` MachineLink. Protocol logic lives in gcarve_core::grbl; this moves bytes, polls status at 10 Hz
 //! and applies the safety rules. No threads besides the TCP connect: the UI calls `update(now)` every frame.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use gcarve_core::gcode::{parse_program, GProgram, Vec3};
 use gcarve_core::grbl::{self, GrblSim, GrblStreamer, MachineStatus};
 use gcarve_core::job::MoveType;
@@ -83,28 +85,28 @@ impl Link {
     /// "Simulator" / "host:port" / port name
     pub fn transport(&self) -> String {
         match &self.transport {
-            Some(Transport::Sim(_)) => "Simulator".into(),
+            Some(Transport::Sim(_)) => i18n::t("Simulator").into(),
             #[cfg(not(target_arch = "wasm32"))]
             Some(Transport::Tcp { peer, .. }) => peer.clone(),
             #[cfg(all(feature = "serial", not(target_arch = "wasm32")))]
             Some(Transport::Serial(_, name)) => name.clone(),
             #[cfg(target_arch = "wasm32")]
-            Some(Transport::WebSerial(name)) => name.clone().unwrap_or_else(|| "Choosing a USB device…".into()),
+            Some(Transport::WebSerial(name)) => name.clone().unwrap_or_else(|| i18n::t("Choosing a USB device…").into()),
             None => String::new(),
         }
     }
     /// Idle Run Hold:0 Jog Alarm Home ... / Disconnected
     pub fn state(&self) -> &str {
-        if self.connected() { &self.st.state } else { "Disconnected" }
+        if self.connected() { &self.st.state } else { i18n::t("Disconnected") }
     }
     pub fn idle(&self) -> bool {
         self.state() == "Idle"
     }
     pub fn alarm(&self) -> bool {
-        status_is(self.state(), "Alarm")
+        status_is(self.state(), i18n::t("Alarm"))
     }
     pub fn hold(&self) -> bool {
-        status_is(self.state(), "Hold")
+        status_is(self.state(), i18n::t("Hold"))
     }
     pub fn work_zero_set(&self) -> bool {
         self.zeroed.iter().all(|z| *z)
@@ -141,7 +143,7 @@ impl Link {
         self.transport = Some(Transport::Sim(Box::default()));
         self.travel = Vec3 { x: 60.0, y: 96.0, z: 6.0 };
         self.last_tick = None;
-        self.add_log("Connected to the simulator (5x8 ft machine, homing required)");
+        self.add_log(i18n::t("Connected to the simulator (5x8 ft machine, homing required)"));
     }
 
     #[cfg(not(target_arch = "wasm32"))]
@@ -152,7 +154,7 @@ impl Link {
         let target = addr.clone();
         std::thread::spawn(move || {
             use std::net::ToSocketAddrs;
-            let r = target.to_socket_addrs().and_then(|mut a| a.next().ok_or_else(|| std::io::Error::other("host not found"))).and_then(|a| std::net::TcpStream::connect_timeout(&a, std::time::Duration::from_secs(5)));
+            let r = target.to_socket_addrs().and_then(|mut a| a.next().ok_or_else(|| std::io::Error::other(i18n::t("host not found")))).and_then(|a| std::net::TcpStream::connect_timeout(&a, std::time::Duration::from_secs(5)));
             let _ = tx.send(r);
         });
         self.transport = Some(Transport::Tcp { stream: None, connecting: Some(rx), peer: addr, outbox: Vec::new() });
@@ -214,7 +216,7 @@ impl Link {
         #[cfg(all(not(feature = "serial"), not(target_arch = "wasm32")))]
         {
             let _ = (port, baud);
-            self.last_error = "This build has no serial port support".into();
+            self.last_error = i18n::t("This build has no serial port support").into();
         }
     }
 
@@ -236,11 +238,11 @@ impl Link {
     /// the transport dropped under us
     fn lost(&mut self, why: &str) {
         if self.streaming {
-            self.last_error = "Connection lost while running: check the machine NOW (use its E-stop)".into();
+            self.last_error = i18n::t("Connection lost while running: check the machine NOW (use its E-stop)").into();
         } else if !why.is_empty() {
             self.last_error = why.to_string();
         }
-        self.add_log("Disconnected");
+        self.add_log(i18n::t("Disconnected"));
         self.disconnect();
     }
 
@@ -306,8 +308,8 @@ impl Link {
                         }
                         incoming = super::webserial::take();
                     }
-                    State::Cancelled => dropped = Some("No USB device chosen".into()),
-                    State::Failed(e) => dropped = Some(if self.streaming { "USB connection lost while running: check the machine NOW (use its E-stop)".into() } else { format!("USB: {e}") }),
+                    State::Cancelled => dropped = Some(i18n::t("No USB device chosen").into()),
+                    State::Failed(e) => dropped = Some(if self.streaming { i18n::t("USB connection lost while running: check the machine NOW (use its E-stop)").into() } else { format!("USB: {e}") }),
                 }
             }
             Some(Transport::Sim(s)) => {
@@ -329,7 +331,7 @@ impl Link {
                             self.log.push(format!("Connected to {peer}"));
                         }
                         Ok(Err(e)) => dropped = Some(format!("Network: {e}")),
-                        Err(std::sync::mpsc::TryRecvError::Disconnected) => dropped = Some("Network: connection failed".into()),
+                        Err(std::sync::mpsc::TryRecvError::Disconnected) => dropped = Some(i18n::t("Network: connection failed").into()),
                         Err(std::sync::mpsc::TryRecvError::Empty) => {}
                     }
                 }
@@ -369,7 +371,7 @@ impl Link {
                     match p.read(&mut buf) {
                         Ok(k) => incoming.extend_from_slice(&buf[..k]),
                         Err(e) if e.kind() == std::io::ErrorKind::TimedOut => {}
-                        Err(e) => dropped = Some(if self.streaming { "USB connection lost while running: check the machine NOW (use its E-stop)".into() } else { format!("Serial: {e}") }),
+                        Err(e) => dropped = Some(if self.streaming { i18n::t("USB connection lost while running: check the machine NOW (use its E-stop)").into() } else { format!("Serial: {e}") }),
                     }
                 }
             }
@@ -391,7 +393,7 @@ impl Link {
             // while a job runs, hiding the tab holds the feed at once (no frames = nothing feeds the controller)
             super::webserial::on_hide(if self.streaming && self.streamer.tool_wait().is_none() { &[grbl::HOLD] } else { &[] });
             if super::webserial::held_on_hide() {
-                self.add_log("Paused: this tab was hidden while the job ran. Press Resume to carry on (keep the tab in front)");
+                self.add_log(i18n::t("Paused: this tab was hidden while the job ran. Press Resume to carry on (keep the tab in front)"));
             }
         }
         if now - self.last_poll >= 0.1 {
@@ -406,7 +408,7 @@ impl Link {
         if self.inbuf.len() > 4096 && !self.inbuf.contains(&b'\n') {
             // no line ends in 4 KB: not grbl talking (wrong speed, noise); don't let it grow for ever
             self.inbuf.clear();
-            self.add_log("Unreadable data from the controller: check the baud rate (grbl: 115200)");
+            self.add_log(i18n::t("Unreadable data from the controller: check the baud rate (grbl: 115200)"));
         }
         while let Some(nl) = self.inbuf.iter().position(|&b| b == b'\n') {
             let raw: Vec<u8> = self.inbuf.drain(..=nl).collect();
@@ -439,7 +441,7 @@ impl Link {
         let mut q = l.to_string();
         if let Some(code) = l.strip_prefix("ALARM:") {
             let why = grbl::alarm_text(code.trim().parse().unwrap_or(0));
-            self.last_error = format!("ALARM {code}{}", if why.is_empty() { ": home or unlock before continuing".to_string() } else { format!(": {why}") });
+            self.last_error = format!("ALARM {code}{}", if why.is_empty() { i18n::t(": home or unlock before continuing").to_string() } else { format!(": {why}") });
             if self.streaming {
                 self.streaming = false;
                 self.streamer.stop();
@@ -464,10 +466,10 @@ impl Link {
                 self.zeroed[2] = true;
                 self.add_log(format!("Z zeroed by the touch plate (plate {} in)", self.probe_plate));
             } else {
-                self.last_error = "Probe did not touch the plate: check the plate wire and the distance".into();
+                self.last_error = i18n::t("Probe did not touch the plate: check the plate wire and the distance").into();
             }
         }
-        if l.starts_with("Grbl") {
+        if l.starts_with(i18n::t("Grbl")) {
             // banner = the controller reset: nothing of ours is queued any more
             self.streamer.stop();
             self.streaming = false;
@@ -497,7 +499,7 @@ impl Link {
         }
         if let Some(t) = self.tool_wait() {
             if self.tool_said != t {
-                self.send("M5\n"); // the post stops it before a change; never leave it to the file
+                self.send(i18n::t("M5\n")); // the post stops it before a change; never leave it to the file
                 self.add_log(format!("Tool change: put in {t}, then touch off Z and press Continue"));
                 self.tool_said = t;
             }
@@ -507,7 +509,7 @@ impl Link {
         if !chunk.is_empty() {
             // until the controller's next report: lines just sent mean it's busy (a stale "Idle" ended short jobs
             // and the restart after a tool change as "finished" while the machine was still moving)
-            self.st.state = "Run".into();
+            self.st.state = i18n::t("Run").into();
         }
         self.send_program(&chunk);
         if self.streamer.done() && self.idle() {
@@ -534,8 +536,8 @@ impl Link {
         // our own commands (probe, jog) may have switched to inches: the program's last unit word wins again
         let upto = (self.streamer.source_line().max(1) as usize).min(self.program.lines.len());
         let mm = self.program.lines[..upto].iter().rev().map(|l| grbl::clean_line(l)).find(|l| l.contains("G20") || l.contains("G21")).is_some_and(|l| l.contains("G21"));
-        self.send(if mm { "G21 G90\n" } else { "G20 G90\n" });
-        self.add_log("Tool change done: carrying on");
+        self.send(if mm { i18n::t("G21 G90\n") } else { i18n::t("G20 G90\n") });
+        self.add_log(i18n::t("Tool change done: carrying on"));
         self.tool_said.clear();
         self.streamer.next_tool();
         self.pump();
@@ -549,7 +551,7 @@ impl Link {
         }
         let cuts: Vec<_> = self.program.motions.iter().filter(|m| m.kind != MoveType::Rapid && !m.machine_coords).collect();
         if cuts.is_empty() {
-            self.last_error = "Load a program first: the outline follows its cuts".into();
+            self.last_error = i18n::t("Load a program first: the outline follows its cuts").into();
             return;
         }
         let (mut x0, mut y0, mut x1, mut y1) = (f64::MAX, f64::MAX, f64::MIN, f64::MIN);
@@ -593,7 +595,7 @@ impl Link {
     pub fn zero_axes(&mut self, axes: &str) {
         if !self.ready() {
             if self.connected() {
-                self.add_log("Zero ignored: wait until the machine is Idle");
+                self.add_log(i18n::t("Zero ignored: wait until the machine is Idle"));
             }
             return;
         }
@@ -617,7 +619,7 @@ impl Link {
         self.probe_plate = plate;
         self.probe_lift = lift.max(0.05);
         self.last_error.clear();
-        self.add_log("Probing Z…");
+        self.add_log(i18n::t("Probing Z…"));
         // G20 on every line with numbers in inches: grbl starts in mm, and a program may have left G21 set
         self.send(&format!("G20 G91 G38.2 Z{:.4} F{:.1}\nG90\n", -max_travel.abs(), feed.max(1.0)));
     }
@@ -636,19 +638,19 @@ impl Link {
     }
     pub fn spindle(&mut self, on: bool, rpm: i32) {
         if self.connected() && !self.streaming {
-            self.send(&if on { format!("M3 S{}\n", rpm.max(0)) } else { "M5\n".into() });
+            self.send(&if on { format!("M3 S{}\n", rpm.max(0)) } else { i18n::t("M5\n").into() });
         }
     }
     /// lift to machine Z0, then X0 Y0 (never travel low)
     pub fn go_to_work_zero(&mut self) {
         if self.ready() {
-            self.send("G53 G0 Z0\nG90 G0 X0 Y0\n");
+            self.send(i18n::t("G53 G0 Z0\nG90 G0 X0 Y0\n"));
         }
     }
 
     pub fn load_program(&mut self, name: &str, text: &str) -> bool {
         if self.streaming {
-            self.last_error = "Stop the running program first".into();
+            self.last_error = i18n::t("Stop the running program first").into();
             return false;
         }
         self.program = parse_program(text, 1000.0);
@@ -665,25 +667,25 @@ impl Link {
         let p = &self.program;
         let conn = self.connected();
         if !conn {
-            errors.push("Not connected to a machine.".to_string());
+            errors.push(i18n::t("Not connected to a machine.").to_string());
         }
         if self.streaming {
-            errors.push("A program is already running.".into());
+            errors.push(i18n::t("A program is already running.").into());
         }
         if conn && self.alarm() {
-            errors.push("The machine is in alarm: Home (or Unlock) first.".into());
+            errors.push(i18n::t("The machine is in alarm: Home (or Unlock) first.").into());
         } else if conn && !self.idle() {
             errors.push(format!("The machine is busy ({}): wait for Idle.", self.state()));
         }
         if p.lines.is_empty() {
-            errors.push("No program loaded.".into());
+            errors.push(i18n::t("No program loaded.").into());
         }
         if let Some(first) = p.errors.first() {
-            let tap = if self.program_name.to_ascii_lowercase().ends_with(".tap") { " This looks like a WinCNC file: export it with a GRBL post." } else { "" };
+            let tap = if self.program_name.to_ascii_lowercase().ends_with(".tap") { i18n::t(" This looks like a WinCNC file: export it with a GRBL post.") } else { "" };
             errors.push(format!("The program has {} line(s) this controller can't run ({first}).{tap}", p.errors.len()));
         }
         if p.motions.iter().any(|m| m.kind != MoveType::Rapid && !m.machine_coords && m.from.z.min(m.to.z) < 0.0 && !m.spindle_on) {
-            errors.push("The program cuts below Z0 with the spindle off (no M3 before the cut).".into());
+            errors.push(i18n::t("The program cuts below Z0 with the spindle off (no M3 before the cut).").into());
         }
         let has = p.min.x < 1e299;
         if has && conn {
@@ -698,10 +700,10 @@ impl Link {
             warnings.push(format!("The controller didn't report its travel ($130-$132): using the machine settings ({:.1} x {:.1} x {:.1} in).", self.travel.x, self.travel.y, self.travel.z));
         }
         if conn && !self.work_zero_set() {
-            warnings.push("X, Y and Z zero were not all set since connecting: make sure the current work zero is right.".into());
+            warnings.push(i18n::t("X, Y and Z zero were not all set since connecting: make sure the current work zero is right.").into());
         }
         if !p.lines.is_empty() && !p.spindle_off_at_end {
-            warnings.push("The program does not turn the spindle off at the end: GCarve Control will send M5 after it.".into());
+            warnings.push(i18n::t("The program does not turn the spindle off at the end: GCarve Control will send M5 after it.").into());
         }
         if has && p.min.z < -1.5 {
             warnings.push(format!("The program cuts {:.3} in deep: check the bit and the material.", -p.min.z));
@@ -747,17 +749,17 @@ impl Link {
     pub fn pause(&mut self) {
         if self.connected() {
             self.write(&[grbl::HOLD]);
-            self.add_log("Feed hold");
+            self.add_log(i18n::t("Feed hold"));
         }
     }
     pub fn resume(&mut self) {
         if self.stopped_on_error {
-            self.add_log("A line was rejected: Resume would run the moves after it without it. Press Stop, fix the file, then start again (or from a line)");
+            self.add_log(i18n::t("A line was rejected: Resume would run the moves after it without it. Press Stop, fix the file, then start again (or from a line)"));
             return;
         }
         if self.connected() {
             self.write(&[grbl::RESUME]);
-            self.add_log("Resume");
+            self.add_log(i18n::t("Resume"));
         }
     }
     /// feed hold + soft reset: motion and spindle stop, queue cleared
@@ -769,7 +771,7 @@ impl Link {
         self.streamer.stop();
         self.stopped_on_error = false;
         if self.streaming {
-            self.add_log("Stopped by the operator");
+            self.add_log(i18n::t("Stopped by the operator"));
         }
         self.streaming = false;
     }

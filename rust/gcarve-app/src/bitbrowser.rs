@@ -1,6 +1,8 @@
 //! Bit catalog browser (Tool Library ▸ Browse bit catalog…): every bit in the database with a drawn icon of its
 //! type, filters by type / maker / size, and a detail panel with the maker's specs and chip loads.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use crate::catalog::{get, status};
 use crate::theme;
 use eframe::egui::{self, pos2, vec2, Color32, Painter, Pos2, Rect, RichText, Shape, Stroke};
@@ -133,7 +135,7 @@ impl BitBrowser {
         }
         let mut add = None;
         let mut open = true;
-        crate::widgets::Dialog::new("Bit catalog").id("bit-browser").open(&mut open).close_footer().width(940.0).show(ctx, |ui| {
+        crate::widgets::Dialog::new(i18n::t("Bit catalog")).id("bit-browser").open(&mut open).close_footer().width(940.0).show(ctx, |ui| {
             if let Some(s) = status() {
                 ui.label(RichText::new(s).color(theme::TEXT_DIM));
                 return;
@@ -149,11 +151,11 @@ impl BitBrowser {
             }
             // search + maker + size + feeds
             ui.horizontal(|ui| {
-                let r = ui.add(crate::widgets::field(&mut self.filter.query).hint_text("Search: part number, name, size (1/4 down)").desired_width(300.0));
+                let r = ui.add(crate::widgets::field(&mut self.filter.query).hint_text(i18n::t("Search: part number, name, size (1/4 down)")).desired_width(300.0));
                 crate::widgets::focus_first(ui, &r);
-                let maker_label = if self.filter.maker.is_empty() { "All makers".to_string() } else { self.filter.maker.clone() };
+                let maker_label = if self.filter.maker.is_empty() { i18n::t("All makers").to_string() } else { self.filter.maker.clone() };
                 egui::ComboBox::from_id_salt("bb-maker").selected_text(maker_label).width(170.0).height(400.0).show_ui(ui, |ui| {
-                    ui.selectable_value(&mut self.filter.maker, String::new(), "All makers");
+                    ui.selectable_value(&mut self.filter.maker, String::new(), i18n::t("All makers"));
                     let mine = my_makers();
                     for (i, (m, n)) in self.makers.iter().enumerate() {
                         if i > 0 && mine.contains(&self.makers[i - 1].0) && !mine.contains(m) {
@@ -167,7 +169,7 @@ impl BitBrowser {
                         ui.selectable_value(&mut self.filter.size, i, s.0);
                     }
                 });
-                crate::widgets::checkbox(ui, &mut self.filter.feeds_only, "With maker feeds");
+                crate::widgets::checkbox(ui, &mut self.filter.feeds_only, i18n::t("With maker feeds"));
             });
             ui.add_space(4.0);
             // type chips with icons
@@ -211,9 +213,9 @@ impl BitBrowser {
                             let spec = format!("{} · {}F", size_text(b, b.diameter), b.flutes);
                             p.text(pos2(r.right() - 10.0, r.top() + 8.0), egui::Align2::RIGHT_TOP, spec, theme::font(12.0), theme::TEXT);
                             if self.added.contains(&i) {
-                                p.text(pos2(r.right() - 10.0, r.top() + 25.0), egui::Align2::RIGHT_TOP, "✓ in library", theme::font(10.0), theme::MODE_SIMULATE);
+                                p.text(pos2(r.right() - 10.0, r.top() + 25.0), egui::Align2::RIGHT_TOP, i18n::t("✓ in library"), theme::font(10.0), theme::MODE_SIMULATE);
                             } else if b.chip_load.as_ref().is_some_and(|c| !c.is_empty()) || b.chipload_ref.is_some() {
-                                p.text(pos2(r.right() - 10.0, r.top() + 25.0), egui::Align2::RIGHT_TOP, "maker feeds", theme::font(10.0), theme::MODE_TOOLPATHS);
+                                p.text(pos2(r.right() - 10.0, r.top() + 25.0), egui::Align2::RIGHT_TOP, i18n::t("maker feeds"), theme::font(10.0), theme::MODE_TOOLPATHS);
                             }
                             if resp.double_clicked() {
                                 add = Some(i);
@@ -229,7 +231,7 @@ impl BitBrowser {
                     ui.set_width(320.0);
                     let Some(b) = self.selected.and_then(|i| cat.bits.get(i)) else {
                         ui.add_space(60.0);
-                        ui.label(RichText::new("Pick a bit to see its details.\nDouble-click adds it to your library.").color(theme::TEXT_DIM));
+                        ui.label(RichText::new(i18n::t("Pick a bit to see its details.\nDouble-click adds it to your library.")).color(theme::TEXT_DIM));
                         return;
                     };
                     ui.horizontal_top(|ui| {
@@ -248,14 +250,14 @@ impl BitBrowser {
                             ui.label(v);
                             ui.end_row();
                         };
-                        row("Cutting diameter", size_text(b, b.diameter));
+                        row(i18n::t("Cutting diameter"), size_text(b, b.diameter));
                         if let Some(s) = b.shank {
-                            row("Shank", size_text(b, s));
+                            row(i18n::t("Shank"), size_text(b, s));
                         }
                         if let Some(c) = b.cut_length {
-                            row("Cutting length", size_text(b, c));
+                            row(i18n::t("Cutting length"), size_text(b, c));
                         }
-                        row("Flutes", b.flutes.to_string());
+                        row(i18n::t("Flutes"), b.flutes.to_string());
                         if let Some(a) = b.angle_deg {
                             row("Angle", format!("{}°", trim(a)));
                         }
@@ -268,7 +270,7 @@ impl BitBrowser {
                     let loads = cat.chip_loads(b);
                     if !loads.is_empty() {
                         ui.add_space(6.0);
-                        ui.label(RichText::new("Maker chip load (in/tooth)").small().color(theme::MODE_TOOLPATHS));
+                        ui.label(RichText::new(i18n::t("Maker chip load (in/tooth)")).small().color(theme::MODE_TOOLPATHS));
                         egui::Grid::new("bb-loads").num_columns(2).spacing(vec2(16.0, 2.0)).show(ui, |ui| {
                             for (m, [lo, hi]) in &loads {
                                 ui.label(RichText::new(m).small().color(theme::TEXT_DIM));
@@ -280,8 +282,13 @@ impl BitBrowser {
                     ui.add_space(10.0);
                     let i = self.selected.unwrap_or_default();
                     let done = self.added.contains(&i);
-                    if ui.add_enabled(!done, egui::Button::new(if done { "✓ In your library" } else { "Add to library" }).fill(theme::ACCENT)).clicked() {
+                    if ui.add_enabled(!done, egui::Button::new(if done { i18n::t("✓ In your library") } else { i18n::t("Add to library") }).fill(theme::ACCENT)).clicked() {
                         add = Some(i);
+                    }
+                    // the shop (and any affiliate tag) is set on the server: Admin › Bit shop link
+                    let q: String = format!("{} {}", b.maker, b.part_number).bytes().map(|c| if c.is_ascii_alphanumeric() { (c as char).to_string() } else { format!("%{c:02X}") }).collect();
+                    if ui.button(i18n::t("Buy this bit…")).on_hover_text(i18n::t("Find it at a shop (opens your browser). GCarve may earn a small commission, at no cost to you.")).clicked() {
+                        ui.ctx().open_url(egui::OpenUrl::new_tab(format!("https://gcarve.app/api/buy?q={q}")));
                     }
                 });
             });

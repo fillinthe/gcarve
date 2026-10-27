@@ -2,6 +2,8 @@
 //! panel that ticks itself as the job moves along: a drawing, the machine, a toolpath, a look at the cut, the export.
 //! Each open step has the button that does it. Hidden for good by "Hide the guide"; Help › Getting Started brings it back.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use gcarve_core::document::Document;
 
 #[derive(Clone, Debug, Default, PartialEq)]
@@ -43,11 +45,11 @@ impl Tour {
 
     pub fn steps(&self, doc: &Document) -> [Step; 5] {
         [
-            ("Start with a drawing", "Draw with the tools on the left, import a file, or open the demo to see a finished job.", "demo", "Open the demo", !doc.shapes.is_empty() || !doc.reliefs.is_empty()),
-            ("Pick your machine", "Feeds, board size and the G-code style follow it.", "machine", "Choose machine…", doc.material.machine.is_some()),
-            ("Add a toolpath", "Select shapes, then choose what to cut: profile, pocket, V-carve…", "tab:toolpaths", "Add toolpath", !doc.ops.is_empty()),
-            ("Watch it cut", "The simulation shows the finished board before any wood is cut.", "mode:Simulate", "Simulate", self.simulated),
-            ("Export the G-code", "Save the file for your machine. Safety problems are listed first.", "export", "Export…", self.exported),
+            (i18n::t("Start with a drawing"), i18n::t("Draw with the tools on the left, import a file, or open the demo to see a finished job."), "demo", i18n::t("Open the demo"), !doc.shapes.is_empty() || !doc.reliefs.is_empty()),
+            (i18n::t("Pick your machine"), i18n::t("Feeds, board size and the G-code style follow it."), "machine", i18n::t("Choose machine…"), doc.material.machine.is_some()),
+            (i18n::t("Add a toolpath"), i18n::t("Select shapes, then choose what to cut: profile, pocket, V-carve…"), "tab:toolpaths", i18n::t("Add toolpath"), !doc.ops.is_empty()),
+            (i18n::t("Watch it cut"), i18n::t("The simulation shows the finished board before any wood is cut."), "mode:Simulate", i18n::t("Simulate"), self.simulated),
+            (i18n::t("Export the G-code"), i18n::t("Save the file for your machine. Safety problems are listed first."), "export", i18n::t("Export…"), self.exported),
         ]
     }
 

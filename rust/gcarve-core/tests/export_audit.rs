@@ -25,6 +25,9 @@ fn showcase() -> Document {
     let px: Vec<u8> = (0..64 * 48).map(|i| ((i % 64) * 4) as u8).collect(); // left dark, right light
     let em = doc.tools.iter().position(|t| t.kind == gcarve_core::document::ToolType::EndMill).unwrap_or(0) as i32;
     doc.ops.push(Op { kind: OpType::Pocket, name: "Adaptive".into(), shape_ids: vec![id], tool: em, depth: 0.2, stepdown: 0.1, stepover: 0.15, adaptive: true, climb: true, ..Default::default() });
+    let t = doc.material.t;
+    doc.ops.push(Op { kind: OpType::Profile, name: "Onion skin".into(), shape_ids: vec![id], tool: em, depth: t, side: gcarve_core::document::Side::Outside, skin: 0.02, climb: true, ..Default::default() });
+    doc.ops.push(Op { kind: OpType::Drill, name: "Fitted V holes".into(), shape_ids: vec![id], tool: vbit, depth: 0.1, fit_holes: true, ..Default::default() });
     doc.ops.push(Op { kind: OpType::Photo, name: "Photo".into(), shape_ids: vec![id], tool: vbit, depth: 0.06, photo: gcarve_core::photo::b64_encode(&px), photo_w: 64, photo_h: 48, ..Default::default() });
     doc
 }

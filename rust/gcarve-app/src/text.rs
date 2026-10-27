@@ -2,6 +2,8 @@
 //! bundled Liberation Sans (assets/, SIL OFL: see LiberationSans-LICENSE.txt) through ttf-parser, so the result is
 //! identical on every platform and in the browser. Italic is a synthetic 12 degree shear.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use crate::canvas::{Canvas, Tool};
 use crate::units;
 use eframe::egui;
@@ -36,19 +38,35 @@ pub fn custom_families() -> Vec<String> {
 /// Family just added (the open text dialog picks it up)
 static ADDED: std::sync::Mutex<Option<String>> = std::sync::Mutex::new(None);
 
+/// A zipped font download (Google Fonts and most font sites) gives its regular style, else its first .ttf / .otf.
+fn unzip_font(bytes: Vec<u8>) -> Result<Vec<u8>, String> {
+    if !bytes.starts_with(b"PK") {
+        return Ok(bytes);
+    }
+    let files = gcarve_core::threemf::zip_entries(&bytes, &[".ttf", ".otf"])?;
+    let mut names: Vec<&String> = files.keys().filter(|n| !n.contains("__MACOSX")).collect();
+    names.sort_by_key(|n| (!n.to_ascii_lowercase().contains("regular"), n.len(), n.to_string()));
+    names.first().map(|n| files[*n].clone()).ok_or_else(|| i18n::t("the zip holds no .ttf or .otf font").into())
+}
+
 /// Register a .ttf / .otf and keep it for next time; returns its family name.
 pub fn add_font(bytes: Vec<u8>) -> Result<String, String> {
+    let bytes = unzip_font(bytes)?;
     if bytes.len() > 3 << 20 {
-        return Err("font file over 3 MB: pick a smaller one".into());
+        return Err(i18n::t("font file over 3 MB: pick a smaller one").into());
     }
+    if bytes.starts_with(b"wOFF") || bytes.starts_with(b"wOF2") {
+        return Err(i18n::t("a web font (.woff): download the .ttf or .otf version of it").into());
+    }
+    Face::parse(&bytes, 0).map_err(|_| i18n::t("not a font file (.ttf or .otf)").to_string())?;
     let leaked: &'static [u8] = Box::leak(bytes.into_boxed_slice());
-    let face = Face::parse(leaked, 0).map_err(|_| "not a font file (.ttf or .otf)".to_string())?;
+    let face = Face::parse(leaked, 0).map_err(|_| i18n::t("not a font file (.ttf or .otf)").to_string())?;
     let name = |id: u16| face.names().into_iter().find(|n| n.name_id == id && n.is_unicode()).and_then(|n| n.to_string());
-    let family = name(16).or_else(|| name(1)).or_else(|| name(4)).ok_or("the font has no name")?;
+    let family = name(16).or_else(|| name(1)).or_else(|| name(4)).ok_or(i18n::t("the font has no name"))?;
     if face.glyph_index('A').is_none() {
-        return Err("the font has no Latin letters".into());
+        return Err(i18n::t("the font has no Latin letters").into());
     }
-    let mut list = custom().lock().map_err(|_| "fonts are busy".to_string())?;
+    let mut list = custom().lock().map_err(|_| i18n::t("fonts are busy").to_string())?;
     list.retain(|(n, _)| *n != family);
     list.push((family.clone(), leaked));
     #[cfg(not(test))] // tests must not write the user's font store
@@ -64,6 +82,44 @@ fn face(family: &str, bold: bool) -> Face<'static> {
     let own = custom().lock().ok().and_then(|l| l.iter().find(|(n, _)| n == family).map(|(_, b)| *b));
     // a custom font has one weight: Bold means the family's own bold file, which isn't there
     own.and_then(|b| Face::parse(b, 0).ok()).unwrap_or_else(|| bundled(bold))
+}
+
+/// A TrueType face, or one of the single-line engraving fonts (open strokes, gcarve_ui::strokes)
+enum Font {
+    Ttf(Box<Face<'static>>),
+    Stroke(String),
+}
+
+impl Font {
+    fn of(family: &str, bold: bool) -> Font {
+        if gcarve_ui::strokes::is_stroke(family) { Font::Stroke(family.into()) } else { Font::Ttf(Box::new(face(family, bold))) }
+    }
+    /// font units from the baseline to the top of the capitals
+    fn cap(&self) -> f64 {
+        match self {
+            Font::Ttf(f) => f.capital_height().filter(|&c| c > 0).unwrap_or(f.ascender()) as f64,
+            Font::Stroke(_) => gcarve_ui::strokes::CAP,
+        }
+    }
+    fn line_h(&self) -> f64 {
+        match self {
+            Font::Ttf(f) => f.height() as f64 + f.line_gap() as f64,
+            Font::Stroke(_) => gcarve_ui::strokes::LINE,
+        }
+    }
+    /// one line's glyphs at the origin with their x offsets (font units)
+    fn line(&self, text: &str, spacing_units: f64) -> Vec<(Glyph, f64)> {
+        match self {
+            Font::Ttf(f) => line_glyphs(f, text, spacing_units),
+            Font::Stroke(fam) => {
+                let mut x = 0.0;
+                text.chars().map(|ch| { let g = gcarve_ui::strokes::glyph(fam, ch); let at = x; x += g.advance + spacing_units; (g, at) }).collect()
+            }
+        }
+    }
+    fn stroke(&self) -> bool {
+        matches!(self, Font::Stroke(_))
+    }
 }
 
 fn place(contours: &[Contour], m: &Affine, out: &mut Vec<Contour>) {
@@ -82,12 +138,11 @@ pub fn build_text(t: &TextItem, centre: Pt, path: Option<&Contour>) -> (Vec<Cont
 /// Arched block text: the first line laid along a circle of radius |arch| through `centre` (on its top when arch > 0,
 /// its bottom when < 0), centred on that point, by the curved-text layout.
 fn arched(t: &TextItem, centre: Pt) -> (Vec<Contour>, String) {
-    let face = face(&t.family, t.bold);
-    let cap = face.capital_height().filter(|&c| c > 0).unwrap_or(face.ascender()) as f64;
-    let k = t.height / cap;
+    let font = Font::of(&t.family, t.bold);
+    let k = t.height / font.cap();
     let line = t.text.lines().next().unwrap_or("");
     let n = line.chars().count();
-    let width = line_glyphs(&face, line, t.spacing / k).last().map_or(0.0, |(g, x)| (x + g.advance) * k) + (0..n.saturating_sub(1)).map(|i| t.kern(i)).sum::<f64>();
+    let width = font.line(line, t.spacing / k).last().map_or(0.0, |(g, x)| (x + g.advance) * k) + (0..n.saturating_sub(1)).map(|i| t.kern(i)).sum::<f64>();
     let r = t.arch.abs().max(t.height);
     let up = t.arch > 0.0;
     // the arc runs left to right over the top (clockwise) or under the bottom (anticlockwise), half a turn each way
@@ -103,7 +158,7 @@ fn arched(t: &TextItem, centre: Pt) -> (Vec<Contour>, String) {
     let along = TextItem { start_offset: r * half - width / 2.0, above: true, ..t.clone() };
     let (contours, mut note) = build(&along, centre, Some(&arc), None);
     if t.text.lines().count() > 1 {
-        note = "Arched text uses the first line only".into();
+        note = i18n::t("Arched text uses the first line only").into();
     }
     (contours, note)
 }
@@ -137,14 +192,14 @@ fn build(t: &TextItem, centre: Pt, path: Option<&Contour>, anchor: Option<(i32, 
     if t.text.trim().is_empty() || t.height <= 0.0 {
         return (contours, String::new());
     }
-    let face = face(&t.family, t.bold);
-    let cap = face.capital_height().filter(|&c| c > 0).unwrap_or(face.ascender()) as f64;
+    let font = Font::of(&t.family, t.bold);
+    let cap = font.cap();
     let k = t.height / cap; // font units -> inches
     let italic = if t.italic { Affine { c: 0.2, ..Default::default() } } else { Affine::default() };
     let spacing_units = t.spacing / k;
 
     let Some(path) = path else {
-        let line_h = (face.height() as f64 + face.line_gap() as f64) * t.line_spacing;
+        let line_h = font.line_h() * t.line_spacing;
         let mut raw = Vec::new();
         // kerning by hand: each character's own extra gap pushes everything after it on its line
         let mut first = 0; // char index of the line's first character in the whole text
@@ -154,7 +209,7 @@ fn build(t: &TextItem, centre: Pt, path: Option<&Contour>, anchor: Option<(i32, 
             .map(|l| {
                 let l = l.strip_suffix('\r').unwrap_or(l);
                 let mut extra = 0.0;
-                let g = line_glyphs(&face, l, spacing_units).into_iter().enumerate().map(|(i, (g, x))| { let at = x + extra; extra += t.kern(first + i) / k; (g, at) }).collect();
+                let g = font.line(l, spacing_units).into_iter().enumerate().map(|(i, (g, x))| { let at = x + extra; extra += t.kern(first + i) / k; (g, at) }).collect();
                 first += l.chars().count() + 1;
                 g
             })
@@ -182,7 +237,7 @@ fn build(t: &TextItem, centre: Pt, path: Option<&Contour>, anchor: Option<(i32, 
         };
         let m = Affine::translate(centre.x, centre.y) * Affine::rotate(t.angle.to_radians()) * Affine::translate(-ox * k, -oy * k) * Affine::scale(k, k);
         place(&raw, &m, &mut contours);
-        if t.weld {
+        if t.weld && !font.stroke() {
             contours = gcarve_core::vecops::weld_keep_holes(&contours);
         }
         return (contours, String::new());
@@ -224,7 +279,7 @@ fn build(t: &TextItem, centre: Pt, path: Option<&Contour>, anchor: Option<(i32, 
     };
 
     let line = t.text.lines().next().unwrap_or("");
-    let glyphs = line_glyphs(&face, line, 0.0);
+    let glyphs = font.line(line, 0.0);
     let mut s = t.start_offset;
     let mut note = String::new();
     for (ci, (g, _)) in glyphs.iter().enumerate() {
@@ -244,7 +299,7 @@ fn build(t: &TextItem, centre: Pt, path: Option<&Contour>, anchor: Option<(i32, 
         place(&g.contours, &m, &mut contours);
         s += adv + t.spacing + t.kern(ci);
     }
-    if t.weld {
+    if t.weld && !font.stroke() {
         contours = gcarve_core::vecops::weld_keep_holes(&contours);
     }
     (contours, note)
@@ -283,7 +338,7 @@ impl Canvas {
         }
         let (contours, note) = build_text(&t, centre, path.as_ref());
         if contours.is_empty() {
-            self.status = "Nothing to place: empty text.".into();
+            self.status = i18n::t("Nothing to place: empty text.").into();
             return 0;
         }
         self.doc.checkpoint();
@@ -355,7 +410,7 @@ impl Canvas {
                 s.text = 0;
             }
         }
-        self.status = "Text converted to curves".into();
+        self.status = i18n::t("Text converted to curves").into();
         self.mutated();
     }
 
@@ -450,7 +505,7 @@ impl TextDialog {
     /// New block text (or on the one selected shape when `on_path`), centred where the canvas shows.
     pub fn open_new(&mut self, canvas: &Canvas, on_path: bool) {
         let doc = &canvas.doc;
-        self.item = TextItem { text: "Text".into(), family: FAMILIES[0].into(), ..Default::default() };
+        self.item = TextItem { text: i18n::t("Text").into(), family: FAMILIES[0].into(), ..Default::default() };
         // readable on the board at hand: about a tenth of its short side, in half inches (1 in on a 12 × 8), at most
         // 3 in: taller letters have strokes too wide for the standard 1/2 in V-bit, so a first V-carve would warn
         self.item.height = ((doc.material.w.min(doc.material.h) / 10.0 * 2.0).round() / 2.0).clamp(0.5, 3.0);
@@ -486,11 +541,11 @@ impl TextDialog {
         let mut open = true;
         let mut ok = false;
         let editing = self.item.id != 0;
-        crate::widgets::Dialog::new(if editing { "Edit Text" } else { "Add Text" }).id("text").open(&mut open).show(ctx, |ui| {
+        crate::widgets::Dialog::new(if editing { i18n::t("Edit Text") } else { i18n::t("Add Text") }).id("text").open(&mut open).show(ctx, |ui| {
             let u = units::name(&canvas.doc);
             let dim = |t: &str| egui::RichText::new(t).color(crate::theme::TEXT.gamma_multiply(0.6));
             egui::Grid::new("text").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                ui.label("Text");
+                ui.label(i18n::t("Text"));
                 let mut out = egui::TextEdit::multiline(&mut self.item.text).desired_width(320.0).min_size(egui::vec2(320.0, 70.0)).margin(egui::Margin::symmetric(9, 6)).font(crate::theme::font(crate::theme::FONT_SIZE)).show(ui);
                 // The cursor goes to the wording for the first half second (like the command palette, which asks
                 // every frame): on the web the click that opened the dialog takes the keyboard back for a moment.
@@ -511,14 +566,14 @@ impl TextDialog {
                     ui.ctx().request_repaint();
                 }
                 ui.end_row();
-                ui.label("Font");
+                ui.label(i18n::t("Font"));
                 ui.horizontal(|ui| {
                     crate::widgets::combo_box("family").selected_text(&self.item.family).width(230.0).show_ui(ui, |ui| {
-                        for f in FAMILIES.iter().map(|f| f.to_string()).chain(custom_families()) {
+                        for f in FAMILIES.iter().map(|f| f.to_string()).chain(gcarve_ui::strokes::FAMILIES.iter().map(|(f, _)| f.to_string())).chain(custom_families()) {
                             ui.selectable_value(&mut self.item.family, f.clone(), f);
                         }
                     });
-                    if ui.button("Add font…").on_hover_text("Use your own .ttf or .otf file; it is kept on this device").clicked() {
+                    if ui.button(i18n::t("Add font…")).on_hover_text(i18n::t("Use your own .ttf or .otf file; it is kept on this device")).clicked() {
                         self.want_font = true;
                     }
                 });
@@ -526,9 +581,9 @@ impl TextDialog {
                     self.item.family = f; // the font just added
                 }
                 ui.end_row();
-                ui.label("Lines");
+                ui.label(i18n::t("Lines"));
                 ui.horizontal(|ui| {
-                    for (v, label) in [(0, "Left"), (1, "Centre"), (2, "Right")] {
+                    for (v, label) in [(0, i18n::t("Left")), (1, i18n::t("Centre")), (2, i18n::t("Right"))] {
                         ui.selectable_value(&mut self.item.align, v, label);
                     }
                 });
@@ -536,29 +591,29 @@ impl TextDialog {
                 ui.label(format!("Letter height ({u})"));
                 ui.horizontal(|ui| {
                     units::num_field(ui, "h", &mut self.height, &canvas.doc, true, 110.0);
-                    ui.label(dim("cap height"));
+                    ui.label(dim(i18n::t("cap height")));
                 });
                 ui.end_row();
-                ui.label("Angle");
-                ui.add(egui::DragValue::new(&mut self.item.angle).speed(1.0).range(-360.0..=360.0).suffix("°")).on_hover_text("Turn the text counter-clockwise (not used along a curve)");
+                ui.label(i18n::t("Angle"));
+                ui.add(egui::DragValue::new(&mut self.item.angle).speed(1.0).range(-360.0..=360.0).suffix("°")).on_hover_text(i18n::t("Turn the text counter-clockwise (not used along a curve)"));
                 ui.end_row();
-                ui.label("Style");
+                ui.label(i18n::t("Style"));
                 ui.horizontal(|ui| {
-                    crate::widgets::checkbox(ui, &mut self.item.bold, "Bold");
-                    crate::widgets::checkbox(ui, &mut self.item.italic, "Italic");
-                    crate::widgets::checkbox(ui, &mut self.item.weld, "Weld letters").on_hover_text("Merge letters that overlap (script fonts) into one outline, so a V-carve doesn't cut through the joins");
+                    crate::widgets::checkbox(ui, &mut self.item.bold, i18n::t("Bold"));
+                    crate::widgets::checkbox(ui, &mut self.item.italic, i18n::t("Italic"));
+                    crate::widgets::checkbox(ui, &mut self.item.weld, i18n::t("Weld letters")).on_hover_text(i18n::t("Merge letters that overlap (script fonts) into one outline, so a V-carve doesn't cut through the joins"));
                 });
                 ui.end_row();
                 let path_ok = self.path_choice > 0 && canvas.doc.find(self.path_choice).is_some();
-                ui.label("Along curve");
-                ui.add_enabled(path_ok, crate::widgets::CheckBox::new(&mut self.on_path, if path_ok { "Place letters along the selected curve" } else { "Select one curve first to enable" }));
+                ui.label(i18n::t("Along curve"));
+                ui.add_enabled(path_ok, crate::widgets::CheckBox::new(&mut self.on_path, if path_ok { i18n::t("Place letters along the selected curve") } else { i18n::t("Select one curve first to enable") }));
                 ui.end_row();
                 let on = self.on_path && path_ok;
                 ui.add_enabled(on, egui::Label::new(format!("Start offset ({u})")));
                 ui.add_enabled_ui(on, |ui| {
                     ui.horizontal(|ui| {
                         units::num_field(ui, "st", &mut self.start, &canvas.doc, true, 110.0);
-                        ui.label(dim("distance along the curve"));
+                        ui.label(dim(i18n::t("distance along the curve")));
                     })
                 });
                 ui.end_row();
@@ -569,12 +624,12 @@ impl TextDialog {
                 ui.add_enabled_ui(!self.on_path, |ui| {
                     ui.horizontal(|ui| {
                         units::num_field(ui, "arch", &mut self.arch, &canvas.doc, true, 110.0);
-                        ui.label(dim("0 = straight; negative bows it down"));
+                        ui.label(dim(i18n::t("0 = straight; negative bows it down")));
                     })
                 });
                 ui.end_row();
                 // kerning by hand: the gap after each letter, nudged one by one (inches, + = wider)
-                ui.label("Letter gaps").on_hover_text("Drag a number to open or close the gap after that letter (in inches). Most fonts space well already: this is for the few pairs that look off at sign size, like AV or To.");
+                ui.label(i18n::t("Letter gaps")).on_hover_text(i18n::t("Drag a number to open or close the gap after that letter (in inches). Most fonts space well already: this is for the few pairs that look off at sign size, like AV or To."));
                 let chars: Vec<char> = self.item.text.chars().collect();
                 self.item.kerns.resize(chars.len(), 0.0);
                 ui.vertical(|ui| {
@@ -591,19 +646,19 @@ impl TextDialog {
                             }
                         });
                     });
-                    if self.item.kerns.iter().any(|k| *k != 0.0) && ui.small_button("Reset gaps").clicked() {
+                    if self.item.kerns.iter().any(|k| *k != 0.0) && ui.small_button(i18n::t("Reset gaps")).clicked() {
                         self.item.kerns.iter_mut().for_each(|k| *k = 0.0);
                     }
                 });
                 ui.end_row();
-                ui.add_enabled(!self.on_path, egui::Label::new("Line spacing"));
-                ui.add_enabled(!self.on_path, egui::DragValue::new(&mut self.item.line_spacing).range(0.3..=10.0).speed(0.02).fixed_decimals(2).suffix(" × normal"));
+                ui.add_enabled(!self.on_path, egui::Label::new(i18n::t("Line spacing")));
+                ui.add_enabled(!self.on_path, egui::DragValue::new(&mut self.item.line_spacing).range(0.3..=10.0).speed(0.02).fixed_decimals(2).suffix(i18n::t(" × normal")));
                 ui.end_row();
-                ui.add_enabled(on, egui::Label::new("Side"));
-                ui.add_enabled(on, crate::widgets::CheckBox::new(&mut self.item.above, "Letters stand on the curve (else hang below)"));
+                ui.add_enabled(on, egui::Label::new(i18n::t("Side")));
+                ui.add_enabled(on, crate::widgets::CheckBox::new(&mut self.item.above, i18n::t("Letters stand on the curve (else hang below)")));
                 ui.end_row();
                 ui.label("");
-                ui.allocate_ui(egui::vec2(320.0, 20.0), |ui| ui.add(egui::Label::new(dim("Text stays editable: double-click it later to change the wording or font. Toolpaths follow.")).wrap()));
+                ui.allocate_ui(egui::vec2(320.0, 20.0), |ui| ui.add(egui::Label::new(dim(i18n::t("Text stays editable: double-click it later to change the wording or font. Toolpaths follow."))).wrap()));
                 ui.end_row();
             });
             let (o, c) = crate::widgets::ok_cancel(ui);
@@ -794,6 +849,14 @@ mod tests {
     }
 
     #[test]
+    fn a_zipped_font_download_gives_its_regular_style_and_web_fonts_are_named() {
+        let zip = crate::files::zip(&[("__MACOSX/._Font-Regular.ttf".into(), b"junk".to_vec()), ("Font-Bold.ttf".into(), b"bold".to_vec()), ("static/Font-Regular.ttf".into(), gcarve_ui::glyphs::BOLD.to_vec())]);
+        assert_eq!(unzip_font(zip).unwrap(), gcarve_ui::glyphs::BOLD);
+        assert!(add_font(crate::files::zip(&[("readme.txt".into(), b"x".to_vec())])).unwrap_err().contains("no .ttf"));
+        assert!(add_font(b"wOF2 rest".to_vec()).unwrap_err().contains(".woff"));
+    }
+
+    #[test]
     fn an_added_font_is_used_for_its_family_and_unknown_families_fall_back() {
         let family = add_font(gcarve_ui::glyphs::BOLD.to_vec()).unwrap();
         assert!(custom_families().contains(&family), "{family}");
@@ -809,6 +872,26 @@ mod tests {
         // the family added is the bold file: wider than the regular face, and an unknown name gives the regular face
         assert!(w(&family) > w("No Such Font") + 1e-6, "{} vs {}", w(&family), w("No Such Font"));
         assert!(add_font(b"not a font".to_vec()).is_err());
+    }
+
+    #[test]
+    fn single_line_fonts_give_open_strokes_the_right_size_that_cut_on_the_line() {
+        let t = TextItem { text: "HELLO\nworld".into(), family: "Single Line Sans".into(), height: 1.0, align: 1, weld: true, ..Default::default() };
+        let (cs, _) = build_text(&t, pt(10.0, 5.0), None);
+        assert!(!cs.is_empty() && cs.iter().all(|c| !c.closed), "open strokes, weld ignored");
+        let mut r = Rect::default();
+        cs.iter().for_each(|c| r.add_rect(&bounds(c)));
+        assert!(((r.x0 + r.x1) / 2.0 - 10.0).abs() < 0.05, "centred: {r:?}");
+        let mut h = Rect::default();
+        build_text(&TextItem { text: "H".into(), ..t.clone() }, pt(0.0, 0.0), None).0.iter().for_each(|c| h.add_rect(&bounds(c)));
+        assert!((h.y1 - h.y0 - 1.0).abs() < 0.08, "capitals 1 in tall: {h:?}");
+        // a V-bit on the line engraves them
+        let mut doc = gcarve_core::document::Document::default();
+        let ids: Vec<i32> = cs.into_iter().map(|c| doc.add(c, None)).collect();
+        doc.tools = vec![gcarve_core::document::Tool { name: "V".into(), kind: gcarve_core::document::ToolType::VBit, diameter: 0.5, angle: 60.0, stepdown: 0.1, feed_xy: 60.0, feed_z: 20.0, rpm: 18000, ..Default::default() }];
+        doc.ops = vec![gcarve_core::document::Op { kind: gcarve_core::document::OpType::Profile, side: gcarve_core::document::Side::On, depth: 0.05, shape_ids: ids, ..Default::default() }];
+        let g = gcarve_core::pipeline::regenerate(&doc);
+        assert!(g.warnings.is_empty() && !g.paths[0].is_empty(), "{:?}", g.warnings);
     }
 
     #[test]

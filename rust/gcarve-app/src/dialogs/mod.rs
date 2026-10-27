@@ -2,6 +2,8 @@
 //! (NumField), the feeds & speeds meter (FeedMeter), combos. Each dialog keeps its own edit state in a struct and
 //! draws itself from `Dialogs::ui`, which the app calls once per frame with a `Host` of the app state it may touch.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 pub mod gimport;
 pub mod guide;
 pub mod job;
@@ -14,6 +16,11 @@ pub mod projects;
 pub mod relief;
 pub mod shapes;
 pub mod sign;
+pub mod tray;
+pub mod doors;
+pub mod clock;
+pub mod spoilboard;
+pub mod halftone;
 pub mod share;
 pub mod templates;
 pub mod tools;
@@ -67,6 +74,20 @@ pub struct Dialogs {
     /// File › New Sign…; on OK the spec waits in `new_sign` for the app (it opens a new tab)
     pub sign: Option<sign::SignDialog>,
     pub new_sign: Option<sign::SignSpec>,
+    /// File › New Tray…; like the sign, the spec waits in `new_tray`
+    pub tray: Option<tray::TrayDialog>,
+    pub new_tray: Option<tray::TraySpec>,
+    /// File › New Cabinet Doors…; the spec waits in `new_doors`
+    pub doors: Option<doors::DoorDialog>,
+    pub new_doors: Option<doors::DoorSpec>,
+    /// File › New Clock…; the spec waits in `new_clock`
+    pub clock: Option<clock::ClockDialog>,
+    pub new_clock: Option<clock::ClockSpec>,
+    /// File › New Spoilboard…; the spec waits in `new_spoil`
+    pub spoil: Option<spoilboard::SpoilDialog>,
+    pub new_spoil: Option<spoilboard::SpoilSpec>,
+    /// Vectors › Halftone from Picture… (after the picture is picked)
+    pub halftone: Option<halftone::HalftoneDialog>,
     #[cfg(not(target_arch = "wasm32"))]
     pub jobs: Option<jobs::JobsDialog>,
 }
@@ -117,11 +138,15 @@ impl Dialogs {
             "prefs" => self.prefs_open = true,
             "variables" => self.vars = Some(Default::default()),
             "constraint" => self.constraint = Some(vars::ConstraintDialog::new(canvas)),
-            "templates" => self.templates = Some(templates::TemplatesDialog::new("Showcase sign")),
+            "templates" => self.templates = Some(templates::TemplatesDialog::new(i18n::t("Showcase sign"))),
             "shapes" => self.shapes = Some(shapes::ShapesDialog::new(&canvas.doc)),
             "sign" => self.sign = Some(sign::SignDialog::new(&canvas.doc)),
-            "makeit" => self.make_it = Some(community::MakeIt::new(&canvas.doc, "Showcase sign").with_reasons(vec!["It was set up for a ShopBot PRSalpha; you use a CAMaster Panther.".into(), "Not in your bit library: 1/8 End Mill (0.125 inch).".into()])),
-            "share" => self.share = Some(community::ShareDialog::new(&canvas.doc, "Showcase sign")),
+            "tray" => self.tray = Some(tray::TrayDialog::new(&canvas.doc)),
+            "doors" => self.doors = Some(doors::DoorDialog::new(&canvas.doc)),
+            "clock" => self.clock = Some(clock::ClockDialog::new(&canvas.doc)),
+            "spoilboard" => self.spoil = Some(spoilboard::SpoilDialog::new(&canvas.doc)),
+            "makeit" => self.make_it = Some(community::MakeIt::new(&canvas.doc, i18n::t("Showcase sign")).with_reasons(vec![i18n::t("It was set up for a ShopBot PRSalpha; you use a CAMaster Panther.").into(), i18n::t("Not in your bit library: 1/8 End Mill (0.125 inch).").into()])),
+            "share" => self.share = Some(community::ShareDialog::new(&canvas.doc, i18n::t("Showcase sign"))),
             "trace" => {
                 let bytes = std::fs::read(dev_file("app/branding/appicon-1024.png")).unwrap_or_default();
                 self.trace = trace::TraceDialog::new("appicon-1024.png", &bytes, &canvas.doc).ok();
@@ -178,6 +203,10 @@ impl Dialogs {
                     }
                     Err(e) => *host.message = e,
                 },
+                "halftone" => match halftone::HalftoneDialog::new(&name, &bytes, &host.canvas.doc) {
+                    Ok(d) => self.halftone = Some(d),
+                    Err(e) => *host.message = e,
+                },
                 "boardphoto" => match boardphoto::BoardPhotoDialog::new(&name, &bytes) {
                     Ok(d) => self.board_photo = Some(d),
                     Err(e) => *host.message = e,
@@ -205,7 +234,7 @@ impl Dialogs {
                     host.canvas.requests.push(crate::canvas::Request::Selector);
                 }
                 if std::mem::take(&mut d.pick_photo) {
-                    host.files.pick_into(ctx, "Picture (PNG, JPEG, WebP)", crate::files::IMAGE_EXTS, "photo");
+                    host.files.pick_into(ctx, i18n::t("Picture (PNG, JPEG, WebP)"), crate::files::IMAGE_EXTS, "photo");
                 }
                 self.op = Some(d);
             }
@@ -268,6 +297,39 @@ impl Dialogs {
                 self.shapes = Some(d);
             }
         }
+        if let Some(mut d) = self.halftone.take() {
+            if d.ui(ctx, host) {
+                self.halftone = Some(d);
+            }
+        }
+        if let Some(mut d) = self.spoil.take() {
+            if d.ui(ctx, host) {
+                self.spoil = Some(d);
+            } else {
+                self.new_spoil = d.done.take();
+            }
+        }
+        if let Some(mut d) = self.clock.take() {
+            if d.ui(ctx, host) {
+                self.clock = Some(d);
+            } else {
+                self.new_clock = d.done.take();
+            }
+        }
+        if let Some(mut d) = self.doors.take() {
+            if d.ui(ctx, host) {
+                self.doors = Some(d);
+            } else {
+                self.new_doors = d.done.take();
+            }
+        }
+        if let Some(mut d) = self.tray.take() {
+            if d.ui(ctx, host) {
+                self.tray = Some(d);
+            } else {
+                self.new_tray = d.done.take();
+            }
+        }
         if let Some(mut d) = self.sign.take() {
             if d.ui(ctx, host) {
                 self.sign = Some(d);
@@ -298,7 +360,7 @@ impl Dialogs {
         if let Some(mut d) = self.share.take() {
             if d.ui(ctx, host) {
                 if std::mem::take(&mut d.want_photo) {
-                    host.files.pick_into(ctx, "Photos (PNG, JPEG, WebP)", crate::files::IMAGE_EXTS, "communityphoto");
+                    host.files.pick_into(ctx, i18n::t("Photos (PNG, JPEG, WebP)"), crate::files::IMAGE_EXTS, "communityphoto");
                 }
                 self.share = Some(d);
             }
@@ -468,9 +530,9 @@ pub fn feed_meter(ui: &mut egui::Ui, a: &FeedAssessment, width: f32) {
         let (lr, _) = ui.allocate_exact_size(egui::vec2(width, 13.0), egui::Sense::hover());
         let dim = crate::theme::TEXT.gamma_multiply(0.6);
         let f = crate::theme::font(10.0);
-        p.text(lr.left_center(), egui::Align2::LEFT_CENTER, "rubs / burns", f.clone(), dim);
-        p.text(lr.center(), egui::Align2::CENTER_CENTER, "sweet spot", f.clone(), dim);
-        p.text(lr.right_center(), egui::Align2::RIGHT_CENTER, "breaks bit / tears", f, dim);
+        p.text(lr.left_center(), egui::Align2::LEFT_CENTER, i18n::t("rubs / burns"), f.clone(), dim);
+        p.text(lr.center(), egui::Align2::CENTER_CENTER, i18n::t("sweet spot"), f.clone(), dim);
+        p.text(lr.right_center(), egui::Align2::RIGHT_CENTER, i18n::t("breaks bit / tears"), f, dim);
         if !a.message.is_empty() {
             let color = match a.level { 2 => crate::theme::DANGER, 1 => Color32::from_rgb(0xd7, 0xa3, 0x34), _ => crate::theme::TEXT };
             ui.add(egui::Label::new(RichText::new(&a.message).size(11.0).color(color)).wrap());
@@ -490,11 +552,11 @@ pub fn tool_advice(doc: &Document, i: usize) -> Option<(Tool, &'static str, Feed
 /// Tool line + meter as shown under the tool combo of every toolpath dialog.
 pub fn tool_advice_ui(ui: &mut egui::Ui, doc: &Document, i: usize, width: f32) {
     let Some((e, src, a)) = tool_advice(doc, i) else { return };
-    let note = match src { "preset" => " (saved preset)", "auto" => " (auto from chip load, edit in Tool Library)", _ => " (bit defaults)" };
+    let note = match src { "preset" => i18n::t(" (saved preset)"), "auto" => i18n::t(" (auto from chip load, edit in Tool Library)"), _ => i18n::t(" (bit defaults)") };
     ui.add(egui::Label::new(RichText::new(format!("In {}: F {:.0} / plunge {:.0} in/min · {} rpm · pass {} in{note}", doc.material.kind, e.feed_xy, e.feed_z, e.rpm, fmt_len(e.stepdown))).small().color(crate::theme::TEXT_DIM)).wrap());
     if src == "auto" && doc.material.machine.is_none() {
         // no machine = full industrial chip loads: far too fast for a hobby or desktop router
-        ui.add(egui::Label::new(RichText::new("No machine chosen: these feeds suit a heavy industrial router. Pick yours (Toolpaths › Choose Machine…) and they are scaled to it.").size(11.0).color(Color32::from_rgb(0xd7, 0xa3, 0x34))).wrap());
+        ui.add(egui::Label::new(RichText::new(i18n::t("No machine chosen: these feeds suit a heavy industrial router. Pick yours (Toolpaths › Choose Machine…) and they are scaled to it.")).size(11.0).color(Color32::from_rgb(0xd7, 0xa3, 0x34))).wrap());
     }
     feed_meter(ui, &a, width);
 }

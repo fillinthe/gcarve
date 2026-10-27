@@ -1,6 +1,8 @@
 //! User post-processors (uploaded Vectric .pp or GCarve .json), stored next to the bit library; the built-ins come
 //! from gcarve_core::postdef::post_library().
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use gcarve_core::postdef::{post_from_json, post_from_vectric_pp, post_library, post_to_json, PostDef};
 
 const KEY: &str = "posts.json";
@@ -56,5 +58,5 @@ impl UserPosts {
 /// Search text like the Qt dialog: name, controller, machines, extension, units.
 pub fn matches(p: &PostDef, q: &str) -> bool {
     let q = q.trim().to_ascii_lowercase();
-    q.is_empty() || format!("{} {} {} {} {}", p.name, p.controller, p.machines, p.extension, if p.inches { "inches in" } else { "mm metric" }).to_ascii_lowercase().contains(&q)
+    q.is_empty() || format!("{} {} {} {} {}", p.name, p.controller, p.machines, p.extension, if p.inches { i18n::t("inches in") } else { i18n::t("mm metric") }).to_ascii_lowercase().contains(&q)
 }

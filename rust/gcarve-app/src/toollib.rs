@@ -2,6 +2,8 @@
 //! saved whenever the Tools dialog edits it. Imports: GCarve tools.json and Fusion 360 tools.json; Vectric .vtdb on the
 //! desktop (vtdb.rs).
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use gcarve_core::document::{Tool, ToolType};
 use gcarve_core::project::{tool_library_from_json, tool_library_to_json};
 use serde_json::Value;
@@ -61,7 +63,7 @@ pub fn machine_slots(doc: &gcarve_core::document::Document) -> i32 {
 /// presets (v_f, v_f_plunge, n). Same mapping as the Qt importer.
 pub fn fusion_tools_from_json(text: &str) -> Result<Vec<Tool>, String> {
     let root: Value = serde_json::from_str(text).map_err(|e| e.to_string())?;
-    let data = root.get("data").and_then(Value::as_array).filter(|a| !a.is_empty()).ok_or("No tools found (for a .tools file, unzip it and pick tools.json)")?;
+    let data = root.get("data").and_then(Value::as_array).filter(|a| !a.is_empty()).ok_or(i18n::t("No tools found (for a .tools file, unzip it and pick tools.json)"))?;
     let mut out = Vec::new();
     for o in data {
         let kind = o.get("type").and_then(Value::as_str).unwrap_or("");
@@ -72,7 +74,7 @@ pub fn fusion_tools_from_json(text: &str) -> Result<Vec<Tool>, String> {
         let k = if o.get("unit").and_then(Value::as_str) == Some("millimeters") { 1.0 / 25.4 } else { 1.0 };
         let ta = geo.get("TA").and_then(Value::as_f64).unwrap_or(0.0);
         let vbit = kind.contains("chamfer") || kind.contains("engrav") || ta > 0.0;
-        let mut t = Tool { name: o.get("description").and_then(Value::as_str).unwrap_or("Fusion tool").to_string(), kind: if vbit { ToolType::VBit } else { ToolType::EndMill }, ..Default::default() };
+        let mut t = Tool { name: o.get("description").and_then(Value::as_str).unwrap_or(i18n::t("Fusion tool")).to_string(), kind: if vbit { ToolType::VBit } else { ToolType::EndMill }, ..Default::default() };
         t.diameter = geo.get("DC").and_then(Value::as_f64).unwrap_or(0.25) * k;
         if vbit {
             t.angle = if ta > 0.0 { 2.0 * ta } else { 90.0 };
@@ -100,7 +102,7 @@ pub fn import(text: &str) -> Result<Vec<Tool>, String> {
     if v.get("tools").and_then(Value::as_array).is_some_and(|a| !a.is_empty()) {
         Ok(tool_library_from_json(text))
     } else {
-        Err("Not a GCarve bit library or Fusion tools.json".into())
+        Err(i18n::t("Not a GCarve bit library or Fusion tools.json").into())
     }
 }
 

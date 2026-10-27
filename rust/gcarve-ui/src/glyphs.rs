@@ -69,7 +69,7 @@ pub fn faces_in(data: &[u8]) -> Vec<(String, String, u32)> {
     (0..ttf_parser::fonts_in_collection(data).unwrap_or(1))
         .filter_map(|i| {
             let f = Face::parse(data, i).ok()?;
-            Some((font_name(&f, [16, 1])?, font_name(&f, [17, 2]).unwrap_or_else(|| "Regular".into()), i))
+            Some((font_name(&f, [16, 1])?, font_name(&f, [17, 2]).unwrap_or_else(|| crate::i18n::t("Regular").into()), i))
         })
         .collect()
 }

@@ -3,6 +3,8 @@
 //! Community (File menu): the project, a picture of the simulated cut, photos, the vectors as SVG / DXF and the
 //! facts the project page shows; it waits for review before it is public.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use super::Host;
 use crate::units;
 use eframe::egui::{self, RichText};
@@ -40,9 +42,9 @@ fn bit_text(doc: &Document, t: &Tool) -> String {
     match t.kind {
         ToolType::VBit => format!("{:.0}° V-bit, {size}", t.angle),
         k => format!("{} {}", match k {
-            ToolType::BallNose => "ball nose",
+            ToolType::BallNose => i18n::t("ball nose"),
             ToolType::RoundOver => "round-over",
-            _ => "end mill",
+            _ => i18n::t("end mill"),
         }, size),
     }
 }
@@ -142,23 +144,23 @@ impl MakeIt {
     pub fn ui(&mut self, ctx: &egui::Context, host: &mut Host) -> Next {
         let mut open = true;
         let mut next = Next::Keep;
-        crate::widgets::Dialog::new("Make it on your machine").open(&mut open).width(560.0).show(ctx, |ui| {
+        crate::widgets::Dialog::new(i18n::t("Make it on your machine")).open(&mut open).width(560.0).show(ctx, |ui| {
             let doc = &host.canvas.doc;
             ui.label(RichText::new(&self.title).strong().size(15.0));
             if self.reasons.is_empty() {
-                ui.label(RichText::new("Set it up for your machine, your bits and your board. You can change any of it later.").color(crate::theme::TEXT_DIM));
+                ui.label(RichText::new(i18n::t("Set it up for your machine, your bits and your board. You can change any of it later.")).color(crate::theme::TEXT_DIM));
             } else {
-                ui.label(RichText::new("This project was saved with a different setup from yours:").color(crate::theme::ORANGE));
+                ui.label(RichText::new(i18n::t("This project was saved with a different setup from yours:")).color(crate::theme::ORANGE));
                 for r in &self.reasons {
                     ui.label(RichText::new(format!("•  {r}")).color(crate::theme::ORANGE));
                 }
-                ui.label(RichText::new("Switch it to your machine and bits below, or Skip to keep it as it is.").color(crate::theme::TEXT_DIM));
+                ui.label(RichText::new(i18n::t("Switch it to your machine and bits below, or Skip to keep it as it is.")).color(crate::theme::TEXT_DIM));
             }
             ui.add_space(8.0);
-            section(ui, "Machine");
+            section(ui, i18n::t("Machine"));
             let post = pipeline::active_post(doc, &|id| host.posts.find(id));
             if let Some((m, p)) = &self.mine {
-                let their = doc.material.machine.as_ref().map_or("no machine".to_string(), |t| t.name.clone());
+                let their = doc.material.machine.as_ref().map_or(i18n::t("no machine").to_string(), |t| t.name.clone());
                 let p_name = gcarve_core::postdef::find_post(p).cloned().or_else(|| host.posts.find(p)).map_or(p.clone(), |d| d.name);
                 ui.checkbox(&mut self.switch, format!("Use my machine: {} (G-code for {p_name})", m.name)).on_hover_text(format!("The project is set up for {their}, G-code for {}", post.name));
             }
@@ -168,22 +170,22 @@ impl MakeIt {
                     Some(n) => RichText::new(format!("{n}  ·  G-code for {}", post.name)),
                     None => RichText::new(format!("No machine chosen yet  ·  G-code for {}", post.name)).color(crate::theme::ORANGE),
                 });
-                if ui.button("Choose machine…").clicked() {
+                if ui.button(i18n::t("Choose machine…")).clicked() {
                     self.want_machine = true;
                 }
             });
             ui.add_space(6.0);
-            section(ui, "Board");
+            section(ui, i18n::t("Board"));
             ui.horizontal(|ui| {
-                ui.label("Your board's thickness");
+                ui.label(i18n::t("Your board's thickness"));
                 units::num_field(ui, "makeit-t", &mut self.thick, doc, true, 90.0);
                 ui.label(RichText::new(format!("drawn for {}", units::text(doc, self.old_t))).color(crate::theme::TEXT_DIM));
             });
-            ui.label(RichText::new("Cuts that go through the board follow the new thickness; the other depths stay as drawn.").small().color(crate::theme::TEXT_DIM));
+            ui.label(RichText::new(i18n::t("Cuts that go through the board follow the new thickness; the other depths stay as drawn.")).small().color(crate::theme::TEXT_DIM));
             ui.add_space(6.0);
-            section(ui, "Bits");
+            section(ui, i18n::t("Bits"));
             if self.bits.is_empty() {
-                ui.label(RichText::new("This project has no toolpaths yet.").color(crate::theme::TEXT_DIM));
+                ui.label(RichText::new(i18n::t("This project has no toolpaths yet.")).color(crate::theme::TEXT_DIM));
             }
             for (r, row) in self.bits.iter_mut().enumerate() {
                 let t = &doc.tools[row.idx];
@@ -200,19 +202,19 @@ impl MakeIt {
                         ui.selectable_value(&mut row.pick, None, format!("The project's bit ({})", t.name));
                         for i in choices {
                             let l = &self.lib[i];
-                            let tag = if same_bit(l, t) { "  ✓ same size" } else { "" };
+                            let tag = if same_bit(l, t) { i18n::t("  ✓ same size") } else { "" };
                             ui.selectable_value(&mut row.pick, Some(i), format!("{}{tag}", l.name));
                         }
                     });
                 });
                 if row.pick.is_some_and(|i| !same_bit(&self.lib[i], t)) {
-                    ui.label(RichText::new("A different size cuts differently: check the result in Simulate.").small().color(crate::theme::ORANGE));
+                    ui.label(RichText::new(i18n::t("A different size cuts differently: check the result in Simulate.")).small().color(crate::theme::ORANGE));
                 }
             }
             if !self.bits.is_empty() && self.bits.iter().all(|b| b.pick.is_none()) {
-                ui.label(RichText::new("Your bits keep their own feeds; the project's bits get feeds suggested for your machine.").small().color(crate::theme::TEXT_DIM));
+                ui.label(RichText::new(i18n::t("Your bits keep their own feeds; the project's bits get feeds suggested for your machine.")).small().color(crate::theme::TEXT_DIM));
             }
-            match crate::widgets::buttons(ui, &[("Skip", false), ("Make it", true)]) {
+            match crate::widgets::buttons(ui, &[(i18n::t("Skip"), false), (i18n::t("Make it"), true)]) {
                 Some(0) => next = Next::Close,
                 Some(1) => next = Next::Made,
                 _ => {}
@@ -251,7 +253,7 @@ impl MakeIt {
         }
         canvas.apply_bindings();
         canvas.touch();
-        *host.message = "Ready to cut: watch it in Simulate, then Export G-code".into();
+        *host.message = i18n::t("Ready to cut: watch it in Simulate, then Export G-code").into();
     }
 }
 
@@ -331,7 +333,7 @@ pub fn photo_jpeg(bytes: &[u8]) -> Result<Vec<u8>, String> {
     let img = image::load_from_memory(bytes).map_err(|e| format!("Not a picture GCarve can read: {e}"))?;
     let img = if img.width().max(img.height()) > 1600 { img.resize(1600, 1600, image::imageops::FilterType::Triangle) } else { img };
     let rgba = img.to_rgba8();
-    jpeg(&rgba, rgba.width(), rgba.height()).ok_or_else(|| "Could not convert the picture".to_string())
+    jpeg(&rgba, rgba.width(), rgba.height()).ok_or_else(|| i18n::t("Could not convert the picture").to_string())
 }
 
 impl ShareDialog {
@@ -339,13 +341,13 @@ impl ShareDialog {
         let gen = pipeline::regenerate(doc);
         let mut problems = Vec::new();
         if doc.ops.is_empty() {
-            problems.push("Add the toolpaths first: people open the project to cut it.".to_string());
+            problems.push(i18n::t("Add the toolpaths first: people open the project to cut it.").to_string());
         }
-        problems.extend(gen.warnings.iter().filter(|w| w.ends_with("no tool")).cloned());
+        problems.extend(gen.warnings.iter().filter(|w| w.ends_with(i18n::t("no tool"))).cloned());
         if doc.ops.iter().zip(&gen.paths).all(|(_, p)| p.is_empty()) && !doc.ops.is_empty() {
-            problems.push("The toolpaths cut nothing on this sheet.".to_string());
+            problems.push(i18n::t("The toolpaths cut nothing on this sheet.").to_string());
         }
-        let pics: Vec<Pic> = crate::setupsheet::carved(doc, &gen, 1_200_000).and_then(|(rgba, w, h, _)| jpeg(&rgba, w, h)).and_then(|j| Pic::new("Simulated cut", j)).into_iter().collect();
+        let pics: Vec<Pic> = crate::setupsheet::carved(doc, &gen, 1_200_000).and_then(|(rgba, w, h, _)| jpeg(&rgba, w, h)).and_then(|j| Pic::new(i18n::t("Simulated cut"), j)).into_iter().collect();
         let title = name.trim_end_matches(".tlp").trim_end_matches(".crv").to_string();
         ShareDialog { title: if title == "Untitled" { String::new() } else { title }, summary: String::new(), tags: String::new(), license: 0, author: String::new(), rights: false, show_name: true, pics, cover: 0, minutes: gen.minutes.iter().sum(), problems, sending: false, sent: None, want_photo: false }
     }
@@ -354,7 +356,7 @@ impl ShareDialog {
         if self.pics.len() >= MAX_PICTURES {
             return Err(format!("Up to {MAX_PICTURES} pictures"));
         }
-        let pic = Pic::new(name, photo_jpeg(bytes)?).ok_or("Could not read the converted picture")?;
+        let pic = Pic::new(name, photo_jpeg(bytes)?).ok_or(i18n::t("Could not read the converted picture"))?;
         // the first real photo makes a better cover than the simulation
         if self.cover == 0 && self.pics.len() == 1 && self.pics[0].name == "Simulated cut" {
             self.cover = 1;
@@ -368,62 +370,62 @@ impl ShareDialog {
         let mut open = true;
         let mut close = false;
         let mut send = false;
-        crate::widgets::Dialog::new("Share to Community").open(&mut open).width(600.0).show(ctx, |ui| {
+        crate::widgets::Dialog::new(i18n::t("Share to Community")).open(&mut open).width(600.0).show(ctx, |ui| {
             if let Some(r) = &self.sent {
                 match r {
                     Ok(url) => {
-                        ui.label(RichText::new("Thank you! Your project is waiting for review.").strong().size(15.0));
+                        ui.label(RichText::new(i18n::t("Thank you! Your project is waiting for review.")).strong().size(15.0));
                         ui.label(format!("Once it is approved (usually within a day) everyone can open it at gcarve.app{url}, pick their own machine and bits, and cut it."));
-                        ui.label(RichText::new("You can remove it there at any time while signed in.").color(crate::theme::TEXT_DIM));
-                        if let Some(0) = crate::widgets::buttons(ui, &[("Close", true)]) {
+                        ui.label(RichText::new(i18n::t("You can remove it there at any time while signed in.")).color(crate::theme::TEXT_DIM));
+                        if let Some(0) = crate::widgets::buttons(ui, &[(i18n::t("Close"), true)]) {
                             close = true;
                         }
                     }
                     Err(e) => {
                         ui.label(RichText::new(format!("Not shared: {e}")).color(crate::theme::ORANGE));
-                        if let Some(0) = crate::widgets::buttons(ui, &[("Back", true)]) {
+                        if let Some(0) = crate::widgets::buttons(ui, &[(i18n::t("Back"), true)]) {
                             self.sent = None;
                         }
                     }
                 }
                 return;
             }
-            ui.label(RichText::new("Share this project on gworkshop.app/projects so others can open it, pick their machine and bits, and cut it. It is checked by us before it appears.").color(crate::theme::TEXT_DIM));
+            ui.label(RichText::new(i18n::t("Share this project on gworkshop.app/projects so others can open it, pick their machine and bits, and cut it. It is checked by us before it appears.")).color(crate::theme::TEXT_DIM));
             ui.add_space(6.0);
             if !host.cloud.signed_in() {
-                ui.label(RichText::new("Sign in first (Help › Account): shared projects carry your chosen name, never your email.").color(crate::theme::ORANGE));
+                ui.label(RichText::new(i18n::t("Sign in first (Help › Account): shared projects carry your chosen name, never your email.")).color(crate::theme::ORANGE));
             }
             for p in &self.problems {
                 ui.label(RichText::new(format!("⚠ {p}")).color(crate::theme::ORANGE));
             }
             egui::Grid::new("share-form").num_columns(2).spacing([10.0, 8.0]).show(ui, |ui| {
-                ui.label("Title");
-                ui.add(crate::widgets::field(&mut self.title).hint_text("e.g. Family name sign").desired_width(420.0).char_limit(80));
+                ui.label(i18n::t("Title"));
+                ui.add(crate::widgets::field(&mut self.title).hint_text(i18n::t("e.g. Family name sign")).desired_width(420.0).char_limit(80));
                 ui.end_row();
-                ui.label("About it");
-                ui.add(egui::TextEdit::multiline(&mut self.summary).hint_text("What it is, the wood you used, tips for cutting it…").desired_rows(4).desired_width(420.0).char_limit(2000));
+                ui.label(i18n::t("About it"));
+                ui.add(egui::TextEdit::multiline(&mut self.summary).hint_text(i18n::t("What it is, the wood you used, tips for cutting it…")).desired_rows(4).desired_width(420.0).char_limit(2000));
                 ui.end_row();
-                ui.label("Tags");
-                ui.add(crate::widgets::field(&mut self.tags).hint_text("sign, v-carve, gift (comma between)").desired_width(420.0));
+                ui.label(i18n::t("Tags"));
+                ui.add(crate::widgets::field(&mut self.tags).hint_text(i18n::t("sign, v-carve, gift (comma between)")).desired_width(420.0));
                 ui.end_row();
-                ui.label("Shown as");
+                ui.label(i18n::t("Shown as"));
                 ui.vertical(|ui| {
-                    ui.add(crate::widgets::field(&mut self.author).hint_text("your name or shop (optional)").desired_width(260.0).char_limit(40));
+                    ui.add(crate::widgets::field(&mut self.author).hint_text(i18n::t("your name or shop (optional)")).desired_width(260.0).char_limit(40));
                     let named = !self.author.trim().is_empty();
-                    ui.add_enabled(named, egui::Checkbox::new(&mut self.show_name, "Show this name on the project and a page of my projects"));
+                    ui.add_enabled(named, egui::Checkbox::new(&mut self.show_name, i18n::t("Show this name on the project and a page of my projects")));
                     if !named || !self.show_name {
-                        ui.label(RichText::new("Shown as “A GCarve maker”. Your email is never shown.").small().color(crate::theme::TEXT_DIM));
+                        ui.label(RichText::new(i18n::t("Shown as “A GCarve maker”. Your email is never shown.")).small().color(crate::theme::TEXT_DIM));
                     }
                 });
                 ui.end_row();
-                ui.label("License");
+                ui.label(i18n::t("License"));
                 ui.vertical(|ui| {
                     for (i, (_, label, tip)) in LICENSES.iter().enumerate() {
                         ui.radio_value(&mut self.license, i, *label).on_hover_text(*tip);
                     }
                 });
                 ui.end_row();
-                ui.label("Pictures");
+                ui.label(i18n::t("Pictures"));
                 ui.vertical(|ui| {
                     let mut gone = None;
                     ui.horizontal_wrapped(|ui| {
@@ -441,8 +443,8 @@ impl ShareDialog {
                                     self.cover = i;
                                 }
                                 ui.horizontal(|ui| {
-                                    ui.label(RichText::new(if on { "Cover" } else { "" }).small().color(crate::theme::ACCENT));
-                                    if p.name != "Simulated cut" && ui.small_button("✕").on_hover_text("Remove this photo").clicked() {
+                                    ui.label(RichText::new(if on { i18n::t("Cover") } else { "" }).small().color(crate::theme::ACCENT));
+                                    if p.name != "Simulated cut" && ui.small_button("✕").on_hover_text(i18n::t("Remove this photo")).clicked() {
                                         gone = Some(i);
                                     }
                                 });
@@ -456,18 +458,18 @@ impl ShareDialog {
                         }
                     }
                     ui.horizontal(|ui| {
-                        if ui.add_enabled(self.pics.len() < MAX_PICTURES, egui::Button::new("Add photos of the real thing…")).clicked() {
+                        if ui.add_enabled(self.pics.len() < MAX_PICTURES, egui::Button::new(i18n::t("Add photos of the real thing…"))).clicked() {
                             self.want_photo = true;
                         }
-                        ui.label(RichText::new("Click a picture to make it the cover.").small().color(crate::theme::TEXT_DIM));
+                        ui.label(RichText::new(i18n::t("Click a picture to make it the cover.")).small().color(crate::theme::TEXT_DIM));
                     });
                 });
                 ui.end_row();
             });
             ui.add_space(6.0);
-            ui.checkbox(&mut self.rights, "I made this design, or I have the right to share it under this license");
+            ui.checkbox(&mut self.rights, i18n::t("I made this design, or I have the right to share it under this license"));
             let ready = host.cloud.signed_in() && self.problems.is_empty() && self.rights && self.title.trim().chars().count() >= 3 && !self.pics.is_empty() && !self.sending;
-            match crate::widgets::buttons(ui, &[("Cancel", false), (if self.sending { "Sharing…" } else { "Share" }, ready)]) {
+            match crate::widgets::buttons(ui, &[(i18n::t("Cancel"), false), (if self.sending { i18n::t("Sharing…") } else { i18n::t("Share") }, ready)]) {
                 Some(0) => close = true,
                 Some(1) if ready => send = true,
                 _ => {}
@@ -601,7 +603,7 @@ mod seeds {
     fn sign(words: &str, w: f64, h: f64, wood: &str) -> Canvas {
         let mut c = Canvas::default();
         board(&mut c, w, h, 0.75, wood);
-        super::super::sign::build(&mut c, &super::super::sign::SignSpec { words: words.into(), w, h, t: 0.75, shape: 1, border: true, family: "Liberation Sans".into(), bold: true });
+        super::super::sign::build(&mut c, &super::super::sign::SignSpec { words: words.into(), w, h, t: 0.75, shape: 1, border: true, family: "Liberation Sans".into(), bold: true, batch: None });
         c
     }
 

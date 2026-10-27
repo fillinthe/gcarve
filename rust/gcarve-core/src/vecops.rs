@@ -482,6 +482,34 @@ pub fn vector_texture(shapes: &[Contour], spacing: f64, amplitude: f64, waveleng
 
 /// Fewer nodes (VCarve "Fit curves to vectors" for the straight-line case): each contour becomes a polyline that
 /// stays within `tol` of the original (Douglas-Peucker, the tracer's). Open contours stay open, ends kept.
+/// Living hinge (kerf bending): straight slots (open lines, cut on the line with a bit as wide as a slot) across
+/// `area`, in columns `spacing` apart along x (the board bends about the y axis; swap w / h for the other way).
+/// Each column is slots `slot` long with `bridge` of wood between them; neighbouring columns are shifted half a
+/// period, so no line of wood runs straight across. Pieces cut short by the area's edge keep only what is longer than
+/// the bridge. Returns the lines left to right, bottom to top.
+pub fn living_hinge(area: crate::geom::Rect, spacing: f64, slot: f64, bridge: f64) -> Vec<Contour> {
+    let mut out = Vec::new();
+    if !(spacing > 0.0 && slot > 0.0 && bridge > 0.0) || area.is_empty() {
+        return out;
+    }
+    let period = slot + bridge;
+    let cols = ((area.w() / spacing).floor() as usize).min(2000);
+    let x0 = area.x0 + (area.w() - (cols.max(1) - 1) as f64 * spacing) / 2.0;
+    for c in 0..cols {
+        let x = x0 + c as f64 * spacing;
+        // even columns start with half a bridge at the bottom, odd ones half a period further up
+        let mut y = area.y0 + bridge / 2.0 - if c % 2 == 1 { period / 2.0 } else { 0.0 };
+        while y < area.y1 && out.len() < 200_000 {
+            let (a, b) = (y.max(area.y0), (y + slot).min(area.y1));
+            if b - a > bridge {
+                out.push(crate::geom::make_polyline(&[pt(x, a), pt(x, b)], false));
+            }
+            y += period;
+        }
+    }
+    out
+}
+
 pub fn simplify_contours(input: &[Contour], tol: f64) -> Vec<Contour> {
     input
         .iter()
@@ -855,6 +883,26 @@ mod fillet_tests {
         let moved = make_polyline(&[pt(0.5, 0.0), pt(2.5, 0.0), pt(2.5, 2.0), pt(0.5, 2.0)], true);
         let r = check_vectors(&[(1, &sq), (2, &open), (3, &sq), (4, &speck), (5, &moved)]);
         assert_eq!(r, VectorCheck { open: vec![2], duplicates: vec![3], tiny: vec![4] });
+    }
+
+    #[test]
+    fn a_living_hinge_staggers_its_slots_so_no_wood_runs_straight_across() {
+        use crate::geom::bounds;
+        let area = crate::geom::Rect { x0: 1.0, y0: 1.0, x1: 5.0, y1: 7.0 };
+        let lines = living_hinge(area, 0.25, 1.5, 0.25);
+        let xs: Vec<f64> = { let mut v: Vec<f64> = lines.iter().map(|l| l.nodes[0].p.x).collect(); v.dedup(); v };
+        assert_eq!(xs.len(), 16, "4 in / 0.25");
+        assert!(lines.iter().all(|l| { let b = bounds(l); b.y0 >= 1.0 - 1e-9 && b.y1 <= 7.0 + 1e-9 && b.x0 >= 1.0 && b.x1 <= 5.0 }));
+        // every gap (bridge) in a column faces a slot in the next column: a horizontal line through any bridge
+        // middle crosses the neighbour's slot
+        let col = |x: f64| lines.iter().filter(|l| (l.nodes[0].p.x - x).abs() < 1e-9).map(bounds).collect::<Vec<_>>();
+        for w in xs.windows(2) {
+            let (a, b) = (col(w[0]), col(w[1]));
+            for p in a.windows(2) {
+                let mid = (p[0].y1 + p[1].y0) / 2.0;
+                assert!(b.iter().any(|s| s.y0 < mid && s.y1 > mid), "bridge at {mid} faces a slot");
+            }
+        }
     }
 
     #[test]

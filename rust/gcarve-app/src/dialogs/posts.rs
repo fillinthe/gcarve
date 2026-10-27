@@ -1,6 +1,8 @@
 //! Post-processor chooser (Qt PostDialog.qml): search the built-ins and user posts, upload .pp / .json, export as
 //! JSON, delete user posts; the pick goes to `Material::post` on the active sheet.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use super::{hint, Host};
 use crate::widgets::TipExt;
 use crate::posts::matches;
@@ -23,11 +25,11 @@ impl PostsDialog {
         let all = host.posts.all();
         let current = host.canvas.doc.material.post.clone();
         let shown: Vec<_> = all.iter().filter(|(p, _)| matches(p, &self.search)).collect();
-        crate::widgets::Dialog::new("Post-Processors").open(&mut open).close_footer().width(780.0).show(ctx, |ui| {
+        crate::widgets::Dialog::new(i18n::t("Post-Processors")).open(&mut open).close_footer().width(780.0).show(ctx, |ui| {
             ui.horizontal(|ui| {
-                let r = ui.add(crate::widgets::field(&mut self.search).desired_width(662.0).hint_text("Search by machine, controller, units or extension (e.g. Shapeoko, Mach4, mm, .sbp)"));
+                let r = ui.add(crate::widgets::field(&mut self.search).desired_width(662.0).hint_text(i18n::t("Search by machine, controller, units or extension (e.g. Shapeoko, Mach4, mm, .sbp)")));
                 crate::widgets::focus_first(ui, &r);
-                if ui.button("Upload post…").tip("Add a Vectric .pp or a GCarve .json post").clicked() {
+                if ui.button(i18n::t("Upload post…")).tip(i18n::t("Add a Vectric .pp or a GCarve .json post")).clicked() {
                     upload = true;
                 }
             });
@@ -44,10 +46,10 @@ impl PostsDialog {
                             ui.label(RichText::new(format!("{}  ·  {}  ·  .{}  ·  {}", p.controller, p.machines, p.extension, if p.inches { "inches" } else { "mm" })).small().color(if on { egui::Color32::WHITE } else { crate::theme::TEXT_DIM }));
                         });
                         ui.label(RichText::new(if *custom { "custom" } else { "built-in" }).small().color(if on { egui::Color32::WHITE } else { crate::theme::TEXT_DIM }));
-                        if crate::icons::IconButton::new("export").size(15.0).padding(4.0).tip("Export as editable JSON").show(ui).clicked() {
+                        if crate::icons::IconButton::new("export").size(15.0).padding(4.0).tip(i18n::t("Export as editable JSON")).show(ui).clicked() {
                             export = Some(p.id.clone());
                         }
-                        if *custom && crate::icons::IconButton::new("delete").size(15.0).padding(4.0).tip("Delete this custom post").show(ui).clicked() {
+                        if *custom && crate::icons::IconButton::new("delete").size(15.0).padding(4.0).tip(i18n::t("Delete this custom post")).show(ui).clicked() {
                             delete = Some(p.id.clone());
                         }
                         });
@@ -81,7 +83,7 @@ impl PostsDialog {
             *host.message = format!("Deleted post {id}");
         }
         if upload {
-            host.files.pick_into(ctx, "Post-processors (.pp, .json)", &["pp", "json"], "post");
+            host.files.pick_into(ctx, i18n::t("Post-processors (.pp, .json)"), &["pp", "json"], "post");
         }
         open && !close
     }

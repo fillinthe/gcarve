@@ -3,6 +3,8 @@
 //! Both side panels fold to a thin edge like the Qt app. Documents live in tabs (tabs.rs): the current one is in
 //! the `canvas` / `name` / `cloud_id` / `project_path` / `gen` fields, the others wait in `tabs`.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use crate::canvas::{Canvas, Request, Tool};
 use crate::widgets::TipExt;
 use crate::popups::Dialogs;
@@ -89,6 +91,8 @@ pub struct App {
     /// Shared with me: waiting shares, window open
     shares: Vec<crate::cloud::ShareInfo>,
     shares_open: bool,
+    /// File › Share Project…: the email row for sending the open project to someone
+    share_project: Option<dialogs::share::ShareBox>,
     /// the open toolpath dialog's settings the previews were last built with (live preview)
     gen_draft: Option<(Option<usize>, gcarve_core::document::Op)>,
     export: Option<ExportDlg>,
@@ -185,7 +189,9 @@ pub struct App {
 impl App {
     pub fn new(cc: &eframe::CreationContext<'_>) -> Self {
         theme::apply(&cc.egui_ctx);
+        gcarve_ui::i18n::init(); // before the fonts: Japanese / Chinese need the system CJK fallback
         crate::fonts::install(&cc.egui_ctx);
+        gcarve_ui::fonts::fetch_cjk(&cc.egui_ctx);
         crate::icons::install(&cc.egui_ctx, crate::app_icons::RAW);
         let files = Files::default();
         #[cfg(not(target_arch = "wasm32"))]
@@ -206,7 +212,8 @@ impl App {
         gcarve_ui::help::init("fillinthe/gcarve", env!("CARGO_PKG_VERSION"));
         gcarve_ui::help::offer_crash_reports(); // "it stopped last time: tell us?" (crash.txt from the panic hooks)
         gcarve_ui::help::set_download_page("https://gcarve.app/download/");
-        let mut app = App { files, mode, canvas: new_canvas(&prefs), left_open: ui_state.tool_rail, right_open: ui_state.side_panel, status: String::new(), message: "Open a VCarve project (.crv), an SVG, DXF or PDF, or draw with R / E / P.".into(), name: "Untitled".into(), shell: Shell::new(), frame: 0, gen: None, gen_rev: 0, gen_cov: Vec::new(), edit_seen: (0, None), edit_at: 0.0, show_paths: shot || crate::store::load("show-paths").as_deref() != Some("0"), all_paths: std::env::var("GCARVE_ALL_PATHS").map_or(shot || crate::store::load("design-all-paths").as_deref() == Some("1"), |v| v == "1"), lib_ready: false, lib_pushed: 0, shares: Vec::new(), shares_open: false, gen_draft: None, export: None, cloud: Cloud::new(), cloud_id: String::new(), account: Default::default(), help: Default::default(), movie: std::env::var("GCARVE_MOVIE").ok().map(|d| (d.into(), 0, std::env::var("GCARVE_MOVIE_FRAMES").ok().and_then(|n| n.parse().ok()).unwrap_or(600), false)), projects: Default::default(), dialogs: Dialogs::default(), select_all_on_load: false, prev_tool: Tool::Select, dev_measure: false,
+        let mut app = App { files, mode, canvas: new_canvas(&prefs), left_open: ui_state.tool_rail, right_open: ui_state.side_panel, status: String::new(), message: i18n::t("Open a VCarve project (.crv), an SVG, DXF or PDF, or draw with R / E / P.").into(), name: i18n::t("Untitled").into(), shell: Shell::new(), frame: 0, gen: None, gen_rev: 0, gen_cov: Vec::new(), edit_seen: (0, None), edit_at: 0.0, show_paths: shot || crate::store::load("show-paths").as_deref() != Some("0"), all_paths: std::env::var("GCARVE_ALL_PATHS").map_or(shot || crate::store::load("design-all-paths").as_deref() == Some("1"), |v| v == "1"), lib_ready: false, lib_pushed: 0, shares: Vec::new(), shares_open: false,
+            share_project: None, gen_draft: None, export: None, cloud: Cloud::new(), cloud_id: String::new(), account: Default::default(), help: Default::default(), movie: std::env::var("GCARVE_MOVIE").ok().map(|d| (d.into(), 0, std::env::var("GCARVE_MOVIE_FRAMES").ok().and_then(|n| n.parse().ok()).unwrap_or(600), false)), projects: Default::default(), dialogs: Dialogs::default(), select_all_on_load: false, prev_tool: Tool::Select, dev_measure: false,
             prefs_seen: prefs.synced.clone(), prefs_push_at: None, prefs_from_server: false,
             cam: CamDialogs { prefs, ..Default::default() }, posts: UserPosts::load(), templates: Default::default(), player: Player::default(), view3d: View3d::load(shot), sim_wait: false, export_group: None, all_sheets: !shot && crate::store::load("all-sheets").as_deref() == Some("1") || std::env::var("GCARVE_ALL_SHEETS").is_ok(), opening: Vec::new(), open_wait: false, gen_wait: false, puck_tried: shot, puck_filter: Default::default(), puck_trace: Default::default(), view_3d: false, watch_pending: false, show_sim: false, shot, pending_dialog: String::new(), recover: if shot { None } else { crate::recover::load() }, recover_at: None, recover_rev: 0, last_dirty: false, last_open: false,
             project_path: None,
@@ -272,7 +279,7 @@ impl App {
         if app.projects.open {
             // dev screenshot: a few sample projects in folders
             let p = |n: &str, f: &str| crate::cloud::ProjectInfo { id: n.into(), name: n.into(), folder: f.into(), size: 40_000, updated: 1_791_000_000 };
-            app.cloud.projects = vec![p("Welcome sign", ""), p("Cabinet doors", "Kitchen"), p("Drawer fronts", "Kitchen"), p("Bar top", "Shop/Signs"), p("Logo", "Shop")];
+            app.cloud.projects = vec![p(i18n::t("Welcome sign"), ""), p(i18n::t("Cabinet doors"), i18n::t("Kitchen")), p(i18n::t("Drawer fronts"), i18n::t("Kitchen")), p(i18n::t("Bar top"), i18n::t("Shop/Signs")), p(i18n::t("Logo"), i18n::t("Shop"))];
             app.cloud.storage = Some((13_400_000, 41_943_040, 5, 200));
         }
         app.shell.side_tab = if app.mode == Mode::Design { 0 } else { 2 }; // Qt setMode
@@ -293,7 +300,7 @@ impl App {
                     app.canvas.tool = *tool;
                 }
             }
-            let req = match dialog.as_str() { "text" => Some(Request::Text(false)), "offset" => Some(Request::Offset), "dogbone" => Some(Request::Dogbone), "array" => Some(Request::Array), "align" => Some(Request::Align), "nest" => Some(Request::Nest), "selector" => Some(Request::Selector), "vtexture" => Some(Request::Texture), "plates" => Some(Request::Plates), "shelfpins" => Some(Request::Pins), "rotarylayout" => Some(Request::RotaryLayout), "boxmaker" => Some(Request::BoxMaker), _ => None };
+            let req = match dialog.as_str() { "text" => Some(Request::Text(false)), "offset" => Some(Request::Offset), "dogbone" => Some(Request::Dogbone), "array" => Some(Request::Array), "align" => Some(Request::Align), "nest" => Some(Request::Nest), "selector" => Some(Request::Selector), "vtexture" => Some(Request::Texture), "plates" => Some(Request::Plates), "shelfpins" => Some(Request::Pins), "rotarylayout" => Some(Request::RotaryLayout), "boxmaker" => Some(Request::BoxMaker), "puzzle" => Some(Request::Puzzle), "inlay" => Some(Request::Inlay), "hinge" => Some(Request::Hinge), "qr" => Some(Request::Qr), _ => None };
             app.canvas.requests.extend(req);
             if dialog == "shapemenu" || dialog == "sizepopup" {
                 app.canvas.shot_hook = dialog.clone();
@@ -587,7 +594,7 @@ impl App {
                 self.canvas.dirty = false;
                 self.gen_rev = self.canvas.rev.wrapping_sub(1);
                 let tlp = note.is_empty();
-                self.name = name.trim_end_matches(".tlpt").trim_end_matches(".tlp").trim_end_matches(".crv").to_string();
+                self.name = name.trim_end_matches(".tlpt").trim_end_matches(".tlp").trim_end_matches(".crv").trim_end_matches(".c2d").to_string();
                 self.cloud_id.clear();
                 self.message = if tlp { format!("Opened {name}: {} shapes, {} toolpaths", self.canvas.doc.shapes.len(), self.canvas.doc.ops.len()) } else { format!("Opened {name}: {note}") };
                 if !tlp {
@@ -625,7 +632,7 @@ impl App {
                 self.canvas.mutated();
                 self.canvas.view = None;
                 self.message = format!("{name}: {n} shapes. {note}");
-                if note.starts_with("cut list") {
+                if note.starts_with(i18n::t("cut list")) {
                     // the new parts and their labels: nested onto this board and as many more sheets as they need
                     let cut = self.canvas.doc.layers.iter().position(|l| l.name == "Cut list" || l.name == "Part labels");
                     let off_board = self.canvas.doc.material.h + 1.0;
@@ -791,7 +798,7 @@ impl App {
         }
         if std::mem::take(&mut self.view3d.want_trace) {
             if self.puck_trace.is_empty() {
-                self.message = "No SpaceMouse movement recorded yet: move the puck, then save the trace".into();
+                self.message = i18n::t("No SpaceMouse movement recorded yet: move the puck, then save the trace").into();
             } else {
                 files::save("gcarve-spacemouse-trace.csv", self.puck_trace.csv().into_bytes(), self.files.msg_tx.clone());
             }
@@ -835,14 +842,14 @@ impl App {
             // a starter project from the community site (the empty board's Next card): opens like "Open in GCarve"
             ("sample", slug) if !slug.is_empty() => {
                 self.cloud.community_open(ctx, slug);
-                self.status = "Opening the sample project…".into();
+                self.status = i18n::t("Opening the sample project…").into();
             }
             // the showcase sign, built in (also on the web and signed out: nothing is uploaded)
             ("demo", _) => {
                 if !self.staff {
                     self.cloud.event("demo");
                 }
-                self.open_picked(files::Picked { name: "GCarve demo.tlp".into(), bytes: std::env::var("GCARVE_DEMO_FILE").ok().and_then(|f| std::fs::read(f).ok()).unwrap_or_else(demo_project), path: None, import: false });
+                self.open_picked(files::Picked { name: i18n::t("GCarve demo.tlp").into(), bytes: std::env::var("GCARVE_DEMO_FILE").ok().and_then(|f| std::fs::read(f).ok()).unwrap_or_else(demo_project), path: None, import: false });
                 self.cam.make_it = None; // our own demo: nothing to fit
                 // a first visitor sees the carved sign, not a web of toolpath lines; key 1 goes back to the drawing
                 self.set_mode(Mode::Simulate);
@@ -865,7 +872,7 @@ impl App {
                 let doc = &self.canvas.doc;
                 let items = self.export_items();
                 if items.is_empty() {
-                    self.message = "Nothing to export: draw or select some vectors first.".into();
+                    self.message = i18n::t("Nothing to export: draw or select some vectors first.").into();
                 } else {
                     let (w, h) = (doc.material.w, doc.material.h);
                     let made = match kind {
@@ -885,15 +892,15 @@ impl App {
             ("sendgburn", _) => {
                 let items = self.export_items();
                 if items.is_empty() {
-                    self.message = "Nothing to send: draw or select some vectors first.".into();
+                    self.message = i18n::t("Nothing to send: draw or select some vectors first.").into();
                 } else {
                     let svg = gcarve_core::svg::export_svg(&items, self.canvas.doc.material.w, self.canvas.doc.material.h);
                     if self.cloud.signed_in() {
                         self.cloud.handover(ctx, "gburn", &self.name.clone(), svg);
-                        self.message = "Sending to GBurn…".into();
+                        self.message = i18n::t("Sending to GBurn…").into();
                     } else {
                         files::save(&format!("{}-laser.svg", self.name), svg.into_bytes(), self.files.msg_tx.clone());
-                        self.message = "Saved as SVG: import it in GBurn (sign in to send drawings straight across).".into();
+                        self.message = i18n::t("Saved as SVG: import it in GBurn (sign in to send drawings straight across).").into();
                         ctx.open_url(egui::OpenUrl::new_tab("https://gburn.app/app/"));
                     }
                 }
@@ -936,7 +943,7 @@ impl App {
             }
             ("opedit", "") | ("opdelete", "") => match self.shell.op_sel {
                 Some(i) => self.shell.push(format!("{head}:{i}")),
-                None => self.message = "Select a toolpath first (Toolpaths tab)".into(),
+                None => self.message = i18n::t("Select a toolpath first (Toolpaths tab)").into(),
             },
             ("opselect", v) => {
                 if let Some(op) = v.parse::<usize>().ok().and_then(|i| self.canvas.doc.ops.get(i)) {
@@ -979,7 +986,7 @@ impl App {
                 self.full_gen();
                 match self.gen.as_ref().and_then(|g| crate::setupsheet::preview_png(&self.canvas.doc, g, 4_000_000)) {
                     Some(bytes) => files::save(&format!("{}_preview.png", self.name), bytes, self.files.msg_tx.clone()),
-                    None => self.message = "Nothing to preview: add a toolpath first.".into(),
+                    None => self.message = i18n::t("Nothing to preview: add a toolpath first.").into(),
                 }
             }
             ("setupsheet", _) => {
@@ -1011,6 +1018,7 @@ impl App {
                 }
             }
             ("boardphoto", "remove") => self.canvas.board_photo = None,
+            ("halftone", _) => self.files.pick_into(ctx, "Picture for the halftone (PNG, JPEG, WebP)", files::IMAGE_EXTS, "halftone"),
             ("boardphoto", _) => self.files.pick_into(ctx, "Photo of the board (PNG, JPEG, WebP)", files::IMAGE_EXTS, "boardphoto"),
             ("trace", _) => self.files.pick_into(ctx, "Images (.png, .jpg, .webp)", files::IMAGE_EXTS, "image"),
             ("prefs", _) => self.cam.prefs_open = true,
@@ -1020,7 +1028,7 @@ impl App {
                 self.cam.vars = Some(Default::default());
             }
             ("link", _) if self.canvas.sel.len() == 2 => self.cam.constraint = Some(dialogs::vars::ConstraintDialog::new(&self.canvas)),
-            ("link", _) => self.message = "Select exactly two shapes to link".into(),
+            ("link", _) => self.message = i18n::t("Select exactly two shapes to link").into(),
             #[cfg(not(target_arch = "wasm32"))]
             ("jobs", _) => {
                 self.jobs.refresh();
@@ -1036,13 +1044,25 @@ impl App {
             }
             ("spacemouse", _) => crate::spacemouse::connect(true),
             ("sign", _) => self.cam.sign = Some(dialogs::sign::SignDialog::new(&self.canvas.doc)),
+            ("tray", _) => self.cam.tray = Some(dialogs::tray::TrayDialog::new(&self.canvas.doc)),
+            ("doors", _) => self.cam.doors = Some(dialogs::doors::DoorDialog::new(&self.canvas.doc)),
+            ("clock", _) => self.cam.clock = Some(dialogs::clock::ClockDialog::new(&self.canvas.doc)),
+            ("spoilboard", _) => self.cam.spoil = Some(dialogs::spoilboard::SpoilDialog::new(&self.canvas.doc)),
             ("makeit", _) => self.cam.make_it = Some(dialogs::community::MakeIt::new(&self.canvas.doc, &self.name)),
             ("community", _) => ctx.open_url(egui::OpenUrl::new_tab("https://gworkshop.app/projects/")),
+            ("shareproject", _) => {
+                if self.cloud.signed_in() {
+                    self.share_project = Some(dialogs::share::ShareBox::opened());
+                } else {
+                    self.account.reason = i18n::t("Sign in (free) to send a project to someone else's GCarve.").into();
+                    self.account.open = true;
+                }
+            }
             ("communityshare", _) => {
                 if self.cloud.signed_in() {
                     self.cam.share = Some(dialogs::community::ShareDialog::new(&self.canvas.doc, &self.name));
                 } else {
-                    self.account.reason = "Sign in to share a project with the GCarve community.".into();
+                    self.account.reason = i18n::t("Sign in to share a project with the GCarve community.").into();
                     self.account.open = true;
                 }
             }
@@ -1119,6 +1139,10 @@ impl App {
             ("plates", _) => self.dialogs.request(Request::Plates, &self.canvas),
             ("shelfpins", _) => self.dialogs.request(Request::Pins, &self.canvas),
             ("boxmaker", _) => self.dialogs.request(Request::BoxMaker, &self.canvas),
+            ("puzzle", _) => self.dialogs.request(Request::Puzzle, &self.canvas),
+            ("inlay", _) => self.dialogs.request(Request::Inlay, &self.canvas),
+            ("hinge", _) => self.dialogs.request(Request::Hinge, &self.canvas),
+            ("qr", _) => self.dialogs.request(Request::Qr, &self.canvas),
             ("rotarylayout", _) => self.dialogs.request(Request::RotaryLayout, &self.canvas),
             ("align", _) => self.dialogs.request(Request::Align, &self.canvas),
             ("array", _) => self.dialogs.request(Request::Array, &self.canvas),
@@ -1151,11 +1175,11 @@ impl App {
                 self.canvas.all_sheets = self.all_sheets;
                 self.canvas.zoom_fit();
                 self.message = if !self.all_sheets {
-                    "One sheet at a time: the tabs below switch sheets".into()
+                    i18n::t("One sheet at a time: the tabs below switch sheets").into()
                 } else if self.canvas.doc.sheets.len() > 1 {
-                    "All sheets: click a sheet to work on it, drag vectors onto another sheet to move them there".into()
+                    i18n::t("All sheets: click a sheet to work on it, drag vectors onto another sheet to move them there").into()
                 } else {
-                    "All sheets: add a sheet (+ by the tabs) and they show side by side".into()
+                    i18n::t("All sheets: add a sheet (+ by the tabs) and they show side by side").into()
                 };
             }
             ("width", _) => self.canvas.show_width = !self.canvas.show_width,
@@ -1226,7 +1250,7 @@ impl App {
                 let n = copies.len();
                 self.canvas.sel = copies.into_iter().map(|(c, layer)| doc.add(c, Some(layer))).collect();
                 self.canvas.mutated();
-                self.message = format!("Back side = Sheet {} ({n} mirrored). Cut side 1, flip the board {}, cut this sheet.", self.canvas.doc.sheets.len(), if lr { "left to right" } else { "top to bottom" });
+                self.message = format!("Back side = Sheet {} ({n} mirrored). Cut side 1, flip the board {}, cut this sheet.", self.canvas.doc.sheets.len(), if lr { i18n::t("left to right") } else { i18n::t("top to bottom") });
             }
             ("sheet", "remove") => {
                 let doc = &mut self.canvas.doc;
@@ -1441,13 +1465,13 @@ impl eframe::App for App {
             let p = ctx.layer_painter(layer);
             let card = egui::Rect::from_center_size(ctx.content_rect().center(), egui::vec2(280.0, 56.0));
             p.rect_filled(card, 8.0, theme::PANEL);
-            p.text(card.center(), egui::Align2::CENTER_CENTER, "Generating toolpaths…", theme::font(14.0), theme::TEXT);
+            p.text(card.center(), egui::Align2::CENTER_CENTER, i18n::t("Generating toolpaths…"), theme::font(14.0), theme::TEXT);
         }
         // /app/?share=1: 1 = start, 2 = sign-in box shown, 3 = project list shown (waiting for a project to open)
         if self.share_start > 0 && self.cloud.checked {
             if !self.cloud.signed_in() {
                 if self.share_start == 1 {
-                    self.account.reason = "Sign in to share a project with the GCarve community.".into();
+                    self.account.reason = i18n::t("Sign in to share a project with the GCarve community.").into();
                     self.account.open = true;
                     self.share_start = 2;
                 }
@@ -1458,12 +1482,12 @@ impl eframe::App for App {
                 if !self.account.open {
                     self.projects.show(&self.name.clone());
                     self.cloud.refresh(&ctx);
-                    self.message = "Pick the project to share: it opens, then the Share box appears. A file on your computer? File › Open it first.".into();
+                    self.message = i18n::t("Pick the project to share: it opens, then the Share box appears. A file on your computer? File › Open it first.").into();
                     self.share_start = 3;
                 }
             } else if !self.projects.open && self.cloud.busy == 0 && self.opening.is_empty() {
                 self.share_start = 0; // closed without opening one
-                self.message = "Open the project you want to share, then File › Share to Community…".into();
+                self.message = i18n::t("Open the project you want to share, then File › Share to Community…").into();
             }
         }
         // a project handed over in the address (GSketch › Send to GCarve): open it as soon as the account is known
@@ -1473,7 +1497,7 @@ impl eframe::App for App {
                 self.cloud.open_project(&ctx, &id);
             } else if self.cloud.checked {
                 self.open_at_start = None;
-                self.account.reason = "Sign in to open the project GSketch sent over.".into();
+                self.account.reason = i18n::t("Sign in to open the project GSketch sent over.").into();
                 self.account.open = true;
             }
         }
@@ -1515,6 +1539,17 @@ impl eframe::App for App {
                     self.shares = l;
                 }
                 Reply::Shared(m) => self.message = m,
+                Reply::ShareTaken { kind, name, data: Some(d) } if kind == "project" => {
+                    match project::load_project(&d.to_string()) {
+                        Ok(doc) => {
+                            self.open_copy(doc, &name);
+                            self.message = format!("Opened “{name}”: save it to keep your own copy");
+                            self.offer_make_it(); // another machine or bits than yours: Make It says what to change
+                        }
+                        Err(e) => self.message = e,
+                    }
+                    self.cloud.fetch_shares(&ctx);
+                }
                 Reply::ShareTaken { kind, name, data } => {
                     if let Some(d) = data {
                         self.message = crate::library::accept(&kind, &name, &d);
@@ -1537,17 +1572,8 @@ impl eframe::App for App {
                 }
                 Reply::CommunityOpened { slug, title, json } => match project::load_project(&json) {
                     Ok(mut d) => {
-                        dialogs::relief::rehydrate(&mut d);
                         dialogs::community::use_my_machine(&mut d);
-                        self.open_target();
-                        self.canvas = Canvas::with_doc(d);
-                        self.canvas.hit_scale = self.cam.prefs.hit_scale();
-                        self.canvas.apply_bindings();
-                        self.canvas.dirty = true; // someone else's project: saving makes it a copy of your own
-                        self.gen_rev = self.canvas.rev.wrapping_sub(1);
-                        self.project_path = None;
-                        self.cloud_id = String::new();
-                        self.name = title.clone();
+                        self.open_copy(d, &title);
                         let reasons = dialogs::community::differences_here(&self.canvas.doc);
                         self.cam.make_it = Some(dialogs::community::MakeIt::new(&self.canvas.doc, &title).with_reasons(reasons));
                         self.message = format!("Opened “{title}” from gworkshop.app/projects/{slug}/");
@@ -1581,7 +1607,7 @@ impl eframe::App for App {
                 Reply::HandoverSent(Ok(id)) => {
                     let base = if Cloud::web() { "" } else { "https://gworkshop.app" };
                     ctx.open_url(egui::OpenUrl::new_tab(format!("{base}/api/auth/handoff?to=https://gburn.app&next=/app/%3Fimport%3D{id}")));
-                    self.message = "Sent to GBurn: it opens in a new tab (the drawing waits there for 30 minutes)".into();
+                    self.message = i18n::t("Sent to GBurn: it opens in a new tab (the drawing waits there for 30 minutes)").into();
                 }
                 Reply::HandoverSent(Err(e)) => self.message = format!("Send to GBurn: {e}"),
                 _ => {}
@@ -1612,11 +1638,11 @@ impl eframe::App for App {
         // the web app is open to everyone; bringing files in (open, import, drop, trace…) needs a free account
         self.files.locked.set(Cloud::web() && !self.cloud.signed_in() && !self.cloud.local());
         if self.files.wants_account.take() {
-            self.account.reason = "Create a free account (or sign in) to open and import files. Drawing, toolpaths, the simulation and G-code export work without one.".into();
+            self.account.reason = i18n::t("Create a free account (or sign in) to open and import files. Drawing, toolpaths, the simulation and G-code export work without one.").into();
             self.account.open = true;
         }
         if std::mem::take(&mut self.cloud.expired) {
-            self.account.reason = "You were signed out after a while without use. Sign in again to save or open projects; your drawing is still here.".into();
+            self.account.reason = i18n::t("You were signed out after a while without use. Sign in again to save or open projects; your drawing is still here.").into();
             self.account.open = true;
         }
         // no desktop licence gate: the desktop apps are free for everyone (2026-10-16), signing in is optional
@@ -1696,8 +1722,8 @@ impl eframe::App for App {
                 if d == "crash" {
                     self.help.open_problem(&self.cloud, &format!("v{} {}: {sample}", env!("CARGO_PKG_VERSION"), std::env::consts::OS), true);
                 } else {
-                    self.cloud.report("open", "Cannot open sign.svg: the file is not an SVG drawing");
-                    self.message = "Cannot open sign.svg: the file is not an SVG drawing".into();
+                    self.cloud.report("open", i18n::t("Cannot open sign.svg: the file is not an SVG drawing"));
+                    self.message = i18n::t("Cannot open sign.svg: the file is not an SVG drawing").into();
                 }
             } else if matches!(d.as_str(), "update" | "bug" | "donate") {
                 self.shell.push(&d); // dev: the Help dialogs (GCARVE_VERSION=0.1.0 shows "Update available")
@@ -1721,7 +1747,7 @@ impl eframe::App for App {
 
         let has_ops = !self.canvas.doc.ops.is_empty();
         let menu = shell::MenuInfo {
-            account: if self.cloud.signed_in() { format!("Account ({})…", self.cloud.user.as_ref().map(|u| u.email.as_str()).unwrap_or("")) } else { "Sign In…".to_string() },
+            account: if self.cloud.signed_in() { format!("Account ({})…", self.cloud.user.as_ref().map(|u| u.email.as_str()).unwrap_or("")) } else { i18n::t("Sign In…").to_string() },
             signed_in: self.cloud.signed_in(),
             admin: self.cloud.user.as_ref().is_some_and(|u| u.role == "admin" || u.role == "superadmin"),
             recent: self.recent.iter().map(|p| p.rsplit(['/', '\\']).next().unwrap_or(p).to_string()).collect(),
@@ -1762,7 +1788,7 @@ impl eframe::App for App {
             });
         } else {
             egui::Panel::left("rail-folded").resizable(false).exact_size(18.0).frame(egui::Frame::new().fill(theme::PANEL)).show(ui, |ui| {
-                if shell::folded(ui, true, "the tool rail", "") {
+                if shell::folded(ui, true, i18n::t("the tool rail"), "") {
                     self.left_open = true;
                 }
             });
@@ -1774,7 +1800,7 @@ impl eframe::App for App {
             });
         } else {
             egui::Panel::right("inspector-folded").resizable(false).exact_size(18.0).frame(egui::Frame::new().fill(theme::PANEL)).show(ui, |ui| {
-                if shell::folded(ui, false, "the side panel", "⇧⌘P") {
+                if shell::folded(ui, false, i18n::t("the side panel"), "⇧⌘P") {
                     self.right_open = true;
                 }
             });
@@ -1861,7 +1887,7 @@ impl eframe::App for App {
                 // building the simulation can take a few seconds on a big job: say so, with how far it got
                 let busy = if self.sim_wait { Some(0.0) } else { self.player.preparing() };
                 if let (true, Some(f)) = (simulating, busy) {
-                    busy_card(ui.painter(), rect, "Preparing the simulation…", Some(f));
+                    busy_card(ui.painter(), rect, i18n::t("Preparing the simulation…"), Some(f));
                 }
                 if self.canvas.doc.shapes.is_empty() && self.canvas.doc.reliefs.is_empty() && !self.canvas.dirty && !simulating && self.cam.prefs.start_card && !self.canvas.card_closed {
                     let recent: Vec<String> = self.recent.iter().take(5).cloned().collect();
@@ -1877,14 +1903,14 @@ impl eframe::App for App {
             let posts: Vec<(String, String)> = self.posts.all().into_iter().map(|(p, _)| (p.id, p.name)).collect();
             let vars: Vec<(String, String)> = self.canvas.doc.variables.iter().map(|v| (v.name.clone(), v.expr.clone())).collect();
             let cmds = palette::commands(&posts, &self.canvas.doc.material.post, &vars);
-            if let Some(id) = self.palette.ui(&ctx, &cmds, "Type a command… e.g. v-carve, nest, board, mach3") {
+            if let Some(id) = self.palette.ui(&ctx, &cmds, i18n::t("Type a command… e.g. v-carve, nest, board, mach3")) {
                 self.shell.push(id);
             }
         }
         self.confirm_ui(&ctx);
         self.recover_ui(&ctx);
         self.about_ui(&ctx);
-        if let Some(cmd) = self.guide.ui(&ctx, dialogs::guide::TOPICS, "Search: corners, long board, PDF, order…") {
+        if let Some(cmd) = self.guide.ui(&ctx, dialogs::guide::TOPICS, i18n::t("Search: corners, long board, PDF, order…")) {
             self.shell.push(cmd); // the answer's "Do it" button
         }
         // (a narrow window folds the side panel by itself: that is not the user's choice and is not remembered)
@@ -1898,7 +1924,7 @@ impl eframe::App for App {
         self.canvas.requests.retain(|r| if let Request::Cmd(id) = r { shell.push(*id); false } else { true }); // context-menu commands
         self.dialogs.ui(&ctx, &mut self.canvas); // text / offset / dogbone / array / align / nest (popups.rs)
         if std::mem::take(&mut self.dialogs.text.want_font) {
-            self.files.pick_into(&ctx, "Fonts (.ttf, .otf)", &["ttf", "otf"], "font");
+            self.files.pick_into(&ctx, i18n::t("Fonts (.ttf, .otf, .zip)"), &["ttf", "otf", "zip"], "font");
         }
         self.cam_ui(&ctx);
         self.export_ui(&ctx);
@@ -1909,6 +1935,7 @@ impl eframe::App for App {
         }
         self.cloud_ui(&ctx);
         self.shares_ui(&ctx);
+        self.share_project_ui(&ctx);
         self.sync_library(&ctx);
         crate::widgets::focus_ring(&ctx);
         for id in std::mem::take(&mut self.shell.cmds) {
@@ -1996,9 +2023,9 @@ impl App {
         let Some(r) = &self.recover else { return };
         let mut answer: Option<bool> = None;
         let text = format!("GCarve kept a copy of \"{}\" from {} that was never saved. Restore it?", r.name, crate::recover::when(r.time_ms));
-        crate::widgets::Dialog::new("Restore unsaved work?").show(ctx, |ui| {
+        crate::widgets::Dialog::new(i18n::t("Restore unsaved work?")).show(ctx, |ui| {
             ui.label(text);
-            match crate::widgets::buttons(ui, &[("Restore", true), ("Discard", false)]) {
+            match crate::widgets::buttons(ui, &[(i18n::t("Restore"), true), (i18n::t("Discard"), false)]) {
                 Some(0) => answer = Some(true),
                 Some(_) => answer = Some(false),
                 None if ui.input(|i| i.key_pressed(egui::Key::Enter)) => answer = Some(true),
@@ -2016,7 +2043,7 @@ impl App {
                     self.canvas.rev = self.gen_rev.wrapping_add(1);
                     self.canvas.dirty = true; // still unsaved
                     self.name = r.name;
-                    self.message = "Restored your unsaved work".into();
+                    self.message = i18n::t("Restored your unsaved work").into();
                 }
                 Err(e) => {
                     self.cloud.report("restore", &e);
@@ -2030,9 +2057,9 @@ impl App {
     fn confirm_ui(&mut self, ctx: &egui::Context) {
         let Some(p) = self.confirm else { return };
         let mut answer: Option<Option<bool>> = None; // Some(Some(save)) / Some(None) = cancel
-        crate::widgets::Dialog::new("Unsaved changes").show(ctx, |ui| {
+        crate::widgets::Dialog::new(i18n::t("Unsaved changes")).show(ctx, |ui| {
             ui.label(format!("Save changes to {}?", self.name));
-            match crate::widgets::buttons(ui, &[("Save", true), ("Discard", false), ("Cancel", false)]) {
+            match crate::widgets::buttons(ui, &[(i18n::t("Save"), true), (i18n::t("Discard"), false), (i18n::t("Cancel"), false)]) {
                 Some(0) => answer = Some(Some(true)),
                 Some(1) => answer = Some(Some(false)),
                 Some(_) => answer = Some(None),
@@ -2057,17 +2084,19 @@ impl App {
             return;
         }
         let mut open = true;
-        crate::widgets::Dialog::new("About GCarve").open(&mut open).close_footer().width(340.0).show(ctx, |ui| {
-            ui.label(RichText::new("GCarve").font(crate::widgets::bold(20.0)));
+        crate::widgets::Dialog::new(i18n::t("About GCarve")).open(&mut open).close_footer().width(340.0).show(ctx, |ui| {
+            ui.label(RichText::new(i18n::t("GCarve")).font(crate::widgets::bold(20.0)));
             ui.label(format!("Version {} · {}", env!("CARGO_PKG_VERSION"), if Cloud::web() { "web" } else { std::env::consts::OS }));
             ui.add_space(6.0);
             ui.label(format!("CAM for CNC routers: design, toolpaths, simulation and G-code for {} machine posts.", gcarve_core::postdef::post_library().len()));
+            ui.add_space(6.0);
+            ui.label(RichText::new(i18n::t("Fonts: Liberation Sans (SIL OFL). Single-line fonts: the Hershey Fonts, originally created by Dr. A. V. Hershey at the U. S. National Bureau of Standards; data format by James Hurt, Cognition, Inc.")).small().color(theme::TEXT_DIM));
             ui.add_space(6.0);
             ui.horizontal(|ui| {
                 if ui.link("gcarve.app").clicked() {
                     self.cloud.open_web(ui.ctx(), "/");
                 }
-                if ui.link("♥ Donate").clicked() {
+                if ui.link(i18n::t("♥ Donate")).clicked() {
                     self.cloud.open_web(ui.ctx(), "/donate/");
                 }
             });
@@ -2105,7 +2134,35 @@ impl App {
         if let Some(spec) = self.cam.new_sign.take() {
             self.open_target();
             self.message = dialogs::sign::build(&mut self.canvas, &spec);
-            self.name = spec.words.lines().next().unwrap_or("Sign").to_string();
+            self.name = spec.words.lines().next().unwrap_or(i18n::t("Sign")).to_string();
+            self.gen_rev = self.canvas.rev.wrapping_sub(1);
+            self.shell.push("zoom:board");
+        }
+        if let Some(spec) = self.cam.new_clock.take() {
+            self.open_target();
+            self.message = dialogs::clock::build(&mut self.canvas, &spec);
+            self.name = i18n::t("Clock").to_string();
+            self.gen_rev = self.canvas.rev.wrapping_sub(1);
+            self.shell.push("zoom:board");
+        }
+        if let Some(spec) = self.cam.new_spoil.take() {
+            self.open_target();
+            self.message = dialogs::spoilboard::build(&mut self.canvas, &spec);
+            self.name = i18n::t("Spoilboard").to_string();
+            self.gen_rev = self.canvas.rev.wrapping_sub(1);
+            self.shell.push("zoom:board");
+        }
+        if let Some(spec) = self.cam.new_doors.take() {
+            self.open_target();
+            self.message = dialogs::doors::build(&mut self.canvas, &spec);
+            self.name = i18n::t("Cabinet doors").to_string();
+            self.gen_rev = self.canvas.rev.wrapping_sub(1);
+            self.shell.push("zoom:board");
+        }
+        if let Some(spec) = self.cam.new_tray.take() {
+            self.open_target();
+            self.message = dialogs::tray::build(&mut self.canvas, &spec);
+            self.name = if spec.board { i18n::t("Cutting board") } else { i18n::t("Tray") }.to_string();
             self.gen_rev = self.canvas.rev.wrapping_sub(1);
             self.shell.push("zoom:board");
         }
@@ -2149,7 +2206,7 @@ impl App {
                     use crate::widgets::Button as B;
                     let ready = self.player.ready();
                     let playing = self.player.playing;
-                    let r = ui.add_enabled(ready, B::new(if playing { "" } else { "▶" }).flat().min_width(36.0)).tip(if playing { "Pause" } else { "Watch the cut (restart when finished)" });
+                    let r = ui.add_enabled(ready, B::new(if playing { "" } else { "▶" }).flat().min_width(36.0)).tip(if playing { i18n::t("Pause") } else { i18n::t("Watch the cut (restart when finished)") });
                     if playing {
                         for dx in [-3.0, 3.0] {
                             ui.painter().rect_filled(egui::Rect::from_center_size(r.rect.center() + egui::vec2(dx, 0.0), egui::vec2(3.0, 11.0)), 1.0, theme::TEXT);
@@ -2158,7 +2215,7 @@ impl App {
                     if r.clicked() {
                         self.player.toggle();
                     }
-                    if ui.add_enabled(ready, B::new("⏮").flat().min_width(32.0)).tip("Back to the start").clicked() {
+                    if ui.add_enabled(ready, B::new("⏮").flat().min_width(32.0)).tip(i18n::t("Back to the start")).clicked() {
                         self.player.pause();
                         self.player.seek(0.0, &ctx);
                     }
@@ -2167,7 +2224,7 @@ impl App {
                     let phone = ctx.content_rect().width() < 600.0;
                     let w = (ui.available_width() - if phone { 290.0 } else { 500.0 }).max(40.0); // room for the Show menu
                     ui.spacing_mut().slider_width = w;
-                    if ui.add_enabled(ready, egui::Slider::new(&mut p, 0.0..=1.0).show_value(false).handle_shape(egui::style::HandleShape::Circle)).tip("Drag to scrub through the job (rewinding re-cuts from the start)").changed() {
+                    if ui.add_enabled(ready, egui::Slider::new(&mut p, 0.0..=1.0).show_value(false).handle_shape(egui::style::HandleShape::Circle)).tip(i18n::t("Drag to scrub through the job (rewinding re-cuts from the start)")).changed() {
                         self.player.pause();
                         self.player.seek(p, &ctx);
                     }
@@ -2176,19 +2233,19 @@ impl App {
                         // any speed from real time to 200× (Finish = instant); faster would only stamp more moves per frame
                         ui.spacing_mut().slider_width = 80.0;
                         let mut sp = self.player.speed.clamp(1.0, MAX_SIM_SPEED);
-                        if ui.add(egui::Slider::new(&mut sp, 1.0..=MAX_SIM_SPEED).logarithmic(true).handle_shape(egui::style::HandleShape::Circle).suffix("×").fixed_decimals(0)).tip("Playback speed: 1× is the machine's real speed").changed() {
+                        if ui.add(egui::Slider::new(&mut sp, 1.0..=MAX_SIM_SPEED).logarithmic(true).handle_shape(egui::style::HandleShape::Circle).suffix("×").fixed_decimals(0)).tip(i18n::t("Playback speed: 1× is the machine's real speed")).changed() {
                             self.player.speed = sp;
                         }
                     }
-                    if ui.add_enabled(ready, B::new("Finish").flat()).tip("Jump to the finished part").clicked() {
+                    if ui.add_enabled(ready, B::new(i18n::t("Finish")).flat()).tip(i18n::t("Jump to the finished part")).clicked() {
                         self.player.pause();
                         self.player.seek(1.0, &ctx);
                     }
-                    if ui.add(B::new(if self.view_3d { "2D" } else { "3D" }).flat().min_width(52.0)).tip(if self.view_3d { "Back to the drawing view" } else { "Rotate the carved board in 3D (⌘3)" }).clicked() {
+                    if ui.add(B::new(if self.view_3d { "2D" } else { "3D" }).flat().min_width(52.0)).tip(if self.view_3d { i18n::t("Back to the drawing view") } else { i18n::t("Rotate the carved board in 3D (⌘3)") }).clicked() {
                         self.view_3d = !self.view_3d;
                     }
                     self.show_menu(ui);
-                    if crate::icons::IconButton::new("remove").size(14.0).padding(3.0).tip("Hide the simulation").show(ui).clicked() {
+                    if crate::icons::IconButton::new("remove").size(14.0).padding(3.0).tip(i18n::t("Hide the simulation")).show(ui).clicked() {
                         self.shell.push("showsim");
                     }
                 });
@@ -2201,25 +2258,25 @@ impl App {
         use crate::view3d::ShowPaths;
         let before = self.view3d.show;
         let s = &mut self.view3d.show;
-        ui.menu_button("Show ▾", |ui| {
-            ui.label(RichText::new("Toolpaths").color(theme::TEXT_DIM));
-            ui.radio_value(&mut s.paths, ShowPaths::All, "All moves");
-            ui.radio_value(&mut s.paths, ShowPaths::Trail, "Cut so far (tool trail)");
-            ui.radio_value(&mut s.paths, ShowPaths::Hidden, "Hidden");
+        ui.menu_button(i18n::t("Show ▾"), |ui| {
+            ui.label(RichText::new(i18n::t("Toolpaths")).color(theme::TEXT_DIM));
+            ui.radio_value(&mut s.paths, ShowPaths::All, i18n::t("All moves"));
+            ui.radio_value(&mut s.paths, ShowPaths::Trail, i18n::t("Cut so far (tool trail)"));
+            ui.radio_value(&mut s.paths, ShowPaths::Hidden, i18n::t("Hidden"));
             ui.separator();
-            ui.checkbox(&mut s.rapids, "Rapid moves (red)");
-            ui.checkbox(&mut s.cutter, "Cutter");
+            ui.checkbox(&mut s.rapids, i18n::t("Rapid moves (red)"));
+            ui.checkbox(&mut s.cutter, i18n::t("Cutter"));
             ui.separator();
             let mut lit = self.player.backlit;
-            if ui.checkbox(&mut lit, "Lithophane (lit from behind, 2D)").on_hover_text("Thin wood glows, thick wood stays dark: how a lithophane looks against a window").changed() {
+            if ui.checkbox(&mut lit, i18n::t("Lithophane (lit from behind, 2D)")).on_hover_text(i18n::t("Thin wood glows, thick wood stays dark: how a lithophane looks against a window")).changed() {
                 self.player.set_backlit(lit);
             }
             if !self.canvas.show_paths {
-                ui.label(RichText::new("The status bar's Paths switch is off: toolpaths stay hidden").color(theme::TEXT_DIM).size(11.0));
+                ui.label(RichText::new(i18n::t("The status bar's Paths switch is off: toolpaths stay hidden")).color(theme::TEXT_DIM).size(11.0));
             }
         })
         .response
-        .on_hover_text("What the simulation draws over the board: toolpaths, the tool's trail, rapid moves, the cutter");
+        .on_hover_text(i18n::t("What the simulation draws over the board: toolpaths, the tool's trail, rapid moves, the cutter"));
         if self.view3d.show != before {
             self.view3d.show.save();
         }
@@ -2295,13 +2352,13 @@ impl App {
     fn export_ui(&mut self, ctx: &egui::Context) {
         let Some(mut d) = self.export.take() else { return };
         let (mut ok, mut cancel, mut replan) = (false, false, false);
-        let title = if d.air { "Export Air-Cut Test" } else { "Export G-code" };
+        let title = if d.air { i18n::t("Export Air-Cut Test") } else { i18n::t("Export G-code") };
         let mut open = true;
         crate::widgets::Dialog::new(title).id("export").open(&mut open).width(580.0).show(ctx, |ui| {
             ui.spacing_mut().item_spacing.y = 10.0;
             let dim = |t: String| RichText::new(t).size(11.0).color(theme::TEXT_DIM);
             if d.air {
-                ui.add(egui::Label::new("Writes the job with every Z raised so the machine runs the whole program in the air. Zero Z on the material as usual. Files end in _AIRCUT and say AIR CUT TEST in the header.").wrap());
+                ui.add(egui::Label::new(i18n::t("Writes the job with every Z raised so the machine runs the whole program in the air. Zero Z on the material as usual. Files end in _AIRCUT and say AIR CUT TEST in the header.")).wrap());
                 ui.horizontal(|ui| {
                     ui.label(format!("Raise Z by ({})", units::name(&self.canvas.doc)));
                     replan = units::num_field(ui, "raise", &mut d.raise, &self.canvas.doc, true, 110.0).is_some();
@@ -2323,15 +2380,15 @@ impl App {
             #[cfg(not(target_arch = "wasm32"))]
             ui.horizontal(|ui| {
                 ui.spacing_mut().item_spacing.x = 8.0;
-                ui.label("Save to");
+                ui.label(i18n::t("Save to"));
                 let (text, col) = match &d.folder {
                     Some(f) => (f.display().to_string(), theme::TEXT),
-                    None => ("Choose a folder…".to_string(), theme::WARNING),
+                    None => (i18n::t("Choose a folder…").to_string(), theme::WARNING),
                 };
                 ui.allocate_ui(egui::vec2(580.0 - 60.0 - 90.0, 20.0), |ui| ui.add(egui::Label::new(RichText::new(text).color(col)).truncate()));
                 ui.add_space((580.0 - ui.min_rect().width() - 84.0).max(0.0));
-                if ui.add(crate::widgets::Button::new("Choose…").min_width(84.0)).clicked() {
-                    let mut pick = rfd::FileDialog::new().set_title("Export G-code to folder");
+                if ui.add(crate::widgets::Button::new(i18n::t("Choose…")).min_width(84.0)).clicked() {
+                    let mut pick = rfd::FileDialog::new().set_title(i18n::t("Export G-code to folder"));
                     if let Some(f) = &d.folder {
                         pick = pick.set_directory(f);
                     }
@@ -2342,20 +2399,20 @@ impl App {
             });
             #[cfg(target_arch = "wasm32")]
             if d.names.len() + usize::from(d.sheet) > 1 {
-                crate::widgets::checkbox(ui, &mut d.zip, "Download everything as one .zip file");
+                crate::widgets::checkbox(ui, &mut d.zip, i18n::t("Download everything as one .zip file"));
             } else {
-                ui.add(egui::Label::new(RichText::new("The file downloads to your browser's Downloads folder.").size(12.0).color(theme::TEXT_DIM)).wrap());
+                ui.add(egui::Label::new(RichText::new(i18n::t("The file downloads to your browser's Downloads folder.")).size(12.0).color(theme::TEXT_DIM)).wrap());
             }
             ui.horizontal(|ui| {
                 ui.spacing_mut().item_spacing.x = 8.0;
-                replan |= crate::widgets::checkbox(ui, &mut d.tile, "Tile (long board)").tip("Cuts the job in sections. Each tile's files start at zero: cut tile 1, slide the board by the tile length minus the overlap, cut tile 2, and so on. XY zero must be the bottom-left corner.").changed();
+                replan |= crate::widgets::checkbox(ui, &mut d.tile, i18n::t("Tile (long board)")).tip(i18n::t("Cuts the job in sections. Each tile's files start at zero: cut tile 1, slide the board by the tile length minus the overlap, cut tile 2, and so on. XY zero must be the bottom-left corner.")).changed();
                 if d.tile {
                     let doc = &self.canvas.doc;
                     ui.label(format!("every ({})", units::name(doc)));
                     replan |= units::num_field(ui, "tile-len", &mut d.tile_len, doc, true, 96.0).is_some();
                     ui.label("overlap");
                     replan |= units::num_field(ui, "tile-ov", &mut d.tile_overlap, doc, true, 90.0).is_some();
-                    replan |= crate::widgets::combo_box("tile-axis").selected_text(if d.tile_y { "along Y" } else { "along X" }).width(84.0).show_ui(ui, |ui| ui.selectable_value(&mut d.tile_y, false, "along X").changed() | ui.selectable_value(&mut d.tile_y, true, "along Y").changed()).inner.unwrap_or(false);
+                    replan |= crate::widgets::combo_box("tile-axis").selected_text(if d.tile_y { i18n::t("along Y") } else { i18n::t("along X") }).width(84.0).show_ui(ui, |ui| ui.selectable_value(&mut d.tile_y, false, i18n::t("along X")).changed() | ui.selectable_value(&mut d.tile_y, true, i18n::t("along Y")).changed()).inner.unwrap_or(false);
                 }
             });
             crate::widgets::checkbox(ui, &mut d.sheet, format!("Setup sheet ({}_setup.html: printable job sheet for the operator)", self.name));
@@ -2363,20 +2420,20 @@ impl App {
                 crate::store::save("export-ghost", if d.ghost { "1" } else { "0" });
             }
             ui.horizontal_wrapped(|ui| {
-                ui.label(RichText::new("Check every file before you cut: watch the simulation and run an air cut on new jobs. GCarve comes without warranty;").small().color(theme::TEXT_DIM));
+                ui.label(RichText::new(i18n::t("Check every file before you cut: watch the simulation and run an air cut on new jobs. GCarve comes without warranty;")).small().color(theme::TEXT_DIM));
                 ui.hyperlink_to(RichText::new("terms").small(), "https://gcarve.app/terms/#gcode");
             });
             if self.canvas.doc.material.machine.is_none() && self.canvas.doc.material.auto_feeds {
                 // same notice as the toolpath dialogs: suggested feeds assume a rigid industrial machine
-                ui.add(egui::Label::new(RichText::new("No machine chosen: the suggested feeds suit a heavy industrial router. On a hobby or desktop machine pick yours first (Toolpaths › Choose Machine…) and export again.").size(12.0).color(theme::WARNING)).wrap());
+                ui.add(egui::Label::new(RichText::new(i18n::t("No machine chosen: the suggested feeds suit a heavy industrial router. On a hobby or desktop machine pick yours first (Toolpaths › Choose Machine…) and export again.")).size(12.0).color(theme::WARNING)).wrap());
             }
             if !d.issues.is_empty() {
-                ui.add(egui::Label::new(RichText::new("The safety check found problems in this job. Fix them, or export anyway if you are sure:").color(theme::WARNING).font(crate::widgets::bold(theme::FONT_SIZE))).wrap());
+                ui.add(egui::Label::new(RichText::new(i18n::t("The safety check found problems in this job. Fix them, or export anyway if you are sure:")).color(theme::WARNING).font(crate::widgets::bold(theme::FONT_SIZE))).wrap());
                 for i in &d.issues {
                     ui.add(egui::Label::new(format!("• {i}")).wrap());
                 }
             }
-            let go = if !d.issues.is_empty() { "Export anyway" } else if cfg!(target_arch = "wasm32") { "Download" } else { "Export" };
+            let go = if !d.issues.is_empty() { i18n::t("Export anyway") } else if cfg!(target_arch = "wasm32") { i18n::t("Download") } else { i18n::t("Export") };
             #[cfg(not(target_arch = "wasm32"))]
             let can = d.folder.is_some();
             #[cfg(target_arch = "wasm32")]
@@ -2387,7 +2444,7 @@ impl App {
                 ui.spacing_mut().item_spacing.x = 8.0;
                 let w = ui.painter().layout_no_wrap(go.to_string(), theme::font(theme::FONT_SIZE), theme::TEXT).size().x + 28.0;
                 ui.add_space((right - ui.cursor().left() - 84.0 - 8.0 - w.max(84.0)).max(0.0));
-                cancel |= ui.add(crate::widgets::Button::new("Cancel").min_width(84.0)).clicked();
+                cancel |= ui.add(crate::widgets::Button::new(i18n::t("Cancel")).min_width(84.0)).clicked();
                 ok |= ui.add_enabled(can, crate::widgets::Button::new(go).primary(d.issues.is_empty()).min_width(84.0)).clicked();
             });
             ok |= can && ui.input(|i| i.key_pressed(egui::Key::Enter)) && ctx.memory(|m| m.focused().is_none());
@@ -2495,27 +2552,58 @@ impl App {
     }
 
     /// Help ▸ Shared with Me: bits and machines other users sent, to add or turn down
+    /// Someone else's project (community, shared with me) in a tab of its own: unsaved, no file or cloud copy yet, so
+    /// a save makes it the user's own.
+    fn open_copy(&mut self, mut d: gcarve_core::document::Document, name: &str) {
+        dialogs::relief::rehydrate(&mut d);
+        self.open_target();
+        self.canvas = Canvas::with_doc(d);
+        self.canvas.hit_scale = self.cam.prefs.hit_scale();
+        self.canvas.apply_bindings();
+        self.canvas.dirty = true;
+        self.gen_rev = self.canvas.rev.wrapping_sub(1);
+        self.project_path = None;
+        self.cloud_id = String::new();
+        self.name = name.to_string();
+    }
+
+    /// File › Share Project…: the open project, as saved, to another GCarve user's Shared with Me
+    fn share_project_ui(&mut self, ctx: &egui::Context) {
+        let Some(mut b) = self.share_project.take() else { return };
+        let mut open = true;
+        let (doc, name) = (&self.canvas.doc, self.name.clone());
+        crate::widgets::Dialog::new(i18n::t("Share Project")).id("shareproject").open(&mut open).width(460.0).show(ctx, |ui| {
+            ui.label(format!("Send “{name}” to someone who uses GCarve. It waits in their Help › Shared with Me until they open it; they get their own copy (bits, toolpaths and board included) and can switch it to their machine."));
+            ui.add_space(6.0);
+            b.ui(ui, &mut self.cloud, i18n::t("the project"), "project", &name, || serde_json::from_str(&project::save_project(doc)).unwrap_or_default());
+        });
+        if open && b.is_open() {
+            self.share_project = Some(b);
+        }
+    }
+
     fn shares_ui(&mut self, ctx: &egui::Context) {
         if !self.shares_open {
             return;
         }
         let mut open = true;
         let mut take = None;
-        crate::widgets::Dialog::new("Shared with me").id("shares").open(&mut open).close_footer().width(480.0).show(ctx, |ui| {
+        crate::widgets::Dialog::new(i18n::t("Shared with me")).id("shares").open(&mut open).close_footer().width(480.0).show(ctx, |ui| {
             if self.shares.is_empty() {
-                ui.label(RichText::new("Nothing waiting. When someone shares bits or a machine with your email, it shows here.").color(theme::TEXT_DIM));
+                ui.label(RichText::new(i18n::t("Nothing waiting. When someone shares a project, bits or a machine with your email, it shows here.")).color(theme::TEXT_DIM));
             }
             for s in &self.shares {
                 ui.horizontal(|ui| {
                     ui.vertical(|ui| {
                         ui.label(RichText::new(&s.name).family(crate::widgets::bold_family()));
-                        ui.label(RichText::new(format!("{} from {}", if s.kind == "machines" { "Machine" } else { "Bits" }, s.from)).small().color(theme::TEXT_DIM));
+                        let what = match s.kind.as_str() { "machines" => i18n::t("Machine"), "project" => i18n::t("Project"), _ => i18n::t("Bits") };
+                        ui.label(RichText::new(format!("{what} from {}", s.from)).small().color(theme::TEXT_DIM));
                     });
                     ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                        if ui.button("No thanks").clicked() {
+                        if ui.button(i18n::t("No thanks")).clicked() {
                             take = Some((s.id, false));
                         }
-                        if ui.add(egui::Button::new("Add to my library").fill(theme::ACCENT)).clicked() {
+                        if ui.add(egui::Button::new(if s.kind == "project" { i18n::t("Open") } else { i18n::t("Add to my library") }).fill(theme::ACCENT)).clicked() {
                             take = Some((s.id, true));
                         }
                     });

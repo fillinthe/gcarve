@@ -26,7 +26,7 @@ impl Guide {
         }
         let mut open = true;
         let mut run = None;
-        widgets::Dialog::new("How Do I…?").id("guide").open(&mut open).close_footer().width(560.0).show(ctx, |ui| {
+        widgets::Dialog::new(crate::i18n::t("How Do I…?")).id("guide").open(&mut open).close_footer().width(560.0).show(ctx, |ui| {
             let r = ui.add(widgets::field(&mut self.query).hint_text(hint).desired_width(560.0));
             widgets::focus_first(ui, &r);
             let words: Vec<String> = self.query.to_lowercase().split_whitespace().map(str::to_string).collect();
@@ -34,6 +34,7 @@ impl Guide {
                 ui.set_width(560.0);
                 let mut any = false;
                 for &(q, a, cmd) in topics {
+                    let (q, a) = (crate::i18n::t(q), crate::i18n::t(a));
                     let hay = format!("{q} {a}").to_lowercase();
                     if !words.iter().all(|w| hay.contains(w.as_str())) {
                         continue;
@@ -44,7 +45,7 @@ impl Guide {
                         ui.label(RichText::new(q).font(widgets::bold(theme::FONT_SIZE)).color(egui::Color32::WHITE));
                         if !cmd.is_empty() {
                             ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                                if ui.small_button("Do it").clicked() {
+                                if ui.small_button(crate::i18n::t("Do it")).clicked() {
                                     run = Some(cmd);
                                 }
                             });
@@ -54,7 +55,7 @@ impl Guide {
                 }
                 if !any {
                     ui.add_space(8.0);
-                    ui.label(RichText::new("Nothing matches. Try one word.").color(theme::TEXT_DIM));
+                    ui.label(RichText::new(crate::i18n::t("Nothing matches. Try one word.")).color(theme::TEXT_DIM));
                 }
             });
         });

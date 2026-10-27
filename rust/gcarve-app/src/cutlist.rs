@@ -4,6 +4,8 @@
 //! Columns are found by their heading (name / part, length / height, width, qty / quantity / count); without
 //! headings the order is name, length, width, quantity. Numbers take units like any field ("600mm", "23 1/2").
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use gcarve_core::document::{Document, TextItem};
 use gcarve_core::geom::{make_rect, pt};
 
@@ -17,7 +19,7 @@ pub struct Part {
 /// The parts in `text` (inches through the document's units); Err says what is wrong with which line.
 pub fn parse(doc: &Document, text: &str) -> Result<Vec<Part>, String> {
     let lines: Vec<&str> = text.lines().map(str::trim).filter(|l| !l.is_empty()).collect();
-    let Some(first) = lines.first() else { return Err("the cut list is empty".into()) };
+    let Some(first) = lines.first() else { return Err(i18n::t("the cut list is empty").into()) };
     let sep = [('\t', first.matches('\t').count()), (';', first.matches(';').count()), (',', first.matches(',').count())].into_iter().max_by_key(|s| s.1).map_or(',', |s| s.0);
     let cells = |l: &str| -> Vec<String> { l.split(sep).map(|c| c.trim().trim_matches('"').trim().to_string()).collect() };
     let head = cells(first).iter().map(|c| c.to_lowercase()).collect::<Vec<_>>();
@@ -42,7 +44,7 @@ pub fn parse(doc: &Document, text: &str) -> Result<Vec<Part>, String> {
         parts.push(Part { name, length, width, qty: qty.round() as usize });
     }
     if parts.is_empty() {
-        return Err("no parts found under the headings".into());
+        return Err(i18n::t("no parts found under the headings").into());
     }
     Ok(parts)
 }
@@ -51,7 +53,7 @@ pub fn parse(doc: &Document, text: &str) -> Result<Vec<Part>, String> {
 /// (parts and labels) for nesting.
 pub fn add(doc: &mut Document, parts: &[Part]) -> Vec<i32> {
     doc.checkpoint();
-    let (cut, labels) = (doc.layer_named("Cut list"), doc.layer_named("Part labels"));
+    let (cut, labels) = (doc.layer_named(i18n::t("Cut list")), doc.layer_named(i18n::t("Part labels")));
     let mut ids = Vec::new();
     let mut x = 0.0;
     let y = doc.material.h + 2.0;

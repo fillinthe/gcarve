@@ -3,6 +3,8 @@
 //! the queue folder) so a design-app crash can't stop a running job; its own tab on the web (`?control`).
 //! The design app hands files over through the queue: `send()` writes the GRBL post output there, `open()` starts Control.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 mod link;
 mod preview;
 mod screen;
@@ -100,7 +102,7 @@ fn web_queue() -> Vec<(String, String)> {
 /// Returns the status message. ponytail: safety findings go into the message (like the Qt Jobs path) instead of
 /// the export guard's "Export anyway" dialog; Control's own start check is the gate before anything moves.
 pub fn send(doc: &Document, gen: Option<&Generated>, project: &str) -> String {
-    let Some(gen) = gen.filter(|g| g.paths.iter().any(|p| !p.is_empty())) else { return "Nothing to send: add a toolpath first.".into() };
+    let Some(gen) = gen.filter(|g| g.paths.iter().any(|p| !p.is_empty())) else { return i18n::t("Nothing to send: add a toolpath first.").into() };
     let ts = chrono::Local::now().format("%I:%M %p, %A %B %-d %Y").to_string();
     let mut post = gcarve_core::find_post("grbl-in").expect("grbl-in post").clone();
     // one file for the whole job: Control stops at each M6 for a manual bit change (grbl itself refuses M6)
@@ -109,7 +111,7 @@ pub fn send(doc: &Document, gen: Option<&Generated>, project: &str) -> String {
     let n = r.files.len();
     #[cfg(not(target_arch = "wasm32"))]
     let first = {
-        let Some(dir) = queue_dir() else { return "No config folder for the GCarve Control queue".into() };
+        let Some(dir) = queue_dir() else { return i18n::t("No config folder for the GCarve Control queue").into() };
         let _ = std::fs::create_dir_all(&dir);
         let mut first = None;
         for f in &r.files {
@@ -172,10 +174,10 @@ pub fn run_native() -> eframe::Result {
     }
     let file = std::env::args().skip(1).find(|a| !a.starts_with("--"));
     let options = eframe::NativeOptions {
-        viewport: eframe::egui::ViewportBuilder::default().with_title("GCarve Control").with_inner_size([1280.0, 820.0]).with_min_inner_size([1000.0, 640.0]),
+        viewport: eframe::egui::ViewportBuilder::default().with_title(i18n::t("GCarve Control")).with_inner_size([1280.0, 820.0]).with_min_inner_size([1000.0, 640.0]),
         ..Default::default()
     };
-    let r = eframe::run_native("GCarve Control", options, Box::new(move |cc| Ok(Box::new(ControlApp::new(cc, file)))));
+    let r = eframe::run_native(i18n::t("GCarve Control"), options, Box::new(move |cc| Ok(Box::new(ControlApp::new(cc, file)))));
     drop(lock);
     r
 }

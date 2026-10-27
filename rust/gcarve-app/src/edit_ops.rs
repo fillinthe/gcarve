@@ -1,6 +1,8 @@
 //! Document edits on the selection (Qt app: canvas.cpp + canvas_vectors.cpp): mutation bookkeeping, groups,
 //! clipboard, delete/duplicate, transforms, booleans, offset, dogbone, join/close, align/distribute, arrays, nesting.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use crate::canvas::{Canvas, Drag};
 use crate::units;
 use eframe::egui;
@@ -130,7 +132,7 @@ impl Canvas {
     pub fn add_surface_rect(&mut self) -> i32 {
         self.doc.checkpoint();
         let (w, h) = (self.doc.material.w, self.doc.material.h);
-        let layer = self.doc.layer_named("Surface");
+        let layer = self.doc.layer_named(i18n::t("Surface"));
         let id = self.doc.add(make_rect(0.0, 0.0, w, h), Some(layer));
         self.sel = BTreeSet::from([id]);
         self.mutated();
@@ -139,7 +141,7 @@ impl Canvas {
 
     pub fn group_selection(&mut self) {
         if self.sel.len() < 2 {
-            self.status = "Select two or more shapes to group.".into();
+            self.status = i18n::t("Select two or more shapes to group.").into();
             return;
         }
         self.doc.checkpoint();
@@ -163,7 +165,7 @@ impl Canvas {
                 s.group = 0;
             }
         }
-        self.status = "Ungrouped".into();
+        self.status = i18n::t("Ungrouped").into();
         self.mutated();
     }
 
@@ -178,7 +180,7 @@ impl Canvas {
         for d in &mut self.doc.dimensions {
             if !d.drive.is_empty() && d.shape_a != d.shape_b && sel.contains(&d.shape_b) && !sel.contains(&d.shape_a) {
                 d.drive.clear();
-                self.status = "Driving dimension released: shape moved by hand".into();
+                self.status = i18n::t("Driving dimension released: shape moved by hand").into();
             }
         }
     }
@@ -260,7 +262,7 @@ impl Canvas {
         d.label = label.trim().to_string();
         d.drive = dr.to_string();
         if !dr.is_empty() && (d.shape_a < 0 || d.shape_b < 0) {
-            self.status = "Both ends must snap to shape nodes for a dimension to drive geometry.".into();
+            self.status = i18n::t("Both ends must snap to shape nodes for a dimension to drive geometry.").into();
         }
         self.mutated();
     }
@@ -310,7 +312,7 @@ impl Canvas {
         let ids = load_clip(&clip, &mut self.doc, Pt::default());
         if ids.is_empty() {
             self.doc.undo();
-            self.status = "Nothing to paste.".into();
+            self.status = i18n::t("Nothing to paste.").into();
             return false;
         }
         self.sel = ids;
@@ -403,29 +405,29 @@ impl Canvas {
 
     pub fn weld_selection(&mut self) {
         if self.sel.len() < 2 {
-            self.status = "Select two or more closed shapes to weld.".into();
+            self.status = i18n::t("Select two or more closed shapes to weld.").into();
             return;
         }
         let r = boolean_op(BoolOp::Weld, &self.sel_contours(), &[]);
-        self.replace_selection(r, "Weld", false);
+        self.replace_selection(r, i18n::t("Weld"), false);
     }
 
     /// The largest shape keeps, the others are cut out of it.
     pub fn subtract_selection(&mut self) {
         if self.sel.len() < 2 {
-            self.status = "Select the shape to keep plus the shapes to cut out.".into();
+            self.status = i18n::t("Select the shape to keep plus the shapes to cut out.").into();
             return;
         }
         let mut all = self.sel_contours();
         let big = (0..all.len()).max_by(|&a, &b| contour_area(&all[a]).total_cmp(&contour_area(&all[b]))).unwrap();
         let subj = all.remove(big);
         let r = boolean_op(BoolOp::Subtract, &[subj], &all);
-        self.replace_selection(r, "Subtract", false);
+        self.replace_selection(r, i18n::t("Subtract"), false);
     }
 
     pub fn intersect_selection(&mut self) {
         if self.sel.len() < 2 {
-            self.status = "Select two or more closed shapes to intersect.".into();
+            self.status = i18n::t("Select two or more closed shapes to intersect.").into();
             return;
         }
         let all = self.sel_contours();
@@ -436,7 +438,7 @@ impl Canvas {
             }
             acc = boolean_op(BoolOp::Intersect, &acc, std::slice::from_ref(c));
         }
-        self.replace_selection(acc, "Intersect", false);
+        self.replace_selection(acc, i18n::t("Intersect"), false);
     }
 
     /// delta in inches (+ out, - in)
@@ -445,7 +447,7 @@ impl Canvas {
             return;
         }
         let r = offset_contours(&gcarve_core::vecops::same_direction(&self.sel_contours()), delta, round_corners);
-        self.replace_selection(r, "Offset", keep_original);
+        self.replace_selection(r, i18n::t("Offset"), keep_original);
     }
 
     /// tool_dia in inches
@@ -455,7 +457,7 @@ impl Canvas {
         }
         let r = tool_dia / 2.0 + 0.0005; // a hair over the bit radius so it fits the lobe
         let out: Vec<Contour> = self.sel_contours().iter().map(|c| dogbone(c, r, inside, tbone)).collect();
-        self.replace_selection(out, if tbone { "T-bone" } else { "Dogbone" }, false);
+        self.replace_selection(out, if tbone { i18n::t("T-bone") } else { i18n::t("Dogbone") }, false);
     }
 
     /// radius in inches; which corners: outer (stick out), inner (go in)
@@ -465,10 +467,10 @@ impl Canvas {
         }
         let out = fillet_contours(&gcarve_core::vecops::same_direction(&self.sel_contours()), radius, outer, inner);
         if out.is_empty() {
-            self.status = "Fillet: nothing left (select closed vectors; the radius must fit inside them).".into();
+            self.status = i18n::t("Fillet: nothing left (select closed vectors; the radius must fit inside them).").into();
             return;
         }
-        self.replace_selection(out, "Fillet", false);
+        self.replace_selection(out, i18n::t("Fillet"), false);
     }
 
     /// Right-click ▸ Trim Here: the piece of the vector under the pointer, between the crossings either side of
@@ -476,14 +478,14 @@ impl Canvas {
     pub fn trim_here(&mut self) {
         let at = self.ctx_at;
         let Some(id) = self.hit_shape(at) else {
-            self.status = "Trim: right-click on the part of a vector you want removed.".into();
+            self.status = i18n::t("Trim: right-click on the part of a vector you want removed.").into();
             return;
         };
         let shapes: Vec<&gcarve_core::document::Shape> = self.doc.shapes.iter().filter(|s| self.doc.shape_visible(s)).collect();
         let all: Vec<&Contour> = shapes.iter().map(|s| &s.c).collect();
         let Some(k) = shapes.iter().position(|s| s.id == id) else { return };
         let Some(pieces) = gcarve_core::vecops::trim_at(&all, k, at) else {
-            self.status = "Trim: this vector isn't crossed by another one on both sides here.".into();
+            self.status = i18n::t("Trim: this vector isn't crossed by another one on both sides here.").into();
             return;
         };
         self.sel = [id].into();
@@ -493,9 +495,9 @@ impl Canvas {
             self.sel.clear();
             self.mutated();
         } else {
-            self.replace_selection(pieces, "Trim", false);
+            self.replace_selection(pieces, i18n::t("Trim"), false);
         }
-        self.status = "Trimmed. Join Open Vectors (or Weld) builds new outlines from the pieces.".into();
+        self.status = i18n::t("Trimmed. Join Open Vectors (or Weld) builds new outlines from the pieces.").into();
     }
 
     /// Vectors ▸ Simplify: fewer nodes, within `tol` inches of the original
@@ -511,7 +513,7 @@ impl Canvas {
             self.status = format!("Simplify: nothing to remove at this tolerance ({before} nodes).");
             return;
         }
-        self.replace_selection(out, "Simplify", false);
+        self.replace_selection(out, i18n::t("Simplify"), false);
         self.status = format!("Simplify: {before} → {after} nodes.");
     }
 
@@ -531,7 +533,7 @@ impl Canvas {
             .max_by(|a, b| { let (ra, rb) = (bounds(&a.c), bounds(&b.c)); (ra.w() * ra.h()).total_cmp(&(rb.w() * rb.h())) })
             .map(|s| s.id);
         let (Some(q), true) = (quad, self.sel.len() > 1) else {
-            self.status = "Fit Into Four Corners: select the shapes and a four-corner box (straight sides) to fit them into.".into();
+            self.status = i18n::t("Fit Into Four Corners: select the shapes and a four-corner box (straight sides) to fit them into.").into();
             return;
         };
         // corners: the lower two are the bottom edge, the upper two the top, each left to right
@@ -559,7 +561,7 @@ impl Canvas {
         let open: Vec<i32> = self.sel.iter().copied().filter(|id| self.doc.find(*id).is_some_and(|s| !s.c.closed)).collect();
         let want = if two { 2 } else { 1 };
         if open.len() != want {
-            self.status = if two { "Fit Between Two Curves: select the shapes and exactly two open curves (top and bottom)." } else { "Bend Along Curve: select the shapes and one open curve." }.into();
+            self.status = if two { i18n::t("Fit Between Two Curves: select the shapes and exactly two open curves (top and bottom).") } else { i18n::t("Bend Along Curve: select the shapes and one open curve.") }.into();
             return;
         }
         let mut curves: Vec<(Vec<Pt>, f64)> = open.iter().map(|id| {
@@ -578,7 +580,7 @@ impl Canvas {
             frame.add_rect(&bounds(&self.doc.find(*id).unwrap().c));
         }
         if ids.is_empty() || frame.is_empty() {
-            self.status = "Distort: select the shapes to distort as well as the curve(s).".into();
+            self.status = i18n::t("Distort: select the shapes to distort as well as the curve(s).").into();
             return;
         }
         let shapes: Vec<Contour> = ids.iter().map(|id| self.doc.find(*id).unwrap().c.clone()).collect();
@@ -587,7 +589,7 @@ impl Canvas {
         for (id, c) in ids.iter().zip(out) {
             self.doc.find_mut(*id).unwrap().c = c;
         }
-        self.status = format!("Distort: {} shape(s) {}", ids.len(), if two { "fitted between the curves" } else { "bent along the curve" });
+        self.status = format!("Distort: {} shape(s) {}", ids.len(), if two { i18n::t("fitted between the curves") } else { i18n::t("bent along the curve") });
         self.mutated();
     }
 
@@ -597,11 +599,11 @@ impl Canvas {
     pub fn shelf_pin_holes(&mut self, dia: f64, pitch: f64, inset: f64, margin: f64) {
         let parts: Vec<Rect> = self.sel.iter().filter_map(|id| self.doc.find(*id)).filter(|s| s.c.closed).map(|s| bounds(&s.c)).collect();
         if parts.is_empty() || pitch <= 0.0 || dia <= 0.0 {
-            self.status = "Shelf-pin holes: select the cabinet sides (closed shapes) first.".into();
+            self.status = i18n::t("Shelf-pin holes: select the cabinet sides (closed shapes) first.").into();
             return;
         }
         self.doc.checkpoint();
-        let layer = self.doc.layer_named("Shelf pins");
+        let layer = self.doc.layer_named(i18n::t("Shelf pins"));
         let mut ids = BTreeSet::new();
         let mut skipped = 0;
         for r in parts {
@@ -636,13 +638,13 @@ impl Canvas {
     /// Flute / V-Carve / Profile on the line.
     pub fn rotary_layout(&mut self, starts: usize, pitch: f64, x0: f64, x1: f64) {
         let Some(_) = self.doc.material.rotary else {
-            self.status = "Rotary layout: turn on Job Setup › Rotary first.".into();
+            self.status = i18n::t("Rotary layout: turn on Job Setup › Rotary first.").into();
             return;
         };
         let circ = self.doc.material.h;
         let (x0, x1) = (x0.min(x1), x0.max(x1));
         if starts == 0 || starts > 64 || x1 - x0 < 1e-6 {
-            self.status = "Rotary layout: 1 to 64 starts over a length above zero.".into();
+            self.status = i18n::t("Rotary layout: 1 to 64 starts over a length above zero.").into();
             return;
         }
         let mut lines: Vec<Vec<Pt>> = Vec::new();
@@ -666,7 +668,7 @@ impl Canvas {
             }
         }
         self.doc.checkpoint();
-        let layer = self.doc.layer_named("Rotary layout");
+        let layer = self.doc.layer_named(i18n::t("Rotary layout"));
         let ids: BTreeSet<i32> = lines.iter().map(|l| self.doc.add(gcarve_core::geom::make_polyline(l, false), Some(layer))).collect();
         let n = ids.len();
         self.sel = ids;
@@ -675,18 +677,202 @@ impl Canvas {
         self.mutated();
     }
 
+    /// Vectors › QR Code…: `text` as a QR code `size` wide (quartile error correction: a chipped square still reads),
+    /// centred on the board on the "QR code" layer as one group, selected. The dark squares become welded outlines
+    /// (pocket or V-carve them); `invert` gives the light squares instead (pocket them so the dark ones stand up).
+    pub fn qr_code(&mut self, text: &str, size: f64, invert: bool) {
+        use gcarve_core::geom::make_rect;
+        use gcarve_core::vecops::{boolean_op, BoolOp};
+        use qrcodegen::{QrCode, QrCodeEcc};
+        let Ok(qr) = QrCode::encode_text(text.trim(), QrCodeEcc::Quartile) else {
+            self.status = i18n::t("QR Code: too much text for a QR code (keep it under about 1,600 characters).").into();
+            return;
+        };
+        if text.trim().is_empty() || size <= 0.0 {
+            self.status = i18n::t("QR Code: type the text or web address, and a size.").into();
+            return;
+        }
+        let n = qr.size();
+        let m = size / n as f64;
+        let m_ = &self.doc.material;
+        let (x0, y0) = ((m_.w - size) / 2.0, (m_.h - size) / 2.0);
+        // one rectangle per run of squares along a row, then welded into outlines (holes kept)
+        let mut rects = Vec::new();
+        for r in 0..n {
+            let mut c = 0;
+            while c < n {
+                if qr.get_module(c, r) != invert {
+                    let s = c;
+                    while c < n && qr.get_module(c, r) != invert {
+                        c += 1;
+                    }
+                    let y = y0 + (n - 1 - r) as f64 * m; // QR rows go down, the drawing's Y goes up
+                    rects.push(make_rect(x0 + s as f64 * m, y, x0 + c as f64 * m, y + m));
+                }
+                c += 1;
+            }
+        }
+        let shapes = boolean_op(BoolOp::Weld, &rects, &[]);
+        self.doc.checkpoint();
+        let layer = self.doc.layer_named(i18n::t("QR code"));
+        let group = self.doc.new_group_id();
+        let mut ids = BTreeSet::new();
+        for c in shapes {
+            let id = self.doc.add(c, Some(layer));
+            if let Some(s) = self.doc.find_mut(id) {
+                s.group = group;
+            }
+            ids.insert(id);
+        }
+        self.sel = ids;
+        self.sel_changed();
+        self.status = format!("QR Code: {n} × {n} squares of {} on the \"QR code\" layer, selected. Pocket them (an end mill under {} wide, or a V-bit engraving fill) and leave {} of plain board all round so phones can read it.", crate::units::text(&self.doc, m), crate::units::text(&self.doc, m * 0.8), crate::units::text(&self.doc, 4.0 * m));
+        self.mutated();
+    }
+
+    /// Vectors › Jigsaw Puzzle…: the cut lines (`jigsaw::puzzle`) centred on the board, on the "Puzzle" layer as one
+    /// group, selected: cut them with a Profile on the line and a bit narrower than the knob necks.
+    pub fn jigsaw(&mut self, w: f64, h: f64, cols: usize, rows: usize, seed: u64) {
+        use gcarve_core::geom::{transformed, Affine};
+        if w <= 0.0 || h <= 0.0 || cols * rows < 2 {
+            self.status = i18n::t("Jigsaw Puzzle: a size and at least two pieces.").into();
+            return;
+        }
+        let m = &self.doc.material;
+        let at = Affine::translate(((m.w - w) / 2.0).max(0.0), ((m.h - h) / 2.0).max(0.0));
+        self.doc.checkpoint();
+        let layer = self.doc.layer_named(i18n::t("Puzzle"));
+        let group = self.doc.new_group_id();
+        let mut ids = BTreeSet::new();
+        for c in gcarve_core::jigsaw::puzzle(w, h, cols, rows, seed) {
+            let id = self.doc.add(transformed(&c, &at), Some(layer));
+            if let Some(s) = self.doc.find_mut(id) {
+                s.group = group;
+            }
+            ids.insert(id);
+        }
+        self.sel = ids;
+        self.sel_changed();
+        // the knob neck is a fifth of the shorter piece side: the bit has to fit through it with wood to spare
+        let neck = 0.2 * (w / cols as f64).min(h / rows as f64);
+        self.status = format!("Jigsaw Puzzle: {} pieces on the \"Puzzle\" layer, selected. Cut with a Profile on the line, with a bit under {} wide (the knob necks are {}).", cols * rows, crate::units::text(&self.doc, neck / 3.0), crate::units::text(&self.doc, neck));
+        self.mutated();
+    }
+
+    /// Toolpaths › Inlay Wizard…: the selected closed shapes become an inlay. This sheet gets the female toolpath; a new
+    /// sheet "Inlay plug" (a board just big enough) gets the plug, mirrored because it goes in face down.
+    /// V-bit (`flat` false): female V-carve to a flat floor `depth`; plug = V-carve of the margin box minus the design
+    /// starting `gap` down (the glue gap), floors cleared by an end mill on both. Flat: the design's corners are rounded
+    /// to the end mill both ways (`fillet_contours` outer + inner, so the pocket and the plug's outside profile can
+    /// each cut that shape exactly); female = that shape pocketed; plug = it shrunk by `gap` (the fit, per side), cut
+    /// round on the outside 1/16 in deeper than the pocket so it stands proud to be planed flush.
+    pub fn inlay(&mut self, flat: bool, depth: f64, gap: f64, margin: f64) {
+        use crate::dialogs::sign::bit;
+        use gcarve_core::document::{Material, Op, OpType, Side, ToolType};
+        let picked: Vec<Contour> = self.doc.shapes.iter().filter(|s| self.sel.contains(&s.id) && s.c.closed).map(|s| s.c.clone()).collect();
+        if picked.is_empty() || depth <= 0.0 || gap < 0.0 || (!flat && gap >= depth) {
+            self.status = if picked.is_empty() { i18n::t("Inlay Wizard: select the closed shapes of the design first.").into() } else { i18n::t("Inlay Wizard: a depth, and a gap smaller than it.").into() };
+            return;
+        }
+        self.doc.checkpoint();
+        let vbit = (!flat).then(|| bit(self, ToolType::VBit, 0.5, i18n::t("90° V-Bit (0.5 inch)")));
+        let mill = bit(self, ToolType::EndMill, if flat { 0.125 } else { 0.25 }, if flat { i18n::t("1/8 End Mill (0.125 inch)") } else { i18n::t("1/4 End Mill (0.25 inch)") });
+        let r = self.doc.tools[mill as usize].diameter / 2.0;
+        let (female, plug): (Vec<Contour>, Vec<Contour>) = if flat {
+            let t = fillet_contours(&picked, r + 0.001, true, true);
+            let p = if gap > 0.0 { offset_contours(&t, -gap, true) } else { t.clone() };
+            (t, p)
+        } else {
+            (picked.clone(), picked.clone())
+        };
+        if female.is_empty() || plug.is_empty() {
+            self.doc.undo();
+            self.status = format!("Inlay Wizard: the design is too thin for a {} end mill.", units::text(&self.doc, 2.0 * r));
+            return;
+        }
+        let mut b = Rect::default();
+        plug.iter().for_each(|c| b.add_rect(&bounds(c)));
+        let front = self.doc.active_sheet;
+        let layer = self.doc.layer_named(i18n::t("Inlay"));
+        let female_ids: Vec<i32> = if flat { female.into_iter().map(|c| self.doc.add(c, Some(layer))).collect() } else { self.sel.iter().copied().collect() };
+        // the plug board: the design (+ the V-bit's margin box) with 1/2 in of board round it, mirrored left to right
+        let room = if flat { 0.5 } else { margin + 0.5 };
+        let mirror = Affine { a: -1.0, d: 1.0, e: room + b.x1, f: room - b.y0, ..Default::default() };
+        self.doc.sync_sheet();
+        let t = depth + 0.25;
+        self.doc.sheets.push(Material { name: i18n::t("Inlay plug").into(), back_of: None, w: b.w() + 2.0 * room, h: b.h() + 2.0 * room, t, ..self.doc.material.clone() });
+        self.doc.set_active_sheet(self.doc.sheets.len() as i32 - 1);
+        let mut plug_ids: Vec<i32> = plug.iter().map(|c| self.doc.add(transformed(c, &mirror), Some(layer))).collect();
+        if !flat {
+            plug_ids.push(self.doc.add(make_rect(0.5, 0.5, b.w() + 2.0 * room - 0.5, b.h() + 2.0 * room - 0.5), Some(layer)));
+        }
+        let plug_sheet = self.doc.active_sheet;
+        self.doc.set_active_sheet(front);
+        let ops = if let Some(v) = vbit {
+            [
+                Op { kind: OpType::VCarve, name: i18n::t("Inlay pocket").into(), tool: v, clear_tool: mill, shape_ids: female_ids, depth, flat_depth: depth, sheet_scope: front, ..Default::default() },
+                Op { kind: OpType::VCarve, name: i18n::t("Inlay plug").into(), tool: v, clear_tool: mill, shape_ids: plug_ids, depth, flat_depth: depth, start_depth: gap, sheet_scope: plug_sheet, ..Default::default() },
+            ]
+        } else {
+            [
+                Op { kind: OpType::Pocket, name: i18n::t("Inlay pocket").into(), tool: mill, shape_ids: female_ids, depth, sheet_scope: front, ..Default::default() },
+                Op { kind: OpType::Profile, name: i18n::t("Inlay plug").into(), tool: mill, shape_ids: plug_ids, depth: depth + 0.0625, side: Side::Outside, sheet_scope: plug_sheet, ..Default::default() },
+            ]
+        };
+        self.doc.ops.extend(ops);
+        self.mutated();
+        self.status = if flat {
+            format!("Inlay Wizard: \"Inlay pocket\" here (corners rounded to the {} bit), the plug on sheet \"Inlay plug\", mirrored, {} smaller all round. Glue it in face down, plane it flush.", units::text(&self.doc, 2.0 * r), units::text(&self.doc, gap))
+        } else {
+            format!("Inlay Wizard: \"Inlay pocket\" V-carved here, the plug on sheet \"Inlay plug\", mirrored, starting {} down (glue gap). Glue it in face down, then saw or plane the plug board off.", units::text(&self.doc, gap))
+        };
+    }
+
+    /// Vectors › Living Hinge…: staggered slots (`vecops::living_hinge`) over the selection's box (or the board, 1 in
+    /// in from its edges), on the "Hinge" layer as one group, selected. `along_y` = slots run up the board (it bends
+    /// about an up-down line), else across.
+    pub fn living_hinge(&mut self, spacing: f64, slot: f64, bridge: f64, along_y: bool) {
+        let sel = self.sel_rect;
+        let m = &self.doc.material;
+        let area = if sel.is_empty() || self.sel.is_empty() { Rect { x0: 1.0, y0: 1.0, x1: m.w - 1.0, y1: m.h - 1.0 } } else { sel };
+        // across: work in the mirror image about the diagonal (x <-> y), then mirror back
+        let swap = Affine { a: 0.0, b: 1.0, c: 1.0, d: 0.0, e: 0.0, f: 0.0 };
+        let frame = if along_y { area } else { Rect { x0: area.y0, y0: area.x0, x1: area.y1, y1: area.x1 } };
+        let lines = gcarve_core::vecops::living_hinge(frame, spacing, slot, bridge);
+        if lines.is_empty() {
+            self.status = i18n::t("Living Hinge: the area is smaller than one column of slots.").into();
+            return;
+        }
+        self.doc.checkpoint();
+        let layer = self.doc.layer_named(i18n::t("Hinge"));
+        let group = self.doc.new_group_id();
+        let mut ids = BTreeSet::new();
+        for c in lines {
+            let id = self.doc.add(if along_y { c } else { transformed(&c, &swap) }, Some(layer));
+            if let Some(s) = self.doc.find_mut(id) {
+                s.group = group;
+            }
+            ids.insert(id);
+        }
+        let n = ids.len();
+        self.sel = ids;
+        self.sel_changed();
+        self.status = format!("Living Hinge: {n} slots on the \"Hinge\" layer, selected. Cut them with a Profile on the line, right through, with a bit no wider than {} (thin board, 1/4 in or less, bends best).", units::text(&self.doc, (spacing / 2.0).min(0.125)));
+        self.mutated();
+    }
+
     /// Vectors › Box Maker…: the finger-jointed panels (`boxjoint::panels`) laid flat in rows across the board, on the
     /// "Box" layer, each panel its own group, selected: Profile (outside) them through the board.
     pub fn box_maker(&mut self, spec: gcarve_core::boxjoint::BoxSpec) {
         use gcarve_core::geom::{transformed, Affine};
         if spec.t <= 0.0 || [spec.w, spec.d, spec.h].iter().any(|&v| v < 4.0 * spec.t) {
-            self.status = "Box Maker: each size must be at least 4 × the board thickness.".into();
+            self.status = i18n::t("Box Maker: each size must be at least 4 × the board thickness.").into();
             return;
         }
         let gap = (spec.bit * 2.0).max(0.5);
         let max_w = self.doc.material.w.max(spec.w.max(spec.d) + gap);
         self.doc.checkpoint();
-        let layer = self.doc.layer_named("Box");
+        let layer = self.doc.layer_named(i18n::t("Box"));
         let (mut x, mut y, mut row) = (gap / 2.0, gap / 2.0, 0.0f64);
         let mut ids = BTreeSet::new();
         let panels = gcarve_core::boxjoint::panels(&spec);
@@ -716,7 +902,7 @@ impl Canvas {
         let lines = gcarve_core::vecops::vector_texture(&shapes, spacing, amplitude, wavelength, angle, vary);
         let n = lines.len();
         if n == 0 {
-            self.status = "Vector Texture: select one or more closed shapes to fill.".into();
+            self.status = i18n::t("Vector Texture: select one or more closed shapes to fill.").into();
             return;
         }
         let layer = self.selected().and_then(|id| self.doc.find(id)).map(|s| s.layer);
@@ -751,7 +937,7 @@ impl Canvas {
             self.status = format!("Fit curves: nothing to fit at this tolerance ({before} nodes).");
             return;
         }
-        self.replace_selection(out, "Fit curves", false);
+        self.replace_selection(out, i18n::t("Fit curves"), false);
         self.status = format!("Fit curves: {before} → {after} nodes.");
     }
 
@@ -766,7 +952,7 @@ impl Canvas {
             return;
         }
         let mut parts = Vec::new();
-        for (list, what, fix) in [(&r.open, "open", "Join or Close them"), (&r.duplicates, "duplicate", "Delete them"), (&r.tiny, "tiny", "Delete them")] {
+        for (list, what, fix) in [(&r.open, "open", i18n::t("Join or Close them")), (&r.duplicates, "duplicate", i18n::t("Delete them")), (&r.tiny, "tiny", i18n::t("Delete them"))] {
             if !list.is_empty() {
                 parts.push(format!("{} {what} ({fix})", list.len()));
             }
@@ -780,7 +966,7 @@ impl Canvas {
     pub fn extend_selection(&mut self) {
         let ids: Vec<i32> = self.doc.shapes.iter().filter(|s| self.sel.contains(&s.id) && !s.c.closed).map(|s| s.id).collect();
         if ids.is_empty() {
-            self.status = "Extend: select open vectors (lines, curves) to run on to the next vector.".into();
+            self.status = i18n::t("Extend: select open vectors (lines, curves) to run on to the next vector.").into();
             return;
         }
         let mut changed = Vec::new();
@@ -792,7 +978,7 @@ impl Canvas {
             }
         }
         if changed.is_empty() {
-            self.status = "Extend: no end of the selected vectors runs into another vector.".into();
+            self.status = i18n::t("Extend: no end of the selected vectors runs into another vector.").into();
             return;
         }
         self.doc.checkpoint();
@@ -808,16 +994,16 @@ impl Canvas {
 
     pub fn join_selection(&mut self) {
         if self.sel.len() < 2 {
-            self.status = "Select the open vectors to join.".into();
+            self.status = i18n::t("Select the open vectors to join.").into();
             return;
         }
         let input = self.sel_contours();
         let out = join_open(&input, 0.02);
         if out.len() == input.len() {
-            self.status = "Join: no ends close enough to each other.".into();
+            self.status = i18n::t("Join: no ends close enough to each other.").into();
             return;
         }
-        self.replace_selection(out, "Join", false);
+        self.replace_selection(out, i18n::t("Join"), false);
     }
 
     pub fn close_selection(&mut self) {
@@ -825,7 +1011,7 @@ impl Canvas {
             return;
         }
         let out: Vec<Contour> = self.sel_contours().into_iter().map(|c| if c.closed { c } else { close_contour(c) }).collect();
-        self.replace_selection(out, "Close", false);
+        self.replace_selection(out, i18n::t("Close"), false);
     }
 
     /// Align the selection (as one block) to the board: left/right/top/bottom/centerH/centerV/center.
@@ -857,7 +1043,7 @@ impl Canvas {
     pub fn align_objects(&mut self, mode: &str) {
         let r = self.sel_rect;
         if self.sel.len() < 2 || r.is_empty() {
-            self.status = "Select two or more shapes to align them to each other.".into();
+            self.status = i18n::t("Select two or more shapes to align them to each other.").into();
             return;
         }
         self.doc.checkpoint();
@@ -887,7 +1073,7 @@ impl Canvas {
     /// gap < 0: even spacing between the outer two (which stay); else a fixed gap in inches.
     pub fn distribute_objects(&mut self, horizontal: bool, gap: f64) {
         if self.sel.len() < 3 && gap < 0.0 {
-            self.status = "Select three or more shapes to distribute evenly.".into();
+            self.status = i18n::t("Select three or more shapes to distribute evenly.").into();
             return;
         }
         if self.sel.len() < 2 {
@@ -980,7 +1166,7 @@ impl Canvas {
         let length = |c: &Contour| { let p = gcarve_core::geom::flatten(c, 0.001); p.windows(2).map(|w| dist(w[0], w[1])).sum::<f64>() + if c.closed && p.len() > 1 { dist(p[p.len() - 1], p[0]) } else { 0.0 } };
         let sel: Vec<Shape> = self.sel.iter().filter_map(|id| self.doc.find(*id).cloned()).collect();
         let Some(path) = sel.iter().max_by(|a, b| length(&a.c).total_cmp(&length(&b.c))).filter(|_| sel.len() > 1 && count >= 2).cloned() else {
-            self.status = "Copy along a vector: select the object(s) to copy and the vector to follow.".into();
+            self.status = i18n::t("Copy along a vector: select the object(s) to copy and the vector to follow.").into();
             return;
         };
         let src: Vec<&Shape> = sel.iter().filter(|s| s.id != path.id).collect();
@@ -1176,7 +1362,7 @@ impl Canvas {
             self.status += &format!(", plus {fillers} filler cop{} of the smallest part", if fillers == 1 { "y" } else { "ies" });
         }
         if backs > 0 {
-            self.status += &format!("; {backs} back-side vector{} moved with {}", if backs == 1 { "" } else { "s" }, if backs == 1 { "its part" } else { "their parts" });
+            self.status += &format!("; {backs} back-side vector{} moved with {}", if backs == 1 { "" } else { "s" }, if backs == 1 { i18n::t("its part") } else { i18n::t("their parts") });
         }
         self.mutated();
         (placed, unplaced)
@@ -1554,6 +1740,113 @@ mod marquee_tests {
 mod vector_tool_tests {
     use super::*;
     use gcarve_core::geom::{make_polyline, make_rect};
+
+    #[test]
+    fn a_qr_code_is_its_dark_squares_welded_and_the_inverse_is_the_rest() {
+        // shoelace with holes: welded outlines are anticlockwise, their holes clockwise
+        let area = |c: &Canvas| c.sel.iter().map(|id| {
+            let p = gcarve_core::geom::flatten(&c.doc.find(*id).unwrap().c, 0.001);
+            (0..p.len()).map(|i| { let (a, b) = (p[i], p[(i + 1) % p.len()]); a.x * b.y - b.x * a.y }).sum::<f64>() / 2.0
+        }).sum::<f64>();
+        let qr = qrcodegen::QrCode::encode_text("https://gcarve.app", qrcodegen::QrCodeEcc::Quartile).unwrap();
+        let n = qr.size();
+        let dark = (0..n).flat_map(|y| (0..n).map(move |x| (x, y))).filter(|&(x, y)| qr.get_module(x, y)).count() as f64;
+        let m = 4.0 / n as f64;
+        let mut c = Canvas::default();
+        c.qr_code("https://gcarve.app", 4.0, false);
+        if let Ok(out) = std::env::var("GCARVE_QR_SVG") {
+            let b = c.doc.material.clone();
+            let paths: String = c.sel.iter().map(|id| {
+                let p = gcarve_core::geom::flatten(&c.doc.find(*id).unwrap().c, 0.001);
+                format!("M{}Z", p.iter().map(|q| format!("{},{}", q.x, b.h - q.y)).collect::<Vec<_>>().join("L"))
+            }).collect();
+            std::fs::write(out, format!("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 {} {}' width='1600' height='800'><rect width='100%' height='100%' fill='white'/><path d='{paths}' fill='black' fill-rule='nonzero'/></svg>", b.w, b.h)).unwrap();
+        }
+        assert!((area(&c) - dark * m * m).abs() < 1e-3, "{} vs {}", area(&c), dark * m * m);
+        let mut inv = Canvas::default();
+        inv.qr_code("https://gcarve.app", 4.0, true);
+        assert!((area(&inv) - (n * n) as f64 * m * m + dark * m * m).abs() < 1e-3, "light squares are the rest");
+    }
+
+    #[test]
+    fn a_jigsaw_puzzle_lands_centred_on_the_board_and_cuts_cleanly_on_the_line() {
+        use gcarve_core::document::{Op, OpType, Side, Tool, ToolType};
+        let mut c = Canvas::default();
+        (c.doc.material.w, c.doc.material.h, c.doc.material.t) = (14.0, 11.0, 0.25);
+        c.jigsaw(12.0, 9.0, 4, 3, 7);
+        assert_eq!(c.sel.len(), 2 + 3 + 1);
+        let b = c.sel.iter().map(|id| bounds(&c.doc.find(*id).unwrap().c)).fold(gcarve_core::geom::Rect::default(), |mut r, b| { r.add_rect(&b); r });
+        assert!((b.x0 - 1.0).abs() < 1e-6 && (b.y1 - 10.0).abs() < 1e-6, "centred: {b:?}");
+        c.doc.tools = vec![Tool { name: "1/16".into(), kind: ToolType::EndMill, diameter: 0.0625, stepdown: 0.0625, feed_xy: 60.0, feed_z: 20.0, rpm: 18000, ..Default::default() }];
+        c.doc.ops = vec![Op { kind: OpType::Profile, side: Side::On, tool: 0, depth: 0.25, shape_ids: c.sel.iter().copied().collect(), ..Default::default() }];
+        let gen = gcarve_core::pipeline::regenerate(&c.doc);
+        assert!(gen.warnings.is_empty(), "{:?}", gen.warnings);
+        assert!(!gen.paths[0].is_empty());
+    }
+
+    #[test]
+    fn the_inlay_wizard_puts_the_plug_mirrored_on_its_own_sheet_and_it_fits_the_pocket() {
+        // an L: one inside corner, five outside ones
+        let l = gcarve_core::geom::make_polyline(&[pt(2.0, 2.0), pt(6.0, 2.0), pt(6.0, 3.0), pt(3.0, 3.0), pt(3.0, 6.0), pt(2.0, 6.0)], true);
+        let area = |cs: &[Contour]| cs.iter().map(|c| { let p = flatten(c, 0.001); (0..p.len()).map(|i| { let (a, b) = (p[i], p[(i + 1) % p.len()]); a.x * b.y - b.x * a.y }).sum::<f64>().abs() / 2.0 }).sum::<f64>();
+        for flat in [true, false] {
+            let mut c = Canvas::default();
+            let id = c.doc.add(l.clone(), None);
+            c.sel = BTreeSet::from([id]);
+            c.inlay(flat, 0.2, if flat { 0.005 } else { 0.1 }, 0.25);
+            assert_eq!(c.doc.sheets.len(), 2, "{}", c.status);
+            assert_eq!(c.doc.sheet_name(1), "Inlay plug");
+            assert_eq!(c.doc.active_sheet, 0, "back on the design's sheet");
+            let (pocket, plug) = (c.doc.ops[0].clone(), c.doc.ops[1].clone());
+            assert!(pocket.shape_ids.iter().all(|i| c.doc.find(*i).unwrap().sheet == 0) && plug.shape_ids.iter().all(|i| c.doc.find(*i).unwrap().sheet == 1));
+            for j in 0..2 {
+                c.doc.set_active_sheet(j);
+                let gen = gcarve_core::pipeline::regenerate(&c.doc);
+                assert!(gen.warnings.is_empty(), "flat {flat} sheet {j}: {:?}", gen.warnings);
+                assert!(gen.paths[j as usize].iter().map(|p| p.moves.len()).sum::<usize>() > 0, "flat {flat}: sheet {j} cuts");
+            }
+            c.doc.set_active_sheet(0);
+            if flat {
+                let female: Vec<Contour> = pocket.shape_ids.iter().map(|i| c.doc.find(*i).unwrap().c.clone()).collect();
+                let plug_c: Vec<Contour> = plug.shape_ids.iter().map(|i| c.doc.find(*i).unwrap().c.clone()).collect();
+                // mirrored: the L's foot points left on the plug board; flipped back it lies inside the pocket
+                let pb = bounds(&plug_c[0]);
+                let fb = bounds(&female[0]);
+                let back = Affine { a: -1.0, d: 1.0, e: pb.x0 + pb.x1, ..Default::default() };
+                let flipped: Vec<Contour> = plug_c.iter().map(|k| transformed(k, &back)).collect();
+                let shift = Affine::translate((fb.x0 + fb.x1) / 2.0 - (pb.x0 + pb.x1) / 2.0, (fb.y0 + fb.y1) / 2.0 - (pb.y0 + pb.y1) / 2.0);
+                let flipped: Vec<Contour> = flipped.iter().map(|k| transformed(k, &shift)).collect();
+                assert!(area(&boolean_op(BoolOp::Subtract, &flipped, &female)) < 1e-4, "the plug fits inside the pocket");
+                let slack = area(&female) - area(&flipped);
+                assert!(slack > 0.005 * 15.0 && slack < 0.005 * 25.0, "a fit gap all round: {slack}");
+                assert!(plug.depth > pocket.depth && plug.side == gcarve_core::document::Side::Outside);
+            } else {
+                assert_eq!((plug.start_depth, plug.flat_depth), (0.1, 0.2));
+                assert_eq!(plug.shape_ids.len(), 2, "the design and the box round it");
+            }
+        }
+    }
+
+    #[test]
+    fn a_living_hinge_fills_the_selected_box_across_and_cuts_on_the_line() {
+        use gcarve_core::document::{Op, OpType, Side, Tool, ToolType};
+        let mut c = Canvas::default();
+        let id = c.doc.add(make_rect(2.0, 2.0, 10.0, 6.0), None);
+        c.sel = BTreeSet::from([id]);
+        c.sel_changed();
+        c.living_hinge(0.25, 1.5, 0.25, false);
+        assert!(c.sel.len() > 40, "{}", c.status);
+        for id in &c.sel {
+            let b = bounds(&c.doc.find(*id).unwrap().c);
+            assert!((b.y1 - b.y0).abs() < 1e-9, "across = horizontal slots");
+            assert!(b.x0 >= 2.0 - 1e-9 && b.x1 <= 10.0 + 1e-9 && b.y0 > 2.0 && b.y0 < 6.0);
+        }
+        c.doc.tools = vec![Tool { name: "1/16".into(), kind: ToolType::EndMill, diameter: 0.0625, stepdown: 0.0625, feed_xy: 60.0, feed_z: 20.0, rpm: 18000, ..Default::default() }];
+        c.doc.material.t = 0.25;
+        c.doc.ops = vec![Op { kind: OpType::Profile, side: Side::On, tool: 0, depth: 0.25, shape_ids: c.sel.iter().copied().collect(), ..Default::default() }];
+        let gen = gcarve_core::pipeline::regenerate(&c.doc);
+        assert!(gen.warnings.is_empty(), "{:?}", gen.warnings);
+    }
 
     #[test]
     fn the_box_maker_lays_its_panels_flat_apart_on_the_box_layer() {

@@ -9,6 +9,8 @@ rm -rf gcarve-app/web/dist && mkdir -p gcarve-app/web/dist
 wasm-bindgen --target web --no-typescript --out-dir gcarve-app/web/dist --out-name gcarve target/wasm32-unknown-unknown/release-web/gcarve.wasm
 wasm-opt -Oz --enable-bulk-memory --enable-nontrapping-float-to-int --enable-sign-ext --enable-reference-types -o gcarve-app/web/dist/gcarve_bg.wasm gcarve-app/web/dist/gcarve_bg.wasm
 cp gcarve-app/web/index.html gcarve-app/web/dist/
+# Japanese / Chinese UI font (Noto Sans CJK subsets, OFL): fetched by the app only when one of those languages is chosen
+mkdir -p gcarve-app/web/dist/fonts && cp gcarve-app/web/fonts/* gcarve-app/web/dist/fonts/
 # script + program are loaded as ?v=<fingerprint of this build> (index.html itself is never cached): Cloudflare gives
 # .js a 4 hour browser cache, and an old gcarve.js with a new .wasm does not start ("LinkError")
 b=$(cat gcarve-app/web/dist/gcarve.js gcarve-app/web/dist/gcarve_bg.wasm | shasum | cut -c1-10)

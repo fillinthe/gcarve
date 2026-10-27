@@ -1,6 +1,8 @@
 //! The user's own bits (toollib.rs) and custom machines, kept locally and with the account
 //! (/api/account/library) so every device has them, and sharing them by email (/api/shares).
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use gcarve_core::document::{MachineLimits, Tool};
 use serde::{Deserialize, Serialize};
 use std::sync::atomic::{AtomicU64, Ordering};
@@ -89,7 +91,7 @@ pub fn accept(kind: &str, name: &str, data: &serde_json::Value) -> String {
             save_machines(&local);
             format!("“{name}”: {n} machine(s) added to My machines")
         }
-        _ => "Unknown share".into(),
+        _ => i18n::t("Unknown share").into(),
     }
 }
 

@@ -2,6 +2,8 @@
 //! GCARVE_TEMPLATES_DIR overrides, as in the Qt app). Web: the account (/api/templates) when signed in, else browser
 //! storage. The templates themselves (save / apply / JSON) are gcarve_core::template.
 
+#[allow(unused_imports)] // a file may only use it under one cfg
+use gcarve_ui::i18n;
 use gcarve_core::template::{load_template, save_template, ToolpathTemplate};
 
 pub struct Entry {
@@ -131,7 +133,7 @@ fn dir() -> std::path::PathBuf {
 #[cfg(not(target_arch = "wasm32"))]
 fn free_path(name: &str) -> std::path::PathBuf {
     let base: String = name.chars().map(|c| if "\\/:*?\"<>|".contains(c) { '-' } else { c }).collect::<String>().trim().to_string();
-    let base = if base.is_empty() { "Template".to_string() } else { base };
+    let base = if base.is_empty() { i18n::t("Template").to_string() } else { base };
     let mut p = dir().join(format!("{base}.gctemplate"));
     let mut n = 2;
     while p.exists() {
@@ -152,11 +154,11 @@ mod tests {
         std::env::set_var("GCARVE_TEMPLATES_DIR", &d);
         let doc = gcarve_core::project::load_project(&std::fs::read_to_string(concat!(env!("CARGO_MANIFEST_DIR"), "/../../samples/showcase.tlp")).unwrap()).unwrap();
         let mut lib = Templates::default();
-        lib.add(make_template(&doc, "Sign", "")).unwrap();
-        lib.add(make_template(&doc, "Sign", "again")).unwrap();
+        lib.add(make_template(&doc, i18n::t("Sign"), "")).unwrap();
+        lib.add(make_template(&doc, i18n::t("Sign"), "again")).unwrap();
         assert_eq!(lib.items.len(), 2);
-        let second = lib.items.iter().position(|e| e.key.ends_with("Sign 2.gctemplate")).expect("second file named Sign 2");
-        lib.rename(second, "Panel");
+        let second = lib.items.iter().position(|e| e.key.ends_with(i18n::t("Sign 2.gctemplate"))).expect("second file named Sign 2");
+        lib.rename(second, i18n::t("Panel"));
         assert_eq!(lib.items.iter().map(|e| e.t.name.as_str()).collect::<Vec<_>>(), ["Panel", "Sign"]);
         assert!(lib.items[0].key.ends_with("Panel.gctemplate"));
         lib.remove(0);

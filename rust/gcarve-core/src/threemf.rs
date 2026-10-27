@@ -21,7 +21,15 @@ fn u32_at(b: &[u8], k: usize) -> usize {
 
 /// The zip's entries (name → bytes) whose names end in `.model`.
 fn model_entries(zip: &[u8]) -> Result<HashMap<String, Vec<u8>>, String> {
-    let eocd = (0..zip.len().saturating_sub(21)).rev().take(70_000).find(|&k| zip[k..].starts_with(b"PK\x05\x06")).ok_or("not a 3MF file (no zip directory)")?;
+    zip_entries(zip, &[".model"]).map_err(|e| if e == NO_ZIP { "not a 3MF file (no zip directory)".into() } else { e })
+}
+
+const NO_ZIP: &str = "not a zip file";
+
+/// A zip's entries (name → bytes, names starting with "/") whose names end in one of `ends` (lower case); also used
+/// for fonts that come zipped.
+pub fn zip_entries(zip: &[u8], ends: &[&str]) -> Result<HashMap<String, Vec<u8>>, String> {
+    let eocd = (0..zip.len().saturating_sub(21)).rev().take(70_000).find(|&k| zip[k..].starts_with(b"PK\x05\x06")).ok_or(NO_ZIP)?;
     let (count, mut at) = (u16_at(zip, eocd + 10), u32_at(zip, eocd + 16));
     let mut out = HashMap::new();
     for _ in 0..count {
@@ -32,11 +40,12 @@ fn model_entries(zip: &[u8]) -> Result<HashMap<String, Vec<u8>>, String> {
         let (extra, comment, local) = (u16_at(zip, at + 30), u16_at(zip, at + 32), u32_at(zip, at + 42));
         let name = String::from_utf8_lossy(zip.get(at + 46..at + 46 + nlen).unwrap_or_default()).into_owned();
         at += 46 + nlen + extra + comment;
-        if !name.to_ascii_lowercase().ends_with(".model") {
+        let lower = name.to_ascii_lowercase();
+        if !ends.iter().any(|e| lower.ends_with(e)) {
             continue;
         }
         let data_at = local + 30 + u16_at(zip, local + 26) + u16_at(zip, local + 28);
-        let raw = zip.get(data_at..data_at.saturating_add(size)).ok_or("the 3MF file is cut short")?;
+        let raw = zip.get(data_at..data_at.saturating_add(size)).ok_or("the zip file is cut short")?;
         let data = match method {
             0 => raw.to_vec(),
             8 => miniz_oxide::inflate::decompress_to_vec_with_limit(raw, MAX_ENTRY).map_err(|_| format!("{name}: damaged"))?,

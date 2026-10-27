@@ -86,7 +86,7 @@ impl Palette {
             theme::hline(ui);
             ui.add_space(4.0);
             if hits.is_empty() {
-                ui.vertical_centered(|ui| ui.label(egui::RichText::new("No matching command").color(theme::TEXT.gamma_multiply(0.5))));
+                ui.vertical_centered(|ui| ui.label(egui::RichText::new(crate::i18n::t("No matching command")).color(theme::TEXT.gamma_multiply(0.5))));
             }
             for (row, &i) in hits.iter().enumerate() {
                 let c = &cmds[i];
