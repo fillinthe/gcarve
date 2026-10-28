@@ -1772,5 +1772,14 @@
 "OR CHANGE A READY PROJECT": "ODER EIN FERTIGES PROJEKT ANPASSEN",
 "RECENT": "ZULETZT",
 "inches": "Zoll",
-"feet": "Fuß"
+"feet": "Fuß",
+"Stencil Bridges…": "Schablonenstege…",
+"Stencil Bridges": "Schablonenstege",
+"Bridge width": "Stegbreite",
+"Bridges run": "Stege verlaufen",
+"Up and down": "Auf und ab",
+"Every island inside the selected shapes (the middle of an O, A or R) gets a bridge through its centre, so it stays joined to the plate when the letters are cut out.": "Jede Insel in den ausgewählten Formen (die Mitte von O, A oder R) bekommt einen Steg durch ihre Mitte und bleibt so mit der Platte verbunden, wenn die Buchstaben ausgeschnitten werden.",
+"Stencil Bridges: select the closed shapes (letters) that are cut out.": "Schablonenstege: Wähle die geschlossenen Formen (Buchstaben), die ausgeschnitten werden.",
+"Stencil Bridges: no islands here, nothing would fall out.": "Schablonenstege: Hier gibt es keine Inseln, nichts würde herausfallen.",
+"Stencil Bridges: the bridge width must be more than 0.": "Schablonenstege: Die Stegbreite muss größer als 0 sein."
 }

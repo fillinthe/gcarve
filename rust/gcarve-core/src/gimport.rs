@@ -317,7 +317,7 @@ pub fn read_program(text: &str, stem: &str, m: &Material) -> ImportedProgram {
             let up = c.to_uppercase();
             if let Some(rest) = up.strip_prefix("MATERIAL SIZE:") {
                 let v: Vec<f64> = rest.split('X').filter_map(|s| s.trim().trim_end_matches('"').trim().parse().ok()).collect();
-                if v.len() == 3 {
+                if v.len() == 3 && v.iter().all(|x| x.is_finite() && *x > 0.0 && *x < 1e4) {
                     p.board = Some((v[0], v[1], v[2]));
                 }
             } else if let Some(rest) = up.strip_prefix("Z ZERO POSITION:") {

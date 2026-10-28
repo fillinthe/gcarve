@@ -1,0 +1,38 @@
+<!doctype html>
+<!-- dmg window background, 640 x 420 points. Render: sh rust/packaging/macos/dmg/render.sh
+     Icons sit at (170, 200) and (470, 200), 128 pt; Finder draws their labels near y 280,
+     on the pills below (mid-tone so black (light mode) and white (dark mode) labels both read). -->
+<html><head><meta charset="utf-8"><style>
+html,body{margin:0;width:640px;height:420px;overflow:hidden}
+body{background:
+  radial-gradient(ellipse 70% 60% at 50% 46%, #2a2d33 0%, #1d1f23 60%, #17181b 100%);
+  font-family:-apple-system,"SF Pro Text",Helvetica,sans-serif;color:#e7e8eb}
+.grid{position:absolute;inset:0;
+  background-image:radial-gradient(circle,#ffffff14 1px,transparent 1.3px);
+  background-size:20px 20px;background-position:10px 10px;
+  -webkit-mask-image:radial-gradient(ellipse 75% 70% at 50% 48%,#000 30%,transparent 90%)}
+h1{position:absolute;top:34px;left:0;right:0;margin:0;text-align:center;
+  font-size:21px;font-weight:600;letter-spacing:-.2px}
+p{position:absolute;top:66px;left:0;right:0;margin:0;text-align:center;font-size:13px;color:#a3a8b1}
+.pill{position:absolute;top:272px;width:132px;height:22px;margin-left:-66px;border-radius:11px;background:#7c818b}
+svg{position:absolute;left:0;top:0}
+.foot{position:absolute;bottom:22px;left:0;right:0;text-align:center;font-size:11px;
+  letter-spacing:1.6px;text-transform:uppercase;color:#6d727b}
+.foot b{color:#ff9a2e;font-weight:600}
+</style></head><body>
+<div class="grid"></div>
+<h1>Install GCarve</h1>
+<p>Drag the GCarve icon onto the Applications folder.</p>
+<div class="pill" style="left:170px"></div>
+<div class="pill" style="left:470px"></div>
+<svg width="640" height="420" viewBox="0 0 640 420">
+  <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#ffb347"/><stop offset="1" stop-color="#ff8a1f"/></linearGradient></defs>
+  <!-- a toolpath: bit at the start, dashed cut with tabs, arrow head at the folder -->
+  <path d="M258 200 C 300 168, 340 168, 378 196" fill="none" stroke="url(#g)" stroke-width="5"
+        stroke-linecap="round" stroke-dasharray="20 9"/>
+  <path d="M368 182 L 386 202 L 360 207" fill="none" stroke="#ff8a1f" stroke-width="5"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="258" cy="200" r="6" fill="#1d1f23" stroke="#ffb347" stroke-width="3"/>
+</svg>
+<div class="foot">Free CAM for your CNC · <b>gcarve.app</b></div>
+</body></html>

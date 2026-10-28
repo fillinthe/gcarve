@@ -18,6 +18,8 @@ use crate::svg::ImportResult;
 
 const MAX_STREAM: usize = 64 << 20; // decoded bytes per stream
 const MAX_DEPTH: usize = 12; // forms inside forms
+const MAX_INFLATED: usize = 512 << 20; // decoded bytes per file
+const MAX_VISITS: usize = 100_000; // content streams read per file (a form that draws itself many times fans out)
 
 fn find(s: &[u8], from: usize, pat: &[u8]) -> Option<usize> {
     s.get(from..)?.windows(pat.len()).position(|w| w == pat).map(|i| i + from)
@@ -43,6 +45,7 @@ fn inflate(dict: &str, raw: &[u8]) -> Option<Vec<u8>> {
 fn objects(pdf: &[u8]) -> HashMap<u32, Obj> {
     let mut out: HashMap<u32, Obj> = HashMap::new();
     let mut i = 0;
+    let mut budget = MAX_INFLATED;
     while let Some(at) = find(pdf, i, b" obj") {
         i = at + 4;
         // "<num> <gen> obj": walk back over the generation and the number
@@ -65,7 +68,8 @@ fn objects(pdf: &[u8]) -> HashMap<u32, Obj> {
             _ => (body.len(), None),
         };
         let dict = String::from_utf8_lossy(&body[..dict_end]).into_owned();
-        let stream = stream.and_then(|raw| inflate(&dict, raw));
+        let stream = stream.and_then(|raw| inflate(&dict, raw)).filter(|s| s.len() <= budget);
+        budget -= stream.as_ref().map_or(0, Vec::len);
         out.insert(num, Obj { dict, stream });
     }
     // object streams: "<num> <offset>" pairs, then the objects themselves from /First on
@@ -177,11 +181,16 @@ struct Reader<'a> {
     /// every XObject name in the file: used when a page's own resources can't be followed (inherited ones)
     any: HashMap<String, u32>,
     out: Vec<Contour>,
+    visits: usize,
 }
 
 impl Reader<'_> {
     /// Paths painted by one content stream; `ctm` = the transform in force, `names` = its XObjects.
     fn content(&mut self, s: &[u8], mut ctm: Affine, names: &HashMap<String, u32>, depth: usize) {
+        self.visits += 1;
+        if self.visits > MAX_VISITS {
+            return;
+        }
         let mut stack: Vec<Affine> = Vec::new();
         let mut nums: Vec<f64> = Vec::new();
         let mut name = String::new(); // the last /Name operand (for Do)
@@ -384,7 +393,7 @@ pub fn import_pdf(bytes: &[u8]) -> ImportResult {
         return r;
     }
     let objs = objects(bytes);
-    let mut rd = Reader { objs: &objs, any: HashMap::new(), out: Vec::new() };
+    let mut rd = Reader { objs: &objs, any: HashMap::new(), out: Vec::new(), visits: 0 };
     for o in objs.values() {
         rd.any.extend(xobjects(&objs, &o.dict));
     }
@@ -451,7 +460,7 @@ pub fn import_eps(bytes: &[u8]) -> ImportResult {
         }
     }
     let objs = HashMap::new();
-    let mut rd = Reader { objs: &objs, any: HashMap::new(), out: Vec::new() };
+    let mut rd = Reader { objs: &objs, any: HashMap::new(), out: Vec::new(), visits: 0 };
     rd.content(&body, Affine { a: 1.0, d: 1.0, ..Default::default() }, &HashMap::new(), 0);
     finish(rd.out, "No vector paths found (the file may hold only pictures or live text, or draw with its own procedures: save as PDF or SVG and open that).")
 }

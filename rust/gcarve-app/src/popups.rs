@@ -445,6 +445,8 @@ pub struct Dialogs {
     inlay: Option<([String; 3], bool)>,
     /// Living Hinge: column spacing, slot length, bridge texts + slots run up the board
     hinge: Option<([String; 3], bool)>,
+    /// Stencil Bridges: width text + bridges run up and down
+    stencil: Option<(String, bool)>,
     /// QR Code: text, size text, invert
     qr: Option<(String, String, bool)>,
     /// Plate Production: the list (one plate per line), first line = headings, gap text
@@ -493,6 +495,7 @@ impl Dialogs {
             Request::Selector => self.selector = Some([String::new(), String::new()]),
             Request::RotaryLayout => self.rlayout = Some([String::from("1"), units::text(doc, 4.0), units::text(doc, 0.0), units::text(doc, doc.material.w)]),
             Request::Inlay => self.inlay = Some(([0.2, 0.1, 0.25].map(|v| units::text(doc, v)), false)),
+            Request::Stencil => self.stencil = Some((units::text(doc, 0.125), true)),
             Request::Hinge => self.hinge = Some(([0.25, 1.5, 0.25].map(|v| units::text(doc, v)), true)),
             Request::Qr => self.qr = Some(("https://".into(), units::text(doc, 4.0), false)),
             Request::Puzzle => {
@@ -694,6 +697,40 @@ impl Dialogs {
             }
             if keep {
                 self.inlay = Some((f, flat));
+            }
+        }
+
+        if let Some((mut f, mut along_y)) = self.stencil.take() {
+            let (mut keep, mut ok) = (true, false);
+            W::Dialog::new(i18n::t("Stencil Bridges")).show(ctx, |ui| {
+                egui::Grid::new("stencil").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
+                    ui.label(format!("{} ({doc_unit})", i18n::t("Bridge width")));
+                    units::num_field(ui, "stencil-w", &mut f, &canvas.doc, true, 110.0);
+                    ui.end_row();
+                    ui.label(i18n::t("Bridges run"));
+                    ui.horizontal(|ui| {
+                        ui.selectable_value(&mut along_y, true, i18n::t("Up and down"));
+                        ui.selectable_value(&mut along_y, false, i18n::t("Across"));
+                    });
+                    ui.end_row();
+                });
+                ui.label(egui::RichText::new(i18n::t("Every island inside the selected shapes (the middle of an O, A or R) gets a bridge through its centre, so it stays joined to the plate when the letters are cut out.")).small().color(crate::theme::TEXT_DIM));
+                let (o, c) = W::ok_cancel(ui);
+                ok |= o;
+                keep &= !c;
+            });
+            if ok {
+                match units::get(&canvas.doc, &f, true) {
+                    Ok(w) if w > 0.0 => {
+                        canvas.stencil_bridges(w, along_y);
+                        keep = false;
+                    }
+                    Ok(_) => canvas.status = i18n::t("Stencil Bridges: the bridge width must be more than 0.").into(),
+                    Err(e) => canvas.status = e,
+                }
+            }
+            if keep {
+                self.stencil = Some((f, along_y));
             }
         }
 

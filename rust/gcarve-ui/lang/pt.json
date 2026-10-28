@@ -1772,5 +1772,14 @@
 "OR CHANGE A READY PROJECT": "OU MUDE UM PROJETO PRONTO",
 "RECENT": "RECENTES",
 "inches": "polegadas",
-"feet": "pés"
+"feet": "pés",
+"Stencil Bridges…": "Pontes de estêncil…",
+"Stencil Bridges": "Pontes de estêncil",
+"Bridge width": "Largura da ponte",
+"Bridges run": "As pontes vão",
+"Up and down": "Para cima e para baixo",
+"Every island inside the selected shapes (the middle of an O, A or R) gets a bridge through its centre, so it stays joined to the plate when the letters are cut out.": "Cada ilha dentro das formas selecionadas (o meio de um O, A ou R) recebe uma ponte pelo centro, para continuar presa à chapa quando as letras forem recortadas.",
+"Stencil Bridges: select the closed shapes (letters) that are cut out.": "Pontes de estêncil: selecione as formas fechadas (letras) que serão recortadas.",
+"Stencil Bridges: no islands here, nothing would fall out.": "Pontes de estêncil: não há ilhas aqui, nada cairia.",
+"Stencil Bridges: the bridge width must be more than 0.": "Pontes de estêncil: a largura da ponte deve ser maior que 0."
 }

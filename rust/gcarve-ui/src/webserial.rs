@@ -32,7 +32,7 @@ export function gc_serial_open(baud, hardware) {
       for (;;) {
         const { value, done } = await r.read();
         if (done) break;
-        if (my === gen) for (const b of value) inbox.push(b);
+        if (my === gen) { if (inbox.length > 1048576) inbox = []; for (const b of value) inbox.push(b); }
       }
     } catch (e) { if (my === gen && state.startsWith("open:")) state = "lost: " + e.message; }
     finally { try { r.releaseLock(); } catch (_) {} }

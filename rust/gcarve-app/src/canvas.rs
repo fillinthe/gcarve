@@ -78,6 +78,7 @@ pub enum Request {
     Puzzle,
     Inlay,
     Hinge,
+    Stencil,
     Qr,
     /// new text; true = along the selected curve
     Text(bool),

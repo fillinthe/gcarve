@@ -300,7 +300,7 @@ impl App {
                     app.canvas.tool = *tool;
                 }
             }
-            let req = match dialog.as_str() { "text" => Some(Request::Text(false)), "offset" => Some(Request::Offset), "dogbone" => Some(Request::Dogbone), "array" => Some(Request::Array), "align" => Some(Request::Align), "nest" => Some(Request::Nest), "selector" => Some(Request::Selector), "vtexture" => Some(Request::Texture), "plates" => Some(Request::Plates), "shelfpins" => Some(Request::Pins), "rotarylayout" => Some(Request::RotaryLayout), "boxmaker" => Some(Request::BoxMaker), "puzzle" => Some(Request::Puzzle), "inlay" => Some(Request::Inlay), "hinge" => Some(Request::Hinge), "qr" => Some(Request::Qr), _ => None };
+            let req = match dialog.as_str() { "text" => Some(Request::Text(false)), "offset" => Some(Request::Offset), "dogbone" => Some(Request::Dogbone), "array" => Some(Request::Array), "align" => Some(Request::Align), "nest" => Some(Request::Nest), "selector" => Some(Request::Selector), "vtexture" => Some(Request::Texture), "plates" => Some(Request::Plates), "shelfpins" => Some(Request::Pins), "rotarylayout" => Some(Request::RotaryLayout), "boxmaker" => Some(Request::BoxMaker), "puzzle" => Some(Request::Puzzle), "inlay" => Some(Request::Inlay), "hinge" => Some(Request::Hinge), "stencil" => Some(Request::Stencil), "qr" => Some(Request::Qr), _ => None };
             app.canvas.requests.extend(req);
             if dialog == "shapemenu" || dialog == "sizepopup" {
                 app.canvas.shot_hook = dialog.clone();
@@ -1142,6 +1142,7 @@ impl App {
             ("puzzle", _) => self.dialogs.request(Request::Puzzle, &self.canvas),
             ("inlay", _) => self.dialogs.request(Request::Inlay, &self.canvas),
             ("hinge", _) => self.dialogs.request(Request::Hinge, &self.canvas),
+            ("stencil", _) => self.dialogs.request(Request::Stencil, &self.canvas),
             ("qr", _) => self.dialogs.request(Request::Qr, &self.canvas),
             ("rotarylayout", _) => self.dialogs.request(Request::RotaryLayout, &self.canvas),
             ("align", _) => self.dialogs.request(Request::Align, &self.canvas),
