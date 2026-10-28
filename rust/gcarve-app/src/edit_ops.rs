@@ -398,6 +398,22 @@ impl Canvas {
         self.mutated();
     }
 
+    /// Vectors › Stencil Bridges…: the selected closed shapes (letters cut out of a plate) with a bridge of `width`
+    /// across every island, so the middles of O, A, R stay joined to the plate (`vecops::stencil_bridges`).
+    pub fn stencil_bridges(&mut self, width: f64, along_y: bool) {
+        if !self.sel_contours().iter().any(|c| c.closed) {
+            self.status = i18n::t("Stencil Bridges: select the closed shapes (letters) that are cut out.").into();
+            return;
+        }
+        let (r, n) = gcarve_core::vecops::stencil_bridges(&self.sel_contours(), width, along_y);
+        if n == 0 {
+            self.status = i18n::t("Stencil Bridges: no islands here, nothing would fall out.").into();
+            return;
+        }
+        self.replace_selection(r, i18n::t("Stencil Bridges"), false);
+        self.status = format!("Stencil Bridges: {n} island(s) bridged, {} wide. Cut the outlines with a Profile right through; with a router bit or plasma kerf, make the bridges wider than the kerf.", units::text(&self.doc, width));
+    }
+
     fn sel_contours(&self) -> Vec<Contour> {
         let ids: Vec<i32> = self.sel.iter().copied().collect();
         self.doc.contours_of(&ids)
@@ -1825,6 +1841,31 @@ mod vector_tool_tests {
                 assert_eq!(plug.shape_ids.len(), 2, "the design and the box round it");
             }
         }
+    }
+
+    #[test]
+    fn stencil_bridges_keep_the_middles_of_real_letters() {
+        use crate::text::FAMILIES;
+        use gcarve_core::document::TextItem;
+        let mut c = Canvas::default();
+        c.place_text(TextItem { text: "OAR".into(), family: FAMILIES[0].into(), height: 2.0, ..Default::default() }, pt(12.0, 12.0), None);
+        c.sel = c.doc.shapes.iter().map(|s| s.id).collect();
+        c.sel_changed();
+        c.stencil_bridges(0.15, true);
+        assert!(c.status.starts_with("Stencil Bridges: 3 island"), "{}", c.status);
+        // every piece left is a plain outline: the even-odd area of all of them has no hole
+        let cs = c.sel_contours();
+        let (_, left) = gcarve_core::vecops::stencil_bridges(&cs, 0.15, true);
+        assert_eq!(left, 0, "no island left to bridge");
+        if let Ok(out) = std::env::var("GCARVE_STENCIL_SVG") {
+            let items: Vec<(&Contour, &str)> = cs.iter().map(|k| (k, "stencil")).collect();
+            std::fs::write(out, gcarve_core::svg::export_svg(&items, 24.0, 24.0)).unwrap();
+        }
+        // a second run says so and changes nothing
+        let n = c.doc.shapes.len();
+        c.stencil_bridges(0.15, true);
+        assert!(c.status.contains("no islands"), "{}", c.status);
+        assert_eq!(c.doc.shapes.len(), n);
     }
 
     #[test]

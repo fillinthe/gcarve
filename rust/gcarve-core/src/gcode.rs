@@ -270,7 +270,7 @@ pub fn motion_points(m: &GMotion, tol: f64) -> Vec<Vec3> {
         sw = if ccw { 2.0 * PI } else { -2.0 * PI }; // full circle
     }
     let step = if r > tol { 2.0 * (1.0 - tol / r).max(-1.0).acos() } else { PI / 8.0 };
-    let n = ((sw.abs() / step.max(1e-3)).ceil() as i32).max(2);
+    let n = ((sw.abs() / step.max(1e-3)).ceil() as i32).clamp(2, 20_000);
     let a0 = (m.from.y - cy).atan2(m.from.x - cx);
     let mut pts: Vec<Vec3> = (0..=n)
         .map(|k| {

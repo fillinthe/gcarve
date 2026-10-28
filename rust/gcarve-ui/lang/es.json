@@ -1772,5 +1772,14 @@
 "OR CHANGE A READY PROJECT": "O MODIFICA UN PROYECTO LISTO",
 "RECENT": "RECIENTES",
 "inches": "pulgadas",
-"feet": "pies"
+"feet": "pies",
+"Stencil Bridges…": "Puentes de plantilla…",
+"Stencil Bridges": "Puentes de plantilla",
+"Bridge width": "Ancho del puente",
+"Bridges run": "Los puentes van",
+"Up and down": "Arriba y abajo",
+"Every island inside the selected shapes (the middle of an O, A or R) gets a bridge through its centre, so it stays joined to the plate when the letters are cut out.": "Cada isla dentro de las formas seleccionadas (el centro de una O, A o R) recibe un puente por su centro, para que siga unida a la placa cuando se recortan las letras.",
+"Stencil Bridges: select the closed shapes (letters) that are cut out.": "Puentes de plantilla: selecciona las formas cerradas (letras) que se recortan.",
+"Stencil Bridges: no islands here, nothing would fall out.": "Puentes de plantilla: aquí no hay islas, no se caería nada.",
+"Stencil Bridges: the bridge width must be more than 0.": "Puentes de plantilla: el ancho del puente debe ser mayor que 0."
 }

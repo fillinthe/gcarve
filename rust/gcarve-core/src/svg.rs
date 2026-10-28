@@ -558,6 +558,8 @@ struct Out {
     keep: Option<Vec<ImportText>>,
     /// images, and use elements that point nowhere
     skipped: usize,
+    /// use elements followed so far (a symbol holding many uses of itself fans out within the depth limit)
+    uses: usize,
 }
 
 const MAX_USE_DEPTH: u32 = 8;
@@ -754,7 +756,8 @@ fn scan(text: &str, init: Option<Level>, defs: &HashMap<String, String>, depth: 
             // a clone of an element elsewhere in the file (symbols, repeated shapes, Illustrator / Inkscape clones)
             let href = [attr(&t.attr, "href"), attr(&t.attr, "xlink:href")].into_iter().find(|h| !h.is_empty()).unwrap_or("");
             match href.strip_prefix('#').and_then(|id| defs.get(id)) {
-                Some(frag) if depth < MAX_USE_DEPTH => {
+                Some(frag) if depth < MAX_USE_DEPTH && out.uses < 200_000 => {
+                    out.uses += 1;
                     let m = parent * own * Affine::translate(num_attr(&t.attr, "x", 0.0), num_attr(&t.attr, "y", 0.0));
                     scan(frag, Some(Level { m, hidden: false, layer }), defs, depth + 1, out);
                 }

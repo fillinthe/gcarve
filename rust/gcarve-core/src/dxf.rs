@@ -184,7 +184,7 @@ fn import(text: &str, keep_text: bool) -> ImportResult {
     // 4. entities (INSERTs expand the BLOCKS they name)
     let run = |k: f64| {
         let mut out: Vec<(Contour, String)> = Vec::new();
-        let mut rest = Rest { skipped: BTreeMap::new(), hatches: Vec::new(), used_hatch: false, texts: keep_text.then(Vec::new) };
+        let mut rest = Rest { skipped: BTreeMap::new(), hatches: Vec::new(), used_hatch: false, texts: keep_text.then(Vec::new), inserts: 0 };
         convert(&ents, &blocks, Affine::scale(k, k), "", 0, &mut out, &mut rest);
         if out.is_empty() && !rest.hatches.is_empty() {
             out = std::mem::take(&mut rest.hatches); // a file of fills only: their boundaries are the shapes
@@ -319,6 +319,8 @@ struct Rest {
     hatches: Vec<(Contour, String)>,
     used_hatch: bool,
     texts: Option<Vec<ImportText>>,
+    /// block expansions so far (a block holding many INSERTs of itself fans out within the depth limit)
+    inserts: u32,
 }
 
 fn convert(ents: &[(String, Entity)], blocks: &HashMap<String, Block>, xf: Affine, inherit: &str, depth: u32, out: &mut Vec<(Contour, String)>, rest: &mut Rest) {
@@ -380,7 +382,8 @@ fn convert(ents: &[(String, Entity)], blocks: &HashMap<String, Block>, xf: Affin
             "INSERT" => {
                 let name = e.iter().find(|p| p.0 == 2).map(|p| p.1.as_str()).unwrap_or("");
                 match blocks.get(name) {
-                    Some(b) if depth < 6 => {
+                    Some(b) if depth < 6 && rest.inserts < 200_000 => {
+                        rest.inserts += 1;
                         let (sx, sy) = (get(e, 41, 1.0), get(e, 42, 1.0));
                         let m = xf * Affine::translate(get(e, 10, 0.0), get(e, 20, 0.0)) * Affine::rotate(get(e, 50, 0.0).to_radians()) * Affine::scale(sx, sy) * Affine::translate(-b.base.x, -b.base.y);
                         let own = e.iter().rev().find(|p| p.0 == 8).map_or("", |p| p.1.as_str());

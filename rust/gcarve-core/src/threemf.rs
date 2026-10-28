@@ -10,6 +10,8 @@ use std::collections::HashMap;
 use crate::relief::{Pt3, Triangle};
 
 const MAX_ENTRY: usize = 512 << 20; // inflated bytes per zip entry
+const MAX_UNPACKED: usize = 1 << 30; // inflated bytes per zip (entries may share one local header: each is read once)
+const MAX_TRIANGLES: usize = 5_000_000; // placed triangles (components listing themselves fan out)
 const MAX_DEPTH: usize = 8; // components inside components
 
 fn u16_at(b: &[u8], k: usize) -> usize {
@@ -32,6 +34,7 @@ pub fn zip_entries(zip: &[u8], ends: &[&str]) -> Result<HashMap<String, Vec<u8>>
     let eocd = (0..zip.len().saturating_sub(21)).rev().take(70_000).find(|&k| zip[k..].starts_with(b"PK\x05\x06")).ok_or(NO_ZIP)?;
     let (count, mut at) = (u16_at(zip, eocd + 10), u32_at(zip, eocd + 16));
     let mut out = HashMap::new();
+    let (mut seen, mut total) = (std::collections::HashSet::new(), 0usize);
     for _ in 0..count {
         if !zip.get(at..).is_some_and(|s| s.starts_with(b"PK\x01\x02")) {
             break;
@@ -41,7 +44,7 @@ pub fn zip_entries(zip: &[u8], ends: &[&str]) -> Result<HashMap<String, Vec<u8>>
         let name = String::from_utf8_lossy(zip.get(at + 46..at + 46 + nlen).unwrap_or_default()).into_owned();
         at += 46 + nlen + extra + comment;
         let lower = name.to_ascii_lowercase();
-        if !ends.iter().any(|e| lower.ends_with(e)) {
+        if !ends.iter().any(|e| lower.ends_with(e)) || !seen.insert(local) {
             continue;
         }
         let data_at = local + 30 + u16_at(zip, local + 26) + u16_at(zip, local + 28);
@@ -51,6 +54,10 @@ pub fn zip_entries(zip: &[u8], ends: &[&str]) -> Result<HashMap<String, Vec<u8>>
             8 => miniz_oxide::inflate::decompress_to_vec_with_limit(raw, MAX_ENTRY).map_err(|_| format!("{name}: damaged"))?,
             m => return Err(format!("{name}: zip method {m} not supported")),
         };
+        total += data.len();
+        if total > MAX_UNPACKED {
+            return Err("the zip file unpacks to more than 1 GB".into());
+        }
         out.insert(format!("/{}", name.trim_start_matches('/')), data);
     }
     Ok(out)
@@ -113,8 +120,10 @@ fn tags<'a>(s: &'a str, name: &str) -> Vec<&'a str> {
 
 fn objects(file: &str, xml: &str) -> HashMap<String, Object> {
     let mut out = HashMap::new();
-    for (i, _) in xml.match_indices("<object") {
-        let body = &xml[i..i + xml[i..].find("</object>").unwrap_or(xml.len() - i)];
+    let starts: Vec<usize> = xml.match_indices("<object").map(|(i, _)| i).collect();
+    for (k, &i) in starts.iter().enumerate() {
+        let lim = starts.get(k + 1).copied().unwrap_or(xml.len()); // an unclosed object ends at the next one
+        let body = &xml[i..xml[i..lim].find("</object>").map_or(lim, |e| i + e)];
         let Some(id) = attr(body, "id") else { continue };
         let obj = if body.contains("<mesh") {
             let num = |t: &str, k: &str| attr(t, k).and_then(|v| v.parse::<f64>().ok()).unwrap_or(0.0);
@@ -131,6 +140,9 @@ fn objects(file: &str, xml: &str) -> HashMap<String, Object> {
 }
 
 fn place(all: &HashMap<String, HashMap<String, Object>>, file: &str, id: &str, m: &Xf, depth: usize, out: &mut Vec<Triangle>) {
+    if out.len() > MAX_TRIANGLES {
+        return;
+    }
     match all.get(file).and_then(|o| o.get(id)) {
         Some(Object::Mesh(v, t)) => out.extend(t.iter().map(|&[a, b, c]| Triangle { a: apply(m, v[a]), b: apply(m, v[b]), c: apply(m, v[c]) })),
         Some(Object::Parts(parts)) if depth < MAX_DEPTH => {

@@ -510,6 +510,46 @@ pub fn living_hinge(area: crate::geom::Rect, spacing: f64, slot: f64, bridge: f6
     out
 }
 
+/// Stencil bridges: the closed shapes read as one cut-away area (even-odd, so a letter's counter is a hole whatever
+/// way round it was drawn); every island left inside it (the middle of an O, A, R, B) gets a straight bridge of
+/// `width` through its centre, up and down (`along_y`) or across, over the whole piece around it, so it stays joined
+/// to the plate. Returns the bridged outlines and how many islands were bridged.
+/// ponytail: one bridge through the island's box centre; a bridge placed at the piece's thinnest strokes would be prettier.
+pub fn stencil_bridges(input: &[Contour], width: f64, along_y: bool) -> (Vec<Contour>, usize) {
+    let p: PathsD = input.iter().filter(|k| k.closed).map(to_path).collect();
+    let area = union_subjects_d(&p, FillRule::EvenOdd, PREC);
+    let bx = |q: &PathD| {
+        let (mut b0, mut b1) = (pt(f64::MAX, f64::MAX), pt(f64::MIN, f64::MIN));
+        for v in q {
+            (b0.x, b0.y, b1.x, b1.y) = (b0.x.min(v.x), b0.y.min(v.y), b1.x.max(v.x), b1.y.max(v.y));
+        }
+        (b0, b1)
+    };
+    let inside = |q: Pt, path: &PathD| crate::geom::point_in_poly(q, path.len(), |i| (path[i].x, path[i].y));
+    let mut bridges: PathsD = Vec::new();
+    if width > 0.0 {
+        for hole in area.iter().filter(|q| !clipper2_rust::is_positive(q)) {
+            let (h0, h1) = bx(hole);
+            let c = pt((h0.x + h1.x) / 2.0, (h0.y + h1.y) / 2.0);
+            // the piece around it = the smallest outer outline holding the island
+            let Some((o0, o1)) = area
+                .iter()
+                .filter(|q| clipper2_rust::is_positive(q) && inside(pt(hole[0].x, hole[0].y), q))
+                .map(bx)
+                .min_by(|a, b| ((a.1.x - a.0.x) * (a.1.y - a.0.y)).total_cmp(&((b.1.x - b.0.x) * (b.1.y - b.0.y))))
+            else {
+                continue;
+            };
+            let (w, m) = (width / 2.0, 0.01);
+            let r = if along_y { [c.x - w, o0.y - m, c.x + w, o1.y + m] } else { [o0.x - m, c.y - w, o1.x + m, c.y + w] };
+            bridges.push(vec![PointD::new(r[0], r[1]), PointD::new(r[2], r[1]), PointD::new(r[2], r[3]), PointD::new(r[0], r[3])]);
+        }
+    }
+    let n = bridges.len();
+    let out = if n == 0 { area } else { difference_d(&area, &bridges, FillRule::NonZero, PREC) };
+    (from_paths(&simplify_paths(&out, TOL / 2.0, true)), n)
+}
+
 pub fn simplify_contours(input: &[Contour], tol: f64) -> Vec<Contour> {
     input
         .iter()
@@ -883,6 +923,22 @@ mod fillet_tests {
         let moved = make_polyline(&[pt(0.5, 0.0), pt(2.5, 0.0), pt(2.5, 2.0), pt(0.5, 2.0)], true);
         let r = check_vectors(&[(1, &sq), (2, &open), (3, &sq), (4, &speck), (5, &moved)]);
         assert_eq!(r, VectorCheck { open: vec![2], duplicates: vec![3], tiny: vec![4] });
+    }
+
+    #[test]
+    fn stencil_bridges_hold_every_island_to_the_plate() {
+        use crate::geom::{bounds, make_rect};
+        // an "O" (square ring, drawn the same way round both times) and a plain bar with no island
+        let o = [make_rect(0.0, 0.0, 2.0, 3.0), make_rect(0.5, 0.5, 1.5, 2.5), make_rect(3.0, 0.0, 3.5, 3.0)];
+        let (out, n) = stencil_bridges(&o, 0.2, true);
+        assert_eq!(n, 1, "one island");
+        // the ring splits into a left and a right half (+ the bar); no outline has a hole any more
+        assert_eq!(out.len(), 3);
+        assert!(out.iter().all(|c| clipper2_rust::is_positive(&to_path(c))), "no islands left");
+        let gap = out.iter().map(bounds).filter(|b| b.x1 < 3.0).map(|b| if b.x0 < 0.5 { b.x1 } else { b.x0 }).collect::<Vec<_>>();
+        assert!((gap[0] - 0.9).abs() < 1e-3 && (gap[1] - 1.1).abs() < 1e-3 || (gap[1] - 0.9).abs() < 1e-3 && (gap[0] - 1.1).abs() < 1e-3, "{gap:?}");
+        let (out, _) = stencil_bridges(&o, 0.2, false);
+        assert_eq!(out.len(), 3, "across: a top and a bottom half");
     }
 
     #[test]

@@ -52,6 +52,8 @@ pub fn cfb_streams(b: &[u8]) -> Result<HashMap<String, Vec<u8>>, String> {
         d = u32::from_le_bytes(s[ss - 4..].try_into().unwrap()) as usize;
         guard += 1;
     }
+    fat_secs.sort_unstable();
+    fat_secs.dedup(); // DIFAT sectors may list the same FAT sector again and again: read each once
     let mut fat: Vec<usize> = Vec::new();
     for &f in &fat_secs {
         let s = sector(f).ok_or_else(bad)?;

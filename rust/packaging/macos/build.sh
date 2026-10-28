@@ -34,16 +34,10 @@ else
 fi
 
 DMG="$OUT/GCarve-$VERSION-macOS.dmg"
-STAGE="$OUT/dmg-stage"
-rm -rf "$DMG" "$STAGE"
-mkdir -p "$STAGE"
-cp -R "$APP" "$STAGE/"
-ln -s /Applications "$STAGE/Applications"
-hdiutil create -quiet -volname GCarve -srcfolder "$STAGE" -format UDZO -fs HFS+ "$DMG"
+sh "$REPO/rust/packaging/macos/dmg/make.sh" "$APP" "$DMG"   # drag-to-Applications window on dmg/background.tiff
 if [ "${GCARVE_RELEASE:-}" = 1 ]; then
     codesign --force --timestamp --keychain "$KC" --sign "$(cat "$SIGN/identity-sha1")" "$DMG"
 fi
-rm -rf "$STAGE"
 codesign -dv "$APP" 2>&1 | grep -E "^Authority" | head -1
 lipo -info "$APP/Contents/MacOS/gcarve"
 ls -l "$APP/Contents/MacOS/gcarve" "$DMG"

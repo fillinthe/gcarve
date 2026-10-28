@@ -23,7 +23,7 @@
 use crate::document::{Document, Op, OpType, Side, Tool, ToolType};
 use crate::geom::{make_ellipse, make_rect, pt, transformed, Affine, Builder, Contour, Pt};
 use serde_json::Value;
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 
 const MM: f64 = 1.0 / 25.4;
 
@@ -317,13 +317,16 @@ fn from_sqlite(bytes: &[u8]) -> Result<(Document, String, Vec<C2dText>), String>
     o.board(p("width"), p("height"), p("thickness"), p("retract"));
     let display_mm = params.get("display_mm").is_some_and(|v| v == "1");
     let mut toolpaths = Vec::new();
+    let mut budget = 256usize << 20; // inflated bytes per file
     for r in db.rows("items").ok_or_else(|| bad("no drawing"))? {
         // items(id, uuid, name, type, version, sz, data)
         let (Some(ty), Some(Cell::Blob(data))) = (r.get(3).and_then(Cell::text), r.get(6)) else { continue };
         if ty != "element" && ty != "toolpath" {
             continue;
         }
-        let Some(v) = miniz_oxide::inflate::decompress_to_vec_zlib_with_limit(data, 64 << 20).ok().and_then(|raw| serde_json::from_slice::<Value>(&raw).ok()) else {
+        let raw = miniz_oxide::inflate::decompress_to_vec_zlib_with_limit(data, 64 << 20).ok().filter(|r| r.len() <= budget);
+        budget -= raw.as_ref().map_or(0, Vec::len);
+        let Some(v) = raw.and_then(|raw| serde_json::from_slice::<Value>(&raw).ok()) else {
             *o.skipped.entry("unreadable item").or_default() += 1;
             continue;
         };
@@ -417,9 +420,9 @@ impl<'a> Sqlite<'a> {
     }
 
     /// Every row of a table b-tree, as payload bytes
-    fn walk(&self, root: u32, out: &mut Vec<Vec<u8>>, depth: u32) -> Option<()> {
-        if depth > 20 || out.len() > 1_000_000 {
-            return None;
+    fn walk(&self, root: u32, out: &mut Vec<Vec<u8>>, depth: u32, seen: &mut HashSet<u32>) -> Option<()> {
+        if depth > 20 || out.len() > 1_000_000 || !seen.insert(root) {
+            return None; // a b-tree never visits a page twice: a page pointing at itself would fan out
         }
         let d = self.pg(root)?;
         let h = if root == 1 { 100 } else { 0 };
@@ -430,7 +433,7 @@ impl<'a> Sqlite<'a> {
             let at = u16::from_be_bytes([*d.get(ptrs + 2 * i)?, *d.get(ptrs + 2 * i + 1)?]) as usize;
             if kind == 5 {
                 let child = u32::from_be_bytes(d.get(at..at + 4)?.try_into().ok()?);
-                self.walk(child, out, depth + 1)?;
+                self.walk(child, out, depth + 1, seen)?;
             } else if kind == 13 {
                 let (size, p) = varint(d, at)?;
                 let (_, p) = varint(d, p)?;
@@ -440,13 +443,16 @@ impl<'a> Sqlite<'a> {
             }
         }
         if kind == 5 {
-            self.walk(u32::from_be_bytes(d.get(h + 8..h + 12)?.try_into().ok()?), out, depth + 1)?;
+            self.walk(u32::from_be_bytes(d.get(h + 8..h + 12)?.try_into().ok()?), out, depth + 1, seen)?;
         }
         Some(())
     }
 
     /// A cell's payload: the local part, then the overflow chain
     fn payload(&self, d: &[u8], p: usize, size: usize) -> Option<Vec<u8>> {
+        if size > self.b.len() {
+            return None; // no cell holds more than the file
+        }
         let u = self.usable;
         let x = u - 35;
         if size <= x {
@@ -458,7 +464,7 @@ impl<'a> Sqlite<'a> {
         let mut out = d.get(p..p + local)?.to_vec();
         let mut next = u32::from_be_bytes(d.get(p + local..p + local + 4)?.try_into().ok()?);
         let mut hops = 0;
-        while out.len() < size && next != 0 && hops < 100_000 {
+        while out.len() < size && next != 0 && hops < self.b.len() / self.page {
             let o = self.pg(next)?;
             let take = (size - out.len()).min(u - 4);
             out.extend_from_slice(o.get(4..4 + take)?);
@@ -514,11 +520,11 @@ impl<'a> Sqlite<'a> {
     /// The rows of a table, by name (from sqlite_master: type, name, tbl_name, rootpage, sql)
     fn rows(&self, table: &str) -> Option<Vec<Vec<Cell>>> {
         let mut master = Vec::new();
-        self.walk(1, &mut master, 0)?;
+        self.walk(1, &mut master, 0, &mut HashSet::new())?;
         let root = master.iter().filter_map(|r| Self::record(r)).find(|r| r.first() == Some(&Cell::Text("table".into())) && r.get(1) == Some(&Cell::Text(table.into())))?;
         let Some(Cell::Int(root)) = root.get(3) else { return None };
         let mut rows = Vec::new();
-        self.walk(u32::try_from(*root).ok()?, &mut rows, 0)?;
+        self.walk(u32::try_from(*root).ok()?, &mut rows, 0, &mut HashSet::new())?;
         Some(rows.iter().filter_map(|r| Self::record(r)).collect())
     }
 }

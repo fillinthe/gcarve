@@ -1772,5 +1772,14 @@
 "OR CHANGE A READY PROJECT": "または用意されたプロジェクトを変更",
 "RECENT": "最近",
 "inches": "インチ",
-"feet": "フィート"
+"feet": "フィート",
+"Stencil Bridges…": "ステンシルブリッジ…",
+"Stencil Bridges": "ステンシルブリッジ",
+"Bridge width": "ブリッジの幅",
+"Bridges run": "ブリッジの向き",
+"Up and down": "上下",
+"Every island inside the selected shapes (the middle of an O, A or R) gets a bridge through its centre, so it stays joined to the plate when the letters are cut out.": "選択した形の中の島(O・A・Rの中央部分)すべてに、中心を通るブリッジを付けます。文字を切り抜いても板とつながったままになります。",
+"Stencil Bridges: select the closed shapes (letters) that are cut out.": "ステンシルブリッジ:切り抜く閉じた形(文字)を選択してください。",
+"Stencil Bridges: no islands here, nothing would fall out.": "ステンシルブリッジ:ここには島がないので、抜け落ちる部分はありません。",
+"Stencil Bridges: the bridge width must be more than 0.": "ステンシルブリッジ:ブリッジの幅は0より大きくしてください。"
 }

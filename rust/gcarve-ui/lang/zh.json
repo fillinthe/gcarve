@@ -1772,5 +1772,14 @@
 "OR CHANGE A READY PROJECT": "或修改一个现成项目",
 "RECENT": "最近",
 "inches": "英寸",
-"feet": "英尺"
+"feet": "英尺",
+"Stencil Bridges…": "镂空连接桥…",
+"Stencil Bridges": "镂空连接桥",
+"Bridge width": "连接桥宽度",
+"Bridges run": "连接桥方向",
+"Up and down": "上下",
+"Every island inside the selected shapes (the middle of an O, A or R) gets a bridge through its centre, so it stays joined to the plate when the letters are cut out.": "所选形状内的每个孤岛(O、A、R 的中间部分)都会在中心加一条连接桥,这样切出字母后它仍与板材相连。",
+"Stencil Bridges: select the closed shapes (letters) that are cut out.": "镂空连接桥:请选择要切出的闭合形状(字母)。",
+"Stencil Bridges: no islands here, nothing would fall out.": "镂空连接桥:这里没有孤岛,不会有部分掉落。",
+"Stencil Bridges: the bridge width must be more than 0.": "镂空连接桥:连接桥宽度必须大于 0。"
 }
