@@ -858,7 +858,7 @@ impl Canvas {
                             self.doc.dimensions.push(Dimension { a, b, offset: off, shape_a: sa.0, node_a: sa.1, shape_b: sb.0, node_b: sb.1, ..Default::default() });
                             self.dim_pts.clear();
                             self.dim_anchors.clear();
-                            self.status = format!("Dimension added: {}", units::fmt(&self.doc, dist(a, b)));
+                            self.status = i18n::tf("Dimension added: {b}", &[("b", &(units::fmt(&self.doc, dist(a, b))))]);
                             self.mutated();
                         }
                     }
@@ -886,7 +886,7 @@ impl Canvas {
                             let r = (dist(v, a).min(dist(v, b)) * 0.6).clamp(0.05, 2.0);
                             self.doc.checkpoint();
                             let d = Dimension { a, b, vertex: v, offset: r, axis: 3, shape_a: sa.0, node_a: sa.1, shape_b: sb.0, node_b: sb.1, ..Default::default() };
-                            self.status = format!("Angle added: {:.1}°", d.degrees());
+                            self.status = i18n::tf("Angle added: {d}°", &[("d", &format!("{:.1}", d.degrees()))]);
                             self.doc.dimensions.push(d);
                             self.dim_pts.clear();
                             self.dim_anchors.clear();

@@ -40,7 +40,7 @@ pub fn parse_list(text: &str, doc: &gcarve_core::document::Document) -> Result<V
             continue;
         }
         let parts: Vec<&str> = line.split(['x', 'X', '×', '*', ',']).map(str::trim).filter(|p| !p.is_empty()).collect();
-        let bad = || format!("Line {}: \"{line}\" should be width x height, or width x height x how many", n + 1);
+        let bad = || i18n::tf("Line {n}: \"{line}\" should be width x height, or width x height x how many", &[("n", &(n + 1)), ("line", &line)]);
         if !(2..=3).contains(&parts.len()) {
             return Err(bad());
         }
@@ -81,7 +81,7 @@ impl DoorDialog {
                 ui.selectable_value(&mut self.shaker, true, i18n::t("Shaker (recessed panel)"));
                 ui.selectable_value(&mut self.shaker, false, i18n::t("Slab"));
             });
-            ui.label(format!("Doors, one size a line: width x height (x how many), in {}", crate::units::name(doc)));
+            ui.label(i18n::tf("Doors, one size a line: width x height (x how many), in {doc}", &[("doc", &(crate::units::name(doc)))]));
             ui.add(egui::TextEdit::multiline(&mut self.list).desired_rows(5).desired_width(f32::INFINITY).font(egui::TextStyle::Monospace));
             egui::Grid::new("doors").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
                 for (i, label) in ["Frame width", i18n::t("Panel depth"), i18n::t("Sheet width"), i18n::t("Sheet height"), i18n::t("Sheet thickness"), "Space between doors"].iter().enumerate() {
@@ -136,7 +136,7 @@ pub fn build(c: &mut Canvas, s: &DoorSpec) -> String {
     let fits = |dw: f64, dh: f64| (dw <= w - 2.0 * s.gap && dh <= h - 2.0 * s.gap) || (!s.grain && dh <= w - 2.0 * s.gap && dw <= h - 2.0 * s.gap);
     let too_big: Vec<String> = s.doors.iter().filter(|(dw, dh)| !fits(*dw, *dh)).map(|(dw, dh)| format!("{} × {}", crate::units::text(&c.doc, *dw), crate::units::text(&c.doc, *dh))).collect();
     if !too_big.is_empty() {
-        return format!("New doors: bigger than the sheet: {}", too_big.join(", "));
+        return i18n::tf("New doors: bigger than the sheet: {too_big}", &[("too_big", &(too_big.join(", ")))]);
     }
     let narrow = s.shaker && s.doors.iter().any(|(dw, dh)| dw.min(*dh) <= 2.0 * s.frame + 0.5);
     let mut sel = BTreeSet::new();
@@ -170,7 +170,7 @@ pub fn build(c: &mut Canvas, s: &DoorSpec) -> String {
     c.doc.set_active_sheet(0);
     c.sel.clear();
     c.mutated();
-    format!("New doors: {} door{} on {} sheet{}{}. Check them in Simulate, then Export (one file set per sheet).", s.doors.len(), if s.doors.len() == 1 { "" } else { "s" }, c.doc.sheets.len(), if c.doc.sheets.len() == 1 { "" } else { "s" }, if narrow { i18n::t("; doors too narrow for a panel are left plain") } else { "" })
+    i18n::tf("New doors: {doors} door{s} on {sheets} sheet{s2}{extra}. Check them in Simulate, then Export (one file set per sheet).", &[("doors", &(s.doors.len())), ("s", &(if s.doors.len() == 1 { "" } else { "s" })), ("sheets", &(c.doc.sheets.len())), ("s2", &(if c.doc.sheets.len() == 1 { "" } else { "s" })), ("extra", &(if narrow { i18n::t("; doors too narrow for a panel are left plain") } else { "" }))])
 }
 
 #[cfg(test)]

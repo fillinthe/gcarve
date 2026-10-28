@@ -164,7 +164,7 @@ impl ShapesDialog {
             let clip = save_clip(&host.canvas.doc, &host.canvas.sel);
             self.saved_preview.push(preview_of(&clip));
             self.saved.push(Saved { name: self.new_name.trim().to_string(), clip });
-            *host.message = format!("Saved “{}” to My shapes", self.new_name.trim());
+            *host.message = i18n::tf("Saved “{new_name}” to My shapes", &[("new_name", &(self.new_name.trim()))]);
             self.new_name.clear();
             self.store();
         }

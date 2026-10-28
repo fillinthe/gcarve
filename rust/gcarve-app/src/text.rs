@@ -286,7 +286,7 @@ fn build(t: &TextItem, centre: Pt, path: Option<&Contour>, anchor: Option<(i32, 
         let adv = g.advance * k;
         let mid = s + adv / 2.0;
         if !closed && mid > total {
-            note = format!("Text is longer than the curve: {} character(s) dropped", glyphs.len() - ci);
+            note = i18n::tf("Text is longer than the curve: {ci} character(s) dropped", &[("ci", &(glyphs.len() - ci))]);
             break;
         }
         let (mut p, tan) = at(mid);
@@ -379,9 +379,9 @@ impl Canvas {
         self.status = if !note.is_empty() {
             note
         } else if old.is_empty() {
-            format!("Added \"{}\" ({n} outlines). Double-click to edit the text.", t.text.chars().take(20).collect::<String>())
+            i18n::tf("Added \"{string}\" ({n} outlines). Double-click to edit the text.", &[("string", &(t.text.chars().take(20).collect::<String>())), ("n", &n)])
         } else {
-            format!("Text updated ({n} outlines)")
+            i18n::tf("Text updated ({n} outlines)", &[("n", &n)])
         };
         self.tool = Tool::Select;
         self.mutated();
@@ -434,7 +434,7 @@ impl Canvas {
             let slot = k + 1; // the master keeps the first spot
             let (dx, dy) = ((slot % per_line) as f64 * w, -((slot / per_line) as f64) * h);
             if r.y0 + dy < -1e-9 {
-                self.status = format!("Plate Production: {made} plates made; the other {} don't fit on the board below the master.", rows.len() - made);
+                self.status = i18n::tf("Plate Production: {made} plates made; the other {made2} don't fit on the board below the master.", &[("made", &made), ("made2", &(rows.len() - made))]);
                 self.mutated();
                 return made;
             }
@@ -466,7 +466,7 @@ impl Canvas {
             }
             made += 1;
         }
-        self.status = format!("Plate Production: {made} plates made next to the master.");
+        self.status = i18n::tf("Plate Production: {made} plates made next to the master.", &[("made", &made)]);
         self.mutated();
         made
     }
@@ -588,7 +588,7 @@ impl TextDialog {
                     }
                 });
                 ui.end_row();
-                ui.label(format!("Letter height ({u})"));
+                ui.label(i18n::tf("Letter height ({u})", &[("u", &u)]));
                 ui.horizontal(|ui| {
                     units::num_field(ui, "h", &mut self.height, &canvas.doc, true, 110.0);
                     ui.label(dim(i18n::t("cap height")));
@@ -609,7 +609,7 @@ impl TextDialog {
                 ui.add_enabled(path_ok, crate::widgets::CheckBox::new(&mut self.on_path, if path_ok { i18n::t("Place letters along the selected curve") } else { i18n::t("Select one curve first to enable") }));
                 ui.end_row();
                 let on = self.on_path && path_ok;
-                ui.add_enabled(on, egui::Label::new(format!("Start offset ({u})")));
+                ui.add_enabled(on, egui::Label::new(i18n::tf("Start offset ({u})", &[("u", &u)])));
                 ui.add_enabled_ui(on, |ui| {
                     ui.horizontal(|ui| {
                         units::num_field(ui, "st", &mut self.start, &canvas.doc, true, 110.0);
@@ -617,10 +617,10 @@ impl TextDialog {
                     })
                 });
                 ui.end_row();
-                ui.label(format!("Letter spacing ({u})"));
+                ui.label(i18n::tf("Letter spacing ({u})", &[("u", &u)]));
                 units::num_field(ui, "sp", &mut self.spacing, &canvas.doc, true, 110.0);
                 ui.end_row();
-                ui.add_enabled(!self.on_path, egui::Label::new(format!("Arch radius ({u})")));
+                ui.add_enabled(!self.on_path, egui::Label::new(i18n::tf("Arch radius ({u})", &[("u", &u)])));
                 ui.add_enabled_ui(!self.on_path, |ui| {
                     ui.horizontal(|ui| {
                         units::num_field(ui, "arch", &mut self.arch, &canvas.doc, true, 110.0);

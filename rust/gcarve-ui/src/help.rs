@@ -2,6 +2,7 @@
 //! (its GitHub repo for releases, its version); a newer release is announced (status + menu) and "Update now" downloads
 //! this computer's file and opens it, falling back to the download page in the browser when that fails.
 
+use crate::i18n;
 use crate::cloud::Cloud;
 use crate::{theme, widgets};
 use eframe::egui::{self, RichText};
@@ -214,7 +215,7 @@ impl Help {
     pub fn on_reply(&mut self, r: Result<i64, String>) {
         if let Some(d) = &mut self.report {
             d.sending = false;
-            d.result = Some(r.map(|id| format!("Sent (#{id}). Thanks! The answer comes by email and on your account page.")));
+            d.result = Some(r.map(|id| i18n::tf("Sent (#{id}). Thanks! The answer comes by email and on your account page.", &[("id", &id)])));
             if d.crash && matches!(d.result, Some(Ok(_))) {
                 crate::store::remove("crash.txt");
             }
@@ -258,9 +259,9 @@ impl Help {
             let intro = if d.crash {
                 format!("{app} hit a problem and closed last time. Telling us what you were doing helps us fix it: the technical details below go with it.")
             } else if !d.attached.is_empty() {
-                format!("Tell us what you were doing when this happened. It goes straight to the people building {app}, with the details below, the version and the system.")
+                i18n::tf("Tell us what you were doing when this happened. It goes straight to the people building {app}, with the details below, the version and the system.", &[("app", &app)])
             } else {
-                format!("Report a problem, ask for a feature or ask a question. It goes straight to the people building {app}. The version and system are added for you.")
+                i18n::tf("Report a problem, ask for a feature or ask a question. It goes straight to the people building {app}. The version and system are added for you.", &[("app", &app)])
             };
             ui.add(egui::Label::new(RichText::new(intro).small().color(theme::TEXT_DIM)).wrap());
             egui::Grid::new("req").num_columns(2).spacing([12.0, 8.0]).show(ui, |ui| {
@@ -332,7 +333,7 @@ impl Help {
         let newest = NEWEST.lock().ok().and_then(|n| n.clone());
         let failed = FAILED.lock().map(|f| *f).unwrap_or(false);
         widgets::Dialog::new(crate::i18n::t("Check for updates")).id("update").open(&mut self.update_open).close_footer().width(380.0).show(ctx, |ui| {
-            ui.label(format!("You have {app} {}.", version()));
+            ui.label(i18n::tf("You have {app} {version}.", &[("app", &app), ("version", &(version()))]));
             match (&newest, available()) {
                 (_, Some((v, url))) => {
                     ui.label(RichText::new(format!("{app} {v} is available.")).color(theme::ACCENT));
@@ -352,7 +353,7 @@ impl Help {
                             ui.label(RichText::new(crate::i18n::t("Update now downloads it and opens it; then quit this one and install it over it. Your projects and settings stay.")).small().color(theme::TEXT_DIM));
                             ui.horizontal(|ui| {
                                 #[cfg(not(target_arch = "wasm32"))]
-                                if ui.add(widgets::Button::new(format!("Update now to {v}")).primary(true)).clicked() {
+                                if ui.add(widgets::Button::new(i18n::tf("Update now to {v}", &[("v", &v)])).primary(true)).clicked() {
                                     update_now(ctx);
                                 }
                                 if ui.button(crate::i18n::t("Download page")).clicked() {
@@ -369,11 +370,11 @@ impl Help {
                         Upd::Done(path) => {
                             ui.label(RichText::new(format!("Downloaded to {path}")).small().color(theme::TEXT_DIM));
                             let how = if cfg!(target_os = "macos") {
-                                format!("Quit {app}, then drag {app} from the window that opened onto Applications and choose Replace.")
+                                i18n::tf("Quit {app}, then drag {app} from the window that opened onto Applications and choose Replace.", &[("app", &app)])
                             } else if cfg!(windows) {
-                                format!("Quit {app}, then copy the files from the zip that opened over your {app} folder.")
+                                i18n::tf("Quit {app}, then copy the files from the zip that opened over your {app} folder.", &[("app", &app)])
                             } else {
-                                format!("Quit {app}, then unpack the file and run ./install.sh (or ./gcarve) from it.")
+                                i18n::tf("Quit {app}, then unpack the file and run ./install.sh (or ./gcarve) from it.", &[("app", &app)])
                             };
                             ui.label(how);
                             if ui.button(crate::i18n::t("Didn't open? Download page")).clicked() {
@@ -385,7 +386,7 @@ impl Help {
                                 ctx.open_url(egui::OpenUrl::new_tab(page)); // the fallback: the download page in the browser
                                 *UPDATE.lock().unwrap() = Upd::Failed(e.clone(), true);
                             }
-                            ui.label(RichText::new(format!("The update couldn't be downloaded here ({e}). The download page opened in your browser: get {app} {v} there.")).color(theme::DANGER));
+                            ui.label(RichText::new(i18n::tf("The update couldn't be downloaded here ({e}). The download page opened in your browser: get {app} {v} there.", &[("e", &e), ("app", &app), ("v", &v)])).color(theme::DANGER));
                             if ui.button(crate::i18n::t("Open the download page again")).clicked() {
                                 ctx.open_url(egui::OpenUrl::new_tab(page));
                             }

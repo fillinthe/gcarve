@@ -4,6 +4,7 @@
 //! (fainter, not editable). A click on another sheet makes it the active one without the view jumping, and a
 //! selection dropped on another sheet's board moves to that sheet (its toolpaths go with it).
 
+use gcarve_ui::i18n;
 use eframe::egui::{self, Color32, Pos2, Rect, Stroke};
 use gcarve_core::geom::{self, pt, Pt};
 
@@ -156,7 +157,7 @@ impl Canvas {
             };
             painter.rect(board, 0.0, Color32::from_rgba_unmultiplied(138, 122, 90, fill), stroke, egui::StrokeKind::Middle);
             let forms = if hot {
-                vec![format!("Drop to move to {}", self.doc.sheet_name(j)), format!("→ {}", j + 1), tiny]
+                vec![i18n::tf("Drop to move to {doc}", &[("doc", &(self.doc.sheet_name(j)))]), format!("→ {}", j + 1), tiny]
             } else if over {
                 vec![format!("{name}  ·  click to work on it"), format!("{short}  ·  click to edit"), short, tiny]
             } else {

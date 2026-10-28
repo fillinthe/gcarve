@@ -744,8 +744,8 @@ fn toolpaths(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Option
         let mins: f64 = g.minutes.iter().sum();
         let t = if mins < 90.0 { format!("{mins:.0} min") } else { format!("{:.1} h", mins / 60.0) };
         let line = match doc.material.cost(mins) {
-            Some(c) => format!("This sheet: about {t} · ${c:.2}"),
-            None => format!("This sheet: about {t}"),
+            Some(c) => i18n::tf("This sheet: about {t} · ${c}", &[("t", &t), ("c", &format!("{:.2}", c))]),
+            None => i18n::tf("This sheet: about {t}", &[("t", &t)]),
         };
         ui.add_space(4.0);
         ui.label(RichText::new(line).size(11.0).color(theme::TEXT_DIM)).tip(i18n::t("Machine time estimate. Set a board price and shop rate in Job Setup to see the cost."));
@@ -1031,7 +1031,7 @@ fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Docume
                 acts.push(TpAct::SheetScope(i, -1));
                 ui.close();
             }
-            if op.sheet_scope != doc.active_sheet && crate::widgets::menu_item(ui, &format!("Cut on {} only", doc.sheet_name(doc.active_sheet.max(0) as usize)), "").clicked() {
+            if op.sheet_scope != doc.active_sheet && crate::widgets::menu_item(ui, &i18n::tf("Cut on {doc} only", &[("doc", &(doc.sheet_name(doc.active_sheet.max(0) as usize)))]), "").clicked() {
                 acts.push(TpAct::SheetScope(i, doc.active_sheet));
                 ui.close();
             }
@@ -1040,7 +1040,7 @@ fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Docume
         if op.layer_scope < 0 && !op.all_vectors && op.group_scope == 0 && own_layers.len() == 1 {
             let l = *own_layers.iter().next().unwrap_or(&0);
             let name = doc.layers.get(l as usize).map_or(String::new(), |x| x.name.clone());
-            if crate::widgets::menu_item(ui, &format!("Cut layer “{name}” on every sheet"), "").on_hover_text(i18n::t("Instead of its picked vectors: everything on that layer, on every sheet, including vectors added later")).clicked() {
+            if crate::widgets::menu_item(ui, &i18n::tf("Cut layer “{name}” on every sheet", &[("name", &name)]), "").on_hover_text(i18n::t("Instead of its picked vectors: everything on that layer, on every sheet, including vectors added later")).clicked() {
                 acts.push(TpAct::LayerEverywhere(i, l));
                 ui.close();
             }

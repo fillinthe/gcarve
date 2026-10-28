@@ -119,6 +119,15 @@ mod tests {
             let map: HashMap<String, String> = serde_json::from_str(json).unwrap_or_else(|e| panic!("{code}: {e}"));
             assert!(!map.is_empty(), "{code} is empty");
             assert!(map.values().all(|v| !v.is_empty()), "{code} has empty translations");
+            // every {name} of a tf string survives (the English plural {s}, {s2} may go), and no new ones appear
+            let names = |s: &str| -> std::collections::BTreeSet<String> {
+                s.split('{').skip(1).filter_map(|p| p.split_once('}').map(|(n, _)| n.to_string())).filter(|n| !n.is_empty() && n.chars().all(|c| c.is_ascii_alphanumeric() || c == '_')).collect()
+            };
+            for (k, v) in &map {
+                let (want, got) = (names(k), names(v));
+                assert!(got.is_subset(&want), "{code}: {v:?} has a placeholder {k:?} lacks");
+                assert!(want.iter().all(|n| got.contains(n) || n.starts_with('s') && n.len() <= 2), "{code}: {v:?} lost a placeholder of {k:?}");
+            }
         }
         set("es");
         assert_eq!(t("not a string of the app"), "not a string of the app");

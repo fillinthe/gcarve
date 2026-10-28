@@ -171,15 +171,15 @@ pub fn board_summary(doc: &Document) -> String {
     let m = &doc.material;
     let (name, u, dt) = unit(doc);
     let d = if name == "mm" { 1 } else { 2 };
-    let origins = ["the bottom-left corner", i18n::t("the bottom-right corner"), i18n::t("the top-left corner"), i18n::t("the top-right corner"), "the centre"];
+    let origins = [i18n::t("the bottom-left corner"), i18n::t("the bottom-right corner"), i18n::t("the top-left corner"), i18n::t("the top-right corner"), i18n::t("the centre")];
     let sheet = if doc.sheets.len() > 1 { format!("{} ({} of {})  ·  ", doc.sheet_name(doc.active_sheet.max(0) as usize), doc.active_sheet + 1, doc.sheets.len()) } else { String::new() };
     format!(
-        "{sheet}{}  ·  {:.d$} × {:.d$} × {:.dt$} {name}  ·  zero at {}, {}",
+        "{sheet}{}  ·  {:.d$} × {:.d$} × {:.dt$} {name}  ·  {}, {}",
         m.kind,
         m.w * u,
         m.h * u,
         m.t * u,
-        origins[(m.origin.max(0) as usize).min(4)],
+        i18n::tf("zero at {corner}", &[("corner", &origins[(m.origin.max(0) as usize).min(4)])]),
         if m.z_bottom { i18n::t("bit touched off on the table") } else { i18n::t("bit touched off on top") }
     ) + &m.machine.as_ref().map(|x| format!("  ·  {}", x.name)).unwrap_or_default()
 }
@@ -193,9 +193,9 @@ pub fn feeds_summary(doc: &Document) -> String {
     let n = doc.tools.iter().filter(|t| t.presets.iter().any(|p| p.material.eq_ignore_ascii_case(mat))).count();
     let rest = if doc.material.auto_feeds { i18n::t("suggested feeds") } else { i18n::t("their default feeds") };
     if n == 0 {
-        format!("No feed presets for {mat}: bits use {rest}")
+        i18n::tf("No feed presets for {mat}: bits use {rest}", &[("mat", &mat), ("rest", &rest)])
     } else if n == doc.tools.len() {
-        format!("All {n} bits have feeds for {mat}")
+        i18n::tf("All {n} bits have feeds for {mat}", &[("n", &n), ("mat", &mat)])
     } else {
         format!("{n} of {} bits have feeds for {mat}, the rest use {rest}", doc.tools.len())
     }
@@ -492,7 +492,7 @@ pub fn sheet_tabs(ui: &mut egui::Ui, sh: &mut Shell, doc: &Document, all: bool) 
         }
         ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
             ui.add_space(10.0);
-            if IconButton::new("edit").size(13.0).padding(3.0).tip(&format!("Board / job setup: {}", board_summary(doc))).show(ui).clicked() {
+            if IconButton::new("edit").size(13.0).padding(3.0).tip(&i18n::tf("Board / job setup: {doc}", &[("doc", &(board_summary(doc)))])).show(ui).clicked() {
                 sh.push("board");
             }
         });
@@ -628,7 +628,14 @@ pub fn empty_state(ui: &mut egui::Ui, sh: &mut Shell, rect: egui::Rect, doc: &Do
         let (uname, u, _) = unit(doc);
         let m = &doc.material;
         let d = if uname == "mm" { 1 } else { 2 };
-        c.add(egui::Label::new(RichText::new(format!("{}raw with the tools on the left or bring vectors in. Set the board size first if it isn't {:.d$} × {:.d$} × {:.3} {uname}.", if m.machine.is_some() { "D" } else { i18n::t("Choose your machine, then d") }, m.w * u, m.h * u, m.t * u)).color(theme::TEXT.gamma_multiply(0.65))).wrap());
+        c.add(egui::Label::new(RichText::new({
+            let size = format!("{:.d$} × {:.d$} × {:.3} {uname}", m.w * u, m.h * u, m.t * u);
+            if m.machine.is_some() {
+                i18n::tf("Draw with the tools on the left or bring vectors in. Set the board size first if it isn't {size}.", &[("size", &size)])
+            } else {
+                i18n::tf("Choose your machine, then draw with the tools on the left or bring vectors in. Set the board size first if it isn't {size}.", &[("size", &size)])
+            }
+        }).color(theme::TEXT.gamma_multiply(0.65))).wrap());
         c.add_space(6.0);
         c.horizontal_wrapped(|ui| {
             ui.spacing_mut().item_spacing = egui::vec2(6.0, 6.0);
@@ -821,7 +828,7 @@ pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, m: &Menu
                 ui.add_enabled_ui(sel > 0, |ui| {
                     widgets::submenu(ui, i18n::t("Simplify (fewer nodes)"), |ui| {
                         let u = if crate::units::name(&canvas.doc) == "mm" { ["0.03 mm", i18n::t("0.13 mm"), "0.5 mm"] } else { ["0.001 in", i18n::t("0.005 in"), "0.02 in"] };
-                        for (label, tol) in [(format!("Fine: within {}", u[0]), "0.001"), (format!("Medium: within {}", u[1]), "0.005"), (format!("Coarse: within {}", u[2]), "0.02")] {
+                        for (label, tol) in [(i18n::tf("Fine: within {u}", &[("u", &(u[0]))]), "0.001"), (i18n::tf("Medium: within {u}", &[("u", &(u[1]))]), "0.005"), (i18n::tf("Coarse: within {u}", &[("u", &(u[2]))]), "0.02")] {
                             item(ui, sh, &label, "", true, &format!("simplify:{tol}"));
                         }
                         widgets::menu_separator(ui);
@@ -968,7 +975,7 @@ pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, m: &Menu
                 if cfg!(target_arch = "wasm32") {
                     item(ui, sh, i18n::t("Download the Desktop App"), "", true, "download");
                 } else {
-                    let up = gcarve_ui::help::available().map_or(i18n::t("Check for Updates…").to_string(), |(v, _)| format!("Update available: {v}…"));
+                    let up = gcarve_ui::help::available().map_or(i18n::t("Check for Updates…").to_string(), |(v, _)| i18n::tf("Update available: {v}…", &[("v", &v)]));
                     item(ui, sh, &up, "", true, "update");
                 }
                 widgets::menu_separator(ui);

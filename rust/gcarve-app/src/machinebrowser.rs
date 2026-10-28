@@ -233,7 +233,7 @@ impl MachineBrowser {
                             ui.end_row();
                         }
                         ui.label(RichText::new(i18n::t("Tool changes")).color(theme::TEXT_DIM));
-                        ui.label(if m.tool_change.kind.starts_with("atc") { m.tool_change.slots.map_or(i18n::t("Automatic (ATC)").into(), |n| format!("Automatic, {n} slots")) } else { i18n::t("Manual").into() });
+                        ui.label(if m.tool_change.kind.starts_with("atc") { m.tool_change.slots.map_or(i18n::t("Automatic (ATC)").into(), |n| i18n::tf("Automatic, {n} slots", &[("n", &n)])) } else { i18n::t("Manual").into() });
                         ui.end_row();
                     });
                     if m.spindles.len() > 1 {

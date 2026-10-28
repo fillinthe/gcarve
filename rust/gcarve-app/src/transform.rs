@@ -140,10 +140,10 @@ impl Canvas {
         self.xf_last = m;
         self.mutated();
         match self.drag {
-            Drag::Rotate => format!("Rotate {:.1}°  (Shift: 15° steps)", self.xf_angle.to_degrees()),
+            Drag::Rotate => i18n::tf("Rotate {xf_angle}°  (Shift: 15° steps)", &[("xf_angle", &format!("{:.1}", self.xf_angle.to_degrees()))]),
             _ => {
                 let r = self.sel_rect;
-                format!("W {}  H {}  ({:.0}% × {:.0}%; corners keep proportions, Shift = free)", crate::units::text(&self.doc, r.w()), crate::units::text(&self.doc, r.h()), self.xf_scale.0 * 100.0, self.xf_scale.1 * 100.0)
+                i18n::tf("W {r}  H {r2}  ({xf_scale}% × {xf_scale2}%; corners keep proportions, Shift = free)", &[("r", &(crate::units::text(&self.doc, r.w()))), ("r2", &(crate::units::text(&self.doc, r.h()))), ("xf_scale", &format!("{:.0}", self.xf_scale.0 * 100.0)), ("xf_scale2", &format!("{:.0}", self.xf_scale.1 * 100.0))])
             }
         }
     }

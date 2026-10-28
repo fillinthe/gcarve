@@ -1,6 +1,7 @@
 //! The account box shared by GCarve and GSketch: sign in, create an account, the plan, and the desktop licence gate.
 //! Names in it come from `store::app()`; the server and the account are the same for both apps.
 
+use crate::i18n;
 use crate::cloud::Cloud;
 use crate::{theme, widgets};
 use eframe::egui::{self, RichText};
@@ -56,14 +57,14 @@ impl Account {
             if let Some(u) = cloud.user.clone() {
                 self.fields[1].clear(); // signed in: forget the typed password
                 ui.label(RichText::new(format!("Signed in as {}", u.email)).family(widgets::bold_family()));
-                let plan = if cloud.ent.plan == "pro" { format!("{app} Pro") } else { format!("Free plan · {} cloud projects", cloud.ent.max_projects) };
+                let plan = if cloud.ent.plan == "pro" { format!("{app} Pro") } else { i18n::tf("Free plan · {max_projects} cloud projects", &[("max_projects", &cloud.ent.max_projects)]) };
                 let desk = if !Cloud::web() && !cloud.ent.desktop { format!(" · the desktop app is part of {app} Pro") } else { String::new() };
                 let role = match u.role.as_str() { "superadmin" => crate::i18n::t(" · super admin"), "admin" => crate::i18n::t(" · admin"), _ => "" };
                 ui.label(RichText::new(format!("{plan}{role}{desk}")).color(theme::TEXT_DIM));
                 if self.gate {
                     let grace = cloud.grace_days_left();
                     let note = if grace > 0 { format!(" (Licence still valid offline for {grace} day(s).)") } else { String::new() };
-                    ui.label(RichText::new(format!("The desktop app is part of {app} Pro. Upgrade on your account page, then press Check again.{note}")).color(theme::ORANGE));
+                    ui.label(RichText::new(i18n::tf("The desktop app is part of {app} Pro. Upgrade on your account page, then press Check again.{note}", &[("app", &app), ("note", &note)])).color(theme::ORANGE));
                     if ui.add_enabled(cloud.busy == 0, egui::Button::new(crate::i18n::t("Check again"))).clicked() {
                         cloud.check_session(ui.ctx());
                     }
@@ -152,7 +153,7 @@ impl Account {
                 });
                 if self.gate {
                     ui.add_space(4.0);
-                    let text = if Cloud::web() { format!("{app} online needs an account: a free one is enough, and your work is kept for you.") } else { format!("The desktop app needs a {app} Pro account (it keeps working offline for 14 days after each sign-in check).") };
+                    let text = if Cloud::web() { format!("{app} online needs an account: a free one is enough, and your work is kept for you.") } else { i18n::tf("The desktop app needs a {app} Pro account (it keeps working offline for 14 days after each sign-in check).", &[("app", &app)]) };
                     ui.label(RichText::new(text).color(theme::TEXT_DIM).small());
                 }
             }

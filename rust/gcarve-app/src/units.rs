@@ -1,6 +1,7 @@
 //! Project units (Qt app: Units.qml + NumField.qml): the document is inches; fields show/accept the project unit
 //! (in / ft / mm, from `Document::bare_unit_in`) and any length expression ("1in + 5mm", variables).
 
+use gcarve_ui::i18n;
 use eframe::egui;
 use crate::widgets::TipExt;
 use gcarve_core::document::Document;
@@ -74,7 +75,7 @@ pub fn num_field(ui: &mut egui::Ui, id: &str, buf: &mut String, doc: &Document, 
 /// Evaluate a field at OK time: Ok(inches) or the message for the status line.
 pub fn get(doc: &Document, buf: &str, length: bool) -> Result<f64, String> {
     if length {
-        parse(doc, buf).map_err(|e| format!("Can't evaluate \"{}\": {e}", buf.trim()))
+        parse(doc, buf).map_err(|e| i18n::tf("Can't evaluate \"{buf}\": {e}", &[("buf", &(buf.trim())), ("e", &e)]))
     } else {
         buf.trim().parse::<f64>().map_err(|_| format!("\"{}\" is not a number", buf.trim()))
     }

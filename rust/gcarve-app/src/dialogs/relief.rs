@@ -215,7 +215,7 @@ pub fn import_file(name: &str, bytes: &[u8], host: &mut Host) {
         Ok(t) => t,
         Err(e) => {
             host.cloud.report("stl", &crate::files::scrub(&e, name));
-            *host.message = format!("Cannot load the 3D model: {e}");
+            *host.message = i18n::tf("Cannot load the 3D model: {e}", &[("e", &e)]);
             return;
         }
     };
@@ -242,7 +242,7 @@ pub fn import_file(name: &str, bytes: &[u8], host: &mut Host) {
     doc.checkpoint();
     doc.reliefs.push(r);
     host.canvas.touch();
-    *host.message = format!("Imported 3D model {stem} ({} triangles). Place it in the 3D Models dialog, then add a 3D Model toolpath.", tris.len());
+    *host.message = i18n::tf("Imported 3D model {stem} ({tris} triangles). Place it in the 3D Models dialog, then add a 3D Model toolpath.", &[("stem", &stem), ("tris", &(tris.len()))]);
 }
 
 /// A picture becomes a relief (light = high, or dark = high for a lithophane): sized like an imported model, half the
@@ -252,7 +252,7 @@ pub fn import_picture(name: &str, bytes: &[u8], host: &mut Host) {
         Ok(g) => g,
         Err(e) => {
             host.cloud.report("relief picture", &crate::files::scrub(&e, name));
-            *host.message = format!("Cannot read the picture: {e}");
+            *host.message = i18n::tf("Cannot read the picture: {e}", &[("e", &e)]);
             return;
         }
     };
@@ -271,7 +271,7 @@ pub fn import_picture(name: &str, bytes: &[u8], host: &mut Host) {
     doc.checkpoint();
     doc.reliefs.push(r);
     host.canvas.touch();
-    *host.message = format!("Made a relief from {stem}. Set its depth and size in 3D Models, then add a 3D Model toolpath (a ball-nose bit finishes it best).");
+    *host.message = i18n::tf("Made a relief from {stem}. Set its depth and size in 3D Models, then add a 3D Model toolpath (a ball-nose bit finishes it best).", &[("stem", &stem)]);
 }
 
 /// Desktop: reliefs saved as a source path get their height field back after a project load (a picture's is rebuilt

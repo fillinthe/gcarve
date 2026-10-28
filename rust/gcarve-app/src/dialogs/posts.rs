@@ -33,7 +33,7 @@ impl PostsDialog {
                     upload = true;
                 }
             });
-            hint(ui, &format!("Selected for this board: {current}"));
+            hint(ui, &i18n::tf("Selected for this board: {current}", &[("current", &current)]));
             egui::ScrollArea::vertical().max_height(crate::widgets::list_height(ui, 110.0)).show(ui, |ui| {
                 ui.set_width(780.0);
                 for (p, custom) in &shown {
@@ -80,7 +80,7 @@ impl PostsDialog {
         }
         if let Some(id) = delete {
             host.posts.remove(&id);
-            *host.message = format!("Deleted post {id}");
+            *host.message = i18n::tf("Deleted post {id}", &[("id", &id)]);
         }
         if upload {
             host.files.pick_into(ctx, i18n::t("Post-processors (.pp, .json)"), &["pp", "json"], "post");
@@ -96,7 +96,7 @@ pub fn import_file(name: &str, bytes: &[u8], host: &mut Host) {
             host.canvas.doc.material.post = id.clone();
             host.canvas.doc.sync_sheet();
             host.canvas.touch();
-            *host.message = format!("Added post {id} and selected it for this board");
+            *host.message = i18n::tf("Added post {id} and selected it for this board", &[("id", &id)]);
         }
         Err(e) => {
             host.cloud.report("post", &crate::files::scrub(&e, name));

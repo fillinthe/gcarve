@@ -393,7 +393,7 @@ impl OpDialog {
                         // the tool-changer pocket: prominent on ATC machines, a quiet note otherwise
                         let slot = doc.tools.get(self.op.tool.max(0) as usize).map_or(0, |t| t.slot);
                         if crate::toollib::machine_slots(doc) > 0 {
-                            let text = if slot > 0 { format!("ATC slot {}", super::tools::slot_text(slot)) } else { i18n::t("No ATC slot: set it in the Tool Library").into() };
+                            let text = if slot > 0 { i18n::tf("ATC slot {slot}", &[("slot", &(super::tools::slot_text(slot)))]) } else { i18n::t("No ATC slot: set it in the Tool Library").into() };
                             ui.label(RichText::new(text).family(crate::widgets::bold_family()).color(if slot > 0 { crate::theme::ACCENT } else { crate::theme::ORANGE }));
                         } else if slot > 0 {
                             ui.label(RichText::new(format!("slot {}", super::tools::slot_text(slot))).small().color(crate::theme::TEXT_DIM));

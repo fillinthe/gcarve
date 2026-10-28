@@ -182,7 +182,7 @@ impl Dialogs {
                 "template" => templates::import_file(&name, &bytes, host),
                 "font" => {
                     *host.message = match crate::text::add_font(bytes) {
-                        Ok(f) => format!("Added the font \"{f}\": it is kept on this device, and the text dialog uses it now."),
+                        Ok(f) => i18n::tf("Added the font \"{f}\": it is kept on this device, and the text dialog uses it now.", &[("f", &f)]),
                         Err(e) => {
                             host.cloud.report("font", &crate::files::scrub(&e, &name));
                             format!("{name}: {e}")
@@ -553,7 +553,7 @@ pub fn tool_advice(doc: &Document, i: usize) -> Option<(Tool, &'static str, Feed
 pub fn tool_advice_ui(ui: &mut egui::Ui, doc: &Document, i: usize, width: f32) {
     let Some((e, src, a)) = tool_advice(doc, i) else { return };
     let note = match src { "preset" => i18n::t(" (saved preset)"), "auto" => i18n::t(" (auto from chip load, edit in Tool Library)"), _ => i18n::t(" (bit defaults)") };
-    ui.add(egui::Label::new(RichText::new(format!("In {}: F {:.0} / plunge {:.0} in/min · {} rpm · pass {} in{note}", doc.material.kind, e.feed_xy, e.feed_z, e.rpm, fmt_len(e.stepdown))).small().color(crate::theme::TEXT_DIM)).wrap());
+    ui.add(egui::Label::new(RichText::new(i18n::tf("In {kind}: F {feed_xy} / plunge {feed_z} in/min · {rpm} rpm · pass {stepdown} in{note}", &[("kind", &doc.material.kind), ("feed_xy", &format!("{:.0}", e.feed_xy)), ("feed_z", &format!("{:.0}", e.feed_z)), ("rpm", &e.rpm), ("stepdown", &(fmt_len(e.stepdown))), ("note", &note)])).small().color(crate::theme::TEXT_DIM)).wrap());
     if src == "auto" && doc.material.machine.is_none() {
         // no machine = full industrial chip loads: far too fast for a hobby or desktop router
         ui.add(egui::Label::new(RichText::new(i18n::t("No machine chosen: these feeds suit a heavy industrial router. Pick yours (Toolpaths › Choose Machine…) and they are scaled to it.")).size(11.0).color(Color32::from_rgb(0xd7, 0xa3, 0x34))).wrap());

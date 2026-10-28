@@ -62,7 +62,7 @@ impl HalftoneDialog {
             if !(n[0] > 0.0 && n[1] >= 0.03) {
                 *host.message = i18n::t("Halftone: a width, and dots at least 0.03 in apart.").into();
             } else if dots > 60_000 {
-                *host.message = format!("Halftone: {dots} dots is too many to cut; space them further apart.");
+                *host.message = i18n::tf("Halftone: {dots} dots is too many to cut; space them further apart.", &[("dots", &dots)]);
             } else {
                 *host.message = make(host.canvas, &self.gray, n[0], n[1], self.max / 100.0, self.invert, self.hex);
                 return false;
@@ -101,7 +101,7 @@ pub fn make(c: &mut Canvas, g: &Gray, width: f64, spacing: f64, max: f64, invert
     c.sel = ids;
     c.sel_changed();
     c.mutated();
-    format!("Halftone: {} dots on the \"Halftone\" layer with a V-bit drilling toolpath (deepest {}). A smooth, even board shows it best.", dots.len(), crate::units::text(&c.doc, r_max / half))
+    i18n::tf("Halftone: {dots} dots on the \"Halftone\" layer with a V-bit drilling toolpath (deepest {half}). A smooth, even board shows it best.", &[("dots", &(dots.len())), ("half", &(crate::units::text(&c.doc, r_max / half)))])
 }
 
 #[cfg(test)]

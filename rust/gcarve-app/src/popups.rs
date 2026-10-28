@@ -192,7 +192,7 @@ impl Canvas {
                     ui.label(format!("Y ({u})"));
                     units::num_field(ui, "y", &mut p.y, &self.doc, true, 110.0);
                     ui.end_row();
-                    ui.add_enabled(p.has_next, egui::Label::new(format!("Length to next ({u})")));
+                    ui.add_enabled(p.has_next, egui::Label::new(i18n::tf("Length to next ({u})", &[("u", &u)])));
                     ui.add_enabled_ui(p.has_next, |ui| units::num_field(ui, "len", &mut p.len, &self.doc, true, 110.0));
                     ui.end_row();
                 });
@@ -847,7 +847,7 @@ impl Dialogs {
                 ui.add(egui::TextEdit::multiline(&mut list).desired_width(440.0).desired_rows(8).hint_text(i18n::t("Ann,101\nBo,102")));
                 W::checkbox(ui, &mut heads, i18n::t("First line is headings"));
                 ui.horizontal(|ui| {
-                    ui.label(format!("Gap between plates ({doc_unit})"));
+                    ui.label(i18n::tf("Gap between plates ({doc_unit})", &[("doc_unit", &doc_unit)]));
                     units::num_field(ui, "plgap", &mut gap, &canvas.doc, true, 110.0);
                 });
                 let (o, c) = W::ok_cancel(ui);
@@ -919,10 +919,10 @@ impl Dialogs {
                         }
                     });
                     ui.end_row();
-                    ui.label(format!("Larger than ({doc_unit})"));
+                    ui.label(i18n::tf("Larger than ({doc_unit})", &[("doc_unit", &doc_unit)]));
                     units::num_field(ui, "lg", &mut f[0], &canvas.doc, true, 110.0);
                     ui.end_row();
-                    ui.label(format!("Smaller than ({doc_unit})"));
+                    ui.label(i18n::tf("Smaller than ({doc_unit})", &[("doc_unit", &doc_unit)]));
                     units::num_field(ui, "sm", &mut f[1], &canvas.doc, true, 110.0);
                     ui.end_row();
                     ui.label(i18n::t("Layer"));
@@ -968,7 +968,7 @@ impl Dialogs {
                         W::radio_value(ui, &mut self.corner_style, 2, i18n::t("Fillet (round)"));
                     });
                     ui.end_row();
-                    ui.label(if fillet { format!("Radius ({doc_unit})") } else { format!("Bit diameter ({doc_unit})") });
+                    ui.label(if fillet { format!("Radius ({doc_unit})") } else { i18n::tf("Bit diameter ({doc_unit})", &[("doc_unit", &doc_unit)]) });
                     units::num_field(ui, "d", &mut f[0], &canvas.doc, true, 110.0);
                     ui.end_row();
                     if fillet {
@@ -1153,10 +1153,10 @@ impl Dialogs {
                 ui.set_max_width(400.0);
                 ui.add(egui::Label::new(RichText::new(i18n::t("True-shape nesting: parts are packed by their real outlines from the chosen corner, largest first, so curved and angled parts interlock. Shapes inside another selected shape (holes, inner cuts) move with it.")).color(crate::theme::TEXT.gamma_multiply(0.6))).wrap());
                 egui::Grid::new("nest").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                    ui.label(format!("Gap between parts ({doc_unit})"));
+                    ui.label(i18n::tf("Gap between parts ({doc_unit})", &[("doc_unit", &doc_unit)]));
                     units::num_field(ui, "gap", &mut f[0], &canvas.doc, true, 110.0);
                     ui.end_row();
-                    ui.label(format!("Margin from board edge ({doc_unit})"));
+                    ui.label(i18n::tf("Margin from board edge ({doc_unit})", &[("doc_unit", &doc_unit)]));
                     units::num_field(ui, "margin", &mut f[1], &canvas.doc, true, 110.0);
                     ui.end_row();
                     ui.label(i18n::t("Rotations to try"));

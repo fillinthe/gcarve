@@ -136,7 +136,7 @@ pub fn build(c: &mut Canvas, s: &SpoilSpec) -> String {
     c.doc.ops = ops;
     c.sel.clear();
     c.mutated();
-    format!("New spoilboard: {count} insert holes ({} × {}){}. Screw the board down, zero on its corner, then Export.", xs.len(), ys.len(), if s.surface { i18n::t(", surfaced first") } else { "" })
+    i18n::tf("New spoilboard: {count} insert holes ({xs} × {ys}){extra}. Screw the board down, zero on its corner, then Export.", &[("count", &count), ("xs", &(xs.len())), ("ys", &(ys.len())), ("extra", &(if s.surface { i18n::t(", surfaced first") } else { "" }))])
 }
 
 #[cfg(test)]
