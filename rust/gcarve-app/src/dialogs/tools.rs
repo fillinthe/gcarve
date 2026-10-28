@@ -209,7 +209,7 @@ impl ToolsDialog {
                             act = Some(Act::Duplicate);
                         }
                         let n = used(self.cur);
-                        let del = if n > 0 { format!("Delete ({n} toolpath{} switch)", if n == 1 { "" } else { "s" }) } else { i18n::t("Delete").into() };
+                        let del = if n > 0 { i18n::tf("Delete ({n} toolpath{s} switch)", &[("n", &n), ("s", &(if n == 1 { "" } else { "s" }))]) } else { i18n::t("Delete").into() };
                         if ui.add_enabled(doc.tools.len() > 1, egui::Button::new(del)).clicked() {
                             act = Some(Act::Delete);
                         }
@@ -260,7 +260,7 @@ impl ToolsDialog {
                                 }
                             });
                             let n = used(self.cur);
-                            let text = if n == 0 { i18n::t("Not used by any toolpath in this project").to_string() } else { format!("Used by {n} toolpath{} in this project", if n == 1 { "" } else { "s" }) };
+                            let text = if n == 0 { i18n::t("Not used by any toolpath in this project").to_string() } else { i18n::tf("Used by {n} toolpath{s} in this project", &[("n", &n), ("s", &(if n == 1 { "" } else { "s" }))]) };
                             ui.label(RichText::new(text).small().color(crate::theme::TEXT_DIM));
                         });
                     });
@@ -277,7 +277,7 @@ impl ToolsDialog {
                             ui.horizontal(|ui| {
                                 let form = doc.tools.get(self.cur).map_or(0, |t| t.form.len());
                                 if form > 0 {
-                                    ui.label(RichText::new(format!("Drawn profile ({form} points)")).small());
+                                    ui.label(RichText::new(i18n::tf("Drawn profile ({form} points)", &[("form", &form)])).small());
                                     if ui.small_button(i18n::t("Clear")).clicked() {
                                         act = Some(Act::Form(None));
                                     }
@@ -319,7 +319,7 @@ impl ToolsDialog {
                                 ui.label(i18n::t("Flutes"));
                                 ui.add(crate::widgets::field(&mut self.flutes).desired_width(60.0));
                                 ui.end_row();
-                                ui.label(if slots > 0 { format!("ATC slot (1–{slots})") } else { i18n::t("Tool changer slot").into() });
+                                ui.label(if slots > 0 { i18n::tf("ATC slot (1–{slots})", &[("slots", &slots)]) } else { i18n::t("Tool changer slot").into() });
                                 ui.add(crate::widgets::field(&mut self.slot).desired_width(60.0)).on_hover_text(i18n::t("For machines with a tool changer: the pocket the bit is fetched from. 0 = manual change."));
                                 ui.end_row();
                             });
@@ -340,7 +340,7 @@ impl ToolsDialog {
                                 ui.end_row();
                             });
                             ui.add_space(4.0);
-                            if ui.button(format!("Suggest for {board}")).tip(i18n::t("Fill feed, plunge, pass depth and RPM from chip-load tables for this bit in the board material")).clicked() {
+                            if ui.button(i18n::tf("Suggest for {board}", &[("board", &board)])).tip(i18n::t("Fill feed, plunge, pass depth and RPM from chip-load tables for this bit in the board material")).clicked() {
                                 self.f.set_raw("feedXY", base_s.feed_xy);
                                 self.f.set_raw("feedZ", base_s.feed_z);
                                 self.f.set("stepdown", base_s.stepdown);
@@ -353,7 +353,7 @@ impl ToolsDialog {
                     ui.add_space(8.0);
                     // ---- feeds that depend on the board material
                     card(ui, i18n::t("Feeds by material"), 550.0, |ui| {
-                        hint(ui, &format!("Toolpaths use the preset that matches the board material ({board}); otherwise the numbers above."));
+                        hint(ui, &i18n::tf("Toolpaths use the preset that matches the board material ({board}); otherwise the numbers above.", &[("board", &board)]));
                         let presets = doc.tools.get(self.cur).map(|t| t.presets.clone()).unwrap_or_default();
                         ui.horizontal_top(|ui| {
                             ui.vertical(|ui| {
@@ -397,7 +397,7 @@ impl ToolsDialog {
                                     if ui.add(crate::widgets::Button::new(i18n::t("Save preset")).primary(true)).clicked() {
                                         act = Some(Act::SavePreset);
                                     }
-                                    if ui.button(i18n::t("Suggest")).tip(format!("Fill from chip-load tables for this bit in {}", self.p_material)).clicked() {
+                                    if ui.button(i18n::t("Suggest")).tip(i18n::tf("Fill from chip-load tables for this bit in {p_material}", &[("p_material", &self.p_material)])).clicked() {
                                         self.f.set_raw("pFeedXY", pre_s.feed_xy);
                                         self.f.set_raw("pFeedZ", pre_s.feed_z);
                                         self.f.set("pStepdown", pre_s.stepdown);
@@ -538,7 +538,7 @@ pub fn vtdb_done(r: Result<(Vec<Tool>, usize), String>, host: &mut Host) {
     match r {
         Ok((tools, presets)) => {
             let (added, updated) = merge_into(host, tools);
-            *host.message = format!("Imported Vectric tools: {added} added, {updated} updated, {presets} material presets");
+            *host.message = i18n::tf("Imported Vectric tools: {added} added, {updated} updated, {presets} material presets", &[("added", &added), ("updated", &updated), ("presets", &presets)]);
         }
         Err(e) => *host.message = e,
     }

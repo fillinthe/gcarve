@@ -97,7 +97,7 @@ impl TemplatesDialog {
             let t = make_template(&host.canvas.doc, self.name.trim(), self.description.trim());
             let n = t.ops.len();
             match host.templates.add(t) {
-                Ok(()) => (self.summary, self.failed) = (format!("Saved \"{}\" ({n} toolpaths)", self.name.trim()), false),
+                Ok(()) => (self.summary, self.failed) = (i18n::tf("Saved \"{name}\" ({n} toolpaths)", &[("name", &(self.name.trim())), ("n", &n)]), false),
                 Err(e) => (self.summary, self.failed) = (e, true),
             }
             self.description.clear();
@@ -109,7 +109,7 @@ impl TemplatesDialog {
             let r = apply_template(&t, &mut c.doc);
             c.apply_bindings(); // the template's expressions against this board and these variables
             c.mutated();
-            *host.message = format!("Template \"{}\": {} toolpaths added, {} skipped", t.name, r.applied, r.skipped.len());
+            *host.message = i18n::tf("Template \"{name}\": {applied} toolpaths added, {skipped} skipped", &[("name", &t.name), ("applied", &r.applied), ("skipped", &(r.skipped.len()))]);
             (self.summary, self.failed) = (summary_text(&r), false);
         }
         if let Some(i) = export {
@@ -134,7 +134,7 @@ impl TemplatesDialog {
 
 pub fn import_file(name: &str, bytes: &[u8], host: &mut Host) {
     *host.message = match host.templates.import(&String::from_utf8_lossy(bytes)) {
-        Ok(t) => format!("Imported template \"{t}\""),
+        Ok(t) => i18n::tf("Imported template \"{t}\"", &[("t", &t)]),
         Err(e) => {
             host.cloud.report("template", &crate::files::scrub(&e, name));
             format!("{name}: {e}")

@@ -151,7 +151,7 @@ impl Canvas {
                 s.group = g;
             }
         }
-        self.status = format!("Grouped {} shapes", self.sel.len());
+        self.status = i18n::tf("Grouped {sel} shapes", &[("sel", &(self.sel.len()))]);
         self.mutated();
     }
 
@@ -175,7 +175,7 @@ impl Canvas {
         let sel = &self.sel;
         self.doc.constraints.retain(|c| !(sel.contains(&c.target) && !sel.contains(&c.anchor)));
         if self.doc.constraints.len() != before {
-            self.status = format!("Constraint released: shape moved by hand ({})", before - self.doc.constraints.len());
+            self.status = i18n::tf("Constraint released: shape moved by hand ({constraints})", &[("constraints", &(before - self.doc.constraints.len()))]);
         }
         for d in &mut self.doc.dimensions {
             if !d.drive.is_empty() && d.shape_a != d.shape_b && sel.contains(&d.shape_b) && !sel.contains(&d.shape_a) {
@@ -253,7 +253,7 @@ impl Canvas {
         let dr = drive.trim();
         if !dr.is_empty() {
             if let Err(e) = units::parse(&self.doc, dr) {
-                self.status = format!("Can't evaluate \"{dr}\": {e}");
+                self.status = i18n::tf("Can't evaluate \"{dr}\": {e}", &[("dr", &dr), ("e", &e)]);
                 return;
             }
         }
@@ -290,7 +290,7 @@ impl Canvas {
         self.clip = save_clip(&self.doc, &self.sel);
         ctx.copy_text(self.clip.clone());
         let ops = self.doc.ops.iter().filter(|op| !op.shape_ids.is_empty() && op.shape_ids.iter().all(|id| self.sel.contains(id))).count();
-        self.status = format!("Copied {} shape(s){}", self.sel.len(), if ops > 0 { format!(" with {ops} toolpath(s)") } else { String::new() });
+        self.status = i18n::tf("Copied {sel} shape(s){new}", &[("sel", &(self.sel.len())), ("new", &(if ops > 0 { format!(" with {ops} toolpath(s)") } else { String::new() }))]);
     }
 
     pub fn cut(&mut self, ctx: &egui::Context) {
@@ -317,7 +317,7 @@ impl Canvas {
         }
         self.sel = ids;
         let n = self.doc.ops.len() - ops_before;
-        self.status = format!("Pasted {} shape(s){}", self.sel.len(), if n > 0 { format!(" with {n} toolpath(s)") } else { String::new() });
+        self.status = i18n::tf("Pasted {sel} shape(s){new}", &[("sel", &(self.sel.len())), ("new", &(if n > 0 { format!(" with {n} toolpath(s)") } else { String::new() }))]);
         self.mutated();
         true
     }
@@ -331,7 +331,7 @@ impl Canvas {
     pub fn select_matching(&mut self, f: &VecFilter) {
         self.sel = self.doc.shapes.iter().filter(|s| self.doc.shape_editable(s) && f.matches(s)).map(|s| s.id).collect();
         self.sel_changed();
-        self.status = format!("Vector Selector: {} vector(s) selected.", self.sel.len());
+        self.status = i18n::tf("Vector Selector: {sel} vector(s) selected.", &[("sel", &(self.sel.len()))]);
     }
 
     fn sel_centre(&self) -> Option<Pt> {
@@ -356,7 +356,7 @@ impl Canvas {
         self.doc.checkpoint();
         let src: Vec<Shape> = self.sel.iter().filter_map(|id| self.doc.find(*id).cloned()).collect();
         self.sel = src.iter().map(|s| self.doc.add(transformed(&s.c, &m), Some(s.layer))).collect();
-        self.status = format!("Mirror copy: {} vector(s). Weld the two halves to make one outline.", src.len());
+        self.status = i18n::tf("Mirror copy: {src} vector(s). Weld the two halves to make one outline.", &[("src", &(src.len()))]);
         self.mutated();
     }
 
@@ -411,7 +411,7 @@ impl Canvas {
             return;
         }
         self.replace_selection(r, i18n::t("Stencil Bridges"), false);
-        self.status = format!("Stencil Bridges: {n} island(s) bridged, {} wide. Cut the outlines with a Profile right through; with a router bit or plasma kerf, make the bridges wider than the kerf.", units::text(&self.doc, width));
+        self.status = i18n::tf("Stencil Bridges: {n} island(s) bridged, {width} wide. Cut the outlines with a Profile right through; with a router bit or plasma kerf, make the bridges wider than the kerf.", &[("n", &n), ("width", &(units::text(&self.doc, width)))]);
     }
 
     fn sel_contours(&self) -> Vec<Contour> {
@@ -526,11 +526,11 @@ impl Canvas {
         let out = simplify_contours(&input, tol);
         let after: usize = out.iter().map(|c| c.nodes.len()).sum();
         if after >= before {
-            self.status = format!("Simplify: nothing to remove at this tolerance ({before} nodes).");
+            self.status = i18n::tf("Simplify: nothing to remove at this tolerance ({before} nodes).", &[("before", &before)]);
             return;
         }
         self.replace_selection(out, i18n::t("Simplify"), false);
-        self.status = format!("Simplify: {before} → {after} nodes.");
+        self.status = i18n::tf("Simplify: {before} → {after} nodes.", &[("before", &before), ("after", &after)]);
     }
 
     /// Vectors › Distort › Bend Along Curve (`two` = false: the one selected open vector is the curve) / Fit Between
@@ -569,7 +569,7 @@ impl Canvas {
         for (id, c) in ids.iter().zip(out) {
             self.doc.find_mut(*id).unwrap().c = c;
         }
-        self.status = format!("Distort: {} shape(s) fitted into the four corners", ids.len());
+        self.status = i18n::tf("Distort: {ids} shape(s) fitted into the four corners", &[("ids", &(ids.len()))]);
         self.mutated();
     }
 
@@ -605,7 +605,7 @@ impl Canvas {
         for (id, c) in ids.iter().zip(out) {
             self.doc.find_mut(*id).unwrap().c = c;
         }
-        self.status = format!("Distort: {} shape(s) {}", ids.len(), if two { i18n::t("fitted between the curves") } else { i18n::t("bent along the curve") });
+        self.status = i18n::tf("Distort: {ids} shape(s) {curve}", &[("ids", &(ids.len())), ("curve", &(if two { i18n::t("fitted between the curves") } else { i18n::t("bent along the curve") }))]);
         self.mutated();
     }
 
@@ -643,7 +643,7 @@ impl Canvas {
         let n = ids.len();
         self.sel = ids;
         self.sel_changed();
-        self.status = if skipped > 0 { format!("Shelf-pin holes: {n} holes; {skipped} part(s) too small for the margins and inset") } else { format!("Shelf-pin holes: {n} holes, selected: add a Drill toolpath") };
+        self.status = if skipped > 0 { i18n::tf("Shelf-pin holes: {n} holes; {skipped} part(s) too small for the margins and inset", &[("n", &n), ("skipped", &skipped)]) } else { i18n::tf("Shelf-pin holes: {n} holes, selected: add a Drill toolpath", &[("n", &n)]) };
         self.mutated();
     }
 
@@ -689,7 +689,7 @@ impl Canvas {
         let n = ids.len();
         self.sel = ids;
         self.sel_changed();
-        self.status = format!("Rotary layout: {n} line(s) on \"Rotary layout\", selected: add a Flute or V-Carve on them");
+        self.status = i18n::tf("Rotary layout: {n} line(s) on \"Rotary layout\", selected: add a Flute or V-Carve on them", &[("n", &n)]);
         self.mutated();
     }
 
@@ -742,7 +742,7 @@ impl Canvas {
         }
         self.sel = ids;
         self.sel_changed();
-        self.status = format!("QR Code: {n} × {n} squares of {} on the \"QR code\" layer, selected. Pocket them (an end mill under {} wide, or a V-bit engraving fill) and leave {} of plain board all round so phones can read it.", crate::units::text(&self.doc, m), crate::units::text(&self.doc, m * 0.8), crate::units::text(&self.doc, 4.0 * m));
+        self.status = i18n::tf("QR Code: {n} × {n} squares of {m} on the \"QR code\" layer, selected. Pocket them (an end mill under {m2} wide, or a V-bit engraving fill) and leave {m3} of plain board all round so phones can read it.", &[("n", &n), ("m", &(crate::units::text(&self.doc, m))), ("m2", &(crate::units::text(&self.doc, m * 0.8))), ("m3", &(crate::units::text(&self.doc, 4.0 * m)))]);
         self.mutated();
     }
 
@@ -771,7 +771,7 @@ impl Canvas {
         self.sel_changed();
         // the knob neck is a fifth of the shorter piece side: the bit has to fit through it with wood to spare
         let neck = 0.2 * (w / cols as f64).min(h / rows as f64);
-        self.status = format!("Jigsaw Puzzle: {} pieces on the \"Puzzle\" layer, selected. Cut with a Profile on the line, with a bit under {} wide (the knob necks are {}).", cols * rows, crate::units::text(&self.doc, neck / 3.0), crate::units::text(&self.doc, neck));
+        self.status = i18n::tf("Jigsaw Puzzle: {rows} pieces on the \"Puzzle\" layer, selected. Cut with a Profile on the line, with a bit under {neck} wide (the knob necks are {neck2}).", &[("rows", &(cols * rows)), ("neck", &(crate::units::text(&self.doc, neck / 3.0))), ("neck2", &(crate::units::text(&self.doc, neck)))]);
         self.mutated();
     }
 
@@ -803,7 +803,7 @@ impl Canvas {
         };
         if female.is_empty() || plug.is_empty() {
             self.doc.undo();
-            self.status = format!("Inlay Wizard: the design is too thin for a {} end mill.", units::text(&self.doc, 2.0 * r));
+            self.status = i18n::tf("Inlay Wizard: the design is too thin for a {r} end mill.", &[("r", &(units::text(&self.doc, 2.0 * r)))]);
             return;
         }
         let mut b = Rect::default();
@@ -838,9 +838,9 @@ impl Canvas {
         self.doc.ops.extend(ops);
         self.mutated();
         self.status = if flat {
-            format!("Inlay Wizard: \"Inlay pocket\" here (corners rounded to the {} bit), the plug on sheet \"Inlay plug\", mirrored, {} smaller all round. Glue it in face down, plane it flush.", units::text(&self.doc, 2.0 * r), units::text(&self.doc, gap))
+            i18n::tf("Inlay Wizard: \"Inlay pocket\" here (corners rounded to the {r} bit), the plug on sheet \"Inlay plug\", mirrored, {gap} smaller all round. Glue it in face down, plane it flush.", &[("r", &(units::text(&self.doc, 2.0 * r))), ("gap", &(units::text(&self.doc, gap)))])
         } else {
-            format!("Inlay Wizard: \"Inlay pocket\" V-carved here, the plug on sheet \"Inlay plug\", mirrored, starting {} down (glue gap). Glue it in face down, then saw or plane the plug board off.", units::text(&self.doc, gap))
+            i18n::tf("Inlay Wizard: \"Inlay pocket\" V-carved here, the plug on sheet \"Inlay plug\", mirrored, starting {gap} down (glue gap). Glue it in face down, then saw or plane the plug board off.", &[("gap", &(units::text(&self.doc, gap)))])
         };
     }
 
@@ -873,7 +873,7 @@ impl Canvas {
         let n = ids.len();
         self.sel = ids;
         self.sel_changed();
-        self.status = format!("Living Hinge: {n} slots on the \"Hinge\" layer, selected. Cut them with a Profile on the line, right through, with a bit no wider than {} (thin board, 1/4 in or less, bends best).", units::text(&self.doc, (spacing / 2.0).min(0.125)));
+        self.status = i18n::tf("Living Hinge: {n} slots on the \"Hinge\" layer, selected. Cut them with a Profile on the line, right through, with a bit no wider than {spacing} (thin board, 1/4 in or less, bends best).", &[("n", &n), ("spacing", &(units::text(&self.doc, (spacing / 2.0).min(0.125))))]);
         self.mutated();
     }
 
@@ -908,7 +908,7 @@ impl Canvas {
         }
         self.sel = ids;
         self.sel_changed();
-        self.status = format!("Box Maker: {} panels on the \"Box\" layer, selected: add a Profile (outside, through the board). Nest them to use less board.", panels.len());
+        self.status = i18n::tf("Box Maker: {panels} panels on the \"Box\" layer, selected: add a Profile (outside, through the board). Nest them to use less board.", &[("panels", &(panels.len()))]);
         self.mutated();
     }
 
@@ -934,7 +934,7 @@ impl Canvas {
         }
         self.sel = ids;
         self.sel_changed();
-        self.status = format!("Vector Texture: {n} lines added as one group. Cut them with a V-bit or ball nose (Profile on the line, or Flute).");
+        self.status = i18n::tf("Vector Texture: {n} lines added as one group. Cut them with a V-bit or ball nose (Profile on the line, or Flute).", &[("n", &n)]);
         self.mutated();
     }
 
@@ -950,11 +950,11 @@ impl Canvas {
         let out: Vec<Contour> = simplify_contours(&input, tol / 4.0).iter().map(|c| gcarve_core::vecops::refit_arcs(c, tol)).collect();
         let after: usize = out.iter().map(|c| c.nodes.len()).sum();
         if after >= before {
-            self.status = format!("Fit curves: nothing to fit at this tolerance ({before} nodes).");
+            self.status = i18n::tf("Fit curves: nothing to fit at this tolerance ({before} nodes).", &[("before", &before)]);
             return;
         }
         self.replace_selection(out, i18n::t("Fit curves"), false);
-        self.status = format!("Fit curves: {before} → {after} nodes.");
+        self.status = i18n::tf("Fit curves: {before} → {after} nodes.", &[("before", &before), ("after", &after)]);
     }
 
     /// Vectors ▸ Check Vectors: selects the open, duplicate and tiny vectors of this sheet and says what to do
@@ -964,7 +964,7 @@ impl Canvas {
         let r = gcarve_core::vecops::check_vectors(&items);
         let found: BTreeSet<i32> = r.open.iter().chain(&r.duplicates).chain(&r.tiny).copied().collect();
         if found.is_empty() {
-            self.status = format!("Check Vectors: {n} vector(s), no open, duplicate or tiny ones.");
+            self.status = i18n::tf("Check Vectors: {n} vector(s), no open, duplicate or tiny ones.", &[("n", &n)]);
             return;
         }
         let mut parts = Vec::new();
@@ -975,7 +975,7 @@ impl Canvas {
         }
         self.sel = found;
         self.sel_changed();
-        self.status = format!("Check Vectors: {}. They are selected.", parts.join(", "));
+        self.status = i18n::tf("Check Vectors: {parts}. They are selected.", &[("parts", &(parts.join(", ")))]);
     }
 
     /// Vectors ▸ Extend Ends: the selected open vectors run on until they meet another vector of the sheet
@@ -1005,7 +1005,7 @@ impl Canvas {
             }
         }
         self.mutated();
-        self.status = format!("Extended {n} vector(s) to the next vector. Trim Here and Join finish the corner.");
+        self.status = i18n::tf("Extended {n} vector(s) to the next vector. Trim Here and Join finish the corner.", &[("n", &n)]);
     }
 
     pub fn join_selection(&mut self) {
@@ -1082,7 +1082,7 @@ impl Canvas {
                 }
             }
         }
-        self.status = format!("Aligned {} shapes ({mode})", self.sel.len());
+        self.status = i18n::tf("Aligned {sel} shapes ({mode})", &[("sel", &(self.sel.len())), ("mode", &mode)]);
         self.mutated();
     }
 
@@ -1120,7 +1120,7 @@ impl Canvas {
             }
             cursor += size(&it.b) + g;
         }
-        self.status = if gap < 0.0 { format!("Distributed {} shapes evenly", items.len()) } else { format!("Spaced {} shapes {} apart", items.len(), units::fmt(&self.doc, gap)) };
+        self.status = if gap < 0.0 { i18n::tf("Distributed {items} shapes evenly", &[("items", &(items.len()))]) } else { i18n::tf("Spaced {items} shapes {gap} apart", &[("items", &(items.len())), ("gap", &(units::fmt(&self.doc, gap)))]) };
         self.mutated();
     }
 
@@ -1170,7 +1170,7 @@ impl Canvas {
                 self.sel.insert(id);
             }
         }
-        self.status = format!("Circular array: {count} copies");
+        self.status = i18n::tf("Circular array: {count} copies", &[("count", &count)]);
         self.mutated();
     }
 
@@ -1373,7 +1373,7 @@ impl Canvas {
         }
         mirror_all(&mut self.doc);
         let backs = self.follow_on_back_sides(&moved);
-        self.status = if placed == roots.len() { format!("Nested {placed} part(s) on the board") } else { format!("Nested {placed} of {} part(s); the rest don't fit on this board", roots.len()) };
+        self.status = if placed == roots.len() { i18n::tf("Nested {placed} part(s) on the board", &[("placed", &placed)]) } else { i18n::tf("Nested {placed} of {roots} part(s); the rest don't fit on this board", &[("placed", &placed), ("roots", &(roots.len()))]) };
         if fillers > 0 {
             self.status += &format!(", plus {fillers} filler cop{} of the smallest part", if fillers == 1 { "y" } else { "ies" });
         }
@@ -1439,7 +1439,7 @@ impl Canvas {
             self.sel = rest.into_iter().collect();
             self.sel_changed();
         }
-        self.status = format!("Nested {total} part(s) across {} sheet(s)", self.doc.active_sheet + 1);
+        self.status = i18n::tf("Nested {total} part(s) across {active_sheet} sheet(s)", &[("total", &total), ("active_sheet", &(self.doc.active_sheet + 1))]);
         self.mutated();
         total
     }

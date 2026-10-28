@@ -178,15 +178,15 @@ impl Jobs {
         }
         let job = self.root.join(&clean);
         if job.exists() {
-            self.status = format!("A job called \"{clean}\" already exists");
+            self.status = i18n::tf("A job called \"{clean}\" already exists", &[("clean", &clean)]);
             return None;
         }
         if std::fs::create_dir_all(job.join("gcode")).is_err() {
-            self.status = format!("Cannot create {}", job.display());
+            self.status = i18n::tf("Cannot create {job}", &[("job", &(job.display()))]);
             return None;
         }
         write_meta(&job, &serde_json::json!({"status": "Planned", "created": chrono::Local::now().to_rfc3339()}));
-        self.status = format!("Created job {clean}");
+        self.status = i18n::tf("Created job {clean}", &[("clean", &clean)]);
         self.refresh();
         Some(job)
     }
@@ -208,7 +208,7 @@ impl Jobs {
             return None;
         }
         if std::fs::copy(src, &dst).is_err() {
-            self.status = format!("Cannot copy {}", src.display());
+            self.status = i18n::tf("Cannot copy {src}", &[("src", &(src.display()))]);
             return None;
         }
         self.status = format!("Added {}", dst.file_name().unwrap_or_default().to_string_lossy());
@@ -261,7 +261,7 @@ pub fn export_to_dir(doc: &gcarve_core::document::Document, stem: &str, dir: &Pa
     for f in &r.files {
         let p = dir.join(&f.filename);
         let rev = archive_revision(&p, &f.text);
-        std::fs::write(&p, &f.text).map_err(|e| format!("Cannot write {}: {e}", p.display()))?;
+        std::fs::write(&p, &f.text).map_err(|e| i18n::tf("Cannot write {p}: {e}", &[("p", &(p.display())), ("e", &e)]))?;
         names.push(format!("{} (r{rev})", f.filename));
     }
     let mut msg = format!("Exported {}", names.join(", "));

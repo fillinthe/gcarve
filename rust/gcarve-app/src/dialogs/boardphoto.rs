@@ -50,10 +50,10 @@ impl BoardPhotoDialog {
         let mut done = false;
         let tex = self.tex.get_or_insert_with(|| ctx.load_texture("board-photo-src", egui::ColorImage::from_rgba_unmultiplied([self.w, self.h], &self.rgba), egui::TextureOptions::LINEAR)).clone();
         let mut ok = false;
-        crate::widgets::Dialog::new(format!("Photo of the board: {}", self.name)).open(&mut open).width(760.0).show(ctx, |ui| {
+        crate::widgets::Dialog::new(i18n::tf("Photo of the board: {name}", &[("name", &self.name)])).open(&mut open).width(760.0).show(ctx, |ui| {
             let next = self.corners.len();
             ui.label(if next < 4 {
-                RichText::new(format!("Click corner {} of 4: the board's {}", next + 1, CORNERS[next])).strong()
+                RichText::new(i18n::tf("Click corner {next} of 4: the board's {next2}", &[("next", &(next + 1)), ("next2", &(CORNERS[next]))])).strong()
             } else {
                 RichText::new(i18n::t("All four corners set: OK straightens the photo onto the board")).strong()
             });

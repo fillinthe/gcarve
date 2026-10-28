@@ -64,7 +64,7 @@ impl Canvas {
         match units::parse(&self.doc, text) {
             Ok(v) => Some(v),
             Err(e) => {
-                self.status = format!("Can't evaluate \"{}\": {e}", text.trim());
+                self.status = i18n::tf("Can't evaluate \"{text}\": {e}", &[("text", &(text.trim())), ("e", &e)]);
                 None
             }
         }
@@ -101,7 +101,7 @@ impl Canvas {
                 s.anchor = anchor.clamp(0, 8);
             }
         }
-        self.status = format!("Sizes now grow from the {}", gcarve_core::document::ANCHOR_NAMES[anchor.clamp(0, 8) as usize]);
+        self.status = i18n::tf("Sizes now grow from the {anchor}", &[("anchor", &(gcarve_core::document::ANCHOR_NAMES[anchor.clamp(0, 8) as usize]))]);
         self.mutated();
     }
 
@@ -182,12 +182,12 @@ impl Canvas {
         let s = self.doc.find_mut(shape).unwrap();
         if !identifiers(expr).is_empty() {
             s.bind.insert(key, expr.into());
-            self.status = format!("Node {node} {} bound to \"{expr}\"", prop.to_uppercase());
+            self.status = i18n::tf("Node {node} {prop} bound to \"{expr}\"", &[("node", &node), ("prop", &(prop.to_uppercase())), ("expr", &expr)]);
         } else if prop == "len" {
             s.bind.insert(key.clone(), expr.into()); // a one-off: apply, then drop the binding
             self.apply_bindings();
             self.doc.find_mut(shape).unwrap().bind.remove(&key);
-            self.status = format!("Node {node} LEN = {expr}");
+            self.status = i18n::tf("Node {node} LEN = {expr}", &[("node", &node), ("expr", &expr)]);
         } else {
             s.bind.remove(&key);
             let nd = &mut s.c.nodes[node as usize];
@@ -271,7 +271,7 @@ impl Canvas {
         self.doc.checkpoint();
         self.doc.constraints.retain(|c| !(c.target == target && axis_of(&c.kind) == axis_of(kind)));
         self.doc.constraints.push(Constraint { anchor, target, kind: kind.into(), expr: e.into() });
-        self.status = format!("Constrained: shape {target} {kind} shape {anchor}");
+        self.status = i18n::tf("Constrained: shape {target} {kind} shape {anchor}", &[("target", &target), ("kind", &kind), ("anchor", &anchor)]);
         self.mutated();
         true
     }

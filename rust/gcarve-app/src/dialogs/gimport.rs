@@ -74,7 +74,7 @@ impl GcodeImportDialog {
         let (mut ok, mut keep) = (false, true);
         let doc = &host.canvas.doc;
         let n = self.prog.sections.len();
-        crate::widgets::Dialog::new(format!("Import G-code: {}", self.name)).id("gimport").width(620.0).show(ctx, |ui| {
+        crate::widgets::Dialog::new(i18n::tf("Import G-code: {name}", &[("name", &self.name)])).id("gimport").width(620.0).show(ctx, |ui| {
             if n == 0 {
                 ui.label(RichText::new(i18n::t("No cutting moves found in this file.")).color(crate::theme::ORANGE));
             } else {
@@ -113,7 +113,7 @@ impl GcodeImportDialog {
                         }
                         ui.horizontal(|ui| {
                             ui.label(i18n::t("Bit"));
-                            let mut items: Vec<(Bit, String)> = vec![(Bit::New, format!("New bit from the file: {}", gcarve_core::gimport::tool_from_section(s, "").name))];
+                            let mut items: Vec<(Bit, String)> = vec![(Bit::New, i18n::tf("New bit from the file: {name}", &[("name", &(gcarve_core::gimport::tool_from_section(s, "").name))]))];
                             items.extend(doc.tools.iter().enumerate().map(|(i, t)| (Bit::Doc(i), format!("Project: {}", t.name))));
                             items.extend(self.library.iter().enumerate().map(|(i, t)| (Bit::Lib(i), format!("Library: {}", t.name))));
                             let refs: Vec<(Bit, &str)> = items.iter().map(|(b, t)| (*b, t.as_str())).collect();
@@ -125,7 +125,7 @@ impl GcodeImportDialog {
             });
             ui.add_space(6.0);
             if let Some((w, h, t)) = self.prog.board {
-                crate::widgets::checkbox(ui, &mut self.set_board, format!("Set the board to {w} × {h} × {t} in (from the file)"));
+                crate::widgets::checkbox(ui, &mut self.set_board, i18n::tf("Set the board to {w} × {h} × {t} in (from the file)", &[("w", &w), ("h", &h), ("t", &t)]));
             }
             crate::widgets::checkbox(ui, &mut self.vectors, i18n::t("Bring in the cut paths as vectors (centrelines, one layer per toolpath)"));
             if !self.prog.errors.is_empty() {

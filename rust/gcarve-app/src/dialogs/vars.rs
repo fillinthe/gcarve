@@ -54,7 +54,7 @@ impl VarsDialog {
                         }
                         name_cell(ui, name, &uses, true);
                         ui.label(RichText::new("=").color(theme::TEXT_DIM));
-                        ui.label(RichText::new(units::fmt(doc, v)).italics().color(theme::TEXT_DIM)).tip(format!("Built in ({desc}): follows the Board setup."));
+                        ui.label(RichText::new(units::fmt(doc, v)).italics().color(theme::TEXT_DIM)).tip(i18n::tf("Built in ({desc}): follows the Board setup.", &[("desc", &desc)]));
                         ui.label(RichText::new(units::fmt(doc, v)).size(12.0).color(theme::TEXT_DIM));
                         ui.label("");
                         ui.end_row();
@@ -208,7 +208,7 @@ impl ConstraintDialog {
                     }
                 });
                 ui.end_row();
-                ui.label(format!("Gap / offset ({})", units::name(doc)));
+                ui.label(i18n::tf("Gap / offset ({doc})", &[("doc", &(units::name(doc)))]));
                 ui.add(crate::widgets::field(&mut self.expr).desired_width(280.0).hint_text(i18n::t("0, 0.5, gap, 2*gap + 1in")));
                 ui.end_row();
             });

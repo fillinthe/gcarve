@@ -8,7 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 LIT = r'"((?:[^"\\]|\\.)*)"'
-CALL = re.compile(r"i18n::t\(" + LIT + r"\)")
+CALL = re.compile(r"i18n::t(?:\(" + LIT + r"\)|f\(" + LIT + r",)")
 TABLE = re.compile(r"^[ \t]*(?:pub(?:\(crate\))? )?(?:const|static) [^\n]*// i18n\n?(.*?);", re.M | re.S)
 
 
@@ -20,7 +20,7 @@ def keys():
             at = src.find("\n#[cfg(test)]")
             if at > 0:
                 src = src[:at]
-            found = [json.loads(f'"{m.group(1)}"') for m in CALL.finditer(src)]
+            found = [json.loads(f'"{m.group(1) or m.group(2)}"') for m in CALL.finditer(src)]
             for m in TABLE.finditer(src):
                 found += [json.loads(f'"{x}"') for x in re.findall(LIT, m.group(0)) if re.search(r"[a-z]", x) and (x[:1].isupper() or " " in x)]
             out += [k for k in found if k not in out]

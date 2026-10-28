@@ -168,7 +168,7 @@ pub fn build(c: &mut Canvas, s: &SignSpec) -> String {
         c.doc.ops = ops;
         c.sel.clear();
         c.mutated();
-        return format!("New sign: {} letters V-carved, {}a cut-out with tabs. Check it in Simulate, then Export.", c.doc.texts.last().map_or(0, |t| t.text.chars().filter(|ch| !ch.is_whitespace()).count()), if s.border { i18n::t("a border groove, ") } else { "" });
+        return i18n::tf("New sign: {texts} letters V-carved, {extra}a cut-out with tabs. Check it in Simulate, then Export.", &[("texts", &(c.doc.texts.last().map_or(0, |t| t.text.chars().filter(|ch| !ch.is_whitespace()).count()))), ("extra", &(if s.border { i18n::t("a border groove, ") } else { "" }))]);
     };
     // a batch: signs in a grid, 1/2 in apart (the cut-out bit runs in the gap), as many sheets as it takes
     let layers = ["Sign letters", i18n::t("Sign borders"), "Sign outlines"].map(|n| Some(c.doc.layer_named(n)));
@@ -200,7 +200,7 @@ pub fn build(c: &mut Canvas, s: &SignSpec) -> String {
     c.sel.clear();
     c.mutated();
     let n = c.doc.sheets.len();
-    format!("New signs: {} sign{} on {n} sheet{}{}. Check them in Simulate, then Export (one file set per sheet).", names.len() - skipped.len(), if names.len() - skipped.len() == 1 { "" } else { "s" }, if n == 1 { "" } else { "s" }, if skipped.is_empty() { String::new() } else { format!("; too small for: {}", skipped.join(", ")) })
+    i18n::tf("New signs: {skipped} sign{s} on {n} sheet{s2}{skipped2}. Check them in Simulate, then Export (one file set per sheet).", &[("skipped", &(names.len() - skipped.len())), ("s", &(if names.len() - skipped.len() == 1 { "" } else { "s" })), ("n", &n), ("s2", &(if n == 1 { "" } else { "s" })), ("skipped2", &(if skipped.is_empty() { String::new() } else { format!("; too small for: {}", skipped.join(", ")) }))])
 }
 
 /// One sign with its bottom-left corner at `at` on the active sheet: letters fitted inside the border (an oval's

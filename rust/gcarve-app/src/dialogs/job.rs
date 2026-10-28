@@ -141,7 +141,7 @@ impl JobDialog {
                     });
                     ui.end_row();
                 });
-                hint(ui, &format!("Post: {} (the one chosen below when saved)", if m.post.is_empty() { "unchanged" } else { m.post.as_str() }));
+                hint(ui, &i18n::tf("Post: {post} (the one chosen below when saved)", &[("post", &(if m.post.is_empty() { "unchanged" } else { m.post.as_str() }))]));
                 ui.horizontal(|ui| {
                     let ok = !m.limits.name.trim().is_empty();
                     if ui.add_enabled(ok, egui::Button::new(i18n::t("Save to My machines")).fill(crate::theme::ACCENT)).clicked() {
@@ -365,7 +365,7 @@ impl JobDialog {
                     let corner = match self.origin { 4 => i18n::t("the centre of the board").to_string(), o => format!("its {} corner", ORIGIN_NAMES[o.clamp(0, 3) as usize].to_lowercase()) };
                     let z = if self.z_bottom { i18n::t("on the spoilboard under it") } else { i18n::t("on its top") };
                     let lift = self.f.get_or("safeZ", doc, doc.material.safe_z);
-                    hint(ui, &format!("At the machine: lay down a {} × {} board, {} thick, of {}. Zero X and Y at {corner} and touch the bit off {z}. Between parts the bit lifts {} above the board. The yellow marker on the drawing shows your X/Y zero.", u(w), u(h), u(t), self.kind.to_lowercase(), u(lift)));
+                    hint(ui, &i18n::tf("At the machine: lay down a {w} × {h} board, {u} thick, of {kind}. Zero X and Y at {corner} and touch the bit off {z}. Between parts the bit lifts {lift} above the board. The yellow marker on the drawing shows your X/Y zero.", &[("w", &(u(w))), ("h", &(u(h))), ("u", &(u(t))), ("kind", &(self.kind.to_lowercase())), ("corner", &corner), ("z", &z), ("lift", &(u(lift)))]));
                 });
                 ui.end_row();
             });

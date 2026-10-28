@@ -519,7 +519,7 @@ impl App {
                     return true;
                 }
                 Err(e) => {
-                    self.message = format!("Cannot save {}: {e}", p.display());
+                    self.message = i18n::tf("Cannot save {p}: {e}", &[("p", &(p.display())), ("e", &e)]);
                     self.cloud.report("save", &files::scrub(&format!("Cannot save {}: {e}", p.display()), &p.display().to_string()));
                 }
             }
@@ -596,7 +596,7 @@ impl App {
                 let tlp = note.is_empty();
                 self.name = name.trim_end_matches(".tlpt").trim_end_matches(".tlp").trim_end_matches(".crv").trim_end_matches(".c2d").to_string();
                 self.cloud_id.clear();
-                self.message = if tlp { format!("Opened {name}: {} shapes, {} toolpaths", self.canvas.doc.shapes.len(), self.canvas.doc.ops.len()) } else { format!("Opened {name}: {note}") };
+                self.message = if tlp { i18n::tf("Opened {name}: {shapes} shapes, {ops} toolpaths", &[("name", &name), ("shapes", &(self.canvas.doc.shapes.len())), ("ops", &(self.canvas.doc.ops.len()))]) } else { format!("Opened {name}: {note}") };
                 if !tlp {
                     self.canvas.dirty = true; // never saved over the VCarve file: Save asks where the .tlp goes
                 }
@@ -921,7 +921,7 @@ impl App {
                 doc.checkpoint();
                 doc.material.post = pid.to_string();
                 self.canvas.mutated();
-                self.message = format!("Post-processor: {}", self.posts.all().into_iter().find(|(p, _)| p.id == pid).map(|(p, _)| p.name).unwrap_or_else(|| pid.into()));
+                self.message = i18n::tf("Post-processor: {posts}", &[("posts", &(self.posts.all().into_iter().find(|(p, _)| p.id == pid).map(|(p, _)| p.name).unwrap_or_else(|| pid.into())))]);
             }
             ("about", _) => self.about_open = true,
             ("guide", _) => self.guide.open = true,
@@ -1251,7 +1251,7 @@ impl App {
                 let n = copies.len();
                 self.canvas.sel = copies.into_iter().map(|(c, layer)| doc.add(c, Some(layer))).collect();
                 self.canvas.mutated();
-                self.message = format!("Back side = Sheet {} ({n} mirrored). Cut side 1, flip the board {}, cut this sheet.", self.canvas.doc.sheets.len(), if lr { i18n::t("left to right") } else { i18n::t("top to bottom") });
+                self.message = i18n::tf("Back side = Sheet {sheets} ({n} mirrored). Cut side 1, flip the board {bottom}, cut this sheet.", &[("sheets", &(self.canvas.doc.sheets.len())), ("n", &n), ("bottom", &(if lr { i18n::t("left to right") } else { i18n::t("top to bottom") }))]);
             }
             ("sheet", "remove") => {
                 let doc = &mut self.canvas.doc;
@@ -1311,7 +1311,7 @@ impl App {
             ("layersel", v) => {
                 if let Ok(i) = v.parse::<i32>() {
                     self.canvas.select_layer_shapes(i);
-                    self.message = format!("Selected {} vector(s) on the layer", self.canvas.sel.len());
+                    self.message = i18n::tf("Selected {sel} vector(s) on the layer", &[("sel", &(self.canvas.sel.len()))]);
                 }
             }
             ("layerop", v) => {
@@ -1517,7 +1517,7 @@ impl eframe::App for App {
                         d.name = name.clone();
                         d.canvas.dirty &= d.canvas.rev != rev;
                     }
-                    self.message = format!("Saved to the cloud: {name}");
+                    self.message = i18n::tf("Saved to the cloud: {name}", &[("name", &name)]);
                 }
                 Reply::Prefs(Some(p)) => {
                     // account copy wins when it has one; an empty account gets the local settings
@@ -1544,7 +1544,7 @@ impl eframe::App for App {
                     match project::load_project(&d.to_string()) {
                         Ok(doc) => {
                             self.open_copy(doc, &name);
-                            self.message = format!("Opened “{name}”: save it to keep your own copy");
+                            self.message = i18n::tf("Opened “{name}”: save it to keep your own copy", &[("name", &name)]);
                             self.offer_make_it(); // another machine or bits than yours: Make It says what to change
                         }
                         Err(e) => self.message = e,
@@ -1577,7 +1577,7 @@ impl eframe::App for App {
                         self.open_copy(d, &title);
                         let reasons = dialogs::community::differences_here(&self.canvas.doc);
                         self.cam.make_it = Some(dialogs::community::MakeIt::new(&self.canvas.doc, &title).with_reasons(reasons));
-                        self.message = format!("Opened “{title}” from gworkshop.app/projects/{slug}/");
+                        self.message = i18n::tf("Opened “{title}” from gworkshop.app/projects/{slug}/", &[("title", &title), ("slug", &slug)]);
                         self.cloud.event_detail("community_open", &slug);
                     }
                     Err(e) => {
@@ -1596,7 +1596,7 @@ impl eframe::App for App {
                         self.project_path = None;
                         self.cloud_id = id;
                         self.name = name.clone();
-                        self.message = format!("Opened {name} from the cloud");
+                        self.message = i18n::tf("Opened {name} from the cloud", &[("name", &name)]);
                         self.offer_make_it();
                     }
                     Err(e) => {
@@ -1610,7 +1610,7 @@ impl eframe::App for App {
                     ctx.open_url(egui::OpenUrl::new_tab(format!("{base}/api/auth/handoff?to=https://gburn.app&next=/app/%3Fimport%3D{id}")));
                     self.message = i18n::t("Sent to GBurn: it opens in a new tab (the drawing waits there for 30 minutes)").into();
                 }
-                Reply::HandoverSent(Err(e)) => self.message = format!("Send to GBurn: {e}"),
+                Reply::HandoverSent(Err(e)) => self.message = i18n::tf("Send to GBurn: {e}", &[("e", &e)]),
                 _ => {}
             }
         }
@@ -2023,7 +2023,7 @@ impl App {
     fn recover_ui(&mut self, ctx: &egui::Context) {
         let Some(r) = &self.recover else { return };
         let mut answer: Option<bool> = None;
-        let text = format!("GCarve kept a copy of \"{}\" from {} that was never saved. Restore it?", r.name, crate::recover::when(r.time_ms));
+        let text = i18n::tf("GCarve kept a copy of \"{name}\" from {time_ms} that was never saved. Restore it?", &[("name", &r.name), ("time_ms", &(crate::recover::when(r.time_ms)))]);
         crate::widgets::Dialog::new(i18n::t("Restore unsaved work?")).show(ctx, |ui| {
             ui.label(text);
             match crate::widgets::buttons(ui, &[(i18n::t("Restore"), true), (i18n::t("Discard"), false)]) {
@@ -2048,7 +2048,7 @@ impl App {
                 }
                 Err(e) => {
                     self.cloud.report("restore", &e);
-                    self.message = format!("Could not restore the saved copy: {e}");
+                    self.message = i18n::tf("Could not restore the saved copy: {e}", &[("e", &e)]);
                 }
             }
         }
@@ -2059,7 +2059,7 @@ impl App {
         let Some(p) = self.confirm else { return };
         let mut answer: Option<Option<bool>> = None; // Some(Some(save)) / Some(None) = cancel
         crate::widgets::Dialog::new(i18n::t("Unsaved changes")).show(ctx, |ui| {
-            ui.label(format!("Save changes to {}?", self.name));
+            ui.label(i18n::tf("Save changes to {name}?", &[("name", &self.name)]));
             match crate::widgets::buttons(ui, &[(i18n::t("Save"), true), (i18n::t("Discard"), false), (i18n::t("Cancel"), false)]) {
                 Some(0) => answer = Some(Some(true)),
                 Some(1) => answer = Some(Some(false)),
@@ -2089,7 +2089,7 @@ impl App {
             ui.label(RichText::new(i18n::t("GCarve")).font(crate::widgets::bold(20.0)));
             ui.label(format!("Version {} · {}", env!("CARGO_PKG_VERSION"), if Cloud::web() { "web" } else { std::env::consts::OS }));
             ui.add_space(6.0);
-            ui.label(format!("CAM for CNC routers: design, toolpaths, simulation and G-code for {} machine posts.", gcarve_core::postdef::post_library().len()));
+            ui.label(i18n::tf("CAM for CNC routers: design, toolpaths, simulation and G-code for {post_library} machine posts.", &[("post_library", &(gcarve_core::postdef::post_library().len()))]));
             ui.add_space(6.0);
             ui.label(RichText::new(i18n::t("Fonts: Liberation Sans (SIL OFL). Single-line fonts: the Hershey Fonts, originally created by Dr. A. V. Hershey at the U. S. National Bureau of Standards; data format by James Hurt, Cognition, Inc.")).small().color(theme::TEXT_DIM));
             ui.add_space(6.0);
@@ -2416,8 +2416,8 @@ impl App {
                     replan |= crate::widgets::combo_box("tile-axis").selected_text(if d.tile_y { i18n::t("along Y") } else { i18n::t("along X") }).width(84.0).show_ui(ui, |ui| ui.selectable_value(&mut d.tile_y, false, i18n::t("along X")).changed() | ui.selectable_value(&mut d.tile_y, true, i18n::t("along Y")).changed()).inner.unwrap_or(false);
                 }
             });
-            crate::widgets::checkbox(ui, &mut d.sheet, format!("Setup sheet ({}_setup.html: printable job sheet for the operator)", self.name));
-            if !d.air && crate::widgets::checkbox(ui, &mut d.ghost, format!("Ghost run of every file too (_GHOST: spindle off, bit {} above the board) to watch the moves first", units::text(&self.canvas.doc, gcarve_core::cam::air_cut_raise(&self.canvas.doc.material)))).changed() {
+            crate::widgets::checkbox(ui, &mut d.sheet, i18n::tf("Setup sheet ({name}_setup.html: printable job sheet for the operator)", &[("name", &self.name)]));
+            if !d.air && crate::widgets::checkbox(ui, &mut d.ghost, i18n::tf("Ghost run of every file too (_GHOST: spindle off, bit {material} above the board) to watch the moves first", &[("material", &(units::text(&self.canvas.doc, gcarve_core::cam::air_cut_raise(&self.canvas.doc.material))))])).changed() {
                 crate::store::save("export-ghost", if d.ghost { "1" } else { "0" });
             }
             ui.horizontal_wrapped(|ui| {
@@ -2509,7 +2509,7 @@ impl App {
             let p = dir.join(n);
             let rev = crate::jobs::archive_revision(&p, &String::from_utf8_lossy(b));
             if let Err(e) = std::fs::create_dir_all(dir).and_then(|_| std::fs::write(&p, b)) {
-                self.message = format!("Cannot write {}: {e}", p.display());
+                self.message = i18n::tf("Cannot write {p}: {e}", &[("p", &(p.display())), ("e", &e)]);
                 return;
             }
             names.push(if rev > 1 { format!("{n} (r{rev})") } else { n.clone() });
@@ -2574,7 +2574,7 @@ impl App {
         let mut open = true;
         let (doc, name) = (&self.canvas.doc, self.name.clone());
         crate::widgets::Dialog::new(i18n::t("Share Project")).id("shareproject").open(&mut open).width(460.0).show(ctx, |ui| {
-            ui.label(format!("Send “{name}” to someone who uses GCarve. It waits in their Help › Shared with Me until they open it; they get their own copy (bits, toolpaths and board included) and can switch it to their machine."));
+            ui.label(i18n::tf("Send “{name}” to someone who uses GCarve. It waits in their Help › Shared with Me until they open it; they get their own copy (bits, toolpaths and board included) and can switch it to their machine.", &[("name", &name)]));
             ui.add_space(6.0);
             b.ui(ui, &mut self.cloud, i18n::t("the project"), "project", &name, || serde_json::from_str(&project::save_project(doc)).unwrap_or_default());
         });

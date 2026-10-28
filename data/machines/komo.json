@@ -1347,6 +1347,93 @@
    "notes": "Axis travels X x Y x Z as published (X = long axis). Table 60 x 144 in. Traverse 3150 ipm X/Y, 900 ipm Z. Optional second spindle."
   },
   {
+   "id": "komo-fusion-xl-624",
+   "maker": "Komo",
+   "model": "Fusion XL",
+   "variant": "624 (extended table)",
+   "years": null,
+   "class": "industrial",
+   "work_area_in": {
+    "x": 288,
+    "y": 98,
+    "z": 12
+   },
+   "work_area_mm": {
+    "x": 7315,
+    "y": 2489,
+    "z": 305
+   },
+   "gantry_clearance_in": null,
+   "spindles": [
+    {
+     "type": "spindle",
+     "name": "18 HP (13.2 kW) four-pole Hiteco/HSD spindle",
+     "power_kw": 13.2,
+     "power_hp": 18,
+     "rpm_min": null,
+     "rpm_max": 24000,
+     "collet": "HSK 63F",
+     "cooling": "air",
+     "vfd": true,
+     "default": true
+    }
+   ],
+   "max_feed_ipm": null,
+   "max_feed_mm_min": null,
+   "rapid_ipm": {
+    "xy": 3150,
+    "z": 900
+   },
+   "rapid_mm_min": {
+    "xy": 80010,
+    "z": 22860
+   },
+   "accel": "205 in/s²",
+   "drive": {
+    "xy": null,
+    "z": null
+   },
+   "motors": "servo",
+   "controllers": [
+    {
+     "name": "FANUC CNC with integrated PC (19 in touch screen)",
+     "gcarve_post": "fanuc-mm",
+     "default": true
+    }
+   ],
+   "tool_change": {
+    "kind": "atc-carousel",
+    "slots": 15,
+    "notes": "15 tools standard, up to 45 with second head and side auxiliary changer"
+   },
+   "tool_setter": {
+    "available": true,
+    "type": "tool touch-off device with automatic tool data upload"
+   },
+   "z_zero": [
+    "table (spoilboard)",
+    "tool setter"
+   ],
+   "table": {
+    "hold_down": [
+     "vacuum"
+    ],
+    "max_material_thickness_in": null
+   },
+   "sources": [
+    "https://komo.com/products/cnc-machines/fusion-series/fusion-xl/",
+    "https://www.youtube.com/watch?v=eX18bm3SO0g"
+   ],
+   "estimated": {
+    "tool_change.kind": "head-mounted aggregate-capable changer; carousel assumed",
+    "work_area_mm": "converted from the inch figures",
+    "rapid_mm_min": "converted from the maker's in/min figures",
+    "work_area_in.y": "table width 72 in + 26 in, as the 5 ft models",
+    "rapid_ipm": "same as the published Fusion XL sizes"
+   },
+   "notes": "Custom extended-table build shown by Komo USA (\"Fusion XL 624 Showcase\"): 6 x 24 ft table, a 24-foot machining envelope, double the standard length. X = the 24 ft envelope; Y travel estimated from the 5 ft models (table + 26 in). Traverse 3150 ipm X/Y, 900 ipm Z as the other Fusion XL sizes. Vacuum hose carriers, active misting."
+  },
+  {
    "id": "komo-fusion-5-axis-508",
    "maker": "Komo",
    "model": "Fusion 5-Axis",

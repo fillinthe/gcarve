@@ -57,7 +57,7 @@ impl Templates {
             return Ok(());
         }
         #[cfg(not(target_arch = "wasm32"))]
-        std::fs::write(free_path(&t.name), save_template(&t)).map_err(|e| format!("Cannot save the template: {e}"))?;
+        std::fs::write(free_path(&t.name), save_template(&t)).map_err(|e| i18n::tf("Cannot save the template: {e}", &[("e", &e)]))?;
         #[cfg(target_arch = "wasm32")]
         self.items.push(Entry { key: String::new(), t });
         self.persist();

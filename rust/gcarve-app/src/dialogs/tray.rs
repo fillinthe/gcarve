@@ -164,7 +164,7 @@ pub fn build(c: &mut Canvas, s: &TraySpec) -> String {
     c.doc.ops = ops;
     c.sel.clear();
     c.mutated();
-    format!("New {}: {} and a cut-out with tabs. Check it in Simulate, then Export.", if s.board { i18n::t("cutting board") } else { "tray" }, made.join(", "))
+    i18n::tf("New {tray}: {made} and a cut-out with tabs. Check it in Simulate, then Export.", &[("tray", &(if s.board { i18n::t("cutting board") } else { "tray" })), ("made", &(made.join(", ")))])
 }
 
 #[cfg(test)]

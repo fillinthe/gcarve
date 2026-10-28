@@ -85,7 +85,7 @@ impl JobsDialog {
                             self.prompt = Some((true, String::new()));
                         }
                         ui.add_space(ui.available_width() - 31.0);
-                        if IconButton::new("open").size(15.0).tip(&format!("Choose the jobs folder (now: {})", jobs.root.display())).show(ui).clicked() {
+                        if IconButton::new("open").size(15.0).tip(&i18n::tf("Choose the jobs folder (now: {root})", &[("root", &(jobs.root.display()))])).show(ui).clicked() {
                             act = Some(Act::Root);
                         }
                     });
@@ -99,7 +99,7 @@ impl JobsDialog {
                     ui.spacing_mut().item_spacing = egui::vec2(10.0, 10.0);
                     let Some(j) = &job else {
                         ui.add_space(H / 2.0 - 90.0);
-                        blank(ui, "jobs", "Pick or create a job", &format!("Jobs live in {}", jobs.root.display()));
+                        blank(ui, "jobs", "Pick or create a job", &i18n::tf("Jobs live in {root}", &[("root", &(jobs.root.display()))]));
                         return;
                     };
                     ui.horizontal(|ui| {
@@ -256,7 +256,7 @@ impl JobsDialog {
                         host.files.open_path(&path);
                         return false;
                     }
-                    Err(e) => self.note = format!("Cannot save {}: {e}", path.display()),
+                    Err(e) => self.note = i18n::tf("Cannot save {path}: {e}", &[("path", &(path.display())), ("e", &e)]),
                 }
             }
             Some(Act::Open(p)) => {

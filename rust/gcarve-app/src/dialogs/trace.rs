@@ -109,7 +109,7 @@ impl TraceDialog {
         let doc = &host.canvas.doc;
         let (mut ok, mut keep) = (false, true);
         let mut changed = false;
-        crate::widgets::Dialog::new(format!("Trace image: {}", self.name)).id("trace").width(640.0).show(ctx, |ui| {
+        crate::widgets::Dialog::new(i18n::tf("Trace image: {name}", &[("name", &self.name)])).id("trace").width(640.0).show(ctx, |ui| {
             // preview: the picture dimmed, traced outlines on top
             let avail = egui::vec2(640.0, 360.0);
             let k = (avail.x / self.w as f32).min(avail.y / self.h as f32);
@@ -259,7 +259,7 @@ impl TraceDialog {
                 }
                 ids.insert(id);
             }
-            *host.message = format!("Traced {}: {} vectors", self.name, ids.len());
+            *host.message = i18n::tf("Traced {name}: {ids} vectors", &[("name", &self.name), ("ids", &(ids.len()))]);
             host.canvas.sel = ids;
             host.canvas.mutated();
             return false;

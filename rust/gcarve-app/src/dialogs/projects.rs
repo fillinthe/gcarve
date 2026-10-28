@@ -235,7 +235,7 @@ impl ProjectsDialog {
                     });
                     if self.confirm_delete.as_deref() == Some(&p.id) {
                         ui.horizontal(|ui| {
-                            ui.label(RichText::new(format!("Delete “{}” from the cloud?", p.name)).color(theme::DANGER));
+                            ui.label(RichText::new(i18n::tf("Delete “{name}” from the cloud?", &[("name", &p.name)])).color(theme::DANGER));
                             if ui.button(i18n::t("Delete")).clicked() {
                                 cloud.delete_project(ctx, &p.id);
                                 cloud.refresh(ctx);

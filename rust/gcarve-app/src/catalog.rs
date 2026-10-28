@@ -71,7 +71,7 @@ fn fetch_catalog(url: String, ctx: egui::Context) {
                     let _ = LOADED.set(c);
                 }
                 Err(e) => {
-                    let _ = FETCH_ERR.set(format!("Bit & machine database not available ({e}): reload to try again"));
+                    let _ = FETCH_ERR.set(i18n::tf("Bit & machine database not available ({e}): reload to try again", &[("e", &e)]));
                 }
             }
             ctx.request_repaint();
@@ -93,7 +93,7 @@ pub fn limits_line(m: &MachineLimits) -> String {
         parts.push(format!("travel {:.0} × {:.0} × {:.0} in", m.travel_x, m.travel_y, m.travel_z));
     }
     if m.tool_slots > 0 {
-        parts.push(format!("ATC {} slots", m.tool_slots));
+        parts.push(i18n::tf("ATC {tool_slots} slots", &[("tool_slots", &m.tool_slots)]));
     }
     let (kc, _) = gcarve_core::pipeline::class_factor(&m.class);
     if kc < 1.0 {

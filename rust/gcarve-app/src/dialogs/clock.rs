@@ -144,7 +144,7 @@ pub fn build(c: &mut Canvas, s: &ClockSpec) -> String {
     c.doc.ops = ops;
     c.sel.clear();
     c.mutated();
-    format!("New clock: {made}, the movement hole and a cut-out with tabs. Check it in Simulate, then Export.")
+    i18n::tf("New clock: {made}, the movement hole and a cut-out with tabs. Check it in Simulate, then Export.", &[("made", &made)])
 }
 
 #[cfg(test)]

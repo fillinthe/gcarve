@@ -30,13 +30,13 @@ impl ShareBox {
             return;
         }
         if !self.open {
-            if ui.button(format!("Share {what}…")).on_hover_text(format!("Send {what} to another GCarve user by email")).clicked() {
+            if ui.button(format!("Share {what}…")).on_hover_text(i18n::tf("Send {what} to another GCarve user by email", &[("what", &what)])).clicked() {
                 self.open = true;
             }
             return;
         }
         ui.horizontal(|ui| {
-            ui.label(RichText::new(format!("Share {what} with")).small());
+            ui.label(RichText::new(i18n::tf("Share {what} with", &[("what", &what)])).small());
             let r = ui.add(crate::widgets::field(&mut self.to).hint_text(i18n::t("their email")).desired_width(170.0));
             let ok = self.to.contains('@');
             if ui.add_enabled(ok, egui::Button::new(i18n::t("Send"))).clicked() || (ok && r.lost_focus() && ui.input(|i| i.key_pressed(egui::Key::Enter))) {
