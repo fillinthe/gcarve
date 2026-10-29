@@ -167,12 +167,18 @@ pub fn unit(doc: &Document) -> (&'static str, f64, usize) {
 }
 
 /// Canvas::boardSummary
+/// `Document::sheet_name` with the default "Sheet N" in the UI language (a name the user typed stays as is)
+pub fn sheet_name(doc: &Document, j: usize) -> String {
+    let n = doc.sheet_name(j);
+    if n == format!("Sheet {}", j + 1) { i18n::tf("Sheet {n}", &[("n", &(j + 1))]) } else { n }
+}
+
 pub fn board_summary(doc: &Document) -> String {
     let m = &doc.material;
     let (name, u, dt) = unit(doc);
     let d = if name == "mm" { 1 } else { 2 };
     let origins = [i18n::t("the bottom-left corner"), i18n::t("the bottom-right corner"), i18n::t("the top-left corner"), i18n::t("the top-right corner"), i18n::t("the centre")];
-    let sheet = if doc.sheets.len() > 1 { format!("{} ({} of {})  ·  ", doc.sheet_name(doc.active_sheet.max(0) as usize), doc.active_sheet + 1, doc.sheets.len()) } else { String::new() };
+    let sheet = if doc.sheets.len() > 1 { i18n::tf("{sheet} ({n} of {m})  ·  ", &[("sheet", &crate::shell::sheet_name(doc, doc.active_sheet.max(0) as usize)), ("n", &(doc.active_sheet + 1)), ("m", &doc.sheets.len())]) } else { String::new() };
     format!(
         "{sheet}{}  ·  {:.d$} × {:.d$} × {:.dt$} {name}  ·  {}, {}",
         m.kind,
@@ -436,7 +442,7 @@ pub fn sheet_tabs(ui: &mut egui::Ui, sh: &mut Shell, doc: &Document, all: bool) 
                         let current = i as i32 == doc.active_sheet;
                         if let Some((j, name)) = sh.sheet_rename.as_mut().filter(|(j, _)| *j == i) {
                             let _ = j;
-                            let r = ui.add(egui::TextEdit::singleline(name).desired_width(110.0).hint_text(format!("Sheet {}", i + 1)));
+                            let r = ui.add(egui::TextEdit::singleline(name).desired_width(110.0).hint_text(i18n::tf("Sheet {n}", &[("n", &(i + 1))])));
                             r.request_focus();
                             if r.lost_focus() {
                                 if !ui.input(|k| k.key_pressed(egui::Key::Escape)) {
@@ -447,7 +453,7 @@ pub fn sheet_tabs(ui: &mut egui::Ui, sh: &mut Shell, doc: &Document, all: bool) 
                             continue;
                         }
                         let count = doc.shapes.iter().filter(|s| s.sheet as usize == i).count();
-                        let name = doc.sheet_name(i);
+                        let name = crate::shell::sheet_name(doc, i);
                         let label = if count > 0 { format!("{name}  {count}") } else { name.clone() };
                         let galley = ui.painter().layout_no_wrap(label, theme::font(12.0), theme::TEXT);
                         let (r, resp) = ui.allocate_exact_size(egui::vec2(galley.size().x + 24.0, 24.0), egui::Sense::click());
@@ -461,7 +467,7 @@ pub fn sheet_tabs(ui: &mut egui::Ui, sh: &mut Shell, doc: &Document, all: bool) 
                             sh.tabs_seen = Some(i);
                         }
                         if resp.double_clicked() {
-                            sh.sheet_rename = Some((i, if name.starts_with(i18n::t("Sheet ")) && name[6..].parse::<usize>().is_ok() { String::new() } else { name.clone() }));
+                            sh.sheet_rename = Some((i, if doc.sheet_name(i) == format!("Sheet {}", i + 1) { String::new() } else { name.clone() }));
                         } else if resp.clicked() {
                             sh.push(format!("sheet:{i}"));
                         }

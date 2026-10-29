@@ -9,7 +9,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 LIT = r'"((?:[^"\\]|\\.)*)"'
 CALL = re.compile(r"i18n::t(?:\(" + LIT + r"\)|f\(" + LIT + r",)")
-TABLE = re.compile(r"^[ \t]*(?:pub(?:\(crate\))? )?(?:const|static) [^\n]*// i18n\n?(.*?);", re.M | re.S)
+# a one-line table, or one opened by "[ // i18n" up to its closing "];" line (strings may hold ";")
+TABLE = re.compile(r"^[ \t]*(?:pub(?:\(crate\))? )?(?:const|static) (?:[^\n]*\[ // i18n\n.*?^[ \t]*\];|[^\n]*// i18n$)", re.M | re.S)
 
 
 def keys():

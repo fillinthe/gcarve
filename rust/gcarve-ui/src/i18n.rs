@@ -4,8 +4,8 @@
 //! store under `language`. Keys are the English UI strings themselves: the English build has no pack to maintain, and
 //! `tools/i18n_keys.py` lists every `t("…")` in the sources so the packs can be filled.
 //!
-//! Format strings cannot go through `t` (format! needs a literal): status messages built with format! stay English
-//! for now, except through `tf` (a runtime `{name}` substitution for the few that matter).
+//! Format strings cannot go through `t` (format! needs a literal): messages go through `tf` (a runtime
+//! `{name}` substitution), and the engine's English warnings are read back into a pattern by `msg`.
 
 use std::collections::HashMap;
 use std::sync::RwLock;
@@ -25,6 +25,8 @@ pub const LANGS: [(&str, &str, &str); 8] = [
 struct Pack {
     code: &'static str,
     map: HashMap<&'static str, &'static str>,
+    /// the keys with `{name}`s, most fixed text first (so "{name}: {x}" never beats a fuller pattern), for `msg`
+    patterns: Vec<(&'static str, &'static str)>,
 }
 
 static PACK: RwLock<Option<Pack>> = RwLock::new(None);
@@ -54,6 +56,85 @@ pub fn tf(s: &'static str, args: &[(&str, &dyn std::fmt::Display)]) -> String {
     out
 }
 
+/// The reverse of `tf` for text the engine writes in English (warnings, safety checks): a pack key whose `{name}`s
+/// match `s` gives its translation with the matched pieces put back; no match = `s` as it is
+pub fn msg(s: &str) -> String {
+    let Ok(p) = PACK.read() else { return s.into() };
+    let Some(p) = p.as_ref() else { return s.into() };
+    if let Some(v) = p.map.get(s) {
+        return v.to_string();
+    }
+    for (k, v) in &p.patterns {
+        if let Some(caps) = match_pattern(k, s) {
+            let mut out = v.to_string();
+            for (n, c) in caps {
+                out = out.replace(&format!("{{{n}}}"), c);
+            }
+            return out;
+        }
+    }
+    s.into()
+}
+
+/// `{name}` placeholders of a key with the text between them: [("", "lit"), ("name", "lit after it"), …]
+fn pieces(k: &str) -> Option<Vec<(&str, &str)>> {
+    let mut out = Vec::new();
+    let (mut name, mut rest) = ("", k);
+    loop {
+        // the next `{ident}` (other braces are plain text)
+        let mut at = None;
+        let mut from = 0;
+        while let Some(i) = rest[from..].find('{').map(|i| i + from) {
+            if let Some(j) = rest[i + 1..].find('}') {
+                let n = &rest[i + 1..i + 1 + j];
+                if !n.is_empty() && n.chars().all(|c| c.is_ascii_alphanumeric() || c == '_') {
+                    at = Some((i, n));
+                    break;
+                }
+            }
+            from = i + 1;
+        }
+        match at {
+            Some((i, n)) => {
+                out.push((name, &rest[..i]));
+                name = n;
+                rest = &rest[i + n.len() + 2..];
+            }
+            None => {
+                out.push((name, rest));
+                return (out.len() > 1).then_some(out);
+            }
+        }
+    }
+}
+
+/// what each `{name}` of pattern `k` stands for in `s`, or None when `s` isn't made from it. Each piece takes the
+/// shortest text up to the next fixed part; two placeholders side by side never match.
+pub fn match_pattern<'a>(k: &'a str, s: &'a str) -> Option<Vec<(&'a str, &'a str)>> {
+    let ps = pieces(k)?;
+    let rest = s.strip_prefix(ps[0].1)?;
+    let mut rest = rest;
+    let mut caps = Vec::new();
+    for (i, (n, lit)) in ps.iter().enumerate().skip(1) {
+        let last = i == ps.len() - 1;
+        if lit.is_empty() {
+            if !last {
+                return None;
+            }
+            caps.push((*n, rest));
+            rest = "";
+        } else if last {
+            caps.push((*n, rest.strip_suffix(lit)?));
+            rest = "";
+        } else {
+            let at = rest.find(lit)?;
+            caps.push((*n, &rest[..at]));
+            rest = &rest[at + lit.len()..];
+        }
+    }
+    rest.is_empty().then_some(caps)
+}
+
 pub fn current() -> &'static str {
     PACK.read().ok().and_then(|p| p.as_ref().map(|p| p.code)).unwrap_or("en")
 }
@@ -68,8 +149,10 @@ pub fn set(code: &str) {
         // the pack lives for the program (strings with escapes cannot be borrowed from the JSON text)
         serde_json::from_str::<HashMap<String, String>>(json).unwrap_or_default().into_iter().map(|(k, v)| (&*k.leak(), &*v.leak())).collect()
     };
+    let mut patterns: Vec<(&'static str, &'static str)> = map.iter().filter(|(k, _)| pieces(k).is_some()).map(|(k, v)| (*k, *v)).collect();
+    patterns.sort_by_key(|(k, _)| (std::cmp::Reverse(pieces(k).map_or(0, |p| p.iter().map(|(_, l)| l.len()).sum::<usize>())), *k));
     if let Ok(mut p) = PACK.write() {
-        *p = Some(Pack { code, map });
+        *p = Some(Pack { code, map, patterns });
     }
     if !cfg!(test) {
         crate::store::save("language", code);
@@ -132,7 +215,16 @@ mod tests {
         set("es");
         assert_eq!(t("not a string of the app"), "not a string of the app");
         assert_eq!(tf("{n} of {m}", &[("n", &1), ("m", &"two")]), "1 of two");
+        // engine text read back through the patterns
+        assert_eq!(match_pattern("{name}: depth must be > 0", "Cut out: depth must be > 0"), Some(vec![("name", "Cut out")]));
+        assert_eq!(match_pattern("{a} of {b}", "1 of 2 of 3"), Some(vec![("a", "1"), ("b", "2 of 3")]));
+        assert_eq!(match_pattern("{name}: depth must be > 0", "Cut out: depth is fine"), None);
+        assert_eq!(match_pattern("Total {n} min", "Total 4 min"), Some(vec![("n", "4")]));
+        assert_eq!(match_pattern("{a}{b}", "xy"), None);
+        assert!(pieces("no {braces here} at all").is_none());
+        assert_eq!(msg("not a string of the app"), "not a string of the app");
         set("en");
         assert_eq!(current(), "en");
+        assert_eq!(msg("Cut out: depth must be > 0"), "Cut out: depth must be > 0");
     }
 }

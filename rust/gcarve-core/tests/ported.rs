@@ -263,6 +263,10 @@ fn arcfit_circle_becomes_quadrant_arcs() {
 fn feeds_advisor() {
     use MaterialClass::*;
     assert!(classify_material("Baltic birch") == Plywood && classify_material("Red Oak") == Hardwood && classify_material("MDF") == Mdf);
+    // the picker's names in the app's languages
+    for (n, c) in [("Sperrholz", Plywood), ("Contreplaqué", Plywood), ("Compensato", Plywood), ("合板", Plywood), ("胶合板", Plywood), ("Bétula báltica", Plywood), ("Weichholz", Softwood), ("Madera blanda", Softwood), ("针叶 软木", Softwood), ("Acrylglas", Plastic), ("Acrílico", Plastic), ("アクリル", Plastic), ("Alluminio", Aluminum), ("Alumínio", Aluminum), ("铝", Aluminum), ("Schaumstoff", Foam), ("Mousse", Foam), ("泡沫", Foam), ("Hartholz", Hardwood)] {
+        assert!(classify_material(n) == c, "{n}");
+    }
     assert!(classify_material("pine") == Softwood && classify_material("cast acrylic") == Plastic && classify_material("6061 aluminum") == Aluminum);
     let q = Cutter { vbit: false, diameter: 0.25, flutes: 2 };
     let s = suggest_feeds(&q, "Plywood", 18000, 600.0);

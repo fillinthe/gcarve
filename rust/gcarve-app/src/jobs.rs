@@ -266,7 +266,7 @@ pub fn export_to_dir(doc: &gcarve_core::document::Document, stem: &str, dir: &Pa
     }
     let mut msg = format!("Exported {}", names.join(", "));
     if !r.safety.is_empty() {
-        msg += &format!(" ⚠ {}", r.safety.join("; "));
+        msg += &format!(" ⚠ {}", r.safety.iter().map(|w| i18n::msg(w)).collect::<Vec<_>>().join("; "));
     }
     Ok(msg)
 }

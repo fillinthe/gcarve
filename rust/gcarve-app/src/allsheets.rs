@@ -138,13 +138,13 @@ impl Canvas {
             let (o, (bw, bh)) = (self.sheet_rel(j), self.sheet_size(j));
             let board = Rect::from_two_pos(view.to_screen(o), view.to_screen(pt(o.x + bw, o.y + bh)));
             let count = self.doc.shapes.iter().filter(|s| s.sheet as usize == j).count();
-            let name = format!("{}  ·  {} × {}  ·  {count} vector{}", self.doc.sheet_name(j), crate::units::text(&self.doc, bw), crate::units::text(&self.doc, bh), if count == 1 { "" } else { "s" });
-            let short = format!("{}  ·  {count}", self.doc.sheet_name(j));
+            let name = i18n::tf("{sheet}  ·  {w} × {h}  ·  {count} vector{s}", &[("sheet", &crate::shell::sheet_name(&self.doc, j)), ("w", &crate::units::text(&self.doc, bw)), ("h", &crate::units::text(&self.doc, bh)), ("count", &count), ("s", &if count == 1 { "" } else { "s" })]);
+            let short = format!("{}  ·  {count}", crate::shell::sheet_name(&self.doc, j));
             let tiny = format!("{}", j + 1);
             if j as i32 == self.doc.active_sheet {
                 // the sheet being worked on: its name in the accent colour and a bar over the board
                 painter.rect_filled(Rect::from_min_size(board.left_top() - egui::vec2(0.0, 3.0), egui::vec2(board.width(), 3.0)), 1.0, theme::ACCENT);
-                label(board.left_top() - egui::vec2(0.0, 3.0), board.width(), &[format!("{name}  ·  editing"), name, short, tiny], theme::ACCENT);
+                label(board.left_top() - egui::vec2(0.0, 3.0), board.width(), &[format!("{name}  ·  {}", i18n::t("editing")), name, short, tiny], theme::ACCENT);
                 continue; // the active board and its shapes are drawn by `ui` as always
             }
             let (hot, over) = (target == Some(j), hovered == Some(j));
@@ -157,7 +157,7 @@ impl Canvas {
             };
             painter.rect(board, 0.0, Color32::from_rgba_unmultiplied(138, 122, 90, fill), stroke, egui::StrokeKind::Middle);
             let forms = if hot {
-                vec![i18n::tf("Drop to move to {doc}", &[("doc", &(self.doc.sheet_name(j)))]), format!("→ {}", j + 1), tiny]
+                vec![i18n::tf("Drop to move to {doc}", &[("doc", &(crate::shell::sheet_name(&self.doc, j)))]), format!("→ {}", j + 1), tiny]
             } else if over {
                 vec![format!("{name}  ·  click to work on it"), format!("{short}  ·  click to edit"), short, tiny]
             } else {

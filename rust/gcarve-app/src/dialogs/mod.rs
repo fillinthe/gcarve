@@ -593,7 +593,8 @@ pub fn hint(ui: &mut egui::Ui, text: &str) {
     ui.add(egui::Label::new(RichText::new(text).small().color(crate::theme::TEXT_DIM)).wrap());
 }
 
-pub const MATERIALS: [&str; 9] = ["Plywood", "Baltic birch", "MDF", "Hardwood", "Softwood", "Acrylic", "HDPE", "Aluminium", "Foam"];
+/// the picker's names, shown and kept in the UI language (`feeds::classify_material` knows them in every pack)
+pub const MATERIALS: [&str; 9] = ["Plywood", "Baltic birch", "MDF", "Hardwood", "Softwood", "Acrylic", "HDPE", "Aluminium", "Foam"]; // i18n
 
 /// Editable material combo (Qt editable ComboBox: type a name or pick one from the chevron).
 pub fn material_combo(ui: &mut egui::Ui, id: &str, text: &mut String, width: f32) -> bool {
@@ -605,8 +606,9 @@ pub fn material_combo(ui: &mut egui::Ui, id: &str, text: &mut String, width: f32
     crate::widgets::chevron(ui.painter(), br, if b.hovered() { crate::theme::TEXT } else { crate::theme::TEXT_DIM });
     egui::Popup::menu(&b).width(r.rect.width()).show(|ui| {
         for m in MATERIALS {
-            if ui.selectable_label(text == m, m).clicked() {
-                *text = m.to_string();
+            let m = i18n::tr(m);
+            if ui.selectable_label(*text == m, &m).clicked() {
+                *text = m;
                 changed = true;
             }
         }

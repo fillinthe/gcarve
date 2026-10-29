@@ -266,7 +266,7 @@ impl JobDialog {
                 ui.label(i18n::t("Sheet"));
                 ui.horizontal(|ui| {
                     for i in 0..sheets {
-                        if ui.selectable_label(i as i32 == active, doc.sheet_name(i)).clicked() {
+                        if ui.selectable_label(i as i32 == active, crate::shell::sheet_name(doc, i)).clicked() {
                             sheet_act = Some(i as i32);
                         }
                     }
