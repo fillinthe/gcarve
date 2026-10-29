@@ -27,24 +27,25 @@ fn has(s: &str, words: &[&str]) -> bool {
 }
 
 /// free text ("Baltic birch", "red oak", "HDPE"...) -> class
+/// (material names are free text, typed or picked in any of the app's languages: the words below cover those)
 pub fn classify_material(name: &str) -> MaterialClass {
     let s = name.to_ascii_lowercase();
     if has(&s, &["mdf", "fiberboard", "hdf", "particle"]) {
         return MaterialClass::Mdf;
     }
-    if has(&s, &["ply", "birch", "osb", "laminate", "melamine"]) {
+    if has(&s, &["ply", "birch", "osb", "laminate", "melamine", "sperrholz", "multiplex", "contreplaqu", "contrachapad", "compensad", "compensat", "birke", "bouleau", "betulla", "abedul", "bétula", "合板", "胶合板", "バーチ", "桦"]) {
         return MaterialClass::Plywood;
     }
-    if has(&s, &["alumin", "brass", "copper", "metal"]) {
+    if has(&s, &["alumin", "brass", "copper", "metal", "allumin", "alumín", "アルミ", "铝"]) {
         return MaterialClass::Aluminum;
     }
-    if has(&s, &["acrylic", "plexi", "hdpe", "pvc", "plastic", "polycarb", "lexan", "delrin", "acetal", "abs", "uhmw", "nylon", "corian", "solid surface"]) {
+    if has(&s, &["acrylic", "acryl", "acríl", "acril", "アクリル", "亚克力", "plexi", "hdpe", "pvc", "plastic", "polycarb", "lexan", "delrin", "acetal", "abs", "uhmw", "nylon", "corian", "solid surface"]) {
         return MaterialClass::Plastic;
     }
-    if has(&s, &["foam", "eps", "xps", "styro", "renshape", "tooling board", "sign foam", "hdu", "precision board"]) {
+    if has(&s, &["foam", "schaum", "mousse", "schiuma", "espuma", "フォーム", "発泡", "泡沫", "eps", "xps", "styro", "renshape", "tooling board", "sign foam", "hdu", "precision board"]) {
         return MaterialClass::Foam;
     }
-    if has(&s, &["pine", "cedar", "fir", "spruce", "poplar", "basswood", "redwood", "softwood", "alder", "cypress", "hemlock"]) {
+    if has(&s, &["pine", "cedar", "fir", "spruce", "poplar", "basswood", "redwood", "softwood", "alder", "cypress", "hemlock", "weichholz", "bois tendre", "legno tenero", "madera blanda", "madeira macia", "kiefer", "fichte", "sapin", "pino", "pinho", "針葉樹", "软木", "松"]) {
         return MaterialClass::Softwood;
     }
     MaterialClass::Hardwood // oak, maple, walnut, cherry, hardwoods, unknown

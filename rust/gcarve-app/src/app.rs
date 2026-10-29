@@ -626,12 +626,12 @@ impl App {
                 }
             }
             Loaded::Imported(n, note) => {
-                if self.name == "Untitled" {
+                if self.name == i18n::t("Untitled") {
                     self.name = name.rsplit_once('.').map(|(a, _)| a.to_string()).unwrap_or(name.clone());
                 }
                 self.canvas.mutated();
                 self.canvas.view = None;
-                self.message = format!("{name}: {n} shapes. {note}");
+                self.message = i18n::tf("{name}: {n} shapes. {note}", &[("name", &name), ("n", &n), ("note", &note)]);
                 if note.starts_with(i18n::t("cut list")) {
                     // the new parts and their labels: nested onto this board and as many more sheets as they need
                     let cut = self.canvas.doc.layers.iter().position(|l| l.name == "Cut list" || l.name == "Part labels");
@@ -649,7 +649,7 @@ impl App {
                 }
             },
             Loaded::Gcode(text) => {
-                if self.name == "Untitled" {
+                if self.name == i18n::t("Untitled") {
                     self.name = name.rsplit_once('.').map(|(a, _)| a.to_string()).unwrap_or(name.clone());
                 }
                 self.cam.gimport = Some(dialogs::gimport::GcodeImportDialog::new(&name, text, &self.canvas.doc));
@@ -1245,7 +1245,7 @@ impl App {
                 let flip = if lr { gcarve_core::geom::Affine { a: -1.0, d: 1.0, e: w, ..Default::default() } } else { gcarve_core::geom::Affine { a: 1.0, d: -1.0, f: h, ..Default::default() } };
                 let picked = &self.canvas.sel;
                 let copies: Vec<(gcarve_core::geom::Contour, i32)> = doc.shapes.iter().filter(|s| s.sheet == from && (picked.is_empty() || picked.contains(&s.id))).map(|s| (gcarve_core::geom::transformed(&s.c, &flip), s.layer)).collect();
-                let back_name = format!("Back of {}", doc.sheet_name(from as usize));
+                let back_name = i18n::tf("Back of {sheet}", &[("sheet", &crate::shell::sheet_name(doc, from as usize))]);
                 doc.sheets.push(gcarve_core::document::Material { name: back_name, back_of: Some((from, lr)), ..doc.material.clone() });
                 doc.set_active_sheet(doc.sheets.len() as i32 - 1);
                 let n = copies.len();
@@ -1764,7 +1764,7 @@ impl eframe::App for App {
         let job = self.project_path.as_ref().and_then(|p| self.jobs.job_for(p)).and_then(|j| j.file_name().map(|n| format!("{} › ", n.to_string_lossy()))).unwrap_or_default();
         #[cfg(target_arch = "wasm32")]
         let job = String::new();
-        let title = if self.canvas.doc.sheets.len() > 1 { format!("{dirty}{job}{} · {}", self.name, self.canvas.doc.sheet_name(self.canvas.doc.active_sheet.max(0) as usize)) } else { format!("{dirty}{job}{}", self.name) };
+        let title = if self.canvas.doc.sheets.len() > 1 { format!("{dirty}{job}{} · {}", self.name, crate::shell::sheet_name(&self.canvas.doc, self.canvas.doc.active_sheet.max(0) as usize)) } else { format!("{dirty}{job}{}", self.name) };
         let window_title = format!("{dirty}{} — GCarve", self.name);
         if window_title != self.title {
             ctx.send_viewport_cmd(egui::ViewportCommand::Title(window_title.clone()));
@@ -2328,7 +2328,7 @@ impl App {
         let raise = if air_cut { gcarve_core::cam::air_cut_raise(&self.canvas.doc.material) } else { 0.0 };
         let Some(r) = self.export_files(raise, None) else { return };
         if let Some(g) = self.gen.as_ref().filter(|g| !g.warnings.is_empty()) {
-            self.message = format!("⚠ {}", g.warnings.join(" · "));
+            self.message = format!("⚠ {}", g.warnings.iter().map(|w| i18n::msg(w)).collect::<Vec<_>>().join(" · "));
         }
         #[cfg(not(target_arch = "wasm32"))]
         let folder = self.project_path.as_ref().and_then(|p| self.jobs.job_for(p)).map(|j| j.join("gcode")).or_else(|| crate::store::load(EXPORT_FOLDER_KEY).map(PathBuf::from).filter(|p| p.is_dir()));
@@ -2431,7 +2431,7 @@ impl App {
             if !d.issues.is_empty() {
                 ui.add(egui::Label::new(RichText::new(i18n::t("The safety check found problems in this job. Fix them, or export anyway if you are sure:")).color(theme::WARNING).font(crate::widgets::bold(theme::FONT_SIZE))).wrap());
                 for i in &d.issues {
-                    ui.add(egui::Label::new(format!("• {i}")).wrap());
+                    ui.add(egui::Label::new(format!("• {}", i18n::msg(i))).wrap());
                 }
             }
             let go = if !d.issues.is_empty() { i18n::t("Export anyway") } else if cfg!(target_arch = "wasm32") { i18n::t("Download") } else { i18n::t("Export") };

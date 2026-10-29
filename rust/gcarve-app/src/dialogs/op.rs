@@ -362,7 +362,7 @@ impl OpDialog {
                         }
                         if doc.sheets.len() > 1 {
                             ui.label(i18n::t("Sheets")).tip(i18n::t("Which sheets it cuts on. All sheets: the same toolpath cuts its shapes on every sheet they're on (one setup, every sheet's file)."));
-                            let sheets: Vec<(i32, String)> = std::iter::once((-1, i18n::t("All sheets").to_string())).chain((0..doc.sheets.len()).map(|j| (j as i32, format!("{} only", doc.sheet_name(j))))).collect();
+                            let sheets: Vec<(i32, String)> = std::iter::once((-1, i18n::t("All sheets").to_string())).chain((0..doc.sheets.len()).map(|j| (j as i32, i18n::tf("{sheet} only", &[("sheet", &crate::shell::sheet_name(doc, j))])))).collect();
                             let refs: Vec<(i32, &str)> = sheets.iter().map(|(i, n)| (*i, n.as_str())).collect();
                             combo(ui, "scope-sheet", &mut self.op.sheet_scope, &refs, 200.0);
                             ui.end_row();

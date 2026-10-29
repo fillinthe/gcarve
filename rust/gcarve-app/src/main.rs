@@ -5,6 +5,7 @@ use gcarve_ui::i18n;
 mod app;
 mod app_icons;
 mod allsheets;
+mod enginetext;
 // shared with GSketch (../gcarve-ui): `crate::theme` etc. keep working
 use gcarve_ui::{cloud, fonts, icons, recover, spacemouse, store, theme, widgets};
 #[cfg(all(feature = "screenshot", not(target_arch = "wasm32")))]

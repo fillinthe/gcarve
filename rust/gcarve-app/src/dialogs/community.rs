@@ -343,13 +343,13 @@ impl ShareDialog {
         if doc.ops.is_empty() {
             problems.push(i18n::t("Add the toolpaths first: people open the project to cut it.").to_string());
         }
-        problems.extend(gen.warnings.iter().filter(|w| w.ends_with(i18n::t("no tool"))).cloned());
+        problems.extend(gen.warnings.iter().filter(|w| w.ends_with(": no tool")).cloned());
         if doc.ops.iter().zip(&gen.paths).all(|(_, p)| p.is_empty()) && !doc.ops.is_empty() {
             problems.push(i18n::t("The toolpaths cut nothing on this sheet.").to_string());
         }
         let pics: Vec<Pic> = crate::setupsheet::carved(doc, &gen, 1_200_000).and_then(|(rgba, w, h, _)| jpeg(&rgba, w, h)).and_then(|j| Pic::new(i18n::t("Simulated cut"), j)).into_iter().collect();
         let title = name.trim_end_matches(".tlp").trim_end_matches(".crv").to_string();
-        ShareDialog { title: if title == "Untitled" { String::new() } else { title }, summary: String::new(), tags: String::new(), license: 0, author: String::new(), rights: false, show_name: true, pics, cover: 0, minutes: gen.minutes.iter().sum(), problems, sending: false, sent: None, want_photo: false }
+        ShareDialog { title: if title == i18n::t("Untitled") { String::new() } else { title }, summary: String::new(), tags: String::new(), license: 0, author: String::new(), rights: false, show_name: true, pics, cover: 0, minutes: gen.minutes.iter().sum(), problems, sending: false, sent: None, want_photo: false }
     }
 
     pub fn add_photo(&mut self, name: &str, bytes: &[u8]) -> Result<(), String> {
