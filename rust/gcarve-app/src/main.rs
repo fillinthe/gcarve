@@ -27,6 +27,7 @@ mod setupsheet;
 mod inspector;
 mod layers;
 mod machinebrowser;
+mod mcp;
 mod mouse;
 mod onboarding;
 mod library;
@@ -50,6 +51,10 @@ mod units;
 
 #[cfg(not(target_arch = "wasm32"))]
 fn main() -> eframe::Result {
+    if std::env::args().nth(1).as_deref() == Some("--mcp") {
+        mcp::stdio_bridge();
+        return Ok(());
+    }
     if std::env::args().nth(1).as_deref() == Some("--dwg-to-dxf") {
         // helper for files::dwg_to_dxf: success = DXF text on stdout, failure = exit 1 with the message on stdout
         use std::io::{Read, Write};

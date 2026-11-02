@@ -431,7 +431,7 @@ impl JobDialog {
             doc.sync_sheet();
             match a {
                 -1 => sheet_add(doc),
-                -2 => sheet_remove(doc, doc.active_sheet),
+                -2 => doc.remove_sheet(doc.active_sheet),
                 i => doc.set_active_sheet(i),
             }
             host.canvas.apply_bindings(); // board-w / thickness and bound board fields follow
@@ -509,25 +509,6 @@ pub fn sheet_add(doc: &mut Document) {
     doc.set_active_sheet(doc.sheets.len() as i32 - 1);
 }
 
-/// Removes sheet `i` (shapes on it move to sheet 0, later sheets shift down); keeps at least one sheet.
-pub fn sheet_remove(doc: &mut Document, i: i32) {
-    if doc.sheets.len() <= 1 || i < 0 || i as usize >= doc.sheets.len() {
-        return;
-    }
-    doc.sync_sheet();
-    doc.sheets.remove(i as usize);
-    for s in &mut doc.shapes {
-        if s.sheet == i {
-            s.sheet = 0;
-        } else if s.sheet > i {
-            s.sheet -= 1;
-        }
-    }
-    let next = if doc.active_sheet >= i { (doc.active_sheet - 1).max(0) } else { doc.active_sheet };
-    doc.active_sheet = -1; // force the material reload
-    doc.set_active_sheet(next);
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -544,9 +525,12 @@ mod tests {
         doc.set_active_sheet(0);
         assert_eq!(doc.material.w, 10.0);
         assert_eq!(doc.sheets[1].w, 20.0);
-        sheet_remove(&mut doc, 1);
-        assert_eq!((doc.sheets.len(), doc.active_sheet, doc.find(id).unwrap().sheet), (1, 0, 0));
-        sheet_remove(&mut doc, 0);
+        doc.ops.push(gcarve_core::document::Op { sheet_scope: 1, ..Default::default() });
+        doc.pictures.push(gcarve_core::document::Picture { sheet: 1, w: 1.0, h: 1.0, data: "x".into(), ..Default::default() });
+        doc.remove_sheet(1);
+        // its shapes and the toolpath kept to it go to the sheet before; its picture goes
+        assert_eq!((doc.sheets.len(), doc.active_sheet, doc.find(id).unwrap().sheet, doc.ops[0].sheet_scope, doc.pictures.len()), (1, 0, 0, 0, 0));
+        doc.remove_sheet(0);
         assert_eq!(doc.sheets.len(), 1);
     }
 }

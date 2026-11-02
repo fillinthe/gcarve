@@ -596,6 +596,20 @@ pub fn anchor_frac(anchor: i32) -> (f64, f64) {
 
 pub const ANCHOR_NAMES: [&str; 9] = ["bottom-left", "bottom centre", "bottom-right", "middle left", "centre", "middle right", "top-left", "top centre", "top-right"];
 
+/// A picture to draw over by hand (VCarve's Import Bitmap): the file's bytes (PNG / JPEG) as base64, placed in inches
+/// on one sheet, drawn under the vectors. Never cut, not part of undo.
+#[derive(Clone, Debug, Default, PartialEq)]
+pub struct Picture {
+    pub sheet: i32,
+    pub x: f64,
+    pub y: f64,
+    pub w: f64,
+    pub h: f64,
+    /// 0..1
+    pub opacity: f64,
+    pub data: String,
+}
+
 /// Editable text: the glyph Shapes carry its id, so editing regenerates them in place.
 #[derive(Clone, Debug, PartialEq)]
 pub struct TextItem {
@@ -851,6 +865,7 @@ pub struct Document {
     pub active_sheet: i32,
     /// guide lines: (vertical, position in inches: x of a vertical guide, y of a horizontal one). Not part of undo.
     pub guides: Vec<(bool, f64)>,
+    pub pictures: Vec<Picture>,
     next_id: i32,
     undo: Vec<Snap>,
     redo: Vec<Snap>,
@@ -876,6 +891,7 @@ impl Default for Document {
             sheets: vec![Material::default()],
             active_sheet: 0,
             guides: Vec::new(),
+            pictures: Vec::new(),
             next_id: 1,
             undo: Vec::new(),
             redo: Vec::new(),
@@ -916,6 +932,38 @@ impl Document {
         if let Some(m) = self.sheets.get_mut(j) {
             m.name = name.trim().to_string();
         }
+    }
+
+    /// Removes sheet `i` (one always stays): its shapes go to the sheet before it, toolpaths kept to it follow them,
+    /// later sheets shift down, back sides of it become plain sheets, its pictures go
+    pub fn remove_sheet(&mut self, i: i32) {
+        if self.sheets.len() <= 1 || i < 0 || i as usize >= self.sheets.len() {
+            return;
+        }
+        self.sync_sheet();
+        let to = (i - 1).max(0);
+        let shift = |j: &mut i32| {
+            if *j == i {
+                *j = to
+            } else if *j > i {
+                *j -= 1
+            }
+        };
+        self.shapes.iter_mut().for_each(|s| shift(&mut s.sheet));
+        self.ops.iter_mut().filter(|o| o.sheet_scope >= 0).for_each(|o| shift(&mut o.sheet_scope));
+        self.pictures.retain(|p| p.sheet != i);
+        self.pictures.iter_mut().for_each(|p| shift(&mut p.sheet));
+        self.sheets.remove(i as usize);
+        for m in &mut self.sheets {
+            m.back_of = match m.back_of {
+                Some((f, _)) if f == i => None,
+                Some((f, lr)) if f > i => Some((f - 1, lr)),
+                other => other,
+            };
+        }
+        let next = if self.active_sheet >= i { (self.active_sheet - 1).max(0) } else { self.active_sheet };
+        self.active_sheet = -1; // reload the material from the list
+        self.set_active_sheet(next);
     }
 
     pub fn set_active_sheet(&mut self, i: i32) {

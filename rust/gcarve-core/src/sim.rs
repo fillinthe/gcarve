@@ -197,10 +197,14 @@ pub fn wood_of(kind: &str, d: f64, t: f64) -> (f64, f64, f64) {
         _ if k.contains("oak") => ((0.70, 0.55, 0.36), (0.90, 0.78, 0.58)),
         _ if k.contains("maple") || k.contains("birch") || k.contains("poplar") => ((0.86, 0.76, 0.58), (0.97, 0.91, 0.78)),
         _ if k.contains("pine") || k.contains("cedar") || k.contains("fir") => ((0.86, 0.70, 0.45), (0.96, 0.86, 0.65)),
-        _ if k.contains("mdf") => ((0.55, 0.42, 0.30), (0.70, 0.56, 0.42)),
-        _ if k.contains("hdpe") || k.contains("acrylic") || k.contains("plastic") || k.contains("pvc") => ((0.92, 0.92, 0.92), (0.80, 0.81, 0.84)),
-        _ if k.contains("alumin") => ((0.75, 0.77, 0.80), (0.88, 0.90, 0.92)),
-        _ => return wood(d, t),
+        _ if k.contains("birke") || k.contains("bouleau") || k.contains("betulla") || k.contains("bétula") || k.contains("abedul") || k.contains("バーチ") || k.contains("桦") => ((0.86, 0.76, 0.58), (0.97, 0.91, 0.78)),
+        // the rest by the feeds classifier, which knows the names in every UI language
+        _ => match crate::feeds::classify_material(kind) {
+            crate::feeds::MaterialClass::Mdf => ((0.55, 0.42, 0.30), (0.70, 0.56, 0.42)),
+            crate::feeds::MaterialClass::Plastic => ((0.92, 0.92, 0.92), (0.80, 0.81, 0.84)),
+            crate::feeds::MaterialClass::Aluminum => ((0.75, 0.77, 0.80), (0.88, 0.90, 0.92)),
+            _ => return wood(d, t),
+        },
     };
     if d <= 1e-5 {
         return top;
@@ -308,6 +312,10 @@ mod tests {
         assert_eq!(wood_of("Baltic birch plywood", 0.0, 0.75), wood_of("Maple", 0.0, 0.75));
         assert!(wood_of("Walnut", 0.0, 0.75).0 < 0.4 && wood_of("Plywood", 0.1, 0.75) == wood(0.1, 0.75));
         assert!(wood_of("Oak", 0.6, 0.75).0 < wood_of("Oak", 0.05, 0.75).0, "deeper is darker");
+        // board names in the UI languages get their look too
+        assert_eq!(wood_of("Acrílico", 0.0, 0.75), wood_of("Acrylic", 0.0, 0.75));
+        assert_eq!(wood_of("アルミニウム", 0.0, 0.75), wood_of("Aluminium", 0.0, 0.75));
+        assert_eq!(wood_of("Birke Multiplex", 0.0, 0.75), wood_of("Baltic birch", 0.0, 0.75));
     }
 
     #[test]

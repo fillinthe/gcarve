@@ -471,7 +471,7 @@ impl Canvas {
         made
     }
 
-    fn text_centre(&self, id: i32) -> Option<(Pt, i32)> {
+    pub fn text_centre(&self, id: i32) -> Option<(Pt, i32)> {
         let mut b = Rect::default();
         let mut layer = -1;
         for s in self.doc.shapes.iter().filter(|s| s.text == id) {

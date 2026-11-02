@@ -624,6 +624,9 @@ pub fn save_project(d: &Document) -> String {
         // only when there are any: files without guides stay byte-identical to the Qt app's
         root["guides"] = d.guides.iter().map(|&(v, at)| json!({"v": v, "at": at})).collect();
     }
+    if !d.pictures.is_empty() {
+        root["pictures"] = d.pictures.iter().map(|p| json!({"sheet": p.sheet, "x": p.x, "y": p.y, "w": p.w, "h": p.h, "opacity": p.opacity, "data": p.data})).collect();
+    }
     qt_json(&root, true)
 }
 
@@ -698,6 +701,11 @@ pub fn load_project(text: &str) -> Result<Document, String> {
         })
         .collect();
     out.guides = arr(get(&root, "guides")).iter().map(|o| (flag(o, "v", false), num(o, "at", 0.0))).collect();
+    out.pictures = arr(get(&root, "pictures"))
+        .iter()
+        .map(|o| Picture { sheet: int(o, "sheet", 0), x: num(o, "x", 0.0), y: num(o, "y", 0.0), w: num(o, "w", 1.0), h: num(o, "h", 1.0), opacity: num(o, "opacity", 0.5), data: to_str(get(o, "data"), "") })
+        .filter(|p| !p.data.is_empty() && p.w > 0.0 && p.h > 0.0)
+        .collect();
     out.next_relief_id = int(&root, "nextReliefId", 1).max(out.reliefs.len() as i32 + 1);
     out.sheets = arr(get(&root, "sheets")).iter().map(material_from).collect();
     if out.sheets.is_empty() {
@@ -1017,5 +1025,8 @@ mod guide_tests {
         d.guides = vec![(true, 1.5), (false, 3.25)];
         let back = load_project(&save_project(&d)).unwrap();
         assert_eq!(back.guides, d.guides);
+        assert!(!save_project(&d).contains("pictures"));
+        d.pictures = vec![Picture { sheet: 0, x: 1.0, y: 2.0, w: 3.0, h: 1.5, opacity: 0.4, data: "iVBORw0K".into() }];
+        assert_eq!(load_project(&save_project(&d)).unwrap().pictures, d.pictures);
     }
 }

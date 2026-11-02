@@ -69,6 +69,14 @@ pub const ENGINE_TEXT: &[&str] = &[ // i18n
     "{bit}: feed {feed} in/min is above the machine's {max} in/min.",
     "{bit}: plunge {feed} in/min is above the machine's {max} in/min.",
     "Rotary job: the \"{post}\" post writes plain numbers and can't name an A axis; choose a G-code post for the rotary.",
+    "{name}: rounding needs a rotary job (Job Setup › Rotary)",
+    "Board {w} × {h} in is bigger than the {machine} travel ({tx} × {ty} in).",
+    "{name}: 3D model not loaded",
+    "{name}: relief has no model loaded",
+    "{name}: relief is deeper than the material",
+    "Tiling doesn't apply to a rotary job: the files are NOT tiled.",
+    "Tiling needs XY zero at the board's bottom-left corner (Board settings): the files are NOT tiled.",
+    "Tiling: the tile length must be larger than the overlap: the files are NOT tiled.",
 ];
 
 #[cfg(test)]
@@ -80,24 +88,16 @@ mod tests {
     fn engine_warnings_match_their_patterns_and_every_pack_has_them() {
         // (no i18n::set here: the language is global and other tests run alongside)
         let packs: Vec<std::collections::HashMap<String, String>> = i18n::LANGS.iter().skip(1).map(|(_, _, j)| serde_json::from_str(j).unwrap()).collect();
+        // names with spaces and commas, the way real toolpath, bit and machine names look; plural bits are one word
+        let val = |n: &str| if n.starts_with('s') && n.len() <= 2 { "are" } else { "Pocket 2, V-Carve 1" };
         for k in ENGINE_TEXT {
-            let filled = regex_free_fill(&k.replace("{name}", "Cut out").replace("{who}", "Cut out (V90)"));
-            assert!(!k.contains('{') || i18n::match_pattern(k, &filled).is_some(), "{k} doesn't match its own text");
+            let filled = i18n::fill(k, |n| Some(val(n)));
+            if k.contains('{') {
+                let caps = i18n::match_pattern(k, &filled).unwrap_or_else(|| panic!("{k} doesn't match its own text"));
+                assert!(caps.iter().all(|(n, c)| *c == val(n)), "{k} reads {caps:?} back");
+            }
             assert!(packs.iter().all(|p| p.get(*k).is_some_and(|v| !v.is_empty())), "{k} is not in every pack");
         }
         assert_eq!(i18n::match_pattern("{name}: depth must be > 0", "Cut out: depth must be > 0"), Some(vec![("name", "Cut out")]));
-    }
-
-    /// the remaining `{x}` placeholders filled with a number
-    fn regex_free_fill(s: &str) -> String {
-        let mut out = String::new();
-        let mut rest = s;
-        while let Some(i) = rest.find('{') {
-            let Some(j) = rest[i..].find('}') else { break };
-            out += &rest[..i];
-            out += "2";
-            rest = &rest[i + j + 1..];
-        }
-        out + rest
     }
 }

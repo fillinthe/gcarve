@@ -132,11 +132,12 @@ pub fn send(doc: &Document, gen: Option<&Generated>, project: &str) -> String {
         r.files.first().map(|f| f.filename.clone())
     };
     open(first.as_ref());
-    let mut msg = format!("Sent {n} file(s) to GCarve Control");
-    if !r.safety.is_empty() {
-        msg += &format!(". SAFETY: {}", r.safety.join(" "));
+    let msg = i18n::tf("Sent {n} file(s) to GCarve Control", &[("n", &n)]);
+    if r.safety.is_empty() {
+        return msg;
     }
-    msg
+    let list = r.safety.iter().map(|w| i18n::msg(w)).collect::<Vec<_>>().join(" ");
+    i18n::tf("{sent}. SAFETY: {list}", &[("sent", &msg), ("list", &list)])
 }
 
 /// File ▸ Open GCarve Control: its own process (desktop) or browser tab (web). A second desktop instance exits at once

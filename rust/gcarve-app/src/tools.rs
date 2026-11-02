@@ -540,6 +540,31 @@ impl Canvas {
             }
         }
 
+        // Picture Settings open: a drag that starts on the picture (not on a vector) moves it
+        if self.pic_pick.0 > 0 {
+            self.pic_pick.0 -= 1;
+            let i = self.pic_pick.1;
+            if drag_started && self.hit_shape(press_w).is_none() {
+                if let Some(p) = self.doc.pictures.get(i) {
+                    if (p.x..=p.x + p.w).contains(&press_w.x) && (p.y..=p.y + p.h).contains(&press_w.y) {
+                        self.pic_drag = Some(press_w);
+                    }
+                }
+            }
+            if let Some(last) = self.pic_drag {
+                if let (Some(w), Some(p)) = (hover_w, self.doc.pictures.get_mut(i)) {
+                    (p.x, p.y) = (p.x + w.x - last.x, p.y + w.y - last.y);
+                    self.pic_drag = Some(w);
+                    self.dirty = true;
+                }
+                if resp.drag_stopped() {
+                    self.pic_drag = None;
+                }
+                return status;
+            }
+        } else {
+            self.pic_drag = None;
+        }
         // placing tabs by hand (the toolpath dialog is open): a click goes to the dialog, nothing else reacts
         if self.tab_pick > 0 {
             self.tab_pick -= 1;

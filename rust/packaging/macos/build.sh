@@ -18,10 +18,10 @@ rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 lipo -create -output "$APP/Contents/MacOS/gcarve" target/aarch64-apple-darwin/dist/gcarve target/x86_64-apple-darwin/dist/gcarve
 cp "$REPO/app/branding/appicon.icns" "$REPO/app/branding/docicon.icns" "$APP/Contents/Resources/"
-# app/Info.plist.in with the CMake placeholders filled; minimum = the Intel floor (the arm64 slice needs 11 anyway)
+# Info.plist.in with the CMake placeholders filled; minimum = the Intel floor (the arm64 slice needs 11 anyway)
 sed -e 's/${MACOSX_BUNDLE_EXECUTABLE_NAME}/gcarve/' -e "s/\${MACOSX_BUNDLE_BUNDLE_VERSION}/$VERSION/" \
     -e "s/\${MACOSX_BUNDLE_SHORT_VERSION_STRING}/$VERSION/" -e "s#<string>12.0</string>#<string>$MIN_X86</string>#" \
-    "$REPO/app/Info.plist.in" > "$APP/Contents/Info.plist"
+    "$RUST/packaging/macos/Info.plist.in" > "$APP/Contents/Info.plist"
 plutil -lint "$APP/Contents/Info.plist" >/dev/null
 if [ "${GCARVE_RELEASE:-}" = 1 ]; then
     SIGN="$REPO/signing"

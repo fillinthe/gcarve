@@ -18,9 +18,11 @@ use crate::order::{optimize_order, order_toolpaths};
 // Input types live in document.rs (one definition for the document, project files and CAM); re-exported here.
 pub use crate::document::{Entry, FeedPreset, Material, Op, OpType, Side, Tool, ToolType};
 
+/// The preset named like the board, else one named like it in another UI language (a German "Sperrholz" board uses a
+/// "Plywood" preset: `feeds::same_material`)
 pub fn preset_for<'a>(t: &'a Tool, material: &str) -> Option<&'a FeedPreset> {
     let key = material.to_ascii_lowercase();
-    t.presets.iter().find(|p| p.material.to_ascii_lowercase() == key)
+    t.presets.iter().find(|p| p.material.to_ascii_lowercase() == key).or_else(|| t.presets.iter().find(|p| crate::feeds::same_material(&p.material, material)))
 }
 
 /// Base tool with the matching preset applied.

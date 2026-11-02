@@ -931,6 +931,10 @@ pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, m: &Menu
                 item(ui, sh, i18n::t("Snap Settings…"), "", true, "snap:settings");
                 item(ui, sh, i18n::t("Clear Guides"), "", !canvas.doc.guides.is_empty(), "guides:clear");
                 widgets::menu_separator(ui);
+                item(ui, sh, i18n::t("Picture to Draw Over…"), "", true, "picture");
+                if canvas.doc.pictures.iter().any(|p| p.sheet == canvas.doc.active_sheet) {
+                    item(ui, sh, i18n::t("Picture Settings…"), "", true, "picture:edit");
+                }
                 item(ui, sh, i18n::t("Photo of the Board…"), "", true, "boardphoto");
                 if let Some(b) = &canvas.board_photo {
                     item(ui, sh, if b.show { i18n::t("Hide the Board Photo") } else { i18n::t("Show the Board Photo") }, "", true, "boardphoto:toggle");
@@ -977,6 +981,9 @@ pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, m: &Menu
                 item(ui, sh, i18n::t("Support Page"), "", true, "support");
                 item(ui, sh, i18n::t("GCarve Website"), "", true, "website");
                 item(ui, sh, i18n::t("Report a Bug…"), "", true, "bug");
+                if !cfg!(target_arch = "wasm32") {
+                    item(ui, sh, i18n::t("AI Assistants…"), "", true, "mcp");
+                }
                 // web: the free desktop apps; desktop: check for a newer version
                 if cfg!(target_arch = "wasm32") {
                     item(ui, sh, i18n::t("Download the Desktop App"), "", true, "download");

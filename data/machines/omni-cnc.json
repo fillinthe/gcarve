@@ -59,12 +59,12 @@
    "controllers": [
     {
      "name": "DSP handheld controller",
-     "gcarve_post": null,
+     "gcarve_post": "richauto-mm",
      "default": true
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     },
     {
@@ -160,12 +160,12 @@
    "controllers": [
     {
      "name": "DSP handheld controller",
-     "gcarve_post": null,
+     "gcarve_post": "richauto-mm",
      "default": true
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     },
     {
@@ -261,12 +261,12 @@
    "controllers": [
     {
      "name": "DSP handheld controller",
-     "gcarve_post": null,
+     "gcarve_post": "richauto-mm",
      "default": true
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     },
     {
@@ -362,12 +362,12 @@
    "controllers": [
     {
      "name": "DSP handheld controller",
-     "gcarve_post": null,
+     "gcarve_post": "richauto-mm",
      "default": true
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     },
     {
@@ -462,12 +462,12 @@
    "controllers": [
     {
      "name": "DSP handheld controller",
-     "gcarve_post": null,
+     "gcarve_post": "richauto-mm",
      "default": true
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     },
     {
@@ -562,12 +562,12 @@
    "controllers": [
     {
      "name": "DSP handheld controller",
-     "gcarve_post": null,
+     "gcarve_post": "richauto-mm",
      "default": true
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     },
     {
@@ -1569,12 +1569,12 @@
    "controllers": [
     {
      "name": "DSP handheld controller",
-     "gcarve_post": null,
+     "gcarve_post": "richauto-mm",
      "default": true
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     },
     {
@@ -1669,12 +1669,12 @@
    "controllers": [
     {
      "name": "DSP handheld controller",
-     "gcarve_post": null,
+     "gcarve_post": "richauto-mm",
      "default": true
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     },
     {
@@ -1769,12 +1769,12 @@
    "controllers": [
     {
      "name": "DSP handheld controller",
-     "gcarve_post": null,
+     "gcarve_post": "richauto-mm",
      "default": true
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     },
     {
@@ -1869,12 +1869,12 @@
    "controllers": [
     {
      "name": "DSP handheld controller",
-     "gcarve_post": null,
+     "gcarve_post": "richauto-mm",
      "default": true
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     },
     {
@@ -1969,12 +1969,12 @@
    "controllers": [
     {
      "name": "DSP handheld controller",
-     "gcarve_post": null,
+     "gcarve_post": "richauto-mm",
      "default": true
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     },
     {
@@ -2069,12 +2069,12 @@
    "controllers": [
     {
      "name": "DSP handheld controller",
-     "gcarve_post": null,
+     "gcarve_post": "richauto-mm",
      "default": true
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     },
     {
@@ -2180,7 +2180,7 @@
     },
     {
      "name": "Siemens",
-     "gcarve_post": null,
+     "gcarve_post": "siemens-mm",
      "default": false
     },
     {
@@ -2275,7 +2275,7 @@
     },
     {
      "name": "Siemens",
-     "gcarve_post": null,
+     "gcarve_post": "siemens-mm",
      "default": false
     },
     {

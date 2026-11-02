@@ -154,6 +154,8 @@ pub struct Canvas {
     pub all_sheets: bool,
     /// a straightened photo of the board under the drawing (dialogs/boardphoto.rs), this session only
     pub board_photo: Option<crate::dialogs::boardphoto::BoardPhoto>,
+    /// textures of `doc.pictures`, by `picture_key` (None = the data isn't a picture)
+    pub(crate) pic_tex: std::collections::HashMap<(usize, u64), Option<egui::TextureHandle>>,
     /// a one-finger touch that began on empty canvas: it pans instead of drawing a selection box
     pub(crate) touch_pan: bool,
     /// a finger is on the screen this frame (touch devices)
@@ -242,6 +244,9 @@ pub struct Canvas {
     /// a drag while placing tabs: (where it started, where the pointer is, released)
     pub(crate) tab_drag: Option<(Pt, Pt, bool)>,
     pub(crate) tab_marks: Vec<[f64; 2]>,
+    /// Picture Settings open: (frames left, picture index); a drag on the picture moves it from pic_drag (last point)
+    pub(crate) pic_pick: (u8, usize),
+    pub(crate) pic_drag: Option<Pt>,
     /// dev hook for screenshots (GCARVE_DIALOG=shapemenu|sizepopup), resolved once the canvas rect is known
     pub(crate) shot_hook: String,
     /// the start card's ✕ hides it for this document only
@@ -316,6 +321,7 @@ impl Default for Canvas {
             paths_only: None,
             all_sheets: false,
             board_photo: None,
+            pic_tex: Default::default(),
             touch_pan: false,
             touching: false,
             show_width: true,
@@ -367,6 +373,8 @@ impl Default for Canvas {
             tab_pick: 0,
             tab_clicks: Vec::new(),
             tab_drag: None,
+            pic_pick: (0, 0),
+            pic_drag: None,
             tab_marks: Vec::new(),
             shot_hook: String::new(),
             card_closed: false,
@@ -394,6 +402,16 @@ pub(crate) const SELECTED: Color32 = c(0xff9f1a);
 /// measure readout, snap ring, datum (Theme.highlightText)
 pub(crate) const HIGHLIGHT: Color32 = c(0xffd34d);
 pub(crate) const DIM_COLOR: Color32 = Color32::from_rgb(0x9a, 0xd0, 0xff);
+
+/// a cheap key for a picture's base64 text: its length and a hash of its two ends
+fn picture_key(data: &str) -> (usize, u64) {
+    use std::hash::{Hash, Hasher};
+    let mut h = std::collections::hash_map::DefaultHasher::new();
+    let b = data.as_bytes();
+    b[..b.len().min(256)].hash(&mut h);
+    b[b.len().saturating_sub(256)..].hash(&mut h);
+    (b.len(), h.finish())
+}
 
 impl Canvas {
     /// Zoom to the visible shapes (the board when there are none).
@@ -541,6 +559,20 @@ impl Canvas {
         if let Some((bp, tex)) = self.board_photo.as_ref().filter(|b| b.show && b.sheet == self.doc.active_sheet).and_then(|b| b.tex.as_ref().map(|t| (b, t))) {
             let _ = bp;
             painter.image(tex.id(), board, Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)), Color32::from_white_alpha(170));
+        }
+        // pictures to draw over (View › Picture to Draw Over…)
+        if self.pic_tex.len() > 16 {
+            self.pic_tex.clear(); // ponytail: drop all and reload the shown ones, an LRU if people keep many pictures
+        }
+        for p in self.doc.pictures.iter().filter(|p| p.sheet == self.doc.active_sheet) {
+            let tex = self.pic_tex.entry(picture_key(&p.data)).or_insert_with(|| {
+                let img = image::load_from_memory(&gcarve_core::photo::b64_decode(&p.data)).ok()?.to_rgba8();
+                Some(ui.ctx().load_texture("picture", egui::ColorImage::from_rgba_unmultiplied([img.width() as usize, img.height() as usize], img.as_raw()), egui::TextureOptions::LINEAR))
+            });
+            if let Some(tex) = tex {
+                let r = Rect::from_two_pos(view.to_screen(pt(p.x, p.y)), view.to_screen(pt(p.x + p.w, p.y + p.h)));
+                painter.image(tex.id(), r, Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)), Color32::from_white_alpha((p.opacity.clamp(0.0, 1.0) * 255.0) as u8));
+            }
         }
         painter.rect(board, 0.0, Color32::from_rgba_unmultiplied(138, 122, 90, 28), Stroke::new(1.0, c(0x8a7a5a)), egui::StrokeKind::Middle);
         self.paint_reliefs(ui.ctx(), &painter);

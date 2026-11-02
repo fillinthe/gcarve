@@ -28,6 +28,26 @@ fn has(s: &str, words: &[&str]) -> bool {
 
 /// free text ("Baltic birch", "red oak", "HDPE"...) -> class
 /// (material names are free text, typed or picked in any of the app's languages: the words below cover those)
+/// The board picker's names (gcarve-app `dialogs::MATERIALS`, same order) in every UI language; the app checks this
+/// table against its language packs
+pub const MATERIAL_NAMES: [&[&str]; 9] = [
+    &["Plywood", "Contrachapado", "Sperrholz", "Contreplaqué", "Compensato", "Compensado", "合板", "胶合板"],
+    &["Baltic birch", "Abedul báltico", "Birke Multiplex", "Bouleau balte", "Betulla baltica", "Bétula báltica", "バルチックバーチ合板", "波罗的海桦木胶合板"],
+    &["MDF"],
+    &["Hardwood", "Madera dura", "Hartholz", "Bois dur", "Legno duro", "Madeira de lei", "広葉樹材", "硬木"],
+    &["Softwood", "Madera blanda", "Weichholz", "Bois tendre", "Legno tenero", "Madeira macia", "針葉樹材", "软木"],
+    &["Acrylic", "Acrílico", "Acrylglas", "Acrylique", "Acrilico", "アクリル", "亚克力"],
+    &["HDPE"],
+    &["Aluminium", "Aluminum", "Aluminio", "Alluminio", "Alumínio", "アルミニウム", "铝"],
+    &["Foam", "Espuma", "Schaumstoff", "Mousse", "Schiuma", "フォーム", "泡沫"],
+];
+
+/// Two material names for the same picker entry, whatever language each was typed in (case ignored)
+pub fn same_material(a: &str, b: &str) -> bool {
+    let (a, b) = (a.trim().to_lowercase(), b.trim().to_lowercase());
+    a == b || MATERIAL_NAMES.iter().any(|row| row.iter().any(|n| n.to_lowercase() == a) && row.iter().any(|n| n.to_lowercase() == b))
+}
+
 pub fn classify_material(name: &str) -> MaterialClass {
     let s = name.to_ascii_lowercase();
     if has(&s, &["mdf", "fiberboard", "hdf", "particle"]) {
