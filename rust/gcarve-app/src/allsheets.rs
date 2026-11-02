@@ -65,12 +65,28 @@ impl Canvas {
         if let Some(v) = &mut self.view {
             v.origin += egui::vec2(r.x as f32 * v.zoom, -(r.y as f32) * v.zoom);
         }
+        self.go_to_sheet(j);
+        pt(-r.x, -r.y)
+    }
+
+    /// Makes sheet `j` the active one (selection cleared, bindings re-applied: thickness / board-w are this sheet's).
+    pub fn go_to_sheet(&mut self, j: usize) {
         self.doc.set_active_sheet(j as i32);
         self.sel.clear();
         self.sel_changed();
-        self.apply_bindings(); // thickness / board-w are this sheet's
+        self.apply_bindings();
         self.mutated();
-        pt(-r.x, -r.y)
+    }
+
+    /// A new sheet with this board, unnamed and not anyone's back side; it becomes the active one.
+    pub fn add_sheet(&mut self) {
+        let doc = &mut self.doc;
+        doc.checkpoint();
+        doc.sync_sheet();
+        doc.sheets.push(gcarve_core::document::Material { name: String::new(), back_of: None, ..doc.material.clone() });
+        doc.set_active_sheet(doc.sheets.len() as i32 - 1);
+        self.sel.clear();
+        self.touch();
     }
 
     /// End of a move drag: a selection whose centre is over another sheet's board goes to that sheet (shifted into

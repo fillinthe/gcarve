@@ -343,7 +343,7 @@ impl ShareDialog {
         if doc.ops.is_empty() {
             problems.push(i18n::t("Add the toolpaths first: people open the project to cut it.").to_string());
         }
-        problems.extend(gen.warnings.iter().filter(|w| w.ends_with(": no tool")).cloned());
+        problems.extend(gen.warnings.iter().filter(|w| w.ends_with(": no tool")).map(|w| i18n::msg(w)));
         if doc.ops.iter().zip(&gen.paths).all(|(_, p)| p.is_empty()) && !doc.ops.is_empty() {
             problems.push(i18n::t("The toolpaths cut nothing on this sheet.").to_string());
         }

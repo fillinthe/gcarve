@@ -59,7 +59,7 @@
    "controllers": [
     {
      "name": "DSP / Mach3 / NcStudio (choice)",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": true
     },
     {
@@ -154,7 +154,7 @@
    "controllers": [
     {
      "name": "DSP",
-     "gcarve_post": null,
+     "gcarve_post": "richauto-mm",
      "default": true
     },
     {
@@ -337,7 +337,7 @@
    "controllers": [
     {
      "name": "DSP",
-     "gcarve_post": null,
+     "gcarve_post": "richauto-mm",
      "default": true
     },
     {
@@ -1233,7 +1233,7 @@
    "controllers": [
     {
      "name": "DSP controller (make not stated)",
-     "gcarve_post": null,
+     "gcarve_post": "richauto-mm",
      "default": true
     },
     {
@@ -1529,7 +1529,7 @@
    "controllers": [
     {
      "name": "DSP controller (make not stated)",
-     "gcarve_post": null,
+     "gcarve_post": "richauto-mm",
      "default": true
     },
     {
@@ -1539,7 +1539,7 @@
     },
     {
      "name": "Weihong NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     }
    ],
@@ -3369,7 +3369,7 @@
     },
     {
      "name": "Weihong",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     }
    ],

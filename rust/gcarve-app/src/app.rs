@@ -64,6 +64,8 @@ const MAX_SIM_SPEED: f64 = 200.0;
 
 pub struct App {
     canvas: Canvas,
+    /// AI assistants over MCP (Help › AI Assistants…, mcp.rs)
+    mcp: crate::mcp::State,
     mode: Mode,
     left_open: bool,
     right_open: bool,
@@ -212,7 +214,7 @@ impl App {
         gcarve_ui::help::init("fillinthe/gcarve", env!("CARGO_PKG_VERSION"));
         gcarve_ui::help::offer_crash_reports(); // "it stopped last time: tell us?" (crash.txt from the panic hooks)
         gcarve_ui::help::set_download_page("https://gcarve.app/download/");
-        let mut app = App { files, mode, canvas: new_canvas(&prefs), left_open: ui_state.tool_rail, right_open: ui_state.side_panel, status: String::new(), message: i18n::t("Open a VCarve project (.crv), an SVG, DXF or PDF, or draw with R / E / P.").into(), name: i18n::t("Untitled").into(), shell: Shell::new(), frame: 0, gen: None, gen_rev: 0, gen_cov: Vec::new(), edit_seen: (0, None), edit_at: 0.0, show_paths: shot || crate::store::load("show-paths").as_deref() != Some("0"), all_paths: std::env::var("GCARVE_ALL_PATHS").map_or(shot || crate::store::load("design-all-paths").as_deref() == Some("1"), |v| v == "1"), lib_ready: false, lib_pushed: 0, shares: Vec::new(), shares_open: false,
+        let mut app = App { mcp: Default::default(), files, mode, canvas: new_canvas(&prefs), left_open: ui_state.tool_rail, right_open: ui_state.side_panel, status: String::new(), message: i18n::t("Open a VCarve project (.crv), an SVG, DXF or PDF, or draw with R / E / P.").into(), name: i18n::t("Untitled").into(), shell: Shell::new(), frame: 0, gen: None, gen_rev: 0, gen_cov: Vec::new(), edit_seen: (0, None), edit_at: 0.0, show_paths: shot || crate::store::load("show-paths").as_deref() != Some("0"), all_paths: std::env::var("GCARVE_ALL_PATHS").map_or(shot || crate::store::load("design-all-paths").as_deref() == Some("1"), |v| v == "1"), lib_ready: false, lib_pushed: 0, shares: Vec::new(), shares_open: false,
             share_project: None, gen_draft: None, export: None, cloud: Cloud::new(), cloud_id: String::new(), account: Default::default(), help: Default::default(), movie: std::env::var("GCARVE_MOVIE").ok().map(|d| (d.into(), 0, std::env::var("GCARVE_MOVIE_FRAMES").ok().and_then(|n| n.parse().ok()).unwrap_or(600), false)), projects: Default::default(), dialogs: Dialogs::default(), select_all_on_load: false, prev_tool: Tool::Select, dev_measure: false,
             prefs_seen: prefs.synced.clone(), prefs_push_at: None, prefs_from_server: false,
             cam: CamDialogs { prefs, ..Default::default() }, posts: UserPosts::load(), templates: Default::default(), player: Player::default(), view3d: View3d::load(shot), sim_wait: false, export_group: None, all_sheets: !shot && crate::store::load("all-sheets").as_deref() == Some("1") || std::env::var("GCARVE_ALL_SHEETS").is_ok(), opening: Vec::new(), open_wait: false, gen_wait: false, puck_tried: shot, puck_filter: Default::default(), puck_trace: Default::default(), view_3d: false, watch_pending: false, show_sim: false, shot, pending_dialog: String::new(), recover: if shot { None } else { crate::recover::load() }, recover_at: None, recover_rev: 0, last_dirty: false, last_open: false,
@@ -273,6 +275,7 @@ impl App {
         }
         app.account.gate = dialog == "licence"; // dev: the desktop licence gate in a screenshot
         app.guide.open = dialog == "guide"; // dev: Help ▸ How Do I…?
+        app.mcp.open = dialog == "mcp"; // dev: Help › AI Assistants…
         app.dev_measure = dialog == "measure"; // dev: a finished measurement, set once the project has loaded
         app.account.open |= app.account.gate;
         app.projects.open = dialog == "cloud";
@@ -924,6 +927,7 @@ impl App {
                 self.message = i18n::tf("Post-processor: {posts}", &[("posts", &(self.posts.all().into_iter().find(|(p, _)| p.id == pid).map(|(p, _)| p.name).unwrap_or_else(|| pid.into())))]);
             }
             ("about", _) => self.about_open = true,
+            ("mcp", _) if !Cloud::web() => self.mcp.open = true,
             ("guide", _) => self.guide.open = true,
             ("shortcuts", _) => self.guide.open_for("shortcuts"),
             ("manage", _) => self.cloud.open_web(ctx, "/dashboard/"),
@@ -1020,6 +1024,8 @@ impl App {
             ("boardphoto", "remove") => self.canvas.board_photo = None,
             ("halftone", _) => self.files.pick_into(ctx, "Picture for the halftone (PNG, JPEG, WebP)", files::IMAGE_EXTS, "halftone"),
             ("boardphoto", _) => self.files.pick_into(ctx, "Photo of the board (PNG, JPEG, WebP)", files::IMAGE_EXTS, "boardphoto"),
+            ("picture", "edit") => self.cam.picture = dialogs::picture::PictureDialog::for_sheet(&self.canvas.doc),
+            ("picture", _) => self.files.pick_into(ctx, i18n::t("Picture to draw over (PNG, JPEG, WebP)"), files::IMAGE_EXTS, "picture"),
             ("trace", _) => self.files.pick_into(ctx, "Images (.png, .jpg, .webp)", files::IMAGE_EXTS, "image"),
             ("prefs", _) => self.cam.prefs_open = true,
             ("vars", _) => self.cam.vars = Some(Default::default()),
@@ -1225,14 +1231,7 @@ impl App {
                     self.zoom_by(k);
                 }
             }
-            ("sheet", "add") => {
-                let doc = &mut self.canvas.doc;
-                doc.checkpoint();
-                doc.sync_sheet();
-                doc.sheets.push(gcarve_core::document::Material { name: String::new(), back_of: None, ..doc.material.clone() }); // a new sheet starts unnamed, not anyone's back
-                doc.set_active_sheet(doc.sheets.len() as i32 - 1);
-                self.canvas.touch();
-            }
+            ("sheet", "add") => self.canvas.add_sheet(),
             // Two-sided job: a new sheet with the same board and a mirrored copy of the vectors (the selection, or
             // everything on this sheet), so cuts made after flipping the board line up with the first side.
             ("sheet", v @ ("back-lr" | "back-tb")) => {
@@ -1256,22 +1255,8 @@ impl App {
             ("sheet", "remove") => {
                 let doc = &mut self.canvas.doc;
                 if doc.sheets.len() > 1 {
-                    let i = doc.active_sheet;
                     doc.checkpoint();
-                    let to = (i - 1).max(0);
-                    for s in &mut doc.shapes {
-                        if s.sheet == i { s.sheet = to } else if s.sheet > i { s.sheet -= 1 }
-                    }
-                    doc.sheets.remove(i as usize);
-                    // back sides keep pointing at their front (gone: they become plain sheets)
-                    for m in &mut doc.sheets {
-                        m.back_of = match m.back_of {
-                            Some((f, _)) if f == i => None,
-                            Some((f, lr)) if f > i => Some((f - 1, lr)),
-                            other => other,
-                        };
-                    }
-                    doc.set_active_sheet(to);
+                    doc.remove_sheet(doc.active_sheet);
                     self.canvas.touch();
                 }
             }
@@ -1302,10 +1287,7 @@ impl App {
                         self.canvas.switch_sheet_keep_view(i as usize); // all sheets shown: nothing moves on screen
                         return;
                     }
-                    self.canvas.doc.set_active_sheet(i);
-                    self.canvas.sel.clear();
-                    self.canvas.apply_bindings(); // thickness / board-w are this sheet's (Qt switchSheet)
-                    self.canvas.mutated();
+                    self.canvas.go_to_sheet(i.max(0) as usize);
                 }
             }
             ("layersel", v) => {
@@ -1699,6 +1681,17 @@ impl eframe::App for App {
             if let Ok(j) = std::env::var("GCARVE_SHEET") {
                 self.shell.push(format!("sheet:{j}")); // dev: screenshots of another sheet (0-based)
             }
+            // GCARVE_PICTURE=file.png: a picture to draw over, fitted on the board, its dialog open
+            if let Some(bytes) = std::env::var("GCARVE_PICTURE").ok().and_then(|f| std::fs::read(f).ok()) {
+                let d = &mut self.canvas.doc;
+                if let Ok(img) = image::load_from_memory(&bytes) {
+                    let aspect = img.width() as f64 / img.height().max(1) as f64;
+                    let w = d.material.w.min(d.material.h * aspect);
+                    let h = w / aspect;
+                    d.pictures.push(gcarve_core::document::Picture { sheet: d.active_sheet, x: 0.0, y: 0.0, w, h, opacity: 0.5, data: gcarve_core::photo::b64_encode(&bytes) });
+                    self.cam.picture = dialogs::picture::PictureDialog::for_sheet(d);
+                }
+            }
             if let Some((f, c)) = std::env::var("GCARVE_BOARD_PHOTO").ok().and_then(|v| v.split_once(':').map(|(a, b)| (a.to_string(), b.to_string()))) {
                 let n: Vec<f32> = c.split(',').filter_map(|x| x.trim().parse().ok()).collect();
                 if let (Ok(bytes), 8) = (std::fs::read(&f), n.len()) {
@@ -1911,6 +1904,7 @@ impl eframe::App for App {
         self.confirm_ui(&ctx);
         self.recover_ui(&ctx);
         self.about_ui(&ctx);
+        self.mcp_ui(&ctx);
         if let Some(cmd) = self.guide.ui(&ctx, dialogs::guide::TOPICS, i18n::t("Search: corners, long board, PDF, order…")) {
             self.shell.push(cmd); // the answer's "Do it" button
         }
@@ -2080,6 +2074,17 @@ impl App {
     }
 
     /// Help ▸ About GCarve
+    /// Help › AI Assistants…: the on / off switch and how to connect; answers waiting MCP requests every frame
+    fn mcp_ui(&mut self, ctx: &egui::Context) {
+        if crate::mcp::State::start_if_on(&mut self.mcp, ctx, self.shot) {
+            while let Some(m) = self.mcp.rx.as_ref().and_then(|r| r.try_recv().ok()) {
+                let out = crate::mcp::answer(&mut McpHost(self), &m.body);
+                let _ = m.reply.send(out);
+            }
+        }
+        crate::mcp::settings_ui(&mut self.mcp, ctx);
+    }
+
     fn about_ui(&mut self, ctx: &egui::Context) {
         if !self.about_open {
             return;
@@ -2696,6 +2701,49 @@ pub fn command_trail() -> String {
     TRAIL.lock().map(|t| if t.is_empty() { String::new() } else { format!("after: {}", t.join(", ")) }).unwrap_or_default()
 }
 
+/// the app as MCP sees it (mcp.rs): the open drawing, its post, the menu commands
+struct McpHost<'a>(&'a mut App);
+
+impl crate::mcp::McpApp for McpHost<'_> {
+    fn canvas(&mut self) -> &mut Canvas {
+        &mut self.0.canvas
+    }
+    fn post(&self) -> gcarve_core::postdef::PostDef {
+        pipeline::active_post(&self.0.canvas.doc, &|id| self.0.posts.find(id))
+    }
+    fn project(&self) -> String {
+        self.0.name.clone()
+    }
+    fn commands(&self) -> Vec<(String, String)> {
+        let posts: Vec<(String, String)> = self.0.posts.all().into_iter().map(|(p, _)| (p.id, p.name)).collect();
+        palette::commands(&posts, &self.0.canvas.doc.material.post, &[]).into_iter().map(|c| (c.id, format!("{}: {}", c.cat, c.text))).collect()
+    }
+    fn run(&mut self, id: &str) {
+        self.0.shell.push(id.to_string());
+    }
+    fn open(&mut self, path: &str, import: bool) -> Result<String, String> {
+        let p = std::path::PathBuf::from(path);
+        let bytes = std::fs::read(&p).map_err(|e| format!("cannot read {path}: {e}"))?;
+        let name = p.file_name().map(|n| n.to_string_lossy().into_owned()).unwrap_or_default();
+        self.0.open_picked(files::Picked { name, bytes, path: Some(p), import });
+        Ok(self.0.message.clone())
+    }
+    #[cfg(not(target_arch = "wasm32"))]
+    fn save(&mut self, path: Option<&str>) -> Result<String, String> {
+        let p = path.map(std::path::PathBuf::from).or_else(|| self.0.project_path.clone()).ok_or("this drawing was never saved: give a path ending in .tlp")?;
+        let p = if p.extension().is_some_and(|e| e == "tlp") { p } else { p.with_extension("tlp") };
+        std::fs::write(&p, project::save_project(&self.0.canvas.doc)).map_err(|e| format!("cannot save {}: {e}", p.display()))?;
+        self.0.canvas.dirty = false;
+        self.0.recent = files::add_recent(&p);
+        self.0.project_path = Some(p.clone());
+        Ok(format!("saved {}", p.display()))
+    }
+    #[cfg(target_arch = "wasm32")]
+    fn save(&mut self, _path: Option<&str>) -> Result<String, String> {
+        Err("not in the browser".into())
+    }
+}
+
 #[cfg(test)]
 mod demo_tests {
     #[test]
@@ -2885,3 +2933,4 @@ impl App {
         ctx.send_viewport_cmd(egui::ViewportCommand::Screenshot(egui::UserData::default()));
     }
 }
+

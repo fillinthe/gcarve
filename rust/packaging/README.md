@@ -20,7 +20,7 @@ Caches (mine, safe to delete): `rust/target/docker/`, Docker volume `gcarve-rust
 
 ## Details per target
 - **macOS**: arm64 slice min 11.0, x86_64 slice min 10.13 (`LC_VERSION_MIN_MACOSX 10.13`); `lipo` universal;
-  Info.plist = `app/Info.plist.in` (registers `.tlp`, docicon) with LSMinimumSystemVersion 10.13; signed ad-hoc,
+  Info.plist = `rust/packaging/macos/Info.plist.in` (registers `.tlp`, docicon) with LSMinimumSystemVersion 10.13; signed ad-hoc,
   or `GCARVE_CODESIGN_IDENTITY="GCarve Dev"`; `.dmg` via hdiutil (with an /Applications link).
 - **Windows**: icon (`app/branding/appicon.ico`) + VERSIONINFO from `windows/gcarve.rc.in` (windres object
   passed as a link arg, no build.rs change); GUI subsystem via `-Wl,--subsystem,windows`. Zip = gcarve.exe,

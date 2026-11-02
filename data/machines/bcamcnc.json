@@ -69,7 +69,7 @@
     },
     {
      "name": "Weihong NcStudio (option)",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     },
     {
@@ -175,7 +175,7 @@
     },
     {
      "name": "Weihong NcStudio (option)",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     },
     {
@@ -281,7 +281,7 @@
     },
     {
      "name": "Weihong NcStudio (option)",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     },
     {
@@ -387,7 +387,7 @@
     },
     {
      "name": "Weihong NcStudio (option)",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     },
     {
@@ -493,7 +493,7 @@
     },
     {
      "name": "Weihong NcStudio (option)",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     },
     {

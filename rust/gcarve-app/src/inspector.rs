@@ -15,7 +15,7 @@ use gcarve_core::pipeline::Generated;
 pub const KIND_TYPES: [OpType; 12] = [OpType::Profile, OpType::Pocket, OpType::Drill, OpType::VCarve, OpType::Bore, OpType::Inlay, OpType::Flute, OpType::Relief, OpType::Chamfer, OpType::Prism, OpType::Texture, OpType::Photo];
 
 pub fn inspector(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Option<&Generated>) {
-    let warnings: Vec<String> = gen.map(|g| g.warnings.iter().map(|w| i18n::msg(w)).collect()).unwrap_or_default();
+    let warnings: &[String] = gen.map_or(&[], |g| &g.warnings);
     // tab bar + collapse chevron
     ui.spacing_mut().item_spacing = egui::vec2(0.0, 0.0);
     ui.horizontal(|ui| {
@@ -37,7 +37,7 @@ pub fn inspector(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Op
     egui::Panel::bottom("insp-actions").frame(egui::Frame::new().inner_margin(10)).show(ui, |ui| {
         ui.spacing_mut().item_spacing = egui::vec2(6.0, 6.0);
         if !warnings.is_empty() {
-            ui.add(egui::Label::new(RichText::new(format!("⚠ {}", warnings.join("\n"))).size(12.0).color(theme::WARNING)).wrap());
+            ui.add(egui::Label::new(RichText::new(format!("⚠ {}", warnings.iter().map(|w| i18n::msg(w)).collect::<Vec<_>>().join("\n"))).size(12.0).color(theme::WARNING)).wrap());
         }
         ui.horizontal(|ui| {
             let on = sh.op_sel.is_some_and(|i| i < canvas.doc.ops.len());

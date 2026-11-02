@@ -139,6 +139,9 @@ fn profile() {
     let mut t = em.clone();
     t.presets.push(FeedPreset { material: "MDF".into(), feed_xy: 300.0, feed_z: 100.0, stepdown: 0.3, rpm: 16000 });
     assert!(preset_for(&t, "mdf").is_some() && preset_for(&t, "Oak").is_none());
+    // a board named in another UI language finds the preset saved in English, and only that one
+    t.presets.push(FeedPreset { material: "Plywood".into(), feed_xy: 200.0, feed_z: 60.0, stepdown: 0.2, rpm: 15000 });
+    assert!(preset_for(&t, "Sperrholz").is_some_and(|p| p.material == "Plywood") && preset_for(&t, "Bouleau balte").is_none());
     let e = effective_tool(&t, "MDF");
     assert!(near(e.feed_xy, 300.0) && near(e.feed_z, 100.0) && e.rpm == 16000 && near(e.stepdown, 0.3));
     let d = effective_tool(&t, "Oak");

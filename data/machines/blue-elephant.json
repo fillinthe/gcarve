@@ -536,7 +536,7 @@
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     }
    ],
@@ -734,7 +734,7 @@
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     }
    ],
@@ -943,7 +943,7 @@
     },
     {
      "name": "DSP",
-     "gcarve_post": null,
+     "gcarve_post": "richauto-mm",
      "default": false
     }
    ],
@@ -1135,7 +1135,7 @@
     },
     {
      "name": "LNC",
-     "gcarve_post": null,
+     "gcarve_post": "fanuc-mm",
      "default": false
     }
    ],
@@ -1229,12 +1229,12 @@
    "controllers": [
     {
      "name": "LNC (MPG handwheel)",
-     "gcarve_post": null,
+     "gcarve_post": "fanuc-mm",
      "default": true
     },
     {
      "name": "Weihong NK105 G3",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     },
     {
@@ -1587,7 +1587,7 @@
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     }
    ],
@@ -1765,12 +1765,12 @@
     },
     {
      "name": "LNC",
-     "gcarve_post": null,
+     "gcarve_post": "fanuc-mm",
      "default": false
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     }
    ],
@@ -1867,12 +1867,12 @@
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     },
     {
      "name": "Weihong NK105",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     }
    ],
@@ -1970,12 +1970,12 @@
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     },
     {
      "name": "LNC",
-     "gcarve_post": null,
+     "gcarve_post": "fanuc-mm",
      "default": false
     }
    ],
@@ -2078,7 +2078,7 @@
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     }
    ],
@@ -2271,7 +2271,7 @@
     },
     {
      "name": "LNC",
-     "gcarve_post": null,
+     "gcarve_post": "fanuc-mm",
      "default": false
     }
    ],
@@ -2369,17 +2369,17 @@
     },
     {
      "name": "LNC",
-     "gcarve_post": null,
+     "gcarve_post": "fanuc-mm",
      "default": false
     },
     {
      "name": "Siemens",
-     "gcarve_post": null,
+     "gcarve_post": "siemens-mm",
      "default": false
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     }
    ],
@@ -2480,7 +2480,7 @@
     },
     {
      "name": "LNC",
-     "gcarve_post": null,
+     "gcarve_post": "fanuc-mm",
      "default": false
     }
    ],
@@ -2578,7 +2578,7 @@
     },
     {
      "name": "LNC",
-     "gcarve_post": null,
+     "gcarve_post": "fanuc-mm",
      "default": false
     }
    ],
@@ -2671,12 +2671,12 @@
    "controllers": [
     {
      "name": "LNC",
-     "gcarve_post": null,
+     "gcarve_post": "fanuc-mm",
      "default": true
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     },
     {
@@ -2774,7 +2774,7 @@
    "controllers": [
     {
      "name": "DSP A123",
-     "gcarve_post": null,
+     "gcarve_post": "richauto-mm",
      "default": true
     },
     {
@@ -3073,7 +3073,7 @@
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     }
    ],
@@ -3171,7 +3171,7 @@
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     },
     {
@@ -3181,7 +3181,7 @@
     },
     {
      "name": "LNC",
-     "gcarve_post": null,
+     "gcarve_post": "fanuc-mm",
      "default": false
     }
    ],
@@ -3464,7 +3464,7 @@
     },
     {
      "name": "DSP handheld controller",
-     "gcarve_post": null,
+     "gcarve_post": "richauto-mm",
      "default": false
     }
    ],
@@ -3556,7 +3556,7 @@
    "controllers": [
     {
      "name": "NcStudio DSP B18",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": true
     },
     {
@@ -3566,7 +3566,7 @@
     },
     {
      "name": "LNC",
-     "gcarve_post": null,
+     "gcarve_post": "fanuc-mm",
      "default": false
     }
    ],
@@ -3675,7 +3675,7 @@
     },
     {
      "name": "LNC",
-     "gcarve_post": null,
+     "gcarve_post": "fanuc-mm",
      "default": false
     }
    ],
@@ -4160,7 +4160,7 @@
     },
     {
      "name": "LNC",
-     "gcarve_post": null,
+     "gcarve_post": "fanuc-mm",
      "default": false
     }
    ],
@@ -4258,7 +4258,7 @@
     },
     {
      "name": "LNC",
-     "gcarve_post": null,
+     "gcarve_post": "fanuc-mm",
      "default": false
     }
    ],
@@ -4351,7 +4351,7 @@
    "controllers": [
     {
      "name": "Siemens",
-     "gcarve_post": null,
+     "gcarve_post": "siemens-mm",
      "default": true
     },
     {
@@ -4361,7 +4361,7 @@
     },
     {
      "name": "LNC",
-     "gcarve_post": null,
+     "gcarve_post": "fanuc-mm",
      "default": false
     }
    ],
@@ -4551,12 +4551,12 @@
     },
     {
      "name": "LNC",
-     "gcarve_post": null,
+     "gcarve_post": "fanuc-mm",
      "default": false
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     }
    ],
@@ -4654,7 +4654,7 @@
     },
     {
      "name": "LNC",
-     "gcarve_post": null,
+     "gcarve_post": "fanuc-mm",
      "default": false
     }
    ],
@@ -4752,7 +4752,7 @@
     },
     {
      "name": "LNC",
-     "gcarve_post": null,
+     "gcarve_post": "fanuc-mm",
      "default": false
     }
    ],
@@ -4849,7 +4849,7 @@
     },
     {
      "name": "LNC",
-     "gcarve_post": null,
+     "gcarve_post": "fanuc-mm",
      "default": false
     }
    ],
@@ -4946,12 +4946,12 @@
     },
     {
      "name": "LNC",
-     "gcarve_post": null,
+     "gcarve_post": "fanuc-mm",
      "default": false
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     }
    ],
@@ -5131,7 +5131,7 @@
     },
     {
      "name": "LNC",
-     "gcarve_post": null,
+     "gcarve_post": "fanuc-mm",
      "default": false
     }
    ],
@@ -5228,12 +5228,12 @@
     },
     {
      "name": "LNC",
-     "gcarve_post": null,
+     "gcarve_post": "fanuc-mm",
      "default": false
     },
     {
      "name": "NcStudio",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": false
     }
    ],
@@ -5331,7 +5331,7 @@
     },
     {
      "name": "LNC",
-     "gcarve_post": null,
+     "gcarve_post": "fanuc-mm",
      "default": false
     }
    ],
@@ -5506,7 +5506,7 @@
     },
     {
      "name": "LNC",
-     "gcarve_post": null,
+     "gcarve_post": "fanuc-mm",
      "default": false
     }
    ],

@@ -26,6 +26,7 @@ pub mod templates;
 pub mod tools;
 pub mod trace;
 pub mod boardphoto;
+pub mod picture;
 pub mod community;
 pub mod vars;
 
@@ -65,6 +66,7 @@ pub struct Dialogs {
     pub gimport: Option<gimport::GcodeImportDialog>,
     pub trace: Option<trace::TraceDialog>,
     pub board_photo: Option<boardphoto::BoardPhotoDialog>,
+    pub picture: Option<picture::PictureDialog>,
     /// community projects: Make It after opening one, Share to Community
     pub make_it: Option<community::MakeIt>,
     pub share: Option<community::ShareDialog>,
@@ -205,6 +207,10 @@ impl Dialogs {
                 },
                 "halftone" => match halftone::HalftoneDialog::new(&name, &bytes, &host.canvas.doc) {
                     Ok(d) => self.halftone = Some(d),
+                    Err(e) => *host.message = e,
+                },
+                "picture" => match picture::add(&name, &bytes, host) {
+                    Ok(d) => self.picture = Some(d),
                     Err(e) => *host.message = e,
                 },
                 "boardphoto" => match boardphoto::BoardPhotoDialog::new(&name, &bytes) {
@@ -363,6 +369,11 @@ impl Dialogs {
                     host.files.pick_into(ctx, i18n::t("Photos (PNG, JPEG, WebP)"), crate::files::IMAGE_EXTS, "communityphoto");
                 }
                 self.share = Some(d);
+            }
+        }
+        if let Some(mut d) = self.picture.take() {
+            if d.ui(ctx, host) {
+                self.picture = Some(d);
             }
         }
         if let Some(mut d) = self.board_photo.take() {
@@ -626,6 +637,19 @@ fn dev_file(rel: &str) -> std::path::PathBuf {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn the_cores_material_names_are_the_pickers_in_every_pack() {
+        let rows = gcarve_core::feeds::MATERIAL_NAMES;
+        for (code, _, json) in i18n::LANGS.iter().skip(1) {
+            let pack: std::collections::HashMap<String, String> = serde_json::from_str(json).unwrap();
+            for (m, row) in MATERIALS.iter().zip(rows) {
+                assert_eq!(row[0], *m);
+                let v = pack.get(*m).map_or(*m, String::as_str);
+                assert!(row.contains(&v), "{code}: {v:?} for {m:?} is missing from feeds::MATERIAL_NAMES");
+            }
+        }
+    }
 
     #[test]
     fn fields_evaluate_units_and_bind_variables() {

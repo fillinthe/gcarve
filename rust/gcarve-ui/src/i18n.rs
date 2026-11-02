@@ -49,9 +49,24 @@ pub fn tr(s: &str) -> String {
 
 /// A translated format string: `tf("Added the font {name}", &[("name", &family)])` substitutes every `{key}`
 pub fn tf(s: &'static str, args: &[(&str, &dyn std::fmt::Display)]) -> String {
-    let mut out = t(s).to_string();
-    for (k, v) in args {
-        out = out.replace(&format!("{{{k}}}"), &v.to_string());
+    let vals: Vec<(&str, String)> = args.iter().map(|(k, v)| (*k, v.to_string())).collect();
+    fill(t(s), |n| vals.iter().find(|(k, _)| *k == n).map(|(_, v)| v.as_str()))
+}
+
+/// `text` with each `{name}` that `val` knows replaced, in one pass (a value that itself holds "{x}" stays as it is)
+pub fn fill<'v>(text: &str, val: impl Fn(&str) -> Option<&'v str>) -> String {
+    let Some(ps) = pieces(text) else { return text.into() };
+    let mut out = String::from(ps[0].1);
+    for (n, lit) in &ps[1..] {
+        match val(n) {
+            Some(v) => out.push_str(v),
+            None => {
+                out.push('{');
+                out.push_str(n);
+                out.push('}');
+            }
+        }
+        out.push_str(lit);
     }
     out
 }
@@ -66,11 +81,7 @@ pub fn msg(s: &str) -> String {
     }
     for (k, v) in &p.patterns {
         if let Some(caps) = match_pattern(k, s) {
-            let mut out = v.to_string();
-            for (n, c) in caps {
-                out = out.replace(&format!("{{{n}}}"), c);
-            }
-            return out;
+            return fill(v, |n| caps.iter().find(|(c, _)| *c == n).map(|(_, v)| *v));
         }
     }
     s.into()
@@ -109,30 +120,39 @@ fn pieces(k: &str) -> Option<Vec<(&str, &str)>> {
 }
 
 /// what each `{name}` of pattern `k` stands for in `s`, or None when `s` isn't made from it. Each piece takes the
-/// shortest text up to the next fixed part; two placeholders side by side never match.
+/// shortest text up to a following fixed part that lets the rest match too; the plural bits `{s}`, `{s2}` … are one
+/// word ("are", "them"); two placeholders side by side never match.
 pub fn match_pattern<'a>(k: &'a str, s: &'a str) -> Option<Vec<(&'a str, &'a str)>> {
     let ps = pieces(k)?;
     let rest = s.strip_prefix(ps[0].1)?;
-    let mut rest = rest;
     let mut caps = Vec::new();
-    for (i, (n, lit)) in ps.iter().enumerate().skip(1) {
-        let last = i == ps.len() - 1;
-        if lit.is_empty() {
-            if !last {
-                return None;
-            }
-            caps.push((*n, rest));
-            rest = "";
-        } else if last {
-            caps.push((*n, rest.strip_suffix(lit)?));
-            rest = "";
-        } else {
-            let at = rest.find(lit)?;
-            caps.push((*n, &rest[..at]));
-            rest = &rest[at + lit.len()..];
-        }
+    match_rest(&ps[1..], rest, &mut caps).then_some(caps)
+}
+
+fn match_rest<'a>(ps: &[(&'a str, &'a str)], rest: &'a str, caps: &mut Vec<(&'a str, &'a str)>) -> bool {
+    let Some(&(n, lit)) = ps.first() else { return rest.is_empty() };
+    let word = n.starts_with('s') && n.len() <= 2;
+    let ok = |c: &str| !word || !c.contains(char::is_whitespace);
+    if ps.len() == 1 {
+        let Some(c) = rest.strip_suffix(lit) else { return false };
+        caps.push((n, c));
+        return ok(c);
     }
-    rest.is_empty().then_some(caps)
+    if lit.is_empty() {
+        return false;
+    }
+    for (at, _) in rest.match_indices(lit) {
+        let c = &rest[..at];
+        if !ok(c) {
+            break; // longer captures only add more words
+        }
+        caps.push((n, c));
+        if match_rest(&ps[1..], &rest[at + lit.len()..], caps) {
+            return true;
+        }
+        caps.truncate(caps.len() - 1);
+    }
+    false
 }
 
 pub fn current() -> &'static str {
@@ -150,7 +170,7 @@ pub fn set(code: &str) {
         serde_json::from_str::<HashMap<String, String>>(json).unwrap_or_default().into_iter().map(|(k, v)| (&*k.leak(), &*v.leak())).collect()
     };
     let mut patterns: Vec<(&'static str, &'static str)> = map.iter().filter(|(k, _)| pieces(k).is_some()).map(|(k, v)| (*k, *v)).collect();
-    patterns.sort_by_key(|(k, _)| (std::cmp::Reverse(pieces(k).map_or(0, |p| p.iter().map(|(_, l)| l.len()).sum::<usize>())), *k));
+    patterns.sort_by_cached_key(|(k, _)| (std::cmp::Reverse(pieces(k).map_or(0, |p| p.iter().map(|(_, l)| l.len()).sum::<usize>())), *k));
     if let Ok(mut p) = PACK.write() {
         *p = Some(Pack { code, map, patterns });
     }
@@ -221,6 +241,12 @@ mod tests {
         assert_eq!(match_pattern("{name}: depth must be > 0", "Cut out: depth is fine"), None);
         assert_eq!(match_pattern("Total {n} min", "Total 4 min"), Some(vec![("n", "4")]));
         assert_eq!(match_pattern("{a}{b}", "xy"), None);
+        let k = "\"{name}\" cuts the part free before {later} {s} cut: move it below {s2} in the list.";
+        assert_eq!(
+            match_pattern(k, "\"Cut out\" cuts the part free before Pocket 2, V-Carve 1 are cut: move it below them in the list."),
+            Some(vec![("name", "Cut out"), ("later", "Pocket 2, V-Carve 1"), ("s", "are"), ("s2", "them")])
+        );
+        assert_eq!(fill("{a} and {b}", |n| if n == "a" { Some("{b}") } else { Some("x") }), "{b} and x", "a value is never filled in again");
         assert!(pieces("no {braces here} at all").is_none());
         assert_eq!(msg("not a string of the app"), "not a string of the app");
         set("en");
