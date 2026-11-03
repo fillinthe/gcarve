@@ -87,14 +87,16 @@ impl<'o> Dialog<'o> {
                 let m = if flush { egui::Margin { left: 1, right: 1, top: 14, bottom: 0 } } else { egui::Margin { left: 20, right: 20, top: 14, bottom: 16 } };
                 let r = egui::Frame::new().inner_margin(m).show(ui, |ui| {
                     ui.spacing_mut().item_spacing.y = 6.0;
+                    // never wider than the window either (a phone): 16 px gutters, wider content scrolls sideways
+                    let max_w = ui.ctx().content_rect().width() - 32.0 - if flush { 2.0 } else { 40.0 };
                     if let Some(w) = width {
-                        ui.set_width(w);
+                        ui.set_width(w.min(max_w));
                     }
                     // never taller than the window: the content scrolls, the Close footer stays
                     // (a modeless dialog starts below the top of the window: that much less room)
                     let down = modeless.map_or(0.0, |(pos, _)| (pos.y - ui.ctx().content_rect().top()).max(0.0));
                     let max_h = ui.ctx().content_rect().height() - down - 46.0 - 30.0 - if close { 62.0 } else { 0.0 } - 24.0;
-                    let r = egui::ScrollArea::vertical().max_height(max_h.max(120.0)).min_scrolled_height(max_h.max(120.0)).show(ui, add).inner;
+                    let r = egui::ScrollArea::both().max_width(max_w.max(120.0)).max_height(max_h.max(120.0)).min_scrolled_height(max_h.max(120.0)).show(ui, add).inner;
                     if close {
                         let hit = if flush {
                             egui::Frame::new().inner_margin(egui::Margin { left: 0, right: 19, top: 2, bottom: 11 }).show(ui, |ui| {
@@ -162,7 +164,9 @@ pub fn buttons(ui: &mut Ui, list: &[(&str, bool)]) -> Option<usize> {
     ui.add_space(26.0 - ui.spacing().item_spacing.y);
     // In a dialog taller than the window the content scrolls: when this row would be below the visible part it is
     // drawn stuck to the bottom edge instead (its place in the content is kept), so OK / Cancel are always in reach.
-    let (clip, at, right) = (ui.clip_rect(), ui.cursor().min, ui.min_rect().right());
+    // content wider than the window (a phone) scrolls sideways: the row keeps to the part that shows
+    let (clip, at) = (ui.clip_rect(), ui.cursor().min);
+    let right = ui.min_rect().right().min(clip.right());
     if at.y + CONTROL_HEIGHT > clip.bottom() + 0.5 && clip.height() > 3.0 * CONTROL_HEIGHT {
         ui.allocate_exact_size(vec2(1.0, CONTROL_HEIGHT), Sense::hover());
         let strip = Rect::from_min_max(pos2(clip.left(), clip.bottom() - CONTROL_HEIGHT - 12.0), clip.right_bottom());
@@ -171,7 +175,7 @@ pub fn buttons(ui: &mut Ui, list: &[(&str, bool)]) -> Option<usize> {
         let mut pinned = ui.new_child(egui::UiBuilder::new().max_rect(Rect::from_min_max(pos2(at.x, strip.top() + 8.0), pos2(right, clip.bottom()))));
         return button_row_to(&mut pinned, list, 84.0, right);
     }
-    button_row(ui, list, 84.0)
+    button_row_to(ui, list, 84.0, right)
 }
 
 /// Right-aligned row of buttons in the given order (`true` = primary), each at least `min_w` wide

@@ -1342,6 +1342,7 @@ impl eframe::App for App {
         if !self.shot {
             crate::recover::clear();
         }
+        end_process_on_mac();
     }
     fn ui(&mut self, ui: &mut egui::Ui, _frame: &mut eframe::Frame) {
         let ctx = ui.ctx().clone();
@@ -2745,6 +2746,14 @@ impl crate::mcp::McpApp for McpHost<'_> {
     }
 }
 
+/// macOS 26: once the window is being taken down, AppKit's Touch Bar bookkeeping can throw ("Cannot remove an
+/// observer … nextResponder", egui#2768) and the close button ends in "GCarve quit unexpectedly". Everything is
+/// saved by now, so the process ends here, before that teardown starts.
+pub(crate) fn end_process_on_mac() {
+    #[cfg(all(target_os = "macos", not(test)))]
+    std::process::exit(0);
+}
+
 #[cfg(test)]
 impl App {
     /// ui_e2e.rs: run a menu command as its menu row does
@@ -2753,6 +2762,12 @@ impl App {
     }
     pub(crate) fn test_doc(&self) -> gcarve_core::document::Document {
         self.canvas.doc.clone()
+    }
+    /// ui_e2e.rs: the files File › Export would write now (every toolpath worked out first, as Export does)
+    /// and the toolpath warnings
+    pub(crate) fn test_export(&mut self) -> (Option<pipeline::ExportResult>, Vec<String>) {
+        self.full_gen();
+        (self.export_files(0.0, None), self.gen.as_ref().map(|g| g.warnings.clone()).unwrap_or_default())
     }
     /// ui_e2e.rs: open a project as File › Open does
     pub(crate) fn test_open(&mut self, name: &str, bytes: &[u8]) {

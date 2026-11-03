@@ -345,8 +345,9 @@ fn off_corners(c: f64, corners: &[f64], half: f64, reach: f64, l: f64, closed: b
     c
 }
 
-/// Builds the moves for one cutter path. closed: pts[0] == pts.last().
-fn cut_path(path: &[Pt], closed: bool, op: &Op, tool: &Tool, m: &Material, warn: &mut Vec<String>) -> Toolpath {
+/// Builds the moves for one cutter path. closed: pts[0] == pts.last(). `hole`: the ring cuts a hole out of a part,
+/// so a scrap too small for tabs is let go without a warning.
+fn cut_path(path: &[Pt], closed: bool, hole: bool, op: &Op, tool: &Tool, m: &Material, warn: &mut Vec<String>) -> Toolpath {
     let stepdown = step_down(op.stepdown, tool);
     let passes = passes_for(op.depth, stepdown);
     let lens = lengths(path);
@@ -362,8 +363,12 @@ fn cut_path(path: &[Pt], closed: bool, op: &Op, tool: &Tool, m: &Material, warn:
     } else if op.tabs && op.tab_count > 0 && op.tab_height > 0.0 && l > 0.0 {
         // one every `tab_spacing` along this part's cut, else the same count on every part
         let count = if op.tab_spacing > 0.0 { ((l / op.tab_spacing).round() as i32).clamp(1, 200) } else { op.tab_count };
-        if w * count as f64 >= l {
-            warn.push(format!("{}: tabs don't fit, skipped", op.name));
+        // a small part gets fewer tabs (at least a tab's width of cut between them), not none
+        let count = count.min((l / (2.0 * w)).floor() as i32);
+        if count < 1 {
+            if !hole {
+                warn.push(format!("{}: tabs don't fit, skipped", op.name));
+            }
         } else {
             let gap = l / count as f64;
             let corners = if op.tab_corners { corner_stations(path, &lens, tool.diameter.max(0.05)) } else { Vec::new() };
@@ -631,7 +636,7 @@ pub fn generate_profile(op: &Op, tool: &Tool, contours: &[Contour], m: &Material
             if op.side != Side::On {
                 res.warnings.push(format!("{}: open shape cut on-line", op.name));
             }
-            let tp = cut_path(&pts_of(&poly), false, op, tool, m, &mut res.warnings);
+            let tp = cut_path(&pts_of(&poly), false, false, op, tool, m, &mut res.warnings);
             res.paths.push(tp);
             continue;
         }
@@ -700,12 +705,12 @@ pub fn generate_profile(op: &Op, tool: &Tool, contours: &[Contour], m: &Material
                     None => res.warnings.push(format!("{}: no room for the lead-in in a small shape, plunging on the line there", op.name)),
                 }
             }
-            let mut tp = cut_path(&pts, true, op, tool, m, &mut res.warnings);
+            let mut tp = cut_path(&pts, true, hole, op, tool, m, &mut res.warnings);
             if op.cutter_comp && waste_outside.is_some() {
                 tp.comp = if op.climb { 41 } else { 42 };
             }
             if skin && n >= split {
-                let mut s = cut_path(&pts, true, &skin_op, tool, m, &mut res.warnings);
+                let mut s = cut_path(&pts, true, hole, &skin_op, tool, m, &mut res.warnings);
                 s.comp = tp.comp;
                 match &mut skin_path {
                     Some(all) => all.moves.extend(s.moves),
@@ -3451,6 +3456,23 @@ mod last_pass_tests {
 
 #[cfg(test)]
 mod tab_tests {
+    #[test]
+    fn a_small_part_gets_fewer_tabs_and_a_tiny_hole_none_without_a_warning() {
+        use crate::document::{Material, Op, OpType, Side, Tool};
+        use crate::geom::make_rect;
+        let m = Material { w: 24.0, h: 12.0, t: 0.75, ..Default::default() };
+        let tool = Tool { diameter: 0.25, stepdown: 0.25, feed_xy: 100.0, feed_z: 30.0, ..Default::default() };
+        // the cut round a 1.5 × 1 part is ≈ 6 in: six tabs 1 in wide (with the bit) don't fit, three do
+        let op = Op { kind: OpType::Profile, name: "P".into(), depth: 0.75, side: Side::Outside, tabs: true, tab_count: 6, tab_width: 0.75, tab_height: 0.125, ..Default::default() };
+        let r = generate(&op, &tool, &[make_rect(1.0, 1.0, 2.5, 2.0)], &m, None);
+        assert!(r.warnings.is_empty(), "{:?}", r.warnings);
+        let tab_top = |r: &CamResult| r.paths.iter().flat_map(|p| &p.moves).filter(|mv| mv.z.is_some_and(|z| (z + 0.625).abs() < 1e-9)).count();
+        assert!(tab_top(&r) >= 3, "tabs kept on the small part");
+        // a 0.4 in hole in a bigger part: no room for a tab in its scrap, and nothing to warn about
+        let r = generate(&op, &tool, &[make_rect(1.0, 1.0, 5.0, 4.0), make_rect(2.0, 2.0, 2.4, 2.4)], &m, None);
+        assert!(r.warnings.is_empty(), "{:?}", r.warnings);
+    }
+
     #[test]
     fn a_rotary_job_turns_y_into_a_axis_degrees() {
         use crate::job::{Job, Move, Toolpath};

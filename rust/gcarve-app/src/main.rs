@@ -80,6 +80,10 @@ fn main() -> eframe::Result {
     }));
     let options = eframe::NativeOptions {
         viewport: eframe::egui::ViewportBuilder::default().with_title(i18n::t("GCarve")).with_inner_size(dev_size().unwrap_or([1500.0, 900.0])).with_min_inner_size(if dev_size().is_some() { [320.0, 400.0] } else { [900.0, 500.0] }).with_icon(window_icon()),
+        // macOS 26: tearing the window down and carrying on (eframe's run_and_return) trips AppKit's Touch Bar
+        // bookkeeping ("Cannot remove an observer … nextResponder": GCarve quit unexpectedly on the close button,
+        // egui#2768); ending the process with the window avoids it
+        run_and_return: !cfg!(target_os = "macos"),
         ..Default::default()
     };
     eframe::run_native(i18n::t("GCarve"), options, Box::new(|cc| Ok(Box::new(app::App::new(cc)))))

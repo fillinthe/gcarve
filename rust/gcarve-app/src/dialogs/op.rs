@@ -102,6 +102,8 @@ pub fn new_op(doc: &Document, kind: OpType, selected: &[i32]) -> Op {
     if kind == OpType::Prism {
         op.depth = 0.25f64.min(doc.material.t / 2.0);
     }
+    // a Profile starts right through the board: with tabs, so the first cut-out doesn't throw its part
+    op.tabs = kind == OpType::Profile;
     op.shape_ids = selected.to_vec();
     op
 }
@@ -333,13 +335,17 @@ impl OpDialog {
         let shapes: usize = (0..doc.sheets.len().max(1) as i32).map(|j| doc.op_shape_ids_on(&applied, j).len()).sum();
         let needs_shapes = !matches!(k, OpType::Relief | OpType::Imported);
         let at = egui::pos2(ctx.content_rect().right() - 12.0, 70.0);
+        // the field column: 300 px, less on a phone so a row fits the dialog (labels take about 120 px)
+        let col = (ctx.content_rect().width() - 192.0).clamp(150.0, 300.0);
+        let wide = col + 60.0;
         crate::widgets::Dialog::new(title).id("op").width(464.0).modeless(at, egui::Align2::RIGHT_TOP).show(ctx, |ui| {
             // the fields scroll, OK / Cancel stay in view: the dialog starts 70 px down and its frame, title and
             // button row take about 160 px more
-            egui::ScrollArea::vertical().max_height((ctx.input(|i| i.content_rect().height()) - 232.0).max(160.0)).show(ui, |ui| {
+            // (sideways too: on a phone the rows are wider than the dialog)
+            egui::ScrollArea::both().max_height((ctx.input(|i| i.content_rect().height()) - 232.0).max(160.0)).show(ui, |ui| {
                 egui::Grid::new("op").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
                     ui.label(i18n::t("Name"));
-                    ui.add(crate::widgets::field(&mut self.op.name).desired_width(300.0));
+                    ui.add(crate::widgets::field(&mut self.op.name).desired_width(col));
                     ui.end_row();
                     if !is_relief && !fixed {
                         ui.label(i18n::t("Applies to"));
@@ -348,7 +354,7 @@ impl OpDialog {
                         let _ = layer_name;
                         let items = [(0, i18n::t("Selected shapes only").to_string()), (1, i18n::t("A layer (new shapes on it join)").to_string()), (2, if group_ok { i18n::t("The selection’s group (new members inherit)").into() } else { i18n::t("The selection’s group (select a group first)").into() }), (3, i18n::t("All vectors, every layer (new shapes join)").to_string())];
                         let refs: Vec<(i32, &str)> = items.iter().map(|(i, s)| (*i, s.as_str())).collect();
-                        combo(ui, "scope", &mut self.scope, &refs, 360.0);
+                        combo(ui, "scope", &mut self.scope, &refs, wide);
                         if self.scope == 2 && !group_ok {
                             self.scope = 0;
                         }
@@ -420,8 +426,8 @@ impl OpDialog {
                     if self.op.tool >= 0 {
                         ui.label("");
                         ui.vertical(|ui| {
-                            ui.set_width(360.0);
-                            tool_advice_ui(ui, doc, self.op.tool as usize, 360.0);
+                            ui.set_width(wide);
+                            tool_advice_ui(ui, doc, self.op.tool as usize, wide);
                         });
                         ui.end_row();
                     }
@@ -524,7 +530,7 @@ impl OpDialog {
                             if !refs.iter().any(|(i, _)| *i == self.op.relief) {
                                 self.op.relief = refs[0].0;
                             }
-                            combo(ui, "relief", &mut self.op.relief, &refs, 300.0);
+                            combo(ui, "relief", &mut self.op.relief, &refs, col);
                         }
                         ui.end_row();
                         ui.label(i18n::t("Finish stepover (%)"));
@@ -541,7 +547,7 @@ impl OpDialog {
                         ui.end_row();
                         let rough = self.op.rough;
                         ui.add_enabled(rough, egui::Label::new(i18n::t("Roughing tool")));
-                        ui.add_enabled_ui(rough, |ui| tool_combo(ui, "rough-tool", &mut self.op.clear_tool, &doc.tools, None, 300.0));
+                        ui.add_enabled_ui(rough, |ui| tool_combo(ui, "rough-tool", &mut self.op.clear_tool, &doc.tools, None, col));
                         ui.end_row();
                         ui.add_enabled(rough, egui::Label::new(unit_label(i18n::t("Rough pass depth"), doc)));
                         ui.add_enabled_ui(rough, |ui| {
@@ -564,7 +570,7 @@ impl OpDialog {
                         ui.end_row();
                         ui.label("");
                         ui.vertical(|ui| {
-                            ui.set_width(300.0);
+                            ui.set_width(col);
                             hint(ui, i18n::t("Finishing follows the model surface with the bit's true shape (ball, flat or V) so it never gouges. Set the model's size, position and depth in Toolpaths > 3D Models."));
                         });
                         ui.end_row();
@@ -590,7 +596,7 @@ impl OpDialog {
                     if needs_v && doc.tools.get(self.op.tool.max(0) as usize).is_some_and(|t| t.kind != ToolType::VBit) {
                         ui.label("");
                         ui.vertical(|ui| {
-                            ui.set_width(300.0);
+                            ui.set_width(col);
                             ui.label(RichText::new(i18n::t("⚠ This toolpath needs a V-bit: pick one above (nothing is cut with this tool).")).color(crate::theme::ORANGE));
                         });
                         ui.end_row();
@@ -624,7 +630,7 @@ impl OpDialog {
                     if is_chamfer || is_prism {
                         ui.label("");
                         ui.vertical(|ui| {
-                            ui.set_width(300.0);
+                            ui.set_width(col);
                             hint(ui, if is_chamfer { i18n::t("The V-bit tip rides the vector, so corners stay sharp. Outside / inside: the bevel face lies on that side (holes flip, like profile); centred: a V-groove of that width.") } else { i18n::t("Raised, bevelled shapes: the V-bit runs on each outline as deep as the shape is wide, so its flank cuts a facet up to the centre line (left at the surface) and an equal groove outside. Max depth caps the bevel: wider parts keep a flat top.") });
                         });
                         ui.end_row();
@@ -662,11 +668,11 @@ impl OpDialog {
                     if v_like {
                         let on = self.flat || is_inlay;
                         ui.add_enabled(on, egui::Label::new(i18n::t("Clearance tool")));
-                        ui.add_enabled_ui(on, |ui| tool_combo(ui, "clear", &mut self.op.clear_tool, &doc.tools, Some(i18n::t("None (V-bit clears the floor)")), 300.0));
+                        ui.add_enabled_ui(on, |ui| tool_combo(ui, "clear", &mut self.op.clear_tool, &doc.tools, Some(i18n::t("None (V-bit clears the floor)")), col));
                         ui.end_row();
                         ui.label("");
                         ui.vertical(|ui| {
-                            ui.set_width(300.0);
+                            ui.set_width(col);
                             hint(ui, if is_inlay { i18n::t("Makes two sets of paths: the female pocket of the design, and the male plug carved from the inverted, mirrored design starting at the glue gap. Cut the male from a second board, flip it and glue it in.") } else { i18n::t("Carves with the selected V-bit; the floor depth follows the stroke width.") });
                         });
                         ui.end_row();
@@ -674,7 +680,7 @@ impl OpDialog {
                     if !is_relief {
                         ui.label("");
                         ui.vertical(|ui| {
-                            ui.set_width(300.0);
+                            ui.set_width(col);
                             hint(ui, i18n::t("Tip: type a variable (e.g. thickness + 0.02) in any size to keep it linked."));
                         });
                         ui.end_row();
@@ -702,7 +708,7 @@ impl OpDialog {
                         ui.end_row();
                         ui.label("");
                         ui.vertical(|ui| {
-                            ui.set_width(300.0);
+                            ui.set_width(col);
                             hint(ui, i18n::t("Cuts along each vector with the bit (round-nose bits make classic flutes). Set both ramps longer than the vector for a full-length lens shape."));
                         });
                         ui.end_row();
@@ -713,7 +719,7 @@ impl OpDialog {
                             (s.id, format!("Vector #{} ({} × {})", s.id, crate::units::text(doc, b.w()), crate::units::text(doc, b.h())))
                         }).collect();
                         let name = |id: i32| if id <= 0 { i18n::t("None (plain flute)").to_string() } else { open.iter().find(|(i, _)| *i == id).map_or(format!("Vector #{id} (missing)"), |(_, n)| n.clone()) };
-                        egui::ComboBox::from_id_salt("section").selected_text(name(self.op.section)).width(300.0).show_ui(ui, |ui| {
+                        egui::ComboBox::from_id_salt("section").selected_text(name(self.op.section)).width(col).show_ui(ui, |ui| {
                             ui.selectable_value(&mut self.op.section, 0, name(0));
                             for (id, n) in &open {
                                 ui.selectable_value(&mut self.op.section, *id, n);
@@ -722,7 +728,7 @@ impl OpDialog {
                         ui.end_row();
                         if self.op.section > 0 {
                             ui.label(i18n::t("Clearing bit")).tip(i18n::t("A larger end mill roughs the shape first, staying the allowance above it; the bit above then finishes in one pass at full depth. Two files, one per bit: run the clearing bit's first."));
-                            tool_combo(ui, "mould-clear", &mut self.op.clear_tool, &doc.tools, Some(i18n::t("None (the bit above does it all)")), 300.0);
+                            tool_combo(ui, "mould-clear", &mut self.op.clear_tool, &doc.tools, Some(i18n::t("None (the bit above does it all)")), col);
                             ui.end_row();
                             ui.label(unit_label(i18n::t("Leave for the finish"), doc));
                             ui.horizontal(|ui| {
@@ -747,7 +753,7 @@ impl OpDialog {
                         ui.end_row();
                         ui.label("");
                         ui.vertical(|ui| {
-                            ui.set_width(300.0);
+                            ui.set_width(col);
                             hint(ui, i18n::t("Helical cut inside each selected circle: hole size comes from the shape, the bit spirals down then finishes a flat lap. Holes no bigger than the bit are drilled straight. With a thread pitch it climbs from the bottom up, one turn per pitch."));
                         });
                         ui.end_row();
@@ -755,7 +761,7 @@ impl OpDialog {
                     if is_pocket && doc.tools.get(self.op.tool as usize).is_some_and(|t| t.kind == ToolType::VBit) {
                         ui.label("");
                         ui.scope(|ui| {
-                            ui.set_width(300.0);
+                            ui.set_width(col);
                             hint(ui, i18n::t("Engraving fill: with a V-bit or engraving bit the lines are spaced by how wide the bit cuts at this depth. Keep the depth shallow (0.01 to 0.03 in)."));
                         });
                         ui.end_row();
@@ -773,7 +779,7 @@ impl OpDialog {
                     }
                     if is_pocket {
                         ui.label(i18n::t("Clearing bit")).tip(i18n::t("A larger end mill clears most of the pocket first; the bit above then cuts only the corners and narrow parts it couldn't reach. Two files, one per bit: run the clearing bit's first."));
-                        tool_combo(ui, "pocket-clear", &mut self.op.clear_tool, &doc.tools, Some(i18n::t("None (the bit above does it all)")), 300.0);
+                        tool_combo(ui, "pocket-clear", &mut self.op.clear_tool, &doc.tools, Some(i18n::t("None (the bit above does it all)")), col);
                         ui.end_row();
                         ui.label(i18n::t("Clearing")).tip(i18n::t("Rings follow the pocket's outline inward. Rows go back and forth across it, then once round the walls: quicker on big open pockets. Adaptive keeps the bit's sideways load the same everywhere (no spikes in corners and narrow necks), so it can cut deep and fast and the bit lasts: it starts with a helix and works outward."));
                         let mut mode: i32 = if self.op.adaptive { 2 } else { i32::from(self.op.raster) };
@@ -855,7 +861,7 @@ impl OpDialog {
                     }
                     if is_profile || is_pocket {
                         ui.label(i18n::t("Entry"));
-                        combo(ui, "entry", &mut self.op.entry, &[(Entry::Plunge, i18n::t("Plunge straight down")), (Entry::Spiral, i18n::t("Spiral: ramp over the whole pass")), (Entry::Ramp, i18n::t("Ramp over a distance"))], 300.0);
+                        combo(ui, "entry", &mut self.op.entry, &[(Entry::Plunge, i18n::t("Plunge straight down")), (Entry::Spiral, i18n::t("Spiral: ramp over the whole pass")), (Entry::Ramp, i18n::t("Ramp over a distance"))], col);
                         ui.end_row();
                         if self.op.entry == Entry::Ramp {
                             ui.label(unit_label(i18n::t("Ramp length"), doc));
@@ -909,7 +915,7 @@ impl OpDialog {
                         let tabs = self.op.tabs;
                         ui.add_enabled(tabs, egui::Label::new(i18n::t("How many")));
                         ui.add_enabled_ui(tabs, |ui| {
-                            ui.horizontal(|ui| {
+                            ui.horizontal_wrapped(|ui| { // the count goes under the choice on a phone
                                 combo(ui, "tab-mode", &mut self.by_spacing, &[(false, i18n::t("Same on every part")), (true, i18n::t("One every"))], 150.0);
                                 if self.by_spacing {
                                     self.f.ui(ui, "tabSpacing", doc);
@@ -1010,6 +1016,7 @@ mod tests {
         assert!(doc.tools[pr.tool as usize].kind == ToolType::VBit && pr.depth == 0.25);
         let r = new_op(&doc, OpType::Relief, &[]);
         assert!(r.rough && r.stepover == 0.1 && doc.tools[r.tool as usize].kind == ToolType::BallNose);
+        assert!(new_op(&doc, OpType::Profile, &[]).tabs && !p.tabs);
         // round trip through the dialog keeps bindings and scope
         let mut op = new_op(&doc, OpType::Profile, &[1]);
         op.bind.insert("depth".into(), "thickness".into());
