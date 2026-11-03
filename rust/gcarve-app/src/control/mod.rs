@@ -179,6 +179,10 @@ pub fn run_native() -> eframe::Result {
     let file = std::env::args().skip(1).find(|a| !a.starts_with("--"));
     let options = eframe::NativeOptions {
         viewport: eframe::egui::ViewportBuilder::default().with_title(i18n::t("GCarve Control")).with_inner_size([1280.0, 820.0]).with_min_inner_size([1000.0, 640.0]),
+        // macOS 26: tearing the window down and carrying on (eframe's run_and_return) trips AppKit's Touch Bar
+        // bookkeeping ("Cannot remove an observer … nextResponder": GCarve quit unexpectedly on the close button,
+        // egui#2768); ending the process with the window avoids it
+        run_and_return: !cfg!(target_os = "macos"),
         ..Default::default()
     };
     let r = eframe::run_native(i18n::t("GCarve Control"), options, Box::new(move |cc| Ok(Box::new(ControlApp::new(cc, file)))));

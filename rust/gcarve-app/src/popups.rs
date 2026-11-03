@@ -842,9 +842,9 @@ impl Dialogs {
         if let Some((mut list, mut heads, mut gap)) = self.plates.take() {
             let (mut keep, mut ok) = (true, false);
             W::Dialog::new(i18n::t("Plate Production")).show(ctx, |ui| {
-                ui.set_max_width(460.0);
+                ui.set_max_width(ui.available_width().min(460.0));
                 ui.label(egui::RichText::new("Select the master plate (its outline, text, anything). In its text, {1} is a row's first field, {2} the second, or use a heading like {name}. One plate is made per line below, beside and then below the master.").small().color(crate::theme::TEXT_DIM));
-                ui.add(egui::TextEdit::multiline(&mut list).desired_width(440.0).desired_rows(8).hint_text(i18n::t("Ann,101\nBo,102")));
+                ui.add(egui::TextEdit::multiline(&mut list).desired_width(ui.available_width().min(440.0)).desired_rows(8).hint_text(i18n::t("Ann,101\nBo,102")));
                 W::checkbox(ui, &mut heads, i18n::t("First line is headings"));
                 ui.horizontal(|ui| {
                     ui.label(i18n::tf("Gap between plates ({doc_unit})", &[("doc_unit", &doc_unit)]));

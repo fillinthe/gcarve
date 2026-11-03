@@ -25,7 +25,9 @@ fn sandbox() {
 
 fn harness(demo: bool) -> H {
     sandbox();
-    let mut h = Harness::builder().with_size(egui::vec2(1400.0, 900.0)).with_max_steps(400).build_eframe(|cc| crate::app::App::new(cc));
+    // GCARVE_E2E_SIZE=390x780: the same checks in a phone-sized window
+    let size = std::env::var("GCARVE_E2E_SIZE").ok().and_then(|v| v.split_once('x').and_then(|(w, h)| Some(egui::vec2(w.parse().ok()?, h.parse().ok()?)))).unwrap_or(egui::vec2(1400.0, 900.0));
+    let mut h = Harness::builder().with_size(size).with_max_steps(400).build_eframe(|cc| crate::app::App::new(cc));
     h.run_steps(4);
     if demo {
         // the showcase project (every toolpath type, layers, two sheets), everything selected, in Design
@@ -111,8 +113,17 @@ fn click(h: &mut H, id: &str) -> bool {
             h.run_steps(8);
             continue;
         }
+        // wider than the screen (a phone): tap the part that shows, as a person would
+        let shows = r.intersect(h.ctx.content_rect());
         if h.ctx.content_rect().contains_rect(r) {
             node.click();
+        } else if shows.width() >= 12.0 && shows.height() >= 12.0 {
+            let at = shows.center();
+            h.event(egui::Event::PointerMoved(at));
+            for pressed in [true, false] {
+                h.event(egui::Event::PointerButton { pos: at, button: egui::PointerButton::Primary, pressed, modifiers: egui::Modifiers::NONE });
+                h.run_steps(1);
+            }
         } else {
             node.click_accesskit();
         }
@@ -297,6 +308,44 @@ fn the_side_panel_fields_take_typing() {
     assert!(bad.is_empty(), "{} problems:\n{}", bad.len(), bad.join("\n"));
 }
 
+/// a value typed into a Properties field (it changes the drawing at once) comes back off with one Undo
+#[test]
+#[ignore]
+fn typing_in_the_properties_panel_can_be_undone() {
+    let mut bad = Vec::new();
+    let harness = |demo| {
+        let mut h = harness(demo);
+        if h.ctx.content_rect().width() < 760.0 {
+            h.state_mut().test_push("panels"); // folded at start on a narrow window: open it, as a person would
+            h.run_steps(4);
+        }
+        h
+    };
+    let fields: Vec<Seen> = nodes(&harness(true)).into_iter().filter(|n| n.role == accesskit::Role::TextInput).collect();
+    let mut tried = 0;
+    for f in &fields {
+        let mut h = harness(true);
+        let was = gcarve_core::project::save_project(&h.state_mut().test_doc());
+        if !click(&mut h, &f.id) {
+            continue;
+        }
+        h.run_steps(2);
+        h.key_press_modifiers(egui::Modifiers::COMMAND, egui::Key::A);
+        if let Some(node) = h.root().query_all(by()).find(|n| format!("{:?}", n.accesskit_node().id()) == f.id) {
+            node.type_text("3");
+        }
+        h.key_press(egui::Key::Enter);
+        h.run_steps(4);
+        if gcarve_core::project::save_project(&h.state_mut().test_doc()) == was {
+            continue; // not a drawing field (search, zoom)
+        }
+        tried += 1;
+        undo_redo(&mut h, &was, &format!("Properties field {:?}", f.label), &mut bad);
+    }
+    assert!(tried >= 4, "only {tried} of {} fields changed the drawing", fields.len());
+    assert!(bad.is_empty(), "{} problems:\n{}", bad.len(), bad.join("\n"));
+}
+
 /// Every button in whatever each menu command opens is pressed, one per fresh app, and the app must keep going (and
 /// still save a project that loads). Slow in a debug build: `cargo test --release -p gcarve-app ui_e2e -- --ignored`.
 #[test]
@@ -347,3 +396,220 @@ fn every_button_in_every_dialog_can_be_pressed() {
     eprintln!("{pressed} buttons pressed");
     assert!(bad.is_empty(), "{} problems:\n{}", bad.len(), bad.join("\n"));
 }
+
+/// press the OK (or Add / Import) of whatever opened since `before`; false when there is none
+fn press_ok(h: &mut H, before: &HashSet<String>) -> bool {
+    let Some(ok) = nodes(h).into_iter().find(|n| !before.contains(&n.id) && n.role == accesskit::Role::Button && matches!(n.label.as_str(), "OK" | "Add" | "Import")) else { return false };
+    let hit = click(h, &ok.id);
+    h.run_steps(10);
+    hit
+}
+
+/// run a command and press OK in what it opens
+fn command_ok(h: &mut H, id: &str) -> bool {
+    let before: HashSet<_> = nodes(h).into_iter().map(|n| n.id).collect();
+    h.state_mut().test_push(id);
+    h.run_steps(6);
+    press_ok(h, &before)
+}
+
+/// the job as File › Export writes it: some files, no safety findings, no toolpath warnings (`foreign`: a file made
+/// elsewhere may carry its own, and cut a little into the spoilboard on purpose)
+fn exports_cleanly_from(h: &mut H, what: &str, foreign: bool, bad: &mut Vec<String>) {
+    let doc = h.state_mut().test_doc();
+    let (r, warnings) = h.state_mut().test_export();
+    let Some(r) = r else { return bad.push(format!("{what}: nothing to export")) };
+    if r.files.is_empty() || r.files.iter().any(|f| !f.text.contains("G1") && !f.text.contains("G01")) {
+        bad.push(format!("{what}: {} files, some without cuts ({} toolpaths)", r.files.len(), doc.ops.len()));
+    }
+    // saved and opened again, the project must give the same files (nothing lost in the save)
+    let gcode = |d: &gcarve_core::document::Document| {
+        use gcarve_core::pipeline;
+        let post = pipeline::active_post(d, &|_| None);
+        pipeline::export(d, &pipeline::regenerate(d), "p", "", 0.0, &post).files.into_iter().map(|f| (f.filename, f.text)).collect::<Vec<_>>()
+    };
+    match gcarve_core::project::load_project(&gcarve_core::project::save_project(&doc)) {
+        Ok(back) if gcode(&back) != gcode(&doc) => bad.push(format!("{what}: saved and opened again, it exports different G-code")),
+        Ok(_) => {}
+        Err(e) => bad.push(format!("{what}: the saved project does not open: {e}")),
+    }
+    let safety: Vec<&String> = r.safety.iter().filter(|f| !(foreign && f.contains("into the spoilboard"))).collect();
+    if !safety.is_empty() {
+        bad.push(format!("{what}: export safety: {safety:?}"));
+    }
+    if !warnings.is_empty() && !foreign {
+        bad.push(format!("{what}: toolpath warnings: {warnings:?}"));
+    }
+}
+
+/// pick a drawing tool and click the middle of the canvas; type `words` into the box that opens; press OK / Add
+fn draw_by_click(h: &mut H, tool: &str, words: Option<&str>) -> bool {
+    let before: HashSet<_> = nodes(h).into_iter().map(|n| n.id).collect();
+    h.state_mut().test_push(tool);
+    h.run_steps(4);
+    // the Text tool opens its box at once; the shape tools wait for a click
+    if !nodes(h).iter().any(|n| !before.contains(&n.id) && n.role == accesskit::Role::Button && n.label == "OK") {
+        let at = h.ctx.content_rect().center();
+        h.event(egui::Event::PointerMoved(at));
+        for pressed in [true, false] {
+            h.event(egui::Event::PointerButton { pos: at, button: egui::PointerButton::Primary, pressed, modifiers: egui::Modifiers::NONE });
+            h.run_steps(2);
+        }
+        h.run_steps(4);
+    }
+    if let Some(words) = words {
+        let Some(f) = nodes(h).into_iter().find(|n| !before.contains(&n.id) && matches!(n.role, accesskit::Role::TextInput | accesskit::Role::MultilineTextInput)) else { return false };
+        click(h, &f.id);
+        h.run_steps(2);
+        h.key_press_modifiers(egui::Modifiers::COMMAND, egui::Key::A);
+        if let Some(node) = h.root().query_all(by()).find(|n| format!("{:?}", n.accesskit_node().id()) == f.id) {
+            node.type_text(words);
+        }
+        h.run_steps(3);
+    }
+    press_ok(h, &before)
+}
+
+fn exports_cleanly(h: &mut H, what: &str, bad: &mut Vec<String>) {
+    exports_cleanly_from(h, what, false, bad)
+}
+
+/// Undo must give back `was` exactly, Redo what was there before the Undo
+/// (id counters such as "nextText" may stay ahead: they only keep ids unique)
+fn undo_redo(h: &mut H, was: &str, what: &str, bad: &mut Vec<String>) {
+    let plain = |t: &str| t.lines().filter(|l| !l.trim_start().starts_with("\"next")).collect::<Vec<_>>().join("\n");
+    let was = plain(was);
+    let save = |h: &mut H| plain(&gcarve_core::project::save_project(&h.state_mut().test_doc()));
+    let after = save(h);
+    h.state_mut().test_push("undo");
+    h.run_steps(3);
+    let undone = save(h);
+    if undone != was {
+        bad.push(format!("{what}: Undo did not give the drawing back ({})", first_difference(&was, &undone)));
+    }
+    h.state_mut().test_push("redo");
+    h.run_steps(3);
+    let redone = save(h);
+    if redone != after {
+        bad.push(format!("{what}: Redo did not bring the change back ({})", first_difference(&after, &redone)));
+    }
+}
+
+/// where two project texts part: a little of each, for the message
+fn first_difference(a: &str, b: &str) -> String {
+    let i = a.bytes().zip(b.bytes()).take_while(|(x, y)| x == y).count();
+    let i = (0..=i).rev().find(|&k| a.is_char_boundary(k) && b.is_char_boundary(k)).unwrap_or(0);
+    let s = i.saturating_sub(60);
+    let s = (0..=s).rev().find(|&k| a.is_char_boundary(k) && b.is_char_boundary(k)).unwrap_or(0);
+    let cut = |t: &str| t[s..].chars().take(140).collect::<String>();
+    format!("expected …{:?}, got …{:?}", cut(a), cut(b))
+}
+
+/// select everything, make each toolpath kind with its dialog's defaults, then the export must be clean
+fn toolpaths_then_export(h: &mut H, kinds: &[&str], what: &str, bad: &mut Vec<String>) {
+    for k in kinds {
+        let n = h.state_mut().test_doc().ops.len();
+        h.state_mut().test_push("selectall");
+        h.run_steps(3);
+        let was = gcarve_core::project::save_project(&h.state_mut().test_doc());
+        if !command_ok(h, k) || h.state_mut().test_doc().ops.len() <= n {
+            return bad.push(format!("{what}: {k}: no toolpath after OK"));
+        }
+        undo_redo(h, &was, &format!("{what}: {k}"), bad);
+    }
+    exports_cleanly(h, what, bad);
+}
+
+/// The tasks the app offers, done through the UI from start to G-code: each wizard with its own defaults and OK,
+/// and a rectangle drawn with the mouse and cut out with a Profile. (`cargo test --release … -- --ignored`)
+#[test]
+#[ignore]
+fn the_tasks_the_app_offers_end_in_clean_g_code() {
+    let mut bad = Vec::new();
+    // new-project wizards: OK must give a whole job
+    for id in ["sign", "clock", "spoilboard", "doors", "tray"] {
+        let mut h = harness(false);
+        if !command_ok(&mut h, id) {
+            bad.push(format!("{id}: no OK button"));
+            continue;
+        }
+        if h.state_mut().test_doc().ops.is_empty() {
+            bad.push(format!("{id}: OK made no toolpaths"));
+            continue;
+        }
+        exports_cleanly(&mut h, id, &mut bad);
+    }
+    // drawing generators on an empty drawing: OK must add vectors
+    for id in ["qr", "puzzle", "boxmaker", "hinge"] {
+        let mut h = harness(false);
+        let n = h.state_mut().test_doc().shapes.len();
+        if !command_ok(&mut h, id) {
+            bad.push(format!("{id}: no OK button"));
+        } else if h.state_mut().test_doc().shapes.len() <= n {
+            bad.push(format!("{id}: OK added no vectors"));
+        }
+    }
+    // plain jobs: a rectangle by a click with the Rectangle tool, then toolpaths on it, then Export
+    for (kinds, what) in [(&["kind:0"][..], "rectangle + profile"), (&["kind:1"][..], "rectangle + pocket"), (&["inlay"][..], "rectangle + Inlay Wizard"),
+        (&["kind:8"][..], "rectangle + chamfer"), (&["kind:9"][..], "rectangle + prism"),
+        (&["kind:10"][..], "rectangle + texture"), (&["kind:6"][..], "rectangle + flute"), (&["kind:4"][..], "circle + bore")] {
+        let mut h = harness(false);
+        let tool = if what.starts_with("circle") { "tool:ellipse" } else { "tool:rect" };
+        if !draw_by_click(&mut h, tool, None) || h.state_mut().test_doc().shapes.is_empty() {
+            bad.push(format!("{tool} by a click: no size box, or no shape"));
+            continue;
+        }
+        toolpaths_then_export(&mut h, kinds, what, &mut bad);
+    }
+    // words: the Text tool, a click, type them, OK, then V-carve them
+    let mut h = harness(false);
+    if !draw_by_click(&mut h, "tool:text", Some("OAK")) || h.state_mut().test_doc().texts.is_empty() {
+        bad.push("text by a click: no text dialog, or no text".into());
+    } else {
+        toolpaths_then_export(&mut h, &["kind:3"], "text + V-carve", &mut bad);
+    }
+    // files opened as File › Open does: drawings get a Profile; projects, Carbide Create and G-code export as they are
+    let files: [(&str, &[u8]); 5] = [
+        ("demo.svg", include_bytes!("../../../samples/demo.svg")),
+        ("demo.dxf", include_bytes!("../../../samples/demo.dxf")),
+        ("cabinet.tlp", include_bytes!("../../../samples/cabinet.tlp")),
+        ("small.c2d", include_bytes!("../../testdata/c2d/small.c2d")),
+        ("01_V90.tap", include_bytes!("../../../reference/01_V90.tap")),
+    ];
+    for (name, bytes) in files {
+        let mut h = harness(false);
+        let before: HashSet<_> = nodes(&h).into_iter().map(|n| n.id).collect();
+        h.state_mut().test_open(name, bytes);
+        h.run_steps(6);
+        press_ok(&mut h, &before); // G-code opens the import box first
+        if h.state_mut().test_doc().shapes.is_empty() && h.state_mut().test_doc().ops.is_empty() {
+            bad.push(format!("{name}: opened nothing"));
+        } else if h.state_mut().test_doc().ops.is_empty() {
+            toolpaths_then_export(&mut h, &["kind:0"], &format!("{name} + profile"), &mut bad);
+        } else {
+            exports_cleanly_from(&mut h, name, true, &mut bad);
+        }
+    }
+    // the vector tools on a drawing (a rectangle and the word OAK, all selected): OK must change it
+    // (Align acts from its own buttons: the button sweep presses those)
+    for id in ["offset", "dogbone", "vtexture", "plates", "shelfpins", "stencil", "array", "nest"] {
+        let mut h = harness(false);
+        let words = if id == "plates" { "{1}" } else { "OAK" }; // a plate's text names a field of the list
+        if !draw_by_click(&mut h, "tool:rect", None) || !draw_by_click(&mut h, "tool:text", Some(words)) {
+            bad.push(format!("{id}: could not draw the rectangle and text"));
+            continue;
+        }
+        h.state_mut().test_push("selectall");
+        h.run_steps(3);
+        let was = gcarve_core::project::save_project(&h.state_mut().test_doc());
+        if !command_ok(&mut h, id) {
+            bad.push(format!("{id}: no OK button"));
+        } else if gcarve_core::project::save_project(&h.state_mut().test_doc()) == was {
+            bad.push(format!("{id}: OK left the drawing as it was"));
+        } else {
+            undo_redo(&mut h, &was, id, &mut bad);
+        }
+    }
+    assert!(bad.is_empty(), "{} problems:\n{}", bad.len(), bad.join("\n"));
+}
+

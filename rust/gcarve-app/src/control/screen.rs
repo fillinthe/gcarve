@@ -685,6 +685,9 @@ impl ControlApp {
 }
 
 impl eframe::App for ControlApp {
+    fn on_exit(&mut self, _gl: Option<&eframe::glow::Context>) {
+        crate::app::end_process_on_mac();
+    }
     fn ui(&mut self, ui: &mut egui::Ui, _frame: &mut eframe::Frame) {
         let ctx = ui.ctx().clone();
         let now = ctx.input(|i| i.time);
