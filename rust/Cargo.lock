@@ -802,6 +802,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "crossbeam-channel"
+version = "0.5.17"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "98b0cc327b5bc766e7fda9c9260cc0fa81b43a8e240440422dff70788e3f9ef1"
+dependencies = [
+ "crossbeam-utils",
+]
+
+[[package]]
 name = "crossbeam-deque"
 version = "0.8.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1414,7 +1423,7 @@ dependencies = [
 
 [[package]]
 name = "gcarve-app"
-version = "0.1.24"
+version = "0.1.25"
 dependencies = [
  "acadrust",
  "chrono",
@@ -1428,6 +1437,8 @@ dependencies = [
  "getrandom 0.3.4",
  "image",
  "js-sys",
+ "muda",
+ "objc2 0.6.5",
  "png 0.17.16",
  "qrcodegen",
  "rfd",
@@ -1443,7 +1454,7 @@ dependencies = [
 
 [[package]]
 name = "gcarve-core"
-version = "0.1.24"
+version = "0.1.25"
 dependencies = [
  "boostvoronoi",
  "clipper2-rust",
@@ -1454,7 +1465,7 @@ dependencies = [
 
 [[package]]
 name = "gcarve-ui"
-version = "0.1.24"
+version = "0.1.25"
 dependencies = [
  "chrono",
  "eframe",
@@ -1997,6 +2008,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "keyboard-types"
+version = "0.8.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0fbe853b403ae61a04233030ae8a79d94975281ed9770a1f9e246732b534b28d"
+dependencies = [
+ "bitflags 2.13.2",
+ "serde",
+]
+
+[[package]]
 name = "khronos_api"
 version = "3.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2192,6 +2213,24 @@ checksum = "bb85c154ba489f01b25c0d36ae69a87e4a1c73a72631fc6c0eb6dde34a73e44b"
 dependencies = [
  "num-traits",
  "pxfm",
+]
+
+[[package]]
+name = "muda"
+version = "0.21.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4340e89c178916e62879c5c36b7f699019369be413e496178a6983ce91b8bc03"
+dependencies = [
+ "crossbeam-channel",
+ "dpi",
+ "keyboard-types",
+ "objc2 0.6.5",
+ "objc2-app-kit 0.3.2",
+ "objc2-core-foundation",
+ "objc2-foundation 0.3.2",
+ "png 0.18.1",
+ "thiserror 2.0.21",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]

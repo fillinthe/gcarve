@@ -144,6 +144,8 @@ pub struct App {
     cur: usize,
     recent: Vec<String>,
     confirm: Option<Pending>,    // "Save changes to …?" before closing a dirty tab / quitting
+    #[cfg(all(target_os = "macos", not(test)))]
+    mac_menu: crate::macmenu::MacMenu, // the menus in the screen's menu bar
     after_save: Option<Pending>, // continue once the Save As of that document lands
     palette: Palette,
     /// web: `?open=<project id>` in the address (GSketch's Send to GCarve): opened once the session is known
@@ -221,7 +223,10 @@ impl App {
             project_path: None,
             #[cfg(not(target_arch = "wasm32"))]
             jobs: crate::jobs::Jobs::load(),
-            doc_id: 1, cloud_saving: None, next_doc_id: 2, tabs: vec![None], cur: 0, recent: if cfg!(target_arch = "wasm32") { Vec::new() } else { files::recent() }, confirm: None, after_save: None, palette: Palette::default(), open_at_start: None, share_start: 0, title: String::new(), about_open: false, ops_before: None, counted_toolpath: false, counted_open: false, staff: false, smoke_step: 0, smoke_note: String::new(), guide: Default::default(), ui_state };
+            doc_id: 1, cloud_saving: None, next_doc_id: 2, tabs: vec![None], cur: 0, recent: if cfg!(target_arch = "wasm32") { Vec::new() } else { files::recent() }, confirm: None, after_save: None, palette: Palette::default(), open_at_start: None, share_start: 0, title: String::new(), about_open: false, ops_before: None, counted_toolpath: false, counted_open: false, staff: false, smoke_step: 0, smoke_note: String::new(), guide: Default::default(), ui_state,
+            #[cfg(all(target_os = "macos", not(test)))]
+            mac_menu: Default::default(),
+        };
         // keyboard zoom is the canvas's (⌘+ / ⌘− / ⌘0), not the whole UI's
         cc.egui_ctx.options_mut(|o| o.zoom_with_keyboard = false);
         // ---- CAM dialogs / simulation ----
@@ -1084,6 +1089,15 @@ impl App {
             }
             ("update", _) => self.help.open_update(ctx),
             ("panels", _) => self.right_open = !self.right_open,
+            ("rail", "toggle") => self.left_open = !self.left_open,
+            ("snap", "toggle") => self.canvas.snap = !self.canvas.snap,
+            ("units", u) => {
+                if let Some(v) = [("in", crate::units::BARE[0]), ("ft", crate::units::BARE[1]), ("mm", crate::units::BARE[2])].iter().find(|(n, _)| *n == u).map(|(_, v)| *v) {
+                    self.canvas.doc.bare_unit_in = v;
+                    self.canvas.touch();
+                }
+            }
+            ("quit", _) => ctx.send_viewport_cmd(egui::ViewportCommand::Close), // macOS app menu › Quit: unsaved tabs are asked about
             ("fold", "right") => self.right_open = false,
             ("rail", "fold") => self.left_open = false,
             ("palette", _) => self.palette.open(ctx),
@@ -1752,7 +1766,17 @@ impl eframe::App for App {
             show_grid: self.cam.prefs.synced.grid.show,
             rulers: self.cam.prefs.synced.grid.rulers,
         };
-        shell::menu_bar(ui, &mut self.shell, &mut self.canvas, &menu, &mut self.left_open, &mut self.right_open, has_ops);
+        #[cfg(all(target_os = "macos", not(test)))]
+        let native = {
+            self.mac_menu.update(&ctx, &self.canvas, &menu, self.left_open, self.right_open, has_ops);
+            while let Some(id) = self.mac_menu.take() {
+                self.shell.push(&id);
+            }
+            true
+        };
+        #[cfg(not(all(target_os = "macos", not(test))))]
+        let native = false;
+        shell::menu_bar(ui, &mut self.shell, &self.canvas, &menu, self.left_open, self.right_open, has_ops, native);
         let dirty = if self.canvas.dirty { "• " } else { "" };
         #[cfg(not(target_arch = "wasm32"))]
         let job = self.project_path.as_ref().and_then(|p| self.jobs.job_for(p)).and_then(|j| j.file_name().map(|n| format!("{} › ", n.to_string_lossy()))).unwrap_or_default();
@@ -1766,7 +1790,7 @@ impl eframe::App for App {
         }
         // previews may hold only some toolpaths while drawing: Export works them all out
         let can_export = !self.canvas.doc.ops.is_empty();
-        shell::mode_bar(ui, &mut self.shell, self.mode, &title, &self.canvas, can_export);
+        shell::mode_bar(ui, &mut self.shell, self.mode, &title, &self.canvas, can_export, cfg!(all(target_os = "macos", not(test))));
 
         egui::Panel::bottom("status").frame(egui::Frame::new().fill(theme::BG)).show(ui, |ui| {
             let message = if self.simulating() && self.player.ready() { self.player.info.clone() } else { self.message.clone() };

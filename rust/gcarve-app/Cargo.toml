@@ -41,6 +41,10 @@ qrcodegen = "1"
 serialport = { version = "4.7", default-features = false, optional = true }   # GCarve Control over USB (no libudev: port names only on Linux)
 rusqlite = { version = "0.40", features = ["bundled"] }   # Vectric .vtdb tool databases (SQLite; bundled = no system lib)
 
+[target.'cfg(target_os = "macos")'.dependencies]
+muda = { version = "0.21", default-features = false }   # the macOS menu bar at the top of the screen (Tauri's, MIT / Apache-2.0)
+objc2 = "0.6"   # one AppKit call (no macOS window tabs); already in the tree through winit / muda
+
 [target.'cfg(target_arch = "wasm32")'.dependencies]
 wasm-bindgen-futures = "0.4"
 wasm-bindgen = "=0.2.129"   # inline JS for Web Serial (control/webserial.rs); pinned to the Cargo.lock / wasm-bindgen-cli version
