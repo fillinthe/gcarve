@@ -11,6 +11,8 @@ use gcarve_ui::{cloud, fonts, icons, recover, spacemouse, store, theme, widgets}
 #[cfg(all(feature = "screenshot", not(target_arch = "wasm32")))]
 use gcarve_ui::shot;
 mod bands;
+#[cfg(all(target_os = "macos", not(test)))]
+mod macmenu;
 mod bitbrowser;
 mod canvas;
 mod catalog;

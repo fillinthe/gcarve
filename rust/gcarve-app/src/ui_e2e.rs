@@ -40,10 +40,10 @@ fn harness(demo: bool) -> H {
 }
 
 /// every command id in the menu bar: the last string of each `item(…, "id")` call or `(…, "id")` table row in
-/// shell.rs `menu_bar` (a few plain words come along; they only give "Unknown command")
+/// shell.rs `menus` (a few plain words come along; they only give "Unknown command")
 fn menu_ids() -> Vec<String> {
     let src = include_str!("shell.rs");
-    let body = &src[src.find("pub fn menu_bar").unwrap()..];
+    let body = &src[src.find("pub fn menus").unwrap()..];
     let body = &body[..body[1..].find("\npub fn ").unwrap_or(body.len() - 1)];
     let mut ids: Vec<String> = Vec::new();
     for (end, _) in body.match_indices("\")") {

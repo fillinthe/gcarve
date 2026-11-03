@@ -310,7 +310,8 @@ fn icon_btn(ui: &mut egui::Ui, sh: &mut Shell, id: &str, on: bool) {
 }
 
 /// ModeBar.qml: 46 px bar under the menus
-pub fn mode_bar(ui: &mut egui::Ui, sh: &mut Shell, mode: Mode, title: &str, canvas: &Canvas, can_export: bool) {
+/// `search`: the command search sits here (macOS, where the menus are in the screen's menu bar)
+pub fn mode_bar(ui: &mut egui::Ui, sh: &mut Shell, mode: Mode, title: &str, canvas: &Canvas, can_export: bool, search: bool) {
     let (can_undo, can_redo) = (canvas.doc.can_undo(), canvas.doc.can_redo());
     egui::Panel::top("modebar").frame(egui::Frame::new().fill(theme::BG).inner_margin(egui::Margin { left: 8, right: 8, top: 1, bottom: 2 })).show(ui, |ui| {
         ui.spacing_mut().item_spacing.x = 2.0;
@@ -339,6 +340,12 @@ pub fn mode_bar(ui: &mut egui::Ui, sh: &mut Shell, mode: Mode, title: &str, canv
                 ui.add_space(6.0);
                 if !phone && IconButton::new("heart").tint(theme::ORANGE).tip(i18n::t("Support GCarve: donate (opens gcarve.app)")).show(ui).clicked() {
                     sh.push("donate");
+                }
+                if search {
+                    ui.add_space(6.0);
+                    if gcarve_ui::menubar::search_box(ui) {
+                        sh.push("palette");
+                    }
                 }
                 // mode switch pill, centred in the remaining space
                 let avail = ui.available_rect_before_wrap();
@@ -715,286 +722,291 @@ pub struct MenuInfo {
     pub rulers: bool,
 }
 
-/// Main.qml menuBar: the same menus, wording and shortcuts
-pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, m: &MenuInfo, rail_open: &mut bool, panel_open: &mut bool, has_ops: bool) {
+/// One menu row, as both menu bars take it: the window's own (egui) and the macOS one at the top of the screen
+pub trait MenuSink {
+    /// label, shortcut text, enabled, command id
+    fn item(&mut self, text: &str, key: &str, on: bool, id: &str);
+    /// a row with a tick when `ticked`; choosing it runs `id`
+    fn check(&mut self, text: &str, key: &str, on: bool, ticked: bool, id: &str);
+    fn sep(&mut self);
+    fn sub(&mut self, title: &str, on: bool, add: &mut dyn FnMut(&mut dyn MenuSink));
+}
+
+/// called once per menu title with the menu's rows
+pub type MenuTop<'a> = dyn FnMut(&str, &mut dyn FnMut(&mut dyn MenuSink)) + 'a;
+
+/// Main.qml menuBar: the same menus, wording and shortcuts. `top` is called once per menu title.
+pub fn menus(top: &mut MenuTop, canvas: &Canvas, m: &MenuInfo, rail_open: bool, panel_open: bool, has_ops: bool) {
     let sel = canvas.selection_count();
     let (can_undo, can_redo) = (canvas.doc.can_undo(), canvas.doc.can_redo());
     let web = cfg!(target_arch = "wasm32");
     let text = canvas.selected_text() != 0;
+        top(i18n::t("File"), &mut |s| {
+            s.item(i18n::t("New"), "⌘N", true, "new");
+            s.item(i18n::t("New Sign…"), "", true, "sign");
+            s.item(i18n::t("New Tray or Cutting Board…"), "", true, "tray");
+            s.item(i18n::t("New Cabinet Doors…"), "", true, "doors");
+            s.item(i18n::t("New Clock…"), "", true, "clock");
+            s.item(i18n::t("New Spoilboard…"), "", true, "spoilboard");
+            s.item(i18n::t("Close Tab"), "⌘W", true, "closetab");
+            s.item(if web { i18n::t("Open / Import from Computer…") } else { i18n::t("Open Project / Import…") }, "⌘O", true, "open");
+            s.item(i18n::t("Import G-code…"), "", true, "importgcode");
+            s.item(i18n::t("Cloud Projects…"), "", true, "cloud");
+            s.item(i18n::t("Free Community Projects…"), "", true, "community");
+            s.item(i18n::t("Make It on My Machine…"), "", has_ops, "makeit");
+            if !web {
+                s.item(i18n::t("Jobs…"), "⌘J", true, "jobs");
+                s.item(i18n::t("Import 3D Model (STL)…"), "", true, "importstl");
+                s.sub(i18n::t("Open Recent"), !m.recent.is_empty(), &mut |s| {
+                        for (i, r) in m.recent.iter().enumerate() {
+                            // "name — folder" (the full path made the submenu as wide as the screen)
+                            let p = std::path::Path::new(r);
+                            let name = p.file_name().map_or(r.clone(), |n| n.to_string_lossy().into_owned());
+                            let dir = p.parent().and_then(|d| d.file_name()).map(|d| format!(" — {}", d.to_string_lossy())).unwrap_or_default();
+                            s.item(&format!("{name}{dir}"), "", true, &format!("recent:{i}"));
+                        }
+                        s.sep();
+                        s.item(i18n::t("Clear Menu"), "", true, "recent:clear");
+                });
+            }
+            s.sep();
+            s.item(if web { i18n::t("Save to Cloud") } else { i18n::t("Save") }, "⌘S", true, "save");
+            if web {
+                s.item(i18n::t("Download Project (.tlp)"), "", true, "saveas");
+            } else {
+                s.item(i18n::t("Save As…"), "⇧⌘S", true, "saveas");
+                s.item(i18n::t("Save to Cloud"), "", true, "savecloud");
+            }
+            s.item(i18n::t("Save as Job Template…"), "", true, "jobtemplate");
+            s.sep();
+            s.sub(i18n::t("Export Vectors"), true, &mut |s| {
+                // the selection, or every visible vector of this sheet, at real size
+                s.item(i18n::t("As SVG (curves kept)"), "", true, "vexport:svg");
+                s.item(i18n::t("As DXF (for CAD / other CAM)"), "", true, "vexport:dxf");
+                s.item(i18n::t("As DWG (AutoCAD)"), "", true, "vexport:dwg");
+                s.item(i18n::t("As PDF (print, full size)"), "", true, "vexport:pdf");
+            });
+            s.item(i18n::t("Send to GBurn (laser)…"), "", true, "sendgburn");
+            s.item(i18n::t("Setup Sheet…"), "", has_ops, "setupsheet"); // printable job sheet for the operator
+            s.item(i18n::t("Save Preview Image (PNG)"), "", has_ops, "previewimage");
+            s.item(i18n::t("Share Project with Someone…"), "", true, "shareproject");
+            s.item(i18n::t("Share to Community…"), "", has_ops, "communityshare");
+            s.sep();
+            s.item(&m.account, "", true, "account");
+        });
+        top(i18n::t("Edit"), &mut |s| {
+            s.item(i18n::t("Undo"), "⌘Z", can_undo, "undo");
+            s.item(i18n::t("Redo"), "⇧⌘Z", can_redo, "redo");
+            s.sep();
+            s.item(i18n::t("Cut"), "⌘X", sel > 0, "cut");
+            s.item(i18n::t("Copy"), "⌘C", sel > 0, "copy");
+            s.item(i18n::t("Paste"), "⌘V", true, "paste");
+            s.sep();
+            s.item(i18n::t("Select All"), "⌘A", true, "selectall");
+            s.item(i18n::t("Vector Selector…"), "", true, "selector");
+            s.item(i18n::t("Duplicate (with toolpaths)"), "⌘D", sel > 0, "clone");
+            s.sep();
+            s.item(i18n::t("Group"), "⌘G", sel > 1, "group");
+            s.item(i18n::t("Ungroup"), "⇧⌘G", canvas.selection_has_group(), "ungroup");
+            s.item(i18n::t("Delete"), "⌫", sel > 0 || canvas.sel_dim >= 0, "delete");
+            s.sep();
+            s.item(i18n::t("Add Text…"), "T", true, "tool:text");
+            s.item(i18n::t("Text on Curve…"), "", sel == 1, "text:curve");
+            s.item(i18n::t("Edit Text…"), "", text, "text:edit");
+            s.item(i18n::t("Convert Text to Curves"), "", text, "text:curves");
+            s.sep();
+            s.item(i18n::t("Preferences…"), "⌘,", true, "prefs");
+        });
+        top(i18n::t("Vectors"), &mut |s| {
+            for (t, k, on, id) in [(i18n::t("Weld"), "", sel > 1, "weld"), (i18n::t("Subtract"), "", sel > 1, "subtract"), (i18n::t("Intersect"), "", sel > 1, "intersect")] {
+                s.item(t, k, on, id);
+            }
+            s.sep();
+            s.item(i18n::t("Shapes Library…"), "", true, "shapes");
+            s.item(i18n::t("Trace Image…"), "", true, "trace");
+            s.sep();
+            for (t, k, on, id) in [(i18n::t("Offset…"), "", sel > 0, "offset"), (i18n::t("Corners: Dogbone / Fillet…"), "", sel > 0, "dogbone"), (i18n::t("Join Open Vectors"), "", sel > 1, "join"), (i18n::t("Close Vectors"), "", sel > 0, "close"), (i18n::t("Extend Ends to Next Vector"), "", sel > 0, "extend"), (i18n::t("Vector Texture…"), "", sel > 0, "vtexture"), (i18n::t("Plate Production…"), "", sel > 0, "plates"), (i18n::t("Shelf-Pin Holes…"), "", sel > 0, "shelfpins"), (i18n::t("Box Maker (finger joints)…"), "", true, "boxmaker"), (i18n::t("Jigsaw Puzzle…"), "", true, "puzzle"), (i18n::t("Living Hinge…"), "", true, "hinge"), (i18n::t("Stencil Bridges…"), "", sel > 0, "stencil"), (i18n::t("Halftone from Picture…"), "", true, "halftone"), (i18n::t("QR Code…"), "", true, "qr"), (i18n::t("Rotary Layout (spiral, flutes)…"), "", canvas.doc.material.rotary.is_some(), "rotarylayout"), (i18n::t("Check Vectors (open, duplicate, tiny)"), "", true, "validate")] {
+                s.item(t, k, on, id);
+            }
+            s.sub(i18n::t("Distort"), sel > 1, &mut |s| {
+                    s.item(i18n::t("Bend Along Curve"), "", true, "distort:1");
+                    s.item(i18n::t("Fit Into Four Corners"), "", true, "distort:4");
+                    s.item(i18n::t("Fit Between Two Curves"), "", true, "distort:2");
+            });
+            s.sub(i18n::t("Simplify (fewer nodes)"), sel > 0, &mut |s| {
+                    let u = if crate::units::name(&canvas.doc) == "mm" { ["0.03 mm", i18n::t("0.13 mm"), "0.5 mm"] } else { ["0.001 in", i18n::t("0.005 in"), "0.02 in"] };
+                    for (label, tol) in [(i18n::tf("Fine: within {u}", &[("u", &(u[0]))]), "0.001"), (i18n::tf("Medium: within {u}", &[("u", &(u[1]))]), "0.005"), (i18n::tf("Coarse: within {u}", &[("u", &(u[2]))]), "0.02")] {
+                        s.item(&label, "", true, &format!("simplify:{tol}"));
+                    }
+                    s.sep();
+                    s.item(i18n::t("Fit Arcs and Curves (smooth)"), "", true, "fitcurves:0.005");
+            });
+            s.sep();
+            for (t, k, on, id) in [(i18n::t("Flip Horizontal"), "", sel > 0, "fliph"), (i18n::t("Flip Vertical"), "", sel > 0, "flipv"), (i18n::t("Rotate 90°"), "", sel > 0, "rotate"), (i18n::t("Centre on Board"), "", sel > 0, "centre"), (i18n::t("Align & Distribute…"), "⇧⌘A", sel > 0, "align"), (i18n::t("Array Copy…"), "", sel > 0, "array"), (i18n::t("Constrain Two Shapes…"), "", sel == 2, "link"), (i18n::t("Nest on Board…"), "", sel > 0, "nest")] {
+                s.item(t, k, on, id);
+            }
+            s.item(i18n::t("Mirror Copy to the Right"), "", sel > 0, "mirror:right");
+            s.item(i18n::t("Mirror Copy Upwards"), "", sel > 0, "mirror:up");
+            s.item(i18n::t("Move to Next Sheet"), "", sel > 0 && canvas.doc.sheets.len() > 1, "sheet:next");
+            s.item(i18n::t("New Sheet"), "", true, "sheet:add");
+            s.sub(i18n::t("New Back Side (two-sided job)"), true, &mut |s| {
+                s.item(i18n::t("Flip the board left to right"), "", true, "sheet:back-lr");
+                s.item(i18n::t("Flip the board top to bottom"), "", true, "sheet:back-tb");
+            });
+        });
+        top(i18n::t("Variables"), &mut |s| {
+            s.item(i18n::t("Variables & Constraints…"), "⇧⌘E", true, "vars");
+            s.item(i18n::t("Add Variable"), "", true, "var:add");
+        });
+        top(i18n::t("Toolpaths"), &mut |s| {
+            for (i, key) in ["⇧⌘P", "⇧⌘K", "⇧⌘D", "⇧⌘V", "⇧⌘B", "⇧⌘I", "⇧⌘F"].iter().enumerate() {
+                let key = if i == 0 { "" } else { key }; // ⇧⌘P is the side panel (Qt binds it twice)
+                s.item(&i18n::tf("New {kind}…", &[("kind", &i18n::t(KINDS[i].0))]), key, sel > 0, &format!("kind:{i}"));
+            }
+            for i in [8, 9, 10, 11] {
+                s.item(&i18n::tf("New {kind}…", &[("kind", &i18n::t(KINDS[i].0))]), "", sel > 0, &format!("kind:{i}"));
+            }
+            s.item(i18n::t("Export G-code…"), "⌘E", has_ops, "export");
+            s.item(i18n::t("Export Air-Cut Test…"), "", has_ops, "aircut");
+            s.sep();
+            s.item(i18n::t("Save as Template…"), "", has_ops, "templates");
+            s.item(i18n::t("Apply Template…"), "", true, "templates");
+            s.sep();
+            if !web {
+                s.item(i18n::t("Send to GCarve Control"), "", has_ops, "control:send");
+                s.item(i18n::t("Open GCarve Control"), "", true, "control:open");
+                s.sep();
+            }
+            s.item(i18n::t("Tool Library…"), "", true, "tools");
+            s.item(i18n::t("Board / Job Setup…"), "", true, "board");
+            s.item(i18n::t("Choose Machine…"), "", true, "machine");
+            s.item(i18n::t("Surface the Board…"), "", true, "surface");
+            s.item(i18n::t("Inlay Wizard…"), "", true, "inlay");
+            s.item(i18n::t("3D Models…"), "", true, "reliefs");
+            s.item(i18n::t("Post-Processors…"), "", true, "posts");
+        });
+        top(i18n::t("View"), &mut |s| {
+            s.check(i18n::t("Show Toolpaths"), "⇧⌘T", true, canvas.show_paths, "paths");
+            s.check(i18n::t("Every Toolpath While Drawing"), "", true, canvas.all_paths, "allpaths");
+            s.item(i18n::t("Show All Toolpaths"), "", has_ops, "ops:showall");
+            s.item(i18n::t("Hide All Toolpaths"), "", has_ops, "ops:hideall");
+            s.check(i18n::t("Show Cut Width"), "", true, canvas.show_width, "width");
+            s.item(i18n::t("Simulate Cut"), "⌘R", has_ops, "sim");
+            s.item(i18n::t("Watch the Cut"), "⇧⌘R", has_ops, "watch");
+            s.check(i18n::t("3D View"), "⌘3", true, m.view_3d, "view3d");
+            s.check(i18n::t("Show Simulation"), "", has_ops, m.sim, "showsim");
+            for (t, k, id) in [(i18n::t("Zoom In"), "⌘+", "zoom:in"), (i18n::t("Zoom Out"), "⌘−", "zoom:out"), (i18n::t("Zoom to Fit"), "⌘0", "zoom:fit"), (i18n::t("Zoom to Board"), "⌘1", "zoom:board")] {
+                s.item(t, k, true, id);
+            }
+            s.sep();
+            s.item(i18n::t("Command Palette…"), "⌘K", true, "palette");
+            s.check(i18n::t("Side Panel"), "⇧⌘P", true, panel_open, "panels");
+            s.check(i18n::t("Tool Rail"), "", true, rail_open, "rail:toggle");
+            s.check(i18n::t("Start Card"), "", true, m.start_card, "startcard");
+            s.item(i18n::t("Actual Size (100%)"), "⌘2", true, "zoom:100");
+            s.sep();
+            s.check(i18n::t("Snap"), "", true, canvas.snap, "snap:toggle");
+            s.item(i18n::t("Snap Settings…"), "", true, "snap:settings");
+            s.item(i18n::t("Clear Guides"), "", !canvas.doc.guides.is_empty(), "guides:clear");
+            s.sep();
+            s.item(i18n::t("Picture to Draw Over…"), "", true, "picture");
+            if canvas.doc.pictures.iter().any(|p| p.sheet == canvas.doc.active_sheet) {
+                s.item(i18n::t("Picture Settings…"), "", true, "picture:edit");
+            }
+            s.item(i18n::t("Photo of the Board…"), "", true, "boardphoto");
+            if let Some(b) = &canvas.board_photo {
+                s.item(if b.show { i18n::t("Hide the Board Photo") } else { i18n::t("Show the Board Photo") }, "", true, "boardphoto:toggle");
+                s.item(i18n::t("Remove the Board Photo"), "", true, "boardphoto:remove");
+            }
+            s.item(if canvas.all_sheets { i18n::t("One Sheet at a Time") } else { i18n::t("All Sheets Side by Side") }, "", true, "allsheets");
+            let (line, can) = crate::spacemouse::status();
+            s.item(if can || line.is_empty() { i18n::t("Connect a SpaceMouse…") } else { line.split(':').next().unwrap_or(i18n::t("SpaceMouse")) }, "", can, "spacemouse");
+            s.check(i18n::t("Show Grid"), "", true, m.show_grid, "grid:toggle");
+            s.check(i18n::t("Rulers"), "", true, m.rulers, "rulers:toggle");
+            s.sub(i18n::t("Units"), true, &mut |s| {
+                let (uname, _, _) = unit(&canvas.doc);
+                for (t, n) in [(i18n::t("Inches"), "in"), (i18n::t("Feet"), "ft"), (i18n::t("Millimetres"), "mm")] {
+                    s.check(t, "", true, uname == n, &format!("units:{n}"));
+                }
+            });
+        });
+        top(i18n::t("Help"), &mut |s| {
+            s.item(i18n::t("♥ Donate to GCarve…"), "", true, "donate");
+            if m.signed_in {
+                s.item(i18n::t("Dashboard (account, requests)…"), "", true, "manage");
+            } else {
+                s.item(i18n::t("Sign In…"), "", true, "account");
+            }
+            if m.admin {
+                s.item(i18n::t("User Management…"), "", true, "admin");
+            }
+            s.item(i18n::t("Getting Started Guide"), "", true, "tour:show");
+            s.item(i18n::t("How Do I…?"), "", true, "guide");
+            s.item(i18n::t("Keyboard Shortcuts"), "", true, "shortcuts");
+            s.item(i18n::t("Open the Demo Project"), "", true, "demo");
+            s.item(i18n::t("Request a Change…"), "", true, "request");
+            s.item(i18n::t("Shared with Me…"), "", true, "shares");
+            s.item(i18n::t("Support Page"), "", true, "support");
+            s.item(i18n::t("GCarve Website"), "", true, "website");
+            s.item(i18n::t("Report a Bug…"), "", true, "bug");
+            if !cfg!(target_arch = "wasm32") {
+                s.item(i18n::t("AI Assistants…"), "", true, "mcp");
+            }
+            // web: the free desktop apps; desktop: check for a newer version
+            if cfg!(target_arch = "wasm32") {
+                s.item(i18n::t("Download the Desktop App"), "", true, "download");
+            } else {
+                let up = gcarve_ui::help::available().map_or(i18n::t("Check for Updates…").to_string(), |(v, _)| i18n::tf("Update available: {v}…", &[("v", &v)]));
+                s.item(&up, "", true, "update");
+            }
+            s.sep();
+            s.item(i18n::t("About GCarve"), "", true, "about");
+        });
+}
+
+/// the egui rows of `menus`
+struct EguiMenu<'a> {
+    ui: &'a mut egui::Ui,
+    sh: &'a mut Shell,
+}
+
+impl MenuSink for EguiMenu<'_> {
+    fn item(&mut self, text: &str, key: &str, on: bool, id: &str) {
+        if self.ui.add_enabled_ui(on, |ui| widgets::menu_item(ui, text, key)).inner.clicked() {
+            self.sh.push(id);
+            self.ui.close();
+        }
+    }
+    fn check(&mut self, text: &str, key: &str, on: bool, ticked: bool, id: &str) {
+        let mut t = ticked;
+        if self.ui.add_enabled_ui(on, |ui| widgets::menu_check(ui, text, key, &mut t)).inner.clicked() {
+            self.sh.push(id);
+            self.ui.close();
+        }
+    }
+    fn sep(&mut self) {
+        widgets::menu_separator(self.ui);
+    }
+    fn sub(&mut self, title: &str, on: bool, add: &mut dyn FnMut(&mut dyn MenuSink)) {
+        let sh = &mut *self.sh;
+        self.ui.add_enabled_ui(on, |ui| {
+            widgets::submenu(ui, title, |ui| add(&mut EguiMenu { ui, sh }));
+        });
+    }
+}
+
+/// The menu bar in the window, with the command search on the right. With `native` (the macOS menu bar has the
+/// menus) there is none: the search moves into the mode bar.
+#[allow(clippy::too_many_arguments)]
+pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &Canvas, m: &MenuInfo, rail_open: bool, panel_open: bool, has_ops: bool, native: bool) {
+    if native {
+        sh.menu_rect = egui::Rect::NOTHING;
+        return;
+    }
     let keep = sh.snap_arrow;
     let mut search = false;
     sh.menu_rect = gcarve_ui::menubar::bar(ui, keep, |ui: &mut egui::Ui, tops: &mut Vec<egui::Response>| {
-            // item: label, shortcut text, enabled, command id
-            fn item(ui: &mut egui::Ui, sh: &mut Shell, text: &str, key: &str, on: bool, id: &str) {
-                if ui.add_enabled_ui(on, |ui| widgets::menu_item(ui, text, key)).inner.clicked() {
-                    sh.push(id);
-                    ui.close();
-                }
-            }
-            fn check(ui: &mut egui::Ui, text: &str, v: &mut bool) {
-                if widgets::menu_check(ui, text, "", v).clicked() {
-                    ui.close();
-                }
-            }
-            tops.push(ui.menu_button(i18n::t("File"), |ui| {
-                item(ui, sh, i18n::t("New"), "⌘N", true, "new");
-                item(ui, sh, i18n::t("New Sign…"), "", true, "sign");
-                item(ui, sh, i18n::t("New Tray or Cutting Board…"), "", true, "tray");
-                item(ui, sh, i18n::t("New Cabinet Doors…"), "", true, "doors");
-                item(ui, sh, i18n::t("New Clock…"), "", true, "clock");
-                item(ui, sh, i18n::t("New Spoilboard…"), "", true, "spoilboard");
-                item(ui, sh, i18n::t("Close Tab"), "⌘W", true, "closetab");
-                item(ui, sh, if web { i18n::t("Open / Import from Computer…") } else { i18n::t("Open Project / Import…") }, "⌘O", true, "open");
-                item(ui, sh, i18n::t("Import G-code…"), "", true, "importgcode");
-                item(ui, sh, i18n::t("Cloud Projects…"), "", true, "cloud");
-                item(ui, sh, i18n::t("Free Community Projects…"), "", true, "community");
-                item(ui, sh, i18n::t("Make It on My Machine…"), "", has_ops, "makeit");
-                if !web {
-                    item(ui, sh, i18n::t("Jobs…"), "⌘J", true, "jobs");
-                    item(ui, sh, i18n::t("Import 3D Model (STL)…"), "", true, "importstl");
-                    ui.add_enabled_ui(!m.recent.is_empty(), |ui| {
-                        widgets::submenu(ui, i18n::t("Open Recent"), |ui| {
-                            for (i, r) in m.recent.iter().enumerate() {
-                                // "name — folder" (the full path made the submenu as wide as the screen)
-                                let p = std::path::Path::new(r);
-                                let name = p.file_name().map_or(r.clone(), |n| n.to_string_lossy().into_owned());
-                                let dir = p.parent().and_then(|d| d.file_name()).map(|d| format!(" — {}", d.to_string_lossy())).unwrap_or_default();
-                                item(ui, sh, &format!("{name}{dir}"), "", true, &format!("recent:{i}"));
-                            }
-                            widgets::menu_separator(ui);
-                            item(ui, sh, i18n::t("Clear Menu"), "", true, "recent:clear");
-                        });
-                    });
-                }
-                widgets::menu_separator(ui);
-                item(ui, sh, if web { i18n::t("Save to Cloud") } else { i18n::t("Save") }, "⌘S", true, "save");
-                if web {
-                    item(ui, sh, i18n::t("Download Project (.tlp)"), "", true, "saveas");
-                } else {
-                    item(ui, sh, i18n::t("Save As…"), "⇧⌘S", true, "saveas");
-                    item(ui, sh, i18n::t("Save to Cloud"), "", true, "savecloud");
-                }
-                item(ui, sh, i18n::t("Save as Job Template…"), "", true, "jobtemplate");
-                widgets::menu_separator(ui);
-                widgets::submenu(ui, i18n::t("Export Vectors"), |ui| {
-                    // the selection, or every visible vector of this sheet, at real size
-                    item(ui, sh, i18n::t("As SVG (curves kept)"), "", true, "vexport:svg");
-                    item(ui, sh, i18n::t("As DXF (for CAD / other CAM)"), "", true, "vexport:dxf");
-                    item(ui, sh, i18n::t("As DWG (AutoCAD)"), "", true, "vexport:dwg");
-                    item(ui, sh, i18n::t("As PDF (print, full size)"), "", true, "vexport:pdf");
-                });
-                item(ui, sh, i18n::t("Send to GBurn (laser)…"), "", true, "sendgburn");
-                item(ui, sh, i18n::t("Setup Sheet…"), "", has_ops, "setupsheet"); // printable job sheet for the operator
-                item(ui, sh, i18n::t("Save Preview Image (PNG)"), "", has_ops, "previewimage");
-                item(ui, sh, i18n::t("Share Project with Someone…"), "", true, "shareproject");
-                item(ui, sh, i18n::t("Share to Community…"), "", has_ops, "communityshare");
-                widgets::menu_separator(ui);
-                item(ui, sh, &m.account, "", true, "account");
-            }).response);
-            tops.push(ui.menu_button(i18n::t("Edit"), |ui| {
-                item(ui, sh, i18n::t("Undo"), "⌘Z", can_undo, "undo");
-                item(ui, sh, i18n::t("Redo"), "⇧⌘Z", can_redo, "redo");
-                widgets::menu_separator(ui);
-                item(ui, sh, i18n::t("Cut"), "⌘X", sel > 0, "cut");
-                item(ui, sh, i18n::t("Copy"), "⌘C", sel > 0, "copy");
-                item(ui, sh, i18n::t("Paste"), "⌘V", true, "paste");
-                widgets::menu_separator(ui);
-                item(ui, sh, i18n::t("Select All"), "⌘A", true, "selectall");
-                item(ui, sh, i18n::t("Vector Selector…"), "", true, "selector");
-                item(ui, sh, i18n::t("Duplicate (with toolpaths)"), "⌘D", sel > 0, "clone");
-                widgets::menu_separator(ui);
-                item(ui, sh, i18n::t("Group"), "⌘G", sel > 1, "group");
-                item(ui, sh, i18n::t("Ungroup"), "⇧⌘G", canvas.selection_has_group(), "ungroup");
-                item(ui, sh, i18n::t("Delete"), "⌫", sel > 0 || canvas.sel_dim >= 0, "delete");
-                widgets::menu_separator(ui);
-                item(ui, sh, i18n::t("Add Text…"), "T", true, "tool:text");
-                item(ui, sh, i18n::t("Text on Curve…"), "", sel == 1, "text:curve");
-                item(ui, sh, i18n::t("Edit Text…"), "", text, "text:edit");
-                item(ui, sh, i18n::t("Convert Text to Curves"), "", text, "text:curves");
-                widgets::menu_separator(ui);
-                item(ui, sh, i18n::t("Preferences…"), "⌘,", true, "prefs");
-            }).response);
-            tops.push(ui.menu_button(i18n::t("Vectors"), |ui| {
-                for (t, k, on, id) in [(i18n::t("Weld"), "", sel > 1, "weld"), (i18n::t("Subtract"), "", sel > 1, "subtract"), (i18n::t("Intersect"), "", sel > 1, "intersect")] {
-                    item(ui, sh, t, k, on, id);
-                }
-                widgets::menu_separator(ui);
-                item(ui, sh, i18n::t("Shapes Library…"), "", true, "shapes");
-                item(ui, sh, i18n::t("Trace Image…"), "", true, "trace");
-                widgets::menu_separator(ui);
-                for (t, k, on, id) in [(i18n::t("Offset…"), "", sel > 0, "offset"), (i18n::t("Corners: Dogbone / Fillet…"), "", sel > 0, "dogbone"), (i18n::t("Join Open Vectors"), "", sel > 1, "join"), (i18n::t("Close Vectors"), "", sel > 0, "close"), (i18n::t("Extend Ends to Next Vector"), "", sel > 0, "extend"), (i18n::t("Vector Texture…"), "", sel > 0, "vtexture"), (i18n::t("Plate Production…"), "", sel > 0, "plates"), (i18n::t("Shelf-Pin Holes…"), "", sel > 0, "shelfpins"), (i18n::t("Box Maker (finger joints)…"), "", true, "boxmaker"), (i18n::t("Jigsaw Puzzle…"), "", true, "puzzle"), (i18n::t("Living Hinge…"), "", true, "hinge"), (i18n::t("Stencil Bridges…"), "", sel > 0, "stencil"), (i18n::t("Halftone from Picture…"), "", true, "halftone"), (i18n::t("QR Code…"), "", true, "qr"), (i18n::t("Rotary Layout (spiral, flutes)…"), "", canvas.doc.material.rotary.is_some(), "rotarylayout"), (i18n::t("Check Vectors (open, duplicate, tiny)"), "", true, "validate")] {
-                    item(ui, sh, t, k, on, id);
-                }
-                ui.add_enabled_ui(sel > 1, |ui| {
-                    widgets::submenu(ui, i18n::t("Distort"), |ui| {
-                        item(ui, sh, i18n::t("Bend Along Curve"), "", true, "distort:1");
-                        item(ui, sh, i18n::t("Fit Into Four Corners"), "", true, "distort:4");
-                        item(ui, sh, i18n::t("Fit Between Two Curves"), "", true, "distort:2");
-                    });
-                });
-                ui.add_enabled_ui(sel > 0, |ui| {
-                    widgets::submenu(ui, i18n::t("Simplify (fewer nodes)"), |ui| {
-                        let u = if crate::units::name(&canvas.doc) == "mm" { ["0.03 mm", i18n::t("0.13 mm"), "0.5 mm"] } else { ["0.001 in", i18n::t("0.005 in"), "0.02 in"] };
-                        for (label, tol) in [(i18n::tf("Fine: within {u}", &[("u", &(u[0]))]), "0.001"), (i18n::tf("Medium: within {u}", &[("u", &(u[1]))]), "0.005"), (i18n::tf("Coarse: within {u}", &[("u", &(u[2]))]), "0.02")] {
-                            item(ui, sh, &label, "", true, &format!("simplify:{tol}"));
-                        }
-                        widgets::menu_separator(ui);
-                        item(ui, sh, i18n::t("Fit Arcs and Curves (smooth)"), "", true, "fitcurves:0.005");
-                    });
-                });
-                widgets::menu_separator(ui);
-                for (t, k, on, id) in [(i18n::t("Flip Horizontal"), "", sel > 0, "fliph"), (i18n::t("Flip Vertical"), "", sel > 0, "flipv"), (i18n::t("Rotate 90°"), "", sel > 0, "rotate"), (i18n::t("Centre on Board"), "", sel > 0, "centre"), (i18n::t("Align & Distribute…"), "⇧⌘A", sel > 0, "align"), (i18n::t("Array Copy…"), "", sel > 0, "array"), (i18n::t("Constrain Two Shapes…"), "", sel == 2, "link"), (i18n::t("Nest on Board…"), "", sel > 0, "nest")] {
-                    item(ui, sh, t, k, on, id);
-                }
-                item(ui, sh, i18n::t("Mirror Copy to the Right"), "", sel > 0, "mirror:right");
-                item(ui, sh, i18n::t("Mirror Copy Upwards"), "", sel > 0, "mirror:up");
-                item(ui, sh, i18n::t("Move to Next Sheet"), "", sel > 0 && canvas.doc.sheets.len() > 1, "sheet:next");
-                item(ui, sh, i18n::t("New Sheet"), "", true, "sheet:add");
-                widgets::submenu(ui, i18n::t("New Back Side (two-sided job)"), |ui| {
-                    item(ui, sh, i18n::t("Flip the board left to right"), "", true, "sheet:back-lr");
-                    item(ui, sh, i18n::t("Flip the board top to bottom"), "", true, "sheet:back-tb");
-                });
-            }).response);
-            tops.push(ui.menu_button(i18n::t("Variables"), |ui| {
-                item(ui, sh, i18n::t("Variables & Constraints…"), "⇧⌘E", true, "vars");
-                item(ui, sh, i18n::t("Add Variable"), "", true, "var:add");
-            }).response);
-            tops.push(ui.menu_button(i18n::t("Toolpaths"), |ui| {
-                for (i, key) in ["⇧⌘P", "⇧⌘K", "⇧⌘D", "⇧⌘V", "⇧⌘B", "⇧⌘I", "⇧⌘F"].iter().enumerate() {
-                    let key = if i == 0 { "" } else { key }; // ⇧⌘P is the side panel (Qt binds it twice)
-                    item(ui, sh, &i18n::tf("New {kind}…", &[("kind", &i18n::t(KINDS[i].0))]), key, sel > 0, &format!("kind:{i}"));
-                }
-                for i in [8, 9, 10, 11] {
-                    item(ui, sh, &i18n::tf("New {kind}…", &[("kind", &i18n::t(KINDS[i].0))]), "", sel > 0, &format!("kind:{i}"));
-                }
-                item(ui, sh, i18n::t("Export G-code…"), "⌘E", has_ops, "export");
-                item(ui, sh, i18n::t("Export Air-Cut Test…"), "", has_ops, "aircut");
-                widgets::menu_separator(ui);
-                item(ui, sh, i18n::t("Save as Template…"), "", has_ops, "templates");
-                item(ui, sh, i18n::t("Apply Template…"), "", true, "templates");
-                widgets::menu_separator(ui);
-                if !web {
-                    item(ui, sh, i18n::t("Send to GCarve Control"), "", has_ops, "control:send");
-                    item(ui, sh, i18n::t("Open GCarve Control"), "", true, "control:open");
-                    widgets::menu_separator(ui);
-                }
-                item(ui, sh, i18n::t("Tool Library…"), "", true, "tools");
-                item(ui, sh, i18n::t("Board / Job Setup…"), "", true, "board");
-                item(ui, sh, i18n::t("Choose Machine…"), "", true, "machine");
-                item(ui, sh, i18n::t("Surface the Board…"), "", true, "surface");
-                item(ui, sh, i18n::t("Inlay Wizard…"), "", true, "inlay");
-                item(ui, sh, i18n::t("3D Models…"), "", true, "reliefs");
-                item(ui, sh, i18n::t("Post-Processors…"), "", true, "posts");
-            }).response);
-            tops.push(ui.menu_button(i18n::t("View"), |ui| {
-                let mut paths = canvas.show_paths;
-                if widgets::menu_check(ui, i18n::t("Show Toolpaths"), "⇧⌘T", &mut paths).clicked() {
-                    sh.push("paths");
-                    ui.close();
-                }
-                let mut every = canvas.all_paths;
-                if widgets::menu_check(ui, i18n::t("Every Toolpath While Drawing"), "", &mut every).on_hover_text(i18n::t("Off: while drawing, only the toolpath picked in the list (or open in its dialog) is shown and worked out, so edits stay quick. Simulate always shows them all.")).clicked() {
-                    sh.push("allpaths");
-                    ui.close();
-                }
-                item(ui, sh, i18n::t("Show All Toolpaths"), "", has_ops, "ops:showall");
-                item(ui, sh, i18n::t("Hide All Toolpaths"), "", has_ops, "ops:hideall");
-                check(ui, i18n::t("Show Cut Width"), &mut canvas.show_width);
-                item(ui, sh, i18n::t("Simulate Cut"), "⌘R", has_ops, "sim");
-                item(ui, sh, i18n::t("Watch the Cut"), "⇧⌘R", has_ops, "watch");
-                let mut v3 = m.view_3d;
-                if widgets::menu_check(ui, i18n::t("3D View"), "⌘3", &mut v3).clicked() {
-                    sh.push("view3d");
-                    ui.close();
-                }
-                let mut s = m.sim;
-                if ui.add_enabled_ui(has_ops, |ui| widgets::menu_check(ui, i18n::t("Show Simulation"), "", &mut s)).inner.clicked() {
-                    sh.push("showsim");
-                    ui.close();
-                }
-                for (t, k, id) in [(i18n::t("Zoom In"), "⌘+", "zoom:in"), (i18n::t("Zoom Out"), "⌘−", "zoom:out"), (i18n::t("Zoom to Fit"), "⌘0", "zoom:fit"), (i18n::t("Zoom to Board"), "⌘1", "zoom:board")] {
-                    item(ui, sh, t, k, true, id);
-                }
-                widgets::menu_separator(ui);
-                item(ui, sh, i18n::t("Command Palette…"), "⌘K", true, "palette");
-                if widgets::menu_check(ui, i18n::t("Side Panel"), "⇧⌘P", panel_open).clicked() {
-                    ui.close();
-                }
-                check(ui, i18n::t("Tool Rail"), rail_open);
-                let mut card = m.start_card;
-                if widgets::menu_check(ui, i18n::t("Start Card"), "", &mut card).clicked() {
-                    sh.push("startcard");
-                    ui.close();
-                }
-                item(ui, sh, i18n::t("Actual Size (100%)"), "⌘2", true, "zoom:100");
-                widgets::menu_separator(ui);
-                check(ui, i18n::t("Snap"), &mut canvas.snap);
-                item(ui, sh, i18n::t("Snap Settings…"), "", true, "snap:settings");
-                item(ui, sh, i18n::t("Clear Guides"), "", !canvas.doc.guides.is_empty(), "guides:clear");
-                widgets::menu_separator(ui);
-                item(ui, sh, i18n::t("Picture to Draw Over…"), "", true, "picture");
-                if canvas.doc.pictures.iter().any(|p| p.sheet == canvas.doc.active_sheet) {
-                    item(ui, sh, i18n::t("Picture Settings…"), "", true, "picture:edit");
-                }
-                item(ui, sh, i18n::t("Photo of the Board…"), "", true, "boardphoto");
-                if let Some(b) = &canvas.board_photo {
-                    item(ui, sh, if b.show { i18n::t("Hide the Board Photo") } else { i18n::t("Show the Board Photo") }, "", true, "boardphoto:toggle");
-                    item(ui, sh, i18n::t("Remove the Board Photo"), "", true, "boardphoto:remove");
-                }
-                item(ui, sh, if canvas.all_sheets { i18n::t("One Sheet at a Time") } else { i18n::t("All Sheets Side by Side") }, "", true, "allsheets");
-                let (line, can) = crate::spacemouse::status();
-                item(ui, sh, if can || line.is_empty() { i18n::t("Connect a SpaceMouse…") } else { line.split(':').next().unwrap_or(i18n::t("SpaceMouse")) }, "", can, "spacemouse");
-                for (t, on, id) in [(i18n::t("Show Grid"), m.show_grid, "grid:toggle"), (i18n::t("Rulers"), m.rulers, "rulers:toggle")] {
-                    let mut on = on;
-                    if widgets::menu_check(ui, t, "", &mut on).clicked() {
-                        sh.push(id);
-                        ui.close();
-                    }
-                }
-                widgets::submenu(ui, i18n::t("Units"), |ui| {
-                    let (uname, _, _) = unit(&canvas.doc);
-                    for (t, n, v) in [(i18n::t("Inches"), "in", units::BARE[0]), (i18n::t("Feet"), "ft", units::BARE[1]), (i18n::t("Millimetres"), "mm", units::BARE[2])] {
-                        let mut on = uname == n;
-                        if widgets::menu_check(ui, t, "", &mut on).clicked() {
-                            canvas.doc.bare_unit_in = v;
-                            canvas.touch();
-                            ui.close();
-                        }
-                    }
-                });
-            }).response);
-            tops.push(ui.menu_button(i18n::t("Help"), |ui| {
-                item(ui, sh, i18n::t("♥ Donate to GCarve…"), "", true, "donate");
-                if m.signed_in {
-                    item(ui, sh, i18n::t("Dashboard (account, requests)…"), "", true, "manage");
-                } else {
-                    item(ui, sh, i18n::t("Sign In…"), "", true, "account");
-                }
-                if m.admin {
-                    item(ui, sh, i18n::t("User Management…"), "", true, "admin");
-                }
-                item(ui, sh, i18n::t("Getting Started Guide"), "", true, "tour:show");
-                item(ui, sh, i18n::t("How Do I…?"), "", true, "guide");
-                item(ui, sh, i18n::t("Keyboard Shortcuts"), "", true, "shortcuts");
-                item(ui, sh, i18n::t("Open the Demo Project"), "", true, "demo");
-                item(ui, sh, i18n::t("Request a Change…"), "", true, "request");
-                item(ui, sh, i18n::t("Shared with Me…"), "", true, "shares");
-                item(ui, sh, i18n::t("Support Page"), "", true, "support");
-                item(ui, sh, i18n::t("GCarve Website"), "", true, "website");
-                item(ui, sh, i18n::t("Report a Bug…"), "", true, "bug");
-                if !cfg!(target_arch = "wasm32") {
-                    item(ui, sh, i18n::t("AI Assistants…"), "", true, "mcp");
-                }
-                // web: the free desktop apps; desktop: check for a newer version
-                if cfg!(target_arch = "wasm32") {
-                    item(ui, sh, i18n::t("Download the Desktop App"), "", true, "download");
-                } else {
-                    let up = gcarve_ui::help::available().map_or(i18n::t("Check for Updates…").to_string(), |(v, _)| i18n::tf("Update available: {v}…", &[("v", &v)]));
-                    item(ui, sh, &up, "", true, "update");
-                }
-                widgets::menu_separator(ui);
-                item(ui, sh, i18n::t("About GCarve"), "", true, "about");
-            }).response);
+        menus(&mut |title, add| tops.push(ui.menu_button(title, |ui| add(&mut EguiMenu { ui, sh })).response), canvas, m, rail_open, panel_open, has_ops);
     }, |ui: &mut egui::Ui| search = gcarve_ui::menubar::search_box(ui));
     if search {
         sh.push("palette");
