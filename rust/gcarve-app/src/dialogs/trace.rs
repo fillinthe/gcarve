@@ -324,7 +324,7 @@ mod photo_look {
         let (gray, w, h) = super::load_gray(&pic, &std::fs::read(&pic).unwrap(), 500).unwrap();
         let aspect = w as f64 / h as f64;
         let m = Material { w: 8.0 * aspect.max(1.0), h: 8.0 / aspect.min(1.0), t: 0.75, ..Default::default() };
-        let mut r = Relief { id: 1, w: 7.0 * aspect.min(1.0).max(0.5) * aspect.max(1.0) / aspect.max(1.0), h: 0.0, x: 0.5, y: 0.5, depth: 0.25, pic: gcarve_core::photo::b64_encode(&gray), pic_w: w as u32, pic_h: h as u32, pic_invert: std::env::var("GCARVE_RELIEF_INVERT").is_ok(), ..Default::default() };
+        let mut r = Relief { id: 1, w: 7.0 * aspect.clamp(0.5, 1.0) * aspect.max(1.0) / aspect.max(1.0), h: 0.0, x: 0.5, y: 0.5, depth: 0.25, pic: gcarve_core::photo::b64_encode(&gray), pic_w: w as u32, pic_h: h as u32, pic_invert: std::env::var("GCARVE_RELIEF_INVERT").is_ok(), ..Default::default() };
         r.w = (m.w - 1.0).min((m.h - 1.0) * aspect);
         r.h = r.w / aspect;
         gcarve_core::relief::rasterize_picture(&mut r);

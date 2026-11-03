@@ -6,7 +6,7 @@ Skips tests, literals that don't start with a capital letter or have no word in 
 contents, protocols, G-code)."""
 import re, sys, glob
 
-SKIP = ("setupsheet.rs", "files.rs", "vtdb.rs", "smoke", "control/", "main.rs", "recover.rs", "cloud.rs")
+SKIP = ("setupsheet.rs", "files.rs", "vtdb.rs", "smoke", "control/", "main.rs", "recover.rs", "cloud.rs", "mcp.rs")
 FMT = re.compile(r'format!\(\s*"')
 
 def literal_end(s, i):  # i = index after the opening quote

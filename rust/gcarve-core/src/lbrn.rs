@@ -121,7 +121,7 @@ fn path(vs: &[Vert], prims: &str) -> Vec<Contour> {
 
 /// a w × h rectangle centred on 0, 0 with corner radius r (quarter circles as cubics)
 fn rect(w: f64, h: f64, r: f64) -> Contour {
-    let (x, y, r) = (w / 2.0, h / 2.0, r.clamp(0.0, w.min(h) / 2.0));
+    let (x, y, r) = (w / 2.0, h / 2.0, r.min(w.min(h) / 2.0).max(0.0));
     let mut b = Builder::default();
     let k = r * 0.552_284_75;
     b.start(pt(-x + r, -y));

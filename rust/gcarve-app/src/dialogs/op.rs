@@ -195,14 +195,14 @@ impl OpDialog {
         let mut op = self.op.clone();
         let f = &self.f;
         let k = op.kind;
-        op.tool = op.tool.clamp(0, doc.tools.len() as i32 - 1);
+        op.tool = op.tool.min(doc.tools.len() as i32 - 1).max(0); // not clamp: no bits left = 0, not a panic
         op.depth = f.get_or("depth", doc, op.depth).max(0.0);
         op.stepdown = f.get_or("stepdown", doc, op.stepdown).max(0.0);
         op.ramp_length = f.get_or("rampLength", doc, op.ramp_length).max(0.0);
-        op.layer_scope = if self.scope == 1 { self.scope_layer.clamp(0, doc.layers.len() as i32 - 1) } else { -1 };
+        op.layer_scope = if self.scope == 1 { self.scope_layer.min(doc.layers.len() as i32 - 1).max(0) } else { -1 };
         op.group_scope = if self.scope == 2 { self.scope_group } else { 0 };
         op.all_vectors = self.scope == 3;
-        op.sheet_scope = op.sheet_scope.clamp(-1, doc.sheets.len() as i32 - 1);
+        op.sheet_scope = op.sheet_scope.min(doc.sheets.len() as i32 - 1).max(-1);
         op.tab_count = self.tab_count.max(1);
         op.tab_spacing = if self.by_spacing { f.get_or("tabSpacing", doc, op.tab_spacing).max(0.0) } else { 0.0 };
         op.tab_width = f.get_or("tabWidth", doc, op.tab_width).max(0.0);

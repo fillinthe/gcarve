@@ -284,6 +284,7 @@ pub struct Shell {
     pub rot_text: String,
     pub edit: [String; 4], // inspector X/Y/W/H text being edited
     pub edit_for: Option<i32>,
+    pub edit_focus: bool, // one of the X/Y/W/H fields had the keyboard last frame (its text is then not refilled)
     pub zoom_text: String,
     pub canvas_rect: egui::Rect,
     /// the menu bar last frame (menus close on a press anywhere else)
@@ -294,7 +295,7 @@ pub struct Shell {
 
 impl Shell {
     pub fn new() -> Self {
-        Shell { tour: crate::onboarding::Tour::load(), cmds: Vec::new(), side_tab: 0, op_sel: None, op_multi: Default::default(), folded: Default::default(), new_folder: None, sheet_rename: None, tabs_seen: None, empty_folders: Default::default(), tp_this_sheet: false, tp_layer: -1, tp_usage: (u64::MAX, Vec::new()), tp_group: 0, lock_aspect: true, rot_text: "15".into(), edit: Default::default(), edit_for: None, zoom_text: String::new(), canvas_rect: egui::Rect::ZERO, menu_rect: egui::Rect::NOTHING, snap_arrow: egui::Rect::NOTHING }
+        Shell { tour: crate::onboarding::Tour::load(), cmds: Vec::new(), side_tab: 0, op_sel: None, op_multi: Default::default(), folded: Default::default(), new_folder: None, sheet_rename: None, tabs_seen: None, empty_folders: Default::default(), tp_this_sheet: false, tp_layer: -1, tp_usage: (u64::MAX, Vec::new()), tp_group: 0, lock_aspect: true, rot_text: "15".into(), edit: Default::default(), edit_for: None, edit_focus: false, zoom_text: String::new(), canvas_rect: egui::Rect::ZERO, menu_rect: egui::Rect::NOTHING, snap_arrow: egui::Rect::NOTHING }
     }
     pub fn push(&mut self, id: impl Into<String>) {
         self.cmds.push(id.into());

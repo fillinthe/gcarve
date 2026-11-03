@@ -100,6 +100,7 @@ fn tools() -> Vec<Value> {
         tool("set_bit_feeds", "Set a bit's feeds and speeds for the board's material (bit index from get_drawing, or `bit_index` in check's answer): feed_xy and feed_z in inches / min, rpm, stepdown in inches. Leave a value out to keep what it cuts at now; `suggested: true` takes check's suggestion.", json!({"bit": {"type": "integer"}, "feed_xy": num("in / min"), "feed_z": num("in / min"), "rpm": {"type": "integer"}, "stepdown": num("in"), "suggested": {"type": "boolean"}}), &["bit"]),
         tool("sheet", "Sheets (boards) of the job: `go_to` a sheet number (0 = first; drawing, board and toolpath tools then work there), `add` a new sheet with this board (it becomes the active one), and/or `name` the active sheet.", json!({"go_to": {"type": "integer"}, "add": {"type": "boolean"}, "name": {"type": "string"}}), &[]),
         tool("select_shapes", "Select vectors, so run_command (weld, offset, align, nest …) and toolpaths without shape_ids work on them: `ids`, or every vector on `layer`, or `all`; nothing given = clear the selection.", json!({"ids": ids, "layer": {"type": "string"}, "all": {"type": "boolean"}}), &[]),
+        tool("layer", "A layer by name (made when missing): move vectors onto it (`ids`), show or hide it (`visible`), or mark it `keep_out` (clamps, screws: check flags any cut near its closed shapes).", json!({"name": {"type": "string"}, "ids": ids, "visible": {"type": "boolean"}, "keep_out": {"type": "boolean"}}), &["name"]),
         tool("run_command", "Run a menu command by id, as if the user picked it (some open a dialog for the user). Vector commands work on the selection (select_shapes).", json!({"id": {"type": "string"}}), &["id"]),
     ]
 }
@@ -436,6 +437,28 @@ fn call(app: &mut dyn McpApp, name: &str, a: &Value) -> Result<Vec<Value>, Strin
             c.sel_changed();
             Ok(text(format!("{} vectors selected", c.sel.len())))
         }
+        "layer" => {
+            let name = a["name"].as_str().ok_or("name is missing")?;
+            c.doc.checkpoint();
+            let i = c.doc.layer_named(name);
+            let mut moved = 0;
+            for id in a["ids"].as_array().into_iter().flatten().filter_map(|v| v.as_i64()) {
+                if let Some(s) = c.doc.find_mut(id as i32) {
+                    s.layer = i;
+                    moved += 1;
+                }
+            }
+            let l = &mut c.doc.layers[i as usize];
+            if let Some(v) = a["visible"].as_bool() {
+                l.visible = v;
+            }
+            if let Some(k) = a["keep_out"].as_bool() {
+                l.keep_out = k;
+            }
+            let (v, k) = (l.visible, l.keep_out);
+            c.mutated();
+            Ok(text(format!("layer {name:?}: {moved} vectors moved onto it, {}, keep-out {}", if v { "shown" } else { "hidden" }, if k { "on" } else { "off" })))
+        }
         "transform_shapes" => {
             let ids: std::collections::BTreeSet<i32> = a["ids"].as_array().ok_or("ids is missing")?.iter().filter_map(|v| v.as_i64().map(|v| v as i32)).collect();
             let mut b = gcarve_core::geom::Rect::default();
@@ -540,7 +563,7 @@ fn summary(c: &Canvas, limit: usize, layer: Option<&str>) -> Value {
         "board": {"width": m.w, "height": m.h, "thickness": m.t, "material": m.kind, "post": m.post, "machine": m.machine.as_ref().map(|x| x.name.as_str())},
         "sheets": (0..d.sheets.len()).map(|j| d.sheet_name(j)).collect::<Vec<_>>(),
         "active_sheet": d.active_sheet,
-        "layers": d.layers.iter().enumerate().map(|(i, l)| json!({"name": l.name, "vectors": on.iter().filter(|s| s.layer == i as i32).count(), "visible": l.visible, "locked": l.locked})).collect::<Vec<_>>(),
+        "layers": d.layers.iter().enumerate().map(|(i, l)| json!({"name": l.name, "vectors": on.iter().filter(|s| s.layer == i as i32).count(), "visible": l.visible, "locked": l.locked, "keep_out": l.keep_out})).collect::<Vec<_>>(),
         "vectors_not_listed": more,
         "selected": c.sel.iter().collect::<Vec<_>>(),
         "shapes": shapes,
@@ -883,6 +906,13 @@ mod tests {
         assert!(!app.0.sel.is_empty() && app.0.sel.iter().all(|id| app.0.doc.find(*id).unwrap().layer == outline));
         call_tool(&mut app, "select_shapes", json!({}));
         assert!(app.0.sel.is_empty());
+        let r = call_tool(&mut app, "layer", json!({"name": "Clamps", "ids": [hi[0]], "keep_out": true}));
+        let r = r["content"][0]["text"].as_str().unwrap();
+        assert!(r.contains("1 vectors moved") && r.contains("keep-out on"), "{r}");
+        let d = &app.0.doc;
+        assert!(d.layers.iter().any(|l| l.name == "Clamps" && l.keep_out) && d.layers[d.find(hi[0]).unwrap().layer as usize].name == "Clamps");
+        call_tool(&mut app, "undo", json!({}));
+        assert!(!app.0.doc.layers.iter().any(|l| l.keep_out));
 
         let r = call_tool(&mut app, "set_machine", json!({"name": "shapeoko"}));
         assert!(r["isError"] == true && r["content"][0]["text"].as_str().unwrap().contains("pick one"), "{r}");

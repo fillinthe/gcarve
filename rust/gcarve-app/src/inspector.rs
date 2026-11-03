@@ -108,7 +108,7 @@ fn properties(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas) {
     ui.label(RichText::new(if sel > 0 { format!("{sel} selected") } else { i18n::t("Nothing selected").into() }).family(crate::widgets::bold_family()).color(Color32::WHITE));
     // X Y / W H fields with the unit badge
     let bounds = canvas.selection_size();
-    let focused = ["x", "y", "w", "h"].iter().any(|k| ui.memory(|m| m.has_focus(ui.id().with(*k))));
+    let focused = sh.edit_focus;
     if let Some(b) = bounds {
         if sh.edit_for != canvas.selected() || !focused {
             let bound = canvas.selection_bindings(); // a bound field shows its expression
@@ -120,6 +120,7 @@ fn properties(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas) {
         sh.edit_for = None;
     }
     let mut commit = None;
+    sh.edit_focus = false;
     if sel == 0 {
         next_step(ui, sh, canvas);
     }
@@ -136,6 +137,7 @@ fn properties(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas) {
                     ui.add_sized([14.0, 20.0], egui::Label::new(RichText::new(label).color(if sel > 0 { theme::TEXT } else { theme::TEXT_DISABLED })));
                     let id = ui.id().with(key);
                     let r = ui.push_id(id, |ui| theme::unit_field(ui, &mut sh.edit[i], uname, fw)).inner;
+                    sh.edit_focus |= r.has_focus();
                     if r.lost_focus() && ui.input(|inp| inp.key_pressed(egui::Key::Enter)) {
                         commit = Some(i);
                     }
@@ -1132,4 +1134,43 @@ fn anchor_picker(ui: &mut egui::Ui, value: &mut i32) -> bool {
         }
     }
     changed
+}
+
+#[cfg(test)]
+mod field_tests {
+    use super::*;
+
+    /// owner's user report 2026-11-03: the X / Y / W / H fields looked editable but took no typing (the text was
+    /// refilled from the shape every frame)
+    #[test]
+    fn a_typed_x_moves_the_selection() {
+        let mut c = Canvas::default();
+        let id = c.doc.add(gcarve_core::geom::make_rect(1.0, 1.0, 3.0, 2.0), None);
+        c.sel = [id].into_iter().collect();
+        c.sel_changed();
+        let mut sh = Shell::new();
+        let ctx = egui::Context::default();
+        crate::fonts::install(&ctx);
+        let screen = egui::Rect::from_min_size(egui::Pos2::ZERO, egui::vec2(300.0, 400.0));
+        let frame = |c: &mut Canvas, sh: &mut Shell, events: Vec<egui::Event>| {
+            let mut out = ctx.run_ui(egui::RawInput { screen_rect: Some(screen), events, ..Default::default() }, |ui| {
+                egui::CentralPanel::default().show(ui, |ui| properties(ui, sh, c));
+            });
+            out.textures_delta.clear();
+        };
+        let key = |key, pressed| egui::Event::Key { key, physical_key: None, pressed, repeat: false, modifiers: Default::default() };
+        frame(&mut c, &mut sh, vec![]);
+        frame(&mut c, &mut sh, vec![key(egui::Key::Tab, true), key(egui::Key::Tab, false)]);
+        frame(&mut c, &mut sh, vec![key(egui::Key::A, true)]); // let the focus settle
+        let mut select_all = key(egui::Key::A, true);
+        if let egui::Event::Key { modifiers, .. } = &mut select_all {
+            *modifiers = egui::Modifiers::COMMAND;
+        }
+        frame(&mut c, &mut sh, vec![select_all]);
+        frame(&mut c, &mut sh, vec![egui::Event::Text("5".into())]);
+        frame(&mut c, &mut sh, vec![]);
+        frame(&mut c, &mut sh, vec![key(egui::Key::Enter, true), key(egui::Key::Enter, false)]);
+        let b = c.selection_size().unwrap();
+        assert!((b.x0 - 5.0).abs() < 1e-6, "x is {} (field text {:?})", b.x0, sh.edit[0]);
+    }
 }

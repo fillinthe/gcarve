@@ -293,7 +293,7 @@ pub fn plan(centre: &[Vec<Pt>], material: &[Vec<Pt>], p: &Params) -> Result<Plan
     let mut g = Grid { x0, y0, h, nx, ny, mat, ok, blocks, bnx, r };
 
     // step and the target cells per step
-    let ds = (r * 0.4).clamp(2.0 * h, 0.08);
+    let ds = (r * 0.4).min(0.08).max(2.0 * h); // at least two cells: a big pocket's coarse grid wins over the 0.08 cap
     let target = (engage * ds / (h * h)).max(2.0);
     let area: f64 = g.mat.iter().map(|&m| f64::from(m)).sum::<f64>() * h * h;
     if area / (engage * ds) > p.max_steps as f64 * 2.0 {
@@ -766,9 +766,7 @@ mod tests {
                 let p = px[j * pw + i];
                 out.extend_from_slice(&[p[2], p[1], p[0]]);
             }
-            for _ in 0..(4 - pw * 3 % 4) % 4 {
-                out.push(0);
-            }
+            out.resize(out.len() + (4 - pw * 3 % 4) % 4, 0);
         }
         std::fs::write(file, out).unwrap();
     }
@@ -848,5 +846,8 @@ mod tests {
         // a huge pocket at a thin load needs more steps than allowed: an error, so the caller can use rings
         let big = plan(&[rect(r, r, 30.0, 30.0)], &[rect(0.0, 0.0, 30.0 + r, 30.0 + r)], &Params { radius: r, engage: 0.03, climb: true, max_steps: 50_000 });
         assert!(big.is_err());
+        // a big pocket with a 1/2 in bit coarsens the grid past the 0.08 in step cap (live panic, 0.1.20 web)
+        let r = 0.25;
+        let _ = plan(&[rect(r, r, 120.0, 96.0)], &[rect(0.0, 0.0, 120.0 + r, 96.0 + r)], &Params { radius: r, engage: 0.1, climb: true, max_steps: 400_000 });
     }
 }
