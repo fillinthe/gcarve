@@ -6,7 +6,7 @@ use eframe::egui::{self, ColorImage, TextureOptions};
 use gcarve_core::document::{Document, Material, Tool};
 use gcarve_core::job::{MoveType, Toolpath};
 use gcarve_core::pipeline::{tool_for_cut, Generated};
-use gcarve_core::sim::{shade_backlit_into, shade_into, sim_grid, sim_stamp, CellRect, HeightField};
+use gcarve_core::sim::{shade_backlit_into, shade_into, sim_stamp, CellRect, HeightField};
 
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Seg {
@@ -192,7 +192,8 @@ impl Player {
         // a back side: the grid also spans the front's cuts, which come through as holes where they go deep enough
         let front: Vec<(&Toolpath, &Tool)> = self.front.iter().map(|(tp, t)| (tp, t)).collect();
         let all: Vec<(&Toolpath, &Tool)> = paths.iter().copied().chain(front.iter().copied()).collect();
-        self.hf = sim_grid(&all, &doc.material, 1_500_000);
+        // a GPU that takes only 2048-px textures (old graphics) stopped the app on a long narrow board
+        self.hf = gcarve_core::sim::sim_grid_max(&all, &doc.material, 1_500_000, ctx.input(|i| i.max_texture_side).saturating_sub(2));
         self.below = if front.is_empty() {
             Vec::new()
         } else {
@@ -475,7 +476,7 @@ mod tests {
         let mut p = Player { material: Material { t: 0.75, ..Default::default() }, ..Default::default() };
         p.tools.push(tool.clone());
         p.total = segments(&tp, 0, 0.0, Default::default(), &mut p.segs);
-        p.hf = sim_grid(&[(&tp, &tool)], &p.material, 20_000);
+        p.hf = gcarve_core::sim::sim_grid(&[(&tp, &tool)], &p.material, 20_000);
         p.reset();
         let half = p.segs[1].t0 + 0.05;
         let r = p.advance(half);

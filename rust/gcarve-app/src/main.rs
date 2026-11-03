@@ -48,6 +48,8 @@ mod text;
 mod tools;
 mod transform;
 mod units;
+#[cfg(test)]
+mod ui_e2e;
 
 #[cfg(not(target_arch = "wasm32"))]
 fn main() -> eframe::Result {

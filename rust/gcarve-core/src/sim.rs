@@ -112,6 +112,11 @@ fn stamp(hf: &mut HeightField, t: &Tool, cx: f64, cy: f64, d: f64) {
 /// Incremental use (animated playback): allocate the grid for these paths (≈ `cells` cells), then stamp moves one at
 /// a time with `sim_stamp`.
 pub fn sim_grid(paths: &[SimPath], m: &Material, cells: usize) -> HeightField {
+    sim_grid_max(paths, m, cells, 4000)
+}
+
+/// `sim_grid` with no side over `max_side` cells (the app passes what the GPU takes as a texture side)
+pub fn sim_grid_max(paths: &[SimPath], m: &Material, cells: usize, max_side: usize) -> HeightField {
     // grid only where cutting happens (plus the widest tool), clipped to the board: resolution follows the design
     let (mut bx0, mut by0, mut bx1, mut by1, mut max_r) = (1e300_f64, 1e300_f64, -1e300_f64, -1e300_f64, 0.0_f64);
     for (path, tool) in paths {
@@ -135,7 +140,7 @@ pub fn sim_grid(paths: &[SimPath], m: &Material, cells: usize) -> HeightField {
     let w = 1e-3_f64.max(bx1 - bx0);
     let h = 1e-3_f64.max(by1 - by0);
     // no side over 4096 cells either: the grid becomes a texture, and GPUs (WebGL especially) refuse longer sides
-    let res = 0.002_f64.max((w * h / cells as f64).sqrt()).max(w.max(h) / 4000.0);
+    let res = 0.002_f64.max((w * h / cells as f64).sqrt()).max(w.max(h) / max_side.clamp(64, 4000) as f64);
     let nx = 1.max((w / res).ceil() as i32);
     let ny = 1.max((h / res).ceil() as i32);
     HeightField { nx, ny, res, x0: bx0, y0: by0, depth: vec![0.0; nx as usize * ny as usize] }
@@ -371,5 +376,8 @@ mod tests {
         let m = Material { w: 48.0, h: 96.0, ..Default::default() };
         let hf = sim_grid(&[(&tp, &t)], &m, 1_500_000);
         assert!(hf.nx <= 4096 && hf.ny <= 4096, "{} x {}", hf.nx, hf.ny);
+        // a GPU that takes 2048-px textures at most
+        let hf = sim_grid_max(&[(&tp, &t)], &m, 1_500_000, 2046);
+        assert!(hf.nx <= 2048 && hf.ny <= 2048, "{} x {}", hf.nx, hf.ny);
     }
 }

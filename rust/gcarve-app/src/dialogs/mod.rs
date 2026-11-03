@@ -487,6 +487,19 @@ impl Fields {
 }
 
 /// "Cut depth (in)" in the project unit
+/// A text field kept in the device store under `key`. The text lives in egui memory once shown, so typing never
+/// depends on the store reading back what was just written (blocked browser storage, UI tests).
+pub fn stored_field(ui: &mut egui::Ui, key: &str, default: &str, make: impl for<'a> FnOnce(&'a mut String) -> egui::TextEdit<'a>) -> (String, egui::Response) {
+    let id = egui::Id::new(("stored", key));
+    let mut text = ui.data(|d| d.get_temp::<String>(id)).unwrap_or_else(|| crate::store::load(key).unwrap_or_else(|| default.into()));
+    let r = ui.add(make(&mut text));
+    if r.changed() {
+        crate::store::save(key, &text);
+    }
+    ui.data_mut(|d| d.insert_temp(id, text.clone()));
+    (text, r)
+}
+
 pub fn unit_label(name: &str, doc: &Document) -> String {
     format!("{name} ({})", crate::units::name(doc))
 }

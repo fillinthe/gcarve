@@ -229,7 +229,7 @@ impl JobsDialog {
                 }
                 self.note = jobs.status.clone();
             }
-            Some(Act::Root) => {
+            Some(Act::Root) if !gcarve_ui::store::frozen() => {
                 if let Some(d) = rfd::FileDialog::new().set_title(i18n::t("Jobs folder")).pick_folder() {
                     jobs.set_root(d);
                 }
@@ -239,7 +239,7 @@ impl JobsDialog {
             Some(Act::ExportAll(p)) => self.note = jobs.export_job(&p, host.posts),
             Some(Act::Export(p)) => self.note = jobs.export_project(&p, host.posts),
             Some(Act::Reveal(p)) => Jobs::reveal(&p),
-            Some(Act::Add(job)) => {
+            Some(Act::Add(job)) if !gcarve_ui::store::frozen() => {
                 if let Some(f) = rfd::FileDialog::new().add_filter(i18n::t("GCarve project"), &["tlp"]).pick_file() {
                     jobs.add_project(&job, &f);
                     self.note = jobs.status.clone();
@@ -263,7 +263,7 @@ impl JobsDialog {
                 host.files.open_path(&p);
                 return false;
             }
-            None => {}
+            _ => {}
         }
         open
     }

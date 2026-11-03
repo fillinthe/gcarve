@@ -144,6 +144,9 @@ pub fn send(doc: &Document, gen: Option<&Generated>, project: &str) -> String {
 /// (lock), its file is already in the queue.
 #[cfg(not(target_arch = "wasm32"))]
 pub fn open(file: Option<&std::path::PathBuf>) {
+    if gcarve_ui::store::frozen() {
+        return;
+    }
     if let Ok(exe) = std::env::current_exe() {
         let mut cmd = std::process::Command::new(exe);
         cmd.arg("--control");

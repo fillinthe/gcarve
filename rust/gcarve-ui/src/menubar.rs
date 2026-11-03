@@ -65,6 +65,7 @@ pub fn search_box(ui: &mut Ui) -> bool {
     let wide = ui.ctx().content_rect().width() >= 1000.0;
     let (r, resp) = ui.allocate_exact_size(egui::vec2(if wide { 240.0 } else { 30.0 }, 22.0), egui::Sense::click());
     let resp = resp.tip(crate::i18n::t("Search every command (⌘K)"));
+    resp.widget_info(|| egui::WidgetInfo::labeled(egui::WidgetType::Button, true, crate::i18n::t("Search commands…")));
     let p = ui.painter();
     p.rect(r, theme::RADIUS as f32, theme::FIELD, egui::Stroke::new(1.0, if resp.hovered() { theme::BORDER_STRONG } else { theme::BORDER }), egui::StrokeKind::Inside);
     icons::paint(ui, "search", Rect::from_min_size(r.left_top() + egui::vec2(8.0, 4.0), egui::vec2(14.0, 14.0)), 14.0, theme::TEXT_DIM);

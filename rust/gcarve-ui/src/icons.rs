@@ -131,6 +131,9 @@ impl<'a> IconButton<'a> {
         }
         let (rect, resp) = ui.allocate_exact_size(want, Sense::click());
         let resp = if self.tip.is_empty() { resp } else { resp.tip(self.tip) };
+        // screen readers (and the UI tests): the text, else the tooltip without its shortcut, else the icon's name
+        let label = [self.text, self.tip.split(" (").next().unwrap_or(""), self.icon].into_iter().find(|t| !t.is_empty()).unwrap_or("");
+        resp.widget_info(|| egui::WidgetInfo::selected(egui::WidgetType::Button, enabled, self.active, label));
         if !ui.is_rect_visible(rect) {
             return resp;
         }
