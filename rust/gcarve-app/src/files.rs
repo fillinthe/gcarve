@@ -369,10 +369,10 @@ pub const GCODE_EXTS: &[&str] = &["tap", "nc", "gcode", "ngc", "cnc"];
 /// drawings read as vectors (the "Vector files" filter)
 pub const VECTOR_EXTS: &[&str] = &["svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl"];
 /// what Import takes (everything Open does but whole projects), and Open
-pub const IMPORT_EXTS: &[&str] = &["svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl", "lbrn2", "gsk", "stl", "3mf", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg", "webp", "csv"];
-pub const OPEN_EXTS: &[&str] = &["tlp", "tlpt", "crv", "c2d", "csv", "svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl", "lbrn2", "gsk", "stl", "3mf", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg", "webp"];
+pub const IMPORT_EXTS: &[&str] = &["svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl", "lbrn2", "gsk", "stl", "3mf", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg", "webp", "tif", "tiff", "csv"];
+pub const OPEN_EXTS: &[&str] = &["tlp", "tlpt", "crv", "c2d", "csv", "svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl", "lbrn2", "gsk", "stl", "3mf", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg", "webp", "tif", "tiff", "txt"];
 /// Pictures File ▸ Open / Import send to Trace Image (dialogs/trace.rs).
-pub const IMAGE_EXTS: &[&str] = &["png", "jpg", "jpeg", "webp"];
+pub const IMAGE_EXTS: &[&str] = &["png", "jpg", "jpeg", "webp", "tif", "tiff"];
 
 pub enum Loaded {
     /// G-code: the app shows the import dialog (bits confirmed by the user)
@@ -508,6 +508,23 @@ fn archive_kind(ext: &str, bytes: &[u8]) -> Option<&'static str> {
     None
 }
 
+/// Does this text read as G-code: most of its first 200 lines are G-code words or comments, with a few G0 / G1 moves
+fn gcode_like(text: &str) -> bool {
+    let (mut lines, mut code, mut moves) = (0, 0, 0);
+    for l in text.lines().map(str::trim).filter(|l| !l.is_empty()).take(200) {
+        lines += 1;
+        let u = l.to_ascii_uppercase();
+        let first = u.trim_start_matches(|c: char| c == 'N' || c.is_ascii_digit()).trim_start();
+        if u.starts_with(['(', ';', '%', '[']) || first.starts_with(['G', 'M', 'X', 'Y', 'Z', 'F', 'S', 'T', 'I', 'J']) && first[1..].trim_start().starts_with(|c: char| c.is_ascii_digit() || c == '-' || c == '.') {
+            code += 1;
+        }
+        if ["G0", "G1", "G00", "G01"].iter().any(|g| first.starts_with(g) && !first[g.len()..].starts_with(|c: char| c.is_ascii_digit())) {
+            moves += 1;
+        }
+    }
+    moves >= 3 && code * 5 >= lines * 4
+}
+
 /// .tlp and VCarve .crv replace the document; .svg / .dxf / .pdf / .ai add to it (layers from the file).
 pub fn load(doc: &mut Document, name: &str, bytes: &[u8]) -> Loaded {
     // a browser tab has a few GB at most, and the importers copy the text: refuse the absurd before reading it
@@ -590,11 +607,14 @@ pub fn load(doc: &mut Document, name: &str, bytes: &[u8]) -> Loaded {
             Err(e) => Loaded::Error(e),
         },
         e if GCODE_EXTS.contains(&e) => Loaded::Gcode(text.into_owned()),
+        // controllers and forum posts save G-code as .txt too
+        "txt" if gcode_like(&text) => Loaded::Gcode(text.into_owned()),
+        "txt" => Loaded::Error("This text file isn't G-code. GCarve opens G-code saved as .txt, and cut lists as .csv (name, width, height, count).".into()),
         e if IMAGE_EXTS.contains(&e) => Loaded::Image,
         "step" | "stp" | "sldprt" | "sldasm" | "iges" | "igs" | "f3d" | "ipt" | "3dm" => Loaded::Error(format!(
             "GCarve can't read .{ext} (3D CAD) files. In your CAD program export the outline you want to cut as DXF, DWG or SVG (or the shape as STL) and open that."
         )),
-        _ => Loaded::Error(format!("GCarve can't open .{ext} files. It opens GCarve projects (.tlp) and job templates (.tlpt), VCarve projects (.crv), Carbide Create projects (.c2d), SVG, DXF, AutoCAD DWG, PDF, Illustrator (.ai) and EPS, HPGL plot files (.plt), LightBurn (.lbrn2), 3D models (.stl .3mf), G-code (.tap .nc .gcode) and pictures (PNG, JPEG, WebP) to trace.")),
+        _ => Loaded::Error(format!("GCarve can't open .{ext} files. It opens GCarve projects (.tlp) and job templates (.tlpt), VCarve projects (.crv), Carbide Create projects (.c2d), SVG, DXF, AutoCAD DWG, PDF, Illustrator (.ai) and EPS, HPGL plot files (.plt), LightBurn (.lbrn2), 3D models (.stl .3mf), G-code (.tap .nc .gcode) and pictures (PNG, JPEG, WebP, TIFF) to trace.")),
     }
 }
 
@@ -874,6 +894,19 @@ mod gsk_tests {
 #[cfg(test)]
 mod archive_tests {
     use super::*;
+
+    #[test]
+    fn g_code_saved_as_txt_opens_and_other_text_does_not() {
+        let mut doc = Document::default();
+        let g = "(cut)\n%\nG20 G90\nM3 S18000\nG0 Z0.2\nG0X1Y1\nN10 G1 Z-0.1 F30\nG01 X2 Y1 F60\nX2 Y2\nG02 X1 Y2 I-0.5 J0\nM5\nM30\n";
+        assert!(matches!(load(&mut doc, "job.TXT", g.as_bytes()), Loaded::Gcode(_)));
+        let notes = "Gift for Grandma\nX marks the spot\nGo to the shop at 3\nG0 is a rapid\n";
+        assert!(matches!(load(&mut doc, "notes.txt", notes.as_bytes()), Loaded::Error(_)));
+        assert!(matches!(load(&mut doc, "scan.tiff", b"II*\0"), Loaded::Image));
+        let mut tif = Vec::new();
+        image::RgbaImage::from_pixel(4, 3, image::Rgba([9, 9, 9, 255])).write_to(&mut std::io::Cursor::new(&mut tif), image::ImageFormat::Tiff).unwrap();
+        assert_eq!(image::load_from_memory(&tif).unwrap().width(), 4, "TIFF pictures decode for tracing");
+    }
 
     #[test]
     fn archives_are_refused_whatever_they_are_called_but_a_3mf_passes() {

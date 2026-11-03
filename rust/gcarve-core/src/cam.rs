@@ -1077,7 +1077,7 @@ fn pocket_raster(op: &Op, tool: &Tool, boundary: &PathsD, step: f64, m: &Materia
     let mut rows: Vec<(f64, Vec<(f64, f64)>)> = Vec::new();
     let n = (((y1 - y0) / step).ceil() as usize).max(1);
     for k in 0..=n {
-        let y = (y0 + (y1 - y0) * k as f64 / n as f64).clamp(y0 + 1e-6, y1 - 1e-6); // first / last row just inside the walls
+        let y = (y0 + (y1 - y0) * k as f64 / n as f64).min(y1 - 1e-6).max(y0 + 1e-6); // first / last row just inside the walls
         let mut xs: Vec<f64> = Vec::new();
         for p in &polys {
             for i in 0..p.len() {
@@ -3688,8 +3688,7 @@ mod chip_thinning_tests {
         assert!((chip_thinning(0.5, 0.5, 100.0, &m) - 100.0).abs() < 1e-9); // half width: no thinning
         let f = chip_thinning(0.06, 0.5, 100.0, &m); // 12 %
         assert!(f > 140.0 && f <= 150.0, "{f}");
-        let mut lim = Material::default();
-        lim.machine = Some(MachineLimits { feed_xy: 120.0, ..Default::default() });
+        let lim = Material { machine: Some(MachineLimits { feed_xy: 120.0, ..Default::default() }), ..Default::default() };
         assert_eq!(chip_thinning(0.06, 0.5, 100.0, &lim), 120.0);
     }
 }

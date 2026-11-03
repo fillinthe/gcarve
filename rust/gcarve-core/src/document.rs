@@ -87,7 +87,7 @@ impl Tool {
     pub fn ball_rise(&self, dist: f64) -> f64 {
         let r = self.diameter / 2.0;
         let rr = if self.radius > 0.0 { self.radius.min(r) } else { r };
-        let x = (dist.abs() - (r - rr)).clamp(0.0, rr);
+        let x = (dist.abs() - (r - rr)).min(rr).max(0.0);
         rr - (rr * rr - x * x).max(0.0).sqrt()
     }
 

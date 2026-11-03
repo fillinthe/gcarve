@@ -45,9 +45,9 @@ impl Canvas {
         self.doc.apply_driven_dimensions();
         let nl = self.doc.layers.len() as i32 - 1;
         for s in &mut self.doc.shapes {
-            s.layer = s.layer.clamp(0, nl);
+            s.layer = s.layer.min(nl).max(0);
         }
-        self.doc.active_layer = self.doc.active_layer.clamp(0, nl);
+        self.doc.active_layer = self.doc.active_layer.min(nl).max(0);
         self.sel.retain(|id| self.doc.find(*id).is_some_and(|s| self.doc.shape_editable(s)));
         if self.doc.find(self.node_shape).is_none_or(|s| self.node_idx >= s.c.nodes.len() as i32) {
             self.node_shape = -1;
@@ -1504,8 +1504,7 @@ mod tests {
         c.doc.material.w = 20.0;
         c.doc.material.h = 10.0;
         c.doc.tools.clear();
-        let mut small = gcarve_core::document::Tool::default();
-        small.diameter = 0.25;
+        let small = gcarve_core::document::Tool { diameter: 0.25, ..Default::default() };
         let mut big = small.clone();
         big.diameter = 1.5;
         c.doc.tools.push(small);
