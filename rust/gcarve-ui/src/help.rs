@@ -137,6 +137,9 @@ pub fn check(ctx: &egui::Context) {
 /// zip, Linux the folder). Any failure → `Upd::Failed`, and the dialog opens the download page instead.
 #[cfg(not(target_arch = "wasm32"))]
 fn update_now(ctx: &egui::Context) {
+    if crate::store::frozen() {
+        return;
+    }
     let Some(url) = ASSET.lock().ok().and_then(|a| a.clone()) else {
         *UPDATE.lock().unwrap() = Upd::Failed(crate::i18n::t("No file for this computer in the release.").into(), false);
         return;

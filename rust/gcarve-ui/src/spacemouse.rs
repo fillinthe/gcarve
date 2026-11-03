@@ -105,39 +105,59 @@ mod imp {
     pub fn state() -> String {
         SHARED.lock().unwrap_or_else(|e| e.into_inner()).0.clone()
     }
-    fn open() -> Result<Option<(hidapi::HidDevice, String)>, hidapi::HidError> {
-        let api = hidapi::HidApi::new()?;
+    fn open(api: &mut Option<hidapi::HidApi>) -> Result<Option<(hidapi::HidDevice, String)>, hidapi::HidError> {
+        let api = match api {
+            Some(a) => {
+                a.refresh_devices()?;
+                a
+            }
+            None => api.insert(hidapi::HidApi::new()?),
+        };
         #[cfg(target_os = "macos")]
         api.set_open_exclusive(false); // the 3Dconnexion driver, when installed, keeps the device open too
         let Some(info) = api.device_list().find(|i| VENDORS.contains(&i.vendor_id()) && i.usage_page() == 1 && i.usage() == 8) else { return Ok(None) };
-        Ok(Some((info.open_device(&api)?, info.product_string().unwrap_or(crate::i18n::t("SpaceMouse")).to_string())))
+        Ok(Some((info.open_device(api)?, info.product_string().unwrap_or(crate::i18n::t("SpaceMouse")).to_string())))
     }
-    /// Own thread: on macOS hidapi spins the calling thread's run loop, which re-enters the window's event handling
-    /// (winit aborts). `ask` = the user pressed Connect: say so when nothing is found (the silent try at start doesn't).
+    /// set by `connect`, taken by the reader thread
+    static WANT: AtomicBool = AtomicBool::new(false);
+    static ASK: AtomicBool = AtomicBool::new(false);
+    /// One reader thread for the life of the program, holding the one HidApi. On macOS hidapi spins the calling
+    /// thread's run loop, which re-enters the window's event handling (winit aborts), and a second HidApi made on a
+    /// new thread after the first thread ended crashed in CoreFoundation (View › Connect a SpaceMouse… with none
+    /// plugged in). `ask` = the user pressed Connect: say so when nothing is found (the silent try at start doesn't).
     pub fn connect(ask: bool) {
+        ASK.store(ask, Ordering::SeqCst);
+        WANT.store(true, Ordering::SeqCst);
         if RUNNING.swap(true, Ordering::SeqCst) {
             return;
         }
-        std::thread::spawn(move || {
-            match open() {
-                Ok(Some((hid, name))) => {
-                    let (mut axes, mut buf) = ([0.0; 6], [0u8; 64]);
-                    set(format!("open:{name}"), axes);
-                    // a quarter second without a report = still where it was (the puck reports only while it moves)
-                    while let Ok(n) = hid.read_timeout(&mut buf, 250) {
-                        if n > 0 {
-                            HEARD.store(true, Ordering::Relaxed);
-                            super::parse(buf[0], &buf[1..n], &mut axes); // byte 0 = report number
-                            set(format!("open:{name}"), axes);
-                        }
-                    }
-                    set(String::new(), [0.0; 6]); // unplugged
-                    HEARD.store(false, Ordering::Relaxed);
+        std::thread::spawn(|| {
+            let mut api = None;
+            loop {
+                if !WANT.swap(false, Ordering::SeqCst) {
+                    std::thread::sleep(std::time::Duration::from_millis(250));
+                    continue;
                 }
-                Ok(None) => set(if ask { "error: no SpaceMouse found".to_string() } else { String::new() }, [0.0; 6]),
-                Err(e) => set(if ask { format!("error: {e}") } else { String::new() }, [0.0; 6]),
+                let ask = ASK.load(Ordering::SeqCst);
+                match open(&mut api) {
+                    Ok(Some((hid, name))) => {
+                        let (mut axes, mut buf) = ([0.0; 6], [0u8; 64]);
+                        set(format!("open:{name}"), axes);
+                        // a quarter second without a report = still where it was (the puck reports only while it moves)
+                        while let Ok(n) = hid.read_timeout(&mut buf, 250) {
+                            if n > 0 {
+                                HEARD.store(true, Ordering::Relaxed);
+                                super::parse(buf[0], &buf[1..n], &mut axes); // byte 0 = report number
+                                set(format!("open:{name}"), axes);
+                            }
+                        }
+                        set(String::new(), [0.0; 6]); // unplugged
+                        HEARD.store(false, Ordering::Relaxed);
+                    }
+                    Ok(None) => set(if ask { "error: no SpaceMouse found".to_string() } else { String::new() }, [0.0; 6]),
+                    Err(e) => set(if ask { format!("error: {e}") } else { String::new() }, [0.0; 6]),
+                }
             }
-            RUNNING.store(false, Ordering::SeqCst);
         });
     }
     pub fn heard() -> bool {

@@ -339,6 +339,8 @@ impl Widget for Button {
             None => left,
         };
         p.galley(pos2(text_x, rect.center().y - g.size().y / 2.0), g, col);
+        let label = if self.text.is_empty() { self.icon.map_or("", |(n, _)| n) } else { &self.text };
+        resp.widget_info(|| egui::WidgetInfo::labeled(egui::WidgetType::Button, on, label));
         resp
     }
 }
@@ -374,6 +376,15 @@ pub fn focus_ring(ctx: &egui::Context) {
         if r.sense.senses_drag() && r.rect.height() >= CONTROL_HEIGHT - 4.0 {
             ctx.layer_painter(r.layer_id).with_clip_rect(r.interact_rect.expand(1.0)).rect_stroke(r.rect, RADIUS - 1, Stroke::new(1.0, ACCENT), StrokeKind::Inside);
         }
+    }
+}
+
+/// Call last in each frame. Focus held by a widget that drew no AccessKit node this frame (a window's invisible first
+/// sizing pass: the command palette's search box) made accesskit_consumer panic with "Focused ID … is not in the
+/// node list", which stops the app as soon as VoiceOver or another accessibility client is listening.
+pub fn focus_in_tree(ctx: &egui::Context) {
+    if let Some(id) = ctx.memory(|m| m.focused()) {
+        ctx.accesskit_node_builder(id, |_| ());
     }
 }
 
@@ -452,7 +463,9 @@ impl Widget for CheckBox<'_> {
             p.add(egui::Shape::line(vec![o + vec2(4.0, 9.5), o + vec2(7.5, 13.0), o + vec2(14.0, 5.5)], Stroke::new(2.0, if enabled { Color32::WHITE } else { TEXT_DISABLED })));
         }
         let col = if enabled { TEXT } else { TEXT_DISABLED };
+        let label = g.text().to_owned();
         p.galley(pos2(bx.right() + 8.0, rect.center().y - g.size().y / 2.0), g, col);
+        resp.widget_info(|| egui::WidgetInfo::selected(egui::WidgetType::Checkbox, enabled, on, &label));
         resp
     }
 }
@@ -477,6 +490,7 @@ pub fn switch(ui: &mut Ui, on: &mut bool, label: &str) -> Response {
     let kx = if *on { track.right() - 10.0 } else { track.left() + 10.0 };
     p.circle_filled(pos2(kx, track.center().y), 8.0, if *on { Color32::WHITE } else { TEXT_DIM });
     p.galley(pos2(track.right() + 8.0, rect.center().y - g.size().y / 2.0), g, TEXT);
+    resp.widget_info(|| egui::WidgetInfo::selected(egui::WidgetType::Checkbox, ui.is_enabled(), *on, label));
     resp
 }
 
@@ -492,6 +506,7 @@ pub fn radio(ui: &mut Ui, checked: bool, label: &str) -> Response {
         p.circle_filled(c, 4.0, ACCENT);
     }
     p.galley(pos2(rect.left() + 30.0, rect.center().y - g.size().y / 2.0), g, if enabled { TEXT } else { TEXT_DISABLED });
+    resp.widget_info(|| egui::WidgetInfo::selected(egui::WidgetType::RadioButton, enabled, checked, label));
     resp
 }
 pub fn radio_value<T: PartialEq>(ui: &mut Ui, cur: &mut T, v: T, label: &str) -> Response {
@@ -576,6 +591,7 @@ impl<N: egui::emath::Numeric> Widget for SpinBox<'_, N> {
             let fill = if b.is_pointer_button_down_on() && enabled { ACCENT } else if b.hovered() && enabled { RAISED_HOVER } else { RAISED };
             p.rect(br, 4.0, fill, Stroke::new(1.0, BORDER), StrokeKind::Inside);
             p.text(br.center(), egui::Align2::CENTER_CENTER, glyph, bold(14.0), if enabled { TEXT } else { TEXT_DISABLED });
+            b.widget_info(|| egui::WidgetInfo::labeled(egui::WidgetType::Button, enabled, glyph));
             if b.clicked() {
                 let nv = self.v.to_f64() + dir * self.step;
                 set(self.v, nv, &mut resp);
@@ -599,6 +615,7 @@ pub fn tab(ui: &mut Ui, selected: bool, text: &str, accent: Color32) -> Response
     }
     let col = if selected || resp.hovered() { TEXT } else { TEXT_DIM };
     p.galley(rect.center() - g.size() / 2.0, g, col);
+    resp.widget_info(|| egui::WidgetInfo::selected(egui::WidgetType::SelectableLabel, ui.is_enabled(), selected, text));
     resp
 }
 
@@ -657,6 +674,10 @@ fn menu_row_paint(ui: &mut Ui, text: &str, shortcut: &str, check: Option<bool>, 
     }
     if arrow {
         p.text(pos2(rect.right() - 10.0, rect.center().y), egui::Align2::RIGHT_CENTER, "›", font(16.0), if hl { Color32::WHITE } else { TEXT_DIM });
+    }
+    match check {
+        Some(on) => resp.widget_info(|| egui::WidgetInfo::selected(egui::WidgetType::Checkbox, enabled, on, text)),
+        None => resp.widget_info(|| egui::WidgetInfo::labeled(egui::WidgetType::Button, enabled, text)),
     }
     resp
 }

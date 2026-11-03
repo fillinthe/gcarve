@@ -415,10 +415,7 @@ impl Prefs {
             note(ui, i18n::t("Your shop's name and logo at the top of every printed setup sheet. Kept on this device."));
             ui.horizontal(|ui| {
                 ui.label(i18n::t("Shop name"));
-                let mut shop = crate::store::load(crate::setupsheet::SHOP_KEY).unwrap_or_default();
-                if ui.add(egui::TextEdit::singleline(&mut shop).desired_width(200.0).hint_text(i18n::t("e.g. Pete's Woodshop"))).changed() {
-                    crate::store::save(crate::setupsheet::SHOP_KEY, &shop);
-                }
+                super::stored_field(ui, crate::setupsheet::SHOP_KEY, "", |t| egui::TextEdit::singleline(t).desired_width(200.0).hint_text(i18n::t("e.g. Pete's Woodshop")));
             });
             ui.horizontal(|ui| {
                 let has_logo = crate::store::load(crate::setupsheet::LOGO_KEY).is_some_and(|l| !l.is_empty());

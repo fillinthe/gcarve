@@ -51,6 +51,9 @@ impl Files {
     /// Shows the picker; the file arrives later through `poll` (the web picker is asynchronous).
     /// true (and asks for an account) when files can't come in yet
     fn refuse(&self) -> bool {
+        if gcarve_ui::store::frozen() {
+            return true; // UI tests: no native picker
+        }
         if self.locked.get() {
             self.wants_account.set(true);
         }
@@ -168,6 +171,9 @@ impl Files {
     /// Save As (desktop): native dialog on its own thread; the chosen path comes back on `saved_rx` with `doc`.
     #[cfg(not(target_arch = "wasm32"))]
     pub fn save_project_as(&self, doc: u64, name: &str, bytes: Vec<u8>) {
+        if gcarve_ui::store::frozen() {
+            return;
+        }
         let dialog = rfd::AsyncFileDialog::new().set_file_name(format!("{name}.tlp")).add_filter(i18n::t("GCarve project"), &["tlp"]).add_filter(i18n::t("VCarve project"), &["crv"]);
         let (done, msg) = (self.saved_tx.clone(), self.msg_tx.clone());
         std::thread::spawn(move || {
@@ -314,7 +320,7 @@ pub fn save(name: &str, bytes: Vec<u8>, done: Sender<String>) {
         let _ = done.send(match download(name, &bytes) { Ok(()) => format!("Downloaded {name}"), Err(e) => e });
     }
     #[cfg(not(target_arch = "wasm32"))]
-    {
+    if !gcarve_ui::store::frozen() {
         let dialog = rfd::AsyncFileDialog::new().set_file_name(name);
         let name = name.to_string();
         std::thread::spawn(move || {
@@ -335,7 +341,9 @@ pub fn save(name: &str, bytes: Vec<u8>, done: Sender<String>) {
 #[cfg(not(target_arch = "wasm32"))]
 pub fn open_with_os(path: &std::path::Path) {
     let cmd = if cfg!(target_os = "macos") { "open" } else if cfg!(target_os = "windows") { "explorer" } else { "xdg-open" };
-    let _ = std::process::Command::new(cmd).arg(path).spawn();
+    if !gcarve_ui::store::frozen() {
+        let _ = std::process::Command::new(cmd).arg(path).spawn();
+    }
 }
 
 /// An HTML page in a new browser tab (blob URL, so it can print); Ok(false) = the tab was blocked, downloaded instead.

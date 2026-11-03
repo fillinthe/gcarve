@@ -47,3 +47,6 @@ wasm-bindgen = "=0.2.129"   # inline JS for Web Serial (control/webserial.rs); p
 web-sys = { version = "0.3", features = ["console", "Window", "Document", "HtmlCanvasElement", "Element", "HtmlElement", "HtmlAnchorElement", "Blob", "BlobPropertyBag", "Url", "Location", "Storage", "Navigator", "HtmlInputElement", "FileList", "File", "CssStyleDeclaration"] }
 js-sys = "0.3"
 getrandom = { version = "0.3", features = ["wasm_js"] }   # see .cargo/config.toml
+
+[target.'cfg(not(target_arch = "wasm32"))'.dev-dependencies]
+egui_kittest = { version = "0.36", features = ["eframe"] }   # tests only: drives the real UI through AccessKit (tests/ui_e2e.rs)

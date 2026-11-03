@@ -197,7 +197,7 @@ impl App {
         crate::icons::install(&cc.egui_ctx, crate::app_icons::RAW);
         let files = Files::default();
         #[cfg(not(target_arch = "wasm32"))]
-        for arg in std::env::args().skip(1).filter(|a| !a.starts_with("--")) {
+        for arg in std::env::args().skip(1).filter(|a| !a.starts_with("--") && !cfg!(test)) {
             files.open_path(std::path::Path::new(&arg)); // gcarve project.tlp / file.svg
         }
         #[cfg(not(target_arch = "wasm32"))]
@@ -1936,6 +1936,7 @@ impl eframe::App for App {
         for id in std::mem::take(&mut self.shell.cmds) {
             self.run(&ctx, &id);
         }
+        crate::widgets::focus_in_tree(&ctx);
     }
 }
 
@@ -2393,7 +2394,7 @@ impl App {
                 };
                 ui.allocate_ui(egui::vec2(580.0 - 60.0 - 90.0, 20.0), |ui| ui.add(egui::Label::new(RichText::new(text).color(col)).truncate()));
                 ui.add_space((580.0 - ui.min_rect().width() - 84.0).max(0.0));
-                if ui.add(crate::widgets::Button::new(i18n::t("Choose…")).min_width(84.0)).clicked() {
+                if ui.add(crate::widgets::Button::new(i18n::t("Choose…")).min_width(84.0)).clicked() && !gcarve_ui::store::frozen() {
                     let mut pick = rfd::FileDialog::new().set_title(i18n::t("Export G-code to folder"));
                     if let Some(f) = &d.folder {
                         pick = pick.set_directory(f);
@@ -2745,6 +2746,21 @@ impl crate::mcp::McpApp for McpHost<'_> {
 }
 
 #[cfg(test)]
+impl App {
+    /// ui_e2e.rs: run a menu command as its menu row does
+    pub(crate) fn test_push(&mut self, id: &str) {
+        self.shell.push(id.to_string());
+    }
+    pub(crate) fn test_doc(&self) -> gcarve_core::document::Document {
+        self.canvas.doc.clone()
+    }
+    /// ui_e2e.rs: open a project as File › Open does
+    pub(crate) fn test_open(&mut self, name: &str, bytes: &[u8]) {
+        self.open_picked(files::Picked { name: name.into(), bytes: bytes.to_vec(), path: None, import: false });
+    }
+}
+
+#[cfg(test)]
 mod demo_tests {
     #[test]
     fn demo_opens_without_warnings() {
@@ -2933,4 +2949,5 @@ impl App {
         ctx.send_viewport_cmd(egui::ViewportCommand::Screenshot(egui::UserData::default()));
     }
 }
+
 

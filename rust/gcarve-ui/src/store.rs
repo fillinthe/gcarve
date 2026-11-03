@@ -45,6 +45,11 @@ pub fn freeze() {
     FROZEN.store(true, std::sync::atomic::Ordering::Relaxed);
 }
 
+/// true after `freeze`: also no pickers, downloads, browsers or other programs (UI tests press every button)
+pub fn frozen() -> bool {
+    FROZEN.load(std::sync::atomic::Ordering::Relaxed)
+}
+
 pub fn save(key: &str, text: &str) {
     if FROZEN.load(std::sync::atomic::Ordering::Relaxed) {
         return;
