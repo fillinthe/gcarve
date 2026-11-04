@@ -795,7 +795,7 @@ pub fn settings_ui(st: &mut State, ctx: &eframe::egui::Context) {
         ui.label(i18n::t("Let an AI assistant (ChatGPT, Gemini, Copilot, Cursor, LM Studio … any app that speaks MCP) look at the open drawing and work in it: draw, add toolpaths, check them, show a preview, make the G-code. You see every change and can undo it."));
         ui.add_space(6.0);
         let mut on = st.rx.is_some();
-        if ui.checkbox(&mut on, i18n::t("Let AI assistants use GCarve")).changed() {
+        if crate::widgets::checkbox(ui, &mut on, i18n::t("Let AI assistants use GCarve")).changed() {
             st.set(ctx, on);
         }
         if !st.err.is_empty() {

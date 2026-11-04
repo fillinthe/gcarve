@@ -2,6 +2,7 @@
 //! [`post_jobs`] renders Jobs with it. Checked byte for byte against the C++ output in tests/golden_cpp.rs.
 //!
 //! Placeholders in templates: {FILENAME} {DATE} {TIME} {TOOLNAME} {TOOLNUM} {RPM} {FEEDXY} {FEEDZ} {SAFEZ} {ZZERO}
+//! {XH} {YH} {ZH} (home) {XLENGTH} {YLENGTH} {ZLENGTH} (board)
 //! {MATERIAL} {UNITS} {PATHNAME} {XMIN} {XMAX} {YMIN} {YMAX} {ZMIN} {ZMAX} {N} (line number) and in move templates
 //! {X} {Y} {Z} {I} {J} {F} (axis letter + number; omitted when absent) or {x} {y} {z} {i} {j} {f} (bare numbers,
 //! always emitted; ShopBot style).
@@ -72,6 +73,16 @@ pub struct PostDef {
     /// omit unchanged axes in {X}{Y}{Z}
     pub modal_axes: bool,
     pub crlf: bool,
+    /// {SAFEZ} in the post's units when set; unset = the job's lift height (Job Setup)
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub safe_z: Option<f64>,
+    /// home position {XH} {YH} {ZH} in the post's units; unset = 0, 0 and {SAFEZ}
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub home_x: Option<f64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub home_y: Option<f64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub home_z: Option<f64>,
 }
 
 impl Default for PostDef {
@@ -106,6 +117,10 @@ impl Default for PostDef {
             line_number_step: 10,
             modal_axes: true,
             crlf: false,
+            safe_z: None,
+            home_x: None,
+            home_y: None,
+            home_z: None,
         }
     }
 }
@@ -548,12 +563,19 @@ fn render_jobs(jobs: &[Job], def: &PostDef) -> Vec<PostOutput> {
     }
     let scale = if def.inches { 1.0 } else { 25.4 };
     let make_ctx = |j: &Job| {
+        let safe = def.safe_z.unwrap_or(j.safe_z * scale);
         let vars = [
             ("FILENAME", substituted(def, &j.filename)),
             ("DATE", j.timestamp.clone()),
             ("TIME", j.timestamp.clone()),
             ("UNITS", (if def.inches { "inches" } else { "mm" }).into()),
-            ("SAFEZ", fmt(0.8 * scale, def.decimals)),
+            ("SAFEZ", fmt(safe, def.decimals)),
+            ("XH", def.home_x.map_or("0".into(), |v| fmt(v, def.decimals))),
+            ("YH", def.home_y.map_or("0".into(), |v| fmt(v, def.decimals))),
+            ("ZH", fmt(def.home_z.unwrap_or(safe), def.decimals)),
+            ("XLENGTH", fmt(j.board[0] * scale, def.decimals)),
+            ("YLENGTH", fmt(j.board[1] * scale, def.decimals)),
+            ("ZLENGTH", fmt(j.board[2] * scale, def.decimals)),
             ("MATERIAL", substituted(def, &j.material)),
             ("TOOLNAME", substituted(def, &j.tool)),
             ("TOOLNUM", j.slot.max(1).to_string()),
@@ -1008,10 +1030,8 @@ pub fn post_from_vectric_pp(text: &str) -> Result<PostDef, String> {
                 "S" => format!("{p}{{RPM}}"),
                 "T" => format!("{p}{{TOOLNUM}}"),
                 "N" => format!("{p}{{N}}"),
-                "SAFEZ" | "ZH" => format!("{p}{{SAFEZ}}"),
-                "XH" | "YH" => format!("{p}0"),
-                "XMIN" | "XMAX" | "YMIN" | "YMAX" | "ZMIN" | "ZMAX" => format!("{p}{{{up}}}"),
-                "XLENGTH" | "YLENGTH" | "ZLENGTH" => String::new(),
+                "SAFEZ" => format!("{p}{{SAFEZ}}"),
+                "XMIN" | "XMAX" | "YMIN" | "YMAX" | "ZMIN" | "ZMAX" | "XH" | "YH" | "ZH" | "XLENGTH" | "YLENGTH" | "ZLENGTH" => format!("{p}{{{up}}}"),
                 _ => continue,
             };
             s = s.replace(&format!("[{}]", v.token), &rep);
@@ -1098,6 +1118,23 @@ pub fn post_from_vectric_pp(text: &str) -> Result<PostDef, String> {
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn safe_z_home_and_board_size_come_from_the_job_unless_the_post_sets_them() {
+        use crate::job::{Job, Move, Toolpath};
+        let tp = Toolpath { name: "P".into(), feed_xy: 100.0, feed_z: 30.0, moves: vec![Move::rapid(Some(1.0), Some(1.0), Some(0.5)), Move::linear(None, None, Some(-0.1))], ..Default::default() };
+        let job = Job { filename: "p".into(), tool: "E".into(), toolpaths: vec![tp], safe_z: 1.5, board: [24.0, 12.0, 0.75], ..Default::default() };
+        let mut def = PostDef { id: "t".into(), decimals: 2, footer: "Z{SAFEZ} H{XH},{YH},{ZH} B{XLENGTH}x{YLENGTH}x{ZLENGTH}\nM5\n".into(), ..Default::default() };
+        let text = |d: &PostDef| post_jobs(std::slice::from_ref(&job), d)[0].text.clone();
+        assert!(text(&def).contains("Z1.50 H0,0,1.50 B24.00x12.00x0.75"), "{}", text(&def));
+        def.inches = false;
+        assert!(text(&def).contains("Z38.10 H0,0,38.10 B609.60x304.80x19.05"), "{}", text(&def));
+        // set in the post file: its own units, as written
+        let def = post_from_json(r#"{"id":"t","decimals":2,"inches":false,"safeZ":10,"homeX":5,"homeY":600,"footer":"Z{SAFEZ} H{XH},{YH},{ZH}\nM5\n"}"#).unwrap();
+        assert!(text(&def).contains("Z10.00 H5.00,600.00,10.00"), "{}", text(&def));
+        assert!(post_to_json(&def).contains("\"safeZ\": 10.0"));
+        assert!(!post_to_json(&post_library()[0]).contains("safeZ"), "built-ins export without the settings they don't set");
+    }
+
     #[test]
     fn a_zero_rpm_job_never_turns_the_spindle_on_in_any_post() {
         use crate::job::{Job, Move, Toolpath};

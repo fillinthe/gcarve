@@ -448,9 +448,11 @@ impl<'a> CheckBox<'a> {
 impl Widget for CheckBox<'_> {
     fn ui(self, ui: &mut Ui) -> Response {
         let enabled = ui.is_enabled();
-        let g = self.text.into_galley(ui, Some(egui::TextWrapMode::Extend), f32::INFINITY, egui::FontSelection::FontId(font(FONT_SIZE)));
+        // a long label wraps under itself (a phone, another language) instead of widening the dialog
+        let room = (ui.available_width() - 34.0).max(60.0);
+        let g = self.text.into_galley(ui, Some(egui::TextWrapMode::Wrap), room, egui::FontSelection::FontId(font(FONT_SIZE)));
         let tw = if g.size().x > 0.0 { 8.0 + g.size().x + 4.0 } else { 0.0 };
-        let (rect, mut resp) = ui.allocate_exact_size(vec2(4.0 + 18.0 + tw, 30.0), Sense::click());
+        let (rect, mut resp) = ui.allocate_exact_size(vec2(4.0 + 18.0 + tw, (g.size().y + 12.0).max(30.0)), Sense::click());
         if resp.clicked() {
             *self.on = !*self.on;
             resp.mark_changed();

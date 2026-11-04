@@ -27,11 +27,11 @@ impl Guide {
         let mut open = true;
         let mut run = None;
         widgets::Dialog::new(crate::i18n::t("How Do I…?")).id("guide").open(&mut open).close_footer().width(560.0).show(ctx, |ui| {
-            let r = ui.add(widgets::field(&mut self.query).hint_text(hint).desired_width(560.0));
+            let r = ui.add(widgets::field(&mut self.query).hint_text(hint).desired_width(ui.available_width()));
             widgets::focus_first(ui, &r);
             let words: Vec<String> = self.query.to_lowercase().split_whitespace().map(str::to_string).collect();
             egui::ScrollArea::vertical().max_height(widgets::list_height(ui, 60.0)).show(ui, |ui| {
-                ui.set_width(560.0);
+                ui.set_width(ui.available_width());
                 let mut any = false;
                 for &(q, a, cmd) in topics {
                     let (q, a) = (crate::i18n::t(q), crate::i18n::t(a));
@@ -41,15 +41,14 @@ impl Guide {
                     }
                     any = true;
                     ui.add_space(6.0);
-                    ui.horizontal(|ui| {
-                        ui.label(RichText::new(q).font(widgets::bold(theme::FONT_SIZE)).color(egui::Color32::WHITE));
-                        if !cmd.is_empty() {
-                            ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                                if ui.small_button(crate::i18n::t("Do it")).clicked() {
-                                    run = Some(cmd);
-                                }
-                            });
+                    // Do it on the right, the question wraps in what is left (a phone)
+                    ui.allocate_ui_with_layout(egui::vec2(ui.available_width(), 0.0), egui::Layout::right_to_left(egui::Align::Min), |ui| {
+                        if !cmd.is_empty() && ui.small_button(crate::i18n::t("Do it")).clicked() {
+                            run = Some(cmd);
                         }
+                        ui.with_layout(egui::Layout::top_down(egui::Align::Min), |ui| {
+                            ui.add(egui::Label::new(RichText::new(q).font(widgets::bold(theme::FONT_SIZE)).color(egui::Color32::WHITE)).wrap());
+                        });
                     });
                     ui.add(egui::Label::new(RichText::new(theme::keys(a)).color(theme::TEXT.gamma_multiply(0.8))).wrap());
                 }

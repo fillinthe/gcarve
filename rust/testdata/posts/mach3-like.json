@@ -13,7 +13,7 @@
   "toolChange": "",
   "pathStart": "",
   "pathEnd": "",
-  "footer": "N{N}G0X0\nN{N}M30\n",
+  "footer": "N{N}G0X{XH}\nN{N}M30\n",
   "rapid": "N{N}G0{X}{Y}{Z}",
   "linear": "N{N}G1{X}{Y}{Z}",
   "arcCW": "N{N}G1{X}{Y}{Z}",

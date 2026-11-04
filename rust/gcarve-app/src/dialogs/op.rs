@@ -806,7 +806,7 @@ impl OpDialog {
                             });
                             ui.end_row();
                             ui.label("");
-                            ui.checkbox(&mut self.op.feed_boost, i18n::t("Feed up for the thin cut")).tip(i18n::t("Chip thinning: a thin cut leaves a thinner chip, so the feed can rise up to 1.5× (within the machine's limit). Off = the bit's own feed."));
+                            crate::widgets::checkbox(ui, &mut self.op.feed_boost, i18n::t("Feed up for the thin cut")).tip(i18n::t("Chip thinning: a thin cut leaves a thinner chip, so the feed can rise up to 1.5× (within the machine's limit). Off = the bit's own feed."));
                         } else {
                             ui.label(i18n::t("Stepover (%)"));
                             ui.add(crate::widgets::SpinBox::new(&mut self.stepover_pct, 5..=100).step(5.0));
