@@ -186,6 +186,7 @@ impl JobDialog {
         f.set_bound("t", &m.bind, m.t);
         f.set_bound("safeZ", &m.bind, m.safe_z);
         f.set_bound("retractZ", &m.bind, m.retract_z);
+        f.set("spoil", m.spoil);
         let home = m.home.unwrap_or([0.0, 0.0]);
         f.set("homeX", home[0]);
         f.set("homeY", home[1]);
@@ -202,6 +203,7 @@ impl JobDialog {
         m.t = self.f.get_or("t", doc, m.t).max(0.01);
         m.safe_z = self.f.get_or("safeZ", doc, m.safe_z);
         m.retract_z = self.f.get_or("retractZ", doc, m.retract_z);
+        m.spoil = self.f.get_or("spoil", doc, m.spoil).max(0.0);
         m.bind = self.f.bindings(&["w", "h", "t", "safeZ", "retractZ"]);
         m.merge = self.merge;
         m.rotary = self.rotary_on.then(|| self.f.get_or("rotDia", doc, 3.0).max(0.05));
@@ -310,6 +312,9 @@ impl JobDialog {
                 ui.end_row();
                 ui.label(unit_label(i18n::t("Small lift"), doc)).tip(i18n::t("Retract Z: the short hop between nearby cuts of one toolpath, above the board."));
                 self.f.ui(ui, "retractZ", doc);
+                ui.end_row();
+                ui.label(unit_label(i18n::t("Into the spoilboard"), doc)).tip(i18n::t("How far below the board a cut may go before Export warns about it (through cuts usually go a little past the board)."));
+                self.f.ui(ui, "spoil", doc);
                 ui.end_row();
             });
             });

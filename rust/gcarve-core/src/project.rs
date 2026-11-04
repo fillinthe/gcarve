@@ -511,6 +511,9 @@ fn material_json(m: &Material) -> Value {
     if !m.name.is_empty() {
         o.as_object_mut().unwrap().insert("name".into(), json!(m.name));
     }
+    if (m.spoil - 0.0625).abs() > 1e-9 {
+        o.as_object_mut().unwrap().insert("spoil".into(), json!(m.spoil));
+    }
     for (k, v) in [("price", m.price), ("rate", m.rate)] {
         if v > 0.0 {
             o.as_object_mut().unwrap().insert(k.into(), json!(v));
@@ -539,6 +542,7 @@ fn material_from(o: &Value) -> Material {
         back_of: get(o, "backOf").as_object().map(|_| (int(get(o, "backOf"), "sheet", 0), flag(get(o, "backOf"), "lr", true))),
         price: num(o, "price", 0.0).max(0.0),
         rate: num(o, "rate", 0.0).max(0.0),
+        spoil: num(o, "spoil", 0.0625).max(0.0),
         home: get(o, "home").as_array().filter(|a| a.len() == 2).and_then(|a| Some([a[0].as_f64()?, a[1].as_f64()?])),
     }
 }
