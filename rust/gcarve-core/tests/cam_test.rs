@@ -532,8 +532,11 @@ fn safety_net_and_air_cut() {
     let ro = generate_profile(&op_out(), &em, &[circ(C.x, C.y, 0.925)], &m);
     let deep = Op { depth: 1.0, ..op_out() }; // 0.516 into the spoilboard on 0.484 stock
     let gd = generate_profile(&deep, &em, &[circ(C.x, C.y, 0.925)], &m).paths;
-    let iss = safety_issues(&[deep], &default_tools(), &[gd], &m);
+    let iss = safety_issues(std::slice::from_ref(&deep), &default_tools(), std::slice::from_ref(&gd), &m);
     assert!(iss.len() == 1 && iss[0].contains("spoilboard"));
+    // Job Setup "Into the spoilboard" allows it
+    let lax = Material { spoil: 0.6, ..m.clone() };
+    assert!(safety_issues(std::slice::from_ref(&deep), &default_tools(), std::slice::from_ref(&gd), &lax).is_empty());
     assert!(safety_issues(&[op_out()], &default_tools(), std::slice::from_ref(&ro.paths), &m).is_empty());
     // flutes shorter than the cut: warned; long enough: not
     let mut short = default_tools();

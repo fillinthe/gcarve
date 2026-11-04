@@ -570,8 +570,8 @@ fn render_jobs(jobs: &[Job], def: &PostDef) -> Vec<PostOutput> {
             ("TIME", j.timestamp.clone()),
             ("UNITS", (if def.inches { "inches" } else { "mm" }).into()),
             ("SAFEZ", fmt(safe, def.decimals)),
-            ("XH", def.home_x.map_or("0".into(), |v| fmt(v, def.decimals))),
-            ("YH", def.home_y.map_or("0".into(), |v| fmt(v, def.decimals))),
+            ("XH", def.home_x.or(j.home.map(|h| h[0] * scale)).map_or("0".into(), |v| fmt(v, def.decimals))),
+            ("YH", def.home_y.or(j.home.map(|h| h[1] * scale)).map_or("0".into(), |v| fmt(v, def.decimals))),
             ("ZH", fmt(def.home_z.unwrap_or(safe), def.decimals)),
             ("XLENGTH", fmt(j.board[0] * scale, def.decimals)),
             ("YLENGTH", fmt(j.board[1] * scale, def.decimals)),
@@ -1128,6 +1128,9 @@ mod tests {
         assert!(text(&def).contains("Z1.50 H0,0,1.50 B24.00x12.00x0.75"), "{}", text(&def));
         def.inches = false;
         assert!(text(&def).contains("Z38.10 H0,0,38.10 B609.60x304.80x19.05"), "{}", text(&def));
+        // Job Setup's park position
+        let parked = Job { home: Some([2.0, 3.0]), ..job.clone() };
+        assert!(post_jobs(&[parked], &def)[0].text.contains("H50.80,76.20,38.10"));
         // set in the post file: its own units, as written
         let def = post_from_json(r#"{"id":"t","decimals":2,"inches":false,"safeZ":10,"homeX":5,"homeY":600,"footer":"Z{SAFEZ} H{XH},{YH},{ZH}\nM5\n"}"#).unwrap();
         assert!(text(&def).contains("Z10.00 H5.00,600.00,10.00"), "{}", text(&def));

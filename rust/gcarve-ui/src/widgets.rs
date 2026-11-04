@@ -96,7 +96,10 @@ impl<'o> Dialog<'o> {
                     // (a modeless dialog starts below the top of the window: that much less room)
                     let down = modeless.map_or(0.0, |(pos, _)| (pos.y - ui.ctx().content_rect().top()).max(0.0));
                     let max_h = ui.ctx().content_rect().height() - down - 46.0 - 30.0 - if close { 62.0 } else { 0.0 } - 24.0;
-                    let r = egui::ScrollArea::both().max_width(max_w.max(120.0)).max_height(max_h.max(120.0)).min_scrolled_height(max_h.max(120.0)).show(ui, add).inner;
+                    // sideways only in a narrow window: a sideways scroll keeps an auto-sized dialog from growing to its
+                    // content (Job Setup's right column collapsed on the desktop)
+                    let narrow = ui.ctx().content_rect().width() < 760.0;
+                    let r = egui::ScrollArea::new([narrow, true]).max_width(max_w.max(120.0)).max_height(max_h.max(120.0)).min_scrolled_height(max_h.max(120.0)).show(ui, add).inner;
                     if close {
                         let hit = if flush {
                             egui::Frame::new().inner_margin(egui::Margin { left: 0, right: 19, top: 2, bottom: 11 }).show(ui, |ui| {
@@ -448,9 +451,9 @@ impl<'a> CheckBox<'a> {
 impl Widget for CheckBox<'_> {
     fn ui(self, ui: &mut Ui) -> Response {
         let enabled = ui.is_enabled();
-        // a long label wraps under itself (a phone, another language) instead of widening the dialog
+        // wraps like a Label: in the dialog column (narrow windows), not inside grids / rows, which size to their content
         let room = (ui.available_width() - 34.0).max(60.0);
-        let g = self.text.into_galley(ui, Some(egui::TextWrapMode::Wrap), room, egui::FontSelection::FontId(font(FONT_SIZE)));
+        let g = self.text.into_galley(ui, None, room, egui::FontSelection::FontId(font(FONT_SIZE)));
         let tw = if g.size().x > 0.0 { 8.0 + g.size().x + 4.0 } else { 0.0 };
         let (rect, mut resp) = ui.allocate_exact_size(vec2(4.0 + 18.0 + tw, (g.size().y + 12.0).max(30.0)), Sense::click());
         if resp.clicked() {

@@ -2848,6 +2848,7 @@ pub fn build_jobs(ops: &[Op], tools: &[Tool], generated: &[Vec<Toolpath>], m: &M
         j.z_zero = if m.z_bottom { "Table" } else { "Material Surface" }.into();
         j.safe_z = m.safe_z + if m.z_bottom { m.t } else { 0.0 };
         j.board = [m.w, m.h, m.t];
+        j.home = m.home;
         if m.z_bottom {
             // heights count up from the spoilboard: a thicker board than entered puts rapids into it
             j.notes.push(format!("Z zero = TABLE (spoilboard). This file assumes the board is {:.3} in thick: measure it.", m.t));
@@ -2882,7 +2883,6 @@ pub fn safety_issues(ops: &[Op], tools: &[Tool], generated: &[Vec<Toolpath>], m:
     if m.retract_z > m.safe_z {
         add("Retract Z is above safe Z.".into());
     }
-    const SPOIL: f64 = 0.0625; // cutting a little into the spoilboard is normal for through cuts
     for (op, gen) in ops.iter().zip(generated) {
         for tp in gen {
             let ti = if tp.tool >= 0 { tp.tool } else { op.tool };
@@ -2918,7 +2918,8 @@ pub fn safety_issues(ops: &[Op], tools: &[Tool], generated: &[Vec<Toolpath>], m:
             if off {
                 add(format!("{who}: cuts outside the board."));
             }
-            if zmin < -(m.t + SPOIL) {
+            // cutting a little into the spoilboard is normal for through cuts; how much is Job Setup's
+            if zmin < -(m.t + m.spoil) - 1e-9 {
                 add(format!("{who}: cuts {:.3} in into the spoilboard (deepest Z {:.3}, board {:.3} thick).", -zmin - m.t, zmin, m.t));
             }
             // a V-bit's depth is the cone's business; every other bit cuts only as deep as its flutes reach

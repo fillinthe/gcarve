@@ -189,6 +189,9 @@ pub struct Material {
     /// only): the setup sheet and the toolpath list show the job's cost when either is set
     pub price: f64,
     pub rate: f64,
+    /// how far below the board a cut may reach before export calls it a problem (inches; Job Setup "Into the
+    /// spoilboard", JSON "spoil" when not the 1/16 in default, Rust only)
+    pub spoil: f64,
 }
 
 impl Material {
@@ -245,6 +248,7 @@ impl Default for Material {
             rotary_y: false,
             price: 0.0,
             rate: 0.0,
+            spoil: 0.0625,
         }
     }
 }

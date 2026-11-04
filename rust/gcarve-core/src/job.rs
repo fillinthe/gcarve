@@ -73,6 +73,8 @@ pub struct Job {
     pub safe_z: f64,
     /// board width, height, thickness (inches): {XLENGTH} {YLENGTH} {ZLENGTH}
     pub board: [f64; 3],
+    /// Job Setup's park position (X / Y from the XY zero, inches): the posts' {XH} {YH} unless the post sets its own
+    pub home: Option<[f64; 2]>,
 }
 
 impl Default for Job {
@@ -91,6 +93,7 @@ impl Default for Job {
             a_along_y: false,
             safe_z: 0.8,
             board: [0.0; 3],
+            home: None,
         }
     }
 }
