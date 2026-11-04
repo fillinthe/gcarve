@@ -69,6 +69,10 @@ pub struct Job {
     pub a_axis: bool,
     /// rotary along the machine's Y: the posts write the X words (the length) as Y and the Y words as A
     pub a_along_y: bool,
+    /// the job's lift height (Job Setup "Lift for moves", inches above Z zero): the posts' {SAFEZ}
+    pub safe_z: f64,
+    /// board width, height, thickness (inches): {XLENGTH} {YLENGTH} {ZLENGTH}
+    pub board: [f64; 3],
 }
 
 impl Default for Job {
@@ -85,6 +89,8 @@ impl Default for Job {
             slot: 0,
             a_axis: false,
             a_along_y: false,
+            safe_z: 0.8,
+            board: [0.0; 3],
         }
     }
 }

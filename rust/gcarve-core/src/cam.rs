@@ -2846,6 +2846,8 @@ pub fn build_jobs(ops: &[Op], tools: &[Tool], generated: &[Vec<Toolpath>], m: &M
     }
     for j in &mut jobs {
         j.z_zero = if m.z_bottom { "Table" } else { "Material Surface" }.into();
+        j.safe_z = m.safe_z + if m.z_bottom { m.t } else { 0.0 };
+        j.board = [m.w, m.h, m.t];
         if m.z_bottom {
             // heights count up from the spoilboard: a thicker board than entered puts rapids into it
             j.notes.push(format!("Z zero = TABLE (spoilboard). This file assumes the board is {:.3} in thick: measure it.", m.t));

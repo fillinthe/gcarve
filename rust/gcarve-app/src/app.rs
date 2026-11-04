@@ -2296,11 +2296,11 @@ impl App {
             ui.radio_value(&mut s.paths, ShowPaths::Trail, i18n::t("Cut so far (tool trail)"));
             ui.radio_value(&mut s.paths, ShowPaths::Hidden, i18n::t("Hidden"));
             ui.separator();
-            ui.checkbox(&mut s.rapids, i18n::t("Rapid moves (red)"));
-            ui.checkbox(&mut s.cutter, i18n::t("Cutter"));
+            crate::widgets::checkbox(ui, &mut s.rapids, i18n::t("Rapid moves (red)"));
+            crate::widgets::checkbox(ui, &mut s.cutter, i18n::t("Cutter"));
             ui.separator();
             let mut lit = self.player.backlit;
-            if ui.checkbox(&mut lit, i18n::t("Lithophane (lit from behind, 2D)")).on_hover_text(i18n::t("Thin wood glows, thick wood stays dark: how a lithophane looks against a window")).changed() {
+            if crate::widgets::checkbox(ui, &mut lit, i18n::t("Lithophane (lit from behind, 2D)")).on_hover_text(i18n::t("Thin wood glows, thick wood stays dark: how a lithophane looks against a window")).changed() {
                 self.player.set_backlit(lit);
             }
             if !self.canvas.show_paths {

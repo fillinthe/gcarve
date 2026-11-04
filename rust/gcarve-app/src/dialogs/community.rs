@@ -162,9 +162,9 @@ impl MakeIt {
             if let Some((m, p)) = &self.mine {
                 let their = doc.material.machine.as_ref().map_or(i18n::t("no machine").to_string(), |t| t.name.clone());
                 let p_name = gcarve_core::postdef::find_post(p).cloned().or_else(|| host.posts.find(p)).map_or(p.clone(), |d| d.name);
-                ui.checkbox(&mut self.switch, format!("Use my machine: {} (G-code for {p_name})", m.name)).on_hover_text(format!("The project is set up for {their}, G-code for {}", post.name));
+                crate::widgets::checkbox(ui, &mut self.switch, format!("Use my machine: {} (G-code for {p_name})", m.name)).on_hover_text(format!("The project is set up for {their}, G-code for {}", post.name));
             }
-            ui.horizontal(|ui| {
+            ui.horizontal_wrapped(|ui| {
                 let name = doc.material.machine.as_ref().map(|m| m.name.clone()).filter(|n| !n.is_empty());
                 ui.label(match &name {
                     Some(n) => RichText::new(format!("{n}  ·  G-code for {}", post.name)),
@@ -176,7 +176,7 @@ impl MakeIt {
             });
             ui.add_space(6.0);
             section(ui, i18n::t("Board"));
-            ui.horizontal(|ui| {
+            ui.horizontal_wrapped(|ui| {
                 ui.label(i18n::t("Your board's thickness"));
                 units::num_field(ui, "makeit-t", &mut self.thick, doc, true, 90.0);
                 ui.label(RichText::new(format!("drawn for {}", units::text(doc, self.old_t))).color(crate::theme::TEXT_DIM));
@@ -457,7 +457,7 @@ impl ShareDialog {
                             self.cover -= 1;
                         }
                     }
-                    ui.horizontal(|ui| {
+                    ui.horizontal_wrapped(|ui| {
                         if ui.add_enabled(self.pics.len() < MAX_PICTURES, egui::Button::new(i18n::t("Add photos of the real thing…"))).clicked() {
                             self.want_photo = true;
                         }
@@ -467,7 +467,7 @@ impl ShareDialog {
                 ui.end_row();
             });
             ui.add_space(6.0);
-            ui.checkbox(&mut self.rights, i18n::t("I made this design, or I have the right to share it under this license"));
+            crate::widgets::checkbox(ui, &mut self.rights, i18n::t("I made this design, or I have the right to share it under this license"));
             let ready = host.cloud.signed_in() && self.problems.is_empty() && self.rights && self.title.trim().chars().count() >= 3 && !self.pics.is_empty() && !self.sending;
             match crate::widgets::buttons(ui, &[(i18n::t("Cancel"), false), (if self.sending { i18n::t("Sharing…") } else { i18n::t("Share") }, ready)]) {
                 Some(0) => close = true,
