@@ -651,7 +651,7 @@ fn build_library() -> Vec<PostDef> {
         d.max_arc_sweep_deg = 180.0;
         d.header = format!("({{FILENAME}})\n(Tool: {{TOOLNAME}})\nG90 {} G17 G94\nG54\nM3 S{{RPM}}\nG4 P2\n", if inch { "G20" } else { "G21" });
         d.path_start = "({PATHNAME})\n".into();
-        d.footer = "M5\nG0 Z{SAFEZ}\nM30\n".into();
+        d.footer = "M5\nG0 Z{ZH}\nM30\n".into();
         v.push(d);
     };
     let mach_like = |v: &mut Vec<PostDef>, id, name, controller, machines, inch: bool, atc: bool, ext, retract: &str| {
@@ -745,7 +745,7 @@ fn build_library() -> Vec<PostDef> {
         decimals: 3,
         header: "%\n({FILENAME})\nG90 G21 G17 G40 G49\nG54\nS{RPM} M03\n".into(),
         path_start: "({PATHNAME})\n".into(),
-        footer: "M05\nG00 Z30\nM30\n%\n".into(),
+        footer: "M05\nG00 Z{ZH}\nM30\n%\n".into(),
         ..base("syntec-mm", "Syntec / Weihong (mm, .nc)", "Syntec, Weihong NcStudio", "Chinese 6090/1325 routers", "nc")
     });
     v.push(PostDef {
@@ -753,7 +753,7 @@ fn build_library() -> Vec<PostDef> {
         decimals: 3,
         comment: String::new(),
         header: "G90 G21 G17\nS{RPM} M03\n".into(),
-        footer: "M05\nG00 Z50\nM30\n".into(),
+        footer: "M05\nG00 Z{ZH}\nM30\n".into(),
         ..base("richauto-mm", "RichAuto DSP A11/B11 (mm, .nc)", "RichAuto DSP", "Axiom, Laguna Swift (DSP), generic 1325 routers", "nc")
     });
     v.push(PostDef {
@@ -761,7 +761,7 @@ fn build_library() -> Vec<PostDef> {
         comment: "({})".into(),
         header: "({FILENAME})\nG20 G90 G17\nS{RPM} M3\n".into(),
         path_start: "({PATHNAME})\n".into(),
-        footer: "M5\nG0 Z1\nM30\n".into(),
+        footer: "M5\nG0 Z{ZH}\nM30\n".into(),
         ..base("nextwave-in", "Next Wave Shark / Piranha (inch, .tap)", "Next Wave", "Shark HD, Piranha", "tap")
     });
     v.push(PostDef {
@@ -797,8 +797,8 @@ fn build_library() -> Vec<PostDef> {
         footer: footer.into(),
         ..base(id, name, "ShopBot", machines, "sbp")
     };
-    v.push(shopbot("shopbot-in", "ShopBot (inch, .sbp)", "ShopBot PRSalpha, PRSstandard, Desktop", true, "JZ,1.0\nC7\nEND\n"));
-    v.push(shopbot("shopbot-mm", "ShopBot (mm, .sbp)", "ShopBot", false, "JZ,25\nC7\nEND\n"));
+    v.push(shopbot("shopbot-in", "ShopBot (inch, .sbp)", "ShopBot PRSalpha, PRSstandard, Desktop", true, "JZ,{ZH}\nC7\nEND\n"));
+    v.push(shopbot("shopbot-mm", "ShopBot (mm, .sbp)", "ShopBot", false, "JZ,{ZH}\nC7\nEND\n"));
     // ---- Others
     v.push(PostDef {
         inches: false,

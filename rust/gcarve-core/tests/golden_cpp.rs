@@ -1,5 +1,6 @@
 //! Cross-check against the C++ engine: rust/testdata/posts/* were written by rust/testdata/posts/gen/gen_golden.cpp
-//! (rebuild with gen/build.sh). Posts must match byte for byte; arcfit and the G-code reader to 1e-9.
+//! (rebuild with gen/build.sh). Posts must match byte for byte; arcfit and the G-code reader to 1e-9. Hand edits since the C++ retirement:
+//! syntec-mm, richauto-mm, nextwave-in, shopbot-in / -mm footers lift to {ZH} (was a fixed Z30 / Z50 / Z1 / JZ 1.0 / 25), 2026-11-04.
 
 use gcarve_core::arcfit::{fit_arcs, DEFAULT_MAX_SWEEP, DEFAULT_TOL};
 use gcarve_core::gcode::{motion_points, parse_program};
