@@ -1583,6 +1583,11 @@ fn medial_axis(region: &PathsD) -> Vec<Vec<SkelPt>> {
         }
         let tw = vd.edge(twin).unwrap();
         let (a, b) = (vpt(e.vertex0().unwrap()), vpt(tw.vertex0().unwrap()));
+        // an edge never crosses the outline, so one with an end outside every ring's box is outside; nearly parallel
+        // sites put such ends far away, and sampling that parabola every 0.01 in ran out of memory (web, 2026-11-06)
+        if !boxes.iter().any(|bx| in_box(bx, a, 1e-3)) || !boxes.iter().any(|bx| in_box(bx, b, 1e-3)) {
+            continue;
+        }
         let cell = vd.cell(e.cell().unwrap()).unwrap();
         let tcell = vd.cell(tw.cell().unwrap()).unwrap();
         let mut pts: Vec<Pt> = Vec::new();
