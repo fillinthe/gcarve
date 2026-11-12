@@ -315,6 +315,9 @@ pub(crate) fn op_json(op: &Op, tools: &[Tool]) -> Value {
     if op.adaptive {
         m.insert("adaptive".into(), json!(true));
     }
+    if op.corner_relief > 0 {
+        m.insert("cornerRelief".into(), json!(op.corner_relief));
+    }
     if op.start_first {
         m.insert("startFirst".into(), json!(true));
     }
@@ -356,6 +359,15 @@ pub(crate) fn op_json(op: &Op, tools: &[Tool]) -> Value {
     }
     if op.tab_corners {
         m.insert("tabAvoidCorners".into(), json!(true));
+    }
+    if op.tab_min > 0 {
+        m.insert("tabMin".into(), json!(op.tab_min));
+    }
+    if op.tab_max > 0 {
+        m.insert("tabMax".into(), json!(op.tab_max));
+    }
+    if op.tab_at_start {
+        m.insert("tabAtStart".into(), json!(true));
     }
     if op.tab_spacing > 0.0 {
         m.insert("tabSpacing".into(), json!(op.tab_spacing));
@@ -459,6 +471,7 @@ pub(crate) fn op_from(o: &Value, tool_count: i32) -> Op {
         skin: num(o, "skin", 0.0).max(0.0),
         fit_holes: flag(o, "fitHoles", false),
         start_first: flag(o, "startFirst", false),
+        corner_relief: int(o, "cornerRelief", 0).clamp(0, 2) as u8,
         cutter_comp: flag(o, "cutterComp", false),
         keyhole: flag(o, "keyhole", false),
         drag_knife: num(o, "dragKnife", 0.0).max(0.0),
@@ -468,6 +481,9 @@ pub(crate) fn op_from(o: &Value, tool_count: i32) -> Op {
         keep_order: flag(o, "keepOrder", false),
         tab_corners: flag(o, "tabAvoidCorners", false),
         tab_spacing: num(o, "tabSpacing", 0.0).max(0.0),
+        tab_min: int(o, "tabMin", 0).clamp(0, 200),
+        tab_max: int(o, "tabMax", 0).clamp(0, 200),
+        tab_at_start: flag(o, "tabAtStart", false),
         sheet_scope: int(o, "sheet", -1).max(-1),
         all_vectors: flag(o, "allVectors", false),
         array_rows: int(get(o, "array"), "rows", 1).clamp(1, 500),

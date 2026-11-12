@@ -527,7 +527,7 @@ fn toolpaths_then_export(h: &mut H, kinds: &[&str], what: &str, bad: &mut Vec<St
 fn the_tasks_the_app_offers_end_in_clean_g_code() {
     let mut bad = Vec::new();
     // new-project wizards: OK must give a whole job
-    for id in ["sign", "clock", "spoilboard", "doors", "tray"] {
+    for id in ["sign", "clock", "spoilboard", "doors", "cabinet", "tray"] {
         let mut h = harness(false);
         if !command_ok(&mut h, id) {
             bad.push(format!("{id}: no OK button"));
@@ -540,7 +540,7 @@ fn the_tasks_the_app_offers_end_in_clean_g_code() {
         exports_cleanly(&mut h, id, &mut bad);
     }
     // drawing generators on an empty drawing: OK must add vectors
-    for id in ["qr", "puzzle", "boxmaker", "hinge"] {
+    for id in ["qr", "puzzle", "boxmaker", "hinge", "joinery"] {
         let mut h = harness(false);
         let n = h.state_mut().test_doc().shapes.len();
         if !command_ok(&mut h, id) {

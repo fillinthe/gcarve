@@ -37,6 +37,30 @@ pub fn arc_through(a: Pt, m: Pt, b: Pt) -> Contour {
     bld.c
 }
 
+/// The Arc tool's shape from the points clicked so far and the pointer `p`. mode 0: start, end, a point it passes
+/// through; 1: centre, start, end (the shorter way round); 2: start and end of a half circle (anticlockwise). With too
+/// few points for an arc yet: the line to the pointer.
+pub(crate) fn arc_shape(mode: u8, pts: &[Pt], p: Pt) -> Option<Contour> {
+    let line = |a: Pt| Some(make_polyline(&[a, p], false));
+    let arc = |c: Pt, from: Pt, sweep: f64| {
+        let mut b = Builder::default();
+        b.start(from);
+        b.arc(c.x, c.y, dist(c, from), dist(c, from), 0.0, (from.y - c.y).atan2(from.x - c.x), sweep);
+        b.c
+    };
+    match (mode, pts) {
+        (_, []) => None,
+        (2, [a]) if dist(*a, p) > 1e-9 => Some(arc(pt((a.x + p.x) / 2.0, (a.y + p.y) / 2.0), *a, PI)),
+        (1, [c, s]) if dist(*c, *s) > 1e-9 && dist(*c, p) > 1e-9 => {
+            let turn = ((p.y - c.y).atan2(p.x - c.x) - (s.y - c.y).atan2(s.x - c.x)).rem_euclid(2.0 * PI);
+            let sweep = if turn > PI { turn - 2.0 * PI } else { turn };
+            (sweep.abs() > 1e-6).then(|| arc(*c, *s, sweep))
+        }
+        (0, [a, b]) => Some(arc_through(*a, p, *b)),
+        (_, [a, ..]) => line(*pts.last().unwrap_or(a)),
+    }
+}
+
 fn len(p: Pt) -> f64 {
     p.x.hypot(p.y)
 }
@@ -68,7 +92,22 @@ pub fn options_bar(ui: &mut eframe::egui::Ui, canvas: &mut Canvas, look: (&'stat
             }
             Tool::Polyline => i18n::t("Click each point. Double-click or Enter finishes, Delete takes back the last point."),
             Tool::Pen => i18n::t("Click for a corner, drag for a curve. Enter finishes."),
-            Tool::Arc => i18n::t("Click the start, the end, then a point the arc passes through."),
+            Tool::Arc => {
+                ui.spacing_mut().item_spacing.x = 2.0;
+                for (v, label) in [(0, i18n::t("3 points")), (1, i18n::t("Center")), (2, i18n::t("2 points"))] {
+                    if ui.add(Button::new(label).primary(canvas.arc_mode == v)).clicked() && canvas.arc_mode != v {
+                        canvas.arc_mode = v;
+                        canvas.arc_pts.clear();
+                    }
+                }
+                ui.spacing_mut().item_spacing.x = 8.0;
+                ui.add_space(6.0);
+                match canvas.arc_mode {
+                    1 => i18n::t("Click the center, where the arc starts, then where it ends."),
+                    2 => i18n::t("Click the start and the end: a half circle between them."),
+                    _ => i18n::t("Click the start, the end, then a point the arc passes through."),
+                }
+            }
             Tool::Freehand => i18n::t("Drag to draw. The line is smoothed when you let go."),
             Tool::Measure => i18n::t("Click two points to measure between them."),
             Tool::Dimension => i18n::t("Click two points, then where the dimension line goes."),
@@ -844,26 +883,35 @@ impl Canvas {
                 }
             }
             Tool::Arc => {
+                // clicks an arc takes: 3 points and centre = three, 2 points (half circle) = two
+                let need = if self.arc_mode == 2 { 2 } else { 3 };
                 if clicked {
                     if let Some(w) = hover_w {
                         let p = self.snapped(w);
-                        if self.arc_pts.len() < 2 {
-                            if self.arc_pts.first().is_none_or(|f| dist(*f, p) > 1e-9) {
+                        if self.arc_pts.len() + 1 < need {
+                            if self.arc_pts.last().is_none_or(|f| dist(*f, p) > 1e-9) {
                                 self.arc_pts.push(p);
                             }
-                        } else {
-                            let c = arc_through(self.arc_pts[0], p, self.arc_pts[1]);
+                        } else if let Some(c) = arc_shape(self.arc_mode, &self.arc_pts, p).filter(|c| c.nodes.iter().any(|n| n.has_in || n.has_out)) {
                             self.arc_pts.clear();
                             self.add_shape(c);
                         }
                     }
                 }
                 if let (Some(sn), false) = (hover_snap, self.arc_pts.is_empty()) {
-                    let c = if self.arc_pts.len() == 1 { make_polyline(&[self.arc_pts[0], sn.to], false) } else { arc_through(self.arc_pts[0], sn.to, self.arc_pts[1]) };
-                    let pts = self.screen_pts(&view, &c);
-                    painter.add(Shape::line(pts, Stroke::new(1.0, theme::ACCENT)));
-                    status = format!("{status}   {}", if self.arc_pts.len() == 1 { i18n::t("click the arc's end") } else { i18n::t("click a point the arc passes through") });
+                    if let Some(c) = arc_shape(self.arc_mode, &self.arc_pts, sn.to) {
+                        let pts = self.screen_pts(&view, &c);
+                        painter.add(Shape::line(pts, Stroke::new(1.0, theme::ACCENT)));
+                    }
                 }
+                let next = match (self.arc_mode, self.arc_pts.len()) {
+                    (1, 0) => i18n::t("click the arc's centre"),
+                    (1, 1) => i18n::t("click where the arc starts"),
+                    (_, 0) => i18n::t("click where the arc starts"),
+                    (0, 2) => i18n::t("click a point the arc passes through"),
+                    _ => i18n::t("click the arc's end"),
+                };
+                status = format!("{status}   {next}");
             }
             Tool::Freehand => {
                 if drag_started {
@@ -1311,7 +1359,18 @@ impl Canvas {
         }
         let size = units::get(&self.doc, &self.corner_size, true).ok().filter(|v| *v > 0.0);
         let r = size.map(|v| if self.corner_style == 2 { v } else { v + 0.0005 }); // a hair over the bit radius, as dogbone_selection
-        let out = r.and_then(|r| gcarve_core::vecops::corner_at(c, k, r, self.corner_style, Some(w)));
+        let at = |r: f64| gcarve_core::vecops::corner_at(c, k, r, self.corner_style, Some(w));
+        let mut out = r.and_then(at);
+        // a round too big for the corner's sides: the largest that fits (VCarve does the same). A dogbone is the
+        // bit's size, so a smaller one would be no use.
+        if let (None, 2, Some(r)) = (&out, self.corner_style, r) {
+            let (mut lo, mut hi) = (0.0, r);
+            for _ in 0..24 {
+                let mid = (lo + hi) / 2.0;
+                if at(mid).is_some() { lo = mid } else { hi = mid }
+            }
+            out = (lo > 0.002).then(|| at(lo)).flatten();
+        }
         let kind = if out.is_some() { Badge::Add } else { Badge::No };
         Some((id, k, out, kind))
     }
@@ -1362,6 +1421,16 @@ mod corner_tab_tool_tests {
         let (back, _) = gcarve_core::vecops::sharpen_at(&c.doc.find(id).unwrap().c, 1).unwrap();
         c.corner_apply(id, 1, back, true);
         assert_eq!(c.doc.find(id).unwrap().c.nodes.len(), 4, "sharp again");
+
+        // the arc kinds: through three points, round a centre the shorter way, a half circle on two points
+        let b = |c: &Contour| bounds(c);
+        let half = arc_shape(2, &[pt(0.0, 0.0)], pt(2.0, 0.0)).unwrap();
+        assert!((b(&half).y0 + 1.0).abs() < 1e-6 && b(&half).y1.abs() < 1e-6, "{:?}", b(&half));
+        let quarter = arc_shape(1, &[pt(0.0, 0.0), pt(1.0, 0.0)], pt(0.0, 5.0)).unwrap();
+        let end = quarter.nodes.last().unwrap().p;
+        assert!(dist(end, pt(0.0, 1.0)) < 1e-6, "ends on the circle towards the click: {end:?}");
+        assert!(arc_shape(1, &[pt(0.0, 0.0)], pt(1.0, 0.0)).is_some_and(|c| c.nodes.iter().all(|n| !n.has_out)), "only a line so far");
+        assert!(arc_shape(0, &[pt(0.0, 0.0), pt(2.0, 0.0)], pt(1.0, 1.0)).is_some());
 
     }
 }

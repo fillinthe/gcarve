@@ -19,6 +19,16 @@ enum Transport {
     WebSerial(Option<String>),
 }
 
+struct Leveling {
+    map: gcarve_core::heightmap::HeightMap,
+    pts: Vec<(f64, f64)>,
+    i: usize,
+    wait: Option<u8>,
+    clear: f64,
+    depth: f64,
+    feed: f64,
+}
+
 pub struct Link {
     transport: Option<Transport>,
     pub st: MachineStatus,
@@ -31,6 +41,12 @@ pub struct Link {
     pub streaming: bool,
     zeroed: [bool; 3],
     pub probing: bool,
+    /// bed leveling: the probed surface (None = not probed), and whether Start makes the program follow it
+    pub height_map: Option<gcarve_core::heightmap::HeightMap>,
+    pub level_on: bool,
+    /// a grid being probed: the map so far, the points, the one being probed, status reports to wait after its touch,
+    /// lift between points, how far down to look, feed
+    leveling: Option<Leveling>,
     probe_plate: f64,
     probe_lift: f64,
     travel_from_controller: bool,
@@ -60,6 +76,9 @@ impl Default for Link {
             streaming: false,
             zeroed: [false; 3],
             probing: false,
+            height_map: None,
+            level_on: false,
+            leveling: None,
             probe_plate: 0.0,
             probe_lift: 0.0,
             travel_from_controller: false,
@@ -421,7 +440,24 @@ impl Link {
 
     fn handle_line(&mut self, l: &str) {
         if grbl::parse_status(l, &mut self.st) {
+            self.level_step();
             return;
+        }
+        if self.leveling.is_some() {
+            if l.starts_with("[PRB:") {
+                if l.ends_with(":1]") {
+                    // touched: read the height off the status reports that follow, once the machine has stopped
+                    if let Some(lv) = self.leveling.as_mut() {
+                        lv.wait = Some(2);
+                    }
+                } else {
+                    self.level_stop(i18n::t("Surface probing stopped: the probe did not touch. Check the probe wire, and that Z zero is on the surface."));
+                }
+                return;
+            }
+            if l.starts_with("ALARM:") || l.starts_with("error:") {
+                self.level_stop(&format!("Surface probing stopped: {l}"));
+            }
         }
         if self.streamer.on_response(l) {
             if !self.streamer.error().is_empty() {
@@ -610,6 +646,87 @@ impl Link {
         self.send(&format!("{cmd}\n"));
         self.add_log(format!("Zeroed {axes}"));
     }
+    /// Bed leveling: probe an `nx` × `ny` grid over the loaded program's cuts. Between points the probe lifts `clear`
+    /// above Z zero; at each it looks down as far as `depth` below Z zero at `feed`. Z zero must be set on the
+    /// surface first (the heights are read against it). The result lands in `height_map`.
+    pub fn probe_grid(&mut self, nx: usize, ny: usize, clear: f64, depth: f64, feed: f64) {
+        if !self.ready() || self.streaming || self.probing || self.leveling.is_some() {
+            return;
+        }
+        let cuts: Vec<_> = self.program.motions.iter().filter(|m| m.kind != MoveType::Rapid && !m.machine_coords).collect();
+        if cuts.is_empty() {
+            self.last_error = i18n::t("Load a program first: the surface is probed where it cuts").into();
+            return;
+        }
+        if !self.zeroed[2] {
+            self.last_error = i18n::t("Set Z zero on the surface first: the heights are measured from it").into();
+            return;
+        }
+        let (mut x0, mut y0, mut x1, mut y1) = (f64::MAX, f64::MAX, f64::MIN, f64::MIN);
+        for m in &cuts {
+            for p in [m.from, m.to] {
+                (x0, y0, x1, y1) = (x0.min(p.x), y0.min(p.y), x1.max(p.x), y1.max(p.y));
+            }
+        }
+        if x1 - x0 < 0.1 || y1 - y0 < 0.1 {
+            self.last_error = i18n::t("The program's cuts cover too small an area to probe a grid over").into();
+            return;
+        }
+        let (map, pts) = gcarve_core::heightmap::HeightMap::points(x0, y0, x1, y1, nx, ny);
+        self.add_log(format!("Probing the surface: {} x {} points over {:.2} x {:.2} in", map.nx, map.ny, x1 - x0, y1 - y0));
+        self.last_error.clear();
+        self.height_map = None;
+        self.leveling = Some(Leveling { map, pts, i: 0, wait: None, clear: clear.max(0.05), depth: depth.max(0.02), feed: feed.max(1.0) });
+        self.level_send();
+    }
+    /// how far the grid probing has come: (points done, of)
+    pub fn leveling(&self) -> Option<(usize, usize)> {
+        self.leveling.as_ref().map(|l| (l.i, l.pts.len()))
+    }
+    pub fn level_cancel(&mut self) {
+        if self.leveling.is_some() {
+            self.stop();
+        }
+    }
+    fn level_stop(&mut self, why: &str) {
+        self.leveling = None;
+        self.last_error = why.to_string();
+        self.add_log(why.to_string());
+    }
+    /// the moves for the current grid point: up, over, probe down (G20 on every line with inch numbers)
+    fn level_send(&mut self) {
+        let Some(lv) = self.leveling.as_ref() else { return };
+        let (x, y) = lv.pts[lv.i];
+        let text = format!("G20 G90 G0 Z{:.4}\nG20 G90 G0 X{x:.4} Y{y:.4}\nG20 G91 G38.2 Z{:.4} F{:.1}\nG90\n", lv.clear, -(lv.clear + lv.depth), lv.feed);
+        self.send(&text);
+    }
+    /// after a status report: a touched point's height is read once the machine stands still, then the next point
+    fn level_step(&mut self) {
+        let idle = self.idle();
+        let z = self.st.wpos().z;
+        let Some(lv) = self.leveling.as_mut() else { return };
+        let Some(w) = lv.wait else { return };
+        if !idle {
+            return;
+        }
+        if w > 1 {
+            lv.wait = Some(w - 1);
+            return;
+        }
+        let k = lv.map.index(lv.i);
+        lv.map.z[k] = z;
+        lv.wait = None;
+        lv.i += 1;
+        if lv.i < lv.pts.len() {
+            self.level_send();
+            return;
+        }
+        let lv = self.leveling.take().unwrap();
+        self.send(&format!("G20 G90 G0 Z{:.4}\n", lv.clear));
+        self.add_log(format!("Surface probed: {} points, {:.3} in between the highest and the lowest", lv.pts.len(), lv.map.range()));
+        self.height_map = Some(lv.map);
+    }
+
     /// Touch plate: probe down up to `max_travel` at `feed`; on contact Z = plate thickness (the plate's top), then lift.
     pub fn probe_z(&mut self, plate: f64, max_travel: f64, feed: f64, lift: f64) {
         if !self.ready() {
@@ -655,6 +772,7 @@ impl Link {
         }
         self.program = parse_program(text, 1000.0);
         self.program_name = name.to_string();
+        self.height_map = None; // probed for the last program's cuts
         self.streamer.load::<&str>(&[]);
         self.program_rev += 1;
         self.add_log(format!("Loaded {name}: {} lines, {} moves", self.program.lines.len(), self.program.motions.len()));
@@ -723,6 +841,21 @@ impl Link {
             return false;
         }
         let mut lines = self.program.lines.clone();
+        if let (true, Some(map)) = (self.level_on, &self.height_map) {
+            if from_line > 1 {
+                self.last_error = i18n::t("With Follow the surface on, start from the beginning (or switch it off to start from a line)").into();
+                return false;
+            }
+            // pieces of half a grid square at most, so the cut bends at every probed line
+            match gcarve_core::heightmap::level_program(&self.program, map, (map.dx.abs().min(map.dy.abs()) / 2.0).clamp(0.05, 1.0)) {
+                Ok(l) => lines = l,
+                Err(e) => {
+                    self.last_error = format!("Follow the surface: {e}");
+                    return false;
+                }
+            }
+            self.add_log(format!("Following the probed surface ({:.3} in of rise and fall)", map.range()));
+        }
         if from_line > 1 {
             let mut pre = grbl::resume_preamble(&self.program.lines, from_line, 20.0);
             if pre.is_empty() {
@@ -770,6 +903,9 @@ impl Link {
         self.write(&[grbl::HOLD, grbl::RESET]);
         self.streamer.stop();
         self.stopped_on_error = false;
+        if self.leveling.take().is_some() {
+            self.add_log(i18n::t("Surface probing stopped by the operator"));
+        }
         if self.streaming {
             self.add_log(i18n::t("Stopped by the operator"));
         }
@@ -843,6 +979,52 @@ mod tests {
             l.update(*t);
         }
         run(l, t, |l| l.idle() || l.alarm());
+    }
+
+    /// Bed leveling: a tilted board is probed on a grid over the program's cuts, and the program then runs following it.
+    #[test]
+    fn a_tilted_surface_is_probed_on_a_grid_and_the_program_follows_it() {
+        let mut l = Link::default();
+        let mut t = 0.0;
+        assert!(l.load_program("engrave.nc", "G90 G20\nM3 S10000\nG0 X0 Y0 Z0.2\nG1 Z-0.01 F20\nG1 X2 Y1 F40\nG0 Z0.5\nM5\n"));
+        l.connect_sim();
+        settle(&mut l, &mut t);
+        l.home();
+        settle(&mut l, &mut t);
+        l.probe_grid(3, 2, 0.2, 1.0, 20.0);
+        assert!(l.leveling().is_none() && l.last_error.contains("Z zero"), "not before Z is zeroed: {}", l.last_error);
+        l.jog(10.0, 10.0, -3.0, 3000.0);
+        settle(&mut l, &mut t);
+        l.zero_axes("XYZ");
+        settle(&mut l, &mut t);
+        // the board: 0.5 in under the bit here, rising 0.01 in per inch of X
+        let m = l.st.mpos;
+        l.sim().unwrap().set_probe_tilt(0.01, 0.0);
+        l.sim().unwrap().set_probe_z(m.z - 0.5 - 0.01 * m.x);
+        l.probe_grid(3, 2, 0.2, 1.0, 20.0);
+        assert_eq!(l.leveling(), Some((0, 6)));
+        run(&mut l, &mut t, |l| l.leveling().is_none());
+        assert!(l.last_error.is_empty(), "{}", l.last_error);
+        let map = l.height_map.clone().expect("a map");
+        assert!((map.at(0.0, 0.0) + 0.5).abs() < 2e-3 && (map.at(2.0, 1.0) + 0.48).abs() < 2e-3 && (map.range() - 0.02).abs() < 2e-3, "{map:?}");
+        settle(&mut l, &mut t);
+        // run following it: the deepest the bit goes is 0.01 under the surface at each end, not the flat -0.01
+        l.level_on = true;
+        assert!(l.start(1), "{}", l.last_error);
+        let mut low = f64::MAX;
+        for _ in 0..100_000 {
+            t += 0.05;
+            l.update(t);
+            low = low.min(l.st.wpos().z);
+            if !l.streaming {
+                break;
+            }
+        }
+        assert!(l.last_error.is_empty(), "{}", l.last_error);
+        assert!((low + 0.51).abs() < 3e-3, "deepest at the low end of the board: {low}");
+        assert!(l.log.iter().any(|s| s.starts_with("Following the probed surface")), "{}", l.log.join("\n"));
+        // a new program forgets the map
+        assert!(l.load_program("other.nc", "G90 G20\nG0 X1\nM5\n") && l.height_map.is_none());
     }
 
     /// A two-bit job in one file (Send to Control): it stops at the M6 with the spindle off, the operator re-probes Z

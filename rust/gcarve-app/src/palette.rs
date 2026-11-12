@@ -9,7 +9,7 @@ pub use gcarve_ui::palette::{Command, Palette};
 /// Main.qml tbDefs order
 const TB: [&str; 40] = ["new", "open", "jobs", "save", "undo", "redo", "copy", "paste", "clone", "group", "delete", "fliph", "flipv", "rotate", "align", "array", "nest", "link", "weld", "subtract", "intersect", "offset", "dogbone", "join", "close", "paths", "width", "sim", "watch", "vars", "tools", "posts", "board", "export", "edittext", "tocurves", "opedit", "opdelete", "restart", "view3d"];
 const TOOLS: [(&str, &str, &str); 15] = [("Select", "V", "tool:select"), ("Nodes", "N", "tool:nodes"), ("Rect", "R", "tool:rect"), ("Ellipse", "E", "tool:ellipse"), ("Polygon", "G", "tool:polygon"), ("Star", "S", "tool:star"), ("Polyline", "P", "tool:polyline"), ("Curve", "B", "tool:curve"), ("Arc", "A", "tool:arc"), ("Freehand", "H", "tool:freehand"), ("Measure", "M", "tool:measure"), ("Dimension", "D", "tool:dimension"), ("Angle", "L", "tool:angle"), ("Text", "T", "tool:text"), ("Corners", "C", "tool:corner")]; // i18n
-const VIEWS: [(&str, &str, &str); 65] = [ // i18n
+const VIEWS: [(&str, &str, &str); 68] = [ // i18n
     ("Getting started guide (checklist)", "", "tour:show"),
     ("How do I…? (help)", "", "guide"),
     ("Check vectors (open, duplicate, tiny)", "", "validate"),
@@ -30,6 +30,7 @@ const VIEWS: [(&str, &str, &str); 65] = [ // i18n
     ("Box maker: finger-jointed box…", "", "boxmaker"),
     ("Jigsaw puzzle: interlocking pieces…", "", "puzzle"),
     ("Living hinge: slots so the board bends…", "", "hinge"),
+    ("Joinery: slots sized to the board, fit test piece…", "", "joinery"),
     ("Stencil bridges: keep the middles of O, A, R…", "", "stencil"),
     ("Halftone from a picture: V-carved dots…", "", "halftone"),
     ("Inlay wizard: V-bit or flat inlay, plug on its own sheet…", "", "inlay"),
@@ -38,6 +39,7 @@ const VIEWS: [(&str, &str, &str); 65] = [ // i18n
     ("New sign: carved words, border, cut out…", "", "sign"),
     ("New tray or cutting board: bowl-bit tray, hand holds, juice groove…", "", "tray"),
     ("New cabinet doors: shaker or slab, from a cut list, nested on sheets…", "", "doors"),
+    ("New cabinet: a box from its size, parts nested with dados and shelf-pin holes…", "", "cabinet"),
     ("New clock: numerals round a dial, movement hole, cut out…", "", "clock"),
     ("New spoilboard: threaded-insert hole grid, surfacing…", "", "spoilboard"),
     ("Rotary layout: wrapped spiral or flutes…", "", "rotarylayout"),
@@ -73,6 +75,7 @@ const VIEWS: [(&str, &str, &str); 65] = [ // i18n
     ("Nest on board…", "", "nest"),
     ("New sheet", "", "sheet:add"),
     ("Setup sheet…", "", "setupsheet"),
+    ("Cut report and part labels (nested sheets)…", "", "cutreport"),
     ("Select all", "⌘A", "selectall"),
     ("Command palette", "⌘K", "palette"),
 ];

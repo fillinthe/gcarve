@@ -944,6 +944,11 @@ impl OpDialog {
                         crate::widgets::checkbox(ui, &mut self.op.climb, i18n::t("Climb (else conventional)"));
                         ui.end_row();
                     }
+                    if (is_profile && self.op.side != Side::On) || is_pocket {
+                        ui.label(i18n::t("Inside corners")).tip(i18n::t("A round bit leaves every inside corner rounded, so a square part won't fit. A dogbone or T-bone lets the bit cut just past the corner. Sized to this toolpath's bit; your drawing is not changed."));
+                        combo(ui, "corner-relief", &mut self.op.corner_relief, &[(0, i18n::t("As drawn")), (1, i18n::t("Dogbone (for tight joints)")), (2, i18n::t("T-bone"))], 220.0);
+                        ui.end_row();
+                    }
                     // VCarve's Array Copy Toolpath: the same cut repeated across a grid, no extra vectors
                     ui.label(i18n::t("Array copies")).tip(i18n::t("Cut this toolpath again in a grid: rows × columns copies, each moved by the spacing from the last (copy to copy, not the gap between parts). 1 × 1 = off."));
                     ui.horizontal(|ui| {
@@ -1007,6 +1012,10 @@ impl OpDialog {
                                 combo(ui, "tab-mode", &mut self.by_spacing, &[(false, i18n::t("Same on every part")), (true, i18n::t("One every"))], 150.0);
                                 if self.by_spacing {
                                     self.f.ui(ui, "tabSpacing", doc);
+                                    ui.label(i18n::t("at least"));
+                                    ui.add(crate::widgets::SpinBox::new(&mut self.op.tab_min, 0..=50).width(76.0)).tip(i18n::t("Never fewer tabs than this on a part, however small. 0 = no limit."));
+                                    ui.label(i18n::t("at most"));
+                                    ui.add(crate::widgets::SpinBox::new(&mut self.op.tab_max, 0..=200).width(76.0)).tip(i18n::t("Never more tabs than this on a part, however big. 0 = no limit."));
                                 } else {
                                     ui.add(crate::widgets::SpinBox::new(&mut self.tab_count, 1..=50));
                                 }
@@ -1024,6 +1033,9 @@ impl OpDialog {
                         ui.end_row();
                         ui.add_enabled(tabs, egui::Label::new(i18n::t("Spread evenly")));
                         ui.add_enabled(tabs, crate::widgets::CheckBox::new(&mut self.op.tab_corners, i18n::t("Keep tabs off corners"))).tip(i18n::t("Evenly spaced tabs that would land on a corner slide along to the nearest straight part: a tab on a corner is hard to sand off."));
+                        ui.end_row();
+                        ui.label("");
+                        ui.add_enabled(tabs, crate::widgets::CheckBox::new(&mut self.op.tab_at_start, i18n::t("First tab at the start point"))).tip(i18n::t("The first evenly spaced tab sits where the cut starts and ends, so the part is held where the bit goes in and comes out."));
                         ui.end_row();
                     }
                 });

@@ -445,6 +445,8 @@ pub struct Dialogs {
     inlay: Option<([String; 3], bool)>,
     /// Living Hinge: column spacing, slot length, bridge texts + slots run up the board
     hinge: Option<([String; 3], bool)>,
+    /// Joinery: board thickness, fit, slot length, tightest, loosest texts; how many; false = slots, true = fit test
+    joinery: Option<([String; 5], i32, bool)>,
     /// Stencil Bridges: width text + bridges run up and down
     stencil: Option<(String, bool)>,
     /// QR Code: text, size text, invert
@@ -497,6 +499,7 @@ impl Dialogs {
             Request::Inlay => self.inlay = Some(([0.2, 0.1, 0.25].map(|v| units::text(doc, v)), false)),
             Request::Stencil => self.stencil = Some((units::text(doc, 0.125), true)),
             Request::Hinge => self.hinge = Some(([0.25, 1.5, 0.25].map(|v| units::text(doc, v)), true)),
+            Request::Joinery => self.joinery = Some(([doc.material.t, 0.005, 2.0, 0.0, 0.02].map(|v| units::text(doc, v)), 5, true)),
             Request::Qr => self.qr = Some(("https://".into(), units::text(doc, 4.0), false)),
             Request::Puzzle => {
                 let (w, h) = ((doc.material.w - 1.0).clamp(2.0, 16.0), (doc.material.h - 1.0).clamp(2.0, 12.0));
@@ -731,6 +734,51 @@ impl Dialogs {
             }
             if keep {
                 self.stencil = Some((f, along_y));
+            }
+        }
+
+        if let Some((mut f, mut n, mut test)) = self.joinery.take() {
+            let (mut keep, mut ok) = (true, false);
+            W::Dialog::new(i18n::t("Joinery: Slots and Fit Test")).show(ctx, |ui| {
+                egui::Grid::new("joinery").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
+                    ui.label(i18n::t("Make"));
+                    ui.horizontal(|ui| {
+                        ui.selectable_value(&mut test, true, i18n::t("Fit test piece"));
+                        ui.selectable_value(&mut test, false, i18n::t("Slots"));
+                    });
+                    ui.end_row();
+                    let rows: &[(usize, &str)] = if test { &[(0, "Board thickness (measure it)"), (3, "Tightest slot: wider than the board by"), (4, "Loosest slot: wider than the board by")] } else { &[(0, "Board thickness (measure it)"), (1, "Fit: slot wider than the board by"), (2, "Slot length")] };
+                    for (i, label) in rows {
+                        ui.label(format!("{} ({doc_unit})", i18n::tr(label)));
+                        units::num_field(ui, label, &mut f[*i], &canvas.doc, true, 110.0);
+                        ui.end_row();
+                    }
+                    ui.label(if test { i18n::t("Slots to try") } else { i18n::t("How many slots") });
+                    ui.add(W::SpinBox::new(&mut n, if test { 2..=12 } else { 1..=50 }));
+                    ui.end_row();
+                });
+                ui.label(egui::RichText::new(if test { i18n::t("A comb of slots from tight to loose, each marked with its fit, with its toolpaths. Cut it, try an offcut of the same board in each slot, and use the fit that feels right for your slots.") } else { i18n::t("Slots as wide as the board plus the fit, to place where parts cross. In their Pocket or inside Profile, set Inside corners to Dogbone.") }).small().color(crate::theme::TEXT_DIM));
+                let (o, c) = W::ok_cancel(ui);
+                ok |= o;
+                keep &= !c;
+            });
+            if ok {
+                let v: Vec<Result<f64, String>> = f.iter().map(|t| units::get(&canvas.doc, t, true)).collect();
+                match v.iter().find_map(|r| r.as_ref().err()) {
+                    Some(e) => canvas.status = e.clone(),
+                    None => {
+                        let v: Vec<f64> = v.into_iter().map(Result::unwrap).collect();
+                        if test {
+                            canvas.fit_test(v[0], v[3], v[4], n.max(2) as usize);
+                        } else {
+                            canvas.joint_slots(v[0], v[1], v[2], n.max(1) as usize);
+                        }
+                        keep = false;
+                    }
+                }
+            }
+            if keep {
+                self.joinery = Some((f, n, test));
             }
         }
 

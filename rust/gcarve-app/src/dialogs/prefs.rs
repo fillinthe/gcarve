@@ -289,8 +289,10 @@ fn mouse_ui(ui: &mut egui::Ui) {
     });
     egui::Grid::new("mouse.grid").num_columns(4).spacing([10.0, 6.0]).show(ui, |ui| {
         ui.label("");
-        for h in ["Drag", i18n::t("⇧ + drag"), "⌘ + drag"] {
-            ui.label(RichText::new(crate::theme::keys(h)).size(12.0).color(crate::theme::TEXT_DIM));
+        // a lone modifier glyph is not converted by theme::keys (it needs a key after it): name the PC keys here
+        let heads = if crate::theme::apple() { ["Drag", i18n::t("⇧ + drag"), "⌘ + drag"] } else { ["Drag", i18n::t("Shift + drag"), i18n::t("Ctrl + drag")] };
+        for h in heads {
+            ui.label(RichText::new(h).size(12.0).color(crate::theme::TEXT_DIM));
         }
         ui.end_row();
         for (r, (_, name)) in BUTTONS.iter().enumerate() {
