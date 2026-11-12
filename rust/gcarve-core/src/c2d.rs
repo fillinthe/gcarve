@@ -551,7 +551,7 @@ mod tests {
         assert!((doc.material.w - 10.0).abs() < 1e-9 && (doc.material.h - 5.0).abs() < 1e-9 && (doc.material.t - 0.75).abs() < 1e-9);
         assert_eq!(doc.shapes.len(), 3);
         let r = bounds(&doc.shapes[0].c);
-        assert!((r.x0 - 1.0).abs() < 1e-6 && (r.y1 - 4.5).abs() < 1e-6, "centred rect: {r:?}");
+        assert!((r.x0 - 1.0).abs() < 1e-6 && (r.y1 - 4.5).abs() < 1e-6, "centered rect: {r:?}");
         let k = &doc.shapes[2].c;
         assert!(k.closed && (bounds(k).x1 - 3.0).abs() < 0.01, "curve offset by its position");
         assert_eq!((texts.len(), texts[0].text.as_str(), texts[0].font.as_str()), (1, "HELLO", "Arial"));

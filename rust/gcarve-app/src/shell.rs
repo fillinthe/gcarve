@@ -37,7 +37,7 @@ const MODES: [(Mode, &str, &str, &str, &str); 2] = [ // i18n
 pub const KINDS: [(&str, &str, &str); 13] = [ // i18n
     ("Profile", "profile", "Cut around / inside the selected shapes"),
     ("Pocket", "pocket", "Clear the inside of the selected shapes"),
-    ("Drill", "drill", "Drill at the centre of each shape"),
+    ("Drill", "drill", "Drill at the center of each shape"),
     ("V-Carve", "vcarve", "V-carve the selected shapes"),
     ("Bore", "bore", "Helical bore: holes larger than the bit"),
     ("Inlay", "inlay", "V-carve inlay: female pocket + mirrored male plug"),
@@ -184,7 +184,7 @@ pub fn board_summary(doc: &Document) -> String {
     let m = &doc.material;
     let (name, u, dt) = unit(doc);
     let d = if name == "mm" { 1 } else { 2 };
-    let origins = [i18n::t("the bottom-left corner"), i18n::t("the bottom-right corner"), i18n::t("the top-left corner"), i18n::t("the top-right corner"), i18n::t("the centre")];
+    let origins = [i18n::t("the bottom-left corner"), i18n::t("the bottom-right corner"), i18n::t("the top-left corner"), i18n::t("the top-right corner"), i18n::t("the center")];
     let sheet = if doc.sheets.len() > 1 { i18n::tf("{sheet} ({n} of {m})  ·  ", &[("sheet", &crate::shell::sheet_name(doc, doc.active_sheet.max(0) as usize)), ("n", &(doc.active_sheet + 1)), ("m", &doc.sheets.len())]) } else { String::new() };
     format!(
         "{sheet}{}  ·  {:.d$} × {:.d$} × {:.dt$} {name}  ·  {}, {}",
@@ -853,41 +853,62 @@ pub fn menus(top: &mut MenuTop, canvas: &Canvas, m: &MenuInfo, rail_open: bool, 
             s.sep();
             s.item(i18n::t("Preferences…"), "⌘,", true, "prefs");
         });
+        // Short top level: the everyday edits. Everything else sits in a named group, so the list fits a small
+        // window and a tool is found by what it is for (owner 2026-11-12: one flat list of 35 ran off the screen).
         top(i18n::t("Vectors"), &mut |s| {
-            for (t, k, on, id) in [(i18n::t("Weld"), "", sel > 1, "weld"), (i18n::t("Subtract"), "", sel > 1, "subtract"), (i18n::t("Intersect"), "", sel > 1, "intersect")] {
-                s.item(t, k, on, id);
+            for (t, on, id) in [(i18n::t("Weld"), sel > 1, "weld"), (i18n::t("Subtract"), sel > 1, "subtract"), (i18n::t("Intersect"), sel > 1, "intersect")] {
+                s.item(t, "", on, id);
             }
             s.sep();
-            s.item(i18n::t("Shapes Library…"), "", true, "shapes");
-            s.item(i18n::t("Trace Image…"), "", true, "trace");
-            s.sep();
-            for (t, k, on, id) in [(i18n::t("Offset…"), "", sel > 0, "offset"), (i18n::t("Corners: Dogbone / Fillet…"), "", sel > 0, "dogbone"), (i18n::t("Join Open Vectors"), "", sel > 1, "join"), (i18n::t("Close Vectors"), "", sel > 0, "close"), (i18n::t("Extend Ends to Next Vector"), "", sel > 0, "extend"), (i18n::t("Vector Texture…"), "", sel > 0, "vtexture"), (i18n::t("Plate Production…"), "", sel > 0, "plates"), (i18n::t("Shelf-Pin Holes…"), "", sel > 0, "shelfpins"), (i18n::t("Box Maker (finger joints)…"), "", true, "boxmaker"), (i18n::t("Jigsaw Puzzle…"), "", true, "puzzle"), (i18n::t("Living Hinge…"), "", true, "hinge"), (i18n::t("Joinery: Slots and Fit Test…"), "", true, "joinery"), (i18n::t("Stencil Bridges…"), "", sel > 0, "stencil"), (i18n::t("Halftone from Picture…"), "", true, "halftone"), (i18n::t("QR Code…"), "", true, "qr"), (i18n::t("Rotary Layout (spiral, flutes)…"), "", canvas.doc.material.rotary.is_some(), "rotarylayout"), (i18n::t("Check Vectors (open, duplicate, tiny)"), "", true, "validate")] {
-                s.item(t, k, on, id);
+            for (t, on, id) in [(i18n::t("Offset…"), sel > 0, "offset"), (i18n::t("Corners: Dogbone / Fillet…"), sel > 0, "dogbone"), (i18n::t("Join Open Vectors"), sel > 1, "join"), (i18n::t("Close Vectors"), sel > 0, "close"), (i18n::t("Extend Ends to Next Vector"), sel > 0, "extend")] {
+                s.item(t, "", on, id);
             }
+            s.sep();
+            s.sub(i18n::t("Create"), true, &mut |s| {
+                s.item(i18n::t("Shapes Library…"), "", true, "shapes");
+                s.item(i18n::t("Trace Image…"), "", true, "trace");
+                s.sep();
+                for (t, on, id) in [(i18n::t("Box Maker (finger joints)…"), true, "boxmaker"), (i18n::t("Joinery: Slots and Fit Test…"), true, "joinery"), (i18n::t("Jigsaw Puzzle…"), true, "puzzle"), (i18n::t("Living Hinge…"), true, "hinge"), (i18n::t("QR Code…"), true, "qr"), (i18n::t("Halftone from Picture…"), true, "halftone")] {
+                    s.item(t, "", on, id);
+                }
+                s.sep();
+                for (t, on, id) in [(i18n::t("Vector Texture…"), sel > 0, "vtexture"), (i18n::t("Plate Production…"), sel > 0, "plates"), (i18n::t("Shelf-Pin Holes…"), sel > 0, "shelfpins"), (i18n::t("Stencil Bridges…"), sel > 0, "stencil"), (i18n::t("Rotary Layout (spiral, flutes)…"), canvas.doc.material.rotary.is_some(), "rotarylayout")] {
+                    s.item(t, "", on, id);
+                }
+            });
+            s.sub(i18n::t("Copy and Arrange"), sel > 0, &mut |s| {
+                for (t, k, on, id) in [(i18n::t("Array Copy…"), "", sel > 0, "array"), (i18n::t("Nest on Board…"), "", sel > 0, "nest"), (i18n::t("Align & Distribute…"), "⇧⌘A", sel > 0, "align"), (i18n::t("Center on Board"), "", sel > 0, "centre"), (i18n::t("Constrain Two Shapes…"), "", sel == 2, "link")] {
+                    s.item(t, k, on, id);
+                }
+                s.sep();
+                for (t, id) in [(i18n::t("Flip Horizontal"), "fliph"), (i18n::t("Flip Vertical"), "flipv"), (i18n::t("Rotate 90°"), "rotate"), (i18n::t("Mirror Copy to the Right"), "mirror:right"), (i18n::t("Mirror Copy Upwards"), "mirror:up")] {
+                    s.item(t, "", sel > 0, id);
+                }
+            });
+            s.sub(i18n::t("Clean Up"), true, &mut |s| {
+                s.item(i18n::t("Check Vectors (open, duplicate, tiny)"), "", true, "validate");
+                s.sub(i18n::t("Simplify (fewer nodes)"), sel > 0, &mut |s| {
+                        let u = if crate::units::name(&canvas.doc) == "mm" { ["0.03 mm", i18n::t("0.13 mm"), "0.5 mm"] } else { ["0.001 in", i18n::t("0.005 in"), "0.02 in"] };
+                        for (label, tol) in [(i18n::tf("Fine: within {u}", &[("u", &(u[0]))]), "0.001"), (i18n::tf("Medium: within {u}", &[("u", &(u[1]))]), "0.005"), (i18n::tf("Coarse: within {u}", &[("u", &(u[2]))]), "0.02")] {
+                            s.item(&label, "", true, &format!("simplify:{tol}"));
+                        }
+                        s.sep();
+                        s.item(i18n::t("Fit Arcs and Curves (smooth)"), "", true, "fitcurves:0.005");
+                });
+            });
             s.sub(i18n::t("Distort"), sel > 1, &mut |s| {
                     s.item(i18n::t("Bend Along Curve"), "", true, "distort:1");
                     s.item(i18n::t("Fit Into Four Corners"), "", true, "distort:4");
                     s.item(i18n::t("Fit Between Two Curves"), "", true, "distort:2");
             });
-            s.sub(i18n::t("Simplify (fewer nodes)"), sel > 0, &mut |s| {
-                    let u = if crate::units::name(&canvas.doc) == "mm" { ["0.03 mm", i18n::t("0.13 mm"), "0.5 mm"] } else { ["0.001 in", i18n::t("0.005 in"), "0.02 in"] };
-                    for (label, tol) in [(i18n::tf("Fine: within {u}", &[("u", &(u[0]))]), "0.001"), (i18n::tf("Medium: within {u}", &[("u", &(u[1]))]), "0.005"), (i18n::tf("Coarse: within {u}", &[("u", &(u[2]))]), "0.02")] {
-                        s.item(&label, "", true, &format!("simplify:{tol}"));
-                    }
-                    s.sep();
-                    s.item(i18n::t("Fit Arcs and Curves (smooth)"), "", true, "fitcurves:0.005");
-            });
             s.sep();
-            for (t, k, on, id) in [(i18n::t("Flip Horizontal"), "", sel > 0, "fliph"), (i18n::t("Flip Vertical"), "", sel > 0, "flipv"), (i18n::t("Rotate 90°"), "", sel > 0, "rotate"), (i18n::t("Centre on Board"), "", sel > 0, "centre"), (i18n::t("Align & Distribute…"), "⇧⌘A", sel > 0, "align"), (i18n::t("Array Copy…"), "", sel > 0, "array"), (i18n::t("Constrain Two Shapes…"), "", sel == 2, "link"), (i18n::t("Nest on Board…"), "", sel > 0, "nest")] {
-                s.item(t, k, on, id);
-            }
-            s.item(i18n::t("Mirror Copy to the Right"), "", sel > 0, "mirror:right");
-            s.item(i18n::t("Mirror Copy Upwards"), "", sel > 0, "mirror:up");
-            s.item(i18n::t("Move to Next Sheet"), "", sel > 0 && canvas.doc.sheets.len() > 1, "sheet:next");
-            s.item(i18n::t("New Sheet"), "", true, "sheet:add");
-            s.sub(i18n::t("New Back Side (two-sided job)"), true, &mut |s| {
-                s.item(i18n::t("Flip the board left to right"), "", true, "sheet:back-lr");
-                s.item(i18n::t("Flip the board top to bottom"), "", true, "sheet:back-tb");
+            s.sub(i18n::t("Sheets"), true, &mut |s| {
+                s.item(i18n::t("New Sheet"), "", true, "sheet:add");
+                s.item(i18n::t("Move to Next Sheet"), "", sel > 0 && canvas.doc.sheets.len() > 1, "sheet:next");
+                s.sub(i18n::t("New Back Side (two-sided job)"), true, &mut |s| {
+                    s.item(i18n::t("Flip the board left to right"), "", true, "sheet:back-lr");
+                    s.item(i18n::t("Flip the board top to bottom"), "", true, "sheet:back-tb");
+                });
             });
         });
         top(i18n::t("Variables"), &mut |s| {
@@ -961,7 +982,7 @@ pub fn menus(top: &mut MenuTop, canvas: &Canvas, m: &MenuInfo, rail_open: bool, 
             s.check(i18n::t("Rulers"), "", true, m.rulers, "rulers:toggle");
             s.sub(i18n::t("Units"), true, &mut |s| {
                 let (uname, _, _) = unit(&canvas.doc);
-                for (t, n) in [(i18n::t("Inches"), "in"), (i18n::t("Feet"), "ft"), (i18n::t("Millimetres"), "mm")] {
+                for (t, n) in [(i18n::t("Inches"), "in"), (i18n::t("Feet"), "ft"), (i18n::t("Millimeters"), "mm")] {
                     s.check(t, "", true, uname == n, &format!("units:{n}"));
                 }
             });
@@ -1008,9 +1029,13 @@ struct EguiMenu<'a> {
 
 impl MenuSink for EguiMenu<'_> {
     fn item(&mut self, text: &str, key: &str, on: bool, id: &str) {
-        if self.ui.add_enabled_ui(on, |ui| widgets::menu_item(ui, text, key)).inner.clicked() {
+        let r = self.ui.add_enabled_ui(on, |ui| widgets::menu_item(ui, text, key));
+        if r.inner.clicked() {
             self.sh.push(id);
             self.ui.close();
+        }
+        if !on {
+            r.response.on_disabled_hover_text(i18n::t("Not available right now: select what it works on first (or set up what it needs)"));
         }
     }
     fn check(&mut self, text: &str, key: &str, on: bool, ticked: bool, id: &str) {
@@ -1026,9 +1051,15 @@ impl MenuSink for EguiMenu<'_> {
     fn sub(&mut self, title: &str, on: bool, add: &mut dyn FnMut(&mut dyn MenuSink)) {
         let sh = &mut *self.sh;
         self.ui.add_enabled_ui(on, |ui| {
-            widgets::submenu(ui, title, |ui| add(&mut EguiMenu { ui, sh }));
+            widgets::submenu(ui, title, |ui| menu_scroll(ui, |ui| add(&mut EguiMenu { ui, sh })));
         });
     }
+}
+
+/// A menu's rows, scrolling when the window is too short for them: no menu may run off the screen.
+fn menu_scroll(ui: &mut egui::Ui, add: impl FnOnce(&mut egui::Ui)) {
+    let room = (ui.ctx().content_rect().bottom() - ui.cursor().top() - 12.0).max(120.0);
+    egui::ScrollArea::vertical().max_height(room).auto_shrink([true, true]).show(ui, add);
 }
 
 /// The menu bar in the window, with the command search on the right. With `native` (the macOS menu bar has the
@@ -1042,7 +1073,7 @@ pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &Canvas, m: &MenuInfo
     let keep = sh.snap_arrow;
     let mut search = false;
     sh.menu_rect = gcarve_ui::menubar::bar(ui, keep, |ui: &mut egui::Ui, tops: &mut Vec<egui::Response>| {
-        menus(&mut |title, add| tops.push(ui.menu_button(title, |ui| add(&mut EguiMenu { ui, sh })).response), canvas, m, rail_open, panel_open, has_ops);
+        menus(&mut |title, add| tops.push(ui.menu_button(title, |ui| menu_scroll(ui, |ui| add(&mut EguiMenu { ui, sh }))).response), canvas, m, rail_open, panel_open, has_ops);
     }, |ui: &mut egui::Ui| search = gcarve_ui::menubar::search_box(ui));
     if search {
         sh.push("palette");

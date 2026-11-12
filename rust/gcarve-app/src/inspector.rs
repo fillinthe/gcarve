@@ -68,7 +68,7 @@ pub fn inspector(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Op
 fn measure_panel(ui: &mut egui::Ui, canvas: &Canvas) {
     ui.label(RichText::new(i18n::t("Measure")).family(crate::widgets::bold_family()).color(Color32::WHITE));
     let Some((a, b)) = canvas.measure_seg else {
-        ui.add(egui::Label::new(RichText::new(i18n::t("Click two points on the drawing. It snaps to corners, midpoints, centres and edges, also with Snap off.")).color(theme::TEXT_DIM)).wrap());
+        ui.add(egui::Label::new(RichText::new(i18n::t("Click two points on the drawing. It snaps to corners, midpoints, centers and edges, also with Snap off.")).color(theme::TEXT_DIM)).wrap());
         return;
     };
     let d = &canvas.doc;
@@ -569,7 +569,7 @@ fn toolpaths(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Option
             crate::widgets::combo_box("tp-sheet").selected_text(label).width(cw).show_ui(ui, |ui| {
                 ui.selectable_value(&mut sh.tp_this_sheet, false, i18n::t("All sheets"));
                 ui.selectable_value(&mut sh.tp_this_sheet, true, i18n::tf("{sheet} (this one)", &[("sheet", &crate::shell::sheet_name(doc, active))]));
-            }).response.tip(i18n::t("Every toolpath (the ones with nothing on this sheet greyed), or only the ones that cut on this sheet"));
+            }).response.tip(i18n::t("Every toolpath (the ones with nothing on this sheet grayed), or only the ones that cut on this sheet"));
         }
         let layers: Vec<(i32, String)> = std::iter::once((-1, i18n::t("All layers").to_string())).chain(doc.layers.iter().enumerate().map(|(i, l)| (i as i32, l.name.clone()))).collect();
         let current = layers.iter().find(|l| l.0 == sh.tp_layer).map_or(i18n::t("All layers").to_string(), |l| l.1.clone());

@@ -226,7 +226,7 @@ pub fn snap_grid_ui(ui: &mut egui::Ui, s: &mut Synced, doc: &gcarve_core::docume
     ui.set_max_width(300.0);
     head(ui, i18n::t("Snap to"));
     egui::Grid::new("snapkinds").num_columns(2).spacing([14.0, 2.0]).show(ui, |ui| {
-        let kinds = [(i18n::t("Points (nodes)"), SNAP_POINTS), (i18n::t("Midpoints"), SNAP_MIDPOINTS), (i18n::t("Centres"), SNAP_CENTRES), (i18n::t("Quadrants"), SNAP_QUADRANTS), (i18n::t("On edge"), SNAP_EDGE), (i18n::t("Grid"), SNAP_GRID)];
+        let kinds = [(i18n::t("Points (nodes)"), SNAP_POINTS), (i18n::t("Midpoints"), SNAP_MIDPOINTS), (i18n::t("Centers"), SNAP_CENTRES), (i18n::t("Quadrants"), SNAP_QUADRANTS), (i18n::t("On edge"), SNAP_EDGE), (i18n::t("Grid"), SNAP_GRID)];
         for (i, (label, bit)) in kinds.into_iter().enumerate() {
             let mut on = s.snap.kinds & bit != 0;
             if checkbox(ui, &mut on, label).changed() {

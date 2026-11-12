@@ -91,7 +91,7 @@ const CSS: &str = concat!(
 /// datum position on the board, y up
 const FX: [f64; 5] = [0.0, 1.0, 0.0, 1.0, 0.5];
 const FY: [f64; 5] = [0.0, 0.0, 1.0, 1.0, 0.5];
-const ORIGIN: [&str; 5] = ["Bottom-left corner", "Bottom-right corner", "Top-left corner", "Top-right corner", "Centre of the board"];
+const ORIGIN: [&str; 5] = ["Bottom-left corner", "Bottom-right corner", "Top-left corner", "Top-right corner", "Center of the board"];
 
 struct Fmt {
     mm: bool,

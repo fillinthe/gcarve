@@ -47,7 +47,7 @@
    "controllers": [
     {
      "name": "RichAuto DSP B57E handheld",
-     "gcarve_post": "richauto-mm",
+     "gcarve_post": "laguna-m-mm",
      "default": true
     }
    ],
@@ -137,7 +137,7 @@
    "controllers": [
     {
      "name": "Laguna handheld DSP (RichAuto)",
-     "gcarve_post": "richauto-mm",
+     "gcarve_post": "laguna-hhc-mm",
      "default": true
     }
    ],
@@ -233,7 +233,7 @@
    "controllers": [
     {
      "name": "Laguna handheld DSP (RichAuto)",
-     "gcarve_post": "richauto-mm",
+     "gcarve_post": "laguna-hhc-mm",
      "default": true
     }
    ],
@@ -329,7 +329,7 @@
    "controllers": [
     {
      "name": "Laguna handheld DSP (RichAuto)",
-     "gcarve_post": "richauto-mm",
+     "gcarve_post": "laguna-hhc-mm",
      "default": true
     }
    ],
@@ -425,7 +425,7 @@
    "controllers": [
     {
      "name": "Syntec industrial controller",
-     "gcarve_post": "syntec-mm",
+     "gcarve_post": "laguna-m-mm",
      "default": true
     }
    ],
@@ -517,7 +517,7 @@
    "controllers": [
     {
      "name": "Syntec industrial controller",
-     "gcarve_post": "syntec-mm",
+     "gcarve_post": "laguna-m-mm",
      "default": true
     }
    ],
@@ -609,7 +609,7 @@
    "controllers": [
     {
      "name": "Syntec industrial controller",
-     "gcarve_post": "syntec-mm",
+     "gcarve_post": "laguna-m-mm",
      "default": true
     }
    ],
@@ -701,7 +701,7 @@
    "controllers": [
     {
      "name": "Syntec industrial controller",
-     "gcarve_post": "syntec-mm",
+     "gcarve_post": "laguna-syntec-mm",
      "default": true
     }
    ],
@@ -794,7 +794,7 @@
    "controllers": [
     {
      "name": "Syntec industrial controller",
-     "gcarve_post": "syntec-mm",
+     "gcarve_post": "laguna-syntec-mm",
      "default": true
     }
    ],
@@ -887,12 +887,12 @@
    "controllers": [
     {
      "name": "Syntec industrial controller (current product page)",
-     "gcarve_post": "syntec-mm",
+     "gcarve_post": "laguna-syntec-mm",
      "default": true
     },
     {
      "name": "B+R P3 servo package (2023 5x12 spec sheet)",
-     "gcarve_post": null,
+     "gcarve_post": "laguna-br-in",
      "default": false
     }
    ],
@@ -985,7 +985,7 @@
    "controllers": [
     {
      "name": "FANUC 0i-F (0i-MF Plus)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "laguna-fanuc-in",
      "default": true
     }
    ],
@@ -1077,7 +1077,7 @@
    "controllers": [
     {
      "name": "FANUC 0i-F (0i-MF Plus)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "laguna-fanuc-in",
      "default": true
     }
    ],
@@ -1169,7 +1169,7 @@
    "controllers": [
     {
      "name": "FANUC 0i-MF with Data Server",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "laguna-fanuc-in",
      "default": true
     }
    ],
@@ -1261,7 +1261,7 @@
    "controllers": [
     {
      "name": "FANUC 0i-MF with Data Server",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "laguna-fanuc-in",
      "default": true
     }
    ],
@@ -1353,7 +1353,7 @@
    "controllers": [
     {
      "name": "FANUC 0i-MF with Data Server",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "laguna-fanuc-in",
      "default": true
     }
    ],
@@ -1445,7 +1445,7 @@
    "controllers": [
     {
      "name": "FANUC 0i-MF with Data Server",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "laguna-fanuc-in",
      "default": true
     }
    ],
@@ -1983,7 +1983,7 @@
    "controllers": [
     {
      "name": "Laguna handheld DSP (RichAuto)",
-     "gcarve_post": "richauto-mm",
+     "gcarve_post": "laguna-hhc-mm",
      "default": true
     }
    ],
@@ -2068,7 +2068,7 @@
    "controllers": [
     {
      "name": "Laguna handheld DSP (RichAuto)",
-     "gcarve_post": "richauto-mm",
+     "gcarve_post": "laguna-hhc-mm",
      "default": true
     }
    ],
@@ -2339,7 +2339,7 @@
    "controllers": [
     {
      "name": "FANUC 0i-F Type 5",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "laguna-fanuc-in",
      "default": true
     }
    ],
@@ -2431,7 +2431,7 @@
    "controllers": [
     {
      "name": "FANUC 0i-F Type 5",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "laguna-fanuc-in",
      "default": true
     }
    ],
@@ -2633,7 +2633,7 @@
    "controllers": [
     {
      "name": "FANUC 0i-MF",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "laguna-fanuc-in",
      "default": true
     }
    ],
@@ -2710,12 +2710,12 @@
    "controllers": [
     {
      "name": "B&R industrial controller with touch screen (product page)",
-     "gcarve_post": null,
+     "gcarve_post": "laguna-br-in",
      "default": true
     },
     {
      "name": "FANUC 0i-MF PLUS (manual)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "laguna-fanuc-in",
      "default": false
     }
    ],
@@ -2791,12 +2791,12 @@
    "controllers": [
     {
      "name": "B&R industrial controller with touch screen (product page)",
-     "gcarve_post": null,
+     "gcarve_post": "laguna-br-in",
      "default": true
     },
     {
      "name": "FANUC 0i-MF PLUS (manual)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "laguna-fanuc-in",
      "default": false
     }
    ],
@@ -2872,7 +2872,7 @@
    "controllers": [
     {
      "name": "Laguna handheld controller",
-     "gcarve_post": "laguna-touch-in",
+     "gcarve_post": "laguna-hhc-mm",
      "default": true
     }
    ],
@@ -2947,7 +2947,7 @@
    "controllers": [
     {
      "name": "Laguna handheld controller",
-     "gcarve_post": "laguna-touch-in",
+     "gcarve_post": "laguna-hhc-mm",
      "default": true
     }
    ],
@@ -3019,7 +3019,7 @@
    "controllers": [
     {
      "name": "Laguna handheld controller (toolpath preview)",
-     "gcarve_post": "laguna-touch-in",
+     "gcarve_post": "laguna-m-mm",
      "default": true
     }
    ],
@@ -3086,12 +3086,12 @@
    "controllers": [
     {
      "name": "Syntec industrial controller",
-     "gcarve_post": "syntec-mm",
+     "gcarve_post": "laguna-syntec-mm",
      "default": true
     },
     {
      "name": "B&R Automation",
-     "gcarve_post": null,
+     "gcarve_post": "laguna-br-in",
      "default": false
     }
    ],
@@ -3167,12 +3167,12 @@
    "controllers": [
     {
      "name": "Syntec industrial controller",
-     "gcarve_post": "syntec-mm",
+     "gcarve_post": "laguna-syntec-mm",
      "default": true
     },
     {
      "name": "B&R Automation",
-     "gcarve_post": null,
+     "gcarve_post": "laguna-br-in",
      "default": false
     }
    ],
@@ -3305,12 +3305,12 @@
    "controllers": [
     {
      "name": "Syntec industrial controller",
-     "gcarve_post": "syntec-mm",
+     "gcarve_post": "laguna-syntec-mm",
      "default": true
     },
     {
      "name": "B&R Automation",
-     "gcarve_post": null,
+     "gcarve_post": "laguna-br-in",
      "default": false
     }
    ],
@@ -3386,12 +3386,12 @@
    "controllers": [
     {
      "name": "Syntec industrial controller",
-     "gcarve_post": "syntec-mm",
+     "gcarve_post": "laguna-syntec-mm",
      "default": true
     },
     {
      "name": "B&R Automation",
-     "gcarve_post": null,
+     "gcarve_post": "laguna-br-in",
      "default": false
     }
    ],
@@ -3524,12 +3524,12 @@
    "controllers": [
     {
      "name": "Syntec industrial controller",
-     "gcarve_post": "syntec-mm",
+     "gcarve_post": "laguna-syntec-mm",
      "default": true
     },
     {
      "name": "B&R Automation",
-     "gcarve_post": null,
+     "gcarve_post": "laguna-br-in",
      "default": false
     }
    ],
@@ -3605,12 +3605,12 @@
    "controllers": [
     {
      "name": "Syntec industrial controller",
-     "gcarve_post": "syntec-mm",
+     "gcarve_post": "laguna-syntec-mm",
      "default": true
     },
     {
      "name": "B&R Automation",
-     "gcarve_post": null,
+     "gcarve_post": "laguna-br-in",
      "default": false
     }
    ],
@@ -3755,7 +3755,7 @@
    "controllers": [
     {
      "name": "B&R industrial controller (touch screen)",
-     "gcarve_post": null,
+     "gcarve_post": "laguna-br-in",
      "default": true
     }
    ],
@@ -3831,7 +3831,7 @@
    "controllers": [
     {
      "name": "B&R industrial controller (touch screen)",
-     "gcarve_post": null,
+     "gcarve_post": "laguna-br-in",
      "default": true
     }
    ],
@@ -3907,7 +3907,7 @@
    "controllers": [
     {
      "name": "B&R industrial controller (touch screen)",
-     "gcarve_post": null,
+     "gcarve_post": "laguna-br-in",
      "default": true
     }
    ],
@@ -4000,7 +4000,7 @@
    "controllers": [
     {
      "name": "FANUC 0i-MF",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "laguna-fanuc-in",
      "default": true
     }
    ],
@@ -4089,7 +4089,7 @@
    "controllers": [
     {
      "name": "Laguna Touch (B&R Automation PLC, touchscreen)",
-     "gcarve_post": "laguna-touch-in",
+     "gcarve_post": "laguna-br-in",
      "default": true
     }
    ],
@@ -4179,7 +4179,7 @@
    "controllers": [
     {
      "name": "Laguna Touch (B&R Automation PLC, touchscreen)",
-     "gcarve_post": "laguna-touch-in",
+     "gcarve_post": "laguna-br-in",
      "default": true
     }
    ],
@@ -4269,7 +4269,7 @@
    "controllers": [
     {
      "name": "Laguna handheld controller",
-     "gcarve_post": "laguna-touch-in",
+     "gcarve_post": "laguna-hhc-mm",
      "default": true
     }
    ],
@@ -4359,7 +4359,7 @@
    "controllers": [
     {
      "name": "Laguna handheld controller",
-     "gcarve_post": "laguna-touch-in",
+     "gcarve_post": "laguna-hhc-mm",
      "default": true
     }
    ],
@@ -4449,7 +4449,7 @@
    "controllers": [
     {
      "name": "Laguna handheld controller",
-     "gcarve_post": "laguna-touch-in",
+     "gcarve_post": "laguna-hhc-mm",
      "default": true
     }
    ],
@@ -4539,7 +4539,7 @@
    "controllers": [
     {
      "name": "Laguna Touch (B&R Automation PLC, touchscreen)",
-     "gcarve_post": "laguna-touch-in",
+     "gcarve_post": "laguna-br-in",
      "default": true
     }
    ],
@@ -4633,7 +4633,7 @@
    "controllers": [
     {
      "name": "B&R PLC industrial controller",
-     "gcarve_post": null,
+     "gcarve_post": "laguna-br-in",
      "default": true
     }
    ],
@@ -4722,7 +4722,7 @@
    "controllers": [
     {
      "name": "Laguna Touch (B&R Automation PLC, touchscreen)",
-     "gcarve_post": "laguna-touch-in",
+     "gcarve_post": "laguna-br-in",
      "default": true
     }
    ],
@@ -4812,7 +4812,7 @@
    "controllers": [
     {
      "name": "Laguna Touch (B&R Automation PLC, touchscreen)",
-     "gcarve_post": "laguna-touch-in",
+     "gcarve_post": "laguna-br-in",
      "default": true
     }
    ],
@@ -4902,7 +4902,7 @@
    "controllers": [
     {
      "name": "Laguna Touch (B&R Automation PLC, touchscreen)",
-     "gcarve_post": "laguna-touch-in",
+     "gcarve_post": "laguna-br-in",
      "default": true
     }
    ],
@@ -4980,7 +4980,7 @@
    "controllers": [
     {
      "name": "B&R industrial PLC with touchscreen (Laguna Touch)",
-     "gcarve_post": "laguna-touch-in",
+     "gcarve_post": "laguna-br-in",
      "default": true
     }
    ],
@@ -5064,7 +5064,7 @@
    "controllers": [
     {
      "name": "B&R industrial controller, 10.4 in touchscreen",
-     "gcarve_post": null,
+     "gcarve_post": "laguna-br-in",
      "default": true
     }
    ],
@@ -5143,7 +5143,7 @@
    "controllers": [
     {
      "name": "B&R industrial controller, 10.4 in touchscreen",
-     "gcarve_post": null,
+     "gcarve_post": "laguna-br-in",
      "default": true
     }
    ],
@@ -5216,7 +5216,7 @@
    "controllers": [
     {
      "name": "B&R SmartShop II 4-axis control package",
-     "gcarve_post": "laguna-touch-in",
+     "gcarve_post": "laguna-br-in",
      "default": true
     }
    ],

@@ -102,7 +102,7 @@ impl Canvas {
         let m = match self.drag {
             Drag::Pivot => {
                 self.pivot = Some((self.snapped(w), self.sel.clone()));
-                return i18n::t("Pivot: rotation centre").into();
+                return i18n::t("Pivot: rotation center").into();
             }
             Drag::Rotate => {
                 let c = self.xf_pivot;

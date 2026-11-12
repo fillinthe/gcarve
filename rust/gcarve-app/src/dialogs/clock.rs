@@ -172,7 +172,7 @@ mod tests {
                 // 12 at the top, 6 at the bottom
                 let centre_of = |s: &str| { let id = c.doc.texts.iter().find(|t| t.text == s).unwrap().id; let mut b = Rect::default(); c.doc.shapes.iter().filter(|g| g.text == id).for_each(|g| b.add_rect(&bounds(&g.c))); (b.x0 + b.x1) / 2.0 };
                 let top = if numerals == 1 { "XII" } else { "12" };
-                assert!((centre_of(top) - 6.5).abs() < 0.05, "12 centred at the top");
+                assert!((centre_of(top) - 6.5).abs() < 0.05, "12 centered at the top");
                 assert!(all.x0 > 1.0 && all.x1 < 12.0);
             } else {
                 assert!(c.doc.texts.is_empty());

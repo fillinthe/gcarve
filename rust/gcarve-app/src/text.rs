@@ -583,7 +583,7 @@ impl TextDialog {
                 ui.end_row();
                 ui.label(i18n::t("Lines"));
                 ui.horizontal(|ui| {
-                    for (v, label) in [(0, i18n::t("Left")), (1, i18n::t("Centre")), (2, i18n::t("Right"))] {
+                    for (v, label) in [(0, i18n::t("Left")), (1, i18n::t("Center")), (2, i18n::t("Right"))] {
                         ui.selectable_value(&mut self.item.align, v, label);
                     }
                 });
@@ -881,7 +881,7 @@ mod tests {
         assert!(!cs.is_empty() && cs.iter().all(|c| !c.closed), "open strokes, weld ignored");
         let mut r = Rect::default();
         cs.iter().for_each(|c| r.add_rect(&bounds(c)));
-        assert!(((r.x0 + r.x1) / 2.0 - 10.0).abs() < 0.05, "centred: {r:?}");
+        assert!(((r.x0 + r.x1) / 2.0 - 10.0).abs() < 0.05, "centered: {r:?}");
         let mut h = Rect::default();
         build_text(&TextItem { text: "H".into(), ..t.clone() }, pt(0.0, 0.0), None).0.iter().for_each(|c| h.add_rect(&bounds(c)));
         assert!((h.y1 - h.y0 - 1.0).abs() < 0.08, "capitals 1 in tall: {h:?}");

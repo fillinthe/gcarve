@@ -42,7 +42,10 @@ impl Canvas {
         let texts: BTreeSet<i32> = self.doc.shapes.iter().map(|s| s.text).collect();
         self.doc.texts.retain(|t| texts.contains(&t.id));
         self.doc.refresh_dimensions();
-        self.doc.apply_driven_dimensions();
+        self.dim_stuck = self.doc.apply_driven_dimensions();
+        if let Some(k) = self.dim_stuck.first() {
+            self.status = i18n::tf("Dimension {n} can't set its size: both of its ends are locked in place. Right-click one of them and choose Unlock.", &[("n", &(k + 1))]);
+        }
         let nl = self.doc.layers.len() as i32 - 1;
         for s in &mut self.doc.shapes {
             s.layer = s.layer.min(nl).max(0);
@@ -53,6 +56,8 @@ impl Canvas {
             self.node_shape = -1;
             self.node_idx = -1;
         }
+        let (doc, sel) = (&self.doc, &self.sel);
+        self.node_set.retain(|(id, i)| sel.contains(id) && doc.find(*id).is_some_and(|s| *i < s.c.nodes.len()));
         if self.sel_dim >= self.doc.dimensions.len() as i32 {
             self.sel_dim = -1;
         }
@@ -185,8 +190,61 @@ impl Canvas {
         }
     }
 
+    /// What a right-click at `w` would lock: the corner there, else the straight side there: (shape, its nodes,
+    /// all of them locked already).
+    pub(crate) fn lock_target(&self, w: Pt) -> Option<(i32, Vec<usize>, bool)> {
+        let tol = self.px(crate::canvas::HIT_PX) * 1.5 / self.zoom();
+        let mut best: Option<(f64, i32, usize)> = None;
+        for s in self.doc.shapes.iter().filter(|s| self.doc.shape_editable(s)) {
+            for (i, n) in s.c.nodes.iter().enumerate() {
+                let d = gcarve_core::geom::dist(n.p, w);
+                if d <= tol && best.is_none_or(|b| d < b.0) {
+                    best = Some((d, s.id, i));
+                }
+            }
+        }
+        let (id, nodes) = match best {
+            Some((_, id, i)) => (id, vec![i]),
+            None => {
+                let (id, n, _, _) = self.side_at(w)?;
+                let cnt = self.doc.find(id)?.c.nodes.len();
+                (id, vec![n as usize, (n as usize + 1) % cnt])
+            }
+        };
+        let s = self.doc.find(id)?;
+        let locked = nodes.iter().all(|i| s.node_locked(*i));
+        Some((id, nodes, locked))
+    }
+
+    /// Right-click › Lock in Place / Unlock: the corner or side at `w` stays where it is on the board. Nothing
+    /// moves it: not a drag, not a move of the shape, not a dimension (its other end moves instead).
+    pub fn toggle_lock_at(&mut self, w: Pt) {
+        let Some((id, nodes, locked)) = self.lock_target(w) else {
+            self.status = i18n::t("Lock in Place: right-click a corner or a straight side of a shape").into();
+            return;
+        };
+        self.doc.checkpoint();
+        if let Some(s) = self.doc.find_mut(id) {
+            for i in &nodes {
+                s.set_node_lock(*i, !locked);
+            }
+        }
+        let what = if nodes.len() > 1 { i18n::t("Side") } else { i18n::t("Corner") };
+        self.status = if locked { format!("{what}: {}", i18n::t("unlocked")) } else { format!("{what}: {}", i18n::t("locked in place. It can't be dragged or moved, and dimensions move their other end.")) };
+        self.mutated();
+    }
+
+    /// A selected shape has a locked corner or side: it can't be moved, turned or resized as a whole. Says so.
+    pub(crate) fn refuse_locked(&mut self) -> bool {
+        let locked = self.sel.iter().any(|id| self.doc.find(*id).is_some_and(gcarve_core::document::Shape::any_locked));
+        if locked {
+            self.status = i18n::t("Locked in place: this shape has a locked corner or side, so it can't be moved. Right-click the padlock and choose Unlock first.").into();
+        }
+        locked
+    }
+
     pub fn transform_selection(&mut self, m: &Affine) {
-        if self.sel.is_empty() {
+        if self.sel.is_empty() || self.refuse_locked() {
             return;
         }
         self.doc.checkpoint();
@@ -204,6 +262,10 @@ impl Canvas {
         if self.sel_dim >= 0 {
             let i = self.sel_dim as usize;
             self.remove_dimension(i);
+            return;
+        }
+        if self.tool == crate::canvas::Tool::Nodes && self.node_set.len() > 1 {
+            self.remove_nodes();
             return;
         }
         if self.tool == crate::canvas::Tool::Nodes && self.node_idx >= 0 {
@@ -230,7 +292,7 @@ impl Canvas {
         if i < self.doc.dimensions.len() {
             self.doc.checkpoint();
             self.doc.dimensions[i].axis = axis;
-            self.doc.apply_driven_dimensions();
+            let _ = self.doc.apply_driven_dimensions(); // mutated() reports what is stuck
             self.mutated();
         }
     }
@@ -245,26 +307,68 @@ impl Canvas {
         self.mutated();
     }
 
-    /// Dimension popup: label ("{v}" inserts the value) and a driving length expression.
-    pub fn set_dimension(&mut self, i: usize, label: &str, drive: &str) {
+    /// Dimension popup. `length`: a size, an expression, a variable name, or `name = value` (also `{name}=value`),
+    /// which makes or updates that variable and ties the dimension to it. `label`: other text to show ("{v}" = the
+    /// value). `second_stays`: the second end is the one that stays still (the ends swap places).
+    pub fn set_dimension(&mut self, i: usize, label: &str, length: &str, second_stays: bool) {
         if i >= self.doc.dimensions.len() {
             return;
         }
-        let dr = drive.trim();
+        let (mut dr, mut label) = (length.trim().to_string(), label.trim().to_string());
+        // an assignment typed where the text goes is meant as the length
+        if dr.is_empty() && label.contains('=') && !label.contains("{v}") {
+            (dr, label) = (std::mem::take(&mut label), String::new());
+        }
+        let mut var: Option<(String, String)> = None;
+        if let Some((name, value)) = dr.split_once('=') {
+            let name = name.trim().trim_start_matches('{').trim_end_matches('}').trim().to_string();
+            let ok = !name.is_empty() && name.chars().next().is_some_and(|c| c.is_ascii_alphabetic() || c == '_') && name.chars().all(|c| c.is_ascii_alphanumeric() || c == '_' || c == '-');
+            if !ok || value.trim().is_empty() {
+                self.status = i18n::t("To make a variable here, write its name, =, and its size: thickness = 0.75").into();
+                return;
+            }
+            var = Some((name.clone(), value.trim().to_string()));
+            dr = name;
+        }
+        self.doc.checkpoint();
+        if let Some((name, value)) = &var {
+            match self.doc.find_variable_mut(name) {
+                Some(v) => v.expr = value.clone(),
+                None => self.doc.variables.push(gcarve_core::document::Variable { name: name.clone(), expr: value.clone() }),
+            }
+        }
         if !dr.is_empty() {
-            if let Err(e) = units::parse(&self.doc, dr) {
+            if let Err(e) = units::parse(&self.doc, &dr) {
+                self.doc.undo(); // take the new variable back
                 self.status = i18n::tf("Can't evaluate \"{dr}\": {e}", &[("dr", &dr), ("e", &e)]);
                 return;
             }
         }
-        self.doc.checkpoint();
         let d = &mut self.doc.dimensions[i];
-        d.label = label.trim().to_string();
-        d.drive = dr.to_string();
-        if !dr.is_empty() && (d.shape_a < 0 || d.shape_b < 0) {
-            self.status = i18n::t("Both ends must snap to shape nodes for a dimension to drive geometry.").into();
+        d.label = label;
+        d.drive = dr.clone();
+        if second_stays {
+            std::mem::swap(&mut d.a, &mut d.b);
+            std::mem::swap(&mut d.shape_a, &mut d.shape_b);
+            std::mem::swap(&mut d.node_a, &mut d.node_b);
+            std::mem::swap(&mut d.edge_a, &mut d.edge_b);
+            d.offset = -d.offset; // the line stays on the side it was drawn
         }
+        let loose = d.shape_a < 0 || d.shape_b < 0;
+        self.apply_bindings();
         self.mutated();
+        if self.dim_stuck.contains(&i) {
+            // both ends locked: nothing may move, so the length is not taken
+            self.doc.undo();
+            self.mutated();
+            self.status = i18n::t("Both ends of this dimension are locked in place, so it can't set a size. Unlock one end (right-click it), or leave the length empty to only measure.").into();
+            return;
+        }
+        if !dr.is_empty() && loose {
+            self.status = i18n::t("This dimension only measures: both ends must sit on a corner or a side of a shape before it can set a size. Draw it again with the Dimension tool, clicking the shape.").into();
+        } else if let Some((name, value)) = var {
+            self.status = i18n::tf("Variable {name} = {value}: every dimension and size tied to it follows", &[("name", &name), ("value", &value)]);
+        }
     }
 
     pub fn duplicate(&mut self) {
@@ -1191,6 +1295,29 @@ impl Canvas {
         self.mutated();
     }
 
+    /// One copy of `src` moved by `m`, selected. Shapes that were grouped come out grouped again (a new group per
+    /// source group, so every copy of a grouped object is one object); loose vectors stay loose.
+    fn add_copy(&mut self, src: &[Shape], m: &Affine) {
+        let mut groups: std::collections::HashMap<i32, i32> = std::collections::HashMap::new();
+        for s in src {
+            let id = self.doc.add(transformed(&s.c, m), Some(s.layer));
+            if s.group != 0 {
+                let g = match groups.get(&s.group) {
+                    Some(g) => *g,
+                    None => {
+                        let g = self.doc.new_group_id();
+                        groups.insert(s.group, g);
+                        g
+                    }
+                };
+                if let Some(n) = self.doc.find_mut(id) {
+                    n.group = g;
+                }
+            }
+            self.sel.insert(id);
+        }
+    }
+
     /// Grid array: rows x cols copies with gaps (inches) between the selection's bounding boxes.
     pub fn array_copy(&mut self, rows: i32, cols: i32, gap_x: f64, gap_y: f64) {
         let r = self.sel_rect;
@@ -1205,37 +1332,53 @@ impl Canvas {
                 if row == 0 && col == 0 {
                     continue;
                 }
-                for s in &src {
-                    let id = self.doc.add(transformed(&s.c, &Affine::translate(col as f64 * dx, row as f64 * dy)), Some(s.layer));
-                    self.sel.insert(id);
-                }
+                self.add_copy(&src, &Affine::translate(col as f64 * dx, row as f64 * dy));
             }
         }
         self.status = format!("Array: {cols} × {rows}");
         self.mutated();
     }
 
-    /// Circular array: `count` copies (the original included) around `centre`, optionally rotating each copy.
-    pub fn array_circular(&mut self, count: i32, centre: Pt, rotate_copies: bool) {
+    /// Circular array (VCarve "Circular Copy"): `count` objects (the original included) around `centre`, spread
+    /// over `total_deg` (360 = evenly all the way round; less = from the original to that angle, both ends filled),
+    /// counter-clockwise. `rotate_copies` turns each copy with its place. `radius` = place automatically: the
+    /// original is first moved onto a circle of that radius, at the top, so nothing has to be positioned by hand;
+    /// None = it stays where it is and its own distance from the centre is the radius.
+    pub fn array_circular(&mut self, count: i32, centre: Pt, rotate_copies: bool, radius: Option<f64>, total_deg: f64) {
         if self.sel.is_empty() || count < 2 {
             return;
         }
+        let Some(mut sc) = self.sel_centre() else { return };
+        let on_centre = (sc.x - centre.x).hypot(sc.y - centre.y) < 1e-6;
+        if radius.is_none_or(|r| r <= 0.0) && on_centre {
+            self.status = i18n::t("Circular copy: the selection sits on the center, so every copy would land on top of it. Give a radius, or move the center.").into();
+            return;
+        }
         self.doc.checkpoint();
+        if let Some(r) = radius.filter(|r| *r > 0.0) {
+            let to = pt(centre.x, centre.y + r);
+            let ids: Vec<_> = self.sel.iter().copied().collect();
+            let m = Affine::translate(to.x - sc.x, to.y - sc.y);
+            for id in ids {
+                if let Some(sh) = self.doc.find_mut(id) {
+                    sh.c = transformed(&sh.c, &m);
+                }
+            }
+            sc = to;
+        }
         let src: Vec<Shape> = self.sel.iter().filter_map(|id| self.doc.find(*id).cloned()).collect();
-        let sc = self.sel_centre().unwrap_or(centre);
+        let total = total_deg.clamp(-360.0, 360.0).to_radians();
+        let full = (total.abs() - 2.0 * PI).abs() < 1e-9;
+        let step = if full { total / f64::from(count) } else { total / f64::from(count - 1) };
         for k in 1..count {
-            let ang = 2.0 * PI * k as f64 / count as f64;
+            let turn = Affine::translate(centre.x, centre.y) * Affine::rotate(step * f64::from(k)) * Affine::translate(-centre.x, -centre.y);
             let m = if rotate_copies {
-                Affine::translate(centre.x, centre.y) * Affine::rotate(ang) * Affine::translate(-centre.x, -centre.y)
+                turn
             } else {
-                let p = Affine::translate(centre.x, centre.y) * Affine::rotate(ang) * Affine::translate(-centre.x, -centre.y);
-                let np = p.apply(sc);
+                let np = turn.apply(sc);
                 Affine::translate(np.x - sc.x, np.y - sc.y)
             };
-            for s in &src {
-                let id = self.doc.add(transformed(&s.c, &m), Some(s.layer));
-                self.sel.insert(id);
-            }
+            self.add_copy(&src, &m);
         }
         self.status = i18n::tf("Circular array: {count} copies", &[("count", &count)]);
         self.mutated();
@@ -1280,10 +1423,8 @@ impl Canvas {
             let at = pt(p[i - 1].x + (p[i].x - p[i - 1].x) * t, p[i - 1].y + (p[i].y - p[i - 1].y) * t);
             let ang = if turn { (p[i].y - p[i - 1].y).atan2(p[i].x - p[i - 1].x) } else { 0.0 };
             let m = Affine::translate(at.x, at.y) * Affine::rotate(ang) * Affine::translate(-centre.x, -centre.y);
-            for sh in &src {
-                let id = self.doc.add(transformed(&sh.c, &m), Some(sh.layer));
-                self.sel.insert(id);
-            }
+            let one: Vec<Shape> = src.iter().map(|s| (*s).clone()).collect();
+            self.add_copy(&one, &m);
         }
         self.status = format!("{count} copies along the vector");
         self.mutated();
@@ -1668,7 +1809,8 @@ mod tests {
         c.doc.material.w = 4.0;
         c.doc.material.h = 6.0;
         let placed = c.nest_selection_sheets(0.1, 0.1, 90, 0);
-        assert!(placed == 11 && c.doc.sheets.len() >= 2, "{placed} parts, {} sheets", c.doc.sheets.len());
+        // every copy of the group is a group, so the six pairs nest as six parts (they came out as loose vectors once)
+        assert!(placed == 6 && c.doc.sheets.len() >= 2, "{placed} parts, {} sheets", c.doc.sheets.len());
         c.ungroup_selection();
         assert!(!c.selection_has_group());
     }
@@ -1858,7 +2000,7 @@ mod vector_tool_tests {
         c.jigsaw(12.0, 9.0, 4, 3, 7);
         assert_eq!(c.sel.len(), 2 + 3 + 1);
         let b = c.sel.iter().map(|id| bounds(&c.doc.find(*id).unwrap().c)).fold(gcarve_core::geom::Rect::default(), |mut r, b| { r.add_rect(&b); r });
-        assert!((b.x0 - 1.0).abs() < 1e-6 && (b.y1 - 10.0).abs() < 1e-6, "centred: {b:?}");
+        assert!((b.x0 - 1.0).abs() < 1e-6 && (b.y1 - 10.0).abs() < 1e-6, "centered: {b:?}");
         c.doc.tools = vec![Tool { name: "1/16".into(), kind: ToolType::EndMill, diameter: 0.0625, stepdown: 0.0625, feed_xy: 60.0, feed_z: 20.0, rpm: 18000, ..Default::default() }];
         c.doc.ops = vec![Op { kind: OpType::Profile, side: Side::On, tool: 0, depth: 0.25, shape_ids: c.sel.iter().copied().collect(), ..Default::default() }];
         let gen = gcarve_core::pipeline::regenerate(&c.doc);
@@ -2000,6 +2142,134 @@ mod vector_tool_tests {
         let n = c.doc.shapes.len();
         c.box_maker(gcarve_core::boxjoint::BoxSpec { h: 1.0, ..spec });
         assert_eq!(c.doc.shapes.len(), n);
+    }
+
+    #[test]
+    fn a_dimension_between_two_sides_sets_the_size_from_a_variable_and_either_side_can_stay() {
+        use gcarve_core::document::Dimension;
+        let mut c = Canvas::default();
+        let id = c.doc.add(make_rect(0.0, 0.0, 4.0, 2.0), None);
+        let side = |c: &Canvas, x: f64| {
+            let n = &c.doc.find(id).unwrap().c.nodes;
+            (0..4).find(|i| (n[*i].p.x - x).abs() < 1e-9 && (n[(*i + 1) % 4].p.x - x).abs() < 1e-9).unwrap() as i32
+        };
+        let (l, r) = (side(&c, 0.0), side(&c, 4.0));
+        // what the Dimension tool makes from a click on the left side, then the right side
+        c.doc.dimensions.push(Dimension { shape_a: id, node_a: l, edge_a: true, shape_b: id, node_b: r, edge_b: true, axis: 4, ..Default::default() });
+        c.mutated();
+        assert!((c.doc.dimensions[0].length() - 4.0).abs() < 1e-9, "square across: {}", c.doc.dimensions[0].length());
+        // the length box takes "name = size": the variable is made and the dimension tied to it
+        c.set_dimension(0, "", "width = 6", false);
+        let b = |c: &Canvas| bounds(&c.doc.find(id).unwrap().c);
+        assert!(c.doc.find_variable("width").is_some_and(|v| v.expr == "6") && c.doc.dimensions[0].drive == "width", "{}", c.status);
+        assert!(b(&c).x0.abs() < 1e-9 && (b(&c).x1 - 6.0).abs() < 1e-9 && (b(&c).y1 - 2.0).abs() < 1e-9, "the right side moved as a side: {:?}", b(&c));
+        assert_eq!(c.doc.find(id).unwrap().c.nodes.len(), 4);
+        // changing the variable moves it again
+        c.set_variable("width", "5");
+        assert!((b(&c).x1 - 5.0).abs() < 1e-9 && b(&c).x0.abs() < 1e-9, "{:?}", b(&c));
+        // the other side stays instead: the left one moves now
+        c.set_dimension(0, "", "width", true);
+        c.set_variable("width", "7");
+        assert!((b(&c).x1 - 5.0).abs() < 1e-9 && (b(&c).x0 + 2.0).abs() < 1e-9, "the right side stayed: {:?}", b(&c));
+        // typed the way the owner tried it, in the text box: taken as the length, braces and all
+        let (bot, top) = {
+            let n = &c.doc.find(id).unwrap().c.nodes;
+            let f = |y: f64| (0..4).find(|i| (n[*i].p.y - y).abs() < 1e-9 && (n[(*i + 1) % 4].p.y - y).abs() < 1e-9).unwrap() as i32;
+            (f(0.0), f(2.0))
+        };
+        c.doc.dimensions.push(Dimension { shape_a: id, node_a: bot, edge_a: true, shape_b: id, node_b: top, edge_b: true, axis: 4, ..Default::default() });
+        c.mutated();
+        c.set_dimension(1, "{thickness}=.75", "", false);
+        assert!(c.doc.dimensions[1].drive == "thickness" && c.doc.dimensions[1].label.is_empty(), "{}", c.status);
+        assert!((b(&c).y1 - 0.75).abs() < 1e-9 && b(&c).y0.abs() < 1e-9 && (b(&c).x1 - 5.0).abs() < 1e-9, "{:?}", b(&c));
+        // it survives a save and load
+        let back = gcarve_core::project::load_project(&gcarve_core::project::save_project(&c.doc)).unwrap();
+        assert!(back.dimensions[1].edge_a && back.dimensions[1].edge_b && back.dimensions[1].axis == 4 && back.dimensions[1].drive == "thickness");
+        // a loose dimension (no shape under its ends) only measures, and says how to make one that sets a size
+        c.doc.dimensions.push(Dimension { a: pt(10.0, 10.0), b: pt(12.0, 10.0), ..Default::default() });
+        c.set_dimension(2, "", "3", false);
+        assert!(c.status.contains("only measures"), "{}", c.status);
+    }
+
+    #[test]
+    fn a_locked_side_never_moves_and_says_why() {
+        use gcarve_core::document::Dimension;
+        let mut c = Canvas { view: Some(crate::canvas::View { zoom: 100.0, origin: egui::Pos2::ZERO }), ..Default::default() };
+        let id = c.doc.add(make_rect(0.0, 0.0, 4.0, 2.0), None);
+        let b = |c: &Canvas| bounds(&c.doc.find(id).unwrap().c);
+        let side = |c: &Canvas, x: f64| {
+            let n = &c.doc.find(id).unwrap().c.nodes;
+            (0..4).find(|i| (n[*i].p.x - x).abs() < 1e-9 && (n[(*i + 1) % 4].p.x - x).abs() < 1e-9).unwrap() as i32
+        };
+        // the dimension was drawn left side first, so the RIGHT side would move
+        c.doc.dimensions.push(Dimension { shape_a: id, node_a: side(&c, 0.0), edge_a: true, shape_b: id, node_b: side(&c, 4.0), edge_b: true, axis: 4, ..Default::default() });
+        c.mutated();
+        // right-click the right side › Lock This Side in Place
+        assert!(c.lock_target(pt(4.0, 1.0)).is_some_and(|(_, n, locked)| n.len() == 2 && !locked));
+        c.toggle_lock_at(pt(4.0, 1.0));
+        assert!(c.lock_target(pt(4.0, 1.0)).is_some_and(|(_, _, locked)| locked) && c.doc.find(id).unwrap().any_locked());
+        // now the length moves the LEFT side: the locked one stays whichever was clicked first
+        c.set_dimension(0, "", "6", false);
+        assert!((b(&c).x1 - 4.0).abs() < 1e-9 && (b(&c).x0 + 2.0).abs() < 1e-9, "the locked side stayed: {:?}", b(&c));
+        // the shape can't be moved as a whole, and says why
+        c.sel = BTreeSet::from([id]);
+        c.transform_selection(&Affine::translate(1.0, 0.0));
+        assert!((b(&c).x1 - 4.0).abs() < 1e-9 && c.status.contains("Locked in place"), "{}", c.status);
+        // both sides locked: the dimension can't set a size, the length is not taken, and it says so
+        c.toggle_lock_at(pt(-2.0, 1.0));
+        c.set_dimension(0, "", "9", false);
+        assert!(c.status.contains("Both ends") && c.doc.dimensions[0].drive == "6" && (b(&c).x0 + 2.0).abs() < 1e-9, "{} / {}", c.status, c.doc.dimensions[0].drive);
+        // the lock is saved with the project, and comes off again
+        let back = gcarve_core::project::load_project(&gcarve_core::project::save_project(&c.doc)).unwrap();
+        assert!(back.shapes[0].any_locked());
+        c.toggle_lock_at(pt(-2.0, 1.0));
+        c.set_dimension(0, "", "9", false);
+        assert!((b(&c).x0 + 5.0).abs() < 1e-9 && (b(&c).x1 - 4.0).abs() < 1e-9, "{:?}", b(&c));
+    }
+
+    #[test]
+    fn a_circular_copy_places_itself_on_the_radius_and_keeps_groups_grouped() {
+        let mut c = Canvas::default();
+        // a grouped pair and a loose square, somewhere on the board
+        let (a, b) = (c.doc.add(make_rect(1.0, 1.0, 2.0, 2.0), None), c.doc.add(make_rect(1.25, 1.25, 1.75, 1.75), None));
+        let g = c.doc.new_group_id();
+        for id in [a, b] {
+            c.doc.find_mut(id).unwrap().group = g;
+        }
+        let loose = c.doc.add(make_rect(1.0, 2.0, 2.0, 2.5), None);
+        c.sel = BTreeSet::from([a, b, loose]);
+        c.sel_rect = c.sel.iter().fold(Rect::default(), |mut r, id| { r.add_rect(&bounds(&c.doc.find(*id).unwrap().c)); r });
+        let centre = pt(20.0, 20.0);
+        c.array_circular(6, centre, true, Some(5.0), 360.0);
+        assert_eq!(c.doc.shapes.len(), 18, "six of each");
+        // every object's box center lies 5 in from the center, 60 degrees apart, the first at the top
+        let mut by_group: std::collections::BTreeMap<i32, Rect> = std::collections::BTreeMap::new();
+        let mut loose_n = 0;
+        for s in &c.doc.shapes {
+            if s.group == 0 {
+                loose_n += 1;
+            } else {
+                by_group.entry(s.group).or_default().add_rect(&bounds(&s.c));
+            }
+        }
+        assert!(by_group.len() == 6 && loose_n == 6, "each copy of the group is its own group: {} groups, {loose_n} loose", by_group.len());
+        assert!(c.doc.shapes.iter().filter(|s| s.group != 0).count() == 12);
+        let all: Rect = c.doc.shapes.iter().fold(Rect::default(), |mut r, s| { r.add_rect(&bounds(&s.c)); r });
+        assert!(((all.x0 + all.x1) / 2.0 - 20.0).abs() < 0.2 && ((all.y0 + all.y1) / 2.0 - 20.0).abs() < 0.2, "ring is centered: {all:?}");
+        assert!(all.y1 > 25.0 && all.y1 < 26.3 && all.y0 < 15.0, "5 in radius: {all:?}");
+        // one undo takes the whole thing back, the move onto the circle included
+        c.undo();
+        assert!(c.doc.shapes.len() == 3 && (bounds(&c.doc.find(a).unwrap().c).x0 - 1.0).abs() < 1e-9);
+        // sitting on the center with no radius: refused with a reason, nothing stacked
+        c.sel = BTreeSet::from([loose]);
+        c.sel_rect = bounds(&c.doc.find(loose).unwrap().c);
+        c.array_circular(4, pt(1.5, 2.25), false, None, 360.0);
+        assert!(c.doc.shapes.len() == 3 && c.status.contains("radius"), "{}", c.status);
+        // a quarter turn in 4 copies: both ends filled (0, 30, 60, 90 degrees)
+        c.array_circular(4, pt(1.5, 0.25), false, None, 90.0);
+        assert_eq!(c.doc.shapes.len(), 6);
+        let far = c.doc.shapes.iter().map(|s| bounds(&s.c)).map(|r| (r.x0 + r.x1) / 2.0).fold(f64::MAX, f64::min);
+        assert!((far - (1.5 - 2.0)).abs() < 1e-6, "the last copy is a quarter turn round: {far}");
     }
 
     #[test]

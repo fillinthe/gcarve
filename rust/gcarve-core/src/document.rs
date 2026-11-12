@@ -607,13 +607,32 @@ pub struct Shape {
     pub anchor: i32,
 }
 
+impl Shape {
+    /// The node is locked in place on the board (owner 2026-11-12): kept as bind key "n<i>.lock", so it is saved
+    /// with the shape and its number follows node inserts and removes like the other node bindings. A locked side
+    /// is both its nodes locked.
+    pub fn node_locked(&self, i: usize) -> bool {
+        self.bind.contains_key(&format!("n{i}.lock"))
+    }
+    pub fn any_locked(&self) -> bool {
+        self.bind.keys().any(|k| k.ends_with(".lock"))
+    }
+    pub fn set_node_lock(&mut self, i: usize, on: bool) {
+        if on {
+            self.bind.insert(format!("n{i}.lock"), "1".into());
+        } else {
+            self.bind.remove(&format!("n{i}.lock"));
+        }
+    }
+}
+
 /// the anchor point's place in a box: (0 left … 1 right, 0 bottom … 1 top)
 pub fn anchor_frac(anchor: i32) -> (f64, f64) {
     let a = anchor.clamp(0, 8);
     (f64::from(a % 3) / 2.0, f64::from(a / 3) / 2.0)
 }
 
-pub const ANCHOR_NAMES: [&str; 9] = ["bottom-left", "bottom centre", "bottom-right", "middle left", "centre", "middle right", "top-left", "top centre", "top-right"];
+pub const ANCHOR_NAMES: [&str; 9] = ["bottom-left", "bottom center", "bottom-right", "middle left", "center", "middle right", "top-left", "top center", "top-right"];
 
 /// A picture to draw over by hand (VCarve's Import Bitmap): the file's bytes (PNG / JPEG) as base64, placed in inches
 /// on one sheet, drawn under the vectors. Never cut, not part of undo.
@@ -730,10 +749,15 @@ pub struct Dimension {
     /// length expression: when both ends are anchored, the geometry is moved to match. Empty = measure only
     pub drive: String,
     /// 0 aligned (the straight distance), 1 horizontal (X only), 2 vertical (Y only), 3 angle at `vertex` between
-    /// the arms to a and b (`offset` = arc radius). JSON "axis" when set, Rust only
+    /// the arms to a and b (`offset` = arc radius), 4 square across from a side (measured along `vertex`, the
+    /// side's unit normal). JSON "axis" when set, Rust only
     pub axis: i32,
-    /// angular dimensions: the corner (JSON "vertex")
+    /// angular dimensions: the corner (JSON "vertex"); axis 4: the unit normal of the side measured from
     pub vertex: Pt,
+    /// the end sits on a straight SIDE of its shape: `node_a` and the node after it (JSON "ea" / "eb"). `a` / `b`
+    /// is then the middle of that side, and a driving length moves the whole side, not one corner.
+    pub edge_a: bool,
+    pub edge_b: bool,
 }
 
 impl Dimension {
@@ -743,6 +767,10 @@ impl Dimension {
         match self.axis {
             1 => (self.a, pt(self.b.x, self.a.y)),
             2 => (self.a, pt(self.a.x, self.b.y)),
+            4 => {
+                let n = self.vertex;
+                (self.a, self.a + n * ((self.b.x - self.a.x) * n.x + (self.b.y - self.a.y) * n.y))
+            }
             _ => (self.a, self.b),
         }
     }
@@ -780,6 +808,8 @@ impl Default for Dimension {
             drive: String::new(),
             axis: 0,
             vertex: Pt::default(),
+            edge_a: false,
+            edge_b: false,
         }
     }
 }
@@ -1074,8 +1104,8 @@ impl Document {
             ("align-right", "Align right"),
             ("align-bottom", "Align bottom"),
             ("align-top", "Align top"),
-            ("center-x", "Centre X"),
-            ("center-y", "Centre Y"),
+            ("center-x", "Center X"),
+            ("center-y", "Center Y"),
         ]
     }
 
@@ -1167,6 +1197,9 @@ impl Document {
                 let (Some(rest), Some(v)) = (k.strip_prefix('n'), v) else { continue };
                 let Some((i, axis)) = rest.split_once('.') else { continue };
                 let Some(i) = i.parse::<usize>().ok().filter(|&i| i < n) else { continue };
+                if axis != "x" && axis != "y" {
+                    continue; // "n<i>.lock" and anything newer: not a position
+                }
                 let nd = &mut s.c.nodes[i];
                 let d = if axis == "x" { pt(v - nd.p.x, 0.0) } else { pt(0.0, v - nd.p.y) };
                 nd.p = nd.p + d;
@@ -1207,51 +1240,71 @@ impl Document {
     /// Anchored dimension endpoints follow their nodes; lost anchors detach.
     pub fn refresh_dimensions(&mut self) {
         let shapes = &self.shapes;
-        let follow = |sid: &mut i32, nid: &mut i32, p: &mut Pt| {
+        // the two nodes of a side (the one after the last is the first on a closed shape)
+        let side = |sid: i32, nid: i32| -> Option<(Pt, Pt)> {
+            let s = shapes.iter().find(|s| s.id == sid)?;
+            let (n, cnt) = (usize::try_from(nid).ok()?, s.c.nodes.len());
+            let m = if n + 1 < cnt { n + 1 } else if s.c.closed && cnt > 2 { 0 } else { return None };
+            Some((s.c.nodes.get(n)?.p, s.c.nodes[m].p))
+        };
+        let follow = |sid: &mut i32, nid: &mut i32, edge: &mut bool, p: &mut Pt| {
             if *sid < 0 {
                 return;
             }
-            match shapes.iter().find(|s| s.id == *sid).and_then(|s| usize::try_from(*nid).ok().and_then(|n| s.c.nodes.get(n))) {
-                Some(n) => *p = n.p,
+            let at = if *edge { side(*sid, *nid).map(|(a, b)| pt((a.x + b.x) / 2.0, (a.y + b.y) / 2.0)) } else { shapes.iter().find(|s| s.id == *sid).and_then(|s| usize::try_from(*nid).ok().and_then(|n| s.c.nodes.get(n))).map(|n| n.p) };
+            match at {
+                Some(q) => *p = q,
                 None => {
                     *sid = -1; // detach, keep last position
                     *nid = -1;
+                    *edge = false;
                 }
             }
         };
         for d in &mut self.dimensions {
-            follow(&mut d.shape_a, &mut d.node_a, &mut d.a);
-            follow(&mut d.shape_b, &mut d.node_b, &mut d.b);
+            follow(&mut d.shape_a, &mut d.node_a, &mut d.edge_a, &mut d.a);
+            follow(&mut d.shape_b, &mut d.node_b, &mut d.edge_b, &mut d.b);
+            if d.axis == 4 {
+                // square across from the side it starts on (or, from a corner, the side it ends on)
+                let from = if d.edge_a { side(d.shape_a, d.node_a) } else if d.edge_b { side(d.shape_b, d.node_b) } else { None };
+                match from {
+                    Some((p, q)) if dist(p, q) > 1e-12 => d.vertex = pt(-(q.y - p.y), q.x - p.x) * (1.0 / dist(p, q)),
+                    _ => d.axis = 0, // no side left to square from: the straight distance
+                }
+            }
         }
     }
 
-    /// Dimensions with `drive` set their length: same shape -> node B moves, else shape B translates.
-    pub fn apply_driven_dimensions(&mut self) {
+    /// Dimensions with `drive` set their length. End A stays; end B moves: a corner alone, a side as a whole (both
+    /// its corners), or, when the ends are on two shapes, all of shape B. A locked end never moves: the other end
+    /// moves instead, whichever was clicked first. Returns the dimensions that could not set their length because
+    /// BOTH ends are locked (the caller tells the user).
+    pub fn apply_driven_dimensions(&mut self) -> Vec<usize> {
+        self.refresh_dimensions();
+        let mut stuck = Vec::new();
         for k in 0..self.dimensions.len() {
-            let d = &self.dimensions[k];
-            if d.drive.is_empty() || d.shape_a < 0 || d.shape_b < 0 {
-                continue;
+            let d = self.dimensions[k].clone();
+            if d.drive.is_empty() || d.shape_a < 0 || d.shape_b < 0 || d.axis == 3 {
+                continue; // angles measure only
             }
             let (Some(ia), Some(ib)) = (self.index_of(d.shape_a), self.index_of(d.shape_b)) else { continue };
-            if d.node_a >= self.shapes[ia].c.nodes.len() as i32 || d.node_b >= self.shapes[ib].c.nodes.len() as i32 {
-                continue;
-            }
-            if ia == ib && d.node_a == d.node_b {
+            if ia == ib && d.node_a == d.node_b && d.edge_a == d.edge_b {
                 continue;
             }
             let l = match self.eval(&d.drive) {
                 Ok(l) if l > 0.0 => l,
                 _ => continue,
             };
-            let (na, nb) = (d.node_a as usize, d.node_b as usize);
-            let (a, b) = (self.shapes[ia].c.nodes[na].p, self.shapes[ib].c.nodes[nb].p);
-            if d.axis == 3 {
-                continue; // angles measure only
-            }
+            let (a, b) = (d.a, d.b);
             let side = |v: f64| if v < 0.0 { -1.0 } else { 1.0 };
             let delta = match d.axis {
                 1 => pt(a.x + side(b.x - a.x) * l - b.x, 0.0), // horizontal: only X changes
                 2 => pt(0.0, a.y + side(b.y - a.y) * l - b.y),
+                4 => {
+                    let n = d.vertex;
+                    let cur = (b.x - a.x) * n.x + (b.y - a.y) * n.y;
+                    n * (side(cur) * l - cur)
+                }
                 _ => {
                     let cur = dist(a, b);
                     let dir = if cur > 1e-12 { (b - a) * (1.0 / cur) } else { pt(1.0, 0.0) };
@@ -1261,17 +1314,44 @@ impl Document {
             if delta.x.abs() < 1e-12 && delta.y.abs() < 1e-12 {
                 continue;
             }
-            let sb = &mut self.shapes[ib];
             if ia == ib {
-                let n = &mut sb.c.nodes[nb];
-                n.p = n.p + delta;
-                n.inh = n.inh + delta;
-                n.out = n.out + delta;
-            } else {
+                let sh = &mut self.shapes[ib];
+                let cnt = sh.c.nodes.len();
+                let ends = |n: i32, edge: bool| -> Vec<usize> {
+                    let n = n as usize;
+                    if edge { vec![n, (n + 1) % cnt] } else { vec![n] }
+                };
+                let (na, nb) = (ends(d.node_a, d.edge_a), ends(d.node_b, d.edge_b));
+                // a corner the two ends share stays with the end that stays
+                let (move_b, move_a): (Vec<usize>, Vec<usize>) = (nb.iter().copied().filter(|i| *i < cnt && !na.contains(i)).collect(), na.iter().copied().filter(|i| *i < cnt && !nb.contains(i)).collect());
+                let free = |v: &[usize]| !v.is_empty() && v.iter().all(|i| !sh.node_locked(*i));
+                let (who, by) = if free(&move_b) {
+                    (move_b, delta)
+                } else if free(&move_a) {
+                    (move_a, pt(-delta.x, -delta.y))
+                } else {
+                    stuck.push(k);
+                    continue;
+                };
+                for i in who {
+                    let n = &mut sh.c.nodes[i];
+                    n.p = n.p + by;
+                    n.inh = n.inh + by;
+                    n.out = n.out + by;
+                }
+            } else if !self.shapes[ib].any_locked() {
+                let sb = &mut self.shapes[ib];
                 sb.c = transformed(&sb.c, &Affine::translate(delta.x, delta.y));
+            } else if !self.shapes[ia].any_locked() {
+                let sa = &mut self.shapes[ia];
+                sa.c = transformed(&sa.c, &Affine::translate(-delta.x, -delta.y));
+            } else {
+                stuck.push(k);
+                continue;
             }
+            self.refresh_dimensions();
         }
-        self.refresh_dimensions();
+        stuck
     }
 
     /// After node insert (+1) / remove (-1) in a shape.

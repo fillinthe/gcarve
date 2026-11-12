@@ -127,7 +127,7 @@ impl GcodeImportDialog {
             if let Some((w, h, t)) = self.prog.board {
                 crate::widgets::checkbox(ui, &mut self.set_board, i18n::tf("Set the board to {w} × {h} × {t} in (from the file)", &[("w", &w), ("h", &h), ("t", &t)]));
             }
-            crate::widgets::checkbox(ui, &mut self.vectors, i18n::t("Bring in the cut paths as vectors (centrelines, one layer per toolpath)"));
+            crate::widgets::checkbox(ui, &mut self.vectors, i18n::t("Bring in the cut paths as vectors (centerlines, one layer per toolpath)"));
             if !self.prog.errors.is_empty() {
                 ui.label(RichText::new(format!("{} line(s) GCarve can't read will be skipped, first: {}", self.prog.errors.len(), self.prog.errors[0])).small().color(crate::theme::ORANGE));
             }

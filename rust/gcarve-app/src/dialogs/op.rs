@@ -671,7 +671,7 @@ impl OpDialog {
                     }
                     if is_chamfer {
                         ui.label(i18n::t("Bevel"));
-                        combo(ui, "side", &mut self.op.side, &[(Side::Outside, i18n::t("Outside the vector")), (Side::Inside, i18n::t("Inside the vector")), (Side::On, i18n::t("Centred on the vector"))], 220.0);
+                        combo(ui, "side", &mut self.op.side, &[(Side::Outside, i18n::t("Outside the vector")), (Side::Inside, i18n::t("Inside the vector")), (Side::On, i18n::t("Centered on the vector"))], 220.0);
                         ui.end_row();
                         ui.label(i18n::t("Size by"));
                         combo(ui, "size-by", &mut self.by_width, &[(true, i18n::t("Chamfer width")), (false, i18n::t("V depth"))], 180.0);
@@ -694,7 +694,7 @@ impl OpDialog {
                         ui.label("");
                         ui.vertical(|ui| {
                             ui.set_width(col);
-                            hint(ui, if is_chamfer { i18n::t("The V-bit tip rides the vector, so corners stay sharp. Outside / inside: the bevel face lies on that side (holes flip, like profile); centred: a V-groove of that width.") } else { i18n::t("Raised, bevelled shapes: the V-bit runs on each outline as deep as the shape is wide, so its flank cuts a facet up to the centre line (left at the surface) and an equal groove outside. Max depth caps the bevel: wider parts keep a flat top.") });
+                            hint(ui, if is_chamfer { i18n::t("The V-bit tip rides the vector, so corners stay sharp. Outside / inside: the bevel face lies on that side (holes flip, like profile); centered: a V-groove of that width.") } else { i18n::t("Raised, bevelled shapes: the V-bit runs on each outline as deep as the shape is wide, so its flank cuts a facet up to the center line (left at the surface) and an equal groove outside. Max depth caps the bevel: wider parts keep a flat top.") });
                         });
                         ui.end_row();
                     }
@@ -910,7 +910,7 @@ impl OpDialog {
                         ui.end_row();
                         ui.label(i18n::t("Cutter compensation"));
                         ui.add_enabled_ui(self.op.side != Side::On, |ui| {
-                            crate::widgets::checkbox(ui, &mut self.op.cutter_comp, i18n::t("G41 / G42 for trimming the size at the machine")).tip(i18n::t("Writes G41 (climb) or G42 round each cut so the operator can make the part a hair bigger or smaller with the machine's D offset. The path is already the bit's centre: D must hold only the wear (0 = the size drawn), not the bit's radius. Only Mach / LinuxCNC / Fanuc-style posts write it; GRBL and WinCNC files leave it out."));
+                            crate::widgets::checkbox(ui, &mut self.op.cutter_comp, i18n::t("G41 / G42 for trimming the size at the machine")).tip(i18n::t("Writes G41 (climb) or G42 round each cut so the operator can make the part a hair bigger or smaller with the machine's D offset. The path is already the bit's center: D must hold only the wear (0 = the size drawn), not the bit's radius. Only Mach / LinuxCNC / Fanuc-style posts write it; GRBL and WinCNC files leave it out."));
                         });
                         ui.end_row();
                         ui.label(i18n::t("Start point"));
@@ -958,7 +958,7 @@ impl OpDialog {
                     });
                     ui.end_row();
                     if self.op.array_rows * self.op.array_cols > 1 {
-                        ui.label(unit_label(i18n::t("Spacing X / Y"), doc)).tip(i18n::t("How far each copy moves from the last: X across the columns, Y up the rows (centre to centre)."));
+                        ui.label(unit_label(i18n::t("Spacing X / Y"), doc)).tip(i18n::t("How far each copy moves from the last: X across the columns, Y up the rows (center to center)."));
                         ui.horizontal(|ui| {
                             self.f.ui(ui, "arrayDx", doc);
                             self.f.ui(ui, "arrayDy", doc);

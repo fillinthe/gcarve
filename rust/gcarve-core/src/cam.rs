@@ -1535,7 +1535,7 @@ pub fn generate_drill(op: &Op, tool: &Tool, contours: &[Contour], m: &Material) 
             op
         };
         if !fit && (b.w() > tool.diameter * 1.05 || b.h() > tool.diameter * 1.05) {
-            res.warnings.push(format!("{}: a hole is bigger than the drill, only its centre is drilled", op.name));
+            res.warnings.push(format!("{}: a hole is bigger than the drill, only its center is drilled", op.name));
         }
         let ctr = pt((b.x0 + b.x1) / 2.0, (b.y0 + b.y1) / 2.0);
         let mut tp = Toolpath { name: indexed_name(&op.name, res.paths.len()), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new(), comp: 0 };
@@ -2398,7 +2398,7 @@ pub fn generate_prism(op: &Op, tool: &Tool, contours: &[Contour], m: &Material) 
     let cone_depth = tool.diameter / 2.0 / tan_half;
     if tool.diameter > 0.0 && deepest > cone_depth + 0.005 {
         res.warnings.push(format!(
-            "{}: bevel is {:.3} in deep but the bit's V is only {:.3} in deep; the facets stop short of the centre (use a wider bit or a smaller max depth)",
+            "{}: bevel is {:.3} in deep but the bit's V is only {:.3} in deep; the facets stop short of the center (use a wider bit or a smaller max depth)",
             op.name, deepest, cone_depth
         ));
     }

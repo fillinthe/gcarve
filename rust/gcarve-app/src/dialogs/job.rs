@@ -9,7 +9,7 @@ use eframe::egui::{self, Color32, RichText, Sense, Stroke};
 use crate::catalog::limits_line;
 use gcarve_core::document::{Document, MachineLimits, Material};
 
-pub const ORIGIN_NAMES: [&str; 5] = ["Bottom-left", "Bottom-right", "Top-left", "Top-right", "Centre"];
+pub const ORIGIN_NAMES: [&str; 5] = ["Bottom-left", "Bottom-right", "Top-left", "Top-right", "Center"];
 
 pub enum Next {
     Keep,
@@ -379,7 +379,7 @@ impl JobDialog {
                     // the whole setup as one paragraph, the way you'd tell someone at the machine
                     let u = |v: f64| crate::units::text(doc, v);
                     let (w, h, t) = (self.f.get_or("w", doc, doc.material.w), self.f.get_or("h", doc, doc.material.h), self.f.get_or("t", doc, doc.material.t));
-                    let corner = match self.origin { 4 => i18n::t("the centre of the board").to_string(), o => format!("its {} corner", ORIGIN_NAMES[o.clamp(0, 3) as usize].to_lowercase()) };
+                    let corner = match self.origin { 4 => i18n::t("the center of the board").to_string(), o => format!("its {} corner", ORIGIN_NAMES[o.clamp(0, 3) as usize].to_lowercase()) };
                     let z = if self.z_bottom { i18n::t("on the spoilboard under it") } else { i18n::t("on its top") };
                     let lift = self.f.get_or("safeZ", doc, doc.material.safe_z);
                     hint(ui, &i18n::tf("At the machine: lay down a {w} × {h} board, {u} thick, of {kind}. Zero X and Y at {corner} and touch the bit off {z}. Between parts the bit lifts {lift} above the board. The yellow marker on the drawing shows your X/Y zero.", &[("w", &(u(w))), ("h", &(u(h))), ("u", &(u(t))), ("kind", &(self.kind.to_lowercase())), ("corner", &corner), ("z", &z), ("lift", &(u(lift)))]));
