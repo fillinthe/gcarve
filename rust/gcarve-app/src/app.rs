@@ -309,7 +309,7 @@ impl App {
                     app.canvas.tool = *tool;
                 }
             }
-            let req = match dialog.as_str() { "text" => Some(Request::Text(false)), "offset" => Some(Request::Offset), "dogbone" => Some(Request::Dogbone), "array" => Some(Request::Array), "align" => Some(Request::Align), "nest" => Some(Request::Nest), "selector" => Some(Request::Selector), "vtexture" => Some(Request::Texture), "plates" => Some(Request::Plates), "shelfpins" => Some(Request::Pins), "rotarylayout" => Some(Request::RotaryLayout), "boxmaker" => Some(Request::BoxMaker), "puzzle" => Some(Request::Puzzle), "inlay" => Some(Request::Inlay), "hinge" => Some(Request::Hinge), "stencil" => Some(Request::Stencil), "qr" => Some(Request::Qr), _ => None };
+            let req = match dialog.as_str() { "text" => Some(Request::Text(false)), "offset" => Some(Request::Offset), "dogbone" => Some(Request::Dogbone), "array" => Some(Request::Array), "align" => Some(Request::Align), "nest" => Some(Request::Nest), "selector" => Some(Request::Selector), "vtexture" => Some(Request::Texture), "plates" => Some(Request::Plates), "shelfpins" => Some(Request::Pins), "rotarylayout" => Some(Request::RotaryLayout), "boxmaker" => Some(Request::BoxMaker), "puzzle" => Some(Request::Puzzle), "inlay" => Some(Request::Inlay), "hinge" => Some(Request::Hinge), "joinery" => Some(Request::Joinery), "stencil" => Some(Request::Stencil), "qr" => Some(Request::Qr), _ => None };
             app.canvas.requests.extend(req);
             if dialog == "shapemenu" || dialog == "sizepopup" {
                 app.canvas.shot_hook = dialog.clone();
@@ -1000,6 +1000,11 @@ impl App {
                     None => self.message = i18n::t("Nothing to preview: add a toolpath first.").into(),
                 }
             }
+            ("cutreport", _) => {
+                let doc = &self.canvas.doc;
+                let html = gcarve_core::cutreport::html(doc, &self.name, &|v| format!("{} {}", crate::units::text(doc, v), crate::units::name(doc)));
+                self.message = crate::setupsheet::open_page(&format!("{}_cut_report.html", self.name), &html, i18n::t("Cut report"));
+            }
             ("setupsheet", _) => {
                 self.full_gen();
                 if let Some(html) = self.setup_sheet(0.0, &[]) {
@@ -1059,6 +1064,7 @@ impl App {
             ("sign", _) => self.cam.sign = Some(dialogs::sign::SignDialog::new(&self.canvas.doc)),
             ("tray", _) => self.cam.tray = Some(dialogs::tray::TrayDialog::new(&self.canvas.doc)),
             ("doors", _) => self.cam.doors = Some(dialogs::doors::DoorDialog::new(&self.canvas.doc)),
+            ("cabinet", _) => self.cam.cabinet = Some(dialogs::cabinet::CabinetDialog::new(&self.canvas.doc)),
             ("clock", _) => self.cam.clock = Some(dialogs::clock::ClockDialog::new(&self.canvas.doc)),
             ("spoilboard", _) => self.cam.spoil = Some(dialogs::spoilboard::SpoilDialog::new(&self.canvas.doc)),
             ("makeit", _) => self.cam.make_it = Some(dialogs::community::MakeIt::new(&self.canvas.doc, &self.name)),
@@ -1168,6 +1174,7 @@ impl App {
             ("puzzle", _) => self.dialogs.request(Request::Puzzle, &self.canvas),
             ("inlay", _) => self.dialogs.request(Request::Inlay, &self.canvas),
             ("hinge", _) => self.dialogs.request(Request::Hinge, &self.canvas),
+            ("joinery", _) => self.dialogs.request(Request::Joinery, &self.canvas),
             ("stencil", _) => self.dialogs.request(Request::Stencil, &self.canvas),
             ("qr", _) => self.dialogs.request(Request::Qr, &self.canvas),
             ("rotarylayout", _) => self.dialogs.request(Request::RotaryLayout, &self.canvas),
@@ -2201,6 +2208,13 @@ impl App {
             self.open_target();
             self.message = dialogs::spoilboard::build(&mut self.canvas, &spec);
             self.name = i18n::t("Spoilboard").to_string();
+            self.gen_rev = self.canvas.rev.wrapping_sub(1);
+            self.shell.push("zoom:board");
+        }
+        if let Some(spec) = self.cam.new_cabinet.take() {
+            self.open_target();
+            self.message = dialogs::cabinet::build(&mut self.canvas, &spec);
+            self.name = i18n::t("Cabinet").to_string();
             self.gen_rev = self.canvas.rev.wrapping_sub(1);
             self.shell.push("zoom:board");
         }

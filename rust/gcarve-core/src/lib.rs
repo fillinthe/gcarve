@@ -33,6 +33,8 @@ pub mod project;
 pub mod lbrn;
 pub mod relief;
 pub mod threemf;
+pub mod cutreport;
+pub mod heightmap;
 pub mod setupsheet;
 pub mod sim;
 pub mod svg;

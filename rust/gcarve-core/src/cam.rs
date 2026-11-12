@@ -351,7 +351,13 @@ fn auto_stations(path: &[Pt], lens: &[f64], closed: bool, op: &Op, tool: &Tool) 
     let l = *lens.last().unwrap_or(&0.0);
     let w = op.tab_width + tool.diameter;
     // one every `tab_spacing` along this part's cut, else the same count on every part
-    let count = if op.tab_spacing > 0.0 { ((l / op.tab_spacing).round() as i32).clamp(1, 200) } else { op.tab_count };
+    let count = if op.tab_spacing > 0.0 {
+        let n = ((l / op.tab_spacing).round() as i32).clamp(1, 200);
+        let n = if op.tab_max > 0 { n.min(op.tab_max) } else { n };
+        n.max(op.tab_min) // the least wins over the most when they disagree
+    } else {
+        op.tab_count
+    };
     // a small part gets fewer tabs (at least a tab's width of cut between them), not none
     let count = count.min((l / (2.0 * w)).floor() as i32);
     if count < 1 || l <= 0.0 {
@@ -361,7 +367,7 @@ fn auto_stations(path: &[Pt], lens: &[f64], closed: bool, op: &Op, tool: &Tool) 
     let corners = if op.tab_corners { corner_stations(path, lens, tool.diameter.max(0.05)) } else { Vec::new() };
     (0..count)
         .map(|i| {
-            let c = (i as f64 + 0.5) * gap;
+            let c = (i as f64 + if op.tab_at_start { 0.0 } else { 0.5 }) * gap;
             if corners.is_empty() { c } else { off_corners(c, &corners, w / 2.0 + tool.diameter / 2.0, gap / 2.0, l, closed) }
         })
         .collect()
@@ -2721,7 +2727,41 @@ pub fn generate_photo(op: &Op, tool: &Tool, contours: &[Contour], m: &Material) 
 }
 
 /// Dispatch on op.kind (not Relief: see relief.rs), then shortest travel order, the safe-rapid net and naming.
+/// Automatic corner relief (`Op::corner_relief`): the shapes of a profile / pocket with a dogbone or T-bone, sized to
+/// the bit, at every corner the bit runs into. A shape inside an odd number of the others is cut from the other side
+/// (a hole in a part, an island in a pocket), as the toolpaths themselves decide it.
+fn relieved(op: &Op, tool: &Tool, contours: &[Contour]) -> Vec<Contour> {
+    let polys: Vec<PathD> = contours.iter().map(to_path).collect();
+    let cut_inside = op.kind == OpType::Pocket || op.side == Side::Inside;
+    let r = tool.diameter / 2.0 + 0.0005; // a hair over the bit radius, so the bit fits the lobe
+    contours
+        .iter()
+        .enumerate()
+        .map(|(i, c)| {
+            if !c.closed || polys[i].is_empty() {
+                return c.clone();
+            }
+            let p0 = pt(polys[i][0].x, polys[i][0].y);
+            let depth = (0..contours.len()).filter(|&j| j != i && contours[j].closed && polys[j].len() > 2 && inside(p0, &polys[j])).count();
+            crate::vecops::dogbone(c, r, cut_inside != (depth % 2 == 1), op.corner_relief == 2)
+        })
+        .collect()
+}
+
 pub fn generate(op: &Op, tool: &Tool, contours: &[Contour], m: &Material, clear_tool: Option<&Tool>) -> CamResult {
+    let eased;
+    let flat_bit = !matches!(tool.kind, ToolType::VBit);
+    let relief = op.corner_relief > 0 && flat_bit && match op.kind {
+        OpType::Pocket => op.rounding <= 0.0,
+        OpType::Profile => op.side != Side::On && !op.keyhole && op.drag_knife <= 0.0,
+        _ => false,
+    };
+    let contours = if relief {
+        eased = relieved(op, tool, contours);
+        &eased[..]
+    } else {
+        contours
+    };
     let mut r = match op.kind {
         OpType::Pocket if op.rounding > 0.0 => generate_rounding(op, tool, contours, m),
         OpType::Pocket => generate_pocket_two(op, tool, contours, m, clear_tool),

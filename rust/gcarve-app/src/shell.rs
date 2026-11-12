@@ -779,6 +779,7 @@ pub fn menus(top: &mut MenuTop, canvas: &Canvas, m: &MenuInfo, rail_open: bool, 
             s.item(i18n::t("New"), "⌘N", true, "new");
             s.item(i18n::t("New Sign…"), "", true, "sign");
             s.item(i18n::t("New Tray or Cutting Board…"), "", true, "tray");
+            s.item(i18n::t("New Cabinet…"), "", true, "cabinet");
             s.item(i18n::t("New Cabinet Doors…"), "", true, "doors");
             s.item(i18n::t("New Clock…"), "", true, "clock");
             s.item(i18n::t("New Spoilboard…"), "", true, "spoilboard");
@@ -822,6 +823,7 @@ pub fn menus(top: &mut MenuTop, canvas: &Canvas, m: &MenuInfo, rail_open: bool, 
             });
             s.item(i18n::t("Send to GBurn (laser)…"), "", true, "sendgburn");
             s.item(i18n::t("Setup Sheet…"), "", has_ops, "setupsheet"); // printable job sheet for the operator
+            s.item(i18n::t("Cut Report and Part Labels…"), "", true, "cutreport"); // numbered parts per sheet, sizes, board use, labels to print
             s.item(i18n::t("Save Preview Image (PNG)"), "", has_ops, "previewimage");
             s.item(i18n::t("Share Project with Someone…"), "", true, "shareproject");
             s.item(i18n::t("Share to Community…"), "", has_ops, "communityshare");
@@ -859,7 +861,7 @@ pub fn menus(top: &mut MenuTop, canvas: &Canvas, m: &MenuInfo, rail_open: bool, 
             s.item(i18n::t("Shapes Library…"), "", true, "shapes");
             s.item(i18n::t("Trace Image…"), "", true, "trace");
             s.sep();
-            for (t, k, on, id) in [(i18n::t("Offset…"), "", sel > 0, "offset"), (i18n::t("Corners: Dogbone / Fillet…"), "", sel > 0, "dogbone"), (i18n::t("Join Open Vectors"), "", sel > 1, "join"), (i18n::t("Close Vectors"), "", sel > 0, "close"), (i18n::t("Extend Ends to Next Vector"), "", sel > 0, "extend"), (i18n::t("Vector Texture…"), "", sel > 0, "vtexture"), (i18n::t("Plate Production…"), "", sel > 0, "plates"), (i18n::t("Shelf-Pin Holes…"), "", sel > 0, "shelfpins"), (i18n::t("Box Maker (finger joints)…"), "", true, "boxmaker"), (i18n::t("Jigsaw Puzzle…"), "", true, "puzzle"), (i18n::t("Living Hinge…"), "", true, "hinge"), (i18n::t("Stencil Bridges…"), "", sel > 0, "stencil"), (i18n::t("Halftone from Picture…"), "", true, "halftone"), (i18n::t("QR Code…"), "", true, "qr"), (i18n::t("Rotary Layout (spiral, flutes)…"), "", canvas.doc.material.rotary.is_some(), "rotarylayout"), (i18n::t("Check Vectors (open, duplicate, tiny)"), "", true, "validate")] {
+            for (t, k, on, id) in [(i18n::t("Offset…"), "", sel > 0, "offset"), (i18n::t("Corners: Dogbone / Fillet…"), "", sel > 0, "dogbone"), (i18n::t("Join Open Vectors"), "", sel > 1, "join"), (i18n::t("Close Vectors"), "", sel > 0, "close"), (i18n::t("Extend Ends to Next Vector"), "", sel > 0, "extend"), (i18n::t("Vector Texture…"), "", sel > 0, "vtexture"), (i18n::t("Plate Production…"), "", sel > 0, "plates"), (i18n::t("Shelf-Pin Holes…"), "", sel > 0, "shelfpins"), (i18n::t("Box Maker (finger joints)…"), "", true, "boxmaker"), (i18n::t("Jigsaw Puzzle…"), "", true, "puzzle"), (i18n::t("Living Hinge…"), "", true, "hinge"), (i18n::t("Joinery: Slots and Fit Test…"), "", true, "joinery"), (i18n::t("Stencil Bridges…"), "", sel > 0, "stencil"), (i18n::t("Halftone from Picture…"), "", true, "halftone"), (i18n::t("QR Code…"), "", true, "qr"), (i18n::t("Rotary Layout (spiral, flutes)…"), "", canvas.doc.material.rotary.is_some(), "rotarylayout"), (i18n::t("Check Vectors (open, duplicate, tiny)"), "", true, "validate")] {
                 s.item(t, k, on, id);
             }
             s.sub(i18n::t("Distort"), sel > 1, &mut |s| {

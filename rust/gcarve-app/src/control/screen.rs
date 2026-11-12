@@ -46,6 +46,8 @@ pub struct ControlApp {
     settings: Option<[String; 9]>,
     /// spoilboard surfacing dialog buffers (width, length, bit, stepover %, depth per pass, passes, feed, rpm)
     surfacing: Option<[String; 8]>,
+    /// bed leveling: grid points across and up
+    level_n: [i32; 2],
     started_at: Option<f64>,
     demo: Option<(u32, f64)>,
     #[cfg_attr(not(feature = "screenshot"), allow(dead_code))]
@@ -124,7 +126,7 @@ impl ControlApp {
             queue_scan: 0.0,
             start: None,
             settings: None,
-            surfacing: None,
+            surfacing: None, level_n: [3, 3],
             started_at: None,
             demo: None,
             shot_frame: 0,
@@ -397,6 +399,39 @@ impl ControlApp {
             }
             dim(ui, format!("plate {:.3} in", self.cfg.plate));
         });
+        theme::hline(ui);
+        section(ui, "FOLLOW THE SURFACE");
+        small_wrap(ui, i18n::t("For engraving and V-carving on a board that isn't flat: probe a grid over the job's cuts, and the program follows the surface so the depth stays even. Set Z zero on the surface first; the board must be probe-able (a touch probe, or foil and a clip)."));
+        ui.horizontal(|ui| {
+            ui.add(crate::widgets::SpinBox::new(&mut self.level_n[0], 2..=15).width(70.0)).tip(i18n::t("Probe points across (X)"));
+            ui.label("×");
+            ui.add(crate::widgets::SpinBox::new(&mut self.level_n[1], 2..=15).width(70.0)).tip(i18n::t("Probe points up (Y)"));
+        });
+        ui.horizontal(|ui| {
+            match l.leveling() {
+                Some((done, of)) => {
+                    if button(ui, true, i18n::t("Cancel probing")).clicked() {
+                        l.level_cancel();
+                    }
+                    dim(ui, format!("{done} / {of}"));
+                }
+                None => {
+                    if button(ui, idle && free && !l.probing && !l.streaming, i18n::t("Probe the surface")).tip(i18n::t("Probes the grid over the loaded program's cuts: lifts between points, then looks down for the surface at each")).clicked() {
+                        l.probe_grid(self.level_n[0] as usize, self.level_n[1] as usize, self.cfg.probe_lift.max(0.1), self.cfg.probe_max, self.cfg.probe_feed);
+                    }
+                    if l.height_map.is_some() && button(ui, !l.streaming, i18n::t("Forget")).clicked() {
+                        l.height_map = None;
+                    }
+                }
+            }
+        });
+        match l.height_map.as_ref().map(|m| (m.nx, m.ny, m.range())) {
+            Some((nx, ny, range)) => {
+                dim(ui, format!("{nx} × {ny} points, {range:.3} in between the highest and the lowest"));
+                ui.add_enabled(!l.streaming, crate::widgets::CheckBox::new(&mut l.level_on, i18n::t("Follow the surface when the program runs")));
+            }
+            None => l.level_on = false,
+        }
         theme::hline(ui);
         ui.horizontal(|ui| {
             if button(ui, idle && free, i18n::t("Park")).tip(i18n::t("Lift to the top, then to the back-left corner")).clicked() {

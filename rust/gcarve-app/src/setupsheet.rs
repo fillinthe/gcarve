@@ -89,21 +89,26 @@ pub fn logo_uri(name: &str, bytes: &[u8]) -> Result<String, String> {
 /// Shows it for printing: the default browser on the desktop (a temp file), a new tab on the web (download when
 /// the browser blocks the tab). Returns the status message.
 pub fn open(project: &str, html: &str) -> String {
-    let name = format!("{project}_setup.html");
+    open_page(&format!("{project}_setup.html"), html, i18n::t("Setup sheet"))
+}
+
+/// A printable page (setup sheet, cut report) shown in the browser: a file in the temp folder on the desktop, a new
+/// tab (or a download) on the web. `what` starts the status line.
+pub fn open_page(name: &str, html: &str, what: &str) -> String {
     #[cfg(not(target_arch = "wasm32"))]
     {
-        let path = std::env::temp_dir().join(&name);
+        let path = std::env::temp_dir().join(name);
         match std::fs::write(&path, html) {
             Ok(()) => {
                 crate::files::open_with_os(&path);
-                i18n::t("Setup sheet opened in your browser").into()
+                i18n::tf("{what} opened in your browser", &[("what", &what)])
             }
             Err(e) => format!("Cannot write {}: {e}", path.display()),
         }
     }
     #[cfg(target_arch = "wasm32")]
-    match crate::files::open_html_tab(&name, html) {
-        Ok(true) => i18n::t("Setup sheet opened in a new tab").into(),
+    match crate::files::open_html_tab(name, html) {
+        Ok(true) => i18n::tf("{what} opened in a new tab", &[("what", &what)]),
         Ok(false) => format!("Downloaded {name}"),
         Err(e) => e,
     }

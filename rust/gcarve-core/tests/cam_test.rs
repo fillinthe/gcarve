@@ -849,3 +849,45 @@ fn sketch_carving_hatches_dark_parts_at_one_depth() {
     // the picture blends between its pixels: compare the black, mid and light bands, and the white edge stays bare
     assert!(black > dark && dark > light && white == 0, "{black} {dark} {light} {white}");
 }
+
+#[test]
+fn automatic_dogbones_let_the_bit_reach_every_inside_corner_without_changing_the_drawing() {
+    use gcarve_core::geom::make_rect;
+    let tools = default_tools();
+    let slot = make_rect(1.0, 1.0, 5.0, 4.0);
+    // how near the bit's centre comes to the slot's corner (1, 1)
+    let nearest = |op: &Op| {
+        let r = generate(op, &tools[0], std::slice::from_ref(&slot), &mat(), None);
+        assert!(r.warnings.is_empty(), "{:?}", r.warnings);
+        r.paths.iter().flat_map(|tp| &tp.moves).filter(|m| m.z.is_some_and(|z| z < 0.0)).filter_map(|m| Some((m.x? - 1.0).hypot(m.y? - 1.0))).fold(f64::MAX, f64::min)
+    };
+    for kind in [OpType::Profile, OpType::Pocket] {
+        let plain = Op { kind, side: Side::Inside, depth: 0.25, ..Default::default() };
+        // a 1/4 in bit in a square corner stops r·√2 = 0.177 in short of it
+        assert!(near_e(nearest(&plain), 0.125 * 2f64.sqrt(), 0.01), "{kind:?} plain {}", nearest(&plain));
+        for relief in [1, 2] {
+            let d = nearest(&Op { corner_relief: relief, ..plain.clone() });
+            assert!(d < 0.135, "{kind:?} relief {relief}: the bit's edge reaches the corner (centre {d} from it)");
+        }
+    }
+    // an outside cut of the same box has no inside corners: nothing changes
+    let out = Op { kind: OpType::Profile, side: Side::Outside, depth: 0.25, ..Default::default() };
+    let count = |op: &Op| generate(op, &tools[0], std::slice::from_ref(&slot), &mat(), None).paths.iter().map(|t| t.moves.len()).sum::<usize>();
+    assert_eq!(count(&out), count(&Op { corner_relief: 1, ..out.clone() }));
+}
+
+#[test]
+fn spaced_tabs_keep_to_their_least_and_most_and_can_start_at_the_start_point() {
+    use gcarve_core::geom::make_rect;
+    let tools = default_tools();
+    let tabs = |c: &Contour, op: &Op| auto_tab_points(c, op, &tools[0]);
+    let op = Op { kind: OpType::Profile, tabs: true, tab_width: 0.25, tab_height: 0.1, depth: 0.4, tab_spacing: 10.0, ..Default::default() };
+    let small = make_rect(0.0, 0.0, 3.0, 3.0); // 12 in round: one tab at 10 in apart
+    let big = make_rect(0.0, 0.0, 30.0, 20.0); // 100 in round: ten
+    assert_eq!((tabs(&small, &op).len(), tabs(&big, &op).len()), (1, 10));
+    let held = Op { tab_min: 3, tab_max: 6, ..op.clone() };
+    assert_eq!((tabs(&small, &held).len(), tabs(&big, &held).len()), (3, 6));
+    // the first tab at the outline's start instead of half a gap along
+    let first = Op { tab_at_start: true, ..held.clone() };
+    assert!(dist(tabs(&big, &first)[0], pt(0.0, 0.0)) < 1e-6 && dist(tabs(&big, &held)[0], pt(0.0, 0.0)) > 1.0);
+}

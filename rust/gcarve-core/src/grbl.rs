@@ -240,11 +240,14 @@ pub struct SimConfig {
     pub homing_required: bool,
     /// machine Z where the touch plate / material top is (G38.2 trips here); NaN = no plate
     pub probe_z: f64,
+    /// the probed surface rises this much per inch of machine X and Y (bed leveling tests); `probe_z` is its height
+    /// at machine 0, 0
+    pub probe_tilt: [f64; 2],
 }
 
 impl Default for SimConfig {
     fn default() -> Self {
-        SimConfig { travel: v3(60.0, 96.0, 6.0), rapid_ipm: 1000.0, homing_required: true, probe_z: -4.0 }
+        SimConfig { travel: v3(60.0, 96.0, 6.0), rapid_ipm: 1000.0, homing_required: true, probe_z: -4.0, probe_tilt: [0.0, 0.0] }
     }
 }
 
@@ -320,6 +323,9 @@ impl GrblSim {
     /// the running move's spindle state
     pub fn spindle_on(&self) -> bool {
         self.queue.front().map_or(self.gs.spindle_on, |s| s.spindle)
+    }
+    pub fn set_probe_tilt(&mut self, per_x: f64, per_y: f64) {
+        self.cfg.probe_tilt = [per_x, per_y];
     }
     pub fn set_probe_z(&mut self, z: f64) {
         self.cfg.probe_z = z;
@@ -643,7 +649,7 @@ impl GrblSim {
             self.raise_alarm(2, "Soft limit: probe move outside the machine travel");
             return;
         }
-        let pz = self.cfg.probe_z;
+        let pz = self.cfg.probe_z + self.cfg.probe_tilt[0] * b.x + self.cfg.probe_tilt[1] * b.y;
         let hit = !pz.is_nan() && b.z <= pz + 1e-9 && a.z > pz;
         let stop = if hit {
             let t = (a.z - pz) / (a.z - b.z);

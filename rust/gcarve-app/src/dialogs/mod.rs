@@ -17,6 +17,7 @@ pub mod relief;
 pub mod shapes;
 pub mod sign;
 pub mod tray;
+pub mod cabinet;
 pub mod doors;
 pub mod clock;
 pub mod spoilboard;
@@ -84,6 +85,9 @@ pub struct Dialogs {
     /// File › New Cabinet Doors…; the spec waits in `new_doors`
     pub doors: Option<doors::DoorDialog>,
     pub new_doors: Option<doors::DoorSpec>,
+    /// File › New Cabinet…; the spec waits in `new_cabinet`
+    pub cabinet: Option<cabinet::CabinetDialog>,
+    pub new_cabinet: Option<cabinet::CabinetSpec>,
     /// File › New Clock…; the spec waits in `new_clock`
     pub clock: Option<clock::ClockDialog>,
     pub new_clock: Option<clock::ClockSpec>,
@@ -147,6 +151,7 @@ impl Dialogs {
             "sign" => self.sign = Some(sign::SignDialog::new(&canvas.doc)),
             "tray" => self.tray = Some(tray::TrayDialog::new(&canvas.doc)),
             "doors" => self.doors = Some(doors::DoorDialog::new(&canvas.doc)),
+            "cabinet" => self.cabinet = Some(cabinet::CabinetDialog::new(&canvas.doc)),
             "clock" => self.clock = Some(clock::ClockDialog::new(&canvas.doc)),
             "spoilboard" => self.spoil = Some(spoilboard::SpoilDialog::new(&canvas.doc)),
             "makeit" => self.make_it = Some(community::MakeIt::new(&canvas.doc, i18n::t("Showcase sign")).with_reasons(vec![i18n::t("It was set up for a ShopBot PRSalpha; you use a CAMaster Panther.").into(), i18n::t("Not in your bit library: 1/8 End Mill (0.125 inch).").into()])),
@@ -323,6 +328,13 @@ impl Dialogs {
                 self.clock = Some(d);
             } else {
                 self.new_clock = d.done.take();
+            }
+        }
+        if let Some(mut d) = self.cabinet.take() {
+            if d.ui(ctx, host) {
+                self.cabinet = Some(d);
+            } else {
+                self.new_cabinet = d.done.take();
             }
         }
         if let Some(mut d) = self.doors.take() {

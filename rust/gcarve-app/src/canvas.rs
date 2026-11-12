@@ -81,6 +81,8 @@ pub enum Request {
     Puzzle,
     Inlay,
     Hinge,
+    /// Vectors › Joinery: Slots and Fit Test…
+    Joinery,
     Stencil,
     Qr,
     /// new text; true = along the selected curve
@@ -189,6 +191,8 @@ pub struct Canvas {
     pub star_ratio: f64,
     /// Corner tool: 0 dogbone, 1 T-bone, 2 round; size = bit diameter (dogbones) or radius (round), in the doc's units
     pub corner_style: u8,
+    /// Arc tool: 0 three points, 1 centre + start + end, 2 two points (half circle)
+    pub arc_mode: u8,
     pub corner_size: String,
     /// selected dimension (Select tool), -1 none
     pub sel_dim: i32,
@@ -340,6 +344,7 @@ impl Default for Canvas {
             star_points: 5,
             star_ratio: 0.5,
             corner_style: 0,
+            arc_mode: 0,
             corner_size: String::new(),
             sel_dim: -1,
             node_shape: -1,

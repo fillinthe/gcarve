@@ -391,6 +391,10 @@ pub struct Op {
     /// profile: each cut starts at the point of the ring nearest the vector's first node (Node tool ▸ right-click a
     /// node ▸ Make Start Point) instead of the lowest point
     pub start_first: bool,
+    /// profile (inside / outside) and pocket: every inside corner the bit can't reach gets a relief sized to the bit
+    /// when the toolpath is worked out; the drawing is not changed. 0 none, 1 dogbone, 2 T-bone (JSON "cornerRelief"
+    /// when set, Rust only)
+    pub corner_relief: u8,
     /// profile (inside / outside): G41 / G42 round the cuts so the size can be trimmed at the machine with a wear
     /// offset in D (the moves stay the bit-centre path; JSON "cutterComp", Rust only)
     pub cutter_comp: bool,
@@ -422,6 +426,13 @@ pub struct Op {
     /// profile: > 0 = evenly spaced tabs about this far apart on every part (so a big part gets more than a small one)
     /// instead of `tab_count` per part (JSON "tabSpacing" when set, Rust only)
     pub tab_spacing: f64,
+    /// with `tab_spacing`: never fewer / more tabs than this on a part (0 = no limit; VCarve's Min. / Max. number;
+    /// JSON "tabMin" / "tabMax" when set, Rust only)
+    pub tab_min: i32,
+    pub tab_max: i32,
+    /// evenly spaced tabs: the first one sits at the cut's start point instead of half a gap along (VCarve's "First
+    /// tab at machining start point"; JSON "tabAtStart" when set, Rust only)
+    pub tab_at_start: bool,
     /// the sheet it cuts on (index), -1 = every sheet (JSON "sheet" when set, Rust only)
     pub sheet_scope: i32,
     /// cuts every vector (all layers but keep-out ones) instead of picked shapes / a layer / a group (JSON
@@ -493,6 +504,7 @@ impl Default for Op {
             skin: 0.0,
             fit_holes: false,
             start_first: false,
+            corner_relief: 0,
             cutter_comp: false,
             keyhole: false,
             drag_knife: 0.0,
@@ -502,6 +514,9 @@ impl Default for Op {
             keep_order: false,
             tab_corners: false,
             tab_spacing: 0.0,
+            tab_min: 0,
+            tab_max: 0,
+            tab_at_start: false,
             sheet_scope: -1,
             all_vectors: false,
             array_rows: 1,

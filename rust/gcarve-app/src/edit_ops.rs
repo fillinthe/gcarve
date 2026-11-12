@@ -844,6 +844,73 @@ impl Canvas {
         };
     }
 
+    /// Vectors › Joinery › Slots: `n` slots `len` long and as wide as the board plus `fit`, stacked up the middle of the
+    /// board on the "Joinery" layer, selected, to be moved where the parts cross.
+    pub fn joint_slots(&mut self, t: f64, fit: f64, len: f64, n: usize) {
+        let w = t + fit;
+        if !(t > 0.0 && w > 0.0 && len > 0.0) {
+            self.status = i18n::t("Joinery: the board thickness and slot length must be above zero.").into();
+            return;
+        }
+        let m = &self.doc.material;
+        let pitch = w + 1.0;
+        let (x0, y0) = ((m.w - len) / 2.0, (m.h - (n as f64 * pitch - 1.0)) / 2.0);
+        self.doc.checkpoint();
+        let layer = self.doc.layer_named(i18n::t("Joinery"));
+        let ids: BTreeSet<i32> = (0..n).map(|i| self.doc.add(make_rect(x0, y0 + i as f64 * pitch, x0 + len, y0 + i as f64 * pitch + w), Some(layer))).collect();
+        self.sel = ids;
+        self.sel_changed();
+        self.status = i18n::tf("Joinery: {n} slot(s) {w} wide on the \"Joinery\" layer, selected: move them into place. Cut them with a Pocket or inside Profile with Inside corners set to Dogbone.", &[("n", &n), ("w", &units::text(&self.doc, w))]);
+        self.mutated();
+    }
+
+    /// Vectors › Joinery › Fit test piece: a comb with `steps` slots from `lo` to `hi` wider than the board (`t`), each
+    /// marked with its fit, plus its toolpaths (labels engraved, then the comb cut out with dogbones). Push an offcut
+    /// of the same board into each slot to find the fit for this machine and bit.
+    pub fn fit_test(&mut self, t: f64, lo: f64, hi: f64, steps: usize) {
+        use gcarve_core::document::{Op, OpType, Side, TextItem, ToolType};
+        if !(t > 0.0 && t + lo > 0.0 && hi >= lo) {
+            self.status = i18n::t("Joinery: the board thickness must be above zero and the loosest fit no tighter than the tightest.").into();
+            return;
+        }
+        let depth = (2.0 * t).clamp(0.75, 1.5); // how far the offcut goes in
+        let gap = (t + 0.5).max(0.9); // wood between slots, room for the label
+        let fits: Vec<f64> = (0..steps).map(|i| lo + (hi - lo) * i as f64 / (steps - 1).max(1) as f64).collect();
+        let total = gap + fits.iter().map(|f| t + f + gap).sum::<f64>();
+        let high = depth + 1.0;
+        let m = &self.doc.material;
+        let (ox, oy) = ((m.w - total) / 2.0, (m.h - high) / 2.0);
+        // outline: along the bottom, up the right side, back along the top dipping into each slot
+        let mut pts = vec![pt(ox, oy), pt(ox + total, oy), pt(ox + total, oy + high)];
+        let mut slots = Vec::new(); // (left x, width, fit)
+        let mut x = ox + gap;
+        for f in &fits {
+            slots.push((x, t + f, *f));
+            x += t + f + gap;
+        }
+        for &(x, w, _) in slots.iter().rev() {
+            pts.extend([pt(x + w, oy + high), pt(x + w, oy + high - depth), pt(x, oy + high - depth), pt(x, oy + high)]);
+        }
+        pts.push(pt(ox, oy + high));
+        self.doc.checkpoint();
+        let layer = self.doc.layer_named(i18n::t("Fit test"));
+        let labels = self.doc.layer_named(i18n::t("Fit test labels"));
+        let comb = self.doc.add(gcarve_core::geom::make_polyline(&pts, true), Some(layer));
+        for &(x, w, f) in &slots {
+            let text = format!("{}{}", if f > 1e-9 { "+" } else { "" }, units::text(&self.doc, f));
+            self.place_text(TextItem { text, family: "Single Line Sans".into(), height: 0.16, align: 1, ..Default::default() }, pt(x + w / 2.0, oy + (high - depth) / 2.0), Some(labels));
+        }
+        let vbit = crate::dialogs::sign::bit(self, ToolType::VBit, 0.5, "V-Bit 90°");
+        let mill = crate::dialogs::sign::bit(self, ToolType::EndMill, 0.25, "1/4 End Mill");
+        let deep = self.doc.material.t;
+        self.doc.ops.push(Op { kind: OpType::Profile, name: i18n::t("Fit test labels").into(), tool: vbit, layer_scope: labels, depth: 0.02, side: Side::On, ..Default::default() });
+        self.doc.ops.push(Op { kind: OpType::Profile, name: i18n::t("Fit test cut out").into(), tool: mill, shape_ids: vec![comb], depth: deep, side: Side::Outside, corner_relief: 1, tabs: true, tab_count: 3, tab_corners: true, ..Default::default() });
+        self.sel = BTreeSet::from([comb]);
+        self.sel_changed();
+        self.status = i18n::tf("Fit test: {n} slots from {lo} to {hi} wider than the board, with their toolpaths. Cut it, then try an offcut of the same board in each slot.", &[("n", &steps), ("lo", &units::text(&self.doc, lo)), ("hi", &units::text(&self.doc, hi))]);
+        self.mutated();
+    }
+
     /// Vectors › Living Hinge…: staggered slots (`vecops::living_hinge`) over the selection's box (or the board, 1 in
     /// in from its edges), on the "Hinge" layer as one group, selected. `along_y` = slots run up the board (it bends
     /// about an up-down line), else across.
@@ -1865,6 +1932,32 @@ mod vector_tool_tests {
         c.stencil_bridges(0.15, true);
         assert!(c.status.contains("no islands"), "{}", c.status);
         assert_eq!(c.doc.shapes.len(), n);
+    }
+
+    #[test]
+    fn joinery_slots_and_the_fit_test_comb_come_out_sized_to_the_board_and_cut_cleanly() {
+        use gcarve_core::document::{Tool, ToolType};
+        let mut c = Canvas::default();
+        c.doc.material.t = 0.5;
+        c.doc.tools = vec![Tool { name: "1/4".into(), kind: ToolType::EndMill, diameter: 0.25, stepdown: 0.25, feed_xy: 100.0, feed_z: 30.0, rpm: 18000, ..Default::default() }];
+        c.joint_slots(0.5, 0.01, 2.0, 3);
+        assert_eq!(c.sel.len(), 3);
+        for id in &c.sel {
+            let b = bounds(&c.doc.find(*id).unwrap().c);
+            assert!((b.w() - 2.0).abs() < 1e-9 && (b.h() - 0.51).abs() < 1e-9, "{b:?}");
+        }
+        c.fit_test(0.5, 0.0, 0.02, 5);
+        let comb = c.doc.find(*c.sel.iter().next().unwrap()).unwrap().c.clone();
+        assert_eq!(comb.nodes.len(), 4 + 5 * 4, "a box with five slots");
+        // the slots, left to right, are 0.5 … 0.52 wide: the top edge's gaps
+        let mut xs: Vec<f64> = comb.nodes.iter().filter(|n| (n.p.y - bounds(&comb).y1).abs() < 1e-9).map(|n| n.p.x).collect();
+        xs.sort_by(f64::total_cmp);
+        let widths: Vec<f64> = xs[1..xs.len() - 1].chunks(2).map(|p| p[1] - p[0]).collect();
+        assert!(widths.len() == 5 && (widths[0] - 0.5).abs() < 1e-9 && (widths[4] - 0.52).abs() < 1e-9, "{widths:?}");
+        assert_eq!(c.doc.ops.len(), 2);
+        let gen = gcarve_core::pipeline::regenerate(&c.doc);
+        assert!(gen.warnings.is_empty(), "{:?}", gen.warnings);
+        assert!(gen.paths.iter().all(|p| !p.is_empty()), "both toolpaths cut");
     }
 
     #[test]
