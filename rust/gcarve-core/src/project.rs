@@ -586,8 +586,14 @@ pub fn save_project(d: &Document) -> String {
             if m.axis != 0 {
                 o["axis"] = json!(m.axis);
             }
-            if m.axis == 3 {
+            if m.axis >= 3 {
                 o["vertex"] = pt_json(m.vertex);
+            }
+            if m.edge_a {
+                o["ea"] = json!(true);
+            }
+            if m.edge_b {
+                o["eb"] = json!(true);
             }
             o
         })
@@ -690,8 +696,10 @@ pub fn load_project(text: &str) -> Result<Document, String> {
             node_b: int(o, "nb", -1),
             label: s(o, "label", ""),
             drive: s(o, "drive", ""),
-            axis: int(o, "axis", 0).clamp(0, 3),
+            axis: int(o, "axis", 0).clamp(0, 4),
             vertex: to_pt(get(o, "vertex")),
+            edge_a: get(o, "ea").as_bool().unwrap_or(false),
+            edge_b: get(o, "eb").as_bool().unwrap_or(false),
         })
         .collect();
     out.material = material_from(get(&root, "material"));

@@ -75,7 +75,7 @@ impl ShapesDialog {
                 ui.horizontal(|ui| {
                     ui.label(unit_label(i18n::t("Width"), doc));
                     crate::units::num_field(ui, "shape-w", &mut self.width_text, doc, true, 110.0);
-                    hint(ui, i18n::t("click a shape to add it, centred on the board (height keeps the proportions)"));
+                    hint(ui, i18n::t("click a shape to add it, centered on the board (height keeps the proportions)"));
                 });
             } else {
                 ui.horizontal(|ui| {

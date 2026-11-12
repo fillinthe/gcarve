@@ -697,7 +697,7 @@ fn build_library() -> Vec<PostDef> {
         arc_cw: "G2 {X} {Y} {Z} {I} {J}".into(),
         arc_ccw: "G3 {X} {Y} {Z} {I} {J}".into(),
         footer: "G53 Z0\nM5\nM30\n".into(),
-        ..base("wincnc-atc", "CAMaster / WinCNC ATC (inch, .tap)", "WinCNC", "CAMaster ATC, ShopSabre, Techno Titan", "tap")
+        ..base("wincnc-atc", "CAMaster / WinCNC ATC (inch, .tap)", "WinCNC", "CAMaster ATC, ShopSabre, Laguna SmartShop MT", "tap")
     });
     // ---- GRBL family
     const GRBL_MACHINES: &str = "Shapeoko, X-Carve, Longmill, Onefinity, Genmitsu, BobsCNC, MillRight, OpenBuilds, Maslow, Nomad";
@@ -894,7 +894,7 @@ fn build_library() -> Vec<PostDef> {
     iso(&mut v, "komo-mm", "Komo, Fanuc with tool changer (mm, .nc)", "Fanuc (Komo)", "Komo Fusion XL, Solution XL, Xtreme XL, Mach III, VR", false, "nc", &komo);
     iso(&mut v, "onsrud-in", "C.R. Onsrud, Fanuc (inch, .nc)", "Fanuc", "C.R. Onsrud routers with a Fanuc control (OSAI ones: see OSAI)", true, "nc", &fanuc);
     iso(&mut v, "mitsubishi-mm", "Mitsubishi M70 / M80 (mm, .nc)", "Mitsubishi", "ShopSabre IS-M, routers and mills with a Mitsubishi M70 / M80 / M800 control", false, "nc", &fanuc);
-    iso(&mut v, "gsk-mm", "GSK / KND / HNC (mm, .nc)", "GSK, KND, Huazhong HNC", "Chinese machining centres and routers with a Fanuc-style control", false, "nc", &fanuc);
+    iso(&mut v, "gsk-mm", "GSK / KND / HNC (mm, .nc)", "GSK, KND, Huazhong HNC", "Chinese machining centers and routers with a Fanuc-style control", false, "nc", &fanuc);
     iso(&mut v, "ddcs-mm", "DDCS V3.1 / V4.1 / Expert (mm, .nc)", "Digital Dream DDCS", "Stand-alone offline controllers on desktop and kit routers", false, "nc", &no_atc);
     iso(&mut v, "flashcut-in", "FlashCut CNC (inch, .nc)", "FlashCut", "Velox, FlashCut retrofits", true, "nc", &no_atc);
     iso(&mut v, "flashcut-mm", "FlashCut CNC (mm, .nc)", "FlashCut", "Velox, FlashCut retrofits", false, "nc", &no_atc);
@@ -916,6 +916,31 @@ fn build_library() -> Vec<PostDef> {
         footer: "{N} M5\n{N} L Z{ZH} FMAX\n{N} M30\n{N} END PGM {FILENAME} MM\n".into(),
         ..base("heidenhain-mm", "Heidenhain TNC plain language (mm, .h, experimental)", "Heidenhain TNC", "Routers and mills with a TNC 320 / 620 / 640 or iTNC 530", "h")
     });
+    // Laguna and Techno, each control as the maker's own Vectric post writes it (reference/pp-makers): numbered
+    // blocks, the same words in the same order. Not yet run on a machine.
+    let numbered = |block: &str| block.lines().map(|l| if l.starts_with(['(', '%', '<']) { format!("{l}\n") } else { format!("N{{N}} {l}\n") }).collect::<String>();
+    let maker = |id: &str, name: &str, controller: &str, machines: &str, ext: &str, inch: bool, arcs: bool, header: &str, change: &str, footer: &str| PostDef {
+        inches: inch,
+        decimals: if inch { 4 } else { 3 },
+        arcs,
+        header: numbered(header),
+        tool_change: numbered(change),
+        path_start: "({PATHNAME})\n".into(),
+        rapid: "N{N} G00 {X} {Y} {Z}".into(),
+        linear: "N{N} G01 {X} {Y} {Z} {F}".into(),
+        arc_cw: "N{N} G02 {X} {Y} {Z} {I} {J} {F}".into(),
+        arc_ccw: "N{N} G03 {X} {Y} {Z} {I} {J} {F}".into(),
+        footer: numbered(footer),
+        ..base(id, name, controller, machines, ext)
+    };
+    // hand-held controller (iQ, Swift, SmartShop I / J): one bit per file, millimetres, .mmg
+    v.push(maker("laguna-hhc-mm", "Laguna iQ / Swift, hand-held controller (mm, .mmg)", "Laguna HHC", "Laguna iQ, Swift, SmartShop I, SmartShop J", "mmg", false, true, "({FILENAME})\n({TOOLNAME})\nM03 S{RPM}", "", "G00 Z{ZH}\nM05\nM30"));
+    // iQ Pro / SmartShop M with tool changer: Laguna's post writes arcs by radius, so arcs go out as short lines here
+    v.push(maker("laguna-m-mm", "Laguna iQ Pro / SmartShop M with tool changer (mm, .mmg)", "Laguna HHC ATC", "Laguna iQ Pro ATC, SmartShop M ATC", "mmg", false, false, "({FILENAME})\nG54", "({TOOLNAME})\nM05\nT{TOOLNUM} M06\nS{RPM} M3", "G00 Z{ZH}\nM05\nM30\n%"));
+    v.push(maker("laguna-syntec-mm", "Laguna SmartShop, Syntec (mm, .nc)", "Syntec (Laguna)", "Laguna SmartShop 2, 2 Pro, 2 SUV with a Syntec control", "nc", false, false, "({FILENAME})\nG00 G17 G71 G40 G49 G80 G90\nG54", "({TOOLNAME})\nG00 G53 G49 Z0\nM05\nT{TOOLNUM} M06\nG00 G43 H{TOOLNUM} Z{ZH}\nM03 S{RPM}", "G00 G53 G49 Z0\nM05\nM30"));
+    v.push(maker("laguna-br-in", "Laguna SmartShop, B&R (inch, .prg)", "B&R (Laguna Touch)", "Laguna SmartShop 2, SmartShop II, Puma, iQ Pro with the B&R touch screen", "prg", true, false, "({FILENAME})\nG00 G17 G40 G90\nG70\nG54", "({TOOLNAME})\nD0\nG00 Z0\nM05\nT{TOOLNUM} M06\nD{TOOLNUM}\nM03 S{RPM}\nG04 5", "D0\nG00 Z0\nM05\nM30"));
+    v.push(maker("laguna-fanuc-in", "Laguna SmartShop, FANUC (inch, .nc)", "FANUC (Laguna)", "Laguna SmartShop 3, 2 Elite, MT Elite, Composite Fabricator with a FANUC control", "nc", true, false, "%\n<{FILENAME}>\nG00 G17 G20 G40 G49 G80 G90\nG52 X0 Y0\nG54", "({TOOLNAME})\nG05.1 Q0\nG00 G53 G49 Z0\nM05\nT{TOOLNUM} M06\nG05.1 Q1\nG00 G43 H{TOOLNUM} Z{ZH}\nM03 S{RPM}", "G00 G53 G49 Z0\nG05.1 Q0\nM05\nM30\n%"));
+    v.push(maker("techno-titan-in", "Techno Titan with tool changer (inch, .nc)", "Techno Titan", "Techno Titan Series", "nc", true, true, "o0001\n({FILENAME})\nG00 G20 G17 G90 G70\nG00 G40 G49 G80", "({TOOLNAME})\nM05\nG53 Z0\nT{TOOLNUM} M06\nG43 H{TOOLNUM}\nG53 Z0\nS{RPM} M03", "G53 Z0\nM05\nM30"));
     // isel Remote, DIN/ISO interpreter (isel's own G and M code table + a matching sample): G71 = mm, ";" comments,
     // numbered blocks, the speed on its own line before M3, G53 cancels the work offset (so G54 comes back after
     // the lift), M2 would leave the spindle running: M5 then M30. Not yet run on a machine.
@@ -948,7 +973,7 @@ fn build_library() -> Vec<PostDef> {
     iso(&mut v, "osai-in", "OSAI (inch, .iso)", "OSAI", "Techno, CMS and other OSAI routers", true, "iso", &osai);
     iso(&mut v, "fagor-mm", "Fagor 8055 / 8065 / 8070 (mm, .pim)", "Fagor", "DMS, Freedom Patriot, Fagor-controlled routers and mills", false, "pim", &fagor);
     iso(&mut v, "fagor-in", "Fagor 8055 / 8065 / 8070 (inch, .pim)", "Fagor", "DMS, Freedom Patriot, Fagor-controlled routers and mills", true, "pim", &fagor);
-    iso(&mut v, "siemens-mm", "Siemens Sinumerik 828D / 840D (mm, .mpf)", "Siemens Sinumerik", "Sinumerik-controlled routers and machining centres", false, "mpf", &siemens);
+    iso(&mut v, "siemens-mm", "Siemens Sinumerik 828D / 840D (mm, .mpf)", "Siemens Sinumerik", "Sinumerik-controlled routers and machining centers", false, "mpf", &siemens);
     iso(&mut v, "smartcore-in", "CAMaster SmartCore / Yaskawa (inch, .nc)", "Yaskawa SmartCore", "CAMaster Stinger / Panther / Cobra with SmartCore", true, "nc", &plain);
     iso(&mut v, "multicam-in", "MultiCam EZ Control (inch, .nc)", "MultiCam EZ", "MultiCam 1000 / 3000 / 5000 / Apex", true, "nc", &plain);
     iso(&mut v, "multicam-mm", "MultiCam EZ Control (mm, .nc)", "MultiCam EZ", "MultiCam 1000 / 3000 / 5000 / Apex", false, "nc", &plain);

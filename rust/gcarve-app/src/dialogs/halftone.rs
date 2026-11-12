@@ -120,7 +120,7 @@ mod tests {
         assert!(msg.starts_with("Halftone: "), "{msg}");
         let mut b = gcarve_core::geom::Rect::default();
         c.sel.iter().for_each(|id| b.add_rect(&gcarve_core::geom::bounds(&c.doc.find(*id).unwrap().c)));
-        assert!(((b.x0 + b.x1) / 2.0 - 6.0).abs() < 0.3 && ((b.y0 + b.y1) / 2.0 - 5.0).abs() < 0.3, "centred: {b:?}");
+        assert!(((b.x0 + b.x1) / 2.0 - 6.0).abs() < 0.3 && ((b.y0 + b.y1) / 2.0 - 5.0).abs() < 0.3, "centered: {b:?}");
         let gen = gcarve_core::pipeline::regenerate(&c.doc);
         assert!(gen.warnings.is_empty(), "{:?}", gen.warnings);
         assert!(!gen.paths[0].is_empty());

@@ -9,6 +9,16 @@
 use crate::geom::{make_rect, Contour};
 use crate::vecops::{boolean_op, dogbone, BoolOp};
 
+/// Outside sizes of a box that must hold `w` × `d` × `h` inside: a board more on every closed side (the top only
+/// with a lid).
+pub fn outside_of(w: f64, d: f64, h: f64, t: f64, lid: bool) -> (f64, f64, f64) {
+    (w + 2.0 * t, d + 2.0 * t, h + t + if lid { t } else { 0.0 })
+}
+/// The space inside a box of these outside sizes.
+pub fn inside_of(w: f64, d: f64, h: f64, t: f64, lid: bool) -> (f64, f64, f64) {
+    (w - 2.0 * t, d - 2.0 * t, h - t - if lid { t } else { 0.0 })
+}
+
 #[derive(Clone, Copy, Debug)]
 pub struct BoxSpec {
     /// outer sizes, inches
@@ -116,5 +126,12 @@ mod tests {
         assert!(boned[0].3[0].nodes.len() > panels(&tight)[0].3[0].nodes.len() + 8);
         assert_eq!(count(10.0, 1.0), 9);
         assert_eq!(count(1.0, 1.0), 3);
+    }
+
+    #[test]
+    fn inside_sizes_add_a_board_per_closed_side() {
+        assert_eq!(outside_of(8.0, 5.0, 3.0, 0.5, true), (9.0, 6.0, 4.0));
+        assert_eq!(outside_of(8.0, 5.0, 3.0, 0.5, false), (9.0, 6.0, 3.5)); // open top: only the bottom adds
+        assert_eq!(inside_of(9.0, 6.0, 3.5, 0.5, false), (8.0, 5.0, 3.0));
     }
 }

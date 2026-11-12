@@ -122,7 +122,28 @@ pub(crate) enum CtxMenu {
 
 /// A snapped point: kind 0 none, 1 grid, 2 object (`what`: point, midpoint, centre, quadrant, on edge);
 /// `node` >= 0 only for a shape node (dimensions anchor to those)
-#[derive(Clone, Copy, PartialEq, Debug, Default)]
+const LOCK_COLOR: Color32 = Color32::from_rgb(0xe8, 0xa3, 0x3d);
+
+/// A padlock drawn by hand (the web font has no such glyph): body and shackle, centred a little above `at`.
+fn padlock(painter: &egui::Painter, at: Pos2) {
+    let c = at + egui::vec2(0.0, -11.0);
+    let body = Rect::from_center_size(c + egui::vec2(0.0, 2.5), egui::vec2(11.0, 8.0));
+    painter.rect_filled(body.expand(1.5), 2.0, Color32::from_rgb(0x1b, 0x1d, 0x21));
+    painter.rect_filled(body, 1.5, LOCK_COLOR);
+    let top = c + egui::vec2(0.0, -1.5);
+    let pts: Vec<Pos2> = (0..=8).map(|k| { let t = std::f32::consts::PI * (1.0 + k as f32 / 8.0); top + egui::vec2(3.2 * t.cos(), 3.6 * t.sin()) }).collect();
+    painter.add(Shape::line(pts, Stroke::new(1.8, LOCK_COLOR)));
+}
+
+/// No snap: not on any shape (-1, -1). A derived default said shape 0, node 0, and the Dimension tool took every
+/// click on empty space for a corner.
+impl Default for Snap {
+    fn default() -> Self {
+        Snap { kind: 0, to: Pt::default(), d: 0.0, shape: -1, node: -1, what: "" }
+    }
+}
+
+#[derive(Clone, Copy, PartialEq, Debug)]
 pub struct Snap {
     pub kind: u8,
     pub to: Pt,
@@ -199,6 +220,13 @@ pub struct Canvas {
     /// selected node in the Nodes tool
     pub node_shape: i32,
     pub node_idx: i32,
+    /// every selected node (shape id, index), the one above included: Shift / Ctrl / Cmd-click adds or takes out,
+    /// and they move and are deleted together
+    pub node_set: BTreeSet<(i32, usize)>,
+    /// driving dimensions that can't set their size because both ends are locked (after the last change)
+    pub dim_stuck: Vec<usize>,
+    /// node drag of several: the shapes as they were when it began
+    pub(crate) orig_multi: Vec<(i32, Contour)>,
     pub(crate) node_part: u8, // 0 point, 1 in handle, 2 out handle
     pub(crate) sel_rect: geom::Rect,
     pub(crate) drag: Drag,
@@ -309,6 +337,7 @@ impl Canvas {
         self.dim_pts.clear();
         self.dim_anchors.clear();
         if t != Tool::Nodes {
+            self.node_set.clear();
             self.node_idx = -1;
         }
         if t != Tool::Select {
@@ -349,6 +378,9 @@ impl Default for Canvas {
             sel_dim: -1,
             node_shape: -1,
             node_idx: -1,
+            node_set: BTreeSet::new(),
+            dim_stuck: Vec::new(),
+            orig_multi: Vec::new(),
             node_part: 0,
             sel_rect: geom::Rect::default(),
             drag: Drag::None,
@@ -646,6 +678,23 @@ impl Canvas {
             self.paint_dimension(&painter, view, d, i as i32 == self.sel_dim, false);
         }
 
+        // locked corners and sides: a small padlock, in every tool
+        for s in self.doc.shapes.iter().filter(|s| s.any_locked() && self.doc.shape_visible(s)) {
+            let n = s.c.nodes.len();
+            for i in 0..n {
+                if !s.node_locked(i) {
+                    continue;
+                }
+                padlock(&painter, view.to_screen(s.c.nodes[i].p));
+                let j = (i + 1) % n;
+                if (j > i || s.c.closed) && j != i && s.node_locked(j) {
+                    let (p, q) = (view.to_screen(s.c.nodes[i].p), view.to_screen(s.c.nodes[j].p));
+                    painter.line_segment([p, q], Stroke::new(3.0, LOCK_COLOR)); // a locked side
+                    padlock(&painter, p + (q - p) / 2.0);
+                }
+            }
+        }
+
         self.paint_constraints(&painter, view);
         self.paint_tab_marks(&painter, view);
 
@@ -807,7 +856,7 @@ impl Canvas {
             let Some(s) = self.doc.find(*id) else { continue };
             for (i, n) in s.c.nodes.iter().enumerate() {
                 let p = view.to_screen(n.p);
-                let cur = *id == self.node_shape && i as i32 == self.node_idx;
+                let cur = (*id == self.node_shape && i as i32 == self.node_idx) || self.node_set.contains(&(*id, i));
                 if self.node_shown(*id, i) {
                     for (has, h) in [(n.has_in, n.inh), (n.has_out, n.out)] {
                         if has {
@@ -875,7 +924,9 @@ impl Canvas {
         line(a, ae);
         line(b, be);
         line(a2, b2);
-        if dm.shape_a >= 0 {
+        if dm.shape_a >= 0 && !dm.drive.is_empty() {
+            painter.circle_filled(a, 4.0, col); // a set length: this end stays still, the hollow one moves
+        } else if dm.shape_a >= 0 {
             painter.circle_stroke(a, 3.0, stroke);
         }
         if dm.shape_b >= 0 {

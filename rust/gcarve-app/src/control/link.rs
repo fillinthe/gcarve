@@ -920,6 +920,9 @@ impl Link {
         self.program = parse_program(text, 1000.0);
         self.program_name = name.to_string();
         self.c.notes = file_notes(&self.program.lines);
+        if let Some(n) = bad_arc(&self.program.motions) {
+            self.c.notes.0.push(format!("Line {n}: this arc doesn't close. Its end is not the same distance from the center as its start, and a GRBL controller stops there (error 33). Export it again, or with arcs switched off in the post."));
+        }
         self.height_map = None; // probed for the last program's cuts
         self.streamer.load::<&str>(&[]);
         self.program_rev += 1;
@@ -1147,6 +1150,21 @@ fn file_notes(lines: &[String]) -> (Vec<String>, Vec<String>) {
         warnings.push(i18n::t("The file switches mist on (M7): many GRBL boards refuse that and the job would stop there.").into());
     }
     (errors, warnings)
+}
+
+/// The line of the first arc a GRBL controller would refuse as "invalid target" (error:33): the end's
+/// distance from the centre differs from the start's by more than 0.005 mm and by more than 0.5 mm or 0.1 % of the
+/// radius (grbl's gcode.c). Files rounded to too few decimals do this.
+fn bad_arc(motions: &[gcarve_core::gcode::GMotion]) -> Option<i32> {
+    for m in motions.iter().filter(|m| matches!(m.kind, MoveType::ArcCw | MoveType::ArcCcw)) {
+        let r0 = m.i.hypot(m.j);
+        let r1 = (m.to.x - m.from.x - m.i).hypot(m.to.y - m.from.y - m.j);
+        let d = (r0 - r1).abs() * 25.4; // mm
+        if d > 0.005 && (d > 0.5 || d > 0.001 * r0 * 25.4) {
+            return Some(m.line);
+        }
+    }
+    None
 }
 
 /// One axis of the start check: the span must lie in the machine's travel, which runs 0..travel on some
@@ -1384,5 +1402,10 @@ mod tests {
         let (errors, warnings) = file_notes(&["G1 X1 F10".into(), "G41 D1".into(), "M7".into(), format!("G1 X{}", "1".repeat(90))]);
         assert!(errors.len() == 2 && errors[0].contains("G41") && errors[1].contains("79"), "{errors:?}");
         assert!(warnings.len() == 2 && warnings[0].contains("G20") && warnings[1].contains("M7"), "{warnings:?}");
+        // an arc whose end is 0.02 in off its circle is refused by grbl mid-job: found at load. A clean one passes.
+        l.load_program("arc.nc", "G20 G90\nM3 S9000\nG1 X1 Y0 F30\nG2 X0 Y-1 I-1 J0\nG2 X-1.02 Y0 I0 J1\nM5\n");
+        assert!(l.start_check().0.iter().any(|e| e.contains("Line 5")), "{:?}", l.start_check().0);
+        l.load_program("arc.nc", "G20 G90\nM3 S9000\nG1 X1 Y0 F30\nG2 X0 Y-1 I-1 J0\nM5\n");
+        assert!(!l.start_check().0.iter().any(|e| e.contains("arc")));
     }
 }

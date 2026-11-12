@@ -1112,12 +1112,12 @@
    "controllers": [
     {
      "name": "Techno hand-held controller",
-     "gcarve_post": "techno-in",
+     "gcarve_post": "techno-titan-in",
      "default": true
     },
     {
      "name": "PC-based system (option)",
-     "gcarve_post": null,
+     "gcarve_post": "techno-titan-in",
      "default": false
     }
    ],
@@ -1360,12 +1360,12 @@
    "controllers": [
     {
      "name": "Techno hand-held controller",
-     "gcarve_post": "techno-in",
+     "gcarve_post": "techno-titan-in",
      "default": true
     },
     {
      "name": "PC-based system (option)",
-     "gcarve_post": null,
+     "gcarve_post": "techno-titan-in",
      "default": false
     }
    ],
@@ -1608,12 +1608,12 @@
    "controllers": [
     {
      "name": "Techno hand-held controller",
-     "gcarve_post": "techno-in",
+     "gcarve_post": "techno-titan-in",
      "default": true
     },
     {
      "name": "PC-based system (option)",
-     "gcarve_post": null,
+     "gcarve_post": "techno-titan-in",
      "default": false
     }
    ],

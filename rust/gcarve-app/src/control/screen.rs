@@ -586,7 +586,7 @@ impl ControlApp {
         let Some(buf) = &mut self.surfacing else { return };
         let (mut ok, mut close) = (false, false);
         crate::widgets::Dialog::new(i18n::t("Surface the spoilboard")).show(ctx, |ui| {
-            small_wrap(ui, i18n::t("Flattens the area from the work zero: set X/Y zero at its front-left corner and Z zero on the spoilboard top. The bit's centre goes to every edge, so the whole area is cut."));
+            small_wrap(ui, i18n::t("Flattens the area from the work zero: set X/Y zero at its front-left corner and Z zero on the spoilboard top. The bit's center goes to every edge, so the whole area is cut."));
             egui::Grid::new("surfacing").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
                 for (i, (label, unit)) in [(i18n::t("Width (X)"), "in"), (i18n::t("Length (Y)"), "in"), (i18n::t("Bit diameter"), "in"), (i18n::t("Stepover"), "%"), (i18n::t("Depth per pass"), "in"), (i18n::t("Passes"), ""), (i18n::t("Feed"), "in/min"), (i18n::t("Spindle"), "rpm")].into_iter().enumerate() {
                     ui.label(label);

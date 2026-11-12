@@ -110,7 +110,7 @@ pub fn options_bar(ui: &mut eframe::egui::Ui, canvas: &mut Canvas, look: (&'stat
             }
             Tool::Freehand => i18n::t("Drag to draw. The line is smoothed when you let go."),
             Tool::Measure => i18n::t("Click two points to measure between them."),
-            Tool::Dimension => i18n::t("Click two points, then where the dimension line goes."),
+            Tool::Dimension => i18n::t("Click a corner or a side of a shape, then another (the same side twice = its length), then where the line goes. Double-click a dimension to set its size."),
             Tool::Angle => i18n::t("Click the corner, then a point on each arm."),
             Tool::Text => i18n::t("Click where the text goes."),
             Tool::Corner => {
@@ -137,6 +137,9 @@ pub fn options_bar(ui: &mut eframe::egui::Ui, canvas: &mut Canvas, look: (&'stat
     });
 }
 
+/// Dimension tool: what a click would take: the point, its anchor (shape, node; a side = -node - 2), a side's ends
+type DimPick = (Pt, (i32, i32), Option<(Pt, Pt)>);
+
 impl Canvas {
     /// A hit / snap / node radius in screen pixels with the Larger handles preference applied.
     pub(crate) fn px(&self, base: f64) -> f64 {
@@ -152,7 +155,7 @@ impl Canvas {
         // guides pull whenever nothing closer (a point, an edge) takes the pointer, also with Snap off
         let guided = |q: Pt| match self.guide_snap(q, r) {
             (g, true) => Snap { kind: 1, to: g, d: dist(q, g), shape: -1, node: -1, what: "guide" },
-            _ => Snap { to: q, ..Default::default() },
+            _ => Snap { kind: 0, to: q, d: 0.0, shape: -1, node: -1, what: "" }, // no snap: NOT shape 0, node 0 (the derived default made every loose click look like a corner of shape 0)
         };
         if !objects {
             return guided(p);
@@ -230,6 +233,30 @@ impl Canvas {
     }
 
     /// Topmost editable shape within HIT_PX of a document point.
+    /// The straight side of a shape under `q`: (shape id, the node it starts at, its two ends). Curved segments
+    /// don't count (a dimension can't sit square on them).
+    pub(crate) fn side_at(&self, q: Pt) -> Option<(i32, i32, Pt, Pt)> {
+        let tol = self.px(HIT_PX) / self.zoom();
+        let mut best: Option<(f64, (i32, i32, Pt, Pt))> = None;
+        for s in self.doc.shapes.iter().rev().filter(|s| self.doc.shape_editable(s)) {
+            let b = bounds(&s.c);
+            if q.x < b.x0 - tol || q.x > b.x1 + tol || q.y < b.y0 - tol || q.y > b.y1 + tol {
+                continue;
+            }
+            let hit = nearest(&s.c, q);
+            let n = s.c.nodes.len();
+            if hit.d > tol || n < 2 || best.as_ref().is_some_and(|(d, _)| *d <= hit.d) {
+                continue;
+            }
+            let (i, j) = (hit.seg % n, (hit.seg + 1) % n);
+            if s.c.nodes[i].has_out || s.c.nodes[j].has_in || dist(s.c.nodes[i].p, s.c.nodes[j].p) < 1e-9 {
+                continue;
+            }
+            best = Some((hit.d, (s.id, i as i32, s.c.nodes[i].p, s.c.nodes[j].p)));
+        }
+        best.map(|(_, e)| e)
+    }
+
     pub fn hit_shape(&self, q: Pt) -> Option<i32> {
         let tol = self.px(HIT_PX) / self.zoom();
         let mut bd = tol + 1e-12;
@@ -308,7 +335,12 @@ impl Canvas {
             let v = b2 - a2;
             let len2 = v.length_sq();
             let t = if len2 > 0.0 { ((s - a2).dot(v) / len2).clamp(0.0, 1.0) } else { 0.0 };
-            let dd = (a2 + v * t - s).length();
+            let mut dd = (a2 + v * t - s).length();
+            // the number counts too: people click (and double-click) the label, which sits beside the line's middle
+            let mid = a2 + v * 0.5;
+            if (s.x - mid.x).abs() < 46.0 && (s.y - mid.y).abs() < 26.0 {
+                dd = dd.min(best - 0.5);
+            }
             if dd < best {
                 best = dd;
                 hit = Some(i);
@@ -395,6 +427,26 @@ impl Canvas {
     }
 
     fn apply_node_drag(&mut self, raw: Pt) {
+        if self.node_part == 0 && self.node_set.len() > 1 {
+            // several nodes: they all move by what the one under the pointer moves (it snaps as a single node does)
+            let o = self.orig_c.nodes[self.node_idx as usize];
+            let sn = self.snap_at(o.p + raw, &self.orig_multi.iter().map(|(id, _)| *id).collect());
+            self.snap_mark = (sn.kind == 2).then_some(sn);
+            let d = if sn.kind != 0 { sn.to - o.p } else { raw };
+            for (id, orig) in self.orig_multi.clone() {
+                let mut c = orig;
+                for (i, n) in c.nodes.iter_mut().enumerate() {
+                    if self.node_set.contains(&(id, i)) {
+                        (n.p, n.inh, n.out) = (n.p + d, n.inh + d, n.out + d);
+                    }
+                }
+                if let Some(s) = self.doc.find_mut(id) {
+                    s.c = c;
+                }
+            }
+            self.mutated();
+            return;
+        }
         let mut c = self.orig_c.clone();
         let idx = self.node_idx as usize;
         let o = self.orig_c.nodes[idx];
@@ -460,7 +512,7 @@ impl Canvas {
                     self.sel = BTreeSet::from([id]);
                 }
                 self.sel_changed();
-                if drag && self.sel.contains(&id) {
+                if drag && self.sel.contains(&id) && !self.refuse_locked() {
                     self.doc.checkpoint();
                     self.break_constraints_on_move();
                     self.orig = self.sel.iter().filter_map(|i| self.doc.find(*i).cloned()).collect();
@@ -486,15 +538,44 @@ impl Canvas {
 
     fn press_nodes(&mut self, s: Pos2, w: Pt, shift: bool, drag: bool) {
         if let Some((shape, idx, part)) = self.hit_node(s) {
+            let key = (shape, idx);
+            if self.node_idx >= 0 {
+                self.node_set.insert((self.node_shape, self.node_idx as usize)); // the single pick joins the set
+            }
+            if shift && part == 0 && !drag && self.node_set.contains(&key) {
+                // Shift / Ctrl / Cmd-click on a picked node takes it out
+                self.node_set.remove(&key);
+                match self.node_set.iter().next_back().copied() {
+                    Some((sh, i)) => (self.node_shape, self.node_idx) = (sh, i as i32),
+                    None => self.node_idx = -1,
+                }
+                self.status = i18n::tf("{n} nodes selected", &[("n", &self.node_set.len())]);
+                return;
+            }
+            if !shift && !(part == 0 && drag && self.node_set.contains(&key)) {
+                self.node_set.clear(); // a plain press picks this node alone; dragging one of several keeps them
+            }
+            if part == 0 {
+                self.node_set.insert(key);
+            }
             self.node_shape = shape;
             self.node_idx = idx as i32;
             self.node_part = part;
-            if drag {
+            if self.node_set.len() > 1 {
+                self.status = i18n::tf("{n} nodes selected", &[("n", &self.node_set.len())]);
+            }
+            let held = part == 0 && self.node_set.iter().any(|(id, i)| self.doc.find(*id).is_some_and(|s| s.node_locked(*i)));
+            if drag && held {
+                self.status = i18n::t("Locked in place: this point can't be dragged. Right-click it and choose Unlock first.").into();
+            } else if drag {
                 self.orig_c = self.doc.find(shape).map(|s| s.c.clone()).unwrap_or_default();
+                let ids: BTreeSet<i32> = self.node_set.iter().map(|k| k.0).collect();
+                self.orig_multi = ids.into_iter().filter_map(|id| self.doc.find(id).map(|s| (id, s.c.clone()))).collect();
                 self.doc.checkpoint();
                 self.drag = Drag::Node;
             }
         } else {
+            self.node_set.clear();
             self.node_idx = -1;
             match self.hit_shape(w) {
                 Some(id) => {
@@ -512,6 +593,7 @@ impl Canvas {
 
     /// Double-click in the Nodes tool: toggle corner/smooth on a node, or insert a node on a segment.
     fn double_click_nodes(&mut self, s: Pos2, w: Pt) {
+        self.node_set.clear(); // node numbers are about to change
         if let Some((shape, idx, 0)) = self.hit_node(s) {
             self.doc.checkpoint();
             let c = &mut self.doc.find_mut(shape).unwrap().c;
@@ -562,7 +644,7 @@ impl Canvas {
         let view = self.view.as_ref().unwrap();
         let (zoom, origin) = (view.zoom, view.origin);
         let view = View { zoom, origin };
-        let (shift, press_origin, hover) = ui.input(|i| (i.modifiers.shift, i.pointer.press_origin(), i.pointer.hover_pos()));
+        let (shift, press_origin, hover) = ui.input(|i| (i.modifiers.shift || i.modifiers.command || i.modifiers.ctrl, i.pointer.press_origin(), i.pointer.hover_pos())); // "add to what is picked": any of the three
         let pointer = resp.interact_pointer_pos().or(hover);
         let hover_w = pointer.map(|p| view.to_doc(p));
         let hover_snap = hover_w.map(|w| if self.tool.draws() && self.drag == Drag::None { self.snap_at(w, &BTreeSet::new()) } else { Snap { to: w, ..Default::default() } });
@@ -905,7 +987,7 @@ impl Canvas {
                     }
                 }
                 let next = match (self.arc_mode, self.arc_pts.len()) {
-                    (1, 0) => i18n::t("click the arc's centre"),
+                    (1, 0) => i18n::t("click the arc's center"),
                     (1, 1) => i18n::t("click where the arc starts"),
                     (_, 0) => i18n::t("click where the arc starts"),
                     (0, 2) => i18n::t("click a point the arc passes through"),
@@ -962,32 +1044,92 @@ impl Canvas {
                 }
             }
             Tool::Dimension => {
-                if clicked {
-                    if let Some(w) = hover_w {
-                        let sn = self.snap_at(w, &BTreeSet::new());
-                        if self.dim_pts.len() < 2 {
-                            if self.dim_pts.first().is_none_or(|f| dist(*f, sn.to) > 1e-9) {
-                                self.dim_pts.push(sn.to);
-                                self.dim_anchors.push(if sn.node >= 0 { (sn.shape, sn.node) } else { (-1, -1) });
-                            }
-                        } else {
-                            let (a, b) = (self.dim_pts[0], self.dim_pts[1]);
-                            let off = dim_offset(a, b, w);
-                            self.doc.checkpoint();
-                            let (sa, sb) = (self.dim_anchors[0], self.dim_anchors[1]);
-                            self.doc.dimensions.push(Dimension { a, b, offset: off, shape_a: sa.0, node_a: sa.1, shape_b: sb.0, node_b: sb.1, ..Default::default() });
-                            self.dim_pts.clear();
-                            self.dim_anchors.clear();
-                            self.status = i18n::tf("Dimension added: {b}", &[("b", &(units::fmt(&self.doc, dist(a, b))))]);
-                            self.mutated();
+                // A dimension ties to shapes: each end is a corner (node) or a straight side. Empty space is not an
+                // end (owner 2026-11-12: "I want it to connect to objects not nothing"); Measure is for loose points.
+                let pick: Option<DimPick> = hover_w.and_then(|w| {
+                    let sn = self.snap_at(w, &BTreeSet::new());
+                    if sn.kind == 2 && sn.node >= 0 && self.doc.find(sn.shape).is_some() {
+                        Some((sn.to, (sn.shape, sn.node), None))
+                    } else {
+                        self.side_at(w).map(|(id, n, p, q)| (pt((p.x + q.x) / 2.0, (p.y + q.y) / 2.0), (id, -n - 2), Some((p, q)))) // a side: node n, kept as -n - 2
+                    }
+                });
+                if self.dim_pts.len() < 2 {
+                    match pick {
+                        Some((_, _, Some((p, q)))) => {
+                            painter.line_segment([view.to_screen(p), view.to_screen(q)], Stroke::new(3.0, theme::ACCENT)); // this side will be taken
                         }
+                        Some((at, _, None)) => {
+                            painter.circle_filled(view.to_screen(at), 5.0, theme::ACCENT); // this corner will be taken
+                        }
+                        None => {}
+                    }
+                }
+                if dbl && self.dim_pts.is_empty() {
+                    if let Some(dh) = self.hit_dimension(screen) {
+                        self.sel_dim = dh as i32;
+                        self.open_dim_popup(dh, screen);
+                    }
+                } else if clicked && self.dim_pts.len() < 2 && !(self.dim_pts.is_empty() && pick.is_none() && self.hit_dimension(screen).is_some()) {
+                    match pick {
+                        None => self.status = i18n::t("Dimension: click a corner or a straight side of a shape. It highlights when the click will take it. (Measure is the tool for loose points.)").into(),
+                        Some((_, anchor, Some((p, q)))) if self.dim_anchors.first() == Some(&anchor) => {
+                            // the same side again: its own length, corner to corner
+                            let n = -anchor.1 - 2;
+                            let cnt = self.doc.find(anchor.0).map_or(1, |s| s.c.nodes.len() as i32);
+                            self.dim_pts = vec![p, q];
+                            self.dim_anchors = vec![(anchor.0, n), (anchor.0, (n + 1) % cnt)];
+                        }
+                        Some((at, anchor, _)) => {
+                            if self.dim_anchors.first() != Some(&anchor) {
+                                self.dim_pts.push(at);
+                                self.dim_anchors.push(anchor);
+                            }
+                        }
+                    }
+                } else if clicked {
+                    if let Some(w) = hover_w {
+                        let (a, b) = (self.dim_pts[0], self.dim_pts[1]);
+                        self.doc.checkpoint();
+                        let end = |(s, n): (i32, i32)| if n <= -2 { (s, -n - 2, true) } else { (s, n, false) };
+                        let (sa, sb) = (end(self.dim_anchors[0]), end(self.dim_anchors[1]));
+                        let mut d = Dimension { a, b, shape_a: sa.0, node_a: sa.1, edge_a: sa.2, shape_b: sb.0, node_b: sb.1, edge_b: sb.2, axis: if sa.2 || sb.2 { 4 } else { 0 }, ..Default::default() };
+                        self.doc.dimensions.push(d.clone());
+                        self.doc.refresh_dimensions(); // a side dimension gets its direction here
+                        let k = self.doc.dimensions.len() - 1;
+                        d = self.doc.dimensions[k].clone();
+                        let (ea, eb) = d.ends();
+                        self.doc.dimensions[k].offset = dim_offset(ea, eb, w);
+                        self.dim_pts.clear();
+                        self.dim_anchors.clear();
+                        self.sel_dim = k as i32;
+                        self.status = i18n::tf("Dimension added: {b}. Type a length or a variable to set the size, or press Esc to only measure", &[("b", &(units::fmt(&self.doc, d.length())))]);
+                        self.mutated();
+                        self.open_dim_popup(k, screen); // straight to the length box, like sketching in CAD
                     }
                 }
                 if let (Some(&a), Some(hw)) = (self.dim_pts.first(), hover_w) {
-                    let b = self.dim_pts.get(1).copied().unwrap_or(hover_snap.map(|s| s.to).unwrap_or(hw));
-                    let off = if self.dim_pts.len() == 2 { dim_offset(a, b, hw) } else { 0.5 };
-                    self.paint_dimension(painter, &view, &Dimension { a, b, offset: off, ..Default::default() }, true, true);
-                    status = format!("{status}   {}", if self.dim_pts.len() == 1 { i18n::t("click the second point") } else { i18n::t("click where the dimension line goes") });
+                    // the preview is the dimension the next click makes: square across from a side, like the real one
+                    let second = self.dim_pts.get(1).map(|b| (*b, self.dim_anchors[1])).or(pick.map(|p| (p.0, p.1)));
+                    let (b, anchor_b) = second.unwrap_or((hw, (-1, -1)));
+                    let side_of = |(s, n): (i32, i32)| -> Option<(Pt, Pt)> {
+                        let sh = self.doc.find(s).filter(|_| n <= -2)?;
+                        let (i, cnt) = ((-n - 2) as usize, sh.c.nodes.len());
+                        Some((sh.c.nodes.get(i)?.p, sh.c.nodes[(i + 1) % cnt].p))
+                    };
+                    let mut d = Dimension { a, b, ..Default::default() };
+                    if let Some((p, q)) = side_of(self.dim_anchors[0]).or(side_of(anchor_b)).filter(|(p, q)| dist(*p, *q) > 1e-9) {
+                        d.axis = 4;
+                        d.vertex = pt(-(q.y - p.y), q.x - p.x) * (1.0 / dist(p, q));
+                    }
+                    let (ea, eb) = d.ends();
+                    d.offset = if self.dim_pts.len() == 2 { dim_offset(ea, eb, hw) } else { 0.5 };
+                    if dist(ea, eb) > 1e-9 {
+                        self.paint_dimension(painter, &view, &d, true, true);
+                    }
+                    status = format!("{status}   {}", if self.dim_pts.len() == 1 { i18n::t("now the second corner or side (the same side again = its own length)") } else { i18n::t("click where the dimension line goes") });
+                } else {
+                    status = format!("{status}   {}", i18n::t("click a corner or a straight side of a shape (a side highlights)"));
                 }
             }
             Tool::Corner => {
@@ -1107,6 +1249,7 @@ impl Canvas {
 
     /// Node tool context menu: remove the node, or toggle corner/smooth (`convert`).
     pub fn remove_node(&mut self, shape: i32, node: i32) {
+        self.node_set.clear(); // node numbers are about to change
         let Some(s) = self.doc.find(shape) else { return };
         if node < 0 || node as usize >= s.c.nodes.len() {
             return;
@@ -1128,7 +1271,38 @@ impl Canvas {
         self.mutated();
     }
 
+    /// Delete with several nodes picked: all of them go, as one undo step. A shape left with fewer than two
+    /// nodes goes with them.
+    pub fn remove_nodes(&mut self) {
+        let picked: Vec<(i32, usize)> = self.node_set.iter().rev().copied().collect(); // highest index first
+        if picked.is_empty() {
+            return;
+        }
+        self.doc.checkpoint();
+        for (shape, node) in picked {
+            let Some(s) = self.doc.find_mut(shape) else { continue };
+            if node >= s.c.nodes.len() {
+                continue;
+            }
+            geom::remove_node(&mut s.c, node);
+            shift_node_binds(&mut s.bind, node as i32, -1);
+            let n = s.c.nodes.len();
+            if n == 2 {
+                s.c.closed = false;
+            }
+            self.doc.shift_dimension_nodes(shape, node as i32, -1);
+            if n < 2 {
+                self.doc.shapes.retain(|s| s.id != shape);
+                self.sel.remove(&shape);
+            }
+        }
+        self.node_set.clear();
+        self.node_idx = -1;
+        self.mutated();
+    }
+
     pub fn insert_node_after(&mut self, shape: i32, node: i32) {
+        self.node_set.clear(); // node numbers are about to change
         let Some(s) = self.doc.find(shape) else { return };
         if node < 0 || node as usize >= seg_count(&s.c) {
             return;
@@ -1282,7 +1456,7 @@ mod tests {
         c.snap_prefs.kinds = SNAP_ALL & !SNAP_MIDPOINTS & !SNAP_QUADRANTS;
         assert_eq!(at(&c, 2.01, 1.99).what, "on edge");
         c.snap_prefs.kinds = SNAP_ALL & !SNAP_CENTRES;
-        assert_eq!(at(&c, 2.02, 1.51).kind, 1, "centre off: grid");
+        assert_eq!(at(&c, 2.02, 1.51).kind, 1, "center off: grid");
         c.snap_prefs.kinds = SNAP_ALL & !SNAP_EDGE;
         assert_eq!(at(&c, 1.4, 1.01).kind, 1, "edge off: grid");
         c.snap_prefs.kinds = SNAP_ALL & !SNAP_GRID;
@@ -1397,6 +1571,37 @@ impl Canvas {
             self.doc.shift_dimension_nodes(id, k as i32 + 1, added);
         }
         self.mutated();
+    }
+}
+
+#[cfg(test)]
+mod node_set_tests {
+    use super::*;
+    use gcarve_core::geom::make_rect;
+
+    #[test]
+    fn several_picked_nodes_move_and_go_together() {
+        let mut c = Canvas::default();
+        let id = c.doc.add(make_rect(0.0, 0.0, 4.0, 2.0), None);
+        c.sel = BTreeSet::from([id]);
+        c.tool = Tool::Nodes;
+        // the right side's two corners picked (as Shift-click leaves them), then dragged 1 in to the right by one of them
+        let right: Vec<usize> = c.doc.find(id).unwrap().c.nodes.iter().enumerate().filter(|(_, n)| n.p.x > 3.9).map(|(i, _)| i).collect();
+        assert_eq!(right.len(), 2);
+        c.node_set = right.iter().map(|i| (id, *i)).collect();
+        (c.node_shape, c.node_idx, c.node_part) = (id, right[0] as i32, 0);
+        c.orig_c = c.doc.find(id).unwrap().c.clone();
+        c.orig_multi = vec![(id, c.orig_c.clone())];
+        c.snap = false;
+        c.apply_node_drag(pt(1.0, 0.0));
+        let b = bounds(&c.doc.find(id).unwrap().c);
+        assert!((b.x1 - 5.0).abs() < 1e-9 && b.x0.abs() < 1e-9 && (b.y1 - 2.0).abs() < 1e-9, "the side moved as a side: {b:?}");
+        // Delete takes both in one undo step, and the selection of nodes is empty after
+        c.delete_selected();
+        assert_eq!(c.doc.find(id).unwrap().c.nodes.len(), 2);
+        assert!(c.node_set.is_empty() && c.node_idx < 0);
+        c.undo();
+        assert_eq!(c.doc.find(id).unwrap().c.nodes.len(), 4);
     }
 }
 

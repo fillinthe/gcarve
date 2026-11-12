@@ -205,7 +205,7 @@ impl TraceDialog {
                 changed |= crate::widgets::checkbox(ui, &mut self.opts.invert, i18n::t("Trace the light parts (invert)")).changed();
                 ui.end_row();
                 ui.label("");
-                changed |= crate::widgets::checkbox(ui, &mut self.opts.centreline, i18n::t("Centreline: one line down the middle of each stroke")).on_hover_text(i18n::t("For signatures, handwriting and line drawings: single lines to engrave with a V-bit (Profile on the line), a drag knife or a pen, instead of outlines around the ink.")).changed();
+                changed |= crate::widgets::checkbox(ui, &mut self.opts.centreline, i18n::t("Centerline: one line down the middle of each stroke")).on_hover_text(i18n::t("For signatures, handwriting and line drawings: single lines to engrave with a V-bit (Profile on the line), a drag knife or a pen, instead of outlines around the ink.")).changed();
                 ui.end_row();
                 ui.label(i18n::t("Smoothing"));
                 ui.horizontal(|ui| {
@@ -232,7 +232,7 @@ impl TraceDialog {
                 });
                 ui.end_row();
             });
-            hint(ui, i18n::t("High-contrast artwork (logos, lettering, silhouettes) traces best. The outlines land centred on the board as one group on their own layer."));
+            hint(ui, i18n::t("High-contrast artwork (logos, lettering, silhouettes) traces best. The outlines land centered on the board as one group on their own layer."));
             let (o, c) = crate::widgets::ok_cancel_text(ui, i18n::t("Add vectors"));
             ok = o && !self.preview.is_empty();
             keep = !c;

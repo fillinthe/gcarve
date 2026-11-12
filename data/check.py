@@ -13,7 +13,7 @@ def err(where, msg):
 
 def post_ids():
     s = POSTDEF.read_text()
-    ids = re.findall(r'(?:grbl_like|mach_like|iso)\(&mut v, "([a-z0-9-]+)"|(?:base|shopbot)\("([a-z0-9-]+)"', s)
+    ids = re.findall(r'(?:grbl_like|mach_like|iso)\(&mut v, "([a-z0-9-]+)"|(?:base|shopbot|maker)\("([a-z0-9-]+)"', s)
     return {a or b for a, b in ids}
 
 
