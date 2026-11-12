@@ -154,7 +154,7 @@ impl BitBrowser {
                 let r = ui.add(crate::widgets::field(&mut self.filter.query).hint_text(i18n::t("Search: part number, name, size (1/4 down)")).desired_width(300.0));
                 crate::widgets::focus_first(ui, &r);
                 let maker_label = if self.filter.maker.is_empty() { i18n::t("All makers").to_string() } else { self.filter.maker.clone() };
-                egui::ComboBox::from_id_salt("bb-maker").selected_text(maker_label).width(170.0).height(400.0).show_ui(ui, |ui| {
+                crate::widgets::combo_box("bb-maker").selected_text(maker_label).width(170.0).height(400.0).show_ui(ui, |ui| {
                     ui.selectable_value(&mut self.filter.maker, String::new(), i18n::t("All makers"));
                     let mine = my_makers();
                     for (i, (m, n)) in self.makers.iter().enumerate() {
@@ -164,7 +164,7 @@ impl BitBrowser {
                         ui.selectable_value(&mut self.filter.maker, m.clone(), format!("{m}  ({n})"));
                     }
                 });
-                egui::ComboBox::from_id_salt("bb-size").selected_text(SIZES[self.filter.size].0).width(110.0).show_ui(ui, |ui| {
+                crate::widgets::combo_box("bb-size").selected_text(SIZES[self.filter.size].0).width(110.0).show_ui(ui, |ui| {
                     for (i, s) in SIZES.iter().enumerate() {
                         ui.selectable_value(&mut self.filter.size, i, s.0);
                     }

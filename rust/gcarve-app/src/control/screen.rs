@@ -736,7 +736,7 @@ impl eframe::App for ControlApp {
         egui::Panel::right("control-right").resizable(false).exact_size(320.0).frame(egui::Frame::new().fill(theme::PANEL).inner_margin(12)).show(ui, |ui| self.right(ui, &ctx, now));
         egui::CentralPanel::default().frame(egui::Frame::new()).show(ui, |ui| {
             egui::Panel::bottom("control-console").resizable(false).exact_size(170.0).frame(egui::Frame::new().fill(theme::PANEL).inner_margin(6)).show(ui, |ui| self.console(ui));
-            egui::CentralPanel::default().frame(egui::Frame::new().fill(theme::CANVAS_BG)).show(ui, |ui| {
+            egui::CentralPanel::default().frame(egui::Frame::new().fill(theme::canvas_bg())).show(ui, |ui| {
                 self.preview.ui(ui, &self.link);
                 if self.link.program_name.is_empty() {
                     let r = ui.max_rect();

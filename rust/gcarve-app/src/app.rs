@@ -1,3 +1,4 @@
+// "Is not this the carpenter, the son of Mary?" Mark 6:3 (KJV)
 
 //! Window layout: menu bar, mode bar (Design / Simulate), tool rail (left), inspector (right), canvas.
 //! Both side panels fold to a thin edge like the Qt app. Documents live in tabs (tabs.rs): the current one is in
@@ -704,6 +705,7 @@ fn tool_id(t: Tool) -> &'static str {
         Tool::Dimension => "tool:dimension",
         Tool::Angle => "tool:angle",
         Tool::Text => "tool:text",
+        Tool::Corner => "tool:corner",
     }
 }
 
@@ -1100,6 +1102,10 @@ impl App {
             ("quit", _) => ctx.send_viewport_cmd(egui::ViewportCommand::Close), // macOS app menu › Quit: unsaved tabs are asked about
             ("fold", "right") => self.right_open = false,
             ("rail", "fold") => self.left_open = false,
+            ("rail", wide @ ("wide" | "narrow")) => {
+                self.shell.rail_wide = wide == "wide";
+                crate::store::save("rail-wide", if self.shell.rail_wide { "1" } else { "0" });
+            }
             ("palette", _) => self.palette.open(ctx),
             ("mode", "Design") => self.set_mode(Mode::Design),
             ("tab", "toolpaths") => {
@@ -1699,7 +1705,7 @@ impl eframe::App for App {
             // GCARVE_PICTURE=file.png: a picture to draw over, fitted on the board, its dialog open
             if let Some(bytes) = std::env::var("GCARVE_PICTURE").ok().and_then(|f| std::fs::read(f).ok()) {
                 let d = &mut self.canvas.doc;
-                if let Ok(img) = image::load_from_memory(&bytes) {
+                if let Ok(img) = crate::files::picture(&bytes) {
                     let aspect = img.width() as f64 / img.height().max(1) as f64;
                     let w = d.material.w.min(d.material.h * aspect);
                     let h = w / aspect;
@@ -1799,11 +1805,10 @@ impl eframe::App for App {
 
         let sel = self.canvas.selection_count();
         if self.left_open {
-            egui::Panel::left("rail").resizable(false).exact_size(82.0).frame(egui::Frame::new().fill(theme::PANEL).inner_margin(egui::Margin { left: 4, right: 5, top: 4, bottom: 4 })).show(ui, |ui| {
+            egui::Panel::left("rail").resizable(false).exact_size(if self.shell.rail_wide { 156.0 } else { 82.0 }).frame(egui::Frame::new().fill(theme::PANEL).inner_margin(egui::Margin { left: 4, right: 5, top: 4, bottom: 4 })).show(ui, |ui| {
                 let tool = self.canvas.tool;
                 let paths = self.canvas.show_paths;
-                let canvas = &mut self.canvas;
-                shell::rail(ui, &mut self.shell, self.mode, tool_id(tool), sel, paths, |ui| crate::tools::rail_count(ui, canvas));
+                shell::rail(ui, &mut self.shell, self.mode, tool_id(tool), sel, paths);
             });
         } else {
             egui::Panel::left("rail-folded").resizable(false).exact_size(18.0).frame(egui::Frame::new().fill(theme::PANEL)).show(ui, |ui| {
@@ -1813,7 +1818,14 @@ impl eframe::App for App {
             });
         }
 
-        if self.right_open {
+        // a toolpath form docks at the right, where the side panel was: the drawing narrows instead of being covered
+        let dock = self.cam.op.is_some() && ctx.content_rect().width() >= 900.0;
+        if dock {
+            egui::Panel::right("op-dock").resizable(false).exact_size(560.0).frame(egui::Frame::new().fill(theme::PANEL)).show(ui, |ui| {
+                self.cam.op_dock = Some(ui.max_rect());
+                ui.allocate_space(ui.available_size());
+            });
+        } else if self.right_open {
             egui::Panel::right("inspector").default_size(310.0).frame(egui::Frame::new().fill(theme::PANEL)).show(ui, |ui| {
                 inspector::inspector(ui, &mut self.shell, &mut self.canvas, self.gen.as_ref());
             });
@@ -1862,6 +1874,13 @@ impl eframe::App for App {
                     None => {}
                 }
             }
+            // the active tool's settings, above the drawing (as in Photoshop)
+            if self.mode == Mode::Design && !simulating {
+                egui::Panel::top("tool-options").resizable(false).exact_size(36.0).frame(egui::Frame::new().fill(theme::PANEL).inner_margin(egui::Margin { left: 10, right: 10, top: 0, bottom: 0 })).show(ui, |ui| {
+                    let look = shell::tool_look(tool_id(self.canvas.tool));
+                    crate::tools::options_bar(ui, &mut self.canvas, look);
+                });
+            }
             egui::Panel::bottom("sheets").resizable(false).exact_size(28.0).frame(egui::Frame::new().fill(theme::PANEL)).show(ui, |ui| {
                 shell::sheet_tabs(ui, &mut self.shell, &self.canvas.doc, self.all_sheets);
             });
@@ -1871,7 +1890,7 @@ impl eframe::App for App {
                 if simulating && self.view_3d {
                     self.view3d.ui(ui, &self.player, self.canvas.show_paths);
                     self.puck(ui.ctx(), true);
-                    self.status = format!("yaw {:.0}°  pitch {:.0}°  drag: orbit", self.view3d.yaw, self.view3d.pitch); // fits the 230 px slot
+                    self.status = i18n::t("Drag to turn, scroll to zoom").to_string(); // fits the 230 px slot
                 } else {
                     // while simulating, the Show menu decides: all toolpath previews, or the moves cut so far drawn
                     // over the carved board (the tool's trail), or none
@@ -1908,7 +1927,8 @@ impl eframe::App for App {
                 if let (true, Some(f)) = (simulating, busy) {
                     busy_card(ui.painter(), rect, i18n::t("Preparing the simulation…"), Some(f));
                 }
-                if self.canvas.doc.shapes.is_empty() && self.canvas.doc.reliefs.is_empty() && !self.canvas.dirty && !simulating && self.cam.prefs.start_card && !self.canvas.card_closed {
+                self.shell.start_card = self.canvas.doc.shapes.is_empty() && self.canvas.doc.reliefs.is_empty() && !self.canvas.dirty && !simulating && self.cam.prefs.start_card && !self.canvas.card_closed;
+                if self.shell.start_card {
                     let recent: Vec<String> = self.recent.iter().take(5).cloned().collect();
                     shell::empty_state(ui, &mut self.shell, rect, &self.canvas.doc, &recent);
                     // Esc closes the card like its ×, unless a dialog or a field has the keyboard
@@ -2680,7 +2700,7 @@ impl App {
 /// showcase, which the goldens keep), so the demo leaves the V-bit to clear them and opens without warnings.
 /// The "please wait" card over `rect`: a title and a bar (`progress` 0..1, None = no number, the bar half full).
 fn busy_card(p: &egui::Painter, rect: egui::Rect, title: &str, progress: Option<f32>) {
-    p.rect_filled(rect, 0.0, theme::CANVAS_BG.gamma_multiply(0.85));
+    p.rect_filled(rect, 0.0, theme::canvas_bg().gamma_multiply(0.85));
     let card = egui::Rect::from_center_size(rect.center(), egui::vec2(320.0, 84.0));
     p.rect_filled(card, 8.0, theme::PANEL);
     p.text(card.center_top() + egui::vec2(0.0, 24.0), egui::Align2::CENTER_CENTER, title, theme::font(14.0), theme::TEXT);

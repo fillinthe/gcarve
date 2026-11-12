@@ -112,7 +112,8 @@ fn properties(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas) {
     if let Some(b) = bounds {
         if sh.edit_for != canvas.selected() || !focused {
             let bound = canvas.selection_bindings(); // a bound field shows its expression
-            sh.edit = [("x", b.x0), ("y", b.y0), ("w", b.w()), ("h", b.h())].map(|(k, v)| bound.get(k).cloned().unwrap_or_else(|| format!("{:.dec$}", v * u)));
+            let (fx, fy) = gcarve_core::document::anchor_frac(canvas.selection_anchor()); // X / Y read at the Grows from point (VCarve's anchor)
+            sh.edit = [("x", b.x0 + fx * b.w()), ("y", b.y0 + fy * b.h()), ("w", b.w()), ("h", b.h())].map(|(k, v)| bound.get(k).cloned().unwrap_or_else(|| format!("{:.dec$}", v * u)));
             sh.edit_for = canvas.selected();
         }
     } else {
@@ -171,7 +172,7 @@ fn properties(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas) {
         ui.horizontal(|ui| {
             theme::checkbox(ui, &mut sh.lock_aspect, i18n::t("Keep proportions")).tip(i18n::t("Changing W also scales H (and the reverse)"));
             ui.add_space(8.0);
-            ui.label(RichText::new(i18n::t("Grows from")).color(theme::TEXT_DIM)).on_hover_text(i18n::t("Where a size change holds still: type a new W or H, or change a variable, and the shape grows away from this point. Bottom-left keeps the old behaviour."));
+            ui.label(RichText::new(i18n::t("Grows from")).color(theme::TEXT_DIM)).on_hover_text(i18n::t("Where a size change holds still: type a new W or H, or change a variable, and the shape grows away from this point. X and Y are read at this point too."));
             let mut a = canvas.selection_anchor();
             if anchor_picker(ui, &mut a) {
                 canvas.set_selection_anchor(a);
@@ -256,7 +257,7 @@ fn next_step(ui: &mut egui::Ui, sh: &mut Shell, canvas: &Canvas) {
             }
         });
         // a blank board stops most first visitors: a finished project to change is an easier start
-        if doc.shapes.is_empty() {
+        if doc.shapes.is_empty() && !sh.start_card {
             ui.add_space(6.0);
             ui.label(RichText::new(i18n::t("Or start from a ready project:")).size(12.0).color(theme::TEXT_DIM));
             starter_buttons(ui, sh);
@@ -296,7 +297,7 @@ fn tour_card(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Doc
                         sh.push("import");
                     }
                 });
-                if i == 0 {
+                if i == 0 && !sh.start_card {
                     ui.label(RichText::new(i18n::t("Or start from a ready project:")).size(12.0).color(theme::TEXT_DIM));
                     starter_buttons(ui, sh);
                 }
@@ -403,7 +404,7 @@ fn layers(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas) {
         // picker recolour live without more steps
         let mut col = hex(&l.color);
         row.spacing_mut().interact_size = egui::vec2(14.0, 14.0);
-        if egui::color_picker::color_edit_button_srgba(&mut row, &mut col, egui::color_picker::Alpha::Opaque).tip(i18n::t("Layer colour")).changed() {
+        if egui::color_picker::color_edit_button_srgba(&mut row, &mut col, egui::color_picker::Alpha::Opaque).tip(i18n::t("Layer color")).changed() {
             acts.push(Act::Color(i, format!("#{:02x}{:02x}{:02x}", col.r(), col.g(), col.b()), row.input(|inp| inp.pointer.any_pressed())));
         }
         // name: edited in a buffer, renamed (one undo step) when the field loses focus
@@ -542,25 +543,37 @@ fn toolpaths(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Option
     let used = sh.tp_usage.1.clone();
     let active = doc.active_sheet.max(0) as usize;
     // one row of dropdowns: view (your folders / a folder per sheet / bits), which sheet, which layer; + new folder
-    ui.horizontal(|ui| {
-        ui.spacing_mut().item_spacing.x = 4.0;
+    // two drop-downs to a row, each half the panel (three in one row read "Fold…", "All s…"): with several sheets the
+    // view gets its own row
+    let half = ((ui.available_width() - 4.0) / 2.0).floor() - 2.0;
+    let view = |ui: &mut egui::Ui, sh: &mut Shell| {
         let views = [(VIEW_FOLDERS, i18n::t("Folders")), (VIEW_SHEETS, i18n::t("By sheet")), (VIEW_BITS, i18n::t("By bit"))];
         let current = views.iter().find(|v| v.0 == sh.tp_group).map_or(i18n::t("Folders"), |v| v.1);
-        crate::widgets::combo_box("tp-view").selected_text(current).width(76.0).show_ui(ui, |ui| {
+        crate::widgets::combo_box("tp-view").selected_text(current).width(half).show_ui(ui, |ui| {
             for (g, name) in views {
                 ui.selectable_value(&mut sh.tp_group, g, name);
             }
         }).response.tip(i18n::t("Folders: yours, drag toolpaths in. By sheet: a heading per sheet with the toolpaths that cut there. By bit: one G-code file per bit"));
+    };
+    if nsheets > 1 {
+        ui.horizontal(|ui| view(ui, sh));
+    }
+    ui.horizontal(|ui| {
+        ui.spacing_mut().item_spacing.x = 4.0;
+        let cw = half;
+        if nsheets <= 1 {
+            view(ui, sh);
+        }
         if nsheets > 1 {
             let label = if sh.tp_this_sheet { crate::shell::sheet_name(doc, active) } else { i18n::t("All sheets").to_string() };
-            crate::widgets::combo_box("tp-sheet").selected_text(label).width(76.0).show_ui(ui, |ui| {
+            crate::widgets::combo_box("tp-sheet").selected_text(label).width(cw).show_ui(ui, |ui| {
                 ui.selectable_value(&mut sh.tp_this_sheet, false, i18n::t("All sheets"));
                 ui.selectable_value(&mut sh.tp_this_sheet, true, i18n::tf("{sheet} (this one)", &[("sheet", &crate::shell::sheet_name(doc, active))]));
             }).response.tip(i18n::t("Every toolpath (the ones with nothing on this sheet greyed), or only the ones that cut on this sheet"));
         }
         let layers: Vec<(i32, String)> = std::iter::once((-1, i18n::t("All layers").to_string())).chain(doc.layers.iter().enumerate().map(|(i, l)| (i as i32, l.name.clone()))).collect();
         let current = layers.iter().find(|l| l.0 == sh.tp_layer).map_or(i18n::t("All layers").to_string(), |l| l.1.clone());
-        crate::widgets::combo_box("tp-layer").selected_text(current).width(76.0).show_ui(ui, |ui| {
+        crate::widgets::combo_box("tp-layer").selected_text(current).width(cw).show_ui(ui, |ui| {
             for (i, n) in &layers {
                 ui.selectable_value(&mut sh.tp_layer, *i, n);
             }
@@ -972,7 +985,7 @@ fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Docume
         _ => String::new(),
     };
     let info = if here || used.len() < 2 { format!("{place}{tool}  ·  {info}") } else { format!("not on this sheet  ·  {place}{tool}") };
-    p.text(egui::pos2(tx, rect.top() + 19.0), egui::Align2::LEFT_TOP, info, theme::font(11.0), tc.gamma_multiply(0.75));
+    let mut info_right = rect.right() - 34.0;
     // sheet column: the sheets it cuts on, this one in the accent colour ("all" when every sheet)
     if used.len() > 1 {
         let on: Vec<usize> = (0..used.len()).filter(|&j| used[j] > 0).collect();
@@ -994,7 +1007,13 @@ fn op_row(ui: &mut egui::Ui, sh: &mut Shell, doc: &gcarve_core::document::Docume
         let bg = if sh.op_sel == Some(i) || sh.op_multi.contains(&i) { theme::ACCENT } else if resp.hovered() { theme::ROW_HOVER } else { theme::PANEL };
         ui.painter().rect_filled(egui::Rect::from_min_size(at - egui::vec2(6.0, 1.0), g.size() + egui::vec2(6.0, 2.0)), 0.0, bg);
         ui.painter().galley(at, g, tc);
+        info_right = at.x - 10.0;
     }
+    // the second line ends in "…" where the sheet numbers start, not cut through a word
+    let mut job = egui::text::LayoutJob::simple_singleline(info, theme::font(11.0), tc.gamma_multiply(0.75));
+    job.wrap = egui::text::TextWrapping::truncate_at_width((info_right - tx).max(20.0));
+    let g = ui.painter().layout_job(job);
+    ui.painter().galley(egui::pos2(tx, rect.top() + 19.0), g, tc);
     let eye = egui::Rect::from_center_size(egui::pos2(rect.right() - 14.0, rect.center().y), egui::vec2(21.0, 21.0));
     let mut e = ui.new_child(egui::UiBuilder::new().max_rect(eye).layout(egui::Layout::centered_and_justified(egui::Direction::LeftToRight))); // new_child: `put` would advance the row cursor
     let er = IconButton::new(if op.visible { "eye" } else { "eye-off" }).size(15.0).padding(3.0).tip(if op.visible { i18n::t("Hide this toolpath's preview") } else { i18n::t("Show this toolpath's preview") }).show(&mut e);

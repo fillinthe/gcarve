@@ -1,3 +1,4 @@
+// "And in the cutting of stones, to set them, and in carving of wood, to make any manner of cunning work." Exodus 35:33 (KJV)
 //! CAM operations: tools, job setup, toolpath generation (C++ `core/cam.*`). Produces the post-processor IR (job.rs).
 //! Offsets and booleans go through clipper2-rust with the same calls and precision as the C++ engine (Clipper2 C++);
 //! the v-carve medial axis uses boostvoronoi (the Rust port of the Boost.Polygon Voronoi the C++ engine vendors).
@@ -345,6 +346,46 @@ fn off_corners(c: f64, corners: &[f64], half: f64, reach: f64, l: f64, closed: b
     c
 }
 
+/// Where the evenly spaced (automatic) tabs go along a path: distances from its start. Empty when they don't fit.
+fn auto_stations(path: &[Pt], lens: &[f64], closed: bool, op: &Op, tool: &Tool) -> Vec<f64> {
+    let l = *lens.last().unwrap_or(&0.0);
+    let w = op.tab_width + tool.diameter;
+    // one every `tab_spacing` along this part's cut, else the same count on every part
+    let count = if op.tab_spacing > 0.0 { ((l / op.tab_spacing).round() as i32).clamp(1, 200) } else { op.tab_count };
+    // a small part gets fewer tabs (at least a tab's width of cut between them), not none
+    let count = count.min((l / (2.0 * w)).floor() as i32);
+    if count < 1 || l <= 0.0 {
+        return Vec::new();
+    }
+    let gap = l / count as f64;
+    let corners = if op.tab_corners { corner_stations(path, lens, tool.diameter.max(0.05)) } else { Vec::new() };
+    (0..count)
+        .map(|i| {
+            let c = (i as f64 + 0.5) * gap;
+            if corners.is_empty() { c } else { off_corners(c, &corners, w / 2.0 + tool.diameter / 2.0, gap / 2.0, l, closed) }
+        })
+        .collect()
+}
+
+/// The Tabs tool's starting point: about where the automatic tabs of `op` fall on this outline (measured on the
+/// outline, not the cutter path, so a little off for a wide bit), as points that can become by-hand tabs.
+pub fn auto_tab_points(outline: &Contour, op: &Op, tool: &Tool) -> Vec<Pt> {
+    let mut path = flatten(outline, crate::geom::FLATTEN_TOL);
+    if outline.closed && path.len() > 1 {
+        path.push(path[0]);
+    }
+    let lens = lengths(&path);
+    auto_stations(&path, &lens, outline.closed, op, tool)
+        .into_iter()
+        .map(|s| {
+            let s = s.rem_euclid(*lens.last().unwrap());
+            let i = lens.partition_point(|&x| x <= s).clamp(1, path.len() - 1);
+            let t = (s - lens[i - 1]) / (lens[i] - lens[i - 1]).max(1e-12);
+            path[i - 1] + (path[i] - path[i - 1]) * t
+        })
+        .collect()
+}
+
 /// Builds the moves for one cutter path. closed: pts[0] == pts.last(). `hole`: the ring cuts a hole out of a part,
 /// so a scrap too small for tabs is let go without a warning.
 fn cut_path(path: &[Pt], closed: bool, hole: bool, op: &Op, tool: &Tool, m: &Material, warn: &mut Vec<String>) -> Toolpath {
@@ -357,29 +398,18 @@ fn cut_path(path: &[Pt], closed: bool, hole: bool, op: &Op, tool: &Tool, m: &Mat
     let mut spans: Vec<(f64, f64)> = Vec::new();
     let w = op.tab_width + tool.diameter;
     // tabs placed by hand: the points that fall on this cut (the cutter path runs one radius off the outline)
-    let by_hand: Vec<f64> = if op.tabs && op.tab_height > 0.0 && l > 0.0 { op.tab_points.iter().filter_map(|p| along(path, &lens, pt(p[0], p[1]), tool.diameter + 0.25)).collect() } else { Vec::new() };
+    // tabs hold a part in a cut deeper than they are tall; in a shallower cut (engraving a line, a drag knife) they
+    // would lift the bit above the surface and leave gaps
+    let tabs = op.tabs && op.depth > op.tab_height + 1e-9;
+    let by_hand: Vec<f64> = if tabs && op.tab_height > 0.0 && l > 0.0 { op.tab_points.iter().filter_map(|p| along(path, &lens, pt(p[0], p[1]), tool.diameter + 0.25)).collect() } else { Vec::new() };
     if !by_hand.is_empty() {
         spans = by_hand.iter().map(|&c| (c - w / 2.0, c + w / 2.0)).collect();
-    } else if op.tabs && op.tab_count > 0 && op.tab_height > 0.0 && l > 0.0 {
-        // one every `tab_spacing` along this part's cut, else the same count on every part
-        let count = if op.tab_spacing > 0.0 { ((l / op.tab_spacing).round() as i32).clamp(1, 200) } else { op.tab_count };
-        // a small part gets fewer tabs (at least a tab's width of cut between them), not none
-        let count = count.min((l / (2.0 * w)).floor() as i32);
-        if count < 1 {
-            if !hole {
-                warn.push(format!("{}: tabs don't fit, skipped", op.name));
-            }
-        } else {
-            let gap = l / count as f64;
-            let corners = if op.tab_corners { corner_stations(path, &lens, tool.diameter.max(0.05)) } else { Vec::new() };
-            for i in 0..count {
-                let mut c = (i as f64 + 0.5) * gap;
-                if !corners.is_empty() {
-                    c = off_corners(c, &corners, w / 2.0 + tool.diameter / 2.0, gap / 2.0, l, closed);
-                }
-                spans.push((c - w / 2.0, c + w / 2.0));
-            }
+    } else if tabs && op.tab_count > 0 && op.tab_height > 0.0 && l > 0.0 {
+        let at = auto_stations(path, &lens, closed, op, tool);
+        if at.is_empty() && !hole {
+            warn.push(format!("{}: tabs don't fit, skipped", op.name));
         }
+        spans = at.iter().map(|&c| (c - w / 2.0, c + w / 2.0)).collect();
     }
     let local = |s: f64| if closed && l > 0.0 { s - (s / l).floor() * l } else { s };
     let in_tab = |s: f64| {
@@ -3479,6 +3509,12 @@ mod tab_tests {
         // a 0.4 in hole in a bigger part: no room for a tab in its scrap, and nothing to warn about
         let r = generate(&op, &tool, &[make_rect(1.0, 1.0, 5.0, 4.0), make_rect(2.0, 2.0, 2.4, 2.4)], &m, None);
         assert!(r.warnings.is_empty(), "{:?}", r.warnings);
+        // a cut shallower than the tabs are tall (engraving the line): no tabs, so the bit never lifts out of the cut
+        // (tab height 0.125 on a 0.05 cut used to send it to +0.075)
+        let op = Op { depth: 0.05, side: Side::On, tab_count: 4, ..op };
+        let r = generate(&op, &tool, &[make_rect(1.0, 1.0, 9.0, 7.0)], &m, None);
+        let cutting = r.paths.iter().flat_map(|p| &p.moves).filter(|mv| mv.kind != crate::job::MoveType::Rapid && mv.x.is_some());
+        assert!(cutting.clone().count() > 3 && cutting.clone().all(|mv| mv.z.is_none_or(|z| z <= 1e-9)), "a shallow cut never lifts above the surface for a tab");
     }
 
     #[test]

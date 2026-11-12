@@ -1,3 +1,4 @@
+// "And whatsoever ye do, do it heartily, as to the Lord, and not unto men." Colossians 3:23 (KJV)
 //! GCarve app entry: native window (Windows, macOS, Linux) or the browser canvas (wasm32). Same App either way.
 
 #[allow(unused_imports)] // a file may only use it under one cfg

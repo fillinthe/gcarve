@@ -52,7 +52,7 @@ pub fn strip(ui: &mut egui::Ui, labels: &[(String, bool)], cur: usize) -> Option
             let w = (galley.size().x + 44.0).min(220.0);
             let (r, resp) = ui.allocate_exact_size(egui::vec2(w, 26.0), egui::Sense::click());
             let on = i == cur;
-            let fill = if on { theme::CANVAS_BG } else if resp.hovered() { theme::ROW_HOVER } else { Color32::TRANSPARENT };
+            let fill = if on { theme::canvas_bg() } else if resp.hovered() { theme::ROW_HOVER } else { Color32::TRANSPARENT };
             ui.painter().rect_filled(r, 5.0, fill);
             let clip = egui::Rect::from_min_max(r.min, egui::pos2(r.right() - 26.0, r.bottom()));
             ui.painter().with_clip_rect(clip).galley(egui::pos2(r.left() + 10.0, r.center().y - galley.size().y / 2.0), galley, if on { theme::TEXT } else { theme::TEXT.gamma_multiply(0.7) });

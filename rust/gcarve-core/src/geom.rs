@@ -1,3 +1,4 @@
+// "The carpenter stretcheth out his rule; he marketh it out with a line; he fitteth it with planes, and he marketh it out with the compass." Isaiah 44:13 (KJV)
 //! Vector geometry shared by the editor, importers and toolpath code (C++ `core/geom.*`). Units: inches, Y up.
 
 use std::ops::{Add, Mul, Sub};

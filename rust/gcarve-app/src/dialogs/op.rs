@@ -35,10 +35,15 @@ pub struct OpDialog {
     by_spacing: bool,
     /// the hand-placed tab being dragged along the outline
     drag_tab: Option<usize>,
+    /// the right-side dock to draw in this frame (Dialogs::op_dock), None = floating
+    pub dock: Option<egui::Rect>,
     /// Profile: clicks on the canvas place / remove tabs at the part's outline (Canvas::tab_pick)
     place_tabs: bool,
     /// chamfer: sized by width (else by V depth)
     by_width: bool,
+    /// Profile: the seldom-used rows (lead in, drag knife, keyhole, compensation, start point, last pass, onion skin)
+    /// are shown; starts open when the toolpath uses one of them
+    more: bool,
     /// Bits… pressed this frame (Dialogs opens the Tool Library)
     pub open_bits: bool,
     /// Selector… pressed: the Vector Selector opens (its pick becomes this new toolpath's shapes)
@@ -180,11 +185,13 @@ impl OpDialog {
             tab_count: op.tab_count,
             by_spacing: op.tab_spacing > 0.0,
             by_width: op.chamfer_width > 0.0 || op.kind != OpType::Chamfer,
+            more: op.kind == OpType::Profile && (op.ramp_in > 0.0 || op.drag_knife > 0.0 || op.keyhole || op.cutter_comp || op.start_first || op.allowance > 0.0 || op.skin > 0.0),
             open_bits: false,
             open_selector: false,
             pick_photo: false,
             place_tabs: false,
             drag_tab: None,
+            dock: None,
             tools_before: None,
             f,
             op,
@@ -272,11 +279,48 @@ impl OpDialog {
         best
     }
 
+    /// The part (shape id) of this toolpath whose outline is nearest `c`, within `reach`.
+    fn part_at(&self, canvas: &crate::canvas::Canvas, c: Pt, reach: f64) -> Option<i32> {
+        let doc = &canvas.doc;
+        doc.op_shape_ids(&self.apply(doc)).into_iter().filter_map(|id| doc.find(id).map(|s| (gcarve_core::geom::nearest(&s.c, c).d, id))).filter(|(d, _)| *d < reach).min_by(|a, b| a.0.total_cmp(&b.0)).map(|(_, id)| id)
+    }
+
+    /// VCarve's Edit Tabs: the evenly spaced tabs of the part at `c` become tabs placed by hand (once, when it has
+    /// none yet), so they can be moved or deleted like the rest.
+    fn take_over_part(&mut self, canvas: &crate::canvas::Canvas, c: Pt) {
+        let Some(id) = self.part_at(canvas, c, 1.5) else { return };
+        let doc = &canvas.doc;
+        let Some(outline) = doc.find(id).map(|s| &s.c) else { return };
+        if self.op.tab_points.iter().any(|p| gcarve_core::geom::nearest(outline, pt(p[0], p[1])).d < 0.05) {
+            return;
+        }
+        let op = self.apply(doc);
+        if let Some(tool) = doc.tools.get(op.tool.max(0) as usize) {
+            self.op.tab_points.extend(gcarve_core::cam::auto_tab_points(outline, &op, tool).into_iter().map(|p| [p.x, p.y]));
+        }
+    }
+
     /// By-hand tabs: while the box is ticked the canvas hands its clicks over (not selecting anything); a click near the
-    /// outline of the shapes this toolpath cuts adds a tab there, a click on a tab takes it away.
+    /// outline of the shapes this toolpath cuts adds a tab there, a click on a tab takes it away, a tab drags along.
+    /// The first touch on a part turns its evenly spaced tabs into placed ones (VCarve: auto place, then edit).
     fn tab_clicks(&mut self, host: &mut Host) {
         let on = self.place_tabs && self.op.tabs && self.op.kind == OpType::Profile;
-        host.canvas.tab_marks = if self.op.kind == OpType::Profile && self.op.tabs { self.op.tab_points.clone() } else { Vec::new() };
+        let shown = self.op.kind == OpType::Profile && self.op.tabs;
+        host.canvas.tab_marks = if shown { self.op.tab_points.clone() } else { Vec::new() };
+        host.canvas.tab_marks_auto.clear();
+        if shown && on {
+            // ponytail: worked out every frame while placing; cache by op + doc revision if big nests feel slow
+            let doc = &host.canvas.doc;
+            let op = self.apply(doc);
+            if let Some(tool) = doc.tools.get(op.tool.max(0) as usize) {
+                for id in doc.op_shape_ids(&op) {
+                    let Some(s) = doc.find(id) else { continue };
+                    if !op.tab_points.iter().any(|p| gcarve_core::geom::nearest(&s.c, pt(p[0], p[1])).d < 0.05) {
+                        host.canvas.tab_marks_auto.extend(gcarve_core::cam::auto_tab_points(&s.c, &op, tool).into_iter().map(|p| [p.x, p.y]));
+                    }
+                }
+            }
+        }
         if !on {
             host.canvas.tab_clicks.clear();
             return;
@@ -285,6 +329,7 @@ impl OpDialog {
         // a tab dragged along: it follows the pointer, kept on the outline
         if let Some((start, now, done)) = host.canvas.tab_drag {
             if self.drag_tab.is_none() {
+                self.take_over_part(host.canvas, start);
                 self.drag_tab = self.op.tab_points.iter().position(|p| gcarve_core::geom::dist(pt(p[0], p[1]), start) < 0.3).or(Some(usize::MAX));
             }
             if let Some(i) = self.drag_tab.filter(|&i| i < self.op.tab_points.len()) {
@@ -301,6 +346,7 @@ impl OpDialog {
         }
         let clicks = std::mem::take(&mut host.canvas.tab_clicks);
         for c in clicks {
+            self.take_over_part(host.canvas, c);
             if let Some(i) = self.op.tab_points.iter().position(|p| gcarve_core::geom::dist(pt(p[0], p[1]), c) < 0.3) {
                 self.op.tab_points.remove(i);
                 continue;
@@ -335,14 +381,26 @@ impl OpDialog {
         let shapes: usize = (0..doc.sheets.len().max(1) as i32).map(|j| doc.op_shape_ids_on(&applied, j).len()).sum();
         let needs_shapes = !matches!(k, OpType::Relief | OpType::Imported);
         let at = egui::pos2(ctx.content_rect().right() - 12.0, 70.0);
+        let dock = self.dock.take();
         // the field column: 300 px, less on a phone so a row fits the dialog (labels take about 120 px)
-        let col = (ctx.content_rect().width() - 192.0).clamp(150.0, 300.0);
+        // docked: the dock's content width less the label column (≈ 150) and the scroll bar
+        let col = match dock {
+            Some(r) => (r.width() - 42.0 - 150.0 - 14.0 - 16.0).clamp(150.0, 300.0),
+            None => (ctx.content_rect().width() - 192.0).clamp(150.0, 300.0), // the dialog below is label column (≈ 160) + this + margins wide
+        };
         let wide = col + 60.0;
-        crate::widgets::Dialog::new(title).id("op").width(464.0).modeless(at, egui::Align2::RIGHT_TOP).show(ctx, |ui| {
+        let dialog = crate::widgets::Dialog::new(title).id("op");
+        // docked in the right side panel (the app keeps it free while this is open), else floating at the top right
+        let dialog = match dock {
+            Some(r) => dialog.docked(r),
+            None => dialog.width(548.0).modeless(at, egui::Align2::RIGHT_TOP),
+        };
+        let fields_h = dock.map_or((ctx.input(|i| i.content_rect().height()) - 232.0).max(160.0), |r| (r.height() - 46.0 - 32.0 - 30.0 - 70.0).max(160.0));
+        dialog.show(ctx, |ui| {
             // the fields scroll, OK / Cancel stay in view: the dialog starts 70 px down and its frame, title and
             // button row take about 160 px more
             // (sideways too: on a phone the rows are wider than the dialog)
-            egui::ScrollArea::both().max_height((ctx.input(|i| i.content_rect().height()) - 232.0).max(160.0)).show(ui, |ui| {
+            egui::ScrollArea::new([dock.is_none(), true]).max_height(fields_h).min_scrolled_height(if dock.is_some() { fields_h } else { 0.0 }).show(ui, |ui| {
                 egui::Grid::new("op").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
                     ui.label(i18n::t("Name"));
                     ui.add(crate::widgets::field(&mut self.op.name).desired_width(col));
@@ -374,10 +432,14 @@ impl OpDialog {
                             ui.end_row();
                         }
                         ui.label(i18n::t("Shapes"));
+                        // the hint wraps above the buttons: one long row made the docked form scroll sideways
+                        ui.vertical(|ui| {
+                        ui.set_max_width(wide);
+                        if shapes == 0 {
+                            ui.add(egui::Label::new(RichText::new(i18n::t("Click shapes on the canvas (Shift adds), or pick a layer")).color(crate::theme::ORANGE)).wrap());
+                        }
                         ui.horizontal(|ui| {
-                            if shapes == 0 {
-                                ui.label(RichText::new(i18n::t("Click shapes on the canvas (Shift adds), or pick a layer")).color(crate::theme::ORANGE));
-                            } else {
+                            if shapes > 0 {
                                 ui.label(format!("{shapes} shape(s)"));
                             }
                             if ui.button(i18n::t("Selector…")).on_hover_text(i18n::t("Vector Selector: pick shapes by kind (open, closed, circles), size and layer")).clicked() {
@@ -387,6 +449,7 @@ impl OpDialog {
                                 self.op.shape_ids = selected.clone();
                                 self.scope = 0;
                             }
+                        });
                         });
                         ui.end_row();
                     }
@@ -415,7 +478,7 @@ impl OpDialog {
                     if !doc.reliefs.is_empty() && self.op.kind != OpType::Relief {
                         ui.label(i18n::t("Follow 3D model")).on_hover_text(i18n::t("Project the toolpath onto the model: every cut is measured down from the model's surface instead of the flat board top (engraving or V-carving on a carved sign)"));
                         let name = |id: i32| if id <= 0 { i18n::t("No (flat board)").to_string() } else { doc.find_relief(id).map_or(format!("Model #{id} (gone)"), |r| r.name.clone()) };
-                        egui::ComboBox::from_id_salt("project-on").selected_text(name(self.op.project_on)).width(280.0).show_ui(ui, |ui| {
+                        crate::widgets::combo_box("project-on").selected_text(name(self.op.project_on)).width(280.0).show_ui(ui, |ui| {
                             ui.selectable_value(&mut self.op.project_on, 0, name(0));
                             for r in &doc.reliefs {
                                 ui.selectable_value(&mut self.op.project_on, r.id, &r.name);
@@ -487,7 +550,7 @@ impl OpDialog {
                         ui.add(egui::Slider::new(&mut self.op.photo_gamma, 0.4..=2.5).fixed_decimals(2)).tip(i18n::t("Higher = lighter mid tones; lower = darker mid tones"));
                         ui.end_row();
                         ui.label("");
-                        hint(ui, i18n::t("Carves the picture with a V-bit, row by row: darker means deeper and wider. It fills the selected shape (draw a rectangle the size you want). Rows are spaced so full black grooves just touch; a 60° or 90° bit and a fine-grained, light-coloured board work best."));
+                        hint(ui, i18n::t("Carves the picture with a V-bit, row by row: darker means deeper and wider. It fills the selected shape (draw a rectangle the size you want). Rows are spaced so full black grooves just touch; a 60° or 90° bit and a fine-grained, light-colored board work best."));
                         ui.end_row();
                         return;
                     }
@@ -719,7 +782,7 @@ impl OpDialog {
                             (s.id, format!("Vector #{} ({} × {})", s.id, crate::units::text(doc, b.w()), crate::units::text(doc, b.h())))
                         }).collect();
                         let name = |id: i32| if id <= 0 { i18n::t("None (plain flute)").to_string() } else { open.iter().find(|(i, _)| *i == id).map_or(format!("Vector #{id} (missing)"), |(_, n)| n.clone()) };
-                        egui::ComboBox::from_id_salt("section").selected_text(name(self.op.section)).width(col).show_ui(ui, |ui| {
+                        crate::widgets::combo_box("section").selected_text(name(self.op.section)).width(col).show_ui(ui, |ui| {
                             ui.selectable_value(&mut self.op.section, 0, name(0));
                             for (id, n) in &open {
                                 ui.selectable_value(&mut self.op.section, *id, n);
@@ -820,6 +883,13 @@ impl OpDialog {
                         ui.end_row();
                     }
                     if is_profile {
+                        ui.label("");
+                        if ui.link(if self.more { i18n::t("Fewer options") } else { i18n::t("More options: lead in, drag knife, keyhole, last pass…") }).clicked() {
+                            self.more = !self.more;
+                        }
+                        ui.end_row();
+                    }
+                    if is_profile && self.more {
                         ui.label(unit_label(i18n::t("Lead in / out"), doc)).tip(i18n::t("The bit plunges in the waste and curves onto the line (and off it again), so there is no plunge mark on the part edge. The value is the arc radius; 0 = off. Not used when cutting on the line."));
                         ui.horizontal(|ui| {
                             self.f.ui(ui, "rampIn", doc);
@@ -910,7 +980,25 @@ impl OpDialog {
                     }
                     if is_profile {
                         ui.label(i18n::t("Tabs"));
-                        crate::widgets::checkbox(ui, &mut self.op.tabs, i18n::t("Add tabs"));
+                        // VCarve's Add tabs + Edit Tabs…: the by-hand editor sits right by the switch, not below the fold
+                        ui.vertical(|ui| {
+                            ui.horizontal(|ui| {
+                                crate::widgets::checkbox(ui, &mut self.op.tabs, i18n::t("Add tabs"));
+                                let tabs = self.op.tabs;
+                                let label = if self.place_tabs { i18n::t("Done editing tabs") } else { i18n::t("Edit tabs on the drawing…") };
+                                if ui.add_enabled(tabs, crate::widgets::Button::new(label).primary(self.place_tabs)).tip(i18n::t("The evenly spaced tabs show as hollow squares. Click a part's outline to add a tab, click a tab to delete it, drag one to move it: that part's tabs are then yours to place. Parts you don't touch keep the evenly spaced ones.")).clicked() {
+                                    self.place_tabs = !self.place_tabs;
+                                }
+                                if tabs && !self.op.tab_points.is_empty() && ui.small_button(format!("Clear {}", self.op.tab_points.len())).tip(i18n::t("Forget the tabs placed or moved by hand: every part goes back to evenly spaced tabs")).clicked() {
+                                    self.op.tab_points.clear();
+                                }
+                            });
+                            if self.op.tabs && self.place_tabs {
+                                hint(ui, i18n::t("Click an outline to add a tab, click a tab (✕) to delete it, drag a tab to move it"));
+                            } else if self.op.tabs && !self.op.tab_points.is_empty() {
+                                hint(ui, &format!("{} placed by hand", self.op.tab_points.len()));
+                            }
+                        });
                         ui.end_row();
                         let tabs = self.op.tabs;
                         ui.add_enabled(tabs, egui::Label::new(i18n::t("How many")));
@@ -936,26 +1024,6 @@ impl OpDialog {
                         ui.end_row();
                         ui.add_enabled(tabs, egui::Label::new(i18n::t("Spread evenly")));
                         ui.add_enabled(tabs, crate::widgets::CheckBox::new(&mut self.op.tab_corners, i18n::t("Keep tabs off corners"))).tip(i18n::t("Evenly spaced tabs that would land on a corner slide along to the nearest straight part: a tab on a corner is hard to sand off."));
-                        ui.end_row();
-                        ui.add_enabled(tabs, egui::Label::new(i18n::t("Place by hand"))).tip(i18n::t("Tabs you place replace the evenly spaced ones on the parts they are on; other parts keep the even ones."));
-                        ui.vertical(|ui| {
-                            ui.add_enabled_ui(tabs, |ui| {
-                                ui.horizontal(|ui| {
-                                    let label = if self.place_tabs { i18n::t("Done placing tabs") } else { i18n::t("Place tabs on the drawing…") };
-                                    if ui.add(crate::widgets::Button::new(label).primary(self.place_tabs)).clicked() {
-                                        self.place_tabs = !self.place_tabs;
-                                    }
-                                    if !self.op.tab_points.is_empty() && ui.small_button(format!("Clear {}", self.op.tab_points.len())).tip(i18n::t("Remove the tabs placed by hand: the parts go back to evenly spaced tabs")).clicked() {
-                                        self.op.tab_points.clear();
-                                    }
-                                });
-                                if self.place_tabs {
-                                    hint(ui, i18n::t("Click an outline to add a tab, click a tab to remove it, drag a tab to move it"));
-                                } else if !self.op.tab_points.is_empty() {
-                                    hint(ui, &format!("{} placed by hand", self.op.tab_points.len()));
-                                }
-                            });
-                        });
                         ui.end_row();
                     }
                 });

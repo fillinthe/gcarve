@@ -64,7 +64,7 @@ impl TrayDialog {
                     ui.end_row();
                 }
                 ui.label(i18n::t("Shape"));
-                egui::ComboBox::from_id_salt("tray-shape").selected_text(i18n::t(SHAPES[self.shape as usize])).show_ui(ui, |ui| {
+                crate::widgets::combo_box("tray-shape").width(170.0).selected_text(i18n::t(SHAPES[self.shape as usize])).show_ui(ui, |ui| {
                     for (i, s) in SHAPES.iter().enumerate() {
                         ui.selectable_value(&mut self.shape, i as u8, i18n::t(s));
                     }

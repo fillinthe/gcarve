@@ -40,14 +40,14 @@ pub struct TraceDialog {
 
 /// The same picture in colour at the size `load_gray` made it (transparent = white); gray-filled when it can't be read
 fn load_rgb(bytes: &[u8], w: usize, h: usize) -> Vec<[u8; 3]> {
-    let Ok(img) = image::load_from_memory(bytes) else { return vec![[255; 3]; w * h] };
+    let Ok(img) = crate::files::picture(bytes) else { return vec![[255; 3]; w * h] };
     let img = if img.width() as usize != w || img.height() as usize != h { img.resize_exact(w as u32, h as u32, image::imageops::FilterType::Triangle) } else { img };
     img.to_rgba8().pixels().map(|p| { let [r, g, b, a] = p.0; let k = f32::from(a) / 255.0; let mix = |c: u8| (f32::from(c) * k + 255.0 * (1.0 - k)).round() as u8; [mix(r), mix(g), mix(b)] }).collect()
 }
 
 /// A PNG / JPEG as 8-bit gray (transparent = white), scaled down to `max_px` on the long side. Also Photo V-Carve.
 pub fn load_gray(name: &str, bytes: &[u8], max_px: u32) -> Result<(Vec<u8>, usize, usize), String> {
-    let img = image::load_from_memory(bytes).map_err(|e| format!("{name}: {e}"))?;
+    let img = crate::files::picture(bytes).map_err(|e| format!("{name}: {e}"))?;
     let img = if img.width().max(img.height()) > max_px { img.resize(max_px, max_px, image::imageops::FilterType::Triangle) } else { img };
     let rgba = img.to_rgba8();
     let (w, h) = (rgba.width() as usize, rgba.height() as usize);
@@ -172,11 +172,11 @@ impl TraceDialog {
                 ui.label(i18n::t("Trace"));
                 ui.horizontal(|ui| {
                     changed |= crate::widgets::radio_value(ui, &mut self.by_colour, false, i18n::t("Dark parts")).changed();
-                    changed |= crate::widgets::radio_value(ui, &mut self.by_colour, true, i18n::t("One colour")).changed();
+                    changed |= crate::widgets::radio_value(ui, &mut self.by_colour, true, i18n::t("One color")).changed();
                 });
                 ui.end_row();
                 if self.by_colour {
-                    ui.label(i18n::t("Colour"));
+                    ui.label(i18n::t("Color"));
                     ui.horizontal(|ui| {
                         match self.colour {
                             Some(c) => {
@@ -184,12 +184,12 @@ impl TraceDialog {
                                 ui.painter().rect_filled(r, 3.0, Color32::from_rgb(c[0], c[1], c[2]));
                                 hint(ui, i18n::t("click the picture to pick another"));
                             }
-                            None => hint(ui, i18n::t("click the picture on the colour to trace")),
+                            None => hint(ui, i18n::t("click the picture on the color to trace")),
                         }
                     });
                     ui.end_row();
-                    ui.label(i18n::t("Colour range"));
-                    changed |= ui.add(egui::Slider::new(&mut self.tolerance, 5.0..=200.0).fixed_decimals(0)).on_hover_text(i18n::t("How different a pixel may be from the picked colour and still count")).changed();
+                    ui.label(i18n::t("Color range"));
+                    changed |= ui.add(egui::Slider::new(&mut self.tolerance, 5.0..=200.0).fixed_decimals(0)).on_hover_text(i18n::t("How different a pixel may be from the picked color and still count")).changed();
                     ui.end_row();
                 }
                 ui.add_enabled(!self.by_colour, egui::Label::new(i18n::t("Threshold")));

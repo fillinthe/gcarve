@@ -128,9 +128,10 @@ impl Canvas {
                 }
             }
             let (mut x, mut y, mut w, mut h) = (r.x0, r.y0, r.w(), r.h());
+            let (fx, fy) = gcarve_core::document::anchor_frac(self.selection_anchor());
             match prop {
-                "x" => x = v,
-                "y" => y = v,
+                "x" => x = v - fx * w, // a typed X / Y puts the Grows from point there
+                "y" => y = v - fy * h,
                 "w" => w = v,
                 _ => h = v,
             }
@@ -141,7 +142,6 @@ impl Canvas {
                 w = r.w() * h / r.h();
             }
             // a typed size grows away from the selection's anchor (the shapes' shared one; mixed = bottom-left)
-            let (fx, fy) = gcarve_core::document::anchor_frac(self.selection_anchor());
             x += fx * (r.w() - w);
             y += fy * (r.h() - h);
             let sx = if r.w() > 0.0 && w > 0.0 { w / r.w() } else { 1.0 };
@@ -322,6 +322,14 @@ mod tests {
         c.set_selection_field("w", "4", false);
         let b = gcarve_core::geom::bounds(&c.doc.find(id).unwrap().c);
         assert!((b.x1 - 4.0).abs() < 1e-9 && (b.x0 - 0.0).abs() < 1e-9, "{b:?}");
+        c.set_selection_anchor(8); // top-right: typed X / Y place that corner
+        c.set_selection_field("x", "10", false);
+        c.set_selection_field("y", "10", false);
+        let b = gcarve_core::geom::bounds(&c.doc.find(id).unwrap().c);
+        assert!((b.x1 - 10.0).abs() < 1e-9 && (b.y1 - 10.0).abs() < 1e-9, "{b:?}");
+        c.undo();
+        c.undo();
+        c.undo();
         c.undo();
         c.undo();
         assert_eq!(c.doc.find(id).unwrap().anchor, 0);

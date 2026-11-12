@@ -1,3 +1,4 @@
+// "For which of you, intending to build a tower, sitteth not down first, and counteth the cost, whether he have sufficient to finish it?" Luke 14:28 (KJV)
 //! Material removal simulation (C++ `core/sim.*`): a height-field of the board (depth below the surface per cell)
 //! carved by toolpaths.
 

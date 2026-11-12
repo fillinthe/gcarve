@@ -1,0 +1,1455 @@
+{
+ "maker": "CIC Workshop",
+ "source_summary": "CIC Workshop (Cutting It Close) published Carbide Create tool library CSV (dimensions, flutes, angles; preset feeds as presets, one set for all materials). Shanks from the product names.",
+ "retrieved": "2026-11-10",
+ "bits": [
+  {
+   "id": "cic-workshop-gdgirl",
+   "maker": "CIC Workshop",
+   "part_number": "GDGIRL",
+   "name": "Golden Girl - 1/4\" x 1\" Downcut Rougher",
+   "family": "end-mill-down",
+   "units": "in",
+   "diameter": 0.25,
+   "cut_length": 1.0,
+   "flutes": 3,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 100.0,
+     "plunge": 50.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00185,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop GDGIRL End Mill 0.25 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 3
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-gdboy",
+   "maker": "CIC Workshop",
+   "part_number": "GDBOY",
+   "name": "Golden Boy - 1/4\" x 1\" Upcut Rougher",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.25,
+   "cut_length": 1.0,
+   "flutes": 3,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 100.0,
+     "plunge": 50.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00185,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop GDBOY End Mill 0.25 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 3
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-gdboyxl",
+   "maker": "CIC Workshop",
+   "part_number": "GDBOYXL",
+   "name": "Golden Boy XL - 1/4\" x 1.5\" Upcut Rougher",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.25,
+   "cut_length": 1.5,
+   "flutes": 3,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 100.0,
+     "plunge": 50.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00185,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop GDBOYXL End Mill 0.25 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 3
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-gdbigboy",
+   "maker": "CIC Workshop",
+   "part_number": "GDBIGBOY",
+   "name": "Big Boy - 3/8\" x 1.25\" Upcut Rougher",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.375,
+   "cut_length": 1.25,
+   "flutes": 3,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 200.0,
+     "plunge": 100.0,
+     "stepdown": 0.375,
+     "chip_load": 0.0037,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop GDBIGBOY End Mill 0.375 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 3
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-gdbiggirl",
+   "maker": "CIC Workshop",
+   "part_number": "GDBIGGIRL",
+   "name": "Big Girl - 3/8\" x 1.25\" Downcut Rougher",
+   "family": "end-mill-down",
+   "units": "in",
+   "diameter": 0.375,
+   "cut_length": 1.25,
+   "flutes": 3,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 150.0,
+     "plunge": 75.0,
+     "stepdown": 0.375,
+     "chip_load": 0.00278,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop GDBIGGIRL End Mill 0.375 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 3
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-gdbabyboy",
+   "maker": "CIC Workshop",
+   "part_number": "GDBABYBOY",
+   "name": "Baby Boy - 1/8\" x .625\" Upcut Rougher - 1/8 Shank",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 0.625,
+   "flutes": 3,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 120.0,
+     "plunge": 60.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00222,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop GDBABYBOY End Mill 0.125 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 3
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-se3050",
+   "maker": "CIC Workshop",
+   "part_number": "SE3050",
+   "name": "Keyhole - 3/8\" x 3/8\" - 1/4 Shank",
+   "family": "keyhole",
+   "units": "in",
+   "diameter": 0.375,
+   "shank": 0.25,
+   "cut_length": 0.375,
+   "flutes": 2,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 60.0,
+     "plunge": 30.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00167,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop SE3050 End Mill 0.375 in",
+    "kind": "EndMill",
+    "diameter": 0.375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-pc25",
+   "maker": "CIC Workshop",
+   "part_number": "PC25",
+   "name": "Point Cutter Roundover - 1/2\" x 1/4\" - 1/4\" Radius - 1/4 Shank",
+   "family": "roundover",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "flutes": 2,
+   "corner_radius": 0.25,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 50.0,
+     "plunge": 25.0,
+     "stepdown": 0.175,
+     "chip_load": 0.00139,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop PC25 End Mill 0.5 in",
+    "kind": "EndMill",
+    "diameter": 0.5,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-surf1",
+   "maker": "CIC Workshop",
+   "part_number": "SURF1",
+   "name": "Surfacing & Flycut - 1\" X 1/4\" - 1/4\" Shank",
+   "family": "surfacing",
+   "units": "in",
+   "diameter": 1.0,
+   "shank": 0.25,
+   "cut_length": 0.25,
+   "flutes": 3,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 14000,
+     "feed": 80.0,
+     "plunge": 40.0,
+     "stepdown": 0.125,
+     "chip_load": 0.0019,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop SURF1 End Mill 1 in",
+    "kind": "EndMill",
+    "diameter": 1.0,
+    "flutes": 3
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ],
+   "notes": "Diameter from the product name; the tool library lists 0.25 in."
+  },
+  {
+   "id": "cic-workshop-sud448",
+   "maker": "CIC Workshop",
+   "part_number": "SUD448",
+   "name": "Mortise Compression - 1/4\" x 1\" -  Spiral Endmill - 1/4\" Shank",
+   "family": "mortise-compression",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 80.0,
+     "plunge": 40.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00222,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop SUD448 End Mill 0.25 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-uc1025",
+   "maker": "CIC Workshop",
+   "part_number": "UC1025",
+   "name": "UC1025 - 1/16\"x 1/4\" Upcut - 1/8\" Shank",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.0625,
+   "shank": 0.125,
+   "cut_length": 0.25,
+   "flutes": 2,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 20.0,
+     "plunge": 10.0,
+     "stepdown": 0.0625,
+     "chip_load": 0.00056,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop UC1025 End Mill 0.0625 in",
+    "kind": "EndMill",
+    "diameter": 0.0625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-uc2875",
+   "maker": "CIC Workshop",
+   "part_number": "UC2875",
+   "name": "UC2875 - 3/16\"x 3/4\" Upcut - 1/4\" Shank",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.1875,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 80.0,
+     "plunge": 40.0,
+     "stepdown": 0.1875,
+     "chip_load": 0.00222,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop UC2875 End Mill 0.1875 in",
+    "kind": "EndMill",
+    "diameter": 0.1875,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-uc2215",
+   "maker": "CIC Workshop",
+   "part_number": "UC2215",
+   "name": "UC2215 - 1/4\" x 1-1/2\" Upcut Extended - 1/4\" Shank",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.5,
+   "flutes": 2,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 80.0,
+     "plunge": 40.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00222,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop UC2215 End Mill 0.25 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-uc221",
+   "maker": "CIC Workshop",
+   "part_number": "UC221",
+   "name": "UC221 - 1/4\" x 1\" Upcut - 1/4\" Shank",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 80.0,
+     "plunge": 40.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00222,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop UC221 End Mill 0.25 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-uc2175",
+   "maker": "CIC Workshop",
+   "part_number": "UC2175",
+   "name": "UC2175 - 1/8\"x 3/4\" Upcut - 1/4\" Shank",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 70.0,
+     "plunge": 35.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00194,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop UC2175 End Mill 0.125 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-uc111",
+   "maker": "CIC Workshop",
+   "part_number": "UC111",
+   "name": "UC111 - 1/8\"x 1\" Extended Upcut - 1/8\" Shank",
+   "family": "end-mill-up",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 70.0,
+     "plunge": 35.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00194,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop UC111 End Mill 0.125 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-dc2875",
+   "maker": "CIC Workshop",
+   "part_number": "DC2875",
+   "name": "DC2875 - 3/16\"x 3/4\" Downcut - 1/4\" Shank",
+   "family": "end-mill-down",
+   "units": "in",
+   "diameter": 0.1875,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 80.0,
+     "plunge": 40.0,
+     "stepdown": 0.1875,
+     "chip_load": 0.00222,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop DC2875 End Mill 0.1875 in",
+    "kind": "EndMill",
+    "diameter": 0.1875,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-dc1175",
+   "maker": "CIC Workshop",
+   "part_number": "DC1175",
+   "name": "DC1175 - 1/8\" x 3/4\" Downcut - 1/8\" Shank",
+   "family": "end-mill-down",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 80.0,
+     "plunge": 40.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00222,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop DC1175 End Mill 0.125 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-dc2175",
+   "maker": "CIC Workshop",
+   "part_number": "DC2175",
+   "name": "DC2175 - 1/8\" x 3/4\" Downcut - 1/4\" Shank",
+   "family": "end-mill-down",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.75,
+   "flutes": 2,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 80.0,
+     "plunge": 40.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00222,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop DC2175 End Mill 0.125 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-dc221",
+   "maker": "CIC Workshop",
+   "part_number": "DC221",
+   "name": "DC221 - 1/4\" x 1\" Downcut - 1/4\" Shank",
+   "family": "end-mill-down",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 80.0,
+     "plunge": 40.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00222,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop DC221 End Mill 0.25 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-cm111cb",
+   "maker": "CIC Workshop",
+   "part_number": "CM111CB",
+   "name": "CM111CB - 1/8\" x 1\" Chipbreaker Compression - 1/8\" Shank",
+   "family": "compression",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.125,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 70.0,
+     "plunge": 35.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00194,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop CM111CB End Mill 0.125 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-cm281cb",
+   "maker": "CIC Workshop",
+   "part_number": "CM281CB",
+   "name": "CM281CB - 3/16\" x 1\" Chipbreaker Compression - 1/4\" Shank",
+   "family": "compression",
+   "units": "in",
+   "diameter": 0.1875,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 85.0,
+     "plunge": 43.0,
+     "stepdown": 0.1875,
+     "chip_load": 0.00236,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop CM281CB End Mill 0.1875 in",
+    "kind": "EndMill",
+    "diameter": 0.1875,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-cm221cb",
+   "maker": "CIC Workshop",
+   "part_number": "CM221CB",
+   "name": "CM221CB - 1/4\" x 1\" Chipbreaker Compression - 1/4\" Shank",
+   "family": "compression",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 100.0,
+     "plunge": 50.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00278,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop CM221CB End Mill 0.25 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-of215",
+   "maker": "CIC Workshop",
+   "part_number": "OF215",
+   "name": "OF215 - O'Flute - 1/8\" x 1/2\" - 1/4\" Shank",
+   "family": "o-flute",
+   "units": "in",
+   "diameter": 0.125,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "flutes": 2,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 60.0,
+     "plunge": 30.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00167,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop OF215 End Mill 0.125 in",
+    "kind": "EndMill",
+    "diameter": 0.125,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-of221",
+   "maker": "CIC Workshop",
+   "part_number": "OF221",
+   "name": "OF221 -  O'Flute - 1/4\" x 1\" - 1/4\" Shank",
+   "family": "o-flute",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 60.0,
+     "plunge": 30.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00167,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop OF221 End Mill 0.25 in",
+    "kind": "EndMill",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ],
+   "notes": "Cut length from the product name (1 in); the tool library lists 0.5 in."
+  },
+  {
+   "id": "cic-workshop-tbn1-16",
+   "maker": "CIC Workshop",
+   "part_number": "TBN1-16",
+   "name": "TBN1-16 - 1/16 Radius - 3.6 Deg 3D Tapered Ballnose",
+   "family": "tapered-ball",
+   "units": "in",
+   "diameter": 0.125,
+   "cut_length": 1.5,
+   "flutes": 3,
+   "tip_radius": 0.0625,
+   "tip_diameter": 0.125,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 60.0,
+     "plunge": 30.0,
+     "stepdown": 0.1875,
+     "chip_load": 0.00111,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop TBN1-16 Ball Nose 0.125 in",
+    "kind": "BallNose",
+    "diameter": 0.125,
+    "flutes": 3
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ],
+   "notes": "Taper 3.6 deg as published; side or included not stated."
+  },
+  {
+   "id": "cic-workshop-tbn1-32",
+   "maker": "CIC Workshop",
+   "part_number": "TBN1-32",
+   "name": "TBN1-32 - 1/32 Radius - 5.4 Deg 3D Tapered Ballnose",
+   "family": "tapered-ball",
+   "units": "in",
+   "diameter": 0.0625,
+   "cut_length": 1.5,
+   "flutes": 3,
+   "tip_radius": 0.03125,
+   "tip_diameter": 0.0625,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 60.0,
+     "plunge": 30.0,
+     "stepdown": 0.1875,
+     "chip_load": 0.00111,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop TBN1-32 Ball Nose 0.0625 in",
+    "kind": "BallNose",
+    "diameter": 0.0625,
+    "flutes": 3
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ],
+   "notes": "Taper 5.4 deg as published; side or included not stated."
+  },
+  {
+   "id": "cic-workshop-tbn1-64",
+   "maker": "CIC Workshop",
+   "part_number": "TBN1-64",
+   "name": "TBN1-64 - 1/64 Radius - 6.2 Deg 3D Tapered Ballnose",
+   "family": "tapered-ball",
+   "units": "in",
+   "diameter": 0.03125,
+   "cut_length": 1.5,
+   "flutes": 3,
+   "tip_radius": 0.015625,
+   "tip_diameter": 0.03125,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 60.0,
+     "plunge": 30.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00111,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop TBN1-64 Ball Nose 0.0312 in",
+    "kind": "BallNose",
+    "diameter": 0.03125,
+    "flutes": 3
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ],
+   "notes": "Taper 6.2 deg as published; side or included not stated."
+  },
+  {
+   "id": "cic-workshop-bt244",
+   "maker": "CIC Workshop",
+   "part_number": "BT244",
+   "name": "BT244 - 7/16\" X 5/16\" Bowl & Tray - 1/4\" Shank",
+   "family": "bowl",
+   "units": "in",
+   "diameter": 0.4375,
+   "shank": 0.25,
+   "cut_length": 0.3125,
+   "flutes": 2,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 100.0,
+     "plunge": 50.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00278,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop BT244 End Mill 0.4375 in",
+    "kind": "EndMill",
+    "diameter": 0.4375,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ],
+   "notes": "Corner radius not published (the tool library models it as a ball)."
+  },
+  {
+   "id": "cic-workshop-bt575",
+   "maker": "CIC Workshop",
+   "part_number": "BT575",
+   "name": "BT575 - 3/4\" x 5/8\" Bowl & Tray - 1/2\" Shank",
+   "family": "bowl",
+   "units": "in",
+   "diameter": 0.75,
+   "shank": 0.5,
+   "cut_length": 0.625,
+   "flutes": 2,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 100.0,
+     "plunge": 50.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00278,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop BT575 End Mill 0.75 in",
+    "kind": "EndMill",
+    "diameter": 0.75,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ],
+   "notes": "Corner radius not published (the tool library models it as a ball)."
+  },
+  {
+   "id": "cic-workshop-bt275",
+   "maker": "CIC Workshop",
+   "part_number": "BT275",
+   "name": "BT275 - 3/4\" X 5/8\" Bowl & Tray - 1/4\" Shank",
+   "family": "bowl",
+   "units": "in",
+   "diameter": 0.75,
+   "shank": 0.25,
+   "cut_length": 0.625,
+   "flutes": 2,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 80.0,
+     "plunge": 40.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00222,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop BT275 End Mill 0.75 in",
+    "kind": "EndMill",
+    "diameter": 0.75,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ],
+   "notes": "Corner radius not published (the tool library models it as a ball)."
+  },
+  {
+   "id": "cic-workshop-vsc30",
+   "maker": "CIC Workshop",
+   "part_number": "VSC30",
+   "name": "VSC30 - 30 Deg V-Groove - 3-Flute - 1/4 Shank",
+   "family": "v-bit",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.4375,
+   "flutes": 3,
+   "angle_deg": 30.0,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 50.0,
+     "plunge": 25.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00093,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop VSC30 V-Bit 30 deg 0.25 in",
+    "kind": "VBit",
+    "diameter": 0.25,
+    "angle": 30.0,
+    "flutes": 3
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-vsc60",
+   "maker": "CIC Workshop",
+   "part_number": "VSC60",
+   "name": "VSC60 - 60 Deg V-Groove - 3-Flute - 1/4 Shank",
+   "family": "v-bit",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.1875,
+   "flutes": 3,
+   "angle_deg": 60.0,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 60.0,
+     "plunge": 30.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00111,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop VSC60 V-Bit 60 deg 0.25 in",
+    "kind": "VBit",
+    "diameter": 0.25,
+    "angle": 60.0,
+    "flutes": 3
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-vsc90",
+   "maker": "CIC Workshop",
+   "part_number": "VSC90",
+   "name": "VSC90 - 90 Deg V-Groove- 3-Flute - 1/4 Shank",
+   "family": "v-bit",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 0.125,
+   "flutes": 3,
+   "angle_deg": 90.0,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 60.0,
+     "plunge": 30.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00111,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop VSC90 V-Bit 90 deg 0.25 in",
+    "kind": "VBit",
+    "diameter": 0.25,
+    "angle": 90.0,
+    "flutes": 3
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-vct-60",
+   "maker": "CIC Workshop",
+   "part_number": "VCT-60",
+   "name": "VCT-60 - 60 Degree V-Groove - 1/4 Shank",
+   "family": "v-bit",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "flutes": 2,
+   "angle_deg": 60.0,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 60.0,
+     "plunge": 30.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00167,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop VCT-60 V-Bit 60 deg 0.5 in",
+    "kind": "VBit",
+    "diameter": 0.5,
+    "angle": 60.0,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-vct-90",
+   "maker": "CIC Workshop",
+   "part_number": "VCT-90",
+   "name": "VCT-90 - 90 Degree V-Groove - 1/4 Shank",
+   "family": "v-bit",
+   "units": "in",
+   "diameter": 0.5,
+   "shank": 0.25,
+   "cut_length": 0.5,
+   "flutes": 2,
+   "angle_deg": 90.0,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 100.0,
+     "plunge": 50.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00278,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop VCT-90 V-Bit 90 deg 0.5 in",
+    "kind": "VBit",
+    "diameter": 0.5,
+    "angle": 90.0,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-of1025",
+   "maker": "CIC Workshop",
+   "part_number": "OF1025",
+   "name": "OF1025 - O'Flute - 1/16\" x 3/8\" - 1/8\" Shank",
+   "family": "o-flute",
+   "units": "in",
+   "diameter": 0.0625,
+   "shank": 0.125,
+   "cut_length": 0.5,
+   "flutes": 2,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 30.0,
+     "plunge": 15.0,
+     "stepdown": 0.0625,
+     "chip_load": 0.00083,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop OF1025 End Mill 0.0625 in",
+    "kind": "EndMill",
+    "diameter": 0.0625,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-tbn-62124",
+   "maker": "CIC Workshop",
+   "part_number": "TBN-62124",
+   "name": "TBN-62124 - 0.25mm Rad",
+   "family": "tapered-ball",
+   "units": "mm",
+   "diameter": 0.5,
+   "flutes": 2,
+   "tip_radius": 0.25,
+   "tip_diameter": 0.5,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 50.0,
+     "plunge": 20.0,
+     "stepdown": 0.5,
+     "chip_load": 0.00139,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop TBN-62124 Ball Nose 0.0197 in",
+    "kind": "BallNose",
+    "diameter": 0.01969,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ],
+   "notes": "Tip ball 0.5 mm (0.25 mm radius); the tool library lists 6.2 deg taper, side or included not stated."
+  },
+  {
+   "id": "cic-workshop-bn-25uc",
+   "maker": "CIC Workshop",
+   "part_number": "BN-25UC",
+   "name": "1/4'' Upcut Ballnose - 1/4'' Shank - BN-25UC",
+   "family": "ball-nose",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "tip_radius": 0.125,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 60.0,
+     "plunge": 30.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00167,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop BN-25UC Ball Nose 0.25 in",
+    "kind": "BallNose",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-bn-25dc",
+   "maker": "CIC Workshop",
+   "part_number": "BN-25DC",
+   "name": "1/4'' Downcut Ballnose - 1/4'' Shank - BN-25DC",
+   "family": "ball-nose",
+   "units": "in",
+   "diameter": 0.25,
+   "shank": 0.25,
+   "cut_length": 1.0,
+   "flutes": 2,
+   "tip_radius": 0.125,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 60.0,
+     "plunge": 30.0,
+     "stepdown": 0.25,
+     "chip_load": 0.00167,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop BN-25DC Ball Nose 0.25 in",
+    "kind": "BallNose",
+    "diameter": 0.25,
+    "flutes": 2
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ]
+  },
+  {
+   "id": "cic-workshop-tf2125",
+   "maker": "CIC Workshop",
+   "part_number": "TF2125",
+   "name": "TrueFlat - 1.25\" Surfacing Bit - TF2125",
+   "family": "surfacing",
+   "units": "in",
+   "diameter": 1.25,
+   "cut_length": 0.5,
+   "flutes": 4,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 80.0,
+     "plunge": 40.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00111,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop TF2125 End Mill 1.25 in",
+    "kind": "EndMill",
+    "diameter": 1.25,
+    "flutes": 4
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ],
+   "notes": "Diameter from the product name; the tool library lists 0.25 in."
+  },
+  {
+   "id": "cic-workshop-tf5175",
+   "maker": "CIC Workshop",
+   "part_number": "TF5175",
+   "name": "TrueFlat - 1.75\" Surfacing Bit - TF5125",
+   "family": "surfacing",
+   "units": "in",
+   "diameter": 1.75,
+   "cut_length": 0.5,
+   "flutes": 4,
+   "presets": [
+    {
+     "group": "any",
+     "rpm": 18000,
+     "feed": 80.0,
+     "plunge": 40.0,
+     "stepdown": 0.125,
+     "chip_load": 0.00111,
+     "source": "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv",
+     "note": "CIC Workshop tool library preset (one set for every material); chip_load = feed / (rpm x flutes)."
+    }
+   ],
+   "gcarve_tool": {
+    "name": "CIC Workshop TF5175 End Mill 1.75 in",
+    "kind": "EndMill",
+    "diameter": 1.75,
+    "flutes": 4
+   },
+   "sources": [
+    "https://cicworkshop.com/pages/streamline-your-cnc-projects-with-pre-configured-tool-libraries",
+    "https://cdn.shopify.com/s/files/1/0639/7175/4175/files/CIC_Workshop_CC_Database_2026_6033a584-4bb3-46ca-b51b-9298f6996371.csv"
+   ],
+   "notes": "Diameter from the product name; the tool library lists 0.25 in."
+  }
+ ]
+}

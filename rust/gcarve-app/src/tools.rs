@@ -41,18 +41,60 @@ fn len(p: Pt) -> f64 {
     p.x.hypot(p.y)
 }
 
-/// Rail spin box for the Polygon (sides) / Star (points) tool, 3–64 (Qt ModeRail child column).
-pub fn rail_count(ui: &mut eframe::egui::Ui, canvas: &mut Canvas) {
-    let (label, v) = match canvas.tool {
-        Tool::Polygon => (i18n::t("Sides"), &mut canvas.polygon_sides),
-        Tool::Star => (i18n::t("Points"), &mut canvas.star_points),
-        _ => return,
-    };
-    ui.add_space(8.0);
-    ui.vertical_centered(|ui| {
-        ui.label(eframe::egui::RichText::new(label).size(11.0));
-        let w = ui.available_width();
-        ui.add(crate::widgets::SpinBox::new(v, 3..=64).width(w)).tip(format!("{label} of the next shape"));
+/// The tool options bar above the drawing: the active tool's icon and name, its settings (polygon sides, star
+/// points, corner style and radius), then a line on how to use it. `look` = shell::tool_look.
+pub fn options_bar(ui: &mut eframe::egui::Ui, canvas: &mut Canvas, look: (&'static str, &'static str, egui::Color32)) {
+    use crate::widgets::{Button, SpinBox};
+    let (icon, name, tint) = look;
+    ui.horizontal_centered(|ui| {
+        ui.spacing_mut().item_spacing.x = 8.0;
+        let (r, _) = ui.allocate_exact_size(egui::vec2(18.0, 18.0), egui::Sense::hover());
+        gcarve_ui::icons::paint(ui, icon, r, 18.0, tint);
+        ui.label(egui::RichText::new(i18n::t(name)).strong());
+        ui.separator();
+        let hint = match canvas.tool {
+            Tool::Select => i18n::t("Click a vector to select it, drag a box to select several. Shift adds."),
+            Tool::Nodes => i18n::t("Drag a node to move it. Double-click the outline to add a node, right-click a node for more."),
+            Tool::Rect | Tool::Ellipse => i18n::t("Drag to draw, or click once to type an exact size."),
+            Tool::Polygon => {
+                ui.label(i18n::t("Sides"));
+                ui.add(SpinBox::new(&mut canvas.polygon_sides, 3..=64).width(84.0));
+                i18n::t("Drag to draw, or click once to type an exact size.")
+            }
+            Tool::Star => {
+                ui.label(i18n::t("Points"));
+                ui.add(SpinBox::new(&mut canvas.star_points, 3..=64).width(84.0));
+                i18n::t("Drag to draw, or click once to type an exact size.")
+            }
+            Tool::Polyline => i18n::t("Click each point. Double-click or Enter finishes, Delete takes back the last point."),
+            Tool::Pen => i18n::t("Click for a corner, drag for a curve. Enter finishes."),
+            Tool::Arc => i18n::t("Click the start, the end, then a point the arc passes through."),
+            Tool::Freehand => i18n::t("Drag to draw. The line is smoothed when you let go."),
+            Tool::Measure => i18n::t("Click two points to measure between them."),
+            Tool::Dimension => i18n::t("Click two points, then where the dimension line goes."),
+            Tool::Angle => i18n::t("Click the corner, then a point on each arm."),
+            Tool::Text => i18n::t("Click where the text goes."),
+            Tool::Corner => {
+                if canvas.corner_size.is_empty() {
+                    canvas.corner_size = units::text(&canvas.doc, 0.125);
+                }
+                ui.spacing_mut().item_spacing.x = 2.0;
+                for (v, label) in [(0, i18n::t("Dogbone")), (1, i18n::t("T-bone")), (2, i18n::t("Round"))] {
+                    if ui.add(Button::new(label).primary(canvas.corner_style == v)).clicked() {
+                        canvas.corner_style = v;
+                    }
+                }
+                ui.spacing_mut().item_spacing.x = 8.0;
+                ui.add_space(6.0);
+                ui.label(i18n::t("Radius")).tip(i18n::t("For a dogbone or T-bone: half your bit's diameter (a 1/4 in bit = 0.125)"));
+                units::num_field(ui, "corner-size", &mut canvas.corner_size, &canvas.doc, true, 84.0);
+                i18n::t("Hover a corner to preview, click to make it. Click it again to put the sharp corner back.")
+            }
+        };
+        // the hint takes what room is left; on a narrow window it goes
+        if ui.available_width() > 220.0 {
+            ui.add(egui::Label::new(egui::RichText::new(hint).color(theme::TEXT_DIM)).truncate());
+        }
     });
 }
 
@@ -585,6 +627,11 @@ impl Canvas {
                     d.2 = true;
                 }
             }
+            // VCarve's tab cursors: ✕ over a tab (a click deletes it), + elsewhere
+            if let Some(w) = hover_w {
+                let on_tab = self.tab_marks.iter().chain(&self.tab_marks_auto).any(|p| dist(pt(p[0], p[1]), w) < 0.3);
+                cursor_badge(painter, screen, if on_tab { Badge::Remove } else { Badge::Add });
+            }
             return format!("{status}   click the part's outline to add or remove a tab, drag a tab to move it");
         }
         match self.tool {
@@ -895,6 +942,28 @@ impl Canvas {
                     status = format!("{status}   {}", if self.dim_pts.len() == 1 { i18n::t("click the second point") } else { i18n::t("click where the dimension line goes") });
                 }
             }
+            Tool::Corner => {
+                // VCarve's Create Fillets: hover a sharp corner = red preview + ✓, hover a fillet / dogbone = the sharp
+                // corner it came from + ✕ (click takes it off), a corner that can't take it = ⊘
+                if let Some(w) = hover_w {
+                    let pick = self.corner_pick(screen, w);
+                    if let Some((_, _, ref c, kind)) = pick {
+                        if let Some(c) = c {
+                            let pts = self.screen_pts(&view, c);
+                            painter.add(Shape::line(pts, Stroke::new(2.0, egui::Color32::from_rgb(0xe5, 0x48, 0x4d))));
+                        }
+                        cursor_badge(painter, screen, kind);
+                    }
+                    if clicked {
+                        match pick {
+                            Some((id, k, Some(c), kind)) => self.corner_apply(id, k, c, kind == Badge::Remove),
+                            Some(_) => self.status = i18n::t("Corners: that corner isn't between two straight lines, or its sides are too short for this radius").into(),
+                            None => {}
+                        }
+                    }
+                }
+                status = format!("{status}   {}", i18n::t("click a corner to round it or add a dogbone, click one again to take it off"));
+            }
             Tool::Angle => {
                 if clicked {
                     if let Some(w) = hover_w {
@@ -1204,5 +1273,130 @@ mod tests {
         assert!(bind.contains_key("n3.x") && bind.contains_key("s4.len") && bind.contains_key("w"));
         shift_node_binds(&mut bind, 3, -1);
         assert!(!bind.contains_key("n3.x") && bind.contains_key("s3.len"));
+    }
+}
+
+impl Canvas {
+    /// Corner tool: what a click at the pointer would do. A node or curve of an existing fillet / dogbone → put the
+    /// sharp corner back (Remove); a corner node → the chosen fillet (Add); None when nothing is near. The contour is
+    /// the result to preview (None = this corner can't take it).
+    fn corner_pick(&self, s: Pos2, w: Pt) -> Option<(i32, usize, Option<Contour>, Badge)> {
+        let view = self.view.as_ref()?;
+        let shapes = || self.doc.shapes.iter().filter(|sh| sh.text == 0 && self.doc.shape_editable(sh));
+        // the nearest node within reach
+        let mut best: Option<(f64, i32, usize)> = None;
+        for sh in shapes() {
+            for (i, nd) in sh.c.nodes.iter().enumerate() {
+                let d = (view.to_screen(nd.p) - s).length() as f64;
+                if d <= self.px(NODE_PX) * 1.5 && best.is_none_or(|b| d < b.0) {
+                    best = Some((d, sh.id, i));
+                }
+            }
+        }
+        // else a curve under the pointer (the middle of a fillet)
+        if best.is_none() {
+            if let Some(id) = self.hit_shape(w) {
+                let sh = self.doc.find(id)?;
+                best = Some((0.0, id, nearest(&sh.c, w).seg));
+            }
+        }
+        let (_, id, k) = best?;
+        let c = &self.doc.find(id)?.c;
+        if let Some((back, _)) = gcarve_core::vecops::sharpen_at(c, k) {
+            return Some((id, k, Some(back), Badge::Remove));
+        }
+        let n = c.nodes.len();
+        if !c.closed && (k == 0 || k + 1 == n) {
+            return None;
+        }
+        let size = units::get(&self.doc, &self.corner_size, true).ok().filter(|v| *v > 0.0);
+        let r = size.map(|v| if self.corner_style == 2 { v } else { v + 0.0005 }); // a hair over the bit radius, as dogbone_selection
+        let out = r.and_then(|r| gcarve_core::vecops::corner_at(c, k, r, self.corner_style, Some(w)));
+        let kind = if out.is_some() { Badge::Add } else { Badge::No };
+        Some((id, k, out, kind))
+    }
+
+    /// Corner tool click: the shape takes the previewed outline (one undo step); node bindings and dimensions on nodes
+    /// after the corner follow
+    fn corner_apply(&mut self, id: i32, k: usize, c: Contour, removing: bool) {
+        let Some(old) = self.doc.find(id).map(|s| s.c.clone()) else { return };
+        self.doc.checkpoint();
+        let sh = self.doc.find_mut(id).unwrap();
+        if removing {
+            let removed = gcarve_core::vecops::sharpen_at(&old, k).map(|r| r.1).unwrap_or_default();
+            sh.c = c;
+            for &i in removed.iter().rev() {
+                shift_node_binds(&mut sh.bind, i as i32, -1);
+            }
+            for &i in removed.iter().rev() {
+                self.doc.shift_dimension_nodes(id, i as i32, -1);
+            }
+        } else {
+            let added = c.nodes.len() as i32 - old.nodes.len() as i32;
+            sh.c = c;
+            shift_node_binds(&mut sh.bind, k as i32 + 1, added);
+            self.doc.shift_dimension_nodes(id, k as i32 + 1, added);
+        }
+        self.mutated();
+    }
+}
+
+#[cfg(test)]
+mod corner_tab_tool_tests {
+    use super::*;
+
+    #[test]
+    fn the_corner_tool_changes_one_corner_and_takes_it_off_again() {
+        let mut c = Canvas { tool: Tool::Corner, ..Default::default() };
+        let id = c.doc.add(make_rect(0.0, 0.0, 10.0, 6.0), None);
+        c.corner_style = 2;
+        c.corner_size = "1".into();
+        let sq = c.doc.find(id).unwrap().c.clone();
+        let round = gcarve_core::vecops::corner_at(&sq, 1, 1.0, 2, None).unwrap();
+        c.corner_apply(id, 1, round, false);
+        let n = c.doc.find(id).unwrap().c.nodes.len();
+        assert!(n > 4, "the corner became a round: {n} nodes");
+        assert!(c.doc.undo() && c.doc.find(id).unwrap().c.nodes.len() == 4, "one undo puts it back");
+        assert!(c.doc.redo());
+        // clicking the round again: the sharp corner comes back
+        let (back, _) = gcarve_core::vecops::sharpen_at(&c.doc.find(id).unwrap().c, 1).unwrap();
+        c.corner_apply(id, 1, back, true);
+        assert_eq!(c.doc.find(id).unwrap().c.nodes.len(), 4, "sharp again");
+
+    }
+}
+
+/// what a click will do, drawn at the pointer (VCarve's tool cursors)
+#[derive(Clone, Copy, PartialEq, Eq, Debug)]
+pub(crate) enum Badge {
+    Add,
+    Remove,
+    No,
+}
+
+/// a small round badge just below right of the pointer: green + (add), red ✕ (remove / delete), grey ⊘ (can't)
+pub(crate) fn cursor_badge(painter: &egui::Painter, at: Pos2, kind: Badge) {
+    let c = at + egui::vec2(14.0, 14.0);
+    let (fill, line) = match kind {
+        Badge::Add => (egui::Color32::from_rgb(0x2f, 0xa8, 0x5a), egui::Color32::WHITE),
+        Badge::Remove => (egui::Color32::from_rgb(0xe5, 0x48, 0x4d), egui::Color32::WHITE),
+        Badge::No => (egui::Color32::from_rgb(0x6b, 0x6e, 0x76), egui::Color32::WHITE),
+    };
+    painter.circle(c, 7.0, fill, Stroke::new(1.0, egui::Color32::from_rgb(0x1b, 0x1c, 0x1f)));
+    let s = Stroke::new(1.8, line);
+    let d = 3.2;
+    match kind {
+        Badge::Add => {
+            painter.line_segment([c - egui::vec2(d, 0.0), c + egui::vec2(d, 0.0)], s);
+            painter.line_segment([c - egui::vec2(0.0, d), c + egui::vec2(0.0, d)], s);
+        }
+        Badge::Remove => {
+            painter.line_segment([c - egui::vec2(d, d), c + egui::vec2(d, d)], s);
+            painter.line_segment([c + egui::vec2(-d, d), c + egui::vec2(d, -d)], s);
+        }
+        Badge::No => {
+            painter.circle_stroke(c, d + 0.5, s);
+            painter.line_segment([c + egui::vec2(-d, d), c + egui::vec2(d, -d)], s);
+        }
     }
 }

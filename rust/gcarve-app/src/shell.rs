@@ -135,7 +135,7 @@ pub fn enabled(id: &str, sel: usize, ops: usize, can_undo: bool, can_redo: bool)
 }
 
 /// Design-mode tools: id, icon, name, key
-const TOOLS: [(&str, &str, &str, &str); 13] = [ // i18n
+const TOOLS: [(&str, &str, &str, &str); 14] = [ // i18n
     ("tool:select", "select", "Select", "V"),
     ("tool:nodes", "nodes", "Nodes", "N"),
     ("tool:rect", "rect", "Rect", "R"),
@@ -149,7 +149,14 @@ const TOOLS: [(&str, &str, &str, &str); 13] = [ // i18n
     ("tool:measure", "measure", "Measure", "M"),
     ("tool:dimension", "dimension", "Dimension", "D"),
     ("tool:text", "text", "Text", "T"),
+    ("tool:corner", "corner", "Corners", "C"),
 ];
+
+/// (icon, name, tint) of a rail tool, for the tool options bar
+pub fn tool_look(id: &str) -> (&'static str, &'static str, Color32) {
+    let (icon, name) = TOOLS.iter().find(|t| t.0 == id).map_or(("dimension", "Angle"), |t| (t.1, t.2));
+    (icon, name, tool_color(id).0)
+}
 
 fn tool_color(id: &str) -> (Color32, Color32) {
     use theme::ToolKind as K;
@@ -255,6 +262,8 @@ pub fn op_summary(doc: &Document, op: &Op) -> (String, String) {
 }
 
 pub struct Shell {
+    /// the tool rail shows two columns of tools (store "rail-wide")
+    pub rail_wide: bool,
     /// the first-time guide (onboarding.rs)
     pub tour: crate::onboarding::Tour,
     pub cmds: Vec<String>,
@@ -270,6 +279,8 @@ pub struct Shell {
     pub tabs_seen: Option<usize>,
     /// the name typed for a new folder (Group…)
     pub new_folder: Option<String>,
+    /// the "Start a job" card is on screen (set each frame): the side panel then leaves the ready projects to it
+    pub start_card: bool,
     /// folders made with + Folder that hold nothing yet (they live here until a toolpath is dropped in)
     pub empty_folders: std::collections::BTreeSet<String>,
     /// toolpath list filters: only the active sheet's, one layer (-1 = all)
@@ -295,7 +306,7 @@ pub struct Shell {
 
 impl Shell {
     pub fn new() -> Self {
-        Shell { tour: crate::onboarding::Tour::load(), cmds: Vec::new(), side_tab: 0, op_sel: None, op_multi: Default::default(), folded: Default::default(), new_folder: None, sheet_rename: None, tabs_seen: None, empty_folders: Default::default(), tp_this_sheet: false, tp_layer: -1, tp_usage: (u64::MAX, Vec::new()), tp_group: 0, lock_aspect: true, rot_text: "15".into(), edit: Default::default(), edit_for: None, edit_focus: false, zoom_text: String::new(), canvas_rect: egui::Rect::ZERO, menu_rect: egui::Rect::NOTHING, snap_arrow: egui::Rect::NOTHING }
+        Shell { rail_wide: crate::store::load("rail-wide").as_deref() == Some("1") || std::env::var("GCARVE_RAIL_WIDE").is_ok(), tour: crate::onboarding::Tour::load(), start_card: false, cmds: Vec::new(), side_tab: 0, op_sel: None, op_multi: Default::default(), folded: Default::default(), new_folder: None, sheet_rename: None, tabs_seen: None, empty_folders: Default::default(), tp_this_sheet: false, tp_layer: -1, tp_usage: (u64::MAX, Vec::new()), tp_group: 0, lock_aspect: true, rot_text: "15".into(), edit: Default::default(), edit_for: None, edit_focus: false, zoom_text: String::new(), canvas_rect: egui::Rect::ZERO, menu_rect: egui::Rect::NOTHING, snap_arrow: egui::Rect::NOTHING }
     }
     pub fn push(&mut self, id: impl Into<String>) {
         self.cmds.push(id.into());
@@ -349,7 +360,7 @@ pub fn mode_bar(ui: &mut egui::Ui, sh: &mut Shell, mode: Mode, title: &str, canv
                 }
                 // mode switch pill, centred in the remaining space
                 let avail = ui.available_rect_before_wrap();
-                let pill_w = 6.0 + MODES.iter().map(|(_, _, t, k, _)| 16.0 + 12.0 + if phone { 0.0 } else { 2.0 + text_w(ui, &format!("{t}  {k}"), 12.0) }).sum::<f32>() + 2.0 * 2.0;
+                let pill_w = 6.0 + MODES.iter().map(|(_, _, t, _, _)| 16.0 + 12.0 + if phone { 0.0 } else { 2.0 + text_w(ui, i18n::t(t), 12.0) }).sum::<f32>() + 2.0 * 2.0;
                 // centred on the window when that leaves it clear of the title and the buttons, else in the space left
                 let mid = ui.ctx().content_rect().center().x;
                 let x = if mid - pill_w / 2.0 > avail.left() + 8.0 && mid + pill_w / 2.0 < avail.right() - 8.0 { mid } else { avail.center().x };
@@ -357,11 +368,12 @@ pub fn mode_bar(ui: &mut egui::Ui, sh: &mut Shell, mode: Mode, title: &str, canv
                 ui.painter().rect(pill, 8.0, theme::FIELD, egui::Stroke::new(1.0, theme::BORDER), egui::StrokeKind::Inside);
                 let mut child = ui.new_child(egui::UiBuilder::new().max_rect(pill.shrink2(egui::vec2(3.0, 0.0))).layout(egui::Layout::left_to_right(egui::Align::Center)));
                 child.spacing_mut().item_spacing.x = 2.0;
-                for (m, icon, text, key, tip) in MODES {
-                    let (text, tip) = (i18n::t(text), i18n::t(tip));
-                    let label = if phone { String::new() } else { format!("{text}  {key}") };
+                // (the shortcut key, 1 / 3, is in the tip: beside the name it read as a count)
+                for (m, icon, name, _key, tip) in MODES {
+                    let (text, tip) = (i18n::t(name), i18n::t(tip));
+                    let label = if phone { String::new() } else { text.to_string() };
                     if IconButton::new(icon).text(&label).tip(tip).size(16.0).padding(6.0).tint(m.color()).active(mode == m).show(&mut child).clicked() {
-                        sh.push(format!("mode:{text}"));
+                        sh.push(format!("mode:{name}")); // the English name: the command is not translated
                     }
                 }
             });
@@ -386,14 +398,24 @@ pub fn folded(ui: &mut egui::Ui, left: bool, what: &str, key: &str) -> bool {
     ui.centered_and_justified(|ui| collapse_button(ui, left, false, what, key)).inner
 }
 
+/// a rail button: id, icon, name, tip, tint, accent, enabled, active
+type RailItem<'a> = (&'a str, &'a str, String, String, Color32, Color32, bool, bool);
+
 /// ModeRail.qml: 82 px, the tools of the current mode with labels under the icons
-/// `extra`: drawn under the Design tools (polygon sides / star points, Qt ModeRail's child column)
-pub fn rail(ui: &mut egui::Ui, sh: &mut Shell, mode: Mode, current: &str, sel: usize, paths_on: bool, extra: impl FnOnce(&mut egui::Ui)) {
+pub fn rail(ui: &mut egui::Ui, sh: &mut Shell, mode: Mode, current: &str, sel: usize, paths_on: bool) {
     ui.spacing_mut().item_spacing = egui::vec2(0.0, 1.0);
     let w = 73.0;
-    // same control and place as the side panel's: top row, on the edge facing the canvas
+    // same control and place as the side panel's: top row, on the edge facing the canvas.
+    // « = one column back from two, else fold away; » = two columns
     ui.with_layout(egui::Layout::right_to_left(egui::Align::Min), |ui| {
-        if collapse_button(ui, true, true, i18n::t("the tool rail"), "") {
+        if !sh.rail_wide && IconButton::new("chevron-right").size(14.0).padding(3.0).tip(i18n::t("Two columns of tools")).show(ui).clicked() {
+            sh.push("rail:wide");
+        }
+        if sh.rail_wide {
+            if IconButton::new("chevron-left").size(14.0).padding(3.0).tip(i18n::t("One column of tools")).show(ui).clicked() {
+                sh.push("rail:narrow");
+            }
+        } else if collapse_button(ui, true, true, i18n::t("the tool rail"), "") {
             sh.push("rail:fold");
         }
     });
@@ -405,14 +427,26 @@ pub fn rail(ui: &mut egui::Ui, sh: &mut Shell, mode: Mode, current: &str, sel: u
     // short windows (laptops, tablets): the rail scrolls instead of cutting off its last tools
     egui::ScrollArea::vertical().scroll_bar_visibility(egui::scroll_area::ScrollBarVisibility::AlwaysHidden).show(ui, |ui| match mode {
         Mode::Design => {
-            for (id, icon, name, key) in TOOLS {
-                let name = i18n::t(name);
-                let (tint, accent) = tool_color(id);
-                item(ui, sh, id, icon, name, &format!("{name} ({key})"), tint, accent, true, current == id);
+            // one or two columns: rows of `cols` buttons
+            let cols = if sh.rail_wide { 2 } else { 1 };
+            let mut all: Vec<RailItem> = TOOLS
+                .iter()
+                .map(|&(id, icon, name, key)| {
+                    let name = i18n::t(name);
+                    let (tint, accent) = tool_color(id);
+                    (id, icon, name.to_string(), format!("{name} ({key})"), tint, accent, true, current == id)
+                })
+                .collect();
+            all.push(("import", "open", i18n::t("Import").into(), i18n::t("Import SVG / DXF / PDF / AI / STL into this document").into(), theme::TOOL_FILE, theme::TOOL_FILE, true, false));
+            all.push(("nest", "nest", i18n::t("Nest").into(), i18n::t("Pack the selected parts onto the board").into(), theme::TOOL_FILE, theme::TOOL_FILE, sel > 0, false));
+            for row in all.chunks(cols) {
+                ui.horizontal(|ui| {
+                    ui.spacing_mut().item_spacing.x = 1.0;
+                    for (id, icon, name, tip, tint, accent, on, active) in row {
+                        item(ui, sh, id, icon, name, tip, *tint, *accent, *on, *active);
+                    }
+                });
             }
-            item(ui, sh, "import", "open", i18n::t("Import"), i18n::t("Import SVG / DXF / PDF / AI / STL into this document"), theme::TOOL_FILE, theme::TOOL_FILE, true, false);
-            item(ui, sh, "nest", "nest", i18n::t("Nest"), i18n::t("Pack the selected parts onto the board"), theme::TOOL_FILE, theme::TOOL_FILE, sel > 0, false);
-            extra(ui);
         }
         Mode::Simulate => {
             let g = theme::MODE_SIMULATE;
@@ -666,7 +700,7 @@ pub fn empty_state(ui: &mut egui::Ui, sh: &mut Shell, rect: egui::Rect, doc: &Do
             }
         });
         c.add_space(10.0);
-        c.label(RichText::new(i18n::t("OR CHANGE A READY PROJECT")).size(11.0).color(theme::TEXT.gamma_multiply(0.45)));
+        c.label(RichText::new(i18n::t("OR START FROM A READY PROJECT")).size(11.0).color(theme::TEXT.gamma_multiply(0.45)));
         crate::inspector::starter_buttons(c, sh);
         if !recent.is_empty() {
             c.add_space(10.0);

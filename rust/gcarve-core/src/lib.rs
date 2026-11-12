@@ -1,3 +1,4 @@
+// "And in cutting of stones, to set them, and in carving of timber, to work in all manner of workmanship." Exodus 31:5 (KJV)
 //! GCarve CAM engine (Rust port of the C++ `core/` + `post/`). No UI and no file system: inputs and outputs are
 //! values and strings, so the same code runs on the desktop and in the browser (wasm32).
 //! Every module is checked against the C++ engine's output (golden files in `reference/` and `rust/testdata/`).

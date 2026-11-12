@@ -533,6 +533,38 @@ fn gcode_like(text: &str) -> bool {
     moves >= 3 && code * 5 >= lines * 4
 }
 
+/// Decodes a picture the way `image` does, plus TIFFs it refuses: scanners write 16-bit grey + alpha ("Multiband",
+/// error log 2026-11-07). Those are read with the tiff crate: 1–2 samples a pixel = grey, 3+ = the first three as RGB.
+pub fn picture(bytes: &[u8]) -> image::ImageResult<image::DynamicImage> {
+    image::load_from_memory(bytes).or_else(|e| tiff_fallback(bytes).ok_or(e))
+}
+
+fn tiff_fallback(bytes: &[u8]) -> Option<image::DynamicImage> {
+    use tiff::decoder::{Decoder, DecodingResult};
+    let mut d = Decoder::new(std::io::Cursor::new(bytes)).ok()?;
+    let (w, h) = d.dimensions().ok()?;
+    let px = (w as usize).checked_mul(h as usize).filter(|&n| n > 0)?;
+    // samples stored plane after plane would read as scrambled pixels: refused; grey stored white = 0 is flipped below
+    if d.get_tag_u32(tiff::tags::Tag::PlanarConfiguration).is_ok_and(|p| p == 2) {
+        return None;
+    }
+    let white_is_zero = d.get_tag_u32(tiff::tags::Tag::PhotometricInterpretation).is_ok_and(|p| p == 0);
+    let v: Vec<u8> = match d.read_image().ok()? {
+        DecodingResult::U8(v) => v,
+        DecodingResult::U16(v) => v.iter().map(|&x| (x >> 8) as u8).collect(),
+        _ => return None,
+    };
+    let n = v.len() / px;
+    if n == 0 || v.len() != n * px {
+        return None;
+    }
+    if n < 3 {
+        image::GrayImage::from_raw(w, h, v.chunks(n).map(|c| if white_is_zero { 255 - c[0] } else { c[0] }).collect()).map(image::DynamicImage::ImageLuma8)
+    } else {
+        image::RgbImage::from_raw(w, h, v.chunks(n).flat_map(|c| [c[0], c[1], c[2]]).collect()).map(image::DynamicImage::ImageRgb8)
+    }
+}
+
 /// .tlp and VCarve .crv replace the document; .svg / .dxf / .pdf / .ai add to it (layers from the file).
 pub fn load(doc: &mut Document, name: &str, bytes: &[u8]) -> Loaded {
     // a browser tab has a few GB at most, and the importers copy the text: refuse the absurd before reading it
@@ -914,6 +946,23 @@ mod archive_tests {
         let mut tif = Vec::new();
         image::RgbaImage::from_pixel(4, 3, image::Rgba([9, 9, 9, 255])).write_to(&mut std::io::Cursor::new(&mut tif), image::ImageFormat::Tiff).unwrap();
         assert_eq!(image::load_from_memory(&tif).unwrap().width(), 4, "TIFF pictures decode for tracing");
+        // 16-bit grey + alpha, which image refuses ("Unhandled TIFF color type Multiband")
+        struct GrayA16;
+        impl tiff::encoder::colortype::ColorType for GrayA16 {
+            type Inner = u16;
+            const TIFF_VALUE: tiff::tags::PhotometricInterpretation = tiff::tags::PhotometricInterpretation::BlackIsZero;
+            const BITS_PER_SAMPLE: &'static [u16] = &[16, 16];
+            const SAMPLE_FORMAT: &'static [tiff::tags::SampleFormat] = &[tiff::tags::SampleFormat::Uint; 2];
+            fn horizontal_predict(row: &[u16], result: &mut Vec<u16>) {
+                result.extend_from_slice(row);
+            }
+        }
+        let mut tif = std::io::Cursor::new(Vec::new());
+        let px: Vec<u16> = (0..12).flat_map(|i| [i * 5000, 65535]).collect();
+        tiff::encoder::TiffEncoder::new(&mut tif).unwrap().write_image::<GrayA16>(4, 3, &px).unwrap();
+        assert!(image::load_from_memory(tif.get_ref()).is_err(), "image still refuses it: the fallback is needed");
+        let g = picture(tif.get_ref()).unwrap().to_luma8();
+        assert_eq!((g.width(), g.height(), g.get_pixel(2, 0)[0]), (4, 3, (10000u16 >> 8) as u8));
     }
 
     #[test]

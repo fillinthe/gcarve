@@ -1,3 +1,4 @@
+// "Seest thou a man diligent in his business? he shall stand before kings." Proverbs 22:29 (KJV)
 //! Template-driven post-processors (C++ `post/postdef.*`). A [`PostDef`] describes a controller's dialect;
 //! [`post_jobs`] renders Jobs with it. Checked byte for byte against the C++ output in tests/golden_cpp.rs.
 //!

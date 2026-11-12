@@ -118,7 +118,14 @@ impl MachineBrowser {
                     }
                 })
                 .map(|(i, _)| i)
-                .collect();
+                .collect::<Vec<usize>>();
+            // nothing asked for yet: small machines first (most people here have a hobby machine, and the list by
+            // name alone opens on 5-axis industrial ones)
+            let mut hits = hits;
+            if f.query.trim().is_empty() && f.class.is_none() && f.maker.is_empty() {
+                let rank = |i: &usize| CLASSES.iter().position(|c| c.0 == get().machines[*i].class).map_or(1, |p| [1, 0, 2, 3][p]);
+                hits.sort_by_key(rank); // stable: names stay in order within a class
+            }
             self.cache = Some((self.filter.clone(), hits));
         }
         &self.cache.as_ref().unwrap().1
@@ -148,13 +155,13 @@ impl MachineBrowser {
                 let r = ui.add(crate::widgets::field(&mut self.filter.query).hint_text(i18n::t("Search: Shapeoko, Panther 5x10, ShopBot PRS…")).desired_width(280.0));
                 crate::widgets::focus_first(ui, &r);
                 let maker_label = if self.filter.maker.is_empty() { i18n::t("All makers").to_string() } else { self.filter.maker.clone() };
-                egui::ComboBox::from_id_salt("mb-maker").selected_text(maker_label).width(180.0).height(420.0).show_ui(ui, |ui| {
+                crate::widgets::combo_box("mb-maker").selected_text(maker_label).width(180.0).height(420.0).show_ui(ui, |ui| {
                     ui.selectable_value(&mut self.filter.maker, String::new(), i18n::t("All makers"));
                     for (m, n) in &self.makers {
                         ui.selectable_value(&mut self.filter.maker, m.clone(), format!("{m}  ({n})"));
                     }
                 });
-                egui::ComboBox::from_id_salt("mb-size").selected_text(SIZES[self.filter.size].0).width(120.0).show_ui(ui, |ui| {
+                crate::widgets::combo_box("mb-size").selected_text(SIZES[self.filter.size].0).width(120.0).show_ui(ui, |ui| {
                     for (i, s) in SIZES.iter().enumerate() {
                         ui.selectable_value(&mut self.filter.size, i, s.0);
                     }
@@ -174,7 +181,7 @@ impl MachineBrowser {
             ui.horizontal_top(|ui| {
                 ui.vertical(|ui| {
                     ui.set_width(560.0);
-                    ui.label(RichText::new(format!("{} machine(s)", hits.len())).small().color(theme::TEXT_DIM));
+                    ui.label(RichText::new(if hits.len() == 1 { i18n::t("1 machine").to_string() } else { i18n::tf("{n} machines", &[("n", &crate::widgets::thousands(hits.len()))]) }).small().color(theme::TEXT_DIM));
                     let list_h = crate::widgets::list_height(ui, 112.0); // search row, class chips, the count
                     egui::ScrollArea::vertical().id_salt("mb-list").max_height(list_h).min_scrolled_height(list_h).show_rows(ui, 44.0, hits.len(), |ui, range| {
                         ui.spacing_mut().item_spacing.y = 0.0;

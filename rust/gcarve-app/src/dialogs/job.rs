@@ -134,7 +134,7 @@ impl JobDialog {
                     ui.end_row();
                     ui.label(i18n::t("Class"));
                     let classes = [("", i18n::t("Not sure")), ("industrial", i18n::t("Industrial")), ("prosumer", i18n::t("Prosumer")), ("hobby", i18n::t("Hobby")), ("desktop", i18n::t("Desktop"))];
-                    egui::ComboBox::from_id_salt("machine-class").selected_text(classes.iter().find(|c| c.0 == l.class).map_or(i18n::t("Not sure"), |c| c.1)).show_ui(ui, |ui| {
+                    crate::widgets::combo_box("machine-class").width(150.0).selected_text(classes.iter().find(|c| c.0 == l.class).map_or(i18n::t("Not sure"), |c| c.1)).show_ui(ui, |ui| {
                         for (k, t) in classes {
                             ui.selectable_value(&mut l.class, k.to_string(), t).on_hover_text(i18n::t("Scales suggested chip loads: hobby machines get lighter cuts"));
                         }
@@ -261,7 +261,10 @@ impl JobDialog {
         let mut sheet_act: Option<i32> = None; // -1 add, -2 remove, >= 0 switch
         crate::widgets::Dialog::new(i18n::t("Board / Job Setup")).show(ctx, |ui| {
             // board and heights on the left, where zero is on the right, machine and output underneath
-            ui.horizontal_top(|ui| {
+            // (a narrow window, a phone: one under the other, nothing hidden off to the side)
+            let narrow = ui.ctx().content_rect().width() < 760.0;
+            let lay = if narrow { egui::Layout::top_down(egui::Align::Min) } else { egui::Layout::left_to_right(egui::Align::Min) };
+            ui.allocate_ui_with_layout(egui::vec2(ui.available_size_before_wrap().x, ui.spacing().interact_size.y), lay, |ui| {
             ui.vertical(|ui| {
             ui.label(RichText::new(i18n::t("Board")).family(crate::widgets::bold_family()));
             egui::Grid::new("job-board").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
@@ -284,26 +287,35 @@ impl JobDialog {
                 material_combo(ui, "kind", &mut self.kind, 220.0);
                 ui.end_row();
                 ui.label(i18n::t("Board price ($)")).tip(i18n::t("What this board costs you. With a shop rate, the setup sheet and the toolpath list show the job's cost."));
-                ui.horizontal(|ui| {
-                    ui.add(crate::widgets::field(&mut self.price).hint_text("0").desired_width(70.0));
-                    ui.label(i18n::t("Shop rate ($ / hour)")).tip(i18n::t("Your charge per hour of machine time. Kept on this device for new drawings."));
-                    ui.add(crate::widgets::field(&mut self.rate).hint_text("0").desired_width(70.0));
-                });
+                ui.add(crate::widgets::field(&mut self.price).hint_text("0").desired_width(70.0));
+                ui.end_row();
+                ui.label(i18n::t("Shop rate ($ / hour)")).tip(i18n::t("Your charge per hour of machine time. Kept on this device for new drawings."));
+                ui.add(crate::widgets::field(&mut self.rate).hint_text("0").desired_width(70.0));
                 ui.end_row();
                 ui.label(unit_label(i18n::t("Board width X"), doc));
+                let swap = |ui: &mut egui::Ui, f: &mut crate::dialogs::Fields| {
+                    if ui.add(crate::widgets::Button::new(i18n::t("Swap W/H")).icon("swap", false)).clicked() {
+                        let w = f.text("w").to_string();
+                        let h = f.text("h").to_string();
+                        f.map.insert("w".into(), h);
+                        f.map.insert("h".into(), w);
+                    }
+                };
                 ui.horizontal(|ui| {
                     self.f.ui(ui, "w", doc);
-                    if ui.add(crate::widgets::Button::new(i18n::t("Swap W/H")).icon("swap", false)).clicked() {
-                        let w = self.f.text("w").to_string();
-                        let h = self.f.text("h").to_string();
-                        self.f.map.insert("w".into(), h);
-                        self.f.map.insert("h".into(), w);
+                    if !narrow {
+                        swap(ui, &mut self.f);
                     }
                 });
                 ui.end_row();
                 ui.label(unit_label(i18n::t("Board height Y"), doc));
                 self.f.ui(ui, "h", doc);
                 ui.end_row();
+                if narrow {
+                    ui.label("");
+                    swap(ui, &mut self.f);
+                    ui.end_row();
+                }
                 ui.label(unit_label(i18n::t("Thickness"), doc));
                 self.f.ui(ui, "t", doc);
                 ui.end_row();
@@ -415,7 +427,7 @@ impl JobDialog {
                 ui.label("");
                 ui.vertical(|ui| {
                     ui.set_width(380.0);
-                    hint(ui, i18n::t("40+ built-in machines and controllers; upload Vectric .pp or JSON posts in the chooser."));
+                    hint(ui, i18n::t("60+ built-in machines and controllers; upload Vectric .pp or JSON posts in the chooser."));
                     hint(ui, i18n::t("Any length field accepts math and units: 4ft, 48in, 1200mm, 2*gap + 1in."));
                 });
                 ui.end_row();

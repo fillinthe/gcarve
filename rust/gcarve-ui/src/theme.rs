@@ -27,7 +27,15 @@ pub const ACCENT_DOWN: Color32 = c(0x0d66d0);
 pub const DANGER: Color32 = c(0xe0603c);
 pub const WARNING: Color32 = c(0xf0a040);
 pub const ORANGE: Color32 = c(0xff9a2e);
-pub const CANVAS_BG: Color32 = c(0x262626);
+pub const CANVAS_BG: Color32 = c(0x262626); // default; the drawing area uses canvas_bg()
+static CANVAS: std::sync::atomic::AtomicU32 = std::sync::atomic::AtomicU32::new(0x262626);
+/// Background of the drawing / 3D area (Preferences › Background color)
+pub fn canvas_bg() -> Color32 {
+    c(CANVAS.load(std::sync::atomic::Ordering::Relaxed))
+}
+pub fn set_canvas_bg(rgb: u32) {
+    CANVAS.store(rgb & 0xffffff, std::sync::atomic::Ordering::Relaxed);
+}
 pub const SEPARATOR: Color32 = c(0x1c1c1c);
 pub const ROW_HOVER: Color32 = c(0x3e3e3e);
 pub const MODE_DESIGN: Color32 = c(0x3d8ee6);

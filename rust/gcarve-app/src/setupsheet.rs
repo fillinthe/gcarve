@@ -78,7 +78,7 @@ fn branded(html: &str, shop: &str, logo: &str) -> String {
 
 /// a picked logo → a PNG data URI at most 440 px wide (the sheet shows it 220 px wide, sharp on print)
 pub fn logo_uri(name: &str, bytes: &[u8]) -> Result<String, String> {
-    let img = image::load_from_memory(bytes).map_err(|e| format!("{name}: not a picture GCarve can read ({e})"))?;
+    let img = crate::files::picture(bytes).map_err(|e| format!("{name}: not a picture GCarve can read ({e})"))?;
     let img = if img.width() > 440 { img.resize(440, 440 * img.height() / img.width().max(1), image::imageops::FilterType::Triangle) } else { img };
     let mut png = std::io::Cursor::new(Vec::new());
     img.write_to(&mut png, image::ImageFormat::Png).map_err(|e| e.to_string())?;
