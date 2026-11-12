@@ -53,7 +53,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -137,7 +137,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -221,7 +221,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -305,7 +305,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -389,7 +389,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -473,7 +473,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -557,7 +557,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -641,7 +641,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -725,7 +725,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -809,7 +809,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -893,7 +893,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -977,7 +977,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -1061,7 +1061,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -1145,7 +1145,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -1229,7 +1229,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -1313,7 +1313,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -1397,7 +1397,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -1484,7 +1484,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -1568,7 +1568,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -1652,7 +1652,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -1736,7 +1736,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -1820,7 +1820,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -1904,7 +1904,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -1988,7 +1988,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -2072,7 +2072,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -2156,7 +2156,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -2240,7 +2240,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -2324,7 +2324,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -2408,7 +2408,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -2492,7 +2492,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -2576,7 +2576,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -2660,7 +2660,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -2744,7 +2744,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -2828,7 +2828,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -2912,7 +2912,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -2996,7 +2996,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -3080,7 +3080,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -3164,7 +3164,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -3248,7 +3248,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -3332,7 +3332,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -3416,7 +3416,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],
@@ -3500,7 +3500,7 @@
    "controllers": [
     {
      "name": "FANUC CNC with integrated PC (19 in touch screen)",
-     "gcarve_post": "fanuc-mm",
+     "gcarve_post": "komo-in",
      "default": true
     }
    ],

@@ -68,11 +68,11 @@ fn small_wrap(ui: &mut egui::Ui, t: &str) {
 fn state_color(s: &str) -> Color32 {
     if s == "Idle" {
         OK_GREEN
-    } else if s.starts_with(i18n::t("Run")) || s == "Jog" || s == "Home" {
+    } else if s.starts_with("Run") || s == "Jog" || s == "Home" {
         theme::ACCENT
-    } else if s.starts_with(i18n::t("Hold")) {
+    } else if s.starts_with("Hold") {
         theme::WARNING
-    } else if s.starts_with(i18n::t("Alarm")) {
+    } else if s.starts_with("Alarm") {
         theme::DANGER
     } else {
         theme::TEXT_DIM

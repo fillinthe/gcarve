@@ -41,7 +41,9 @@ fn is_motion(line: &str) -> bool {
         }
         false
     };
-    g(s) || s.starts_with("J3,") || s.starts_with("M3,") || s.starts_with("PU") || s.strip_prefix('Z').is_some_and(|t| t.trim_start_matches('-').starts_with(|c: char| c.is_ascii_digit()))
+    // Heidenhain plain language: "12 L X.. Y.. F.."
+    let klartext = s.split_whitespace().nth(1) == Some("L") && s.split_whitespace().any(|w| w.starts_with(['X', 'Y']));
+    g(s) || klartext || s.starts_with("J3,") || s.starts_with("M3,") || s.starts_with("PU") || s.strip_prefix('Z').is_some_and(|t| t.trim_start_matches('-').starts_with(|c: char| c.is_ascii_digit()))
 }
 
 /// off regex of cam_test: (^|[\s;])(M0?5|C7|SO,\s*\d+,\s*0|!MC0)([\s;]|$)

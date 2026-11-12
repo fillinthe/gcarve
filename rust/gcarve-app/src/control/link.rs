@@ -27,6 +27,33 @@ struct Leveling {
     clear: f64,
     depth: f64,
     feed: f64,
+    /// work Z where the last point touched (from the controller's probe report, not where the bit stopped)
+    hit: f64,
+}
+
+/// What this session learned about the controller; forgotten on disconnect.
+#[derive(Default)]
+struct Ctl {
+    /// homing is on ($22), or a homing run was seen: only then do machine coordinates mean anything
+    homing: bool,
+    /// $27, inches: how far home sits from the switches (machine 0 is ON the switch on stock grbl)
+    pulloff: f64,
+    /// an axis has reported a negative machine position: its travel runs -travel..0 (stock grbl)
+    neg: [bool; 3],
+    /// Y has reported a positive machine position: its travel runs 0..travel
+    pos_y: bool,
+    last_alarm: i32,
+    /// status reports since the last line went out or came back: an "Idle" older than that is stale
+    fresh: u32,
+    now: f64,
+    /// Stop: the reset follows the feed hold once the machine stands still (or at this time)
+    stop_at: Option<f64>,
+    /// touch plate: 0 none, 1 going down, 2 touched (zero once it stands still), 3 zero sent (then lift)
+    probe: u8,
+    probe_hit: f64,
+    probe_wait: u8,
+    /// found when the program was loaded: (errors, warnings) for the start check
+    notes: (Vec<String>, Vec<String>),
 }
 
 pub struct Link {
@@ -50,6 +77,8 @@ pub struct Link {
     probe_plate: f64,
     probe_lift: f64,
     travel_from_controller: bool,
+    /// the controller reports in inches ($13=1); millimetres until it says so (grbl's default)
+    report_inches: bool,
     /// inches; from the controller when it reports $130-$132
     pub travel: Vec3,
     inbuf: Vec<u8>,
@@ -61,6 +90,7 @@ pub struct Link {
     tool_said: String,
     /// held after a program line was rejected: Resume is refused until Stop / a new start
     stopped_on_error: bool,
+    c: Ctl,
 }
 
 impl Default for Link {
@@ -82,6 +112,7 @@ impl Default for Link {
             probe_plate: 0.0,
             probe_lift: 0.0,
             travel_from_controller: false,
+            report_inches: false,
             travel: Vec3 { x: 60.0, y: 96.0, z: 6.0 },
             inbuf: Vec::new(),
             last_tick: None,
@@ -89,6 +120,7 @@ impl Default for Link {
             program_rev: 0,
             tool_said: String::new(),
             stopped_on_error: false,
+            c: Ctl::default(),
         }
     }
 }
@@ -122,10 +154,10 @@ impl Link {
         self.state() == "Idle"
     }
     pub fn alarm(&self) -> bool {
-        status_is(self.state(), i18n::t("Alarm"))
+        status_is(self.state(), "Alarm")
     }
     pub fn hold(&self) -> bool {
-        status_is(self.state(), i18n::t("Hold"))
+        status_is(self.state(), "Hold")
     }
     pub fn work_zero_set(&self) -> bool {
         self.zeroed.iter().all(|z| *z)
@@ -209,9 +241,10 @@ impl Link {
         {
             self.disconnect();
             let name = port.split(" — ").next().unwrap_or(port).to_string();
+            // DTR on: native-USB boards (grblHAL, FluidNC) stay silent without it, and Windows leaves it off
             // 250 ms: on Windows the timeout covers a whole write, and 128 bytes take ~11 ms at 115200 (1 ms cut writes
             // short and dropped the link mid-job); reads only take what bytes_to_read says is there, so never wait
-            match serialport::new(&name, baud).timeout(std::time::Duration::from_millis(250)).open() {
+            match serialport::new(&name, baud).timeout(std::time::Duration::from_millis(250)).dtr_on_open(true).open() {
                 Ok(p) => {
                     self.transport = Some(Transport::Serial(p, name));
                     self.last_tick = None;
@@ -250,6 +283,8 @@ impl Link {
         self.streamer.stop();
         self.zeroed = [false; 3];
         self.travel_from_controller = false;
+        self.report_inches = false;
+        self.c = Ctl { notes: std::mem::take(&mut self.c.notes), ..Ctl::default() };
         self.st = MachineStatus::default();
         self.inbuf.clear();
     }
@@ -295,10 +330,14 @@ impl Link {
         for l in text.split_inclusive('\n').filter(|l| !l.trim().is_empty()) {
             self.streamer.foreign_line(l.len() + usize::from(!l.ends_with('\n')));
         }
+        self.c.fresh = 0;
         self.write(text.as_bytes());
     }
     /// program lines from the streamer (already booked)
     fn send_program(&mut self, chunk: &str) {
+        if !chunk.is_empty() {
+            self.c.fresh = 0;
+        }
         self.write(chunk.as_bytes());
     }
 
@@ -310,6 +349,7 @@ impl Link {
         }
         let dt = self.last_tick.map_or(0.02, |t| (now - t).clamp(0.0, 0.2));
         self.last_tick = Some(now);
+        self.c.now = now;
         let mut incoming = Vec::new();
         let mut dropped: Option<String> = None;
         #[cfg(target_arch = "wasm32")]
@@ -415,6 +455,11 @@ impl Link {
                 self.add_log(i18n::t("Paused: this tab was hidden while the job ran. Press Resume to carry on (keep the tab in front)"));
             }
         }
+        if self.c.stop_at.is_some_and(|t| now >= t || self.st.state == "Hold:0" || self.idle() || self.alarm()) {
+            // Stop, second half: standing still now, so the reset loses no steps
+            self.c.stop_at = None;
+            self.write(&[grbl::RESET]);
+        }
         if now - self.last_poll >= 0.1 {
             self.last_poll = now;
             self.write(&[grbl::STATUS]); // status reports at 10 Hz
@@ -439,16 +484,28 @@ impl Link {
     }
 
     fn handle_line(&mut self, l: &str) {
-        if grbl::parse_status(l, &mut self.st) {
+        let unit = self.unit();
+        if grbl::parse_status(l, &mut self.st, unit) {
+            self.c.fresh += 1;
+            let m = self.st.mpos;
+            for (i, v) in [m.x, m.y, m.z].into_iter().enumerate() {
+                self.c.neg[i] |= v < -1e-3;
+            }
+            self.c.pos_y |= m.y > 1e-3;
+            self.c.homing |= self.st.state.starts_with("Home");
+            self.probe_step();
             self.level_step();
             return;
         }
+        self.c.fresh = 0;
         if self.leveling.is_some() {
             if l.starts_with("[PRB:") {
-                if l.ends_with(":1]") {
-                    // touched: read the height off the status reports that follow, once the machine has stopped
+                if let Some(z) = grbl::probe_hit_z(l) {
+                    // touched: the height is where the probe tripped (the bit runs on a little while it brakes);
+                    // the next point once the machine has stopped
+                    let hit = z * self.unit() - self.st.wco.z;
                     if let Some(lv) = self.leveling.as_mut() {
-                        lv.wait = Some(2);
+                        (lv.hit, lv.wait) = (hit, Some(2));
                     }
                 } else {
                     self.level_stop(i18n::t("Surface probing stopped: the probe did not touch. Check the probe wire, and that Z zero is on the surface."));
@@ -477,6 +534,8 @@ impl Link {
         let mut q = l.to_string();
         if let Some(code) = l.strip_prefix("ALARM:") {
             let why = grbl::alarm_text(code.trim().parse().unwrap_or(0));
+            self.c.last_alarm = code.trim().parse().unwrap_or(0);
+            self.c.stop_at = None; // the controller stopped by itself
             self.last_error = format!("ALARM {code}{}", if why.is_empty() { i18n::t(": home or unlock before continuing").to_string() } else { format!(": {why}") });
             if self.streaming {
                 self.streaming = false;
@@ -495,23 +554,41 @@ impl Link {
             }
         }
         if l.starts_with("[PRB:") && self.probing {
-            // [PRB:x,y,z:1] = touched; set Z so the plate top reads the plate thickness, then lift
-            self.probing = false;
-            if l.ends_with(":1]") {
-                self.send(&format!("G20 G10 L20 P1 Z{:.4}\nG20 G91 G0 Z{:.4}\nG90\n", self.probe_plate, self.probe_lift));
-                self.zeroed[2] = true;
-                self.add_log(format!("Z zeroed by the touch plate (plate {} in)", self.probe_plate));
+            // [PRB:x,y,z:1] = touched there (machine coordinates); the zero and the lift follow in probe_step
+            if let Some(z) = grbl::probe_hit_z(l) {
+                (self.c.probe, self.c.probe_hit, self.c.probe_wait) = (2, z * self.unit(), 2);
             } else {
+                self.probing = false;
                 self.last_error = i18n::t("Probe did not touch the plate: check the plate wire and the distance").into();
             }
         }
-        if l.starts_with(i18n::t("Grbl")) {
+        if l.starts_with("Grbl") {
             // banner = the controller reset: nothing of ours is queued any more
+            if self.streaming {
+                self.last_error = i18n::t("The controller restarted during the job (power dip or USB noise?). The job is stopped: check the machine.").into();
+                self.add_log(self.last_error.clone());
+            }
+            self.probing = false;
+            self.leveling = None;
             self.streamer.stop();
             self.streaming = false;
             self.send("$$\n");
         }
         if let Some((n, v)) = grbl::parse_setting(l) {
+            match n {
+                22 => self.c.homing = v != 0.0,
+                27 => self.c.pulloff = (v / 25.4).clamp(0.0, 1.0),
+                _ => {}
+            }
+            if n == 13 && (v != 0.0) != self.report_inches {
+                // reports read so far were taken in the other unit: put them right until the next one lands
+                self.report_inches = v != 0.0;
+                let k = if self.report_inches { 25.4 } else { grbl::MM };
+                for p in [&mut self.st.mpos, &mut self.st.wco] {
+                    *p = Vec3 { x: p.x * k, y: p.y * k, z: p.z * k };
+                }
+                return;
+            }
             if (130..=132).contains(&n) && v > 0.0 {
                 // $130-$132 (mm) from the controller = the travel the start check uses
                 let inch = v / 25.4;
@@ -535,7 +612,7 @@ impl Link {
         }
         if let Some(t) = self.tool_wait() {
             if self.tool_said != t {
-                self.send(i18n::t("M5\n")); // the post stops it before a change; never leave it to the file
+                self.send("M5\n"); // the post stops it before a change; never leave it to the file
                 self.add_log(format!("Tool change: put in {t}, then touch off Z and press Continue"));
                 self.tool_said = t;
             }
@@ -545,12 +622,36 @@ impl Link {
         if !chunk.is_empty() {
             // until the controller's next report: lines just sent mean it's busy (a stale "Idle" ended short jobs
             // and the restart after a tool change as "finished" while the machine was still moving)
-            self.st.state = i18n::t("Run").into();
+            self.st.state = "Run".into();
         }
         self.send_program(&chunk);
-        if self.streamer.done() && self.idle() {
+        if self.streamer.done() && self.settled() {
             self.streaming = false;
             self.add_log(format!("Program finished: {}", self.program_name));
+        }
+    }
+
+    /// inches per unit of the controller's reports
+    fn unit(&self) -> f64 {
+        if self.report_inches { 1.0 } else { grbl::MM }
+    }
+    /// Idle, and reported so after the last line went out or was answered (a report from before it says nothing:
+    /// short jobs ended as "finished" while the machine was only starting)
+    fn settled(&self) -> bool {
+        self.idle() && self.c.fresh >= 2
+    }
+    /// The move that takes the bit clear before going sideways. With homing: the top of the machine, the pull-off
+    /// short of the switch. Without: machine zero is only where the power came on (maybe with the bit on the
+    /// board), so stay in work coordinates and never go down.
+    fn lift_line(&self) -> String {
+        if self.c.homing && !self.c.neg[2] && self.st.mpos.z > 1e-3 {
+            // Z counts up from the bottom on this machine: its top is the travel, not 0
+            format!("G20 G53 G0 Z{:.4}", (self.travel.z - 0.02).max(self.st.mpos.z))
+        } else if self.c.homing {
+            format!("G20 G53 G0 Z{:.4}", -self.c.pulloff)
+        } else {
+            let top = if self.program.min.x < 1e299 { self.program.max.z } else { 0.0 };
+            format!("G20 G90 G0 Z{:.4}", self.st.wpos().z.max(top).max(0.25))
         }
     }
 
@@ -561,18 +662,20 @@ impl Link {
 
     /// the bit to put in, while a program waits at a tool change (M6) with the machine stopped
     pub fn tool_wait(&self) -> Option<String> {
-        self.streamer.tool_wait().filter(|_| self.streaming && self.idle()).map(str::to_string)
+        self.streamer.tool_wait().filter(|_| self.streaming && self.settled()).map(str::to_string)
     }
 
     /// the new bit is in (and touched off): put the program's units back and carry on
     pub fn continue_after_tool(&mut self) {
-        if self.tool_wait().is_none() {
+        // not `tool_wait()`: right after the operator's own probe or jog the last report is not fresh yet, and what
+        // is still moving finishes first anyway (the controller takes lines in order)
+        if !self.streaming || self.streamer.tool_wait().is_none() {
             return;
         }
         // our own commands (probe, jog) may have switched to inches: the program's last unit word wins again
         let upto = (self.streamer.source_line().max(1) as usize).min(self.program.lines.len());
         let mm = self.program.lines[..upto].iter().rev().map(|l| grbl::clean_line(l)).find(|l| l.contains("G20") || l.contains("G21")).is_some_and(|l| l.contains("G21"));
-        self.send(if mm { i18n::t("G21 G90\n") } else { i18n::t("G20 G90\n") });
+        self.send(if mm { "G21 G90\n" } else { "G20 G90\n" });
         self.add_log(i18n::t("Tool change done: carrying on"));
         self.tool_said.clear();
         self.streamer.next_tool();
@@ -604,11 +707,20 @@ impl Link {
     pub fn home(&mut self) {
         if self.connected() && !self.streaming {
             self.send("$H\n");
+            self.st.state = "Home".into(); // grbl answers nothing while it homes: don't offer Zero / Start meanwhile
             self.last_error.clear();
         }
     }
     pub fn unlock(&mut self) {
         if self.connected() && !self.streaming {
+            if matches!(self.c.last_alarm, 1 | 2) {
+                // after a limit alarm grbl hears nothing but a reset
+                self.c.last_alarm = 0;
+                self.write(&[grbl::RESET]);
+                self.add_log(i18n::t("Controller reset after the limit alarm. If it still shows Alarm, press Unlock again, then home."));
+                self.last_error.clear();
+                return;
+            }
             self.send("$X\n");
             self.last_error.clear();
         }
@@ -676,7 +788,7 @@ impl Link {
         self.add_log(format!("Probing the surface: {} x {} points over {:.2} x {:.2} in", map.nx, map.ny, x1 - x0, y1 - y0));
         self.last_error.clear();
         self.height_map = None;
-        self.leveling = Some(Leveling { map, pts, i: 0, wait: None, clear: clear.max(0.05), depth: depth.max(0.02), feed: feed.max(1.0) });
+        self.leveling = Some(Leveling { map, pts, i: 0, hit: 0.0, wait: None, clear: clear.max(0.05), depth: depth.max(0.02), feed: feed.max(1.0) });
         self.level_send();
     }
     /// how far the grid probing has come: (points done, of)
@@ -697,14 +809,15 @@ impl Link {
     fn level_send(&mut self) {
         let Some(lv) = self.leveling.as_ref() else { return };
         let (x, y) = lv.pts[lv.i];
-        let text = format!("G20 G90 G0 Z{:.4}\nG20 G90 G0 X{x:.4} Y{y:.4}\nG20 G91 G38.2 Z{:.4} F{:.1}\nG90\n", lv.clear, -(lv.clear + lv.depth), lv.feed);
+        // all absolute: a probe that fails must not leave the controller in relative moves
+        let text = format!("G20 G90 G0 Z{:.4}\nG20 G90 G0 X{x:.4} Y{y:.4}\nG20 G90 G38.2 Z{:.4} F{:.1}\n", lv.clear, -lv.depth, lv.feed);
         self.send(&text);
     }
     /// after a status report: a touched point's height is read once the machine stands still, then the next point
     fn level_step(&mut self) {
         let idle = self.idle();
-        let z = self.st.wpos().z;
         let Some(lv) = self.leveling.as_mut() else { return };
+        let z = lv.hit;
         let Some(w) = lv.wait else { return };
         if !idle {
             return;
@@ -738,17 +851,47 @@ impl Link {
         self.last_error.clear();
         self.add_log(i18n::t("Probing Z…"));
         // G20 on every line with numbers in inches: grbl starts in mm, and a program may have left G21 set
-        self.send(&format!("G20 G91 G38.2 Z{:.4} F{:.1}\nG90\n", -max_travel.abs(), feed.max(1.0)));
+        // absolute: a probe that fails must not leave the controller in relative moves
+        self.c.probe = 1;
+        self.send(&format!("G20 G90 G38.2 Z{:.4} F{:.1}\n", self.st.wpos().z - max_travel.abs(), feed.max(1.0)));
+    }
+    /// after a status report: once the machine stands still after the touch, set Z; then (a few reports later, the
+    /// zero is written to the controller's memory meanwhile) lift
+    fn probe_step(&mut self) {
+        if !self.probing || self.c.probe < 2 || !self.idle() {
+            return;
+        }
+        if self.c.probe_wait > 0 {
+            self.c.probe_wait -= 1;
+            return;
+        }
+        if self.c.probe == 2 {
+            // the bit ran on past the touch while it braked: the plate's top is where it tripped
+            let z = self.probe_plate + (self.st.mpos.z - self.c.probe_hit);
+            self.send(&format!("G20 G10 L20 P1 Z{z:.4}\n"));
+            self.zeroed[2] = true;
+            self.add_log(format!("Z zeroed by the touch plate (plate {} in)", self.probe_plate));
+            (self.c.probe, self.c.probe_wait) = (3, 2);
+        } else {
+            self.send(&format!("G20 G90 G0 Z{:.4}\n", self.probe_plate + self.probe_lift));
+            (self.probing, self.c.probe) = (false, 0);
+        }
     }
     /// lift to the top, then to the back-left corner
     pub fn park(&mut self) {
-        if self.ready() {
-            // stock grbl homes into negative machine space (-travel..0): there the left is -travel and the back is 0
-            let (m, t) = (self.st.mpos, self.travel);
-            let x = if m.x < -1e-4 { -(t.x - 0.02) } else { 0.0 };
-            let y = if m.y < -1e-4 { 0.0 } else { t.y - 0.02 };
-            self.send(&format!("G53 G0 Z0\nG20 G53 G0 X{x:.3} Y{y:.3}\n"));
+        if !self.ready() {
+            return;
         }
+        if !self.c.homing {
+            self.last_error = i18n::t("Park needs homing: without it the machine doesn't know where its corners are").into();
+            return;
+        }
+        // which way an axis counts shows once it has been off zero. Stock grbl: -travel..0, left = -travel, back = 0
+        // (the pull-off short of the switch). Counting up: left = 0, back = travel. Not seen yet: 0 is safe in both.
+        let t = self.travel;
+        let x = if self.c.neg[0] { -(t.x - 0.02) } else { 0.0 };
+        let y = if self.c.neg[1] { -self.c.pulloff } else if self.c.pos_y { t.y - 0.02 } else { 0.0 };
+        self.send(&format!("{}\nG20 G53 G0 X{x:.3} Y{y:.3}\n", self.lift_line()));
     }
     /// M3 at low speed, dwell, then off
     pub fn spindle_warmup(&mut self, rpm: i32, seconds: i32) {
@@ -759,13 +902,13 @@ impl Link {
     }
     pub fn spindle(&mut self, on: bool, rpm: i32) {
         if self.connected() && !self.streaming {
-            self.send(&if on { format!("M3 S{}\n", rpm.max(0)) } else { i18n::t("M5\n").into() });
+            self.send(&if on { format!("M3 S{}\n", rpm.max(0)) } else { "M5\n".into() });
         }
     }
-    /// lift to machine Z0, then X0 Y0 (never travel low)
+    /// lift clear, then X0 Y0 (never travel low)
     pub fn go_to_work_zero(&mut self) {
         if self.ready() {
-            self.send(i18n::t("G53 G0 Z0\nG90 G0 X0 Y0\n"));
+            self.send(&format!("{}\nG90 G0 X0 Y0\n", self.lift_line()));
         }
     }
 
@@ -776,6 +919,7 @@ impl Link {
         }
         self.program = parse_program(text, 1000.0);
         self.program_name = name.to_string();
+        self.c.notes = file_notes(&self.program.lines);
         self.height_map = None; // probed for the last program's cuts
         self.streamer.load::<&str>(&[]);
         self.program_rev += 1;
@@ -809,8 +953,12 @@ impl Link {
         if p.motions.iter().any(|m| m.kind != MoveType::Rapid && !m.machine_coords && m.from.z.min(m.to.z) < 0.0 && !m.spindle_on) {
             errors.push(i18n::t("The program cuts below Z0 with the spindle off (no M3 before the cut).").into());
         }
+        errors.extend(self.c.notes.0.iter().cloned());
+        warnings.extend(self.c.notes.1.iter().cloned());
         let has = p.min.x < 1e299;
-        if has && conn {
+        if has && conn && !self.c.homing {
+            warnings.push(i18n::t("Homing is off, so the machine doesn't know where its travel ends: make sure the job fits from this work zero.").into());
+        } else if has && conn {
             // the whole program must fit the machine travel from the current work zero
             let w = self.st.wco;
             let (lo, hi, t) = (Vec3 { x: p.min.x + w.x, y: p.min.y + w.y, z: p.min.z + w.z }, Vec3 { x: p.max.x + w.x, y: p.max.y + w.y, z: p.max.z + w.z }, self.travel);
@@ -861,17 +1009,19 @@ impl Link {
             self.add_log(format!("Following the probed surface ({:.3} in of rise and fall)", map.range()));
         }
         if from_line > 1 {
-            let mut pre = grbl::resume_preamble(&self.program.lines, from_line, 20.0);
-            if pre.is_empty() {
-                self.last_error = format!("Can't resume at line {from_line} (out of range, or the program sets its own zero before it)");
+            lines = grbl::resume_preamble(&self.program.lines, from_line, 20.0, &self.lift_line());
+            if lines.is_empty() {
+                self.last_error = format!("Can't resume at line {from_line} (out of range, or the program sets its own zero or moves in relative steps before it)");
                 return false;
             }
-            pre.extend_from_slice(&self.program.lines[from_line - 1..]);
-            lines = pre;
             self.add_log(format!("Resuming at line {from_line}"));
         }
         if !self.program.spindle_off_at_end {
             lines.push("M5".into()); // safety: the spindle always stops after the program
+        }
+        if from_line <= 1 {
+            // the state the file was read and checked in: the controller wakes in mm, and our own buttons leave inches
+            self.send("G20 G90\n");
         }
         self.streamer.load(&lines);
         self.streamer.start();
@@ -894,7 +1044,7 @@ impl Link {
             self.add_log(i18n::t("A line was rejected: Resume would run the moves after it without it. Press Stop, fix the file, then start again (or from a line)"));
             return;
         }
-        if self.connected() {
+        if self.connected() && self.c.stop_at.is_none() {
             self.write(&[grbl::RESUME]);
             self.add_log(i18n::t("Resume"));
         }
@@ -904,7 +1054,15 @@ impl Link {
         if !self.connected() {
             return;
         }
-        self.write(&[grbl::HOLD, grbl::RESET]);
+        // hold first; the reset follows once it stands still (update): a reset while moving loses steps and the
+        // zero with them (ALARM:3). Nothing moving = reset at once.
+        self.write(&[grbl::HOLD]);
+        if self.idle() || self.alarm() || self.st.state == "Hold:0" {
+            self.write(&[grbl::RESET]);
+        } else {
+            self.c.stop_at = Some(self.c.now + 1.5);
+        }
+        (self.probing, self.c.probe) = (false, 0);
         self.streamer.stop();
         self.stopped_on_error = false;
         if self.leveling.take().is_some() {
@@ -960,6 +1118,35 @@ impl Link {
     pub fn streamed_total(&self) -> usize {
         self.streamer.total()
     }
+}
+
+/// What a GRBL controller would refuse part-way through the job, found when the file is loaded: (errors, warnings).
+fn file_notes(lines: &[String]) -> (Vec<String>, Vec<String>) {
+    let (mut errors, mut warnings, mut unit, mut m7) = (Vec::new(), Vec::new(), false, false);
+    for (i, l) in lines.iter().enumerate() {
+        if errors.len() >= 3 {
+            break;
+        }
+        if grbl::clean_line(l).len() > 79 {
+            errors.push(format!("Line {} is longer than the 79 characters a GRBL controller takes.", i + 1));
+        }
+        for (c, v) in gcarve_core::heightmap::words(l) {
+            let n = v.parse::<f64>().unwrap_or(-1.0);
+            match c {
+                'G' if n == 20.0 || n == 21.0 => unit = true,
+                'G' if n == 41.0 || n == 42.0 || n == 64.0 => errors.push(format!("Line {} uses G{n}: GRBL controllers refuse it and the job would stop there. Export with a GRBL post.", i + 1)),
+                'M' if n == 7.0 => m7 = true,
+                _ => {}
+            }
+        }
+    }
+    if !unit && !lines.is_empty() {
+        warnings.push(i18n::t("The file doesn't say inches (G20) or millimeters (G21): it runs as inches, the way the preview shows it.").into());
+    }
+    if m7 {
+        warnings.push(i18n::t("The file switches mist on (M7): many GRBL boards refuse that and the job would stop there.").into());
+    }
+    (errors, warnings)
 }
 
 /// One axis of the start check: the span must lie in the machine's travel, which runs 0..travel on some
@@ -1135,13 +1322,16 @@ mod tests {
         assert!(l.last_error.is_empty() && l.idle(), "{}", l.last_error);
         assert!(!l.sim().unwrap().spindle_on() && l.st.rpm == 0.0);
         assert!(l.log.iter().any(|s| s.starts_with("Program finished")));
-        // stop while cutting: hold + reset -> ALARM:3, streaming over, spindle off
+        // stop while cutting: hold, then the reset once it stands still: no ALARM:3, the position is kept,
+        // streaming over, spindle off
         assert!(l.start(1));
         run(&mut l, &mut t, |l| l.progress_line() > 30);
         let resume_at = l.suggested_resume_line();
         l.stop();
+        l.resume(); // pressed in the gap before the reset: must not set the machine moving again
         settle(&mut l, &mut t);
-        assert!(l.alarm() && l.last_error.contains("ALARM 3") && !l.streaming && !l.sim().unwrap().spindle_on(), "{}", l.last_error);
+        settle(&mut l, &mut t);
+        assert!(!l.log.iter().any(|s| s.contains("ALARM:3")) && !l.streaming && !l.sim().unwrap().spindle_on(), "{}", l.log.join("\n"));
         // resume from a line after re-homing keeps the zero (sim keeps WCO across reset)
         l.home();
         settle(&mut l, &mut t);
@@ -1155,7 +1345,7 @@ mod tests {
         l.go_to_work_zero();
         settle(&mut l, &mut t);
         l.probe_z(0.75, 6.0, 50.0, 0.25);
-        settle(&mut l, &mut t);
+        run(&mut l, &mut t, |l| !l.probing);
         settle(&mut l, &mut t);
         assert!(!l.probing && l.last_error.is_empty(), "{}\n{}", l.last_error, l.log.join("\n"));
         assert!((l.st.wpos().z - 1.0).abs() < 1e-3, "z {}", l.st.wpos().z); // plate top at 0.75, lifted 0.25
@@ -1170,5 +1360,29 @@ mod tests {
         assert!(fits(-11.46, -3.65, 15.8) && fits(-13.05, -0.76, 15.8) && fits(-2.4, -1.2, 3.7));
         assert!(fits(1.0, 15.0, 15.8)); // counting up still fits
         assert!(!fits(-1.0, 3.0, 15.8) && !fits(-16.0, -1.0, 15.8) && !fits(2.0, 16.0, 15.8));
+    }
+
+    #[test]
+    fn lifts_and_park_keep_to_what_the_controller_said_about_itself() {
+        let mut l = Link { transport: Some(Transport::Sim(Box::default())), ..Link::default() };
+        l.travel = Vec3 { x: 15.8, y: 15.8, z: 3.7 };
+        // homing off: machine zero is only where the power came on. Never G53, never down, and no Park.
+        l.handle_line("<Idle|MPos:0.000,0.000,0.000|WCO:0.000,0.000,-25.400>"); // work Z reads 1 in
+        assert_eq!(l.lift_line(), "G20 G90 G0 Z1.0000");
+        l.park();
+        assert!(l.last_error.contains("homing"), "{}", l.last_error);
+        l.load_program("a.nc", "G20\nM3 S9000\nG1 X1 Z-0.1 F10\nM5\n");
+        assert_eq!(l.lift_line(), "G20 G90 G0 Z1.0000");
+        assert!(l.start_check().1.iter().any(|w| w.contains("Homing is off")));
+        // homing on, stock grbl: home is the pull-off short of the switch, and the space counts down
+        for s in ["$22=1", "$27=2.540", "<Idle|MPos:-200.000,-2.540,-2.540>"] {
+            l.handle_line(s);
+        }
+        assert_eq!(l.lift_line(), "G20 G53 G0 Z-0.1000");
+        // at the back already, Y reads the pull-off: Park must still know this machine counts down
+        assert!(l.c.neg[0] && l.c.neg[1] && !l.c.pos_y);
+        let (errors, warnings) = file_notes(&["G1 X1 F10".into(), "G41 D1".into(), "M7".into(), format!("G1 X{}", "1".repeat(90))]);
+        assert!(errors.len() == 2 && errors[0].contains("G41") && errors[1].contains("79"), "{errors:?}");
+        assert!(warnings.len() == 2 && warnings[0].contains("G20") && warnings[1].contains("M7"), "{warnings:?}");
     }
 }

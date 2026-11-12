@@ -2175,7 +2175,7 @@
    "controllers": [
     {
      "name": "Osai",
-     "gcarve_post": null,
+     "gcarve_post": "osai-mm",
      "default": true
     },
     {
@@ -2270,7 +2270,7 @@
    "controllers": [
     {
      "name": "Osai",
-     "gcarve_post": null,
+     "gcarve_post": "osai-mm",
      "default": true
     },
     {
