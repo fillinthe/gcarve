@@ -39,9 +39,6 @@ fn add(a: Vec3, b: Vec3) -> Vec3 {
 fn len3(a: Vec3, b: Vec3) -> f64 {
     ((b.x - a.x).powi(2) + (b.y - a.y).powi(2) + (b.z - a.z).powi(2)).sqrt()
 }
-fn fmt3(p: Vec3) -> String {
-    format!("{:.4},{:.4},{:.4}", p.x, p.y, p.z)
-}
 /// C atof: leading number of a string, 0 when there is none
 fn atof(s: &str) -> f64 {
     let s = s.trim_start();
@@ -85,25 +82,31 @@ impl MachineStatus {
     }
 }
 
-/// "<Idle|MPos:1.000,2.000,0.000|FS:0,0|WCO:...|Ov:100,100,100>" -> fields present in the report (others kept)
-pub fn parse_status(line: &str, st: &mut MachineStatus) -> bool {
+/// Inches per millimetre: a controller reports positions and feed in mm unless its $13 is 1.
+pub const MM: f64 = 1.0 / 25.4;
+
+/// "<Idle|MPos:1.000,2.000,0.000|FS:0,0|WCO:...|Ov:100,100,100>" -> fields present in the report (others kept).
+/// `unit` = inches per reported length unit (`MM`, or 1.0 with $13=1): `st` is always in inches.
+pub fn parse_status(line: &str, st: &mut MachineStatus, unit: f64) -> bool {
     if line.len() < 3 || !line.starts_with('<') || !line.ends_with('>') {
         return false;
     }
     let mut fields = line[1..line.len() - 1].split('|');
     st.state = fields.next().unwrap_or("").to_string();
+    let mut wpos = None; // a WCO later in the same report must count
     for f in fields {
         let Some((k, rest)) = f.split_once(':') else { continue };
         let v: Vec<f64> = rest.split(',').map(atof).collect();
+        let p = |v: &[f64]| v3(v[0] * unit, v[1] * unit, v[2] * unit);
         match k {
-            "MPos" if v.len() >= 3 => st.mpos = v3(v[0], v[1], v[2]),
-            "WPos" if v.len() >= 3 => st.mpos = add(v3(v[0], v[1], v[2]), st.wco),
-            "WCO" if v.len() >= 3 => st.wco = v3(v[0], v[1], v[2]),
+            "MPos" if v.len() >= 3 => st.mpos = p(&v),
+            "WPos" if v.len() >= 3 => wpos = Some(p(&v)),
+            "WCO" if v.len() >= 3 => st.wco = p(&v),
             "FS" if v.len() >= 2 => {
-                st.feed = v[0];
+                st.feed = v[0] * unit;
                 st.rpm = v[1];
             }
-            "F" if !v.is_empty() => st.feed = v[0],
+            "F" if !v.is_empty() => st.feed = v[0] * unit,
             "Ov" if !v.is_empty() => {
                 st.feed_ov = v[0] as i32;
                 if v.len() >= 2 {
@@ -115,6 +118,9 @@ pub fn parse_status(line: &str, st: &mut MachineStatus) -> bool {
             }
             _ => {}
         }
+    }
+    if let Some(w) = wpos {
+        st.mpos = add(w, st.wco);
     }
     st.valid = true;
     true
@@ -210,8 +216,8 @@ pub fn error_text(c: i32) -> &'static str {
 /// Human text for "ALARM:N"; empty when unknown.
 pub fn alarm_text(c: i32) -> &'static str {
     match c {
-        1 => "Hard limit hit: position lost. Re-home.",
-        2 => "Soft limit: a move would leave the machine travel. Position kept; unlock and check the job.",
+        1 => "Hard limit hit: position lost. Press Unlock (it resets the controller), then re-home.",
+        2 => "Soft limit: a move would leave the machine travel. Press Unlock (it resets the controller), then check the job.",
         3 => "Reset while moving: position lost. Re-home.",
         4 => "Probe not in the expected state before probing",
         5 => "Probe did not touch within the move",
@@ -384,7 +390,9 @@ impl GrblSim {
             None if self.gs.spindle_on => self.gs.rpm,
             None => 0.0,
         };
-        self.out += &format!("<{}|MPos:{}|FS:{feed:.0},{rpm:.0}|WCO:{}|Ov:{},{},{}>\r\n", self.st.state, fmt3(self.st.mpos), fmt3(self.st.wco), self.st.feed_ov, self.st.rapid_ov, self.st.spindle_ov);
+        // millimetres, like a real controller with $13=0 (the host converts)
+        let mm = |p: Vec3| format!("{:.3},{:.3},{:.3}", p.x * 25.4, p.y * 25.4, p.z * 25.4);
+        self.out += &format!("<{}|MPos:{}|FS:{:.0},{rpm:.0}|WCO:{}|Ov:{},{},{}>\r\n", self.st.state, mm(self.st.mpos), feed * 25.4, mm(self.st.wco), self.st.feed_ov, self.st.rapid_ov, self.st.spindle_ov);
     }
 
     /// from the host
@@ -393,8 +401,8 @@ impl GrblSim {
             match c {
                 STATUS => self.report(),
                 RESET => {
-                    // reset while moving loses position: grbl raises ALARM:3 and stays locked
-                    let moving = !self.queue.is_empty() && !self.jogging;
+                    // reset while moving loses position: grbl raises ALARM:3 and stays locked (held = standing still)
+                    let moving = !self.queue.is_empty() && !self.jogging && !self.hold;
                     self.reset(self.alarm || moving);
                     if moving {
                         self.out += "ALARM:3\r\n[MSG:Reset while in motion. Re-home or unlock]\r\n";
@@ -628,7 +636,7 @@ impl GrblSim {
         if l == "$$" {
             // settings report: travel in mm, like grbl ($13=0 = metric reports)
             let t = self.cfg.travel;
-            self.out += &format!("$110={:.3}\r\n$130={:.3}\r\n$131={:.3}\r\n$132={:.3}\r\n", self.cfg.rapid_ipm * 25.4, t.x * 25.4, t.y * 25.4, t.z * 25.4);
+            self.out += &format!("$13=0\r\n$22={}\r\n$27=0.000\r\n$110={:.3}\r\n$130={:.3}\r\n$131={:.3}\r\n$132={:.3}\r\n", i32::from(self.cfg.homing_required), self.cfg.rapid_ipm * 25.4, t.x * 25.4, t.y * 25.4, t.z * 25.4);
         }
         self.out += "ok\r\n"; // settings queries etc.
     }
@@ -691,7 +699,7 @@ impl GrblSim {
                 self.queue.pop_front();
                 if s.probe {
                     let p = self.st.mpos;
-                    self.out += &format!("[PRB:{:.4},{:.4},{:.4}:{}]\r\n", p.x, p.y, p.z, i32::from(self.probe_hit));
+                    self.out += &format!("[PRB:{:.3},{:.3},{:.3}:{}]\r\n", p.x * 25.4, p.y * 25.4, p.z * 25.4, i32::from(self.probe_hit)); // machine position, mm
                     if !self.probe_hit && self.probe_alarm_on_miss {
                         self.raise_alarm(5, "Probe did not touch");
                         return;
@@ -899,11 +907,18 @@ pub fn surfacing_program(w: f64, h: f64, dia: f64, stepover: f64, depth: f64, pa
     g + "M5\nG0 Z0.5\nM30\n"
 }
 
+/// The Z of a "[PRB:x,y,z:1]" report: machine coordinates, in the controller's report unit. None unless it touched.
+pub fn probe_hit_z(line: &str) -> Option<f64> {
+    let body = line.strip_prefix("[PRB:")?.strip_suffix(":1]")?;
+    body.split(',').nth(2).map(atof)
+}
+
 /// Resume a program at `line` (1-based, the first line to run). Replays the modal state of lines 1..line-1 and returns
-/// the safe re-entry block: units/absolute, lift to machine Z0 (G53), spindle at the program's speed + spin-up dwell,
-/// rapid over the restart XY, feed down to the restart Z at a slow plunge, restore the feed and modal motion. Then
-/// stream lines line..end. Empty when the line is out of range or the state can't be rebuilt.
-pub fn resume_preamble<S: AsRef<str>>(program: &[S], line: usize, plunge_ipm: f64) -> Vec<String> {
+/// the whole thing to send: `lift` (the caller's "up before anything moves sideways" line: machine Z with homing, a
+/// work height without), units/absolute, spindle at the program's speed + spin-up dwell, rapid over the restart XY,
+/// feed down to the restart Z at a slow plunge, the feed, then lines line..end with the modal motion they expect.
+/// Empty when the line is out of range or the state can't be rebuilt.
+pub fn resume_preamble<S: AsRef<str>>(program: &[S], line: usize, plunge_ipm: f64, lift: &str) -> Vec<String> {
     if line < 2 || line > program.len() {
         return Vec::new();
     }
@@ -915,8 +930,11 @@ pub fn resume_preamble<S: AsRef<str>>(program: &[S], line: usize, plunge_ipm: f6
             _ => return Vec::new(), // parse error, or the program re-zeroes itself before this line
         }
     }
+    if !st.absolute {
+        return Vec::new(); // relative moves: where they land depends on every move before them
+    }
     let u = if st.inches { 1.0 } else { 25.4 };
-    let mut out = vec![if st.inches { "G20" } else { "G21" }.to_string(), "G90".into(), "G53 G0 Z0".into()]; // up before anything moves sideways
+    let mut out = vec![lift.to_string(), if st.inches { "G20" } else { "G21" }.to_string(), "G90".into()];
     if st.spindle_on {
         out.push(format!("M3 S{:.0}", if st.rpm > 0.0 { st.rpm } else { 12000.0 }));
         out.push("G4 P3".into()); // spin up before touching material
@@ -927,7 +945,26 @@ pub fn resume_preamble<S: AsRef<str>>(program: &[S], line: usize, plunge_ipm: f6
     if st.feed > 0.0 {
         out.push(format!("F{:.1}", st.feed * u));
     }
-    out.push(format!("G{}", st.motion)); // the modal motion the next lines expect
+    // the modal motion the next lines expect. A bare G2 / G3 is refused by grbl (an arc needs its words), so the
+    // word goes onto the first line that moves without naming its own motion.
+    let mut modal = Some(format!("G{}", st.motion));
+    if st.motion <= 1 {
+        out.extend(modal.take());
+    }
+    for l in &program[line - 1..] {
+        let l = l.as_ref();
+        if modal.is_some() {
+            let w = crate::heightmap::words(l);
+            let own = w.iter().any(|(c, v)| *c == 'G' && matches!(v.parse::<f64>(), Ok(n) if (0.0..=3.0).contains(&n) && n.fract() == 0.0));
+            if own {
+                modal = None;
+            } else if w.iter().any(|(c, _)| "XYZIJR".contains(*c)) {
+                out.push(format!("{} {l}", modal.take().unwrap()));
+                continue;
+            }
+        }
+        out.push(l.to_string());
+    }
     out
 }
 
@@ -966,7 +1003,7 @@ mod tests {
                 }
                 self.log += l;
                 self.log.push('\n');
-                if !parse_status(l, &mut self.ms) {
+                if !parse_status(l, &mut self.ms, MM) {
                     self.st.on_response(l);
                 }
             }
@@ -1094,13 +1131,19 @@ mod tests {
     fn resume_from_line() {
         // same end state as running the whole program, spindle on before the plunge, lift first
         let prog = ["G90 G20", "M3 S16000", "G0 X1 Y1 Z0.2", "G1 Z-0.25 F50", "G1 X3 F100", "G1 Y3", "G1 X1", "G0 Z0.5", "M5"];
-        let pre = resume_preamble(&prog, 6, 20.0); // restart at "G1 Y3": the bit was at X3 Y1 Z-0.25
+        let pre = resume_preamble(&prog, 6, 20.0, "G53 G0 Z0"); // restart at "G1 Y3": the bit was at X3 Y1 Z-0.25
         let all = pre.join("\n");
         let at = |s: &str| all.find(s).unwrap_or_else(|| panic!("{s} missing in\n{all}"));
         assert!(at("G53 G0 Z0") < at("G0 X3.0000 Y1.0000") && at("M3 S16000") < at("G1 Z-0.2500"));
-        assert!(all.contains("F100.0") && pre.last().unwrap() == "G1");
-        assert!(resume_preamble(&prog, 1, 20.0).is_empty() && resume_preamble(&prog, 99, 20.0).is_empty());
-        assert!(resume_preamble(&["G10 L20 P1 X0", "G0 X1"], 2, 20.0).is_empty()); // re-zeroing before the line: refuse
+        assert!(all.contains("F100.0") && at("\nG1\n") < at("G1 Y3") && pre.last().unwrap() == "M5");
+        assert!(resume_preamble(&prog, 1, 20.0, "").is_empty() && resume_preamble(&prog, 99, 20.0, "").is_empty());
+        assert!(resume_preamble(&["G10 L20 P1 X0", "G0 X1"], 2, 20.0, "").is_empty()); // re-zeroing before the line: refuse
+        assert!(resume_preamble(&["G91", "G1 X1 F10", "G1 X1"], 3, 20.0, "").is_empty()); // relative moves: refuse
+        // inside a run of arcs: grbl refuses a bare G2, so the word rides on the first line that moves
+        let arcs = resume_preamble(&["G90 G20", "G1 X1 Y0 F50", "G2 X2 Y1 I1 J0", "S9000", "X3 Y0 I0 J-1", "X4 Y1 I1 J0"], 4, 20.0, "");
+        assert!(!arcs.iter().any(|l| l == "G2") && arcs.ends_with(&["S9000".to_string(), "G2 X3 Y0 I0 J-1".into(), "X4 Y1 I1 J0".into()]), "{arcs:?}");
+        assert_eq!(probe_hit_z("[PRB:1.000,2.000,-30.480:1]"), Some(-30.48));
+        assert_eq!(probe_hit_z("[PRB:1.000,2.000,-30.480:0]"), None);
         let mut r = Rig::new();
         r.send("$H");
         r.run_until_idle();
@@ -1135,10 +1178,13 @@ mod tests {
     #[test]
     fn status_parsing() {
         let mut st = MachineStatus::default();
-        assert!(parse_status("<Hold:0|MPos:1.000,2.000,-0.500|FS:120,18000|WCO:1,1,-1|Ov:110,100,80>", &mut st));
+        assert!(parse_status("<Hold:0|MPos:1.000,2.000,-0.500|FS:120,18000|WCO:1,1,-1|Ov:110,100,80>", &mut st, 1.0));
         assert!(st.state == "Hold:0" && near(st.wpos().z, 0.5) && st.rpm == 18000.0 && st.feed_ov == 110 && st.spindle_ov == 80);
-        assert!(parse_status("<Idle|WPos:0,0,0>", &mut st) && near(st.mpos.x, 1.0));
-        assert!(!parse_status("ok", &mut st));
+        assert!(parse_status("<Idle|WPos:0,0,0>", &mut st, 1.0) && near(st.mpos.x, 1.0));
+        assert!(!parse_status("ok", &mut st, 1.0));
+        // millimetre reports (grbl's default) land in inches; a work offset later in the same report counts
+        assert!(parse_status("<Idle|WPos:25.400,0,0|FS:254,0|WCO:-50.800,0,-25.400>", &mut st, MM));
+        assert!(near(st.mpos.x, -1.0) && near(st.wpos().x, 1.0) && near(st.wco.z, -1.0) && near(st.feed, 10.0));
         assert_eq!(clean_line(" g1 x1 (c) ; tail"), "G1X1");
     }
 

@@ -53,7 +53,7 @@ impl HeightMap {
 }
 
 /// G-code words of a line without its comments: (letter, number text)
-fn words(line: &str) -> Vec<(char, String)> {
+pub fn words(line: &str) -> Vec<(char, String)> {
     let mut out = Vec::new();
     let (mut depth, mut cur): (i32, Option<(char, String)>) = (0, None);
     for ch in line.split(';').next().unwrap_or("").chars() {

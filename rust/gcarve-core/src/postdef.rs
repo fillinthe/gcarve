@@ -2,7 +2,7 @@
 //! Template-driven post-processors (C++ `post/postdef.*`). A [`PostDef`] describes a controller's dialect;
 //! [`post_jobs`] renders Jobs with it. Checked byte for byte against the C++ output in tests/golden_cpp.rs.
 //!
-//! Placeholders in templates: {FILENAME} {DATE} {TIME} {TOOLNAME} {TOOLNUM} {RPM} {FEEDXY} {FEEDZ} {SAFEZ} {ZZERO}
+//! Placeholders in templates: {FILENAME} {DATE} {TIME} {TOOLNAME} {TOOLNUM} {TOOLNUM3} (three digits) {RPM} {FEEDXY} {FEEDZ} {SAFEZ} {ZZERO}
 //! {XH} {YH} {ZH} (home) {XLENGTH} {YLENGTH} {ZLENGTH} (board)
 //! {MATERIAL} {UNITS} {PATHNAME} {XMIN} {XMAX} {YMIN} {YMAX} {ZMIN} {ZMAX} {N} (line number) and in move templates
 //! {X} {Y} {Z} {I} {J} {F} (axis letter + number; omitted when absent) or {x} {y} {z} {i} {j} {f} (bare numbers,
@@ -68,6 +68,10 @@ pub struct PostDef {
     pub substitute: String,
     /// digits after the point for {F}/{f}/{FEEDXY}/{FEEDZ}
     pub feed_decimals: i32,
+    /// what a feed in the post's units per MINUTE is multiplied by before it is written: 1/60 for controls that
+    /// take units per second (ShopBot MS, Vectric posts with a 0.0166 rate multiplier)
+    #[serde(skip_serializing_if = "is_one")]
+    pub feed_scale: f64,
     /// {N} in templates = running line number
     pub line_number_start: i32,
     pub line_number_step: i32,
@@ -84,6 +88,11 @@ pub struct PostDef {
     pub home_y: Option<f64>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub home_z: Option<f64>,
+}
+
+#[allow(clippy::trivially_copy_pass_by_ref)] // serde's signature
+fn is_one(v: &f64) -> bool {
+    (*v - 1.0).abs() < 1e-12
 }
 
 impl Default for PostDef {
@@ -114,6 +123,7 @@ impl Default for PostDef {
             first_linear: String::new(),
             substitute: String::new(),
             feed_decimals: 0,
+            feed_scale: 1.0,
             line_number_start: 10,
             line_number_step: 10,
             modal_axes: true,
@@ -309,8 +319,8 @@ fn emit_move(out: &mut String, c: &mut Ctx, m: &Move, feed_xy: f64, feed_z: f64)
     }
     let feed_changed = m.kind != MoveType::Rapid && c.f.is_none_or(|f| (f - feed).abs() > 1e-9);
     if feed_changed && !d.feed_change.is_empty() {
-        c.set("f", fmt(feed * c.scale, d.feed_decimals));
-        c.set("F", format!("F{}", fmt(feed * c.scale, d.feed_decimals)));
+        c.set("f", fmt(feed * c.scale * d.feed_scale, d.feed_decimals));
+        c.set("F", format!("F{}", fmt(feed * c.scale * d.feed_scale, d.feed_decimals)));
         c.emit_lines(out, &d.feed_change);
     }
     let sc = c.scale;
@@ -320,14 +330,14 @@ fn emit_move(out: &mut String, c: &mut Ctx, m: &Move, feed_xy: f64, feed_z: f64)
     s = s.replace("{Z}", &c.axis_tok("Z", m.z, c.z, false));
     s = s.replace("{I}", &if arc { format!("I{}", fmt(m.i * sc, d.decimals)) } else { String::new() });
     s = s.replace("{J}", &if arc { format!("J{}", fmt(m.j * sc, d.decimals)) } else { String::new() });
-    let fword = if m.kind != MoveType::Rapid && feed_changed && d.feed_change.is_empty() { format!("F{}", fmt(feed * sc, d.feed_decimals)) } else { String::new() };
+    let fword = if m.kind != MoveType::Rapid && feed_changed && d.feed_change.is_empty() { format!("F{}", fmt(feed * sc * d.feed_scale, d.feed_decimals)) } else { String::new() };
     s = s.replace("{F}", &fword);
     s = s.replace("{x}", &fmt(m.x.or(c.x).unwrap_or(0.0) * sc, d.decimals));
     s = s.replace("{y}", &fmt(m.y.or(c.y).unwrap_or(0.0) * if c.a_axis { 1.0 } else { sc }, d.decimals));
     s = s.replace("{z}", &fmt(m.z.or(c.z).unwrap_or(0.0) * sc, d.decimals));
     s = s.replace("{i}", &fmt(m.i * sc, d.decimals));
     s = s.replace("{j}", &fmt(m.j * sc, d.decimals));
-    s = s.replace("{f}", &fmt(feed * sc, d.feed_decimals));
+    s = s.replace("{f}", &fmt(feed * sc * d.feed_scale, d.feed_decimals));
     let s = trim_spaces(&s);
     if !s.is_empty() {
         // move templates may span lines (Vectric blocks); emit_lines expands again, like C++
@@ -352,14 +362,15 @@ fn emit_job(out: &mut String, c: &mut Ctx, job: &Job, tool_num: i32) {
     let d = c.def;
     c.set("TOOLNAME", substituted(d, &job.tool));
     c.set("TOOLNUM", tool_num.to_string());
+    c.set("TOOLNUM3", format!("{tool_num:03}"));
     c.set("RPM", job.rpm.to_string());
     c.set("ZZERO", job.z_zero.clone());
     c.set("MATERIAL", job.material.clone());
     for tp in &job.toolpaths {
         let sc = c.scale;
         c.set("PATHNAME", substituted(d, &tp.name));
-        c.set("FEEDXY", fmt(tp.feed_xy * sc, d.feed_decimals));
-        c.set("FEEDZ", fmt(tp.feed_z * sc, d.feed_decimals));
+        c.set("FEEDXY", fmt(tp.feed_xy * sc * d.feed_scale, d.feed_decimals));
+        c.set("FEEDZ", fmt(tp.feed_z * sc * d.feed_scale, d.feed_decimals));
         let mut b = Rect::default();
         let mut z: Option<(f64, f64)> = None;
         for m in &tp.moves {
@@ -580,6 +591,7 @@ fn render_jobs(jobs: &[Job], def: &PostDef) -> Vec<PostOutput> {
             ("MATERIAL", substituted(def, &j.material)),
             ("TOOLNAME", substituted(def, &j.tool)),
             ("TOOLNUM", j.slot.max(1).to_string()),
+            ("TOOLNUM3", format!("{:03}", j.slot.max(1))),
             ("RPM", j.rpm.to_string()),
             ("ZZERO", j.z_zero.clone()),
             ("PATHNAME", String::new()),
@@ -613,6 +625,7 @@ fn render_jobs(jobs: &[Job], def: &PostDef) -> Vec<PostOutput> {
             c.set("TOOLNAME", substituted(def, &j.tool));
             let num = if j.slot > 0 { j.slot } else { n };
             c.set("TOOLNUM", num.to_string());
+            c.set("TOOLNUM3", format!("{num:03}"));
             c.set("RPM", j.rpm.to_string());
             c.emit_lines(&mut out, &change);
             (c.x, c.y, c.z, c.f, c.after_rapid) = (None, None, None, None, true);
@@ -684,7 +697,7 @@ fn build_library() -> Vec<PostDef> {
         arc_cw: "G2 {X} {Y} {Z} {I} {J}".into(),
         arc_ccw: "G3 {X} {Y} {Z} {I} {J}".into(),
         footer: "G53 Z0\nM5\nM30\n".into(),
-        ..base("wincnc-atc", "CAMaster / WinCNC ATC (inch, .tap)", "WinCNC", "CAMaster ATC, ShopSabre ATC", "tap")
+        ..base("wincnc-atc", "CAMaster / WinCNC ATC (inch, .tap)", "WinCNC", "CAMaster ATC, ShopSabre, Techno Titan", "tap")
     });
     // ---- GRBL family
     const GRBL_MACHINES: &str = "Shapeoko, X-Carve, Longmill, Onefinity, Genmitsu, BobsCNC, MillRight, OpenBuilds, Maslow, Nomad";
@@ -692,8 +705,8 @@ fn build_library() -> Vec<PostDef> {
     grbl_like(&mut v, "grbl-mm", "GRBL (mm, .nc)", "GRBL", GRBL_MACHINES, false, "nc");
     grbl_like(&mut v, "shapeoko-in", "Carbide 3D Shapeoko / Nomad (inch, .nc)", "GRBL", "Shapeoko 3/4/5 Pro, Nomad", true, "nc");
     grbl_like(&mut v, "shapeoko-mm", "Carbide 3D Shapeoko / Nomad (mm, .nc)", "GRBL", "Shapeoko 3/4/5 Pro, Nomad", false, "nc");
-    grbl_like(&mut v, "xcarve-in", "Inventables X-Carve (inch, .gcode)", "GRBL", "X-Carve, X-Carve Pro", true, "gcode");
-    grbl_like(&mut v, "xcarve-mm", "Inventables X-Carve (mm, .gcode)", "GRBL", "X-Carve, X-Carve Pro", false, "gcode");
+    grbl_like(&mut v, "xcarve-in", "Inventables X-Carve (inch, .gcode)", "GRBL", "X-Carve, X-Carve Pro, Carvey (Easel)", true, "gcode");
+    grbl_like(&mut v, "xcarve-mm", "Inventables X-Carve (mm, .gcode)", "GRBL", "X-Carve, X-Carve Pro, Carvey (Easel)", false, "gcode");
     grbl_like(&mut v, "longmill-mm", "Sienci LongMill / AltMill (mm, .gcode)", "GRBL / grblHAL", "LongMill MK1/MK2, AltMill", false, "gcode");
     grbl_like(&mut v, "longmill-in", "Sienci LongMill / AltMill (inch, .gcode)", "GRBL / grblHAL", "LongMill MK1/MK2, AltMill", true, "gcode");
     grbl_like(&mut v, "onefinity-in", "Onefinity (inch, .ngc)", "Buildbotics", "Onefinity Woodworker, Journeyman, Foreman, Elite (Masso: see Masso)", true, "ngc");
@@ -704,6 +717,11 @@ fn build_library() -> Vec<PostDef> {
     grbl_like(&mut v, "bobscnc-in", "BobsCNC (inch, .gcode)", "GRBL", "BobsCNC Evolution, Quantum", true, "gcode");
     grbl_like(&mut v, "maslow-mm", "Maslow CNC (mm, .nc)", "GRBL", "Maslow 4", false, "nc");
     grbl_like(&mut v, "grblhal-mm", "grblHAL (mm, .nc)", "grblHAL", "PrintNC, custom builds", false, "nc");
+    grbl_like(&mut v, "foxalien-mm", "FoxAlien (mm, .nc)", "GRBL", "FoxAlien Masuter, Masuter Pro, Masuter 3S, Vasto, XE-PRO", false, "nc");
+    grbl_like(&mut v, "foxalien-in", "FoxAlien (inch, .nc)", "GRBL", "FoxAlien Masuter, Masuter Pro, Masuter 3S, Vasto, XE-PRO", true, "nc");
+    grbl_like(&mut v, "twotrees-mm", "Two Trees TTC (mm, .nc)", "GRBL", "Two Trees TTC 450, TTC 6050", false, "nc");
+    grbl_like(&mut v, "tinyg-mm", "TinyG / g2core (mm, .gcode)", "TinyG / g2core", "Ooznest OX, older Shapeoko 2 and X-Carve conversions, custom builds", false, "gcode");
+    grbl_like(&mut v, "smartbench-mm", "Yeti SmartBench (mm, .gcode)", "GRBL", "YetiTool SmartBench", false, "gcode");
     grbl_like(&mut v, "fluidnc-mm", "FluidNC (mm, .nc)", "FluidNC", "custom ESP32 builds", false, "nc");
     // ---- Mach / LinuxCNC family
     mach_like(&mut v, "mach3-in", "Mach3 / Mach4 (inch, .tap)", "Mach3/Mach4", "generic routers", true, false, "tap", G53);
@@ -716,13 +734,19 @@ fn build_library() -> Vec<PostDef> {
     mach_like(&mut v, "pathpilot-in", "Tormach PathPilot (inch, .nc)", "PathPilot (LinuxCNC)", "Tormach PCNC, 24R router", true, true, "nc", "G30");
     mach_like(&mut v, "uccnc-in", "UCCNC (inch, .tap)", "UCCNC", "Stepcraft, generic", true, false, "tap", G53);
     mach_like(&mut v, "uccnc-mm", "UCCNC (mm, .tap)", "UCCNC", "Stepcraft, generic", false, false, "tap", G53);
+    mach_like(&mut v, "stepcraft-mm", "Stepcraft (UCCNC, mm, .tap)", "UCCNC", "Stepcraft D, M and Q series", false, false, "tap", G53);
+    mach_like(&mut v, "stepcraft-in", "Stepcraft (UCCNC, inch, .tap)", "UCCNC", "Stepcraft D, M and Q series", true, false, "tap", G53);
+    mach_like(&mut v, "probotix-in", "Probotix (LinuxCNC, inch, .ngc)", "LinuxCNC", "Probotix Asteroid, Comet, Meteor, Nebula, GX", true, false, "ngc", G53);
+    mach_like(&mut v, "machmotion-in", "MachMotion (inch, .tap)", "MachMotion (Mach4)", "MachMotion retrofits", true, true, "tap", G53);
+    mach_like(&mut v, "mycnc-mm", "myCNC (mm, .nc)", "myCNC", "myCNC ET-series controllers", false, true, "nc", G53);
+    mach_like(&mut v, "rosetta-mm", "RosettaCNC (mm, .ngc)", "RosettaCNC", "RosettaCNC boards", false, true, "ngc", G53);
     mach_like(&mut v, "centroid-in", "Centroid Acorn / Oak (inch, .nc)", "Centroid CNC12", "Acorn, Oak, Allin1DC", true, true, "nc", G53);
     mach_like(&mut v, "centroid-mm", "Centroid Acorn / Oak (mm, .nc)", "Centroid CNC12", "Acorn, Oak", false, true, "nc", G53);
     mach_like(&mut v, "masso-in", "Masso G3 / Touch (inch, .nc)", "Masso", "Masso G3, Touch, Onefinity Elite", true, true, "nc", G53);
     mach_like(&mut v, "masso-mm", "Masso G3 / Touch (mm, .nc)", "Masso", "Masso G3, Touch, Onefinity Elite", false, true, "nc", G53);
     mach_like(&mut v, "acorn-laguna-in", "Laguna IQ / Swift (Centroid, inch)", "Centroid", "Laguna IQ, Swift", true, true, "nc", G53);
     mach_like(&mut v, "eding-mm", "Eding CNC (mm, .nc)", "Eding CNC", "generic", false, true, "nc", G53);
-    mach_like(&mut v, "planetcnc-mm", "PlanetCNC (mm, .gcode)", "PlanetCNC", "generic", false, false, "gcode", G53);
+    mach_like(&mut v, "planetcnc-mm", "PlanetCNC (mm, .gcode)", "PlanetCNC", "Mekanika, generic", false, false, "gcode", G53);
     // ---- Industrial G-code
     v.push(PostDef {
         decimals: 4,
@@ -747,7 +771,7 @@ fn build_library() -> Vec<PostDef> {
         header: "%\n({FILENAME})\nG90 G21 G17 G40 G49\nG54\nS{RPM} M03\n".into(),
         path_start: "({PATHNAME})\n".into(),
         footer: "M05\nG00 Z{ZH}\nM30\n%\n".into(),
-        ..base("syntec-mm", "Syntec / Weihong (mm, .nc)", "Syntec, Weihong NcStudio", "Chinese 6090/1325 routers", "nc")
+        ..base("syntec-mm", "Syntec / Weihong (mm, .nc)", "Syntec, Weihong NcStudio", "Chinese 6090/1325 routers, CanCam", "nc")
     });
     v.push(PostDef {
         inches: false,
@@ -790,6 +814,10 @@ fn build_library() -> Vec<PostDef> {
         decimals: if inch { 4 } else { 3 },
         arcs: false,
         comment: "'{}".into(),
+        // MS takes units per SECOND (ShopBot's own posts multiply the rates by 0.0166): per minute here ran every
+        // cut at the machine's top speed
+        feed_scale: 1.0 / 60.0,
+        feed_decimals: 2,
         header: "'{FILENAME}\nSA\nTR,{RPM}\nC6\nPAUSE 2\n".into(),
         path_start: "'{PATHNAME}\nMS,{FEEDXY},{FEEDZ}\n".into(),
         rapid: "J3,{x},{y},{z}".into(),
@@ -858,10 +886,68 @@ fn build_library() -> Vec<PostDef> {
     let plain = Iso { units: ("G20", "G21"), comment: "({})", tool: "T{T} M06", lift: "G53 G0 Z0", percent: false };
     let no_atc = Iso { units: ("G20", "G21"), comment: "({})", tool: "T{T} M06", lift: "G0 Z{SAFEZ}", percent: false };
     iso(&mut v, "fanuc-in", "Fanuc generic (inch, .nc)", "Fanuc / LNC", "Fanuc and LNC (Taiwan) controlled routers", true, "nc", &fanuc);
-    iso(&mut v, "osai-mm", "OSAI (mm, .iso)", "OSAI", "Techno, CMS, Biesse ISO, Italian routers with OSAI", false, "iso", &osai);
+    // Komo's "Router Control Codes - Fanuc" sheet: the tool change is T<head><pocket, 3 digits> M6 on one line (after
+    // M5 and a safe Z), the head is then called by its own T code alone on a line (T101 = main spindle 1), one M code
+    // per block. Written from that sheet, not yet run on a machine.
+    let komo = Iso { units: ("G20", "G21"), comment: "({})", tool: "T1{TOOLNUM3} M06\nT101\nG43 H{T}", lift: "G53 G0 Z0", percent: true };
+    iso(&mut v, "komo-in", "Komo, Fanuc with tool changer (inch, .nc)", "Fanuc (Komo)", "Komo Fusion XL, Solution XL, Xtreme XL, Mach III, VR", true, "nc", &komo);
+    iso(&mut v, "komo-mm", "Komo, Fanuc with tool changer (mm, .nc)", "Fanuc (Komo)", "Komo Fusion XL, Solution XL, Xtreme XL, Mach III, VR", false, "nc", &komo);
+    iso(&mut v, "onsrud-in", "C.R. Onsrud, Fanuc (inch, .nc)", "Fanuc", "C.R. Onsrud routers with a Fanuc control (OSAI ones: see OSAI)", true, "nc", &fanuc);
+    iso(&mut v, "mitsubishi-mm", "Mitsubishi M70 / M80 (mm, .nc)", "Mitsubishi", "ShopSabre IS-M, routers and mills with a Mitsubishi M70 / M80 / M800 control", false, "nc", &fanuc);
+    iso(&mut v, "gsk-mm", "GSK / KND / HNC (mm, .nc)", "GSK, KND, Huazhong HNC", "Chinese machining centres and routers with a Fanuc-style control", false, "nc", &fanuc);
+    iso(&mut v, "ddcs-mm", "DDCS V3.1 / V4.1 / Expert (mm, .nc)", "Digital Dream DDCS", "Stand-alone offline controllers on desktop and kit routers", false, "nc", &no_atc);
+    iso(&mut v, "flashcut-in", "FlashCut CNC (inch, .nc)", "FlashCut", "Velox, FlashCut retrofits", true, "nc", &no_atc);
+    iso(&mut v, "flashcut-mm", "FlashCut CNC (mm, .nc)", "FlashCut", "Velox, FlashCut retrofits", false, "nc", &no_atc);
+    // Heidenhain plain language (Klartext): numbered blocks, L for every straight move, FMAX = rapid, the tool and
+    // spindle speed in TOOL CALL. Arcs are written as short straight moves (a Klartext arc needs its centre in
+    // absolute coordinates in a CC block). Written from the format's documentation, not yet run on a control.
+    v.push(PostDef {
+        inches: false,
+        decimals: 3,
+        arcs: false,
+        comment: "{N} ; {}".into(),
+        line_number_start: 0,
+        line_number_step: 1,
+        header: "{N} BEGIN PGM {FILENAME} MM\n".into(),
+        tool_change: "{N} ; {TOOLNAME}\n{N} M5\n{N} L Z{ZH} FMAX\n{N} TOOL CALL {TOOLNUM} Z S{RPM}\n{N} M3\n".into(),
+        path_start: "{N} ; {PATHNAME}\n".into(),
+        rapid: "{N} L {X} {Y} {Z} R0 FMAX".into(),
+        linear: "{N} L {X} {Y} {Z} R0 {F}".into(),
+        footer: "{N} M5\n{N} L Z{ZH} FMAX\n{N} M30\n{N} END PGM {FILENAME} MM\n".into(),
+        ..base("heidenhain-mm", "Heidenhain TNC plain language (mm, .h, experimental)", "Heidenhain TNC", "Routers and mills with a TNC 320 / 620 / 640 or iTNC 530", "h")
+    });
+    // isel Remote, DIN/ISO interpreter (isel's own G and M code table + a matching sample): G71 = mm, ";" comments,
+    // numbered blocks, the speed on its own line before M3, G53 cancels the work offset (so G54 comes back after
+    // the lift), M2 would leave the spindle running: M5 then M30. Not yet run on a machine.
+    v.push(PostDef {
+        inches: false,
+        decimals: 3,
+        comment: ";{}".into(),
+        line_number_start: 10,
+        line_number_step: 5,
+        header: "%\n;{FILENAME}\nN{N} G90\nN{N} G17\nN{N} G71\n".into(),
+        tool_change: ";{TOOLNAME}\nN{N} M5\nN{N} G53 G0 Z0\nN{N} T{TOOLNUM} M6\nN{N} S{RPM}\nN{N} M3\nN{N} G54\n".into(),
+        path_start: ";{PATHNAME}\n".into(),
+        rapid: "N{N} G0 {X} {Y} {Z}".into(),
+        linear: "N{N} G1 {X} {Y} {Z} {F}".into(),
+        arc_cw: "N{N} G2 {X} {Y} {Z} {I} {J} {F}".into(),
+        arc_ccw: "N{N} G3 {X} {Y} {Z} {I} {J} {F}".into(),
+        footer: "N{N} M5\nN{N} G53 G0 Z0\nN{N} M30\n".into(),
+        ..base("isel-mm", "isel Remote DIN/ISO (mm, .iso, experimental)", "isel Remote", "isel ICP, ICV, Euromod, Flatcom, OverHead", "iso")
+    });
+    // Estlcam's own controller: no unit word (Estlcam holds the unit), spindle M03 S, ends with M05 and no M30.
+    v.push(PostDef {
+        inches: false,
+        decimals: 3,
+        header: "({FILENAME})\n(Tool: {TOOLNAME})\nG90\nM03 S{RPM}\n".into(),
+        path_start: "({PATHNAME})\n".into(),
+        footer: "M05\n".into(),
+        ..base("estlcam-mm", "Estlcam controller (mm, .nc)", "Estlcam", "Machines driven by Estlcam's own controller firmware", "nc")
+    });
+    iso(&mut v, "osai-mm", "OSAI (mm, .iso)", "OSAI", "Techno, NewCNC, CMS, Weinig, SERON, Saom, CanCam, Italian routers with OSAI", false, "iso", &osai);
     iso(&mut v, "osai-in", "OSAI (inch, .iso)", "OSAI", "Techno, CMS and other OSAI routers", true, "iso", &osai);
-    iso(&mut v, "fagor-mm", "Fagor 8055 / 8065 / 8070 (mm, .pim)", "Fagor", "Fagor-controlled routers and mills", false, "pim", &fagor);
-    iso(&mut v, "fagor-in", "Fagor 8055 / 8065 / 8070 (inch, .pim)", "Fagor", "Fagor-controlled routers and mills", true, "pim", &fagor);
+    iso(&mut v, "fagor-mm", "Fagor 8055 / 8065 / 8070 (mm, .pim)", "Fagor", "DMS, Freedom Patriot, Fagor-controlled routers and mills", false, "pim", &fagor);
+    iso(&mut v, "fagor-in", "Fagor 8055 / 8065 / 8070 (inch, .pim)", "Fagor", "DMS, Freedom Patriot, Fagor-controlled routers and mills", true, "pim", &fagor);
     iso(&mut v, "siemens-mm", "Siemens Sinumerik 828D / 840D (mm, .mpf)", "Siemens Sinumerik", "Sinumerik-controlled routers and machining centres", false, "mpf", &siemens);
     iso(&mut v, "smartcore-in", "CAMaster SmartCore / Yaskawa (inch, .nc)", "Yaskawa SmartCore", "CAMaster Stinger / Panther / Cobra with SmartCore", true, "nc", &plain);
     iso(&mut v, "multicam-in", "MultiCam EZ Control (inch, .nc)", "MultiCam EZ", "MultiCam 1000 / 3000 / 5000 / Apex", true, "nc", &plain);
@@ -874,7 +960,7 @@ fn build_library() -> Vec<PostDef> {
     iso(&mut v, "laguna-touch-in", "Laguna SmartShop / Touch (inch, .nc)", "Laguna Touch", "Laguna SmartShop II / M, Elite", true, "nc", &plain);
     iso(&mut v, "starcnc-in", "Larken StarCNC (inch, .nc)", "StarCNC", "Larken routers", true, "nc", &no_atc);
     iso(&mut v, "delta-in", "Delta CNC (Legacy) (inch, .nc)", "Delta CNC", "Legacy Maverick, Explorer, Phoenix", true, "nc", &no_atc);
-    iso(&mut v, "din-mm", "DIN 66025 G-code (mm, .nc): cncGraF, WinPC-NC, Beamicon, Mecanumeric", "DIN 66025", "isel, Sorotec, Mecanumeric, cncGraF, WinPC-NC, Beamicon", false, "nc", &no_atc);
+    iso(&mut v, "din-mm", "DIN 66025 G-code (mm, .nc): cncGraF, WinPC-NC, Beamicon, Mecanumeric", "DIN 66025", "Sorotec, Mecanumeric, cncGraF, WinPC-NC, Beamicon, KinetiC-NC (CNC-Step High-Z); isel Remote: see isel", false, "nc", &no_atc);
     iso(&mut v, "format4-mm", "Felder Format-4 F4Integrate (ISO import, mm, .iso)", "F4Integrate", "Felder Format-4 profit", false, "iso", &osai);
     v
 }
@@ -990,6 +1076,20 @@ pub fn post_from_vectric_pp(text: &str) -> Result<PostDef, String> {
                     decimals = parts[3].find('.').map_or(0, |dot| atoi(&parts[3][dot + 1..]));
                 }
                 let name = rtrim(&key[4..]);
+                // fifth field = a multiplier on the value (0.0166 = per second, 100 = hundredths, steps per mm …)
+                let mult = parts.get(4).and_then(|m| m.trim().parse::<f64>().ok()).filter(|m| (m - 1.0).abs() > 1e-9);
+                if let Some(m) = mult {
+                    match name.as_str() {
+                        "FEED_RATE" | "CUT_RATE" | "PLUNGE_RATE" => {
+                            if !is_one(&d.feed_scale) && (d.feed_scale - m).abs() > 1e-9 {
+                                return Err("this post scales its cutting and plunge rates differently, which GCarve can't write".into());
+                            }
+                            d.feed_scale = m;
+                        }
+                        "X_POSITION" | "Y_POSITION" | "Z_POSITION" => return Err(format!("this post multiplies its coordinates by {m} (machine steps), which GCarve can't write yet")),
+                        _ => {} // laser power, home positions: not written by GCarve's moves
+                    }
+                }
                 if name == "X_POSITION" {
                     d.decimals = decimals;
                 }
@@ -1152,6 +1252,82 @@ mod tests {
             // a normal bit keeps its spindle-on
             let normal = post_jobs(&[job(18000)], def);
             assert!(normal.iter().any(|o| o.text.lines().any(spindle_on)) || def.id.contains("laser") || def.id.contains("marlin"), "{}: lost the spindle-on", def.id);
+        }
+    }
+
+    #[test]
+    fn the_komo_post_changes_tools_the_way_komos_code_sheet_says() {
+        use crate::job::{Job, Move, Toolpath};
+        let tp = Toolpath { name: "Cut".into(), feed_xy: 100.0, feed_z: 30.0, moves: vec![Move::rapid(Some(1.0), Some(1.0), Some(0.5)), Move::linear(None, None, Some(-0.05)), Move::rapid(None, None, Some(0.5))], ..Default::default() };
+        let job = |slot| Job { filename: "k".into(), tool: "End mill".into(), rpm: 16000, slot, toolpaths: vec![tp.clone()], z_zero: "Material Surface".into(), ..Default::default() };
+        if let Ok(id) = std::env::var("GCARVE_POST_OUT") {
+            println!("{}", post_jobs(&[job(3), job(12)], find_post(&id).unwrap()).iter().map(|o| format!("--- {}\n{}", o.filename, o.text)).collect::<String>());
+        }
+        let out = post_jobs(&[job(3), job(12)], find_post("komo-in").unwrap());
+        assert_eq!(out.len(), 1, "one file with tool changes");
+        let l: Vec<&str> = out[0].text.lines().collect();
+        if std::env::var("GCARVE_KOMO_OUT").is_ok() {
+            println!("{}", out[0].text);
+        }
+        let at = |w: &str| l.iter().position(|x| *x == w).unwrap_or_else(|| panic!("{w} missing in\n{}", out[0].text));
+        // spindle off and Z up before the change; head 1 + pocket on the M6 line; the head called alone on its line
+        assert!(at("M05") < at("G53 G0 Z0") && at("G53 G0 Z0") < at("T1003 M06") && at("T1003 M06") < at("T101") && at("T101") < at("G43 H3"));
+        assert!(at("T1012 M06") > at("G43 H3") && l.contains(&"G43 H12") && l.contains(&"S16000 M03"));
+        // one M code per block
+        assert!(l.iter().all(|x| x.starts_with('(') || x.split_whitespace().filter(|w| w.starts_with('M')).count() <= 1), "{}", out[0].text);
+        assert!(l.first() == Some(&"%") && l.last() == Some(&"%") && l[l.len() - 2] == "M30");
+    }
+
+    /// Every Vectric .pp under a folder (reference/pp: posts published on GitHub, see its manifest.json) through
+    /// the translator and a small job: `GCARVE_PP_DIR=../reference/pp cargo test -p gcarve-core --lib pp_survey --
+    /// --ignored --nocapture`. Prints what fails to translate, writes nothing, or cuts without a move.
+    #[test]
+    #[ignore]
+    fn pp_survey() {
+        use crate::job::{Job, Move, Toolpath};
+        let Ok(dir) = std::env::var("GCARVE_PP_DIR") else { return };
+        fn walk(d: &std::path::Path, out: &mut Vec<std::path::PathBuf>) {
+            for e in std::fs::read_dir(d).into_iter().flatten().flatten() {
+                let p = e.path();
+                if p.is_dir() {
+                    walk(&p, out);
+                } else if p.extension().is_some_and(|x| x.eq_ignore_ascii_case("pp")) {
+                    out.push(p);
+                }
+            }
+        }
+        let mut files = Vec::new();
+        walk(std::path::Path::new(&dir), &mut files);
+        files.sort();
+        let tp = Toolpath { name: "Cut".into(), feed_xy: 100.0, feed_z: 30.0, moves: vec![Move::rapid(Some(1.0), Some(1.0), Some(0.5)), Move::linear(None, None, Some(-0.05)), Move::linear(Some(2.0), None, None), Move::linear(None, Some(2.0), None), Move::rapid(None, None, Some(0.5))], ..Default::default() };
+        let job = Job { filename: "k".into(), tool: "End mill".into(), rpm: 16000, slot: 3, toolpaths: vec![tp], z_zero: "Material Surface".into(), ..Default::default() };
+        let (mut ok, mut bad) = (0, Vec::new());
+        for f in &files {
+            let text = String::from_utf8_lossy(&std::fs::read(f).unwrap()).to_string();
+            let name = f.strip_prefix(&dir).unwrap_or(f).display().to_string();
+            let def = match post_from_vectric_pp(&text) {
+                Ok(d) => d,
+                Err(e) => {
+                    bad.push(format!("{name}: {e}"));
+                    continue;
+                }
+            };
+            let out = post_jobs(std::slice::from_ref(&job), &def);
+            let t = out.first().map(|o| o.text.as_str()).unwrap_or("");
+            let moves = t.lines().filter(|l| l.contains("25.4") || l.contains("50.8") || l.contains("2.0") || l.contains("1.0")).count();
+            if t.is_empty() {
+                bad.push(format!("{name}: nothing written"));
+            } else if moves < 2 {
+                bad.push(format!("{name}: no moves in the output ({} lines)", t.lines().count()));
+            } else if !t.lines().any(spindle_off) {
+                bad.push(format!("{name}: no spindle off"));
+            } else {
+                ok += 1;
+            }
+        }
+        println!("{ok} of {} posts translate and write a job; {} do not:", files.len(), bad.len());
+        for b in &bad {
+            println!("  {b}");
         }
     }
 
