@@ -94,7 +94,7 @@ pub fn swatches(ui: &mut egui::Ui, colors: &[[u8; 3]], on: Option<[u8; 3]>, remo
             }
             if removable {
                 resp.context_menu(|ui| {
-                    if ui.button(crate::i18n::t("Remove from My colours")).clicked() {
+                    if ui.button(crate::i18n::t("Remove from My colors")).clicked() {
                         gone = Some(c);
                         ui.close();
                     }
@@ -139,7 +139,7 @@ pub fn editor(ui: &mut egui::Ui, id: &str, c: &mut [u8; 3]) -> bool {
                 changed = true;
             }
         }
-        if eyedropper_available() && ui.button(crate::i18n::t("Screen")).on_hover_text(crate::i18n::t("Pick a colour from anywhere on the screen (as shown, with its shading)")).clicked() {
+        if eyedropper_available() && ui.button(crate::i18n::t("Screen")).on_hover_text(crate::i18n::t("Pick a color from anywhere on the screen (as shown, with its shading)")).clicked() {
             eyedropper(ui.ctx(), id);
         }
     });

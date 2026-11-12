@@ -52,7 +52,7 @@ impl ClockDialog {
                     ui.end_row();
                 }
                 ui.label(i18n::t("Numerals"));
-                egui::ComboBox::from_id_salt("clock-num").selected_text(i18n::t(NUMERALS[self.numerals as usize])).show_ui(ui, |ui| {
+                crate::widgets::combo_box("clock-num").width(150.0).selected_text(i18n::t(NUMERALS[self.numerals as usize])).show_ui(ui, |ui| {
                     for (i, s) in NUMERALS.iter().enumerate() {
                         ui.selectable_value(&mut self.numerals, i as u8, i18n::t(s));
                     }

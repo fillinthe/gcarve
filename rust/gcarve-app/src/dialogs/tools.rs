@@ -246,11 +246,12 @@ impl ToolsDialog {
                             ui.add(crate::widgets::field(&mut self.name).desired_width(440.0).font(crate::theme::font(15.0)));
                             ui.horizontal(|ui| {
                                 ui.label(RichText::new(i18n::t("Folder")).small().color(crate::theme::TEXT_DIM));
-                                ui.add(crate::widgets::field(&mut self.group).desired_width(150.0).hint_text(i18n::t("none (e.g. V-bits)")));
+                                ui.add(crate::widgets::field(&mut self.group).desired_width(120.0).hint_text(i18n::t("none (e.g. V-bits)")));
                                 // VCarve's tool name format: a pattern of the bit's own numbers, kept on this device
-                                let (fmt, r) = super::stored_field(ui, NAME_FMT_KEY, DEFAULT_NAME_FMT, |t| crate::widgets::field(t).desired_width(205.0));
+                                ui.label(RichText::new(i18n::t("Name pattern")).small().color(crate::theme::TEXT_DIM));
+                                let (fmt, r) = super::stored_field(ui, NAME_FMT_KEY, DEFAULT_NAME_FMT, |t| crate::widgets::field(t).desired_width(190.0));
                                 r.on_hover_text("Name pattern: {type} {diameter} {angle} {flutes} {radius}");
-                                if ui.button(i18n::t("Name it")).on_hover_text(i18n::t("Rename this bit from the pattern")).clicked() {
+                                if ui.button(i18n::t("Rename")).on_hover_text(i18n::t("Rename this bit from the pattern")).clicked() {
                                     if let Some(t) = doc.tools.get(self.cur) {
                                         let shown = Tool { kind: self.kind, diameter: self.f.get_or("diameter", doc, t.diameter), angle: self.f.raw_or("angle", t.angle), radius: self.f.get_or("radius", doc, t.radius), flutes: self.flutes.trim().parse().unwrap_or(t.flutes), ..t.clone() };
                                         self.name = bit_name(&shown, &fmt, doc);

@@ -31,11 +31,13 @@ pub enum Tool {
     /// angular dimension: corner, then a point on each arm
     Angle,
     Text,
+    /// VCarve's Fillet tool: click a sharp corner to give it a dogbone, T-bone or round
+    Corner,
 }
 
 impl Tool {
     /// (tool, label, key) for the rail and the key handler (same keys as the Qt app)
-    pub const ALL: [(Tool, &'static str, egui::Key); 14] = [
+    pub const ALL: [(Tool, &'static str, egui::Key); 15] = [
         (Tool::Select, "Select", egui::Key::V),
         (Tool::Nodes, "Nodes", egui::Key::N),
         (Tool::Rect, "Rect", egui::Key::R),
@@ -50,9 +52,10 @@ impl Tool {
         (Tool::Dimension, "Dimension", egui::Key::D),
         (Tool::Angle, "Angle", egui::Key::L),
         (Tool::Text, "Text", egui::Key::T),
+        (Tool::Corner, "Corners", egui::Key::C),
     ];
     pub fn draws(self) -> bool {
-        !matches!(self, Tool::Select | Tool::Nodes)
+        !matches!(self, Tool::Select | Tool::Nodes | Tool::Corner)
     }
 }
 
@@ -184,6 +187,9 @@ pub struct Canvas {
     pub polygon_sides: i32,
     pub star_points: i32,
     pub star_ratio: f64,
+    /// Corner tool: 0 dogbone, 1 T-bone, 2 round; size = bit diameter (dogbones) or radius (round), in the doc's units
+    pub corner_style: u8,
+    pub corner_size: String,
     /// selected dimension (Select tool), -1 none
     pub sel_dim: i32,
     /// selected node in the Nodes tool
@@ -244,6 +250,8 @@ pub struct Canvas {
     /// a drag while placing tabs: (where it started, where the pointer is, released)
     pub(crate) tab_drag: Option<(Pt, Pt, bool)>,
     pub(crate) tab_marks: Vec<[f64; 2]>,
+    /// where the evenly spaced tabs fall on parts with none placed by hand (drawn hollow)
+    pub(crate) tab_marks_auto: Vec<[f64; 2]>,
     /// Picture Settings open: (frames left, picture index); a drag on the picture moves it from pic_drag (last point)
     pub(crate) pic_pick: (u8, usize),
     pub(crate) pic_drag: Option<Pt>,
@@ -331,6 +339,8 @@ impl Default for Canvas {
             polygon_sides: 6,
             star_points: 5,
             star_ratio: 0.5,
+            corner_style: 0,
+            corner_size: String::new(),
             sel_dim: -1,
             node_shape: -1,
             node_idx: -1,
@@ -376,6 +386,7 @@ impl Default for Canvas {
             pic_pick: (0, 0),
             pic_drag: None,
             tab_marks: Vec::new(),
+            tab_marks_auto: Vec::new(),
             shot_hook: String::new(),
             card_closed: false,
             node_popup: None,
@@ -493,7 +504,7 @@ impl Canvas {
             }
         }
         let painter = ui.painter_at(full);
-        painter.rect_filled(full, 0.0, theme::CANVAS_BG);
+        painter.rect_filled(full, 0.0, theme::canvas_bg());
         if let Some(bp) = self.board_photo.as_mut().filter(|b| b.show && b.tex.is_none()) {
             bp.tex = Some(ui.ctx().load_texture("board-photo", egui::ColorImage::from_rgba_unmultiplied([bp.w, bp.h], &bp.rgba), egui::TextureOptions::LINEAR));
         }
@@ -566,7 +577,7 @@ impl Canvas {
         }
         for p in self.doc.pictures.iter().filter(|p| p.sheet == self.doc.active_sheet) {
             let tex = self.pic_tex.entry(picture_key(&p.data)).or_insert_with(|| {
-                let img = image::load_from_memory(&gcarve_core::photo::b64_decode(&p.data)).ok()?.to_rgba8();
+                let img = crate::files::picture(&gcarve_core::photo::b64_decode(&p.data)).ok()?.to_rgba8();
                 Some(ui.ctx().load_texture("picture", egui::ColorImage::from_rgba_unmultiplied([img.width() as usize, img.height() as usize], img.as_raw()), egui::TextureOptions::LINEAR))
             });
             if let Some(tex) = tex {
@@ -759,6 +770,10 @@ impl Canvas {
         for p in &self.tab_marks {
             let at = view.to_screen(pt(p[0], p[1]));
             painter.rect(Rect::from_center_size(at, egui::vec2(10.0, 10.0)), 1.0, c(0xff9a2e), Stroke::new(1.5, c(0x1b1c1f)), egui::StrokeKind::Middle);
+        }
+        for p in &self.tab_marks_auto {
+            let at = view.to_screen(pt(p[0], p[1]));
+            painter.rect_stroke(Rect::from_center_size(at, egui::vec2(10.0, 10.0)), 1.0, Stroke::new(1.5, c(0xff9a2e)), egui::StrokeKind::Middle);
         }
     }
 

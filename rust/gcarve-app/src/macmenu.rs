@@ -71,6 +71,8 @@ pub struct MacMenu {
     /// every item in build order, with the state it has now
     handles: Vec<(Handle, bool, bool)>,
     rx: Option<mpsc::Receiver<String>>,
+    /// when the menus were last recorded (egui time)
+    recorded: f64,
 }
 
 /// AppKit shows '&' only doubled (muda reads a single one as a Windows access key)
@@ -141,6 +143,14 @@ impl MacMenu {
             }));
             self.rx = Some(rx);
         }
+        // recording walks every menu (hundreds of lookups and strings): a few times a second is plenty for a bar
+        // nobody reads while they drag or a simulation plays
+        let now = ctx.input(|i| i.time);
+        if self.menu.is_some() && now - self.recorded < 0.25 {
+            ctx.request_repaint_after(std::time::Duration::from_millis(250));
+            return;
+        }
+        self.recorded = now;
         let mut tops: Vec<(String, Vec<Node>)> = Vec::new();
         shell::menus(&mut |title, add| {
             let mut r = Rec::default();

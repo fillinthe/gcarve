@@ -368,7 +368,7 @@ impl View3d {
     pub fn ui(&mut self, ui: &mut egui::Ui, p: &Player, paths: bool) {
         let (rect, resp) = ui.allocate_exact_size(ui.available_size(), Sense::click_and_drag());
         let painter = ui.painter_at(rect);
-        painter.rect_filled(rect, 0.0, crate::theme::CANVAS_BG);
+        painter.rect_filled(rect, 0.0, crate::theme::canvas_bg());
         if !p.ready() {
             painter.text(rect.center(), egui::Align2::CENTER_CENTER, i18n::t("Generate toolpaths to see the carved board"), egui::FontId::proportional(14.0), crate::theme::TEXT_DIM);
             return;

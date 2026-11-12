@@ -33,12 +33,13 @@ pub struct Dialog<'o> {
     width: Option<f32>,
     close: bool,
     flush: bool,
+    dock: Option<Rect>,
 }
 
 impl<'o> Dialog<'o> {
     pub fn new(title: impl Into<String>) -> Self {
         let title = title.into();
-        Dialog { id: egui::Id::new(("dialog", title.clone())), title, open: None, modeless: None, width: None, close: false, flush: false }
+        Dialog { id: egui::Id::new(("dialog", title.clone())), title, open: None, modeless: None, width: None, close: false, flush: false, dock: None }
     }
     /// stable id when the title changes (e.g. "New …" / "Edit …")
     pub fn id(mut self, id: impl std::hash::Hash + std::fmt::Debug) -> Self {
@@ -53,6 +54,13 @@ impl<'o> Dialog<'o> {
     /// `pivot`: which corner of the dialog sits at `pos` (Qt x/y bindings, e.g. right-anchored)
     pub fn modeless(mut self, pos: egui::Pos2, pivot: egui::Align2) -> Self {
         self.modeless = Some((pos, pivot));
+        self
+    }
+    /// fills `rect` (a side panel the app keeps free for it): square edges, no shadow, as tall as the rect
+    pub fn docked(mut self, rect: Rect) -> Self {
+        self.modeless = Some((rect.min, egui::Align2::LEFT_TOP));
+        self.width = Some(rect.width() - 42.0);
+        self.dock = Some(rect);
         self
     }
     /// standardButtons: Dialog.Close (clears `open`)
@@ -73,14 +81,21 @@ impl<'o> Dialog<'o> {
     }
 
     pub fn show<R>(self, ctx: &egui::Context, add: impl FnOnce(&mut Ui) -> R) -> R {
-        let Dialog { title, id, open, modeless, width, close, flush } = self;
+        let Dialog { title, id, open, modeless, width, close, flush, dock } = self;
         let closed = std::cell::Cell::new(false);
         // a dialog that can be closed always shows a × in its title bar (a modeless one has no Esc and maybe no footer)
         let closable = open.is_some();
-        let frame = egui::Frame::new().fill(PANEL).corner_radius(10).stroke(Stroke::new(1.0, BORDER_STRONG)).shadow(ctx.global_style().visuals.window_shadow);
+        let frame = if dock.is_some() {
+            egui::Frame::new().fill(PANEL).stroke(Stroke::new(1.0, BORDER))
+        } else {
+            egui::Frame::new().fill(PANEL).corner_radius(10).stroke(Stroke::new(1.0, BORDER_STRONG)).shadow(ctx.global_style().visuals.window_shadow)
+        };
         let title2 = title.clone();
         let body = |ui: &mut Ui| {
             frame.show(ui, |ui| {
+                if let Some(d) = dock {
+                    ui.set_min_height(d.height() - 2.0);
+                }
                 let top = ui.cursor().min;
                 ui.spacing_mut().item_spacing.y = 0.0;
                 ui.allocate_exact_size(vec2(0.0, 46.0), Sense::hover());
@@ -95,7 +110,10 @@ impl<'o> Dialog<'o> {
                     // never taller than the window: the content scrolls, the Close footer stays
                     // (a modeless dialog starts below the top of the window: that much less room)
                     let down = modeless.map_or(0.0, |(pos, _)| (pos.y - ui.ctx().content_rect().top()).max(0.0));
-                    let max_h = ui.ctx().content_rect().height() - down - 46.0 - 30.0 - if close { 62.0 } else { 0.0 } - 24.0;
+                    let max_h = match dock {
+                        Some(d) => d.height() - 46.0 - 32.0,
+                        None => ui.ctx().content_rect().height() - down - 46.0 - 30.0 - if close { 62.0 } else { 0.0 } - 24.0,
+                    };
                     // sideways only in a narrow window: a sideways scroll keeps an auto-sized dialog from growing to its
                     // content (Job Setup's right column collapsed on the desktop)
                     let narrow = ui.ctx().content_rect().width() < 760.0;
@@ -415,6 +433,11 @@ impl Combo {
     pub fn width(mut self, w: f32) -> Self {
         self.inner = self.inner.width(w);
         self.width = w;
+        self
+    }
+    /// how tall the open list may get (320 unless set)
+    pub fn height(mut self, h: f32) -> Self {
+        self.inner = self.inner.height(h);
         self
     }
     pub fn show_ui<R>(self, ui: &mut Ui, add: impl FnOnce(&mut Ui) -> R) -> egui::InnerResponse<Option<R>> {
@@ -775,4 +798,17 @@ pub fn shape_tile(ui: &mut egui::Ui, cs: &[gcarve_core::geom::Contour], name: &s
     let g = p.layout(name.to_string(), font(11.0), TEXT, SHAPE_TILE - 6.0);
     p.galley(egui::pos2(rect.center().x - g.size().x / 2.0, rect.bottom() - 32.0), g, TEXT); // up to two lines
     resp.tip(tip)
+}
+
+/// 2168 → "2,168" (counts in lists)
+pub fn thousands(n: usize) -> String {
+    let s = n.to_string();
+    let mut out = String::new();
+    for (i, c) in s.chars().enumerate() {
+        if i > 0 && (s.len() - i).is_multiple_of(3) {
+            out.push(',');
+        }
+        out.push(c);
+    }
+    out
 }

@@ -8,7 +8,7 @@ use clipper2_rust::{
     PointD,
 };
 
-use crate::geom::{dist, flatten, join_contours, make_polyline, pt, reverse, Builder, Contour, Pt};
+use crate::geom::{dist, flatten, join_contours, make_polyline, pt, reverse, Builder, Contour, Node, Pt};
 
 const PREC: i32 = 5;
 const TOL: f64 = 0.0005;
@@ -757,24 +757,135 @@ pub fn dogbone(input: &Contour, r: f64, inside: bool, tbone: bool) -> Contour {
     if !input.closed || input.nodes.len() < 3 || r <= 0.0 {
         return input.clone();
     }
-    let mut c = input.clone();
     // walk with the region to relieve on the left: a hole CCW, a part's exterior CW; its corners are then left turns
-    let flip = (signed_area(&c) > 0.0) != inside;
+    let flip = (signed_area(input) > 0.0) != inside;
+    corners(input, r, tbone as u8, flip, None, None)
+}
+
+/// VCarve's Fillet tool, one corner at a time: node k gets a dogbone (style 0), T-bone (1) or round fillet (2) of
+/// radius r on the side where the corner's angle is under 180° (where the bit is). None when node k is not a sharp
+/// line-line corner or its edges are too short for r. A T-bone runs along the edge nearer `toward` (VCarve: click to
+/// the side you want), else along the longer edge.
+pub fn corner_at(input: &Contour, k: usize, r: f64, style: u8, toward: Option<Pt>) -> Option<Contour> {
+    let n = input.nodes.len();
+    if r <= 0.0 || n < 3 || k >= n || (!input.closed && (k == 0 || k == n - 1)) {
+        return None;
+    }
+    let (a, cn, b) = (input.nodes[(k + n - 1) % n].p, input.nodes[k].p, input.nodes[(k + 1) % n].p);
+    let (d1, d2) = (unit(cn - a), unit(b - cn));
+    let flip = d1.x * d2.y - d1.y * d2.x < 0.0; // a right turn: walk the other way so it is a left one
+    // the far end of the edge the T-bone runs along
+    let edge = match toward {
+        Some(t) if crate::geom::dist_to_segment(t, a, cn) <= crate::geom::dist_to_segment(t, cn, b) => a,
+        Some(_) => b,
+        None if dist(a, cn) >= dist(cn, b) => a,
+        None => b,
+    };
+    let out = corners(input, r, style, flip, Some(k), Some(edge));
+    (out.nodes.len() != n).then_some(out)
+}
+
+/// Undo of corner_at by hand: the curved run through node k (a dogbone, T-bone or round between two straight edges)
+/// goes back to the sharp corner where those edges meet. Returns the new outline and the indices of `c`'s nodes that
+/// were removed (ascending; the run's first node becomes the corner). None when node k is on no such run.
+pub fn sharpen_at(c: &Contour, k: usize) -> Option<(Contour, Vec<usize>)> {
+    let n = c.nodes.len();
+    if k >= n || n < 3 {
+        return None;
+    }
+    let next = |i: usize| if c.closed { Some((i + 1) % n) } else { (i + 1 < n).then_some(i + 1) };
+    let prev = |i: usize| if c.closed { Some((i + n - 1) % n) } else { i.checked_sub(1) };
+    let curved = |i: usize| next(i).is_some_and(|j| c.nodes[i].has_out || c.nodes[j].has_in); // segment i -> i+1
+    // a run of curved segments s..e (nodes), with straight segments on both sides
+    let mut s = if curved(k) { k } else { prev(k).filter(|&p| curved(p))? };
+    let mut steps = 0;
+    while let Some(p) = prev(s).filter(|&p| curved(p)) {
+        s = p;
+        steps += 1;
+        if steps > n {
+            return None; // all curve (a circle)
+        }
+    }
+    let mut e = next(s)?;
+    while curved(e) {
+        e = next(e)?;
+    }
+    let (a, b) = (prev(s)?, next(e)?);
+    if curved(a) || curved(e) || a == e || b == s {
+        return None;
+    }
+    // the two straight edges a->s and e->b, extended to where they cross
+    let (p, r) = (c.nodes[s].p, c.nodes[s].p - c.nodes[a].p);
+    let (q, d) = (c.nodes[e].p, c.nodes[b].p - c.nodes[e].p);
+    let den = r.x * d.y - r.y * d.x;
+    if den.abs() < 1e-12 {
+        return None; // parallel edges: no corner
+    }
+    let t = ((q.x - p.x) * d.y - (q.y - p.y) * d.x) / den;
+    let x = p + r * t;
+    let reach = 4.0 * dist(p, q) + 1e-6; // the corner sits near the run, not far off along nearly parallel edges
+    if dist(x, p) > reach || dist(x, q) > reach {
+        return None;
+    }
+    let mut removed = Vec::new();
+    let mut i = next(s)?;
+    loop {
+        removed.push(i);
+        if i == e {
+            break;
+        }
+        i = next(i)?;
+    }
+    removed.sort_unstable();
+    let mut out = c.clone();
+    out.nodes[s] = Node::at(x);
+    for &i in removed.iter().rev() {
+        out.nodes.remove(i);
+    }
+    Some((out, removed))
+}
+
+/// dogbone / corner_at: the sharp left turns (only node `only` when given, an index into `input`) relieved or rounded
+fn corners(input: &Contour, r: f64, style: u8, flip: bool, only: Option<usize>, tbone_edge: Option<Pt>) -> Contour {
+    let mut c = input.clone();
+    let n = c.nodes.len();
     if flip {
         reverse(&mut c);
     }
-    let n = c.nodes.len();
-    let mut out = Contour { nodes: Vec::new(), closed: true };
+    let only = only.map(|k| if flip { n - 1 - k } else { k });
+    let mut out = Contour { nodes: Vec::new(), closed: c.closed };
     for i in 0..n {
         let (a, cn, b) = (&c.nodes[(i + n - 1) % n], &c.nodes[i], &c.nodes[(i + 1) % n]);
         let straight = !a.has_out && !cn.has_in && !cn.has_out && !b.has_in;
         let (d1, d2) = (unit(cn.p - a.p), unit(b.p - cn.p));
         let turn = (d1.x * d2.y - d1.y * d2.x).atan2(d1.x * d2.x + d1.y * d2.y);
-        if !straight || turn < 0.2 {
-            out.nodes.push(*cn); // not a sharp left turn
+        if !straight || turn < 0.2 || only.is_some_and(|k| k != i) || (!c.closed && (i == 0 || i == n - 1)) {
+            out.nodes.push(*cn); // not a sharp left turn (or not the one asked for)
             continue;
         }
-        let v = if tbone { d1 * -1.0 } else { unit(d2 - d1) }; // lobe centre direction from the corner
+        if style == 2 {
+            let d = r / ((PI - turn) / 2.0).tan(); // corner to where the round meets each edge
+            if d > dist(a.p, cn.p) - 1e-6 || d > dist(b.p, cn.p) - 1e-6 {
+                out.nodes.push(*cn); // edge too short
+                continue;
+            }
+            let p1 = cn.p - d1 * d;
+            let o = p1 + pt(-d1.y, d1.x) * r; // centre on the inside of the left turn
+            let mut bl = Builder::default();
+            bl.start(p1);
+            bl.arc(o.x, o.y, r, r, 0.0, (p1.y - o.y).atan2(p1.x - o.x), turn);
+            out.nodes.extend(bl.c.nodes);
+            continue;
+        }
+        let tbone = style == 1;
+        // lobe centre direction from the corner: a T-bone along the incoming edge, or the outgoing one when asked
+        let v = if !tbone {
+            unit(d2 - d1)
+        } else if tbone_edge.is_some_and(|e| dist(e, b.p) < dist(e, a.p)) {
+            d2
+        } else {
+            d1 * -1.0
+        };
         let o = cn.p + v * r; // bit centre that just touches the corner
         let t = 2.0 * r * (d1.x * v.x + d1.y * v.y); // circle meets the edges at t<=0, s>=0
         let s = 2.0 * r * (d2.x * v.x + d2.y * v.y);
@@ -987,5 +1098,54 @@ mod fillet_tests {
         assert!(extend_ends(&boxr, &[&stub]).is_none(), "closed vectors don't extend");
         let far = make_rect(10.0, 10.0, 11.0, 11.0);
         assert!(extend_ends(&stub, &[&far]).is_none());
+    }
+}
+
+#[cfg(test)]
+mod corner_at_tests {
+    use super::*;
+    use crate::geom::make_rect;
+
+    #[test]
+    fn one_clicked_corner_gets_its_fillet_or_dogbone_and_the_rest_stay_sharp() {
+        let sq = make_rect(0.0, 0.0, 2.0, 2.0);
+        let area = |c: &Contour| signed_area(c).abs();
+        for (dir, c) in [("as drawn", sq.clone()), ("reversed", { let mut r = sq.clone(); reverse(&mut r); r })] {
+            let n = c.nodes.len();
+            // a round of 0.5 takes (1 - pi/4) r² off the square, and only one corner moves
+            let f = corner_at(&c, 1, 0.5, 2, None).expect("fillet");
+            assert!((area(&f) - (4.0 - (1.0 - PI / 4.0) * 0.25)).abs() < 1e-3, "{dir}: fillet area {}", area(&f));
+            assert_eq!(f.nodes.iter().filter(|m| c.nodes.iter().any(|o| dist(o.p, m.p) < 1e-9)).count(), n - 1, "{dir}");
+            // a dogbone of a 0.5 bit on a square's corner pushes out past it: more area
+            let d = corner_at(&c, 1, 0.25, 0, None).expect("dogbone");
+            assert!(area(&d) > 4.0 + 0.02, "{dir}: dogbone area {}", area(&d));
+            assert!(corner_at(&c, 1, 2.5, 2, None).is_none(), "{dir}: too big for the edges");
+        }
+        // an open L: its middle corner can be rounded, its ends can't
+        let l = make_polyline(&[pt(0.0, 0.0), pt(2.0, 0.0), pt(2.0, 2.0)], false);
+        assert!(corner_at(&l, 1, 0.5, 2, None).is_some_and(|c| !c.closed && c.nodes.len() > 3));
+        assert!(corner_at(&l, 0, 0.5, 2, None).is_none());
+        // each of them back to the sharp corner, from any node of the run
+        let sq = make_rect(0.0, 0.0, 2.0, 2.0);
+        for style in 0..3 {
+            let r = if style == 2 { 0.5 } else { 0.25 };
+            let bent = corner_at(&sq, 2, r, style, None).unwrap();
+            for k in 0..bent.nodes.len() {
+                if let Some((back, removed)) = sharpen_at(&bent, k) {
+                    assert_eq!(back.nodes.len(), 4, "style {style} node {k}");
+                    assert_eq!(removed.len(), bent.nodes.len() - 4);
+                    assert!(back.nodes.iter().all(|m| sq.nodes.iter().any(|o| dist(o.p, m.p) < 1e-6)), "style {style}: {:?}", back.nodes);
+                }
+            }
+            assert!(sharpen_at(&bent, 0).is_none(), "a plain corner far from the run");
+        }
+        assert!(sharpen_at(&crate::geom::make_ellipse(0.0, 0.0, 1.0, 1.0), 0).is_none(), "a circle has no corner");
+        // a T-bone goes along the edge clicked nearer: on a 4 x 2 box's corner (4, 2), by the top edge it reaches left
+        let bx = make_rect(0.0, 0.0, 4.0, 2.0);
+        let b = |c: &Contour| crate::geom::bounds(&make_polyline(&flatten(c, 0.001), true));
+        let top = corner_at(&bx, 2, 0.25, 1, Some(pt(3.0, 2.1))).unwrap();
+        let side = corner_at(&bx, 2, 0.25, 1, Some(pt(4.1, 1.0))).unwrap();
+        assert!(b(&top).y1 > 2.2 && b(&top).x1 < 4.0 + 1e-6, "top: {:?}", b(&top));
+        assert!(b(&side).x1 > 4.2 && b(&side).y1 < 2.0 + 1e-6, "side: {:?}", b(&side));
     }
 }

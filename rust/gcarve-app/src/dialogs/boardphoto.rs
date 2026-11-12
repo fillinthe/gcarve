@@ -37,7 +37,7 @@ const CORNERS: [&str; 4] = ["bottom-left (X0 Y0 side, near you)", "bottom-right"
 
 impl BoardPhotoDialog {
     pub fn new(name: &str, bytes: &[u8]) -> Result<Self, String> {
-        let img = image::load_from_memory(bytes).map_err(|e| format!("{name}: {e}"))?;
+        let img = crate::files::picture(bytes).map_err(|e| format!("{name}: {e}"))?;
         let img = if img.width().max(img.height()) > MAX_PX { img.resize(MAX_PX, MAX_PX, image::imageops::FilterType::Triangle) } else { img };
         let rgba = img.to_rgba8();
         let (w, h) = (rgba.width() as usize, rgba.height() as usize);

@@ -65,7 +65,7 @@ impl SignDialog {
                     ui.end_row();
                 }
                 ui.label(i18n::t("Shape"));
-                egui::ComboBox::from_id_salt("sign-shape").selected_text(i18n::t(SHAPES[self.shape as usize])).show_ui(ui, |ui| {
+                crate::widgets::combo_box("sign-shape").width(170.0).selected_text(i18n::t(SHAPES[self.shape as usize])).show_ui(ui, |ui| {
                     for (i, s) in SHAPES.iter().enumerate() {
                         ui.selectable_value(&mut self.shape, i as u8, i18n::t(s));
                     }
@@ -79,7 +79,7 @@ impl SignDialog {
                     }
                 }
                 ui.label(i18n::t("Font"));
-                egui::ComboBox::from_id_salt("sign-font").selected_text(self.family.as_str()).show_ui(ui, |ui| {
+                crate::widgets::combo_box("sign-font").width(200.0).selected_text(self.family.as_str()).show_ui(ui, |ui| {
                     for f in std::iter::once(DEFAULT_FONT.to_string()).chain(crate::text::custom_families()) {
                         ui.selectable_value(&mut self.family, f.clone(), f);
                     }

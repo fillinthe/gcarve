@@ -54,6 +54,8 @@ pub struct Host<'a> {
 #[derive(Default)]
 pub struct Dialogs {
     pub op: Option<op::OpDialog>,
+    /// the app's right-side panel kept free for the toolpath form this frame (None on narrow windows)
+    pub op_dock: Option<egui::Rect>,
     pub tools: Option<tools::ToolsDialog>,
     pub posts: Option<posts::PostsDialog>,
     pub job: Option<job::JobDialog>,
@@ -229,6 +231,7 @@ impl Dialogs {
             }
         }
         if let Some(mut d) = self.op.take() {
+            d.dock = self.op_dock.take();
             if d.ui(ctx, host) {
                 if d.open_bits && self.tools.is_none() {
                     // Bits…: the Tool Library on top; remember the count to pick a bit added there
@@ -486,7 +489,7 @@ impl Fields {
     }
 }
 
-/// "Cut depth (in)" in the project unit
+/// the label of a length field
 /// A text field kept in the device store under `key`. The text lives in egui memory once shown, so typing never
 /// depends on the store reading back what was just written (blocked browser storage, UI tests).
 pub fn stored_field(ui: &mut egui::Ui, key: &str, default: &str, make: impl for<'a> FnOnce(&'a mut String) -> egui::TextEdit<'a>) -> (String, egui::Response) {
@@ -500,8 +503,8 @@ pub fn stored_field(ui: &mut egui::Ui, key: &str, default: &str, make: impl for<
     (text, r)
 }
 
-pub fn unit_label(name: &str, doc: &Document) -> String {
-    format!("{name} ({})", crate::units::name(doc))
+pub fn unit_label(name: &str, _doc: &Document) -> String {
+    name.to_string() // the length field beside it carries the unit badge ("in"): saying it twice was noise
 }
 /// "Feed XY (in/min)"
 pub fn rate_label(name: &str, doc: &Document) -> String {

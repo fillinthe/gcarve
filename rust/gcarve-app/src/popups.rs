@@ -927,7 +927,7 @@ impl Dialogs {
                     ui.end_row();
                     ui.label(i18n::t("Layer"));
                     let name = |l: Option<i32>| l.and_then(|i| canvas.doc.layers.get(i as usize)).map_or(i18n::t("Any layer").to_string(), |l| l.name.clone());
-                    egui::ComboBox::from_id_salt("sel_layer").selected_text(name(self.sel_filter.layer)).show_ui(ui, |ui| {
+                    crate::widgets::combo_box("sel_layer").width(160.0).selected_text(name(self.sel_filter.layer)).show_ui(ui, |ui| {
                         ui.selectable_value(&mut self.sel_filter.layer, None, i18n::t("Any layer"));
                         for i in 0..canvas.doc.layers.len() as i32 {
                             ui.selectable_value(&mut self.sel_filter.layer, Some(i), name(Some(i)));

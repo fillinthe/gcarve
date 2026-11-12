@@ -34,7 +34,7 @@ fn board(doc: &Document) -> Rect {
 
 /// Adds the picked file as a picture on the active sheet, over the selection or fitted on the board
 pub fn add(name: &str, bytes: &[u8], host: &mut Host) -> Result<PictureDialog, String> {
-    let img = image::load_from_memory(bytes).map_err(|e| format!("{name}: {e}"))?;
+    let img = crate::files::picture(bytes).map_err(|e| format!("{name}: {e}"))?;
     let (pw, ph) = (img.width(), img.height());
     let data = if pw.max(ph) <= KEEP_PX && bytes.len() <= KEEP_BYTES { bytes.to_vec() } else { super::community::photo_jpeg(bytes)? };
     let c = &mut *host.canvas;

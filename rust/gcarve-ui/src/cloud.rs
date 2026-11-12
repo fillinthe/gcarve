@@ -302,6 +302,10 @@ impl Cloud {
         if status >= 400 && a.error.is_none() {
             a.error = Some(format!("Request failed ({status})"));
         }
+        // an older password below today's rule: the server wants a new one chosen first, which the sign-in page does
+        if a.user.is_none() && a.error.is_none() && text.contains("\"weak\"") {
+            a.error = Some("Your password is too easy to guess. Sign in at gworkshop.app/signin to choose a stronger one, then come back here.".into());
+        }
         Reply::Auth(a)
     }
 
@@ -530,7 +534,7 @@ impl Cloud {
         });
     }
 
-    /// Help ▸ Request a Change → POST /api/contact (the admin inbox + support@ email); signed in = the account is attached.
+    /// Help ▸ Request a Change → POST /api/contact (the admin inbox); signed in = the account is attached.
     /// Anonymous usage count for the admin dashboard (server usage.go): "open", "demo", "toolpath", "export".
     /// Only the word is sent, nothing about the person or the project. Web app only; fire and forget.
     pub fn event(&self, name: &str) {

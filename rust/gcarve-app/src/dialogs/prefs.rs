@@ -9,6 +9,8 @@ use eframe::egui::{self, Color32, RichText};
 use serde::{Deserialize, Serialize};
 
 const KEY: &str = "prefs.json";
+/// Background color swatches (0xRRGGBB, name); the first is GCarve's own
+const BACKGROUNDS: [(u32, &str); 6] = [(0x262626, "Dark gray"), (0x000000, "Black"), (0x1d2633, "Navy"), (0x5a5a5a, "Gray"), (0xc8c8c8, "Light gray"), (0xffffff, "White")]; // i18n
 pub const SCALES: [f32; 5] = [1.0, 1.25, 1.5, 1.75, 2.0];
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
@@ -18,6 +20,8 @@ pub struct Prefs {
     pub large_text: bool,
     pub high_contrast: bool,
     pub large_handles: bool,
+    /// background of the drawing and 3D view, 0xRRGGBB (Preferences › Background color)
+    pub canvas_color: u32,
     /// the "Start a job" card (View ▸ Start Card; its close button turns it off for good)
     pub start_card: bool,
     /// new-document defaults + grid + snap, synced to the account (cloud.rs fetch_prefs / push_prefs)
@@ -26,7 +30,7 @@ pub struct Prefs {
 
 impl Default for Prefs {
     fn default() -> Self {
-        Prefs { ui_scale: 1.0, large_text: false, high_contrast: false, large_handles: false, start_card: true, synced: Synced::default() }
+        Prefs { ui_scale: 1.0, large_text: false, high_contrast: false, large_handles: false, canvas_color: 0x262626, start_card: true, synced: Synced::default() }
     }
 }
 
@@ -336,6 +340,7 @@ impl Prefs {
     /// Apply to the egui context (over theme::apply). `shot` = screenshot runs keep the stock scale.
     pub fn apply(&self, ctx: &egui::Context, shot: bool) {
         crate::theme::apply(ctx);
+        crate::theme::set_canvas_bg(self.canvas_color);
         if !shot {
             ctx.set_zoom_factor(self.ui_scale);
         }
@@ -397,6 +402,19 @@ impl Prefs {
                     }
                 });
                 note(ui, i18n::t("Menus, dialogs and tips. Messages and the guide are still in English for now."));
+            });
+            ui.horizontal(|ui| {
+                ui.label(i18n::t("Background color"));
+                for (rgb, name) in BACKGROUNDS {
+                    let b = egui::Button::new("").fill(crate::theme::c(rgb)).min_size(egui::vec2(20.0, 20.0)).stroke(if self.canvas_color == rgb { egui::Stroke::new(2.0, crate::theme::ACCENT) } else { egui::Stroke::new(1.0, crate::theme::BORDER_STRONG) });
+                    if ui.add(b).on_hover_text(i18n::t(name)).clicked() {
+                        self.canvas_color = rgb;
+                    }
+                }
+                let mut rgb = crate::theme::c(self.canvas_color).to_array();
+                if ui.color_edit_button_srgb((&mut rgb[..3]).try_into().unwrap()).on_hover_text(i18n::t("Any color")).changed() {
+                    self.canvas_color = (rgb[0] as u32) << 16 | (rgb[1] as u32) << 8 | rgb[2] as u32;
+                }
             });
             section(ui, i18n::t("Accessibility"));
             for (flag, label, h) in [(&mut self.large_text, i18n::t("Larger text"), i18n::t("15 px labels and taller controls")), (&mut self.high_contrast, i18n::t("High contrast"), i18n::t("White text, black borders, brighter blue (WCAG AA+)")), (&mut self.large_handles, i18n::t("Larger handles"), i18n::t("Nodes, grips and snap targets are 1.7× easier to hit"))] {
