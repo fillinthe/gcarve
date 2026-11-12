@@ -743,7 +743,11 @@ impl Link {
     /// lift to the top, then to the back-left corner
     pub fn park(&mut self) {
         if self.ready() {
-            self.send(&format!("G53 G0 Z0\nG20 G53 G0 X0 Y{:.3}\n", self.travel.y));
+            // stock grbl homes into negative machine space (-travel..0): there the left is -travel and the back is 0
+            let (m, t) = (self.st.mpos, self.travel);
+            let x = if m.x < -1e-4 { -(t.x - 0.02) } else { 0.0 };
+            let y = if m.y < -1e-4 { 0.0 } else { t.y - 0.02 };
+            self.send(&format!("G53 G0 Z0\nG20 G53 G0 X{x:.3} Y{y:.3}\n"));
         }
     }
     /// M3 at low speed, dwell, then off
@@ -810,7 +814,7 @@ impl Link {
             // the whole program must fit the machine travel from the current work zero
             let w = self.st.wco;
             let (lo, hi, t) = (Vec3 { x: p.min.x + w.x, y: p.min.y + w.y, z: p.min.z + w.z }, Vec3 { x: p.max.x + w.x, y: p.max.y + w.y, z: p.max.z + w.z }, self.travel);
-            if lo.x < -1e-4 || lo.y < -1e-4 || hi.x > t.x + 1e-4 || hi.y > t.y + 1e-4 || hi.z > 1e-4 || lo.z < -t.z - 1e-4 {
+            if !(fits(lo.x, hi.x, t.x) && fits(lo.y, hi.y, t.y) && fits(lo.z, hi.z, t.z)) {
                 errors.push(format!("The program goes outside the machine travel from this work zero (X {:.2}..{:.2}, Y {:.2}..{:.2}, Z {:.2}..{:.2} in machine coordinates).", lo.x, hi.x, lo.y, hi.y, lo.z, hi.z));
             }
         }
@@ -945,7 +949,7 @@ impl Link {
         self.send(&format!("{l}\n"));
     }
     /// the simulator, for tests and the screenshot demo
-    #[cfg(test)]
+#[cfg(test)]
     pub fn sim(&mut self) -> Option<&mut GrblSim> {
         match &mut self.transport {
             Some(Transport::Sim(s)) => Some(s),
@@ -956,6 +960,13 @@ impl Link {
     pub fn streamed_total(&self) -> usize {
         self.streamer.total()
     }
+}
+
+/// One axis of the start check: the span must lie in the machine's travel, which runs 0..travel on some
+/// controllers and -travel..0 on others (stock grbl after homing, e.g. FoxAlien; ticket 2026-11-12).
+fn fits(lo: f64, hi: f64, travel: f64) -> bool {
+    const E: f64 = 1e-4;
+    (lo >= -E && hi <= travel + E) || (lo >= -travel - E && hi <= E)
 }
 
 #[cfg(test)]
@@ -1151,5 +1162,13 @@ mod tests {
         // a WinCNC file is refused
         l.load_program("old.tap", "[ comment ]\nF100 XY\nG1 X1\n");
         assert!(l.start_check().0.iter().any(|e| e.contains("WinCNC")));
+    }
+
+    #[test]
+    fn the_travel_check_takes_machines_that_count_down_from_home() {
+        // FoxAlien Masuter 3S: 15.8 in of X / Y, job at X -11.46..-3.65
+        assert!(fits(-11.46, -3.65, 15.8) && fits(-13.05, -0.76, 15.8) && fits(-2.4, -1.2, 3.7));
+        assert!(fits(1.0, 15.0, 15.8)); // counting up still fits
+        assert!(!fits(-1.0, 3.0, 15.8) && !fits(-16.0, -1.0, 15.8) && !fits(2.0, 16.0, 15.8));
     }
 }
