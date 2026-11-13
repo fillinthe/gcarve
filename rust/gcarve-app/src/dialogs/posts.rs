@@ -5,7 +5,6 @@
 use gcarve_ui::i18n;
 use super::{hint, Host};
 use crate::widgets::TipExt;
-use crate::posts::matches;
 use eframe::egui::{self, RichText};
 
 #[derive(Default)]
@@ -24,12 +23,15 @@ impl PostsDialog {
         let mut upload = false;
         let all = host.posts.all();
         let current = host.canvas.doc.material.post.clone();
-        let shown: Vec<_> = all.iter().filter(|(p, _)| matches(p, &self.search)).collect();
+        // the best matches first; with no search, the post in use, then your own, then the built-ins A to Z
+        let mut shown: Vec<_> = all.iter().filter_map(|e| crate::posts::score(&e.0, &self.search).map(|sc| (sc, e))).collect();
+        shown.sort_by(|a, b| b.0.cmp(&a.0).then((b.1 .0.id == current).cmp(&(a.1 .0.id == current))).then(b.1 .1.cmp(&a.1 .1)).then(a.1 .0.name.to_lowercase().cmp(&b.1 .0.name.to_lowercase())));
+        let shown: Vec<_> = shown.into_iter().map(|(_, e)| e).collect();
         crate::widgets::Dialog::new(i18n::t("Post-Processors")).open(&mut open).close_footer().width(780.0).show(ctx, |ui| {
             ui.horizontal(|ui| {
-                let r = ui.add(crate::widgets::field(&mut self.search).desired_width(662.0).hint_text(i18n::t("Search by machine, controller, units or extension (e.g. Shapeoko, Mach4, mm, .sbp)")));
+                let r = ui.add(crate::widgets::field(&mut self.search).desired_width(600.0).hint_text(i18n::t("Search: machine, maker, controller, mm / inch, .ext (e.g. shark mm, fanuc atc, .sbp)")));
                 crate::widgets::focus_first(ui, &r);
-                if ui.button(i18n::t("Upload post…")).tip(i18n::t("Add a Vectric .pp or a GCarve .json post")).clicked() {
+                if ui.button(i18n::t("Upload posts…")).tip(i18n::t("Add Vectric .pp or GCarve .json posts: pick one, or select a whole folder of them at once (VCarve keeps its own in File › Open Application Data Folder › PostP)")).clicked() {
                     upload = true;
                 }
             });
@@ -83,7 +85,7 @@ impl PostsDialog {
             *host.message = i18n::tf("Deleted post {id}", &[("id", &id)]);
         }
         if upload {
-            host.files.pick_into(ctx, i18n::t("Post-processors (.pp, .json)"), &["pp", "json"], "post");
+            host.files.pick_many_into(ctx, i18n::t("Post-processors (.pp, .json)"), &["pp", "json"], "post");
         }
         open && !close
     }

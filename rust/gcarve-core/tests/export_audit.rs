@@ -32,16 +32,48 @@ fn showcase() -> Document {
     doc
 }
 
+/// A post that writes scaled coordinates or feeds (MultiCam: Z positive down, feeds per second) read back as plain
+/// G-code: every X Y Z I J divided by its scale, F by the feed scale, and MultiCam's unit words as G20 / G21.
+fn normalized(text: &str, post: &gcarve_core::postdef::PostDef) -> String {
+    let a = post.axis_scale;
+    if a == [1.0; 3] && (post.feed_scale - 1.0).abs() < 1e-12 {
+        return text.to_string();
+    }
+    let word = |l: &str| -> String {
+        let mut out = String::new();
+        let b: Vec<char> = l.chars().collect();
+        let mut i = 0;
+        while i < b.len() {
+            let c = b[i];
+            let k = match c.to_ascii_uppercase() { 'X' | 'I' => Some(a[0]), 'Y' | 'J' => Some(a[1]), 'Z' => Some(a[2]), 'F' => Some(post.feed_scale), _ => None };
+            let mut j = i + 1;
+            while j < b.len() && (b[j].is_ascii_digit() || b[j] == '.' || b[j] == '-') {
+                j += 1;
+            }
+            match (k, b[i + 1..j].iter().collect::<String>().parse::<f64>()) {
+                (Some(k), Ok(v)) if j > i + 1 => out += &format!("{c}{:.6}", v / k),
+                _ => {
+                    out.push(c);
+                    j = i + 1;
+                }
+            }
+            i = j;
+        }
+        out
+    };
+    text.lines().map(|l| word(&l.replace("G75", "G21").replace("G70", "G20")) + "\n").collect()
+}
+
 /// commands that start / stop the spindle in any built-in dialect
 fn spindle_on(line: &str) -> bool {
     let u = line.to_ascii_uppercase();
     let code = u.split(['(', '[', ';']).next().unwrap_or("");
-    code.split_whitespace().any(|w| matches!(w, "M3" | "M03" | "M4" | "M04")) || code.contains("M3S") || code.contains("M03S") || code.starts_with("SO,1,1")
+    code.split_whitespace().any(|w| matches!(w, "M3" | "M03" | "M4" | "M04")) || code.contains("M3S") || code.contains("M03S") || code.starts_with("SO,1,1") || code.contains("M10 O6.1") || code.contains("!MC1") || code.split_whitespace().any(|w| w == "M12")
 }
 fn spindle_off(line: &str) -> bool {
     let u = line.to_ascii_uppercase();
     let code = u.split(['(', '[', ';']).next().unwrap_or("");
-    code.split_whitespace().any(|w| matches!(w, "M5" | "M05")) || code.starts_with("SO,1,0") || code.trim() == "C7" || code.contains("!MC0")
+    code.split_whitespace().any(|w| matches!(w, "M5" | "M05")) || code.starts_with("SO,1,0") || code.trim() == "C7" || code.contains("!MC0") || code.contains("M10 O6.0") || code.split_whitespace().any(|w| w == "M22")
 }
 fn tool_change(line: &str) -> bool {
     let u = line.to_ascii_uppercase();
@@ -90,7 +122,11 @@ fn every_post_exports_safe_readable_gcode() {
                 }
             }
             // read back, check every move
-            let prog = read_program(&f.text, "audit", m);
+            // a metric control that has no unit word (Laguna's hand-held controller is mm only): read it as mm
+            let unitless = !["G20", "G21", "G70", "G71"].iter().any(|u| f.text.contains(u));
+            let text = if !post.inches && unitless { format!("G21\n{}", f.text) } else { f.text.clone() };
+            let text = normalized(&text, post);
+            let prog = read_program(&text, "audit", m);
             unread += prog.errors.len();
             for s in &prog.sections {
                 deepest_read = deepest_read.min(s.min_z);
@@ -131,7 +167,7 @@ fn every_post_exports_safe_readable_gcode() {
                 }
             }
         }
-        let readable = !matches!(post.id.as_str(), "shopbot-in" | "shopbot-mm" | "roland-mm"); // own languages, not G-code
+        let readable = !matches!(post.id.as_str(), "shopbot-in" | "shopbot-mm" | "roland-mm" | "roland-modela-mm" | "heidenhain-mm"); // own languages, not G-code
         if readable && (deepest_read - deepest_generated).abs() > 0.002 {
             problems.push(format!("{}: deepest Z read back {:.4} ≠ generated {:.4} (units?)", post.id, deepest_read, deepest_generated));
         }

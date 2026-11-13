@@ -68,6 +68,11 @@ fn len(p: Pt) -> f64 {
 /// The tool options bar above the drawing: the active tool's icon and name, its settings (polygon sides, star
 /// points, corner style and radius), then a line on how to use it. `look` = shell::tool_look.
 pub fn options_bar(ui: &mut eframe::egui::Ui, canvas: &mut Canvas, look: (&'static str, &'static str, egui::Color32)) {
+    // narrow windows (phones): the bar scrolls sideways instead of running its fields off the edge
+    egui::ScrollArea::horizontal().id_salt("tool-options").scroll_bar_visibility(egui::scroll_area::ScrollBarVisibility::AlwaysHidden).show(ui, |ui| options_row(ui, canvas, look));
+}
+
+fn options_row(ui: &mut eframe::egui::Ui, canvas: &mut Canvas, look: (&'static str, &'static str, egui::Color32)) {
     use crate::widgets::{Button, SpinBox};
     let (icon, name, tint) = look;
     ui.horizontal_centered(|ui| {
@@ -78,7 +83,7 @@ pub fn options_bar(ui: &mut eframe::egui::Ui, canvas: &mut Canvas, look: (&'stat
         ui.separator();
         let hint = match canvas.tool {
             Tool::Select => i18n::t("Click a vector to select it, drag a box to select several. Shift adds."),
-            Tool::Nodes => i18n::t("Drag a node to move it. Double-click the outline to add a node, right-click a node for more."),
+            Tool::Nodes => i18n::t("Drag a node to move it. Shift-click or drag a box to pick several. Double-click the outline to add a node, right-click for more."),
             Tool::Rect | Tool::Ellipse => i18n::t("Drag to draw, or click once to type an exact size."),
             Tool::Polygon => {
                 ui.label(i18n::t("Sides"));
@@ -566,7 +571,7 @@ impl Canvas {
             }
             let held = part == 0 && self.node_set.iter().any(|(id, i)| self.doc.find(*id).is_some_and(|s| s.node_locked(*i)));
             if drag && held {
-                self.status = i18n::t("Locked in place: this point can't be dragged. Right-click it and choose Unlock first.").into();
+                self.refuse(i18n::t("Locked in place: this point can't be dragged. Right-click it and choose Unlock first."));
             } else if drag {
                 self.orig_c = self.doc.find(shape).map(|s| s.c.clone()).unwrap_or_default();
                 let ids: BTreeSet<i32> = self.node_set.iter().map(|k| k.0).collect();
@@ -585,10 +590,42 @@ impl Canvas {
                     self.sel.insert(id);
                     self.node_shape = id;
                 }
+                None if drag => {
+                    // a drag that starts on nothing: a box that picks the nodes inside it
+                    self.marquee_add = shift;
+                    self.drag = Drag::Marquee;
+                    return;
+                }
                 None => self.sel.clear(),
             }
             self.sel_changed();
         }
+    }
+
+    /// Nodes tool, box-select: every node inside the box, of the selected shapes (or, with nothing selected, of any
+    /// shape: those shapes become selected). Shift / Ctrl / Cmd at the press adds to what is picked.
+    pub(crate) fn marquee_nodes(&mut self, a: Pt, b: Pt) {
+        let r = gcarve_core::geom::Rect { x0: a.x.min(b.x), y0: a.y.min(b.y), x1: a.x.max(b.x), y1: a.y.max(b.y) };
+        if !self.marquee_add {
+            self.node_set.clear();
+            self.node_idx = -1;
+        }
+        let any = self.sel.is_empty();
+        let mut found = Vec::new();
+        for s in self.doc.shapes.iter().filter(|s| self.doc.shape_editable(s) && (any || self.sel.contains(&s.id))) {
+            for (i, n) in s.c.nodes.iter().enumerate() {
+                if n.p.x >= r.x0 && n.p.x <= r.x1 && n.p.y >= r.y0 && n.p.y <= r.y1 {
+                    found.push((s.id, i));
+                }
+            }
+        }
+        for (id, i) in found {
+            self.sel.insert(id);
+            self.node_set.insert((id, i));
+            (self.node_shape, self.node_idx, self.node_part) = (id, i as i32, 0);
+        }
+        self.sel_changed();
+        self.status = i18n::tf("{n} nodes selected", &[("n", &self.node_set.len())]);
     }
 
     /// Double-click in the Nodes tool: toggle corner/smooth on a node, or insert a node on a segment.
@@ -816,7 +853,9 @@ impl Canvas {
                             let col = if window { theme::ACCENT } else { theme::ORANGE };
                             painter.rect_stroke(r, 0.0, Stroke::new(1.0, col), egui::StrokeKind::Inside);
                             painter.rect_filled(r, 0.0, col.gamma_multiply(0.15));
-                            if resp.drag_stopped() {
+                            if resp.drag_stopped() && self.tool == Tool::Nodes {
+                                self.marquee_nodes(self.press_w, view.to_doc(b));
+                            } else if resp.drag_stopped() {
                                 self.marquee_select(self.press_w, view.to_doc(b));
                             }
                         }
@@ -1072,7 +1111,7 @@ impl Canvas {
                     }
                 } else if clicked && self.dim_pts.len() < 2 && !(self.dim_pts.is_empty() && pick.is_none() && self.hit_dimension(screen).is_some()) {
                     match pick {
-                        None => self.status = i18n::t("Dimension: click a corner or a straight side of a shape. It highlights when the click will take it. (Measure is the tool for loose points.)").into(),
+                        None => self.refuse(i18n::t("Dimension: click a corner or a straight side of a shape. It highlights when the click will take it. (Measure is the tool for loose points.)")),
                         Some((_, anchor, Some((p, q)))) if self.dim_anchors.first() == Some(&anchor) => {
                             // the same side again: its own length, corner to corner
                             let n = -anchor.1 - 2;
@@ -1596,6 +1635,17 @@ mod node_set_tests {
         c.apply_node_drag(pt(1.0, 0.0));
         let b = bounds(&c.doc.find(id).unwrap().c);
         assert!((b.x1 - 5.0).abs() < 1e-9 && b.x0.abs() < 1e-9 && (b.y1 - 2.0).abs() < 1e-9, "the side moved as a side: {b:?}");
+        // a box dragged over the left half picks the two left corners; with the key held it adds the right ones
+        c.undo();
+        c.node_set.clear();
+        c.marquee_add = false;
+        c.marquee_nodes(pt(-1.0, -1.0), pt(1.0, 3.0));
+        assert!(c.node_set.len() == 2 && c.node_set.iter().all(|(_, i)| c.doc.find(id).unwrap().c.nodes[*i].p.x < 0.1), "{:?}", c.node_set);
+        c.marquee_add = true;
+        c.marquee_nodes(pt(3.0, -1.0), pt(5.0, 3.0));
+        assert_eq!(c.node_set.len(), 4);
+        c.node_set = right.iter().map(|i| (id, *i)).collect();
+        c.apply_node_drag(pt(1.0, 0.0));
         // Delete takes both in one undo step, and the selection of nodes is empty after
         c.delete_selected();
         assert_eq!(c.doc.find(id).unwrap().c.nodes.len(), 2);

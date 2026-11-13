@@ -34,9 +34,10 @@ fn check_outputs(id: &str, outs: &[PostOutput], index: &str, failures: &mut Vec<
 fn every_builtin_post_matches_cpp_byte_for_byte() {
     let index = golden("index.txt");
     let jobs = fixture_jobs();
-    // the 47 posts the C++ app has; later Rust-only posts are covered by ported.rs (round trip + spindle safety)
+    // the posts the C++ app has (47; Roland RML and Next Wave left the set on 2026-11-13, rewritten as Vectric's own
+    // posts for them write their files); later Rust-only posts are covered by ported.rs and postdef's own tests
     let cpp: Vec<_> = post_library().iter().filter(|d| index.lines().any(|l| l.split(' ').next() == Some(d.id.as_str()))).collect();
-    assert_eq!(cpp.len(), 47);
+    assert_eq!(cpp.len(), 45);
     let mut failures = Vec::new();
     for d in cpp {
         check_outputs(&d.id, &post_jobs(&jobs, d), &index, &mut failures);

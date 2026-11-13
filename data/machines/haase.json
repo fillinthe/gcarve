@@ -40,7 +40,7 @@
    "controllers": [
     {
      "name": "WinPC-NC Network",
-     "gcarve_post": "din-mm",
+     "gcarve_post": "winpc-mm",
      "default": true
     }
    ],
@@ -182,7 +182,7 @@
    "controllers": [
     {
      "name": "WinPC-NC Network",
-     "gcarve_post": "din-mm",
+     "gcarve_post": "winpc-mm",
      "default": true
     }
    ],
@@ -324,7 +324,7 @@
    "controllers": [
     {
      "name": "WinPC-NC Network",
-     "gcarve_post": "din-mm",
+     "gcarve_post": "winpc-mm",
      "default": true
     }
    ],
@@ -466,7 +466,7 @@
    "controllers": [
     {
      "name": "WinPC-NC Network",
-     "gcarve_post": "din-mm",
+     "gcarve_post": "winpc-mm",
      "default": true
     }
    ],
@@ -608,7 +608,7 @@
    "controllers": [
     {
      "name": "WinPC-NC Network",
-     "gcarve_post": "din-mm",
+     "gcarve_post": "winpc-mm",
      "default": true
     }
    ],
@@ -750,7 +750,7 @@
    "controllers": [
     {
      "name": "WinPC-NC Network",
-     "gcarve_post": "din-mm",
+     "gcarve_post": "winpc-mm",
      "default": true
     }
    ],

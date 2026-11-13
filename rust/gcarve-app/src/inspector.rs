@@ -138,7 +138,9 @@ fn properties(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas) {
                     ui.add_sized([14.0, 20.0], egui::Label::new(RichText::new(label).color(if sel > 0 { theme::TEXT } else { theme::TEXT_DISABLED })));
                     let id = ui.id().with(key);
                     let r = ui.push_id(id, |ui| theme::unit_field(ui, &mut sh.edit[i], uname, fw)).inner;
-                    sh.edit_focus |= r.has_focus();
+                    let picked = crate::units::suggest_variables(ui, &r, &mut sh.edit[i], &canvas.doc);
+                    let listing = ui.data(|d| d.get_temp::<(egui::Rect, usize)>(r.id.with("var-suggest")).is_some());
+                    sh.edit_focus |= r.has_focus() || listing || picked;
                     if r.lost_focus() && ui.input(|inp| inp.key_pressed(egui::Key::Enter)) {
                         commit = Some(i);
                     }

@@ -38,7 +38,7 @@ pub struct BoxSpec {
 }
 
 /// Fingers on an edge of length l: odd, at least 3.
-fn count(l: f64, finger: f64) -> usize {
+pub fn count(l: f64, finger: f64) -> usize {
     let k = (l / finger.max(1e-3)).round().max(3.0) as usize;
     if k.is_multiple_of(2) { k - 1 } else { k }
 }

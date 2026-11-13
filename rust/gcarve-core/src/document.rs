@@ -1197,8 +1197,8 @@ impl Document {
                 let (Some(rest), Some(v)) = (k.strip_prefix('n'), v) else { continue };
                 let Some((i, axis)) = rest.split_once('.') else { continue };
                 let Some(i) = i.parse::<usize>().ok().filter(|&i| i < n) else { continue };
-                if axis != "x" && axis != "y" {
-                    continue; // "n<i>.lock" and anything newer: not a position
+                if (axis != "x" && axis != "y") || s.node_locked(i) {
+                    continue; // "n<i>.lock" and anything newer: not a position; a locked node stays put
                 }
                 let nd = &mut s.c.nodes[i];
                 let d = if axis == "x" { pt(v - nd.p.x, 0.0) } else { pt(0.0, v - nd.p.y) };
@@ -1209,7 +1209,7 @@ impl Document {
             for (k, v) in &vals {
                 let Some(i) = k.strip_prefix('s').and_then(|r| r.strip_suffix(".len")).and_then(|i| i.parse::<usize>().ok()) else { continue };
                 let Some(v) = v.filter(|&v| v > 0.0) else { continue };
-                if i >= n || (!s.c.closed && i == n - 1) {
+                if i >= n || (!s.c.closed && i == n - 1) || s.node_locked((i + 1) % n) {
                     continue;
                 }
                 let a = s.c.nodes[i].p;
@@ -1222,8 +1222,8 @@ impl Document {
                 b.out = b.out + d;
             }
             let b = geom::bounds(&s.c);
-            if b.is_empty() {
-                continue;
+            if b.is_empty() || s.any_locked() {
+                continue; // a shape with a locked corner or side never moves or resizes as a whole
             }
             let (w, h) = (box_w.unwrap_or(b.w()), box_h.unwrap_or(b.h()));
             // a bound size grows away from the shape's anchor; a bound x / y says where the bottom-left goes instead

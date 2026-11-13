@@ -150,6 +150,9 @@ impl Canvas {
 
     /// Rotates the selection by `deg` (counter-clockwise) around the pivot: the inspector's exact-angle field.
     pub fn rotate_selection(&mut self, deg: f64) {
+        if self.refuse_locked() {
+            return;
+        }
         let c = self.pivot();
         let pivot = self.pivot.clone();
         self.transform_selection(&(Affine::translate(c.x, c.y) * Affine::rotate(deg.to_radians()) * Affine::translate(-c.x, -c.y)));

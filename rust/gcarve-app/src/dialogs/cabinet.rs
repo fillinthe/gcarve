@@ -8,6 +8,7 @@ use gcarve_ui::i18n;
 use super::sign::bit;
 use super::{hint, unit_label, Host};
 use crate::canvas::Canvas;
+use crate::widgets::TipExt;
 use eframe::egui;
 use gcarve_core::document::{Material, Op, OpType, Side, ToolType};
 use gcarve_core::geom::{make_ellipse, make_polyline, make_rect, pt};
@@ -55,14 +56,26 @@ pub struct CabinetDialog {
     shelves: i32,
     count: i32,
     dados: bool,
+    /// width, height, depth are the space inside the box (else its outside)
+    inside: bool,
     pub done: Option<CabinetSpec>,
+}
+
+/// Outside width, height, depth of a cabinet whose box holds `inner` inside: a board each side, a board top and
+/// bottom plus the toe kick, the back behind. `toe` = toe kick height (0 for a wall cabinet).
+pub fn outside_of(inner: [f64; 3], t: f64, back: f64, toe: f64) -> [f64; 3] {
+    [inner[0] + 2.0 * t, inner[1] + 2.0 * t + toe, inner[2] + back]
+}
+/// The space inside a cabinet of these outside sizes.
+pub fn inside_of(outer: [f64; 3], t: f64, back: f64, toe: f64) -> [f64; 3] {
+    [outer[0] - 2.0 * t, outer[1] - 2.0 * t - toe, outer[2] - back]
 }
 
 const BASE: [f64; 10] = [24.0, 34.5, 24.0, 0.75, 0.25, 4.0, 3.0, 0.01, 49.0, 97.0];
 
 impl CabinetDialog {
     pub fn new(doc: &gcarve_core::document::Document) -> Self {
-        CabinetDialog { base: true, size: BASE.map(|v| crate::units::text(doc, v)), shelves: 1, count: 1, dados: true, done: None }
+        CabinetDialog { base: true, size: BASE.map(|v| crate::units::text(doc, v)), shelves: 1, count: 1, dados: true, inside: false, done: None }
     }
 
     /// false = closed
@@ -82,8 +95,13 @@ impl CabinetDialog {
                     }
                 }
             });
+            ui.horizontal(|ui| {
+                ui.label(i18n::t("The sizes are"));
+                crate::widgets::radio_value(ui, &mut self.inside, false, i18n::t("Outside")).tip(i18n::t("The cabinet measures this from the outside"));
+                crate::widgets::radio_value(ui, &mut self.inside, true, i18n::t("Inside")).tip(i18n::t("The space in the box measures this: what has to fit in"));
+            });
             egui::Grid::new("cabinet").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                let labels = ["Width (outside)", "Height (outside)", "Depth (outside)", "Board thickness (measure it)", "Back thickness", "Toe kick height", "Toe kick depth", "Dado wider than the board by", "Sheet width", "Sheet height"];
+                let labels = ["Width", "Height", "Depth", "Board thickness (measure it)", "Back thickness", "Toe kick height", "Toe kick depth", "Dado wider than the board by", "Sheet width", "Sheet height"];
                 for (i, label) in labels.iter().enumerate() {
                     if (!self.base && (i == 5 || i == 6)) || (!self.dados && i == 7) {
                         continue;
@@ -100,7 +118,18 @@ impl CabinetDialog {
                 ui.end_row();
             });
             crate::widgets::checkbox(ui, &mut self.dados, i18n::t("Dado joints: the bottom and top sit in grooves half the board deep"));
-            hint(ui, i18n::t("Opens as a new project: a frameless box (two sides, bottom, top, shelves, toe kick) nested over as many sheets as it needs, with dados, 5 mm shelf-pin holes and the cut-outs, and the nailed-on back on a sheet of its own thickness."));
+            // the other measure, so nobody has to add boards in their head
+            let v: Vec<Option<f64>> = [0, 1, 2, 3, 4, 5].iter().map(|i| crate::units::get(doc, &self.size[*i], true).ok()).collect();
+            if let [Some(a), Some(b), Some(c), Some(t), Some(back), Some(toe)] = v[..] {
+                let toe = if self.base { toe } else { 0.0 };
+                let o = if self.inside { outside_of([a, b, c], t, back, toe) } else { inside_of([a, b, c], t, back, toe) };
+                let other = if self.inside { i18n::t("Outside") } else { i18n::t("Inside (the box, above the toe kick)") };
+                // two short lines, never wrapped: a wrapping line in a dialog that scrolls sideways (phones) kept
+                // resizing the dialog, which then never showed
+                ui.label(format!("{other}:"));
+                ui.label(format!("{} × {} × {} {}", crate::units::text(doc, o[0]), crate::units::text(doc, o[1]), crate::units::text(doc, o[2]), crate::units::name(doc)));
+            }
+            hint(ui, i18n::t("Opens as a new project with every part nested on sheets and its toolpaths."));
             let (o, c) = crate::widgets::ok_cancel(ui);
             ok = o;
             cancel = c;
@@ -113,16 +142,33 @@ impl CabinetDialog {
             let n: Result<Vec<f64>, String> = self.size.iter().map(|s| crate::units::get(doc, s, true)).collect();
             match n {
                 Err(e) => *host.message = e,
-                Ok(n) if n[3] <= 0.0 || n[4] <= 0.0 || n[8] < 6.0 || n[9] < 6.0 => *host.message = i18n::t("New cabinet: give the boards a thickness and the sheet a size.").into(),
-                Ok(n) if n[0] < 4.0 * n[3] + 2.0 || n[1] < n[5] + 4.0 * n[3] + 2.0 || n[2] < n[4] + n[6] + 3.0 => *host.message = i18n::t("New cabinet: too small for its boards and toe kick.").into(),
-                Ok(n) => {
-                    let toe = if self.base { [n[5].max(0.0), n[6].max(0.0)] } else { [0.0, 0.0] };
-                    self.done = Some(CabinetSpec { size: [n[0], n[1], n[2]], t: n[3], back: n[4], toe, shelves: self.shelves.max(0) as usize, count: self.count.max(1) as usize, dados: self.dados, fit: n[7].max(0.0), sheet: [n[8], n[9]] });
-                    return false;
+                Ok(mut n) if self.inside && n[3] > 0.0 => {
+                    // given inside: work out the outside, then the same checks and build as for outside sizes
+                    let toe = if self.base { n[5].max(0.0) } else { 0.0 };
+                    [n[0], n[1], n[2]] = outside_of([n[0], n[1], n[2]], n[3], n[4], toe);
+                    self.inside = false;
+                    self.size[..3].iter_mut().zip(&n[..3]).for_each(|(s, v)| *s = crate::units::text(doc, *v));
+                    return self.ui_done(n, host);
                 }
+                Ok(n) => return self.ui_done(n, host),
             }
         }
         open
+    }
+
+    /// The checks and the spec, from outside sizes. false = closed (made), true = keep open (said why).
+    fn ui_done(&mut self, n: Vec<f64>, host: &mut Host) -> bool {
+        if n[3] <= 0.0 || n[4] <= 0.0 || n[8] < 6.0 || n[9] < 6.0 {
+            *host.message = i18n::t("New cabinet: give the boards a thickness and the sheet a size.").into();
+            return true;
+        }
+        if n[0] < 4.0 * n[3] + 2.0 || n[1] < n[5] + 4.0 * n[3] + 2.0 || n[2] < n[4] + n[6] + 3.0 {
+            *host.message = i18n::t("New cabinet: too small for its boards and toe kick.").into();
+            return true;
+        }
+        let toe = if self.base { [n[5].max(0.0), n[6].max(0.0)] } else { [0.0, 0.0] };
+        self.done = Some(CabinetSpec { size: [n[0], n[1], n[2]], t: n[3], back: n[4], toe, shelves: self.shelves.max(0) as usize, count: self.count.max(1) as usize, dados: self.dados, fit: n[7].max(0.0), sheet: [n[8], n[9]] });
+        false
     }
 }
 
@@ -287,5 +333,12 @@ mod tests {
             let issues = gcarve_core::pipeline::order_issues(&c.doc);
             assert!(issues.is_empty(), "sheet {j}: {issues:?}");
         }
+    }
+
+    #[test]
+    fn inside_sizes_add_the_boards_the_toe_kick_and_the_back() {
+        // a base cabinet that must hold 22.5 wide, 26 high, 23.75 deep: 3/4 boards, 1/4 back, 4 in toe kick
+        assert_eq!(super::outside_of([22.5, 26.0, 23.75], 0.75, 0.25, 4.0), [24.0, 31.5, 24.0]);
+        assert_eq!(super::inside_of([24.0, 31.5, 24.0], 0.75, 0.25, 4.0), [22.5, 26.0, 23.75]);
     }
 }

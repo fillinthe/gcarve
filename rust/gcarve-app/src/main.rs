@@ -15,6 +15,7 @@ mod bands;
 #[cfg(all(target_os = "macos", not(test)))]
 mod macmenu;
 mod bitbrowser;
+mod boxview;
 mod canvas;
 mod catalog;
 mod control;

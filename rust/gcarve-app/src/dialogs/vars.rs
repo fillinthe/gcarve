@@ -19,13 +19,19 @@ pub struct VarsDialog {
 }
 
 /// Single-line field bound to `value`: returns the committed text when focus leaves with a change.
-fn field(ui: &mut egui::Ui, bufs: &mut HashMap<egui::Id, String>, id: egui::Id, value: &str, width: f32, color: egui::Color32, hint_text: &str) -> Option<String> {
+/// `doc`: the field takes an expression, so the variables it could use are offered while a name is typed.
+#[allow(clippy::too_many_arguments)]
+fn field(ui: &mut egui::Ui, bufs: &mut HashMap<egui::Id, String>, id: egui::Id, value: &str, width: f32, color: egui::Color32, hint_text: &str, doc: Option<&Document>) -> Option<String> {
     let buf = bufs.entry(id).or_default();
-    if !ui.memory(|m| m.has_focus(id)) {
+    let key = id.with("var-suggest");
+    let listing = ui.data(|d| d.get_temp::<(egui::Rect, usize)>(key).is_some());
+    if !ui.memory(|m| m.has_focus(id)) && !listing {
         *buf = value.to_string();
     }
     let r = ui.add(crate::widgets::field(buf).id(id).desired_width(width).text_color(color).hint_text(hint_text));
-    (r.lost_focus() && buf.trim() != value).then(|| buf.clone())
+    let picked = doc.is_some_and(|doc| units::suggest_variables(ui, &r, buf, doc));
+    let picking = ui.data(|d| d.get_temp::<(egui::Rect, usize)>(key)).is_some_and(|(rect, _)| ui.input(|i| i.pointer.hover_pos()).is_some_and(|p| rect.contains(p)));
+    (r.lost_focus() && !picking && !picked && buf.trim() != value).then(|| buf.clone())
 }
 
 impl VarsDialog {
@@ -65,7 +71,7 @@ impl VarsDialog {
                         let r = doc.eval_dim(&var.expr);
                         let name_col = if used { theme::ACCENT } else { theme::TEXT };
                         ui.horizontal(|ui| {
-                            if let Some(n) = field(ui, &mut self.bufs, egui::Id::new(("var-name", i)), &var.name, 120.0, name_col, "") {
+                            if let Some(n) = field(ui, &mut self.bufs, egui::Id::new(("var-name", i)), &var.name, 120.0, name_col, "", None) {
                                 let from = var.name.clone();
                                 act = Some(Box::new(move |c: &mut Canvas| c.rename_variable(&from, &n)));
                             }
@@ -73,7 +79,7 @@ impl VarsDialog {
                         });
                         ui.label(RichText::new("=").color(theme::TEXT_DIM));
                         let col = if r.is_err() { theme::ORANGE } else if gcarve_core::expr::identifiers(&var.expr).is_empty() { theme::TEXT } else { theme::ACCENT };
-                        let resp = ui.horizontal(|ui| field(ui, &mut self.bufs, egui::Id::new(("var-expr", i)), &var.expr, 200.0, col, "")).inner;
+                        let resp = ui.horizontal(|ui| field(ui, &mut self.bufs, egui::Id::new(("var-expr", i)), &var.expr, 200.0, col, "", Some(&c.doc))).inner;
                         if let Some(e) = resp {
                             let n = var.name.clone();
                             act = Some(Box::new(move |c: &mut Canvas| c.set_variable(&n, &e)));
@@ -120,7 +126,7 @@ impl VarsDialog {
                     }
                     let r = if k.expr.is_empty() { Ok(0.0) } else { doc.eval(&k.expr) };
                     let col = if r.is_err() { theme::ORANGE } else if gcarve_core::expr::identifiers(&k.expr).is_empty() { theme::TEXT } else { theme::ACCENT };
-                    if let Some(e) = field(ui, &mut self.bufs, egui::Id::new(("con-expr", i)), &k.expr, 120.0, col, "0") {
+                    if let Some(e) = field(ui, &mut self.bufs, egui::Id::new(("con-expr", i)), &k.expr, 120.0, col, "0", Some(&c.doc)) {
                         act = Some(Box::new(move |c: &mut Canvas| c.update_constraint(i, "", &e)));
                     }
                     ui.label(RichText::new(units::fmt(doc, r.unwrap_or(0.0))).size(12.0).color(theme::TEXT_DIM));
@@ -209,7 +215,8 @@ impl ConstraintDialog {
                 });
                 ui.end_row();
                 ui.label(i18n::tf("Gap / offset ({doc})", &[("doc", &(units::name(doc)))]));
-                ui.add(crate::widgets::field(&mut self.expr).desired_width(280.0).hint_text(i18n::t("0, 0.5, gap, 2*gap + 1in")));
+                let r = ui.add(crate::widgets::field(&mut self.expr).desired_width(280.0).hint_text(i18n::t("0, 0.5, gap, 2*gap + 1in")));
+                units::suggest_variables(ui, &r, &mut self.expr, doc);
                 ui.end_row();
             });
             let (o, c) = crate::widgets::ok_cancel(ui);

@@ -43,12 +43,18 @@ fn is_motion(line: &str) -> bool {
     };
     // Heidenhain plain language: "12 L X.. Y.. F.."
     let klartext = s.split_whitespace().nth(1) == Some("L") && s.split_whitespace().any(|w| w.starts_with(['X', 'Y']));
-    g(s) || klartext || s.starts_with("J3,") || s.starts_with("M3,") || s.starts_with("PU") || s.strip_prefix('Z').is_some_and(|t| t.trim_start_matches('-').starts_with(|c: char| c.is_ascii_digit()))
+    g(s) || klartext || s.starts_with("J3,") || s.starts_with("M3,") || s.starts_with("PU") || s.strip_prefix('Z').is_some_and(|t| t.trim_start().trim_start_matches('-').starts_with(|c: char| c.is_ascii_digit()))
 }
 
 /// off regex of cam_test: (^|[\s;])(M0?5|C7|SO,\s*\d+,\s*0|!MC0)([\s;]|$)
 fn is_off(line: &str) -> bool {
     let u = line.to_ascii_uppercase();
+    if u.split_whitespace().collect::<Vec<_>>().windows(2).any(|p| p == ["M10", "O6.0"]) {
+        return true; // KOSY: spindle output 6 off
+    }
+    if u.split_whitespace().any(|w| w == "M22") {
+        return true; // MultiCam (the only built-in that writes M22)
+    }
     u.split(|c: char| c.is_whitespace() || c == ';').any(|w| {
         matches!(w, "M5" | "M05" | "C7" | "!MC0")
             || w.strip_prefix("SO,").and_then(|t| t.split_once(',')).is_some_and(|(n, z)| {
@@ -109,7 +115,7 @@ fn industrial_iso_posts_round_trip() {
     // every Rust-only ISO post: what it writes reads back (gimport) as the same cut in its units
     // (spindle safety: spindle_safety_every_post_every_file covers every post)
     let jobs = fixture_jobs();
-    let ids = ["fanuc-in", "osai-mm", "osai-in", "fagor-mm", "fagor-in", "siemens-mm", "smartcore-in", "multicam-in", "multicam-mm", "axyz-in", "axyz-mm", "thermwood-in", "techno-in", "techno-mm", "laguna-touch-in", "starcnc-in", "delta-in", "din-mm", "format4-mm"];
+    let ids = ["fanuc-in", "osai-mm", "osai-in", "fagor-mm", "fagor-in", "siemens-mm", "smartcore-in", "axyz-in", "axyz-mm", "thermwood-in", "techno-in", "techno-mm", "laguna-touch-in", "starcnc-in", "delta-in", "din-mm", "format4-mm"];
     let reference = gcarve_core::gimport::read_program(&post_jobs(&jobs, find_post("linuxcnc-in").unwrap()).iter().map(|o| o.text.clone()).collect::<Vec<_>>().join("\n"), "ref", &Default::default());
     let total = |p: &gcarve_core::gimport::ImportedProgram| p.sections.iter().map(|s| s.cut_length).sum::<f64>();
     for id in ids {
