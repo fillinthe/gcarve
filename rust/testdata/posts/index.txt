@@ -63,8 +63,6 @@ syntec-mm syntec-mm_0.nc 01_Profile_(outside).nc
 syntec-mm syntec-mm_1.nc 02_V-Bit.nc
 richauto-mm richauto-mm_0.nc 01_Profile_(outside).nc
 richauto-mm richauto-mm_1.nc 02_V-Bit.nc
-nextwave-in nextwave-in_0.tap 01_Profile_(outside).tap
-nextwave-in nextwave-in_1.tap 02_V-Bit.tap
 marlin-mm marlin-mm_0.gcode 01_Profile_(outside).gcode
 marlin-mm marlin-mm_1.gcode 02_V-Bit.gcode
 smoothie-mm smoothie-mm_0.gcode 01_Profile_(outside).gcode
@@ -75,8 +73,6 @@ shopbot-mm shopbot-mm_0.sbp 01_Profile_(outside).sbp
 shopbot-mm shopbot-mm_1.sbp 02_V-Bit.sbp
 duet-mm duet-mm_0.gcode 01_Profile_(outside).gcode
 duet-mm duet-mm_1.gcode 02_V-Bit.gcode
-roland-mm roland-mm_0.prn 01_Profile_(outside).prn
-roland-mm roland-mm_1.prn 02_V-Bit.prn
 pp-test-router pp-test-router_0.tap 01_Profile_(outside).tap
 pp-test-router pp-test-router_1.tap 02_V-Bit.tap
 pp-mach3-like pp-mach3-like_0.txt 01_Profile_(outside).txt

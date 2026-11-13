@@ -72,6 +72,10 @@ pub struct PostDef {
     /// take units per second (ShopBot MS, Vectric posts with a 0.0166 rate multiplier)
     #[serde(skip_serializing_if = "is_one")]
     pub feed_scale: f64,
+    /// what X, Y, Z (and I / J, the bounds, home and lift heights) are multiplied by after the unit: machine steps
+    /// (Roland RML: 100 = hundredths of a mm, HPGL: 40, isel: 1000 = micrometres) or a flipped axis (-1)
+    #[serde(skip_serializing_if = "all_one")]
+    pub axis_scale: [f64; 3],
     /// {N} in templates = running line number
     pub line_number_start: i32,
     pub line_number_step: i32,
@@ -93,6 +97,10 @@ pub struct PostDef {
 #[allow(clippy::trivially_copy_pass_by_ref)] // serde's signature
 fn is_one(v: &f64) -> bool {
     (*v - 1.0).abs() < 1e-12
+}
+#[allow(clippy::trivially_copy_pass_by_ref)] // serde's signature
+fn all_one(v: &[f64; 3]) -> bool {
+    v.iter().all(is_one)
 }
 
 impl Default for PostDef {
@@ -124,6 +132,7 @@ impl Default for PostDef {
             substitute: String::new(),
             feed_decimals: 0,
             feed_scale: 1.0,
+            axis_scale: [1.0; 3],
             line_number_start: 10,
             line_number_step: 10,
             modal_axes: true,
@@ -241,7 +250,13 @@ impl Ctx<'_> {
         if self.def.modal_axes && !force && last.is_some_and(|l| (l - v).abs() < 1e-12) {
             return String::new();
         }
-        let k = if letter == "Y" && self.a_axis { 1.0 } else { self.scale };
+        let a = self.def.axis_scale;
+        let k = match letter {
+            "Y" if self.a_axis => 1.0,
+            "X" => self.scale * a[0],
+            "Y" => self.scale * a[1],
+            _ => self.scale * a[2],
+        };
         format!("{letter}{}", fmt(v * k, self.def.decimals))
     }
 }
@@ -328,15 +343,16 @@ fn emit_move(out: &mut String, c: &mut Ctx, m: &Move, feed_xy: f64, feed_z: f64)
     s = s.replace("{X}", &c.axis_tok("X", m.x, c.x, arc));
     s = s.replace("{Y}", &c.axis_tok("Y", m.y, c.y, arc));
     s = s.replace("{Z}", &c.axis_tok("Z", m.z, c.z, false));
-    s = s.replace("{I}", &if arc { format!("I{}", fmt(m.i * sc, d.decimals)) } else { String::new() });
-    s = s.replace("{J}", &if arc { format!("J{}", fmt(m.j * sc, d.decimals)) } else { String::new() });
+    let [ax, ay, az] = d.axis_scale;
+    s = s.replace("{I}", &if arc { format!("I{}", fmt(m.i * sc * ax, d.decimals)) } else { String::new() });
+    s = s.replace("{J}", &if arc { format!("J{}", fmt(m.j * sc * ay, d.decimals)) } else { String::new() });
     let fword = if m.kind != MoveType::Rapid && feed_changed && d.feed_change.is_empty() { format!("F{}", fmt(feed * sc * d.feed_scale, d.feed_decimals)) } else { String::new() };
     s = s.replace("{F}", &fword);
-    s = s.replace("{x}", &fmt(m.x.or(c.x).unwrap_or(0.0) * sc, d.decimals));
-    s = s.replace("{y}", &fmt(m.y.or(c.y).unwrap_or(0.0) * if c.a_axis { 1.0 } else { sc }, d.decimals));
-    s = s.replace("{z}", &fmt(m.z.or(c.z).unwrap_or(0.0) * sc, d.decimals));
-    s = s.replace("{i}", &fmt(m.i * sc, d.decimals));
-    s = s.replace("{j}", &fmt(m.j * sc, d.decimals));
+    s = s.replace("{x}", &fmt(m.x.or(c.x).unwrap_or(0.0) * sc * ax, d.decimals));
+    s = s.replace("{y}", &fmt(m.y.or(c.y).unwrap_or(0.0) * if c.a_axis { 1.0 } else { sc * ay }, d.decimals));
+    s = s.replace("{z}", &fmt(m.z.or(c.z).unwrap_or(0.0) * sc * az, d.decimals));
+    s = s.replace("{i}", &fmt(m.i * sc * ax, d.decimals));
+    s = s.replace("{j}", &fmt(m.j * sc * ay, d.decimals));
     s = s.replace("{f}", &fmt(feed * sc * d.feed_scale, d.feed_decimals));
     let s = trim_spaces(&s);
     if !s.is_empty() {
@@ -383,13 +399,14 @@ fn emit_job(out: &mut String, c: &mut Ctx, job: &Job, tool_num: i32) {
         }
         let (zmin, zmax) = z.unwrap_or((0.0, 0.0));
         let e = b.is_empty();
-        let bx = |v: f64| fmt(if e { 0.0 } else { v * sc }, d.decimals);
-        c.set("XMIN", bx(b.x0));
-        c.set("XMAX", bx(b.x1));
-        c.set("YMIN", bx(b.y0));
-        c.set("YMAX", bx(b.y1));
-        c.set("ZMIN", fmt(zmin * sc, d.decimals));
-        c.set("ZMAX", fmt(zmax * sc, d.decimals));
+        let [ax, ay, az] = d.axis_scale;
+        let bx = |v: f64, a: f64| fmt(if e { 0.0 } else { v * sc * a }, d.decimals);
+        c.set("XMIN", bx(b.x0, ax));
+        c.set("XMAX", bx(b.x1, ax));
+        c.set("YMIN", bx(b.y0, ay));
+        c.set("YMAX", bx(b.y1, ay));
+        c.set("ZMIN", fmt(zmin * sc * az, d.decimals));
+        c.set("ZMAX", fmt(zmax * sc * az, d.decimals));
         c.emit_lines(out, &d.path_start);
         c.f = None; // force a feed word at the start of each path
         let mut cur = pt(c.x.unwrap_or(0.0), c.y.unwrap_or(0.0));
@@ -488,34 +505,54 @@ fn shopbot_off(b: &[u8], p: usize) -> Option<usize> {
 
 /// spindle off: M5 / M05 (any G-code), C7 (ShopBot), SO,n,0 (ShopBot output off), !MC0 (Roland)
 fn spindle_off(l: &str) -> bool {
-    has_word(l, &["M5", "M05", "C7", "!MC0"], true, true)
+    has_word(l, &["M5", "M05", "C7", "!MC0"], true, true) || kosy_spindle(l) == Some(false)
+}
+
+/// KOSY / nccad switch the spindle with an output: "M10 O6.1" on, "M10 O6.0" off.
+fn kosy_spindle(l: &str) -> Option<bool> {
+    let u = l.to_ascii_uppercase();
+    let w: Vec<&str> = u.split_whitespace().collect();
+    w.windows(2).find(|p| p[0] == "M10" && (p[1] == "O6.0" || p[1] == "O6.1")).map(|p| p[1] == "O6.1")
 }
 
 /// Safety: every file must end with the spindle off. A footer without a spindle-off command (user .json / Vectric
 /// .pp posts) gets "M5" before its program end (M30/M2/%/END), or at the end.
 pub fn spindle_safe_footer(footer: &str) -> String {
-    if getlines(footer).any(spindle_off) {
+    safe_footer(footer, false)
+}
+
+/// MultiCam controls start the spindle with M12 and stop it with M22 (Vectric's MultiCam posts); a post is taken for
+/// one when its header or tool change starts the spindle with M12. Elsewhere M12 / M22 mean other things.
+fn multicam(def: &PostDef) -> bool {
+    [&def.header, &def.tool_change].iter().any(|b| getlines(b).any(|l| has_word(l, &["M12"], true, true)))
+}
+
+fn safe_footer(footer: &str, mc: bool) -> String {
+    if getlines(footer).any(|l| spindle_off(l) || (mc && has_word(l, &["M22"], true, true))) {
         return footer.to_string();
     }
     let mut out = String::new();
     let mut added = false;
     for l in getlines(footer) {
         if !added && has_word(l, &["M30", "M030", "M2", "M02", "%", "END"], false, false) {
-            out += "M5\n";
+            out += if mc { "M22\n" } else { "M5\n" };
             added = true;
         }
         out += l;
         out += "\n";
     }
     if !added {
-        out += "M5\n";
+        out += if mc { "M22\n" } else { "M5\n" };
     }
     out
 }
 
 /// Safety: the spindle stops before every tool change (a user post's change block without M5 gets one first).
 pub fn spindle_safe_tool_change(block: &str) -> String {
-    if spindle_safe_footer(block) == block { block.to_string() } else { format!("M5\n{block}") }
+    safe_tool_change(block, false)
+}
+fn safe_tool_change(block: &str, mc: bool) -> String {
+    if safe_footer(block, mc) == block { block.to_string() } else { format!("{}\n{block}", if mc { "M22" } else { "M5" }) }
 }
 
 /// Renders one or more files. With `tool_change` empty: one file per job (tool). Otherwise a single combined file.
@@ -527,7 +564,8 @@ pub fn post_jobs(jobs: &[Job], def: &PostDef) -> Vec<PostOutput> {
     for (k, o) in outs.iter_mut().enumerate() {
         let still = if combined { jobs.iter().all(|j| j.rpm <= 0) } else { jobs.get(k).is_some_and(|j| j.rpm <= 0) };
         if still {
-            o.text = o.text.split_inclusive('\n').filter(|l| !spindle_on(l)).collect();
+            let mc = multicam(def);
+            o.text = o.text.split_inclusive('\n').filter(|l| !spindle_on(l) && !(mc && has_word(l, &["M12"], true, true))).collect();
         }
         // rotary: the Y words carry A-axis degrees (cam::wrap_jobs); written as A
         if let Some(j) = jobs.first().filter(|j| j.a_axis) {
@@ -561,7 +599,7 @@ fn y_to_a(line: &str, along_y: bool) -> String {
 
 /// spindle on: M3 / M03 / M4 / M04 (any G-code), C6 (ShopBot), !MC1 (Roland)
 fn spindle_on(l: &str) -> bool {
-    has_word(l, &["M3", "M03", "M4", "M04", "C6", "!MC1"], true, true) && !spindle_off(l)
+    (has_word(l, &["M3", "M03", "M4", "M04", "C6", "!MC1"], true, true) || kosy_spindle(l) == Some(true)) && !spindle_off(l)
 }
 
 fn render_jobs(jobs: &[Job], def: &PostDef) -> Vec<PostOutput> {
@@ -574,6 +612,7 @@ fn render_jobs(jobs: &[Job], def: &PostDef) -> Vec<PostOutput> {
         return jobs.iter().map(|j| PostOutput { filename: format!("{}.{}", j.filename, def.extension), text: post_wincnc(j) }).collect();
     }
     let scale = if def.inches { 1.0 } else { 25.4 };
+    let [ax, ay, az] = def.axis_scale;
     let make_ctx = |j: &Job| {
         let safe = def.safe_z.unwrap_or(j.safe_z * scale);
         let vars = [
@@ -581,10 +620,10 @@ fn render_jobs(jobs: &[Job], def: &PostDef) -> Vec<PostOutput> {
             ("DATE", j.timestamp.clone()),
             ("TIME", j.timestamp.clone()),
             ("UNITS", (if def.inches { "inches" } else { "mm" }).into()),
-            ("SAFEZ", fmt(safe, def.decimals)),
-            ("XH", def.home_x.or(j.home.map(|h| h[0] * scale)).map_or("0".into(), |v| fmt(v, def.decimals))),
-            ("YH", def.home_y.or(j.home.map(|h| h[1] * scale)).map_or("0".into(), |v| fmt(v, def.decimals))),
-            ("ZH", fmt(def.home_z.unwrap_or(safe), def.decimals)),
+            ("SAFEZ", fmt(safe * az, def.decimals)),
+            ("XH", def.home_x.or(j.home.map(|h| h[0] * scale)).map_or("0".into(), |v| fmt(v * ax, def.decimals))),
+            ("YH", def.home_y.or(j.home.map(|h| h[1] * scale)).map_or("0".into(), |v| fmt(v * ay, def.decimals))),
+            ("ZH", fmt(def.home_z.unwrap_or(safe) * az, def.decimals)),
             ("XLENGTH", fmt(j.board[0] * scale, def.decimals)),
             ("YLENGTH", fmt(j.board[1] * scale, def.decimals)),
             ("ZLENGTH", fmt(j.board[2] * scale, def.decimals)),
@@ -607,7 +646,7 @@ fn render_jobs(jobs: &[Job], def: &PostDef) -> Vec<PostOutput> {
             c.emit_lines(&mut out, &def.header);
             emit_notes(&mut out, def, &j.notes);
             emit_job(&mut out, &mut c, j, if j.slot > 0 { j.slot } else { n });
-            c.emit_lines(&mut out, &spindle_safe_footer(&def.footer));
+            c.emit_lines(&mut out, &safe_footer(&def.footer, multicam(def)));
             outs.push(PostOutput { filename: format!("{}.{}", j.filename, def.extension), text: number_lines(&out, def) });
         }
     } else {
@@ -620,7 +659,7 @@ fn render_jobs(jobs: &[Job], def: &PostDef) -> Vec<PostOutput> {
         c.set("FILENAME", base.into());
         c.emit_lines(&mut out, &def.header);
         emit_notes(&mut out, def, &jobs[0].notes);
-        let change = spindle_safe_tool_change(&def.tool_change);
+        let change = safe_tool_change(&def.tool_change, multicam(def));
         for (n, j) in (1..).zip(jobs) {
             c.set("TOOLNAME", substituted(def, &j.tool));
             let num = if j.slot > 0 { j.slot } else { n };
@@ -631,7 +670,7 @@ fn render_jobs(jobs: &[Job], def: &PostDef) -> Vec<PostOutput> {
             (c.x, c.y, c.z, c.f, c.after_rapid) = (None, None, None, None, true);
             emit_job(&mut out, &mut c, j, num);
         }
-        c.emit_lines(&mut out, &spindle_safe_footer(&def.footer));
+        c.emit_lines(&mut out, &safe_footer(&def.footer, multicam(def)));
         outs.push(PostOutput { filename: format!("{base}.{}", def.extension), text: number_lines(&out, def) });
     }
     outs
@@ -781,12 +820,15 @@ fn build_library() -> Vec<PostDef> {
         footer: "M05\nG00 Z{ZH}\nM30\n".into(),
         ..base("richauto-mm", "RichAuto DSP A11/B11 (mm, .nc)", "RichAuto DSP", "Axiom, Laguna Swift (DSP), generic 1325 routers", "nc")
     });
+    // Next Wave, as Vectric's own Next Wave / CNC Shark posts write it (reference/vectric-postp): lift, speed, M3,
+    // then a 5 second wait for the spindle to come up to speed before the first cut; CR LF; M02 at the end.
     v.push(PostDef {
         decimals: 4,
         comment: "({})".into(),
-        header: "({FILENAME})\nG20 G90 G17\nS{RPM} M3\n".into(),
+        crlf: true,
+        header: "({FILENAME})\nG90\nG20\nG00 Z{ZH}\nS{RPM}\nM3\nG04 P5\n".into(),
         path_start: "({PATHNAME})\n".into(),
-        footer: "M5\nG0 Z{ZH}\nM30\n".into(),
+        footer: "G00 Z{ZH}\nG00 X{XH} Y{YH}\nM5\nM02\n".into(),
         ..base("nextwave-in", "Next Wave Shark / Piranha (inch, .tap)", "Next Wave", "Shark HD, Piranha", "tap")
     });
     v.push(PostDef {
@@ -838,18 +880,30 @@ fn build_library() -> Vec<PostDef> {
         footer: "M5\nG0 Z{SAFEZ}\nM0\n".into(),
         ..base("duet-mm", "Duet RepRapFirmware CNC (mm, .gcode)", "RRF", "Duet-based routers", "gcode")
     });
-    v.push(PostDef {
+    // Roland RML-1, as Vectric's own Roland posts write it (reference/vectric-postp): positions in machine steps,
+    // speeds per second, "Z x,y,z" for every move, !MC1 / !MC0 spindle on / off, H = home. Was written in plain mm
+    // and mm per minute (a hundredth of the size, sixty times the speed) until 2026-11-13.
+    // (Vectric's MDX-15 / 20 posts send no spindle words; RML-1's !MC motor control is sent here on both so the
+    // spindle-off rule holds)
+    let roland = |id: &str, name: &str, machines: &str, steps: f64| PostDef {
         inches: false,
         decimals: 0,
         arcs: false,
         comment: String::new(),
-        header: ";;^IN;!MC1;!PZ0,{SAFEZ};V{FEEDXY};\n".into(),
-        rapid: "PU{x},{y};".into(),
-        linear: "Z{x},{y},{z};".into(),
+        crlf: true,
+        axis_scale: [steps; 3],
+        feed_scale: 1.0 / 60.0,
+        feed_decimals: 1,
+        header: "^DF;\n!MC1;Z {XH},{YH},{ZH};\nV 64;F 64;\n".into(),
+        feed_change: "V {f};F {f};".into(),
+        rapid: "Z {x},{y},{z};".into(),
+        linear: "Z {x},{y},{z};".into(),
         modal_axes: false,
-        footer: "!MC0;^IN;\n".into(),
-        ..base("roland-mm", "Roland RML-1 (mm, .prn)", "RML-1", "Roland MDX, SRM-20", "prn")
-    });
+        footer: "!MC0;\nH;\n".into(),
+        ..base(id, name, "RML-1", machines, "rol")
+    };
+    v.push(roland("roland-mm", "Roland RML-1 (MDX-40 / 50 / 540, SRM-20, EGX; .rol)", "Roland MDX-40, MDX-50, MDX-540, SRM-20, EGX engravers", 100.0));
+    v.push(roland("roland-modela-mm", "Roland Modela RML-1 (MDX-15 / 20; .rol)", "Roland Modela MDX-15, MDX-20", 40.0));
     // ---- Industrial ISO controllers (Rust only, 2026-10-09; the 47 above are byte-checked against the C++ app).
     // Plain ISO G-code with each controller's units word, comment style and tool call; G0/G1/G2/G3 with I/J
     // relative to the arc start, which all of them accept. Verify a new controller with File ▸ Export Air-Cut Test.
@@ -941,6 +995,22 @@ fn build_library() -> Vec<PostDef> {
     v.push(maker("laguna-br-in", "Laguna SmartShop, B&R (inch, .prg)", "B&R (Laguna Touch)", "Laguna SmartShop 2, SmartShop II, Puma, iQ Pro with the B&R touch screen", "prg", true, false, "({FILENAME})\nG00 G17 G40 G90\nG70\nG54", "({TOOLNAME})\nD0\nG00 Z0\nM05\nT{TOOLNUM} M06\nD{TOOLNUM}\nM03 S{RPM}\nG04 5", "D0\nG00 Z0\nM05\nM30"));
     v.push(maker("laguna-fanuc-in", "Laguna SmartShop, FANUC (inch, .nc)", "FANUC (Laguna)", "Laguna SmartShop 3, 2 Elite, MT Elite, Composite Fabricator with a FANUC control", "nc", true, false, "%\n<{FILENAME}>\nG00 G17 G20 G40 G49 G80 G90\nG52 X0 Y0\nG54", "({TOOLNAME})\nG05.1 Q0\nG00 G53 G49 Z0\nM05\nT{TOOLNUM} M06\nG05.1 Q1\nG00 G43 H{TOOLNUM} Z{ZH}\nM03 S{RPM}", "G00 G53 G49 Z0\nG05.1 Q0\nM05\nM30\n%"));
     v.push(maker("techno-titan-in", "Techno Titan with tool changer (inch, .nc)", "Techno Titan", "Techno Titan Series", "nc", true, true, "o0001\n({FILENAME})\nG00 G20 G17 G90 G70\nG00 G40 G49 G80", "({TOOLNAME})\nM05\nG53 Z0\nT{TOOLNUM} M06\nG43 H{TOOLNUM}\nG53 Z0\nS{RPM} M03", "G53 Z0\nM05\nM30"));
+    // KOSY / nccad (MAXcomputer), as Vectric's KOSY post writes it (reference/vectric-postp): no speed word (set on
+    // the machine), the spindle is output 6 (M10 O6.1 / O6.0), feeds in tenths of a mm per second (mm/min × 1/6),
+    // arcs as lines (KOSY wants absolute arc centres), CR LF. Not yet run on a machine.
+    v.push(PostDef {
+        inches: false,
+        decimals: 3,
+        arcs: false,
+        comment: String::new(),
+        crlf: true,
+        feed_scale: 1.0 / 6.0,
+        feed_decimals: 1,
+        header: "{FILENAME}\nGCarve\nG90\nG00 Z{ZH}\nG00 X{XH} Y{YH}\nM10 O6.1\n".into(),
+        // lifted and parked first, then the spindle off as the last line (the spindle-safety rule: nothing after it)
+        footer: "G0 Z{SAFEZ}\nG0 Z{ZH}\nG0 X{XH} Y{YH}\nM10 O6.0\n".into(),
+        ..base("kosy-mm", "KOSY / nccad (mm, .knc, experimental)", "nccad (MAXcomputer)", "KOSY 2 / 3 / A3 / A4 routers", "knc")
+    });
     // isel Remote, DIN/ISO interpreter (isel's own G and M code table + a matching sample): G71 = mm, ";" comments,
     // numbered blocks, the speed on its own line before M3, G53 cancels the work offset (so G54 comes back after
     // the lift), M2 would leave the spindle running: M5 then M30. Not yet run on a machine.
@@ -975,8 +1045,31 @@ fn build_library() -> Vec<PostDef> {
     iso(&mut v, "fagor-in", "Fagor 8055 / 8065 / 8070 (inch, .pim)", "Fagor", "DMS, Freedom Patriot, Fagor-controlled routers and mills", true, "pim", &fagor);
     iso(&mut v, "siemens-mm", "Siemens Sinumerik 828D / 840D (mm, .mpf)", "Siemens Sinumerik", "Sinumerik-controlled routers and machining centers", false, "mpf", &siemens);
     iso(&mut v, "smartcore-in", "CAMaster SmartCore / Yaskawa (inch, .nc)", "Yaskawa SmartCore", "CAMaster Stinger / Panther / Cobra with SmartCore", true, "nc", &plain);
-    iso(&mut v, "multicam-in", "MultiCam EZ Control (inch, .nc)", "MultiCam EZ", "MultiCam 1000 / 3000 / 5000 / Apex", true, "nc", &plain);
-    iso(&mut v, "multicam-mm", "MultiCam EZ Control (mm, .nc)", "MultiCam EZ", "MultiCam 1000 / 3000 / 5000 / Apex", false, "nc", &plain);
+    // MultiCam, as Vectric's own MultiCam posts write it (reference/vectric-postp): Z counts positive DOWN (every
+    // Z is written negated), feeds per second, M12 / M22 start and stop the spindle, G70 inch / G75 mm. Until
+    // 2026-11-13 these were plain Fanuc-style files: on a MultiCam a lift read as a plunge. The metric control
+    // wants absolute arc centres, so its arcs go out as short lines. Not yet run on a machine.
+    let multicam = |id: &str, name: &str, inch: bool| PostDef {
+        inches: inch,
+        decimals: if inch { 4 } else { 3 },
+        arcs: inch,
+        comment: if inch { String::new() } else { "//{}".into() },
+        crlf: true,
+        axis_scale: [1.0, 1.0, -1.0],
+        feed_scale: 1.0 / 60.0,
+        feed_decimals: 1,
+        header: if inch { "M90\nG90\nG17\nG70\nG74\n".into() } else { "M90\n//{FILENAME}\nG17\nG90\nG75\nG00 X0. Y0.\n".into() },
+        tool_change: "M22\nG00 T{TOOLNUM}\nG97 S{RPM}\nG00 Z{ZH}\nG00 X{XH} Y{YH}\nM12\n".into(),
+        rapid: "G00 {X} {Y} {Z}".into(),
+        linear: "G01 {X} {Y} {Z} {F}".into(),
+        arc_cw: "G02 {X} {Y} {I} {J} {F}".into(),
+        arc_ccw: "G03 {X} {Y} {I} {J} {F}".into(),
+        // (lifted and back at zero before M22: the spindle-off is the last thing that happens)
+        footer: "G00 Z{ZH}\nG00 X0. Y0.\nM22\nM02\n".into(),
+        ..base(id, name, "MultiCam", "MultiCam 1000 / 3000 / 5000 / Apex / Classic", "cnc")
+    };
+    v.push(multicam("multicam-in", "MultiCam G-code (inch, .cnc)", true));
+    v.push(multicam("multicam-mm", "MultiCam Classic G-code (mm, .cnc)", false));
     iso(&mut v, "axyz-in", "AXYZ A2MC (inch, .nc)", "AXYZ A2MC", "AXYZ Infinite, Pacer, Trident", true, "nc", &plain);
     iso(&mut v, "axyz-mm", "AXYZ A2MC (mm, .nc)", "AXYZ A2MC", "AXYZ Infinite, Pacer, Trident", false, "nc", &plain);
     iso(&mut v, "thermwood-in", "Thermwood SuperControl (inch, .nc)", "Thermwood SuperControl", "Thermwood Cut Center, Model 43 / 45 / 53 / 67 / 90", true, "nc", &plain);
@@ -985,7 +1078,27 @@ fn build_library() -> Vec<PostDef> {
     iso(&mut v, "laguna-touch-in", "Laguna SmartShop / Touch (inch, .nc)", "Laguna Touch", "Laguna SmartShop II / M, Elite", true, "nc", &plain);
     iso(&mut v, "starcnc-in", "Larken StarCNC (inch, .nc)", "StarCNC", "Larken routers", true, "nc", &no_atc);
     iso(&mut v, "delta-in", "Delta CNC (Legacy) (inch, .nc)", "Delta CNC", "Legacy Maverick, Explorer, Phoenix", true, "nc", &no_atc);
-    iso(&mut v, "din-mm", "DIN 66025 G-code (mm, .nc): cncGraF, WinPC-NC, Beamicon, Mecanumeric", "DIN 66025", "Sorotec, Mecanumeric, cncGraF, WinPC-NC, Beamicon, KinetiC-NC (CNC-Step High-Z); isel Remote: see isel", false, "nc", &no_atc);
+    iso(&mut v, "din-mm", "DIN 66025 G-code (mm, .nc): cncGraF, Beamicon, KinetiC-NC, Mecanumeric", "DIN 66025", "Sorotec, Mecanumeric, cncGraF, Beamicon, KinetiC-NC (CNC-Step); WinPC-NC and isel Remote: see their own posts", false, "nc", &no_atc);
+    // WinPC-NC (Lewetz), as Vectric's own WinPC-NC posts write it (reference/vectric-postp): feeds in mm per SECOND,
+    // numbered blocks from 0, CR LF. It shared the DIN post until 2026-11-13, so its files asked for 60 times the feed.
+    v.push(PostDef {
+        inches: false,
+        decimals: 3,
+        crlf: true,
+        feed_scale: 1.0 / 60.0,
+        feed_decimals: 1,
+        line_number_start: 0,
+        line_number_step: 1,
+        header: "%\n({FILENAME})\nN{N} G17\nN{N} G90\nN{N} G71\nN{N} M05\n".into(),
+        tool_change: "({TOOLNAME})\nN{N} M05\nN{N} G00 Z{ZH}\nN{N} T{TOOLNUM} M06\nN{N} S{RPM} M03\nN{N} G00 Z{ZH}\nN{N} G00 X{XH} Y{YH}\n".into(),
+        path_start: "({PATHNAME})\n".into(),
+        rapid: "N{N} G00 {X} {Y} {Z}".into(),
+        linear: "N{N} G01 {X} {Y} {Z} {F}".into(),
+        arc_cw: "N{N} G02 {X} {Y} {I} {J} {F}".into(),
+        arc_ccw: "N{N} G03 {X} {Y} {I} {J} {F}".into(),
+        footer: "N{N} G00 Z{ZH}\nN{N} M05\nN{N} M30\n".into(),
+        ..base("winpc-mm", "WinPC-NC (mm, .nc)", "WinPC-NC", "Stepcraft (WinPC-NC), CNC-Step High-Z S, Haase, Lewetz", "nc")
+    });
     iso(&mut v, "format4-mm", "Felder Format-4 F4Integrate (ISO import, mm, .iso)", "F4Integrate", "Felder Format-4 profit", false, "iso", &osai);
     v
 }
@@ -1111,7 +1224,9 @@ pub fn post_from_vectric_pp(text: &str) -> Result<PostDef, String> {
                             }
                             d.feed_scale = m;
                         }
-                        "X_POSITION" | "Y_POSITION" | "Z_POSITION" => return Err(format!("this post multiplies its coordinates by {m} (machine steps), which GCarve can't write yet")),
+                        "X_POSITION" => d.axis_scale[0] = m,
+                        "Y_POSITION" => d.axis_scale[1] = m,
+                        "Z_POSITION" => d.axis_scale[2] = m,
                         _ => {} // laser power, home positions: not written by GCarve's moves
                     }
                 }
@@ -1126,10 +1241,12 @@ pub fn post_from_vectric_pp(text: &str) -> Result<PostDef, String> {
             _ => {}
         }
     }
-    if d.name.is_empty() {
-        return Err("no POST_NAME found: not a Vectric post file".into());
+    // VCarve 12 keeps its posts in a database (postp.ppdb) where the name is stored apart: those files have no
+    // POST_NAME line. A file with post blocks is still a post; the caller names it after the file.
+    if d.name.is_empty() && blocks.is_empty() {
+        return Err("no POST_NAME and no post blocks found: not a Vectric post file".into());
     }
-    d.id = "pp-".to_string() + &d.name.bytes().map(|c| if c.is_ascii_alphanumeric() { c as char } else { '-' }).collect::<String>();
+    d.id = if d.name.is_empty() { String::new() } else { "pp-".to_string() + &d.name.bytes().map(|c| if c.is_ascii_alphanumeric() { c as char } else { '-' }).collect::<String>() };
     d.controller = "Vectric .pp".into();
     d.machines = d.name.clone();
     // translate [VAR] tokens into our placeholders. Axis vars: A (always) -> prefix + bare number, C (changed) -> modal word.
@@ -1270,13 +1387,17 @@ mod tests {
         let tp = Toolpath { name: "K".into(), feed_xy: 100.0, feed_z: 30.0, moves: vec![Move::rapid(Some(1.0), Some(1.0), Some(0.5)), Move::linear(None, None, Some(-0.05)), Move::linear(Some(2.0), None, None), Move::rapid(None, None, Some(0.5))], ..Default::default() };
         let job = |rpm| Job { filename: "k".into(), tool: "Knife".into(), rpm, toolpaths: vec![tp.clone()], z_zero: "Material Surface".into(), ..Default::default() };
         for def in post_library() {
+            // MultiCam's own words: M12 on, M22 off
+            let mc = multicam(def);
+            let on = |l: &str| spindle_on(l) || (mc && has_word(l, &["M12"], true, true));
+            let off = |l: &str| spindle_off(l) || (mc && has_word(l, &["M22"], true, true));
             for o in post_jobs(&[job(0)], def) {
-                assert!(!o.text.lines().any(spindle_on), "{}: spindle turned on for a knife", def.id);
-                assert!(o.text.lines().any(spindle_off), "{}: no spindle off at the end", def.id);
+                assert!(!o.text.lines().any(on), "{}: spindle turned on for a knife", def.id);
+                assert!(o.text.lines().any(off), "{}: no spindle off at the end", def.id);
             }
             // a normal bit keeps its spindle-on
             let normal = post_jobs(&[job(18000)], def);
-            assert!(normal.iter().any(|o| o.text.lines().any(spindle_on)) || def.id.contains("laser") || def.id.contains("marlin"), "{}: lost the spindle-on", def.id);
+            assert!(normal.iter().any(|o| o.text.lines().any(on)) || def.id.contains("laser") || def.id.contains("marlin"), "{}: lost the spindle-on", def.id);
         }
     }
 
@@ -1339,10 +1460,13 @@ mod tests {
             };
             let out = post_jobs(std::slice::from_ref(&job), &def);
             let t = out.first().map(|o| o.text.as_str()).unwrap_or("");
-            let moves = t.lines().filter(|l| l.contains("25.4") || l.contains("50.8") || l.contains("2.0") || l.contains("1.0")).count();
+            // the job runs out to x = 2 in: some line must carry a number that is 2 in the post's units and scale
+            // (2, 50.8, 5080 hundredths, 2032 HPGL units, ±)
+            let two = 2.0 * if def.inches { 1.0 } else { 25.4 } * def.axis_scale[0].abs();
+            let moves = t.lines().filter(|l| l.split(|c: char| !(c.is_ascii_digit() || c == '.')).filter_map(|w| w.parse::<f64>().ok()).any(|v| (v - two).abs() < 0.02 * two.max(1.0))).count();
             if t.is_empty() {
                 bad.push(format!("{name}: nothing written"));
-            } else if moves < 2 {
+            } else if moves < 1 {
                 bad.push(format!("{name}: no moves in the output ({} lines)", t.lines().count()));
             } else if !t.lines().any(spindle_off) {
                 bad.push(format!("{name}: no spindle off"));
@@ -1354,6 +1478,26 @@ mod tests {
         for b in &bad {
             println!("  {b}");
         }
+    }
+
+    #[test]
+    fn roland_writes_machine_steps_and_speeds_per_second_like_vectrics_roland_posts() {
+        use crate::job::{Job, Move, Toolpath};
+        let tp = Toolpath { name: "Cut".into(), feed_xy: 60.0, feed_z: 30.0, moves: vec![Move::rapid(Some(1.0), Some(2.0), Some(0.5)), Move::linear(None, None, Some(-0.1)), Move::linear(Some(3.0), None, None), Move::rapid(None, None, Some(0.5))], ..Default::default() };
+        let job = Job { filename: "k".into(), tool: "End mill".into(), rpm: 12000, toolpaths: vec![tp], z_zero: "Material Surface".into(), ..Default::default() };
+        let t = post_jobs(std::slice::from_ref(&job), find_post("roland-mm").unwrap())[0].text.clone();
+        // 1 in = 25.4 mm = 2540 hundredths; 30 in/min = 762 mm/min = 12.7 mm/s; ends with the spindle off
+        assert!(t.contains("Z 2540,5080,1270;") && t.contains("Z 7620,5080,-254;") && t.contains("V 12.7;F 12.7;") && t.trim_end().ends_with("!MC0;\r\nH;"), "{t}");
+        assert!(t.contains("\r\n"), "RML files end their lines with CR LF");
+        let m = post_jobs(std::slice::from_ref(&job), find_post("roland-modela-mm").unwrap())[0].text.clone();
+        assert!(m.contains("Z 1016,2032,508;"), "Modela steps are 1/40 mm: {m}");
+        // a Vectric post that scales its coordinates is translated with the same steps
+        let pp = "POST_NAME = \"r\"\nFILE_EXTENSION = \"rol\"\nUNITS = \"MM\"\nVAR FEED_RATE = [F|A||1.0|0.0166]\nVAR X_POSITION = [X|A||1.0|100]\nVAR Y_POSITION = [Y|A||1.0|100]\nVAR Z_POSITION = [Z|A||1.0|100]\nbegin FEED_MOVE\n\"Z [X],[Y],[Z]\"\nbegin RAPID_MOVE\n\"Z [X],[Y],[Z]\"\nbegin FOOTER\n\"!MC0;\"\n";
+        let d = post_from_vectric_pp(pp).unwrap();
+        assert!(d.axis_scale == [100.0; 3] && (d.feed_scale - 0.0166).abs() < 1e-9);
+        // and a post without POST_NAME (VCarve 12 keeps the name in its database) is still a post
+        assert!(post_from_vectric_pp(&pp.replacen("POST_NAME = \"r\"\n", "", 1)).is_ok());
+        assert!(post_from_vectric_pp("just some text").is_err());
     }
 
     use super::*;

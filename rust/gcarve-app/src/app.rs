@@ -303,6 +303,7 @@ impl App {
             if let Some(g) = std::env::var("GCARVE_TPGROUP").ok().and_then(|t| t.parse().ok()) { app.shell.tp_group = g }
             if dialog == "folded" { app.left_open = false; app.right_open = false }
             if dialog == "demo" { app.shell.push("demo") } // dev: the built-in demo as a first visitor gets it
+            if let Ok(c) = std::env::var("GCARVE_COMMAND") { app.shell.push(&c) } // dev: run any menu command at start (screenshots of its dialog)
             // dev hooks for screenshots: GCARVE_TOOL=nodes|rect|…, GCARVE_SELECT=all, GCARVE_DIALOG=text|offset|dogbone|array|align|nest
             if let Ok(t) = std::env::var("GCARVE_TOOL") {
                 if let Some((tool, _, _)) = Tool::ALL.iter().find(|(_, l, _)| l.eq_ignore_ascii_case(&t)) {
@@ -1372,6 +1373,7 @@ impl eframe::App for App {
         end_process_on_mac();
     }
     fn ui(&mut self, ui: &mut egui::Ui, _frame: &mut eframe::Frame) {
+        crate::units::take_suggest_keys(ui.ctx()); // before any text box sees Tab / ↓ / ↑ (variable suggestions)
         let ctx = ui.ctx().clone();
         self.frame += 1;
         self.canvas.bottom_inset = if self.mode == Mode::Simulate { 56.0 } else { 0.0 };
@@ -1498,7 +1500,7 @@ impl eframe::App for App {
                 }
             } else if !self.projects.open && self.cloud.busy == 0 && self.opening.is_empty() {
                 self.share_start = 0; // closed without opening one
-                self.message = i18n::t("Open the project you want to share, then File › Share to Community…").into();
+                self.message = i18n::t("Open the project you want to share, then File › Share and Send › Share to Community…").into();
             }
         }
         // a project handed over in the address (GSketch › Send to GCarve): open it as soon as the account is known
@@ -2491,7 +2493,7 @@ impl App {
             });
             if self.canvas.doc.material.machine.is_none() && self.canvas.doc.material.auto_feeds {
                 // same notice as the toolpath dialogs: suggested feeds assume a rigid industrial machine
-                ui.add(egui::Label::new(RichText::new(i18n::t("No machine chosen: the suggested feeds suit a heavy industrial router. On a hobby or desktop machine pick yours first (Toolpaths › Choose Machine…) and export again.")).size(12.0).color(theme::WARNING)).wrap());
+                ui.add(egui::Label::new(RichText::new(i18n::t("No machine chosen: the suggested feeds suit a heavy industrial router. On a hobby or desktop machine pick yours first (Toolpaths › Machine, Board and Bits › Choose Machine…) and export again.")).size(12.0).color(theme::WARNING)).wrap());
             }
             if !d.issues.is_empty() {
                 ui.add(egui::Label::new(RichText::new(i18n::t("The safety check found problems in this job. Fix them, or export anyway if you are sure:")).color(theme::WARNING).font(crate::widgets::bold(theme::FONT_SIZE))).wrap());

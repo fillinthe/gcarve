@@ -235,6 +235,7 @@ impl Canvas {
                     ui.label(i18n::t("Length"));
                     ui.horizontal(|ui| {
                         let r = ui.add_enabled(anchored, W::field(&mut p.drive).desired_width(190.0).hint_text(i18n::t("4in, thickness, or width = 12"))).tip(i18n::t("A size sets this length. A variable name ties it to that variable. name = size makes the variable here."));
+                        crate::units::suggest_variables(ui, &r, &mut p.drive, &self.doc);
                         if std::mem::take(&mut p.fresh) && anchored {
                             r.request_focus();
                         }
@@ -940,19 +941,39 @@ impl Dialogs {
                     W::radio_value(ui, &mut self.box_inside, false, i18n::t("Outside")).tip(i18n::t("The box measures this from the outside"));
                     W::radio_value(ui, &mut self.box_inside, true, i18n::t("Inside")).tip(i18n::t("The space in the box measures this: what has to fit in"));
                 });
-                egui::Grid::new("boxm").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                    for (i, label) in [i18n::t("Width"), i18n::t("Depth"), i18n::t("Height"), i18n::t("Board thickness"), i18n::t("Finger width"), i18n::t("Fit play (slots wider by)"), i18n::t("Bit diameter (dogbones, 0 = none)")].iter().enumerate() {
-                        ui.label(format!("{label} ({doc_unit})"));
-                        units::num_field(ui, label, &mut f[i], &canvas.doc, true, 110.0);
-                        ui.end_row();
-                    }
-                });
-                W::checkbox(ui, &mut lid, i18n::t("Lid (jointed like the bottom)"));
+                // the numbers, and the box itself drawn from them as they change
+                let doc = &canvas.doc;
+                let fields = |ui: &mut egui::Ui, f: &mut [String; 7], lid: &mut bool| {
+                    egui::Grid::new("boxm").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
+                        for (i, label) in [i18n::t("Width"), i18n::t("Depth"), i18n::t("Height"), i18n::t("Board thickness"), i18n::t("Finger width"), i18n::t("Fit play (slots wider by)"), i18n::t("Bit diameter (dogbones, 0 = none)")].iter().enumerate() {
+                            ui.label(format!("{label} ({doc_unit})"));
+                            units::num_field(ui, label, &mut f[i], doc, true, 110.0);
+                            ui.end_row();
+                        }
+                    });
+                    W::checkbox(ui, lid, i18n::t("Lid (jointed like the bottom)"));
+                };
+                let picture = |ui: &mut egui::Ui, size: egui::Vec2, f: &[String; 7], lid: bool| {
+                    let n = [0, 1, 2, 3, 4].map(|i| units::get(doc, &f[i], true).unwrap_or(0.0));
+                    let (w, d, h) = if inside { gcarve_core::boxjoint::outside_of(n[0], n[1], n[2], n[3], lid) } else { (n[0], n[1], n[2]) };
+                    crate::boxview::paint(ui, size, &gcarve_core::boxjoint::BoxSpec { w, d, h, t: n[3], finger: n[4], play: 0.0, lid, bit: 0.0 });
+                };
+                // beside the numbers on a wide window, under them on a phone
+                if ctx.content_rect().width() >= 760.0 {
+                    ui.horizontal_top(|ui| {
+                        ui.vertical(|ui| fields(ui, &mut f, &mut lid));
+                        ui.add_space(12.0);
+                        picture(ui, egui::vec2(300.0, 230.0), &f, lid);
+                    });
+                } else {
+                    fields(ui, &mut f, &mut lid);
+                    picture(ui, egui::vec2(ui.available_width().clamp(200.0, 320.0), 150.0), &f, lid);
+                }
                 // the other measure, so nobody has to add boards in their head
                 if let [Ok(w), Ok(d), Ok(h), Ok(t)] = [0, 1, 2, 3].map(|i| units::get(&canvas.doc, &f[i], true)) {
                     let (ow, od, oh) = if inside { gcarve_core::boxjoint::outside_of(w, d, h, t, lid) } else { gcarve_core::boxjoint::inside_of(w, d, h, t, lid) };
                     let other = if inside { i18n::t("Outside") } else { i18n::t("Inside") };
-                    ui.label(format!("{other}: {} × {} × {} {doc_unit}", units::text(&canvas.doc, ow), units::text(&canvas.doc, od), units::text(&canvas.doc, oh)));
+                    ui.add(egui::Label::new(format!("{other}: {} × {} × {} {doc_unit}", units::text(&canvas.doc, ow), units::text(&canvas.doc, od), units::text(&canvas.doc, oh))).wrap());
                 }
                 ui.label(egui::RichText::new(i18n::t("Six panels (five without a lid) with finger joints, laid flat on the \"Box\" layer. Measure the board: the thickness sets the finger depth. Cut them with a Profile outside, through the board.")).small().color(crate::theme::TEXT_DIM));
                 let (o, c) = W::ok_cancel(ui);

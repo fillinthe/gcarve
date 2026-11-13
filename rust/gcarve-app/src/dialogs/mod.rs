@@ -595,7 +595,7 @@ pub fn tool_advice_ui(ui: &mut egui::Ui, doc: &Document, i: usize, width: f32) {
     ui.add(egui::Label::new(RichText::new(i18n::tf("In {kind}: F {feed_xy} / plunge {feed_z} in/min · {rpm} rpm · pass {stepdown} in{note}", &[("kind", &doc.material.kind), ("feed_xy", &format!("{:.0}", e.feed_xy)), ("feed_z", &format!("{:.0}", e.feed_z)), ("rpm", &e.rpm), ("stepdown", &(fmt_len(e.stepdown))), ("note", &note)])).small().color(crate::theme::TEXT_DIM)).wrap());
     if src == "auto" && doc.material.machine.is_none() {
         // no machine = full industrial chip loads: far too fast for a hobby or desktop router
-        ui.add(egui::Label::new(RichText::new(i18n::t("No machine chosen: these feeds suit a heavy industrial router. Pick yours (Toolpaths › Choose Machine…) and they are scaled to it.")).size(11.0).color(Color32::from_rgb(0xd7, 0xa3, 0x34))).wrap());
+        ui.add(egui::Label::new(RichText::new(i18n::t("No machine chosen: these feeds suit a heavy industrial router. Pick yours (Toolpaths › Machine, Board and Bits › Choose Machine…) and they are scaled to it.")).size(11.0).color(Color32::from_rgb(0xd7, 0xa3, 0x34))).wrap());
     }
     feed_meter(ui, &a, width);
 }

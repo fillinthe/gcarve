@@ -44,7 +44,7 @@ impl Canvas {
         self.doc.refresh_dimensions();
         self.dim_stuck = self.doc.apply_driven_dimensions();
         if let Some(k) = self.dim_stuck.first() {
-            self.status = i18n::tf("Dimension {n} can't set its size: both of its ends are locked in place. Right-click one of them and choose Unlock.", &[("n", &(k + 1))]);
+            self.refuse(i18n::tf("Dimension {n} can't set its size: both of its ends are locked in place. Right-click one of them and choose Unlock.", &[("n", &(k + 1))]));
         }
         let nl = self.doc.layers.len() as i32 - 1;
         for s in &mut self.doc.shapes {
@@ -238,7 +238,7 @@ impl Canvas {
     pub(crate) fn refuse_locked(&mut self) -> bool {
         let locked = self.sel.iter().any(|id| self.doc.find(*id).is_some_and(gcarve_core::document::Shape::any_locked));
         if locked {
-            self.status = i18n::t("Locked in place: this shape has a locked corner or side, so it can't be moved. Right-click the padlock and choose Unlock first.").into();
+            self.refuse(i18n::t("Locked in place: this shape has a locked corner or side, so it can't be moved or resized. Right-click the padlock and choose Unlock first."));
         }
         locked
     }
@@ -324,7 +324,7 @@ impl Canvas {
             let name = name.trim().trim_start_matches('{').trim_end_matches('}').trim().to_string();
             let ok = !name.is_empty() && name.chars().next().is_some_and(|c| c.is_ascii_alphabetic() || c == '_') && name.chars().all(|c| c.is_ascii_alphanumeric() || c == '_' || c == '-');
             if !ok || value.trim().is_empty() {
-                self.status = i18n::t("To make a variable here, write its name, =, and its size: thickness = 0.75").into();
+                self.refuse(i18n::t("To make a variable here, write its name, =, and its size: thickness = 0.75"));
                 return;
             }
             var = Some((name.clone(), value.trim().to_string()));
@@ -361,11 +361,11 @@ impl Canvas {
             // both ends locked: nothing may move, so the length is not taken
             self.doc.undo();
             self.mutated();
-            self.status = i18n::t("Both ends of this dimension are locked in place, so it can't set a size. Unlock one end (right-click it), or leave the length empty to only measure.").into();
+            self.refuse(i18n::t("Both ends of this dimension are locked in place, so it can't set a size. Unlock one end (right-click it), or leave the length empty to only measure."));
             return;
         }
         if !dr.is_empty() && loose {
-            self.status = i18n::t("This dimension only measures: both ends must sit on a corner or a side of a shape before it can set a size. Draw it again with the Dimension tool, clicking the shape.").into();
+            self.refuse(i18n::t("This dimension only measures: both ends must sit on a corner or a side of a shape before it can set a size. Draw it again with the Dimension tool, clicking the shape."));
         } else if let Some((name, value)) = var {
             self.status = i18n::tf("Variable {name} = {value}: every dimension and size tied to it follows", &[("name", &name), ("value", &value)]);
         }
@@ -645,6 +645,9 @@ impl Canvas {
     /// sides, drawn or node-edited into any skew) is the box; the other selected shapes are stretched from their
     /// bounding box onto it (corner pin). When several selected shapes have four corners, the biggest is the box.
     pub fn distort_four_corners(&mut self) {
+        if self.refuse_locked() {
+            return;
+        }
         let quad = self
             .sel
             .iter()
@@ -678,6 +681,9 @@ impl Canvas {
     }
 
     pub fn distort_selection(&mut self, two: bool) {
+        if self.refuse_locked() {
+            return;
+        }
         let open: Vec<i32> = self.sel.iter().copied().filter(|id| self.doc.find(*id).is_some_and(|s| !s.c.closed)).collect();
         let want = if two { 2 } else { 1 };
         if open.len() != want {
@@ -1203,6 +1209,9 @@ impl Canvas {
 
     /// Align the selection (as one block) to the board: left/right/top/bottom/centerH/centerV/center.
     pub fn align_selection(&mut self, mode: &str) {
+        if self.refuse_locked() {
+            return;
+        }
         let r = self.sel_rect;
         if r.is_empty() {
             return;
@@ -1228,6 +1237,9 @@ impl Canvas {
 
     /// Align the selected shapes to each other (selection bounds): left/right/centerH/top/bottom/centerV.
     pub fn align_objects(&mut self, mode: &str) {
+        if self.refuse_locked() {
+            return;
+        }
         let r = self.sel_rect;
         if self.sel.len() < 2 || r.is_empty() {
             self.status = i18n::t("Select two or more shapes to align them to each other.").into();
@@ -1259,6 +1271,9 @@ impl Canvas {
 
     /// gap < 0: even spacing between the outer two (which stay); else a fixed gap in inches.
     pub fn distribute_objects(&mut self, horizontal: bool, gap: f64) {
+        if self.refuse_locked() {
+            return;
+        }
         if self.sel.len() < 3 && gap < 0.0 {
             self.status = i18n::t("Select three or more shapes to distribute evenly.").into();
             return;
@@ -1354,6 +1369,9 @@ impl Canvas {
             self.status = i18n::t("Circular copy: the selection sits on the center, so every copy would land on top of it. Give a radius, or move the center.").into();
             return;
         }
+        if radius.is_some_and(|r| r > 0.0) && self.refuse_locked() {
+            return; // placing on the radius would move the original
+        }
         self.doc.checkpoint();
         if let Some(r) = radius.filter(|r| *r > 0.0) {
             let to = pt(centre.x, centre.y + r);
@@ -1434,6 +1452,9 @@ impl Canvas {
     /// and group members travel with their parent. Returns (placed, ids that did not fit).
     /// `corner` = where the packing starts (VCarve "Nest From"): 0 bottom-left, 1 bottom-right, 2 top-left, 3 top-right
     pub fn nest_selection(&mut self, gap: f64, margin: f64, rot_step_deg: i32, corner: u8) -> (usize, Vec<i32>) {
+        if self.refuse_locked() {
+            return (0, Vec::new());
+        }
         let mirror = self.nest_mirror;
         if self.sel.is_empty() {
             return (0, Vec::new());
@@ -2215,10 +2236,25 @@ mod vector_tool_tests {
         c.sel = BTreeSet::from([id]);
         c.transform_selection(&Affine::translate(1.0, 0.0));
         assert!((b(&c).x1 - 4.0).abs() < 1e-9 && c.status.contains("Locked in place"), "{}", c.status);
+        // said where it can't be missed (the banner), and the Properties panel, Align and Rotate are refused too
+        assert!(c.alert.0.contains("Locked in place"));
+        c.alert.0.clear();
+        c.sel_rect = b(&c);
+        c.set_selection_field("x", "10", false);
+        c.align_selection("left");
+        c.rotate_selection(90.0);
+        assert!((b(&c).x1 - 4.0).abs() < 1e-9 && (b(&c).y1 - 2.0).abs() < 1e-9 && c.alert.0.contains("Locked in place"), "{:?}", b(&c));
         // both sides locked: the dimension can't set a size, the length is not taken, and it says so
         c.toggle_lock_at(pt(-2.0, 1.0));
         c.set_dimension(0, "", "9", false);
         assert!(c.status.contains("Both ends") && c.doc.dimensions[0].drive == "6" && (b(&c).x0 + 2.0).abs() < 1e-9, "{} / {}", c.status, c.doc.dimensions[0].drive);
+        // a variable tied to its position doesn't move it either
+        c.alert.0.clear();
+        let id_b = c.doc.find(id).unwrap().id;
+        c.doc.find_mut(id_b).unwrap().bind.insert("x".into(), "20".into());
+        c.apply_bindings();
+        assert!((b(&c).x1 - 4.0).abs() < 1e-9, "a bound x moved a locked shape: {:?}", b(&c));
+        c.doc.find_mut(id_b).unwrap().bind.remove("x");
         // the lock is saved with the project, and comes off again
         let back = gcarve_core::project::load_project(&gcarve_core::project::save_project(&c.doc)).unwrap();
         assert!(back.shapes[0].any_locked());

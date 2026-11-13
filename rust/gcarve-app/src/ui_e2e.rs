@@ -399,7 +399,12 @@ fn every_button_in_every_dialog_can_be_pressed() {
 
 /// press the OK (or Add / Import) of whatever opened since `before`; false when there is none
 fn press_ok(h: &mut H, before: &HashSet<String>) -> bool {
-    let Some(ok) = nodes(h).into_iter().find(|n| !before.contains(&n.id) && n.role == accesskit::Role::Button && matches!(n.label.as_str(), "OK" | "Add" | "Import")) else { return false };
+    let Some(ok) = nodes(h).into_iter().find(|n| !before.contains(&n.id) && n.role == accesskit::Role::Button && matches!(n.label.as_str(), "OK" | "Add" | "Import")) else {
+        if std::env::var("GCARVE_E2E_VERBOSE").is_ok() {
+            eprintln!("no OK among: {:?} / windows {:?}", nodes(h).into_iter().filter(|n| !before.contains(&n.id)).map(|n| (n.role, n.label)).collect::<Vec<_>>(), nodes(h).into_iter().filter(|n| n.role == accesskit::Role::Window).map(|n| n.label).collect::<Vec<_>>());
+        }
+        return false;
+    };
     let hit = click(h, &ok.id);
     h.run_steps(10);
     hit
@@ -409,7 +414,7 @@ fn press_ok(h: &mut H, before: &HashSet<String>) -> bool {
 fn command_ok(h: &mut H, id: &str) -> bool {
     let before: HashSet<_> = nodes(h).into_iter().map(|n| n.id).collect();
     h.state_mut().test_push(id);
-    h.run_steps(6);
+    h.run_steps(std::env::var("GCARVE_E2E_STEPS").ok().and_then(|v| v.parse().ok()).unwrap_or(6));
     press_ok(h, &before)
 }
 

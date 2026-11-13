@@ -110,6 +110,9 @@ impl Canvas {
         if self.sel.is_empty() || r.is_empty() || !matches!(prop, "x" | "y" | "w" | "h") {
             return;
         }
+        if self.refuse_locked() {
+            return;
+        }
         let expr = text.trim();
         let Some(v) = self.eval_or_status(expr) else { return };
         self.doc.checkpoint();

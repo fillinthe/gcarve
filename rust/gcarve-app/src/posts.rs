@@ -56,7 +56,49 @@ impl UserPosts {
 }
 
 /// Search text like the Qt dialog: name, controller, machines, extension, units.
-pub fn matches(p: &PostDef, q: &str) -> bool {
-    let q = q.trim().to_ascii_lowercase();
-    q.is_empty() || format!("{} {} {} {} {}", p.name, p.controller, p.machines, p.extension, if p.inches { i18n::t("inches in") } else { i18n::t("mm metric") }).to_ascii_lowercase().contains(&q)
+/// Post search: every word typed must be somewhere in the post's name, controller, machines, id, extension or units
+/// (in any order: "shark mm", "fanuc atc", ".sbp"); punctuation is ignored, empty = all.
+/// How well a post fits the search, for the order of the list (higher first); None = it doesn't. A word found in
+/// the name counts more than one found in the machines list, a name that starts with the first word most.
+pub fn score(p: &PostDef, q: &str) -> Option<u32> {
+    let norm = |t: &str| t.to_lowercase().chars().map(|c| if c.is_alphanumeric() || c == '.' { c } else { ' ' }).collect::<String>();
+    let units = if p.inches { "inch inches in imperial" } else { "mm metric millimetre millimeter" };
+    let name = norm(&p.name);
+    let rest = norm(&format!("{} {} {} .{} {} {}", p.controller, p.machines, p.id, p.extension, units, i18n::tr(&p.name)));
+    let words: Vec<String> = norm(q).split_whitespace().map(str::to_string).collect();
+    let mut score = 0;
+    for (k, w) in words.iter().enumerate() {
+        let w = w.trim_start_matches('.');
+        let hit_name = name.split_whitespace().any(|t| t.trim_start_matches('.').starts_with(w)) || name.contains(w);
+        if hit_name {
+            score += if k == 0 && name.starts_with(w) { 4 } else { 2 };
+        } else if rest.contains(w) {
+            score += 1;
+        } else {
+            return None;
+        }
+    }
+    Some(score)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::score;
+    use gcarve_core::postdef::{find_post, post_library};
+
+    #[test]
+    fn post_search_takes_words_in_any_order_and_puts_the_best_first() {
+        let hits = |q: &str| post_library().iter().filter(|p| score(p, q).is_some()).map(|p| p.id.clone()).collect::<Vec<_>>();
+        assert_eq!(hits("").len(), post_library().len());
+        // two words, either order, one of them only in the machines list
+        assert!(hits("shark inch").contains(&"nextwave-in".to_string()) && hits("inch shark").contains(&"nextwave-in".to_string()));
+        assert!(hits(".sbp").iter().all(|i| i.starts_with("shopbot")) && !hits(".sbp").is_empty());
+        assert!(hits("komo mm") == vec!["komo-mm".to_string()], "{:?}", hits("komo mm"));
+        assert!(hits("winpc").contains(&"winpc-mm".to_string()) && hits("stepcraft").contains(&"winpc-mm".to_string()));
+        assert!(hits("zzzz nothing").is_empty());
+        // a post named after the word ranks above one that only lists it among its machines
+        let named = score(find_post("laguna-fanuc-in").unwrap(), "laguna").unwrap();
+        let listed = score(find_post("wincnc-atc").unwrap(), "laguna").unwrap();
+        assert!(named > listed);
+    }
 }

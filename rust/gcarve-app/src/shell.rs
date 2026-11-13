@@ -777,13 +777,16 @@ pub fn menus(top: &mut MenuTop, canvas: &Canvas, m: &MenuInfo, rail_open: bool, 
     let text = canvas.selected_text() != 0;
         top(i18n::t("File"), &mut |s| {
             s.item(i18n::t("New"), "⌘N", true, "new");
-            s.item(i18n::t("New Sign…"), "", true, "sign");
-            s.item(i18n::t("New Tray or Cutting Board…"), "", true, "tray");
-            s.item(i18n::t("New Cabinet…"), "", true, "cabinet");
-            s.item(i18n::t("New Cabinet Doors…"), "", true, "doors");
-            s.item(i18n::t("New Clock…"), "", true, "clock");
-            s.item(i18n::t("New Spoilboard…"), "", true, "spoilboard");
+            s.sub(i18n::t("New from a Wizard"), true, &mut |s| {
+                s.item(i18n::t("New Sign…"), "", true, "sign");
+                s.item(i18n::t("New Tray or Cutting Board…"), "", true, "tray");
+                s.item(i18n::t("New Cabinet…"), "", true, "cabinet");
+                s.item(i18n::t("New Cabinet Doors…"), "", true, "doors");
+                s.item(i18n::t("New Clock…"), "", true, "clock");
+                s.item(i18n::t("New Spoilboard…"), "", true, "spoilboard");
+            });
             s.item(i18n::t("Close Tab"), "⌘W", true, "closetab");
+            s.sep();
             s.item(if web { i18n::t("Open / Import from Computer…") } else { i18n::t("Open Project / Import…") }, "⌘O", true, "open");
             s.item(i18n::t("Import G-code…"), "", true, "importgcode");
             s.item(i18n::t("Cloud Projects…"), "", true, "cloud");
@@ -821,12 +824,16 @@ pub fn menus(top: &mut MenuTop, canvas: &Canvas, m: &MenuInfo, rail_open: bool, 
                 s.item(i18n::t("As DWG (AutoCAD)"), "", true, "vexport:dwg");
                 s.item(i18n::t("As PDF (print, full size)"), "", true, "vexport:pdf");
             });
-            s.item(i18n::t("Send to GBurn (laser)…"), "", true, "sendgburn");
-            s.item(i18n::t("Setup Sheet…"), "", has_ops, "setupsheet"); // printable job sheet for the operator
-            s.item(i18n::t("Cut Report and Part Labels…"), "", true, "cutreport"); // numbered parts per sheet, sizes, board use, labels to print
-            s.item(i18n::t("Save Preview Image (PNG)"), "", has_ops, "previewimage");
-            s.item(i18n::t("Share Project with Someone…"), "", true, "shareproject");
-            s.item(i18n::t("Share to Community…"), "", has_ops, "communityshare");
+            s.sub(i18n::t("Print and Reports"), true, &mut |s| {
+                s.item(i18n::t("Setup Sheet…"), "", has_ops, "setupsheet"); // printable job sheet for the operator
+                s.item(i18n::t("Cut Report and Part Labels…"), "", true, "cutreport"); // numbered parts per sheet, sizes, board use, labels to print
+                s.item(i18n::t("Save Preview Image (PNG)"), "", has_ops, "previewimage");
+            });
+            s.sub(i18n::t("Share and Send"), true, &mut |s| {
+                s.item(i18n::t("Share Project with Someone…"), "", true, "shareproject");
+                s.item(i18n::t("Share to Community…"), "", has_ops, "communityshare");
+                s.item(i18n::t("Send to GBurn (laser)…"), "", true, "sendgburn");
+            });
             s.sep();
             s.item(&m.account, "", true, "account");
         });
@@ -916,31 +923,36 @@ pub fn menus(top: &mut MenuTop, canvas: &Canvas, m: &MenuInfo, rail_open: bool, 
             s.item(i18n::t("Add Variable"), "", true, "var:add");
         });
         top(i18n::t("Toolpaths"), &mut |s| {
-            for (i, key) in ["⇧⌘P", "⇧⌘K", "⇧⌘D", "⇧⌘V", "⇧⌘B", "⇧⌘I", "⇧⌘F"].iter().enumerate() {
-                let key = if i == 0 { "" } else { key }; // ⇧⌘P is the side panel (Qt binds it twice)
-                s.item(&i18n::tf("New {kind}…", &[("kind", &i18n::t(KINDS[i].0))]), key, sel > 0, &format!("kind:{i}"));
-            }
-            for i in [8, 9, 10, 11] {
-                s.item(&i18n::tf("New {kind}…", &[("kind", &i18n::t(KINDS[i].0))]), "", sel > 0, &format!("kind:{i}"));
-            }
-            s.item(i18n::t("Export G-code…"), "⌘E", has_ops, "export");
-            s.item(i18n::t("Export Air-Cut Test…"), "", has_ops, "aircut");
-            s.sep();
-            s.item(i18n::t("Save as Template…"), "", has_ops, "templates");
-            s.item(i18n::t("Apply Template…"), "", true, "templates");
-            s.sep();
-            if !web {
-                s.item(i18n::t("Send to GCarve Control"), "", has_ops, "control:send");
-                s.item(i18n::t("Open GCarve Control"), "", true, "control:open");
-                s.sep();
-            }
-            s.item(i18n::t("Tool Library…"), "", true, "tools");
-            s.item(i18n::t("Board / Job Setup…"), "", true, "board");
-            s.item(i18n::t("Choose Machine…"), "", true, "machine");
+            s.sub(i18n::t("New Toolpath"), sel > 0, &mut |s| {
+                for (i, key) in ["⇧⌘P", "⇧⌘K", "⇧⌘D", "⇧⌘V", "⇧⌘B", "⇧⌘I", "⇧⌘F"].iter().enumerate() {
+                    let key = if i == 0 { "" } else { key }; // ⇧⌘P is the side panel (Qt binds it twice)
+                    s.item(&i18n::tf("New {kind}…", &[("kind", &i18n::t(KINDS[i].0))]), key, sel > 0, &format!("kind:{i}"));
+                }
+                for i in [8, 9, 10, 11] {
+                    s.item(&i18n::tf("New {kind}…", &[("kind", &i18n::t(KINDS[i].0))]), "", sel > 0, &format!("kind:{i}"));
+                }
+            });
             s.item(i18n::t("Surface the Board…"), "", true, "surface");
             s.item(i18n::t("Inlay Wizard…"), "", true, "inlay");
             s.item(i18n::t("3D Models…"), "", true, "reliefs");
-            s.item(i18n::t("Post-Processors…"), "", true, "posts");
+            s.sep();
+            s.item(i18n::t("Export G-code…"), "⌘E", has_ops, "export");
+            s.item(i18n::t("Export Air-Cut Test…"), "", has_ops, "aircut");
+            if !web {
+                s.item(i18n::t("Send to GCarve Control"), "", has_ops, "control:send");
+                s.item(i18n::t("Open GCarve Control"), "", true, "control:open");
+            }
+            s.sep();
+            s.sub(i18n::t("Templates"), true, &mut |s| {
+                s.item(i18n::t("Save as Template…"), "", has_ops, "templates");
+                s.item(i18n::t("Apply Template…"), "", true, "templates");
+            });
+            s.sub(i18n::t("Machine, Board and Bits"), true, &mut |s| {
+                s.item(i18n::t("Board / Job Setup…"), "", true, "board");
+                s.item(i18n::t("Choose Machine…"), "", true, "machine");
+                s.item(i18n::t("Tool Library…"), "", true, "tools");
+                s.item(i18n::t("Post-Processors…"), "", true, "posts");
+            });
         });
         top(i18n::t("View"), &mut |s| {
             s.check(i18n::t("Show Toolpaths"), "⇧⌘T", true, canvas.show_paths, "paths");
@@ -1059,7 +1071,9 @@ impl MenuSink for EguiMenu<'_> {
 /// A menu's rows, scrolling when the window is too short for them: no menu may run off the screen.
 fn menu_scroll(ui: &mut egui::Ui, add: impl FnOnce(&mut egui::Ui)) {
     let room = (ui.ctx().content_rect().bottom() - ui.cursor().top() - 12.0).max(120.0);
-    egui::ScrollArea::vertical().max_height(room).auto_shrink([true, true]).show(ui, add);
+    // min_scrolled_height: a popup offers little height on its first frame, and without this the list stayed that
+    // short (the File menu hid its last rows though the window had room)
+    egui::ScrollArea::vertical().max_height(room).min_scrolled_height(room).auto_shrink([true, true]).show(ui, add);
 }
 
 /// The menu bar in the window, with the command search on the right. With `native` (the macOS menu bar has the

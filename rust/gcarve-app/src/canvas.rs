@@ -225,6 +225,11 @@ pub struct Canvas {
     pub node_set: BTreeSet<(i32, usize)>,
     /// driving dimensions that can't set their size because both ends are locked (after the last change)
     pub dim_stuck: Vec<usize>,
+    /// a refusal the user must not miss (something locked, a click that can't be taken): shown as a banner over the
+    /// drawing for a few seconds, as well as in the status line. (text, shown until; 0 = not shown yet)
+    pub alert: (String, f64),
+    /// Nodes tool box-select: Shift / Ctrl / Cmd was held at the press, so the box adds to what is picked
+    pub(crate) marquee_add: bool,
     /// node drag of several: the shapes as they were when it began
     pub(crate) orig_multi: Vec<(i32, Contour)>,
     pub(crate) node_part: u8, // 0 point, 1 in handle, 2 out handle
@@ -380,6 +385,8 @@ impl Default for Canvas {
             node_idx: -1,
             node_set: BTreeSet::new(),
             dim_stuck: Vec::new(),
+            alert: (String::new(), 0.0),
+            marquee_add: false,
             orig_multi: Vec::new(),
             node_part: 0,
             sel_rect: geom::Rect::default(),
@@ -697,6 +704,7 @@ impl Canvas {
 
         self.paint_constraints(&painter, view);
         self.paint_tab_marks(&painter, view);
+        self.paint_alert(ui, &painter, rect);
 
         // tools: pointer handling + previews (tools.rs), then popups and context menus (popups.rs)
         let status = self.input(ui, &resp, rect, &painter);
@@ -883,6 +891,41 @@ impl Canvas {
         let n = s.c.nodes.len() as i32;
         let d = (idx as i32 - self.node_idx).abs();
         d <= 1 || (s.c.closed && d == n - 1)
+    }
+
+    /// Says no where it can't be missed: the status line and a banner over the drawing.
+    pub fn refuse(&mut self, msg: impl Into<String>) {
+        let msg = msg.into();
+        self.status = msg.clone();
+        self.alert = (msg, 0.0);
+    }
+
+    /// The refusal banner: top middle of the drawing, 6 seconds, a click on it closes it.
+    fn paint_alert(&mut self, ui: &egui::Ui, painter: &egui::Painter, area: Rect) {
+        if self.alert.0.is_empty() {
+            return;
+        }
+        let now = ui.input(|i| i.time);
+        if self.alert.1 == 0.0 {
+            self.alert.1 = now + 6.0;
+        }
+        if now > self.alert.1 {
+            self.alert.0.clear();
+            return;
+        }
+        let width = (area.width() - 80.0).clamp(160.0, 560.0);
+        let galley = painter.layout(self.alert.0.clone(), theme::font(theme::FONT_SIZE), Color32::WHITE, width - 44.0);
+        let size = egui::vec2(width, galley.size().y + 20.0);
+        let r = Rect::from_min_size(egui::pos2(area.center().x - width / 2.0, area.top() + 14.0), size);
+        painter.rect_filled(r, 6.0, Color32::from_rgb(0x4a, 0x1d, 0x1d));
+        painter.rect_stroke(r, 6.0, Stroke::new(1.5, theme::DANGER), egui::StrokeKind::Inside);
+        painter.circle_filled(r.left_center() + egui::vec2(18.0, 0.0), 8.0, theme::DANGER);
+        painter.text(r.left_center() + egui::vec2(18.0, 0.0), egui::Align2::CENTER_CENTER, "!", theme::font(theme::FONT_SIZE), Color32::WHITE);
+        painter.galley(r.min + egui::vec2(34.0, 10.0), galley, Color32::WHITE);
+        if ui.input(|i| i.pointer.any_click() && i.pointer.interact_pos().is_some_and(|p| r.contains(p))) {
+            self.alert.0.clear();
+        }
+        ui.ctx().request_repaint_after(std::time::Duration::from_millis(250));
     }
 
     pub fn dimension_text(&self, d: &Dimension) -> String {
