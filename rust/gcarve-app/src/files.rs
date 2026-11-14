@@ -99,7 +99,8 @@ impl Files {
 
     /// Picker for one kind of side file (bit library, post, STL); the file arrives on `aux_rx` with `tag`.
     /// Like `pick_into`, but several files may be chosen at once; each arrives under `tag` on its own.
-    pub fn pick_many_into(&self, ctx: &eframe::egui::Context, filter: &str, exts: &[&str], tag: &'static str) {
+    /// Several files: each comes back as `tag`, or as `tag_many` when more than one was picked.
+    pub fn pick_many_into(&self, ctx: &eframe::egui::Context, filter: &str, exts: &[&str], tag: &'static str, tag_many: &'static str) {
         if self.refuse() {
             return;
         }
@@ -107,8 +108,8 @@ impl Files {
         {
             let _ = filter;
             let tx = self.aux_tx.clone();
-            web_pick_files(exts, true, ctx.clone(), self.msg_tx.clone(), move |name, bytes| {
-                let _ = tx.send((tag, name, bytes));
+            web_pick_files(exts, true, ctx.clone(), self.msg_tx.clone(), move |name, bytes, n| {
+                let _ = tx.send((if n > 1 { tag_many } else { tag }, name, bytes));
             });
             return;
         }
@@ -117,8 +118,10 @@ impl Files {
         let tx = self.aux_tx.clone();
         let ctx = ctx.clone();
         let task = async move {
-            for f in dialog.pick_files().await.unwrap_or_default() {
-                let _ = tx.send((tag, f.file_name(), f.read().await));
+            let fs = dialog.pick_files().await.unwrap_or_default();
+            let t = if fs.len() > 1 { tag_many } else { tag };
+            for f in fs {
+                let _ = tx.send((t, f.file_name(), f.read().await));
             }
             ctx.request_repaint();
         };
@@ -277,7 +280,7 @@ const MAX_PICK_BYTES: f64 = 50.0 * 1024.0 * 1024.0;
 #[cfg(target_arch = "wasm32")]
 fn web_pick(exts: &[&str], ctx: eframe::egui::Context, msg: Sender<String>, done: impl FnOnce(String, Vec<u8>) + 'static) {
     let done = std::cell::RefCell::new(Some(done));
-    web_pick_files(exts, false, ctx, msg, move |name, bytes| {
+    web_pick_files(exts, false, ctx, msg, move |name, bytes, _| {
         if let Some(d) = done.borrow_mut().take() {
             d(name, bytes);
         }
@@ -286,7 +289,7 @@ fn web_pick(exts: &[&str], ctx: eframe::egui::Context, msg: Sender<String>, done
 
 /// The browser's file chooser; `multiple` lets several files be picked at once, each handed to `done`.
 #[cfg(target_arch = "wasm32")]
-fn web_pick_files(exts: &[&str], multiple: bool, ctx: eframe::egui::Context, msg: Sender<String>, done: impl Fn(String, Vec<u8>) + 'static) {
+fn web_pick_files(exts: &[&str], multiple: bool, ctx: eframe::egui::Context, msg: Sender<String>, done: impl Fn(String, Vec<u8>, u32) + 'static) {
     use eframe::wasm_bindgen::{closure::Closure, JsCast};
     let Some(doc) = web_sys::window().and_then(|w| w.document()) else { return };
     let Some(input) = doc.create_element("input").ok().and_then(|e| e.dyn_into::<web_sys::HtmlInputElement>().ok()) else { return };
@@ -312,7 +315,8 @@ fn web_pick_files(exts: &[&str], multiple: bool, ctx: eframe::egui::Context, msg
             let files = input.files();
             remove();
             let Some(files) = files else { return };
-            for k in 0..files.length() {
+            let n = files.length();
+            for k in 0..n {
                 let Some(file) = files.get(k) else { continue };
                 if file.size() > MAX_PICK_BYTES {
                     let _ = msg.send(format!("{} is {:.0} MB: the web app opens files up to 50 MB", file.name(), file.size() / 1048576.0));
@@ -322,7 +326,7 @@ fn web_pick_files(exts: &[&str], multiple: bool, ctx: eframe::egui::Context, msg
                 let (ctx, done) = (ctx.clone(), done.clone());
                 wasm_bindgen_futures::spawn_local(async move {
                     if let Ok(buf) = wasm_bindgen_futures::JsFuture::from(file.array_buffer()).await {
-                        done(file.name(), js_sys::Uint8Array::new(&buf).to_vec());
+                        done(file.name(), js_sys::Uint8Array::new(&buf).to_vec(), n);
                         ctx.request_repaint();
                     }
                 });

@@ -2568,5 +2568,7 @@
 "Toolpaths › Machine, Board and Bits › Post-Processors…: type a few words in the search box, in any order: the maker, the machine, the controller, mm or inch, or the file ending (\"shark inch\", \"fanuc atc\", \".sbp\"). The best matches come first; click one to use it for this board. Choosing your machine (Toolpaths › Machine, Board and Bits › Choose Machine…) also picks its post. Using VCarve's posts: press Upload posts… and select one .pp file, or a whole folder of them at once (in VCarve: File › Open Application Data Folder › PostP); they are translated and appear in the list as your own.": "ツールパス › マシン・材料・ビット › ポストプロセッサー…：検索欄に単語をいくつか順不同で入力します（メーカー、マシン、コントローラー、mm かインチ、ファイルの拡張子：\"shark inch\"、\"fanuc atc\"、\".sbp\"）。一致度の高いものが先頭に出ます。クリックするとこの材料で使われます。マシンを選ぶと（ツールパス › マシン・材料・ビット › マシンを選択…）そのポストも選ばれます。VCarve のポストを使うには：ポストをアップロード… を押し、.pp ファイルを1つ、またはフォルダーごと選択します（VCarve では ファイル › アプリケーションデータフォルダーを開く › PostP）。変換されて自分のポストとして一覧に表示されます。",
 "Upload posts…": "ポストをアップロード…",
 "Use a variable in a size": "寸法に変数を使う",
-"Variables (click, or Tab)": "変数（クリックまたは Tab）"
+"Variables (click, or Tab)": "変数（クリックまたは Tab）",
+"Added {n} posts to the list: search for one and click it to use it": "{n} 個のポストを一覧に追加しました：検索してクリックすると使えます",
+"Added {n} posts to the list; {bad} could not be read": "{n} 個のポストを一覧に追加しました。{bad} 個は読み込めませんでした"
 }

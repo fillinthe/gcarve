@@ -1099,6 +1099,8 @@
 "Delete this custom post": "",
 "Deleted post {id}": "",
 "Post-processors (.pp, .json)": "",
+"Added {n} posts to the list: search for one and click it to use it": "",
+"Added {n} posts to the list; {bad} could not be read": "",
 "Added post {id} and selected it for this board": "",
 "Snap to": "",
 "Points (nodes)": "",

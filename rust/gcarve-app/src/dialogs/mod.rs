@@ -186,6 +186,7 @@ impl Dialogs {
                     _ => {}
                 },
                 "post" => posts::import_file(&name, &bytes, host),
+                "posts" => posts::import_batch_file(&name, &bytes, host),
                 "stl" => relief::import_file(&name, &bytes, host),
                 "relief-picture" => relief::import_picture(&name, &bytes, host),
                 "template" => templates::import_file(&name, &bytes, host),
