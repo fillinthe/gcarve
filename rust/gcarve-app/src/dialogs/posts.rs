@@ -85,10 +85,34 @@ impl PostsDialog {
             *host.message = i18n::tf("Deleted post {id}", &[("id", &id)]);
         }
         if upload {
-            host.files.pick_many_into(ctx, i18n::t("Post-processors (.pp, .json)"), &["pp", "json"], "post");
+            host.files.pick_many_into(ctx, i18n::t("Post-processors (.pp, .json)"), &["pp", "json"], "post", "posts");
+            ADDED.set((0, 0));
         }
         open && !close
     }
+}
+
+thread_local! {
+    /// (added, refused) in the current batch upload
+    static ADDED: std::cell::Cell<(usize, usize)> = const { std::cell::Cell::new((0, 0)) };
+}
+
+/// One of several posts picked at once: added to the list, the board keeps its post.
+pub fn import_batch_file(name: &str, bytes: &[u8], host: &mut Host) {
+    let (mut ok, mut bad) = ADDED.get();
+    match host.posts.add(name, &String::from_utf8_lossy(bytes)) {
+        Ok(_) => ok += 1,
+        Err(e) => {
+            host.cloud.report("post", &crate::files::scrub(&e, name));
+            bad += 1;
+        }
+    }
+    ADDED.set((ok, bad));
+    *host.message = if bad == 0 {
+        i18n::tf("Added {n} posts to the list: search for one and click it to use it", &[("n", &ok.to_string())])
+    } else {
+        i18n::tf("Added {n} posts to the list; {bad} could not be read", &[("n", &ok.to_string()), ("bad", &bad.to_string())])
+    };
 }
 
 pub fn import_file(name: &str, bytes: &[u8], host: &mut Host) {

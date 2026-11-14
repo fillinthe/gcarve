@@ -2568,5 +2568,7 @@
 "Toolpaths › Machine, Board and Bits › Post-Processors…: type a few words in the search box, in any order: the maker, the machine, the controller, mm or inch, or the file ending (\"shark inch\", \"fanuc atc\", \".sbp\"). The best matches come first; click one to use it for this board. Choosing your machine (Toolpaths › Machine, Board and Bits › Choose Machine…) also picks its post. Using VCarve's posts: press Upload posts… and select one .pp file, or a whole folder of them at once (in VCarve: File › Open Application Data Folder › PostP); they are translated and appear in the list as your own.": "Percorsi › Macchina, pannello e frese › Post-processor…: scrivi qualche parola nella ricerca, in qualsiasi ordine: il produttore, la macchina, il controller, mm o pollici, o l’estensione del file (\"shark inch\", \"fanuc atc\", \".sbp\"). I risultati migliori vengono per primi; fai clic su uno per usarlo per questo pannello. Scegliere la macchina (Percorsi › Macchina, pannello e frese › Scegli macchina…) sceglie anche il suo post. Per usare i post di VCarve: premi Carica post… e seleziona un file .pp o un’intera cartella in una volta (in VCarve: File › Apri cartella dati applicazione › PostP); vengono tradotti e compaiono nell’elenco come tuoi.",
 "Upload posts…": "Carica post…",
 "Use a variable in a size": "Usare una variabile in una misura",
-"Variables (click, or Tab)": "Variabili (clic o Tab)"
+"Variables (click, or Tab)": "Variabili (clic o Tab)",
+"Added {n} posts to the list: search for one and click it to use it": "{n} post aggiunti all’elenco: cercane uno e fai clic per usarlo",
+"Added {n} posts to the list; {bad} could not be read": "{n} post aggiunti all’elenco; {bad} non leggibili"
 }

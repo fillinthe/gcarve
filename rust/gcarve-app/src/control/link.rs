@@ -1372,6 +1372,46 @@ mod tests {
         assert!(l.start_check().0.iter().any(|e| e.contains("WinCNC")));
     }
 
+    /// Ticket #40 end to end: a FoxAlien Masuter 3S (stock grbl: X / Y count down from home, 15.8 × 15.8 × 3.7 in,
+    /// mm reports) runs an inch job lying at X -11.46..-3.65, Y -13.05..-0.76 in machine coordinates.
+    #[test]
+    fn a_machine_that_counts_down_from_home_runs_an_inch_job_to_the_end() {
+        use gcarve_core::grbl::{GrblSim, SimConfig};
+        let cfg = SimConfig { travel: Vec3 { x: 15.8, y: 15.8, z: 3.7 }, count_down: true, probe_z: f64::NAN, ..SimConfig::default() };
+        let mut l = Link { transport: Some(Transport::Sim(Box::new(GrblSim::new(cfg)))), ..Link::default() };
+        let mut t = 0.0;
+        settle(&mut l, &mut t);
+        l.home();
+        settle(&mut l, &mut t);
+        assert!(l.idle() && l.travel_from_controller && (l.travel.x - 15.8).abs() < 1e-3, "{:?}\n{}", l.travel, l.log.join("\n"));
+        // work zero at machine X -11.46, Y -13.05, Z -2.6 (the board's corner and top)
+        l.jog(-11.46, -13.05, -2.6, 3000.0);
+        settle(&mut l, &mut t);
+        assert!((l.st.mpos.x + 11.46).abs() < 1e-3 && (l.st.mpos.y + 13.05).abs() < 1e-3, "{:?}", l.st.mpos);
+        l.zero_axes("XYZ");
+        settle(&mut l, &mut t);
+        // the job: 7.81 × 12.29 in, cuts 0.2 deep from a 1.4 in lift (machine Z -2.4..-1.2 as in the ticket)
+        let mut prog = String::from("G20 G90\nG0 Z1.4\nM3 S12000\nG0 X0 Y0\n");
+        for i in 0..8 {
+            let y = 12.29 * f64::from(i) / 7.0;
+            prog += &format!("G1 Z-0.2 F30\nG1 X7.81 Y{y:.3} F80\nG0 Z1.4\nG0 X0 Y{y:.3}\n");
+        }
+        prog += "M5\nG0 Z1.4\n";
+        assert!(l.load_program("foxalien.nc", &prog));
+        let (errors, warnings) = l.start_check();
+        assert!(errors.is_empty(), "{errors:?}");
+        assert!(!warnings.iter().any(|w| w.contains("travel")), "{warnings:?}");
+        assert!(l.start(1), "{}", l.last_error);
+        run(&mut l, &mut t, |l| !l.streaming);
+        assert!(l.last_error.is_empty() && !l.log.iter().any(|s| s.contains("ALARM")), "{}\n{}", l.last_error, l.log.join("\n"));
+        assert!(l.log.iter().any(|s| s.starts_with("Program finished")));
+        // the machine went where the ticket says: X up to -3.65, Y up to -0.76, all inside the travel
+        assert!((l.st.mpos.x + 11.46).abs() < 1e-3 && (l.st.mpos.y + 0.76).abs() < 1e-2, "{:?}", l.st.mpos);
+        // a job that runs past the back of the machine is still refused
+        l.load_program("too-long.nc", "G20 G90\nM3 S12000\nG0 X0 Y0 Z1\nG1 Z-0.1 F30\nG1 Y14 F80\nM5\n");
+        assert!(!l.start_check().0.is_empty());
+    }
+
     #[test]
     fn the_travel_check_takes_machines_that_count_down_from_home() {
         // FoxAlien Masuter 3S: 15.8 in of X / Y, job at X -11.46..-3.65

@@ -2568,5 +2568,7 @@
 "Toolpaths › Machine, Board and Bits › Post-Processors…: type a few words in the search box, in any order: the maker, the machine, the controller, mm or inch, or the file ending (\"shark inch\", \"fanuc atc\", \".sbp\"). The best matches come first; click one to use it for this board. Choosing your machine (Toolpaths › Machine, Board and Bits › Choose Machine…) also picks its post. Using VCarve's posts: press Upload posts… and select one .pp file, or a whole folder of them at once (in VCarve: File › Open Application Data Folder › PostP); they are translated and appear in the list as your own.": "刀路 › 机器、板材和刀具 › 后处理…：在搜索框中输入几个词，顺序不限：厂商、机器、控制器、mm 或英寸，或文件扩展名（\"shark inch\"、\"fanuc atc\"、\".sbp\"）。最匹配的排在最前；点击即用于此板材。选择机器（刀路 › 机器、板材和刀具 › 选择机器…）也会选择其后处理。使用 VCarve 的后处理：按 上传后处理…，选择一个 .pp 文件或一次选择整个文件夹（在 VCarve 中：文件 › 打开应用程序数据文件夹 › PostP）；它们会被转换并作为你自己的后处理显示在列表中。",
 "Upload posts…": "上传后处理…",
 "Use a variable in a size": "在尺寸中使用变量",
-"Variables (click, or Tab)": "变量（点击或 Tab）"
+"Variables (click, or Tab)": "变量（点击或 Tab）",
+"Added {n} posts to the list: search for one and click it to use it": "已将 {n} 个后处理添加到列表：搜索并点击即可使用",
+"Added {n} posts to the list; {bad} could not be read": "已将 {n} 个后处理添加到列表；{bad} 个无法读取"
 }

@@ -150,6 +150,16 @@ fn word(clean: &str, letter: char) -> Option<String> {
     Some(d).filter(|d| !d.is_empty())
 }
 
+/// A cleaned line that makes grbl write its EEPROM: work offsets (G10 L2 / L20), stored positions (G28.1 / G30.1),
+/// settings and startup lines ($…=, $RST, $N…).
+pub fn writes_eeprom(clean: &str) -> bool {
+    let g10 = clean.match_indices("G10").any(|(k, _)| !clean[k + 3..].starts_with(|c: char| c.is_ascii_digit() || c == '.'));
+    (g10 && ["L2", "L20"].iter().any(|l| clean.match_indices(l).any(|(k, _)| !clean[k + l.len()..].starts_with(|c: char| c.is_ascii_digit()))))
+        || clean.contains("G28.1")
+        || clean.contains("G30.1")
+        || (clean.starts_with('$') && (clean.contains('=') || clean.starts_with("$N") || clean.starts_with("$RST")))
+}
+
 /// M6 / M06 (not M60…) in a cleaned line
 pub fn is_tool_change(clean: &str) -> bool {
     clean.match_indices('M').any(|(k, _)| {
@@ -249,11 +259,13 @@ pub struct SimConfig {
     /// the probed surface rises this much per inch of machine X and Y (bed leveling tests); `probe_z` is its height
     /// at machine 0, 0
     pub probe_tilt: [f64; 2],
+    /// X / Y machine space is -travel..0 (stock grbl, FoxAlien and most hobby machines), not 0..travel
+    pub count_down: bool,
 }
 
 impl Default for SimConfig {
     fn default() -> Self {
-        SimConfig { travel: v3(60.0, 96.0, 6.0), rapid_ipm: 1000.0, homing_required: true, probe_z: -4.0, probe_tilt: [0.0, 0.0] }
+        SimConfig { travel: v3(60.0, 96.0, 6.0), rapid_ipm: 1000.0, homing_required: true, probe_z: -4.0, probe_tilt: [0.0, 0.0], count_down: false }
     }
 }
 
@@ -300,6 +312,12 @@ impl Default for GrblSim {
 }
 
 impl GrblSim {
+    /// machine X / Y limits (lo, hi)
+    fn xy_limits(&self) -> (Vec3, Vec3) {
+        let t = self.cfg.travel;
+        if self.cfg.count_down { (v3(-t.x, -t.y, -t.z), v3(0.0, 0.0, 0.0)) } else { (v3(0.0, 0.0, -t.z), v3(t.x, t.y, 0.0)) }
+    }
+
     pub fn new(cfg: SimConfig) -> Self {
         let mut s = GrblSim {
             cfg,
@@ -549,12 +567,12 @@ impl GrblSim {
             self.st.wco = sub(self.st.mpos, w);
         }
         let mut cur = self.cursor();
-        let t = self.cfg.travel;
+        let (lo, hi) = self.xy_limits();
         for m in &ms {
             // soft limits: the whole move must stay inside the machine
             let mp = self.machine_points(m, cur);
             cur = *mp.last().unwrap();
-            if mp.iter().any(|q| q.x < -1e-6 || q.y < -1e-6 || q.x > t.x + 1e-6 || q.y > t.y + 1e-6 || q.z > 1e-6 || q.z < -t.z - 1e-6) {
+            if mp.iter().any(|q| q.x < lo.x - 1e-6 || q.y < lo.y - 1e-6 || q.x > hi.x + 1e-6 || q.y > hi.y + 1e-6 || q.z > 1e-6 || q.z < lo.z - 1e-6) {
                 self.raise_alarm(2, "Soft limit: move outside the machine travel");
                 return;
             }
@@ -615,11 +633,11 @@ impl GrblSim {
                 self.out += "error:16\r\n";
                 return;
             }
-            let t = self.cfg.travel;
+            let (lo, hi) = self.xy_limits();
             for m in &mut ms {
                 // jogs clip at soft limits instead of alarming
                 let p = *self.machine_points(m, self.cursor()).last().unwrap();
-                let p = v3(p.x.clamp(0.0, t.x), p.y.clamp(0.0, t.y), p.z.clamp(-t.z, 0.0));
+                let p = v3(p.x.clamp(lo.x, hi.x), p.y.clamp(lo.y, hi.y), p.z.clamp(lo.z, 0.0));
                 m.to = if m.machine_coords { p } else { self.to_work(p) };
                 if !m.machine_coords {
                     m.from = self.st.wpos();
@@ -809,6 +827,12 @@ impl GrblStreamer {
     pub fn next_chunk(&mut self) -> String {
         let mut out = String::new();
         while self.running && self.next < self.lines.len() && self.stops.first().is_none_or(|(at, _)| self.next < *at) {
+            // grbl stops listening while it writes its memory (lost bytes = a corrupted line): such a line goes out
+            // alone, after everything before it is answered, and nothing follows it until its "ok"
+            let busy = |s: &Self| s.in_flight.back().is_some_and(|&i| i != FOREIGN && writes_eeprom(&s.lines[i]));
+            if busy(self) || (writes_eeprom(&self.lines[self.next]) && !self.in_flight.is_empty()) {
+                break;
+            }
             let need = self.lines[self.next].len() + 1;
             if self.buf_used + need > RX_BUFFER - 1 {
                 break;
@@ -1211,6 +1235,22 @@ mod tests {
         s.next_tool();
         assert!(s.next_chunk().starts_with("M3S16000"));
         assert!(!is_tool_change("M60") && is_tool_change("T3M6") && !is_tool_change("G1X6"));
+    }
+
+    #[test]
+    fn a_line_that_writes_the_controllers_memory_goes_out_alone() {
+        assert!(writes_eeprom("G10L20P1X0") && writes_eeprom("G10L2P1Z-1") && writes_eeprom("G28.1") && writes_eeprom("$110=500") && writes_eeprom("$N0=G20"));
+        assert!(!writes_eeprom("G10L200") && !writes_eeprom("G1X10") && !writes_eeprom("$$") && !writes_eeprom("G28") && !writes_eeprom("$H"));
+        let mut s = GrblStreamer::default();
+        s.load(&["G1 X1 F50", "G1 X2", "G10 L20 P1 Z0", "G1 X3", "G1 X4"]);
+        s.start();
+        assert_eq!(s.next_chunk(), "G1X1F50\nG1X2\n", "stops before the memory write");
+        assert!(s.on_response("ok") && s.next_chunk().is_empty(), "still one line in the buffer");
+        assert!(s.on_response("ok"));
+        assert_eq!(s.next_chunk(), "G10L20P1Z0\n", "alone once the buffer is empty");
+        assert!(s.next_chunk().is_empty(), "nothing after it until its ok");
+        assert!(s.on_response("ok"));
+        assert_eq!(s.next_chunk(), "G1X3\nG1X4\n");
     }
 
     #[test]
