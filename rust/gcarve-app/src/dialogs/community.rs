@@ -34,6 +34,7 @@ fn kind_word(k: ToolType) -> &'static str {
         ToolType::VBit => "vbit",
         ToolType::BallNose => "ballnose",
         ToolType::RoundOver => "roundover",
+        ToolType::TaperedBall => "taperball",
     }
 }
 
@@ -44,6 +45,7 @@ fn bit_text(doc: &Document, t: &Tool) -> String {
         k => format!("{} {}", match k {
             ToolType::BallNose => i18n::t("ball nose"),
             ToolType::RoundOver => "round-over",
+            ToolType::TaperedBall => i18n::t("tapered ball nose"),
             _ => i18n::t("end mill"),
         }, size),
     }
@@ -78,15 +80,15 @@ pub fn differences(doc: &Document, mine: Option<(&gcarve_core::document::Machine
         let theirs = doc.material.machine.as_ref();
         if theirs.is_none_or(|t| t.id != m.id) || (!post.is_empty() && doc.material.post != post) {
             out.push(match theirs.map(|t| t.name.as_str()).filter(|n| !n.is_empty()) {
-                Some(n) => format!("It was set up for a {n}; you use a {}.", m.name),
-                None => format!("It has no machine set; you use a {}.", m.name),
+                Some(n) => crate::i18n::tf("It was set up for a {n}; you use a {m}.", &[("n", &n), ("m", &m.name)]),
+                None => crate::i18n::tf("It has no machine set; you use a {m}.", &[("m", &m.name)]),
             });
         }
     }
     if !lib.is_empty() {
         let unknown: Vec<&str> = used_tools(doc).into_iter().map(|i| &doc.tools[i]).filter(|t| !lib.iter().any(|l| same_bit(l, t))).map(|t| t.name.as_str()).collect();
         if !unknown.is_empty() {
-            out.push(format!("Not in your bit library: {}.", unknown.join(", ")));
+            out.push(crate::i18n::tf("Not in your bit library: {bits}.", &[("bits", &unknown.join(", "))]));
         }
     }
     out
@@ -162,13 +164,13 @@ impl MakeIt {
             if let Some((m, p)) = &self.mine {
                 let their = doc.material.machine.as_ref().map_or(i18n::t("no machine").to_string(), |t| t.name.clone());
                 let p_name = gcarve_core::postdef::find_post(p).cloned().or_else(|| host.posts.find(p)).map_or(p.clone(), |d| d.name);
-                crate::widgets::checkbox(ui, &mut self.switch, format!("Use my machine: {} (G-code for {p_name})", m.name)).on_hover_text(format!("The project is set up for {their}, G-code for {}", post.name));
+                crate::widgets::checkbox(ui, &mut self.switch, crate::i18n::tf("Use my machine: {m} (G-code for {p_name})", &[("m", &m.name), ("p_name", &p_name)])).on_hover_text(crate::i18n::tf("The project is set up for {their}, G-code for {post}", &[("their", &their), ("post", &post.name)]));
             }
             ui.horizontal_wrapped(|ui| {
                 let name = doc.material.machine.as_ref().map(|m| m.name.clone()).filter(|n| !n.is_empty());
                 ui.label(match &name {
                     Some(n) => RichText::new(format!("{n}  ·  G-code for {}", post.name)),
-                    None => RichText::new(format!("No machine chosen yet  ·  G-code for {}", post.name)).color(crate::theme::ORANGE),
+                    None => RichText::new(crate::i18n::tf("No machine chosen yet  ·  G-code for {post}", &[("post", &post.name)])).color(crate::theme::ORANGE),
                 });
                 if ui.button(i18n::t("Choose machine…")).clicked() {
                     self.want_machine = true;
@@ -197,9 +199,9 @@ impl MakeIt {
                         c.sort_by(|&a, &b| (self.lib[a].diameter - t.diameter).abs().total_cmp(&(self.lib[b].diameter - t.diameter).abs()));
                         c
                     };
-                    let shown = row.pick.map_or_else(|| format!("The project's bit ({})", t.name), |i| self.lib[i].name.clone());
+                    let shown = row.pick.map_or_else(|| crate::i18n::tf("The project's bit ({name})", &[("name", &t.name)]), |i| self.lib[i].name.clone());
                     crate::widgets::combo_box(("makeit-bit", r)).width(300.0).selected_text(shown).show_ui(ui, |ui| {
-                        ui.selectable_value(&mut row.pick, None, format!("The project's bit ({})", t.name));
+                        ui.selectable_value(&mut row.pick, None, crate::i18n::tf("The project's bit ({name})", &[("name", &t.name)]));
                         for i in choices {
                             let l = &self.lib[i];
                             let tag = if same_bit(l, t) { i18n::t("  ✓ same size") } else { "" };
@@ -274,7 +276,7 @@ pub fn set_thickness(doc: &mut Document, old: f64, new: f64) {
 
 // ---- Share to Community ------------------------------------------------------------------------------------------
 
-const LICENSES: [(&str, &str, &str); 3] = [
+const LICENSES: [(&str, &str, &str); 3] = [ // i18n
     ("cc-by", "Free to use, credit me (CC BY 4.0)", "Anyone may cut, sell and change it, as long as they credit you"),
     ("cc-by-nc", "Free for non-commercial use, credit me (CC BY-NC 4.0)", "Anyone may cut and change it, not sell it; credit you"),
     ("cc0", "No conditions (CC0)", "Public domain: anyone may do anything with it"),
@@ -330,7 +332,7 @@ fn jpeg(rgba: &[u8], w: u32, h: u32) -> Option<Vec<u8>> {
 
 /// a photo for the page: a PNG, JPEG or WebP, at most 1600 px on its long side, as JPEG
 pub fn photo_jpeg(bytes: &[u8]) -> Result<Vec<u8>, String> {
-    let img = crate::files::picture(bytes).map_err(|e| format!("Not a picture GCarve can read: {e}"))?;
+    let img = crate::files::picture(bytes).map_err(|e| crate::i18n::tf("Not a picture GCarve can read: {e}", &[("e", &e)]))?;
     let img = if img.width().max(img.height()) > 1600 { img.resize(1600, 1600, image::imageops::FilterType::Triangle) } else { img };
     let rgba = img.to_rgba8();
     jpeg(&rgba, rgba.width(), rgba.height()).ok_or_else(|| i18n::t("Could not convert the picture").to_string())
@@ -354,7 +356,7 @@ impl ShareDialog {
 
     pub fn add_photo(&mut self, name: &str, bytes: &[u8]) -> Result<(), String> {
         if self.pics.len() >= MAX_PICTURES {
-            return Err(format!("Up to {MAX_PICTURES} pictures"));
+            return Err(crate::i18n::tf("Up to {n} pictures", &[("n", &MAX_PICTURES)]));
         }
         let pic = Pic::new(name, photo_jpeg(bytes)?).ok_or(i18n::t("Could not read the converted picture"))?;
         // the first real photo makes a better cover than the simulation
@@ -375,14 +377,14 @@ impl ShareDialog {
                 match r {
                     Ok(url) => {
                         ui.label(RichText::new(i18n::t("Thank you! Your project is waiting for review.")).strong().size(15.0));
-                        ui.label(format!("Once it is approved (usually within a day) everyone can open it at gcarve.app{url}, pick their own machine and bits, and cut it."));
+                        ui.label(crate::i18n::tf("Once it is approved (usually within a day) everyone can open it at gcarve.app{url}, pick their own machine and bits, and cut it.", &[("url", &url)]));
                         ui.label(RichText::new(i18n::t("You can remove it there at any time while signed in.")).color(crate::theme::TEXT_DIM));
                         if let Some(0) = crate::widgets::buttons(ui, &[(i18n::t("Close"), true)]) {
                             close = true;
                         }
                     }
                     Err(e) => {
-                        ui.label(RichText::new(format!("Not shared: {e}")).color(crate::theme::ORANGE));
+                        ui.label(RichText::new(crate::i18n::tf("Not shared: {e}", &[("e", &e)])).color(crate::theme::ORANGE));
                         if let Some(0) = crate::widgets::buttons(ui, &[(i18n::t("Back"), true)]) {
                             self.sent = None;
                         }
@@ -421,7 +423,7 @@ impl ShareDialog {
                 ui.label(i18n::t("License"));
                 ui.vertical(|ui| {
                     for (i, (_, label, tip)) in LICENSES.iter().enumerate() {
-                        ui.radio_value(&mut self.license, i, *label).on_hover_text(*tip);
+                        ui.radio_value(&mut self.license, i, crate::i18n::t(label)).on_hover_text(crate::i18n::t(tip));
                     }
                 });
                 ui.end_row();

@@ -99,13 +99,16 @@ impl<'o> Dialog<'o> {
                 let top = ui.cursor().min;
                 ui.spacing_mut().item_spacing.y = 0.0;
                 ui.allocate_exact_size(vec2(0.0, 46.0), Sense::hover());
-                let m = if flush { egui::Margin { left: 1, right: 1, top: 14, bottom: 0 } } else { egui::Margin { left: 20, right: 20, top: 14, bottom: 16 } };
+                // the right side's 20 px go inside the scroll area, so its scroll bar sits against the dialog's edge (owner: "the
+                // scroll bar is not flush")
+                let pad: i8 = if flush || dock.is_some() { 0 } else { 20 };
+                let m = if flush { egui::Margin { left: 1, right: 1, top: 14, bottom: 0 } } else { egui::Margin { left: 20, right: 20 - pad, top: 14, bottom: 16 } };
                 let r = egui::Frame::new().inner_margin(m).show(ui, |ui| {
                     ui.spacing_mut().item_spacing.y = 6.0;
                     // never wider than the window either (a phone): 16 px gutters, wider content scrolls sideways
                     let max_w = ui.ctx().content_rect().width() - 32.0 - if flush { 2.0 } else { 40.0 };
                     if let Some(w) = width {
-                        ui.set_width(w.min(max_w));
+                        ui.set_width(w.min(max_w) + pad as f32);
                     }
                     // never taller than the window: the content scrolls, the Close footer stays
                     // (a modeless dialog starts below the top of the window: that much less room)
@@ -117,7 +120,7 @@ impl<'o> Dialog<'o> {
                     // sideways only in a narrow window: a sideways scroll keeps an auto-sized dialog from growing to its
                     // content (Job Setup's right column collapsed on the desktop)
                     let narrow = ui.ctx().content_rect().width() < 760.0;
-                    let r = egui::ScrollArea::new([narrow, true]).max_width(max_w.max(120.0)).max_height(max_h.max(120.0)).min_scrolled_height(max_h.max(120.0)).show(ui, add).inner;
+                    let r = egui::ScrollArea::new([narrow, true]).content_margin(egui::Margin { right: pad, ..Default::default() }).max_width(max_w.max(120.0) + pad as f32).max_height(max_h.max(120.0)).min_scrolled_height(max_h.max(120.0)).show(ui, add).inner;
                     if close {
                         let hit = if flush {
                             egui::Frame::new().inner_margin(egui::Margin { left: 0, right: 19, top: 2, bottom: 11 }).show(ui, |ui| {
@@ -125,7 +128,7 @@ impl<'o> Dialog<'o> {
                                 button_row(ui, &[(crate::i18n::t("Close"), false)], 84.0).is_some()
                             }).inner
                         } else {
-                            close_button(ui)
+                            egui::Frame::new().inner_margin(egui::Margin { right: pad, ..Default::default() }).show(ui, close_button).inner
                         };
                         if hit {
                             closed.set(true);
@@ -411,6 +414,30 @@ pub fn focus_in_tree(ctx: &egui::Context) {
     if let Some(id) = ctx.memory(|m| m.focused()) {
         ctx.accesskit_node_builder(id, |_| ());
     }
+}
+
+/// Call once per frame. A text field reached with Tab gets all its text selected, so typing replaces the number and
+/// an arrow key goes to either end (ticket #43; a click still places the cursor). Focus moves to the next field at the
+/// start or the end of the frame that saw the Tab, so the selection is set once the new field holds the focus.
+pub fn select_on_tab(ctx: &egui::Context) {
+    let (was, tabbed) = (egui::Id::new("tab-select-was"), egui::Id::new("tab-select-tabbed"));
+    let now = ctx.memory(|m| m.focused());
+    let (before, left) = ctx.data(|d| (d.get_temp::<Option<egui::Id>>(was).flatten(), d.get_temp::<u8>(tabbed).unwrap_or(0)));
+    let tab_now = ctx.input(|i| i.key_pressed(egui::Key::Tab));
+    let tab = tab_now || left > 0; // egui may move the focus in the very frame that sees the Tab, or at its end
+    if let Some(id) = now.filter(|n| tab && Some(*n) != before) {
+        if let Some(mut st) = egui::text_edit::TextEditState::load(ctx, id) {
+            use egui::text::{CCursor, CCursorRange};
+            st.cursor.set_char_range(Some(CCursorRange::two(CCursor::new(0), CCursor::new(usize::MAX)))); // clamped to the text
+            st.store(ctx, id);
+            ctx.request_repaint();
+        }
+    }
+    ctx.data_mut(|d| {
+        d.insert_temp(was, now);
+        // a Tab counts for the next two frames only, so a later click into a field never selects everything
+        d.insert_temp(tabbed, if tab_now { 2u8 } else if now == before { left.saturating_sub(1) } else { 0 });
+    });
 }
 
 /// style/ComboBox.qml: 30 px, 10 px text inset, chevron at the right. Wraps egui's ComboBox so its full 30 px

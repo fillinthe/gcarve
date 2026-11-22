@@ -249,7 +249,7 @@ impl TraceDialog {
             let m = Affine::translate((doc.material.w - all.w()) / 2.0 - all.x0, (doc.material.h - all.h()) / 2.0 - all.y0);
             doc.checkpoint();
             let stem = self.name.rsplit_once('.').map_or(self.name.as_str(), |(a, _)| a);
-            let layer = doc.layer_named(&format!("Traced {stem}"));
+            let layer = doc.layer_named(&crate::i18n::tf("Traced {stem}", &[("stem", &stem)]));
             let group = doc.new_group_id();
             let mut ids = std::collections::BTreeSet::new();
             for c in &self.preview {

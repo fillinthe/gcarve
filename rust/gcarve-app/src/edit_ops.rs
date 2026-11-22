@@ -1350,7 +1350,7 @@ impl Canvas {
                 self.add_copy(&src, &Affine::translate(col as f64 * dx, row as f64 * dy));
             }
         }
-        self.status = format!("Array: {cols} × {rows}");
+        self.status = crate::i18n::tf("Array: {cols} × {rows}", &[("cols", &cols), ("rows", &rows)]);
         self.mutated();
     }
 

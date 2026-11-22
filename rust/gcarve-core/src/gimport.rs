@@ -127,6 +127,8 @@ pub fn guess_from_text(text: &str) -> ToolGuess {
     }
     if round {
         g.kind = Some(ToolType::RoundOver);
+    } else if low.contains("ball") && (low.contains("taper") || low.contains("conical")) {
+        g.kind = Some(ToolType::TaperedBall); // an angle in its name is the taper per side
     } else if ["ball", "core box", "corebox", "round nose", "roundnose"].iter().any(|w| low.contains(w)) {
         g.kind = Some(ToolType::BallNose);
     } else if low.contains("v-bit") || low.contains("vbit") || low.contains("v bit") || low.contains("engrav") || low.contains(" deg") || low.contains("°") {
@@ -701,6 +703,7 @@ pub fn tool_from_section(s: &ImportSection, material: &str) -> Tool {
             ToolType::VBit => format!("V-Bit ({} deg {}\")", fmt(angle), fmt(d)),
             ToolType::BallNose => format!("Ball Nose ({}\")", fmt(d)),
             ToolType::RoundOver => format!("Round Over ({}\")", fmt(d)),
+            ToolType::TaperedBall => format!("Tapered Ball Nose ({} deg {}\")", fmt(angle), fmt(d)),
             ToolType::EndMill => format!("End Mill ({}\")", fmt(d)),
         }
     };
@@ -719,6 +722,7 @@ pub fn guess_text(g: &ToolGuess) -> String {
         Some(ToolType::VBit) => "V-bit",
         Some(ToolType::BallNose) => "Ball nose",
         Some(ToolType::RoundOver) => "Round-over",
+        Some(ToolType::TaperedBall) => "Tapered ball nose",
         Some(ToolType::EndMill) => "End mill",
         None if g.form => "Shaped bit",
         None => "Unknown bit",

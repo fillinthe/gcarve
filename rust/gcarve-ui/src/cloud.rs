@@ -127,7 +127,7 @@ pub struct ShareInfo {
 
 fn error_of(status: u16, text: &str) -> String {
     let v: serde_json::Value = serde_json::from_str(text).unwrap_or_default();
-    v.get("error").and_then(|e| e.as_str()).map_or_else(|| format!("Request failed ({status})"), String::from)
+    v.get("error").and_then(|e| e.as_str()).map_or_else(|| crate::i18n::tf("Request failed ({status})", &[("status", &status)]), String::from)
 }
 
 /// GET /api/<list> answer: the entries, or the server's error
@@ -135,7 +135,7 @@ fn list_reply(status: u16, text: &str, key: &str) -> Result<Vec<ProjectInfo>, St
     let v: serde_json::Value = serde_json::from_str(text).unwrap_or_default();
     match v.get(key).cloned().map(serde_json::from_value::<Vec<ProjectInfo>>) {
         Some(Ok(l)) if status < 400 => Ok(l),
-        _ => Err(v.get("error").and_then(|e| e.as_str()).map_or_else(|| format!("Request failed ({status})"), String::from)),
+        _ => Err(v.get("error").and_then(|e| e.as_str()).map_or_else(|| crate::i18n::tf("Request failed ({status})", &[("status", &status)]), String::from)),
     }
 }
 
@@ -153,7 +153,7 @@ struct Doc {
 /// one project / template (GET, POST, PUT answers)
 fn doc_reply(status: u16, text: &str) -> Result<Doc, String> {
     let d: Doc = serde_json::from_str(text).unwrap_or_default();
-    if status < 400 { Ok(d) } else { Err(d.error.unwrap_or_else(|| format!("Request failed ({status})"))) }
+    if status < 400 { Ok(d) } else { Err(d.error.unwrap_or_else(|| crate::i18n::tf("Request failed ({status})", &[("status", &status)]))) }
 }
 
 /// server/api.go projectDocs.maxBytes
@@ -290,7 +290,7 @@ impl Cloud {
                 Ok(resp) if resp.status == 401 && !auth && gen.load(std::sync::atomic::Ordering::Relaxed) == sent_at => Reply::Expired,
                 Ok(resp) if resp.status == 401 && !auth => Reply::Error(String::new()),
                 Ok(resp) => on(resp.status, resp.text().unwrap_or("")),
-                Err(e) => Reply::Error(format!("Can't reach {} right now ({e}). Check the connection; your drawing is safe on this computer.", crate::store::app())),
+                Err(e) => Reply::Error(crate::i18n::tf("Can't reach {app} right now ({e}). Check the connection; your drawing is safe on this computer.", &[("app", &crate::store::app()), ("e", &e)])),
             };
             let _ = tx.send(reply);
             ctx.request_repaint();
@@ -300,7 +300,7 @@ impl Cloud {
     fn auth_reply(status: u16, text: &str) -> Reply {
         let mut a: AuthReply = serde_json::from_str(text).unwrap_or_default();
         if status >= 400 && a.error.is_none() {
-            a.error = Some(format!("Request failed ({status})"));
+            a.error = Some(crate::i18n::tf("Request failed ({status})", &[("status", &status)]));
         }
         // an older password below today's rule: the server wants a new one chosen first, which the sign-in page does
         if a.user.is_none() && a.error.is_none() && text.contains("\"weak\"") {
@@ -399,7 +399,7 @@ impl Cloud {
     pub fn save_project(&mut self, ctx: &egui::Context, id: &str, name: &str, folder: Option<&str>, json: &str) {
         // the server's limit, said before the upload instead of after a long one
         if json.len() > MAX_PROJECT_BYTES {
-            self.error = format!("This project is {:.1} MB and cloud projects can be at most {} MB. Save it to this computer instead (File › Download Project), or remove big pictures or traced images from it.", json.len() as f64 / 1_048_576.0, MAX_PROJECT_BYTES >> 20);
+            self.error = crate::i18n::tf("This project is {mb} MB and cloud projects can be at most {max} MB. Save it to this computer instead (File › Download Project), or remove big pictures or traced images from it.", &[("mb", &format!("{:.1}", json.len() as f64 / 1_048_576.0)), ("max", &(MAX_PROJECT_BYTES >> 20))]);
             return;
         }
         let mut body = serde_json::json!({"name": name, "data": json});
@@ -428,7 +428,7 @@ impl Cloud {
 
     pub fn delete_project(&mut self, ctx: &egui::Context, id: &str) {
         self.request(ctx, "DELETE", &format!("/api/{}/{id}", self.docs), None, |status, text| {
-            if status < 400 { Reply::Projects(Vec::new()) } else { Reply::Error(format!("Delete failed ({status}): {text}")) }
+            if status < 400 { Reply::Projects(Vec::new()) } else { Reply::Error(crate::i18n::tf("Delete failed ({status}): {text}", &[("status", &status), ("text", &text)])) }
         });
     }
 
@@ -442,7 +442,7 @@ impl Cloud {
                 let (method, path) = if id.is_empty() { ("POST", "/api/templates".to_string()) } else { ("PUT", format!("/api/templates/{id}")) };
                 self.request(ctx, method, &path, Some(serde_json::json!({"name": name, "data": json})), changed);
             }
-            CloudOp::Delete(id) => self.request(ctx, "DELETE", &format!("/api/templates/{id}"), None, |status, text| if status < 400 { Reply::TemplatesChanged } else { Reply::Error(format!("Delete failed ({status}): {text}")) }),
+            CloudOp::Delete(id) => self.request(ctx, "DELETE", &format!("/api/templates/{id}"), None, |status, text| if status < 400 { Reply::TemplatesChanged } else { Reply::Error(crate::i18n::tf("Delete failed ({status}): {text}", &[("status", &status), ("text", &text)])) }),
         }
     }
 
@@ -482,7 +482,7 @@ impl Cloud {
     /// POST /api/shares: `kind` bits | machines, `data` what the recipient adds
     pub fn share(&mut self, ctx: &egui::Context, to: &str, kind: &str, name: &str, data: serde_json::Value) {
         let body = serde_json::json!({"to": to, "kind": kind, "name": name, "data": data});
-        let msg = format!("Shared “{name}” with {to}: it waits in their {} until they add it", crate::store::app());
+        let msg = crate::i18n::tf("Shared “{name}” with {to}: it waits in their {app} until they add it", &[("name", &name), ("to", &to), ("app", &crate::store::app())]);
         self.request(ctx, "POST", "/api/shares", Some(body), move |status, text| if status < 400 { Reply::Shared(msg) } else { Reply::Error(error_of(status, text)) });
     }
 
@@ -562,11 +562,12 @@ impl Cloud {
         if kind != "crash" {
             crate::help::note_problem(message); // the status bar offers "Report this" for it
         }
-        if !Self::web() && self.user.is_none() {
+        if !reports_on() || !Self::web() && self.user.is_none() {
             return;
         }
         let place = if Self::web() { "web" } else { "desktop" };
-        post_error(&self.base, &format!("{kind}: {message}"), place);
+        // signed in on the desktop: the token says who hit it (the web's session cookie already does), names and paths out
+        post_error(&self.base, &format!("{kind}: {}", scrub(message)), place, &self.token);
     }
 
     /// Leave `data` for app `to` ("gburn", "gcarve", "gsketch") in this account for 30 minutes (server handover.go);
@@ -576,7 +577,7 @@ impl Cloud {
             let v: serde_json::Value = serde_json::from_str(text).unwrap_or_default();
             Reply::HandoverSent(match v.get("id").and_then(|i| i.as_str()) {
                 Some(id) if status < 400 => Ok(id.to_string()),
-                _ => Err(v.get("error").and_then(|e| e.as_str()).map_or_else(|| format!("Sending failed ({status})"), String::from)),
+                _ => Err(v.get("error").and_then(|e| e.as_str()).map_or_else(|| crate::i18n::tf("Sending failed ({status})", &[("status", &status)]), String::from)),
             })
         });
     }
@@ -596,7 +597,7 @@ impl Cloud {
             Reply::RequestSent(if status < 400 {
                 Ok(v.get("id").and_then(serde_json::Value::as_i64).unwrap_or(0))
             } else {
-                Err(v.get("error").and_then(|e| e.as_str()).map_or_else(|| format!("Request failed ({status})"), String::from))
+                Err(v.get("error").and_then(|e| e.as_str()).map_or_else(|| crate::i18n::tf("Request failed ({status})", &[("status", &status)]), String::from))
             })
         };
         if self.user.is_some() {
@@ -636,7 +637,7 @@ impl Cloud {
             ehttp::fetch(post, move |r| {
                 let reply = match r {
                     Ok(resp) => done(resp.status, resp.text().unwrap_or("")),
-                    Err(e) => Reply::RequestSent(Err(format!("Can't reach the server ({e})"))),
+                    Err(e) => Reply::RequestSent(Err(crate::i18n::tf("Can't reach the server ({e})", &[("e", &e)]))),
                 };
                 let _ = tx2.send(reply);
                 ctx3.request_repaint();
@@ -767,9 +768,43 @@ const VERIFIED_KEY: &str = "license.verified";
 
 /// A web panic, from the panic hook (no Cloud there): the page's own origin, which proxies /api to the server.
 pub fn report_panic(message: &str) {
-    if let Some(origin) = web_origin() {
-        post_error(&origin, message, "web");
+    if let Some(origin) = web_origin().filter(|_| reports_on()) {
+        post_error(&origin, message, "web", "");
     }
+}
+
+static REPORTS: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(true);
+
+/// The app's "Send problem reports" setting (on by default): off = nothing goes to the error log (the status bar's
+/// Report button still works, it opens the support form)
+pub fn set_reports(on: bool) {
+    REPORTS.store(on, std::sync::atomic::Ordering::Relaxed);
+}
+
+pub fn reports_on() -> bool {
+    REPORTS.load(std::sync::atomic::Ordering::Relaxed)
+}
+
+/// A problem message without file names or paths: any word with a / or \, or that looks like name.ext, becomes "file"
+/// (the server strips names too; this doesn't rely on it)
+pub fn scrub(s: &str) -> String {
+    s.split(' ')
+        .map(|w| {
+            let t = w.trim_matches(|c: char| !c.is_alphanumeric() && c != '/' && c != '\\' && c != '.');
+            let stem_has_letter = t.rsplit_once('.').is_some_and(|(a, e)| a.chars().any(|c| c.is_alphabetic()) && !e.is_empty() && e.len() <= 5);
+            // kept: a crash's place in our source (gcarve-app/src/app.rs:123:5, never an absolute path), a version
+            // (v0.1.25), "e.g." / "i.e." and web links
+            let src = t.trim_end_matches(|c: char| c.is_ascii_digit() || c == ':').ends_with(".rs") && !t.starts_with(['/', '\\', '~']) && !t.contains(":\\") && !t.contains("Users/") && !t.contains("home/");
+            let version = t.trim_start_matches('v').split('.').all(|p| !p.is_empty() && p.chars().all(|c| c.is_ascii_digit()));
+            let kept = src || version || matches!(t, "e.g" | "i.e") || w.contains("://");
+            if !kept && (t.contains('/') || t.contains('\\') || stem_has_letter) {
+                "file"
+            } else {
+                w
+            }
+        })
+        .collect::<Vec<_>>()
+        .join(" ")
 }
 
 #[cfg(target_arch = "wasm32")]
@@ -782,10 +817,13 @@ fn web_origin() -> Option<String> {
 }
 
 /// "GSketch v0.1.5 web": the app and its own version (both apps share this crate, so not this crate's version).
-fn post_error(base: &str, message: &str, place: &str) {
+fn post_error(base: &str, message: &str, place: &str, token: &str) {
     let body = serde_json::json!({ "source": "app", "message": message, "where": format!("{} v{} {place}", crate::store::app(), crate::help::version()) });
     let mut req = ehttp::Request::post(format!("{base}/api/error"), serde_json::to_vec(&body).unwrap_or_default());
     req.headers.insert("Content-Type", "application/json");
+    if !token.is_empty() {
+        req.headers.insert("Authorization", format!("Bearer {token}"));
+    }
     ehttp::fetch(req, |_| {});
 }
 
@@ -818,6 +856,19 @@ fn host_label() -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn problem_reports_leave_out_file_names_and_paths_and_can_be_turned_off() {
+        assert_eq!(scrub("Couldn't open Mum's tag.svg: /Users/me/x.svg is bad at X 7.4"), "Couldn't open Mum's file file is bad at X 7.4");
+        assert_eq!(scrub(r"Lost the laser on C:\Users\me\port: Access denied"), "Lost the laser on file Access denied");
+        // what makes a report useful stays: where in our code, which version, links, e.g.
+        assert_eq!(scrub("panicked at gcarve-app/src/app.rs:123:5: v0.1.25, e.g. https://gcarve.app/api/x"), "panicked at gcarve-app/src/app.rs:123:5: v0.1.25, e.g. https://gcarve.app/api/x");
+        assert_eq!(scrub("at /Users/ann/src/main.rs:4 and /home/bob/x.rs"), "at file and file");
+        assert!(reports_on());
+        set_reports(false);
+        assert!(!reports_on());
+        set_reports(true);
+    }
 
     #[test]
     fn desktop_licence_grace_period() {

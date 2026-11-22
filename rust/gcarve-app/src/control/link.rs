@@ -248,11 +248,11 @@ impl Link {
                 Ok(p) => {
                     self.transport = Some(Transport::Serial(p, name));
                     self.last_tick = None;
-                    self.add_log(format!("Connected to {port} at {baud}"));
+                    self.add_log(crate::i18n::tf("Connected to {port} at {baud}", &[("port", &port), ("baud", &baud)]));
                     self.write(&[grbl::RESET]); // fresh controller state, prints the Grbl banner
                 }
                 Err(e) => {
-                    self.last_error = format!("Serial: {e}");
+                    self.last_error = crate::i18n::tf("Serial: {e}", &[("e", &e)]);
                     self.add_log(self.last_error.clone());
                 }
             }
@@ -311,13 +311,13 @@ impl Link {
             #[cfg(target_arch = "wasm32")]
             Some(Transport::WebSerial(name)) => {
                 if name.is_some() && !super::webserial::write(bytes) {
-                    self.lost("USB: the port is closed");
+                    self.lost(crate::i18n::t("USB: the port is closed"));
                 }
             }
             #[cfg(all(feature = "serial", not(target_arch = "wasm32")))]
             Some(Transport::Serial(p, _)) => {
                 if let Err(e) = p.write_all(bytes) {
-                    let msg = format!("Serial: {e}");
+                    let msg = crate::i18n::tf("Serial: {e}", &[("e", &e)]);
                     self.lost(&msg);
                 }
             }
@@ -368,7 +368,7 @@ impl Link {
                         incoming = super::webserial::take();
                     }
                     State::Cancelled => dropped = Some(i18n::t("No USB device chosen").into()),
-                    State::Failed(e) => dropped = Some(if self.streaming { i18n::t("USB connection lost while running: check the machine NOW (use its E-stop)").into() } else { format!("USB: {e}") }),
+                    State::Failed(e) => dropped = Some(if self.streaming { i18n::t("USB connection lost while running: check the machine NOW (use its E-stop)").into() } else { crate::i18n::tf("USB: {e}", &[("e", &e)]) }),
                 }
             }
             Some(Transport::Sim(s)) => {
@@ -387,9 +387,9 @@ impl Link {
                             *connecting = None;
                             // ponytail: Qt only sent "\n" here; "$$" too so the travel comes from the controller over TCP
                             outbox.splice(0..0, b"\n$$\n".iter().copied());
-                            self.log.push(format!("Connected to {peer}"));
+                            self.log.push(crate::i18n::tf("Connected to {peer}", &[("peer", &peer)]));
                         }
-                        Ok(Err(e)) => dropped = Some(format!("Network: {e}")),
+                        Ok(Err(e)) => dropped = Some(crate::i18n::tf("Network: {e}", &[("e", &e)])),
                         Err(std::sync::mpsc::TryRecvError::Disconnected) => dropped = Some(i18n::t("Network: connection failed").into()),
                         Err(std::sync::mpsc::TryRecvError::Empty) => {}
                     }
@@ -406,7 +406,7 @@ impl Link {
                             Err(e) if e.kind() == ErrorKind::WouldBlock => break,
                             Err(e) if e.kind() == ErrorKind::Interrupted => {}
                             Err(e) => {
-                                dropped = Some(format!("Network: {e}"));
+                                dropped = Some(crate::i18n::tf("Network: {e}", &[("e", &e)]));
                                 break;
                             }
                         }
@@ -417,7 +417,7 @@ impl Link {
                                 outbox.drain(..n);
                             }
                             Err(e) if e.kind() == ErrorKind::WouldBlock => break,
-                            Err(e) => dropped = Some(format!("Network: {e}")),
+                            Err(e) => dropped = Some(crate::i18n::tf("Network: {e}", &[("e", &e)])),
                         }
                     }
                 }
@@ -430,7 +430,7 @@ impl Link {
                     match p.read(&mut buf) {
                         Ok(k) => incoming.extend_from_slice(&buf[..k]),
                         Err(e) if e.kind() == std::io::ErrorKind::TimedOut => {}
-                        Err(e) => dropped = Some(if self.streaming { i18n::t("USB connection lost while running: check the machine NOW (use its E-stop)").into() } else { format!("Serial: {e}") }),
+                        Err(e) => dropped = Some(if self.streaming { i18n::t("USB connection lost while running: check the machine NOW (use its E-stop)").into() } else { crate::i18n::tf("Serial: {e}", &[("e", &e)]) }),
                     }
                 }
             }
@@ -443,7 +443,7 @@ impl Link {
         #[cfg(target_arch = "wasm32")]
         if opened {
             let t = self.transport();
-            self.add_log(format!("Connected to {t}"));
+            self.add_log(crate::i18n::tf("Connected to {peer}", &[("peer", &t)]));
             self.write(&[grbl::RESET]); // fresh controller state, prints the Grbl banner (then $$ for the travel)
         }
         self.incoming(&incoming);
@@ -513,12 +513,12 @@ impl Link {
                 return;
             }
             if l.starts_with("ALARM:") || l.starts_with("error:") {
-                self.level_stop(&format!("Surface probing stopped: {l}"));
+                self.level_stop(&crate::i18n::tf("Surface probing stopped: {l}", &[("l", &l)]));
             }
         }
         if self.streamer.on_response(l) {
             if !self.streamer.error().is_empty() {
-                self.last_error = format!("Stopped at {}", self.streamer.error());
+                self.last_error = crate::i18n::tf("Stopped at {e}", &[("e", &self.streamer.error())]);
                 let code: i32 = l.split("error:").nth(1).and_then(|c| c.trim().parse().ok()).unwrap_or(0);
                 let why = grbl::error_text(code);
                 if !why.is_empty() {
@@ -550,7 +550,7 @@ impl Link {
             }
             if self.probing {
                 self.probing = false;
-                self.last_error = format!("Probe failed: {q}");
+                self.last_error = crate::i18n::tf("Probe failed: {q}", &[("q", &q)]);
             }
         }
         if l.starts_with("[PRB:") && self.probing {
@@ -613,7 +613,7 @@ impl Link {
         if let Some(t) = self.tool_wait() {
             if self.tool_said != t {
                 self.send("M5\n"); // the post stops it before a change; never leave it to the file
-                self.add_log(format!("Tool change: put in {t}, then touch off Z and press Continue"));
+                self.add_log(crate::i18n::tf("Tool change: put in {t}, then touch off Z and press Continue", &[("t", &t)]));
                 self.tool_said = t;
             }
             return;
@@ -627,7 +627,7 @@ impl Link {
         self.send_program(&chunk);
         if self.streamer.done() && self.settled() {
             self.streaming = false;
-            self.add_log(format!("Program finished: {}", self.program_name));
+            self.add_log(crate::i18n::tf("Program finished: {name}", &[("name", &self.program_name)]));
         }
     }
 
@@ -700,7 +700,7 @@ impl Link {
             }
         }
         let z = self.program.max.z.max(0.25);
-        self.add_log(format!("Outline: {:.2} x {:.2} in at Z {z:.2}", x1 - x0, y1 - y0));
+        self.add_log(crate::i18n::tf("Outline: {w} x {h} in at Z {z}", &[("w", &format!("{:.2}", x1 - x0)), ("h", &format!("{:.2}", y1 - y0)), ("z", &format!("{z:.2}"))]));
         self.send(&format!("G20 G90 G0 Z{z:.4}\nG0 X{x0:.4} Y{y0:.4}\nG0 X{x1:.4}\nG0 Y{y1:.4}\nG0 X{x0:.4}\nG0 Y{y0:.4}\n"));
     }
 
@@ -756,7 +756,7 @@ impl Link {
             }
         }
         self.send(&format!("{cmd}\n"));
-        self.add_log(format!("Zeroed {axes}"));
+        self.add_log(crate::i18n::tf("Zeroed {axes}", &[("axes", &axes)]));
     }
     /// Bed leveling: probe an `nx` × `ny` grid over the loaded program's cuts. Between points the probe lifts `clear`
     /// above Z zero; at each it looks down as far as `depth` below Z zero at `feed`. Z zero must be set on the
@@ -785,7 +785,7 @@ impl Link {
             return;
         }
         let (map, pts) = gcarve_core::heightmap::HeightMap::points(x0, y0, x1, y1, nx, ny);
-        self.add_log(format!("Probing the surface: {} x {} points over {:.2} x {:.2} in", map.nx, map.ny, x1 - x0, y1 - y0));
+        self.add_log(crate::i18n::tf("Probing the surface: {nx} x {ny} points over {w} x {h} in", &[("nx", &map.nx), ("ny", &map.ny), ("w", &format!("{:.2}", x1 - x0)), ("h", &format!("{:.2}", y1 - y0))]));
         self.last_error.clear();
         self.height_map = None;
         self.leveling = Some(Leveling { map, pts, i: 0, hit: 0.0, wait: None, clear: clear.max(0.05), depth: depth.max(0.02), feed: feed.max(1.0) });
@@ -836,7 +836,7 @@ impl Link {
         }
         let lv = self.leveling.take().unwrap();
         self.send(&format!("G20 G90 G0 Z{:.4}\n", lv.clear));
-        self.add_log(format!("Surface probed: {} points, {:.3} in between the highest and the lowest", lv.pts.len(), lv.map.range()));
+        self.add_log(crate::i18n::tf("Surface probed: {n} points, {r} in between the highest and the lowest", &[("n", &lv.pts.len()), ("r", &format!("{:.3}", lv.map.range()))]));
         self.height_map = Some(lv.map);
     }
 
@@ -870,7 +870,7 @@ impl Link {
             let z = self.probe_plate + (self.st.mpos.z - self.c.probe_hit);
             self.send(&format!("G20 G10 L20 P1 Z{z:.4}\n"));
             self.zeroed[2] = true;
-            self.add_log(format!("Z zeroed by the touch plate (plate {} in)", self.probe_plate));
+            self.add_log(crate::i18n::tf("Z zeroed by the touch plate (plate {p} in)", &[("p", &self.probe_plate)]));
             (self.c.probe, self.c.probe_wait) = (3, 2);
         } else {
             self.send(&format!("G20 G90 G0 Z{:.4}\n", self.probe_plate + self.probe_lift));
@@ -896,7 +896,7 @@ impl Link {
     /// M3 at low speed, dwell, then off
     pub fn spindle_warmup(&mut self, rpm: i32, seconds: i32) {
         if self.ready() {
-            self.add_log(format!("Spindle warm-up: {rpm} RPM for {seconds} s"));
+            self.add_log(crate::i18n::tf("Spindle warm-up: {rpm} RPM for {seconds} s", &[("rpm", &rpm), ("seconds", &seconds)]));
             self.send(&format!("M3 S{}\nG4 P{}\nM5\n", rpm.max(1000), seconds.max(1)));
         }
     }
@@ -921,12 +921,12 @@ impl Link {
         self.program_name = name.to_string();
         self.c.notes = file_notes(&self.program.lines);
         if let Some(n) = bad_arc(&self.program.motions) {
-            self.c.notes.0.push(format!("Line {n}: this arc doesn't close. Its end is not the same distance from the center as its start, and a GRBL controller stops there (error 33). Export it again, or with arcs switched off in the post."));
+            self.c.notes.0.push(crate::i18n::tf("Line {n}: this arc doesn't close. Its end is not the same distance from the center as its start, and a GRBL controller stops there (error 33). Export it again, or with arcs switched off in the post.", &[("n", &n)]));
         }
         self.height_map = None; // probed for the last program's cuts
         self.streamer.load::<&str>(&[]);
         self.program_rev += 1;
-        self.add_log(format!("Loaded {name}: {} lines, {} moves", self.program.lines.len(), self.program.motions.len()));
+        self.add_log(crate::i18n::tf("Loaded {name}: {lines} lines, {moves} moves", &[("name", &name), ("lines", &self.program.lines.len()), ("moves", &self.program.motions.len())]));
         true
     }
 
@@ -944,14 +944,14 @@ impl Link {
         if conn && self.alarm() {
             errors.push(i18n::t("The machine is in alarm: Home (or Unlock) first.").into());
         } else if conn && !self.idle() {
-            errors.push(format!("The machine is busy ({}): wait for Idle.", self.state()));
+            errors.push(crate::i18n::tf("The machine is busy ({state}): wait for Idle.", &[("state", &self.state())]));
         }
         if p.lines.is_empty() {
             errors.push(i18n::t("No program loaded.").into());
         }
         if let Some(first) = p.errors.first() {
             let tap = if self.program_name.to_ascii_lowercase().ends_with(".tap") { i18n::t(" This looks like a WinCNC file: export it with a GRBL post.") } else { "" };
-            errors.push(format!("The program has {} line(s) this controller can't run ({first}).{tap}", p.errors.len()));
+            errors.push(crate::i18n::tf("The program has {n} line(s) this controller can't run ({first}).{tap}", &[("n", &p.errors.len()), ("first", &first), ("tap", &tap)]));
         }
         if p.motions.iter().any(|m| m.kind != MoveType::Rapid && !m.machine_coords && m.from.z.min(m.to.z) < 0.0 && !m.spindle_on) {
             errors.push(i18n::t("The program cuts below Z0 with the spindle off (no M3 before the cut).").into());
@@ -966,11 +966,11 @@ impl Link {
             let w = self.st.wco;
             let (lo, hi, t) = (Vec3 { x: p.min.x + w.x, y: p.min.y + w.y, z: p.min.z + w.z }, Vec3 { x: p.max.x + w.x, y: p.max.y + w.y, z: p.max.z + w.z }, self.travel);
             if !(fits(lo.x, hi.x, t.x) && fits(lo.y, hi.y, t.y) && fits(lo.z, hi.z, t.z)) {
-                errors.push(format!("The program goes outside the machine travel from this work zero (X {:.2}..{:.2}, Y {:.2}..{:.2}, Z {:.2}..{:.2} in machine coordinates).", lo.x, hi.x, lo.y, hi.y, lo.z, hi.z));
+                errors.push(crate::i18n::tf("The program goes outside the machine travel from this work zero ({range} in machine coordinates).", &[("range", &format!("X {:.2}..{:.2}, Y {:.2}..{:.2}, Z {:.2}..{:.2}", lo.x, hi.x, lo.y, hi.y, lo.z, hi.z))]));
             }
         }
         if conn && !self.travel_from_controller {
-            warnings.push(format!("The controller didn't report its travel ($130-$132): using the machine settings ({:.1} x {:.1} x {:.1} in).", self.travel.x, self.travel.y, self.travel.z));
+            warnings.push(crate::i18n::tf("The controller didn't report its travel ($130-$132): using the machine settings ({size} in).", &[("size", &format!("{:.1} x {:.1} x {:.1}", self.travel.x, self.travel.y, self.travel.z))]));
         }
         if conn && !self.work_zero_set() {
             warnings.push(i18n::t("X, Y and Z zero were not all set since connecting: make sure the current work zero is right.").into());
@@ -979,7 +979,7 @@ impl Link {
             warnings.push(i18n::t("The program does not turn the spindle off at the end: GCarve Control will send M5 after it.").into());
         }
         if has && p.min.z < -1.5 {
-            warnings.push(format!("The program cuts {:.3} in deep: check the bit and the material.", -p.min.z));
+            warnings.push(crate::i18n::tf("The program cuts {d} in deep: check the bit and the material.", &[("d", &format!("{:.3}", -p.min.z))]));
         }
         (errors, warnings)
     }
@@ -1005,19 +1005,19 @@ impl Link {
             match gcarve_core::heightmap::level_program(&self.program, map, (map.dx.abs().min(map.dy.abs()) / 2.0).clamp(0.05, 1.0)) {
                 Ok(l) => lines = l,
                 Err(e) => {
-                    self.last_error = format!("Follow the surface: {e}");
+                    self.last_error = crate::i18n::tf("Follow the surface: {e}", &[("e", &e)]);
                     return false;
                 }
             }
-            self.add_log(format!("Following the probed surface ({:.3} in of rise and fall)", map.range()));
+            self.add_log(crate::i18n::tf("Following the probed surface ({r} in of rise and fall)", &[("r", &format!("{:.3}", map.range()))]));
         }
         if from_line > 1 {
             lines = grbl::resume_preamble(&self.program.lines, from_line, 20.0, &self.lift_line());
             if lines.is_empty() {
-                self.last_error = format!("Can't resume at line {from_line} (out of range, or the program sets its own zero or moves in relative steps before it)");
+                self.last_error = crate::i18n::tf("Can't resume at line {from_line} (out of range, or the program sets its own zero or moves in relative steps before it)", &[("from_line", &from_line)]);
                 return false;
             }
-            self.add_log(format!("Resuming at line {from_line}"));
+            self.add_log(crate::i18n::tf("Resuming at line {from_line}", &[("from_line", &from_line)]));
         }
         if !self.program.spindle_off_at_end {
             lines.push("M5".into()); // safety: the spindle always stops after the program
@@ -1031,7 +1031,7 @@ impl Link {
         self.streaming = true;
         self.stopped_on_error = false;
         self.last_error.clear();
-        self.add_log(format!("Started {}", self.program_name));
+        self.add_log(crate::i18n::tf("Started {name}", &[("name", &self.program_name)]));
         self.pump();
         true
     }

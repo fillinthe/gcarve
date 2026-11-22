@@ -175,6 +175,8 @@ pub(crate) const NODE_PX: f64 = 7.0;
 pub(crate) const RULER_PX: f32 = 20.0;
 
 pub struct Canvas {
+    /// a shape was drawn by hand since the app last looked (usage step "draw", web only)
+    pub drew: bool,
     pub doc: Document,
     /// every sheet side by side (allsheets.rs)
     pub all_sheets: bool,
@@ -354,6 +356,7 @@ impl Canvas {
 impl Default for Canvas {
     fn default() -> Self {
         Canvas {
+            drew: false,
             doc: Document::default(),
             sel: BTreeSet::new(),
             tool: Tool::Select,

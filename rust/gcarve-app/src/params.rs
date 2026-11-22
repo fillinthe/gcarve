@@ -198,7 +198,7 @@ impl Canvas {
             nd.p = nd.p + d;
             nd.inh = nd.inh + d;
             nd.out = nd.out + d;
-            self.status = format!("Node {node} {} = {expr}", prop.to_uppercase());
+            self.status = crate::i18n::tf("Node {node} {prop} = {expr}", &[("node", &node), ("prop", &prop.to_uppercase()), ("expr", &expr)]);
         }
         self.node_shape = shape;
         self.node_idx = node;

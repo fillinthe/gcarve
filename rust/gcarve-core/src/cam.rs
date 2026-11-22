@@ -597,18 +597,22 @@ fn indexed_name(name: &str, i: usize) -> String {
 /// A → quarter arc → start → around the ring → start → quarter arc → B → A, so every pass plunges at A in the waste
 /// and meets the line tangentially (no plunge mark on the part edge). `right` = the waste is on the right of the
 /// travel direction. `keep_inside`: for inside cuts the leads must stay within the ring (None = no check).
-fn with_leads(ring: &[Pt], radius: f64, right: bool, keep_inside: Option<&PathD>) -> Option<Vec<Pt>> {
+fn with_leads(ring: &[Pt], radius: f64, right: bool, keep_inside: Option<&PathD>, keep_start: bool) -> Option<Vec<Pt>> {
     let n = ring.len();
     if n < 3 || radius <= 0.0 {
         return None;
     }
-    // start in the middle of the longest straight run, not at a corner: there the arcs have room on both sides
-    let k = (0..n - 1).max_by(|&a, &b| dist(ring[a], ring[a + 1]).total_cmp(&dist(ring[b], ring[b + 1])))?;
-    let mid = lerp(ring[k], ring[k + 1], 0.5);
-    let mut r2 = vec![mid];
-    r2.extend_from_slice(&ring[k + 1..n - 1]);
-    r2.extend_from_slice(&ring[..=k]);
-    r2.push(mid);
+    // start in the middle of the longest straight run, not at a corner: there the arcs have room on both sides;
+    // `keep_start` = the person picked the start point (Make Start Point): the lead meets the line there
+    let mut r2 = ring.to_vec();
+    if !keep_start {
+        let k = (0..n - 1).max_by(|&a, &b| dist(ring[a], ring[a + 1]).total_cmp(&dist(ring[b], ring[b + 1])))?;
+        let mid = lerp(ring[k], ring[k + 1], 0.5);
+        r2 = vec![mid];
+        r2.extend_from_slice(&ring[k + 1..n - 1]);
+        r2.extend_from_slice(&ring[..=k]);
+        r2.push(mid);
+    }
     let (ring, n) = (&r2[..], r2.len());
     let unit = |a: Pt, b: Pt| { let d = dist(a, b); (d > 1e-12).then(|| pt((b.x - a.x) / d, (b.y - a.y) / d)) };
     let (t_in, t_out) = (unit(ring[0], ring[1])?, unit(ring[n - 2], ring[n - 1])?);
@@ -736,7 +740,7 @@ pub fn generate_profile(op: &Op, tool: &Tool, contours: &[Contour], m: &Material
             let mut pts = pts_of(&o);
             pts.push(pts[0]);
             if let (Some(out), true) = (waste_outside, op.ramp_in > 0.0) {
-                match with_leads(&pts, op.ramp_in, ccw == out, (!out).then_some(&o)) {
+                match with_leads(&pts, op.ramp_in, ccw == out, (!out).then_some(&o), op.start_first && !c.nodes.is_empty()) {
                     Some(p) => pts = p,
                     None => res.warnings.push(format!("{}: no room for the lead-in in a small shape, plunging on the line there", op.name)),
                 }
@@ -814,7 +818,7 @@ pub fn generate_pocket(op: &Op, tool: &Tool, contours: &[Contour], m: &Material)
         res.warnings.push(format!("{}: pocket is too small for the tool", op.name));
         return res;
     }
-    if op.adaptive && !matches!(tool.kind, ToolType::VBit | ToolType::BallNose | ToolType::RoundOver) {
+    if op.adaptive && !matches!(tool.kind, ToolType::VBit | ToolType::BallNose | ToolType::RoundOver | ToolType::TaperedBall) {
         match pocket_adaptive(op, tool, &boundary, m) {
             Ok(tp) => {
                 res.paths.push(tp);
@@ -1290,7 +1294,7 @@ fn moulding_sweep(op: &Op, tool: &Tool, rails: &[Contour], sp: &[Pt], b: Rect, m
                     Some(h) => h,
                     None => continue, // outside the drawn form
                 },
-                ToolType::BallNose => tool.ball_rise(du),
+                ToolType::BallNose | ToolType::TaperedBall => tool.ball_rise(du),
                 ToolType::VBit => du.abs() / tan_half,
                 _ => 0.0,
             };
@@ -1364,13 +1368,17 @@ fn offset_line(p: &[Pt], d: f64, closed: bool) -> Vec<Pt> {
 
 /// Drag knife (VCarve's gadget): the blade tip trails the holder's pivot by `op.drag_knife`, so the pivot runs that
 /// far past each point of the line, and at a corner sharper than 10° it swings round the corner point at that radius
-/// before going on (the blade turns in place). One pass at full depth; the spindle stays off (RPM 0 on the bit).
+/// before going on (the blade turns in place). Passes by the pass depth, lifting between them; the spindle stays off
+/// (RPM 0 on the bit).
 pub fn generate_drag_knife(op: &Op, tool: &Tool, contours: &[Contour], m: &Material) -> CamResult {
     let mut res = CamResult::default();
     if !depth_checks(op, m, &mut res) {
         return res;
     }
     let o = op.drag_knife;
+    if o > 0.06 {
+        res.warnings.push(format!("{}: a blade offset of {} in is large: drag knife blades are usually 0.010–0.020 in (0.25–0.5 mm) off center. Check the units", op.name, (o * 1000.0).round() / 1000.0));
+    }
     let tol = 10f64.to_radians();
     for c in contours {
         let mut pts = flatten(c, TOL);
@@ -1387,13 +1395,12 @@ pub fn generate_drag_knife(op: &Op, tool: &Tool, contours: &[Contour], m: &Mater
         }
         let dir = |a: Pt, b: Pt| { let l = dist(a, b).max(1e-12); pt((b.x - a.x) / l, (b.y - a.y) / l) };
         let mut tp = Toolpath { name: indexed_name(&op.name, res.paths.len()), tool: -1, feed_xy: tool.feed_xy, feed_z: tool.feed_z, moves: Vec::new(), comp: 0 };
-        let d0 = dir(pts[0], pts[1]);
-        let start = pts[0] + d0 * o;
-        rapid_to(&mut tp, start, Some(m.retract_z));
-        cut_to(&mut tp, start, Some(-op.depth));
+        let start = pts[0] + dir(pts[0], pts[1]) * o;
+        // where the pivot goes, once round
+        let mut pivot = Vec::new();
         for i in 1..pts.len() {
             let din = dir(pts[i - 1], pts[i]);
-            cut_to(&mut tp, pts[i] + din * o, None);
+            pivot.push(pts[i] + din * o);
             if let Some(&next) = pts.get(i + 1) {
                 let dout = dir(pts[i], next);
                 let (a0, mut turn) = (din.y.atan2(din.x), dout.y.atan2(dout.x) - din.y.atan2(din.x));
@@ -1402,13 +1409,22 @@ pub fn generate_drag_knife(op: &Op, tool: &Tool, contours: &[Contour], m: &Mater
                     let n = ((turn.abs() / 10f64.to_radians()).ceil() as usize).max(2);
                     for k in 1..=n {
                         let a = a0 + turn * k as f64 / n as f64;
-                        cut_to(&mut tp, pts[i] + pt(a.cos(), a.sin()) * o, None);
+                        pivot.push(pts[i] + pt(a.cos(), a.sin()) * o);
                     }
                 }
             }
         }
-        let last = last_xy(&tp, start);
-        rapid_to(&mut tp, last, Some(m.retract_z));
+        // thick vinyl, card or leather: the pass depth splits the cut (ticket #43: it always cut in one pass)
+        let passes = passes_for(op.depth, step_down(op.stepdown, tool));
+        for k in 1..=passes {
+            rapid_to(&mut tp, start, Some(m.retract_z)); // lifted between passes: the blade sets itself on the first line again
+            cut_to(&mut tp, start, Some(-op.depth * k as f64 / passes as f64));
+            for &q in &pivot {
+                cut_to(&mut tp, q, None);
+            }
+            let last = last_xy(&tp, start);
+            rapid_to(&mut tp, last, Some(m.retract_z));
+        }
         res.paths.push(tp);
     }
     if tool.rpm > 0 {
@@ -3500,6 +3516,16 @@ mod last_pass_tests {
         assert!(x0.abs() < 1e-6 && y0.abs() < 1e-6, "{x0} {y0}");
         let (x1, y1) = start(true);
         assert!((x1 - 4.0).abs() < 1e-6 && (y1 - 4.0).abs() < 1e-6, "{x1} {y1}");
+        // with a lead-in the picked start point holds too (it used to move to the longest side's middle)
+        let lead = |first: bool| {
+            let op = Op { kind: OpType::Profile, name: "P".into(), depth: 0.25, side: Side::Outside, ramp_in: 0.25, start_first: first, ..Default::default() };
+            let r = generate_profile(&op, &tool, &[sq.clone()], &m);
+            assert!(r.warnings.is_empty(), "{:?}", r.warnings);
+            let mv = r.paths[0].moves.iter().find(|mv| mv.x.is_some() && mv.y.is_some()).unwrap();
+            crate::geom::dist(pt(mv.x.unwrap(), mv.y.unwrap()), pt(4.0, 4.0))
+        };
+        assert!(lead(true) < 0.6, "{}", lead(true));
+        assert!(lead(false) > 1.0, "{}", lead(false));
     }
 
     #[test]
@@ -3667,20 +3693,29 @@ mod tab_tests {
         use crate::document::{Material, Op, OpType, Side, Tool};
         use crate::geom::{dist, make_rect, pt};
         let m = Material { w: 12.0, h: 12.0, t: 0.75, ..Default::default() };
-        let op = Op { kind: OpType::Profile, name: "K".into(), depth: 0.05, side: Side::On, drag_knife: 0.25, ..Default::default() };
+        let op = Op { kind: OpType::Profile, name: "K".into(), depth: 0.05, side: Side::On, drag_knife: 0.02, ..Default::default() };
         let knife = Tool { name: "Knife".into(), diameter: 0.0625, rpm: 0, stepdown: 1.0, ..Default::default() };
         let r = generate(&op, &knife, &[make_rect(2.0, 2.0, 6.0, 6.0)], &m, None);
         assert!(r.warnings.is_empty(), "{:?}", r.warnings);
         let mv = &r.paths[0].moves;
-        // one depth only, and at each of the 4 corners the pivot circles the corner at the blade offset
+        // one depth (the knife's pass depth covers it), and at each of the 4 corners the pivot circles the corner at the blade offset
         assert!(mv.iter().filter_map(|m| m.z).filter(|z| *z < 0.0).all(|z| (z + 0.05).abs() < 1e-9));
+        // a shallower pass depth gives that many passes, each the whole way round (ticket #43)
+        let two = generate(&Op { stepdown: 0.025, ..op.clone() }, &knife, &[make_rect(2.0, 2.0, 6.0, 6.0)], &m, None);
+        let zs: Vec<f64> = two.paths[0].moves.iter().filter_map(|m| m.z).filter(|z| *z < 0.0).collect();
+        assert_eq!(zs.len(), 2, "{zs:?}");
+        assert!((zs[0] + 0.025).abs() < 1e-9 && (zs[1] + 0.05).abs() < 1e-9);
+        assert_eq!(two.paths[0].moves.len(), 2 * mv.len());
         for c in [pt(2.0, 2.0), pt(6.0, 2.0), pt(6.0, 6.0), pt(2.0, 6.0)] {
-            let on_circle = mv.iter().filter(|m| m.x.is_some() && m.y.is_some() && (dist(pt(m.x.unwrap(), m.y.unwrap()), c) - 0.25).abs() < 1e-6).count();
+            let on_circle = mv.iter().filter(|m| m.x.is_some() && m.y.is_some() && (dist(pt(m.x.unwrap(), m.y.unwrap()), c) - 0.02).abs() < 1e-6).count();
             assert!(on_circle >= 3, "corner {c:?}: {on_circle}");
         }
         // the safety check takes RPM 0 for a knife; a spinning one gets a warning
         assert!(safety_issues(std::slice::from_ref(&op), std::slice::from_ref(&knife), std::slice::from_ref(&r.paths), &m).iter().all(|s| !s.contains("spindle speed")));
-        assert!(!generate(&op, &Tool { rpm: 18000, ..knife }, &[make_rect(2.0, 2.0, 6.0, 6.0)], &m, None).warnings.is_empty());
+        assert!(!generate(&op, &Tool { rpm: 18000, ..knife.clone() }, &[make_rect(2.0, 2.0, 6.0, 6.0)], &m, None).warnings.is_empty());
+        // 1/4 in typed where 0.25 mm was meant: say so
+        let big = Op { drag_knife: 0.25, ..op.clone() };
+        assert!(generate(&big, &knife, &[make_rect(2.0, 2.0, 6.0, 6.0)], &m, None).warnings.iter().any(|w| w.contains("Check the units")));
     }
 
     #[test]

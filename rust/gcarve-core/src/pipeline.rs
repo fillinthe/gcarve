@@ -6,10 +6,10 @@ use crate::document::{Document, OpType, Tool};
 use crate::feeds::{assess_feeds_range, chip_groups, chip_load_range, classify_material, suggest_feeds, ChipRange, Cutter, FeedAssessment, FeedSuggestion};
 use crate::job::{Job, Toolpath};
 use crate::postdef::{find_post, post_jobs, PostDef, PostOutput};
-use crate::relief::generate_relief;
+use crate::relief::generate_relief_rest;
 
 fn cutter(t: &Tool) -> Cutter {
-    Cutter { vbit: t.kind == crate::document::ToolType::VBit, diameter: t.diameter, flutes: t.flutes }
+    Cutter { vbit: t.kind == crate::document::ToolType::VBit, diameter: t.cut_diameter(), flutes: t.flutes }
 }
 
 /// The bit maker's chip load for the board material, when the tool came from the bit database.
@@ -76,7 +76,7 @@ pub fn suggest(doc: &Document, t: &Tool) -> FeedSuggestion {
 /// Risk meter for typed feeds, against the maker's chip load when the tool has one.
 pub fn assess(doc: &Document, t: &Tool, feed_xy: f64, feed_z: f64, rpm: i32, stepdown: f64) -> FeedAssessment {
     let mat = &doc.material.kind;
-    let mut cr = maker_chip(t, mat).unwrap_or_else(|| chip_load_range(classify_material(mat), if t.kind == crate::document::ToolType::VBit { t.diameter.min(0.125) } else { t.diameter }));
+    let mut cr = maker_chip(t, mat).unwrap_or_else(|| chip_load_range(classify_material(mat), if t.kind == crate::document::ToolType::VBit { t.diameter.min(0.125) } else { t.cut_diameter() }));
     // the meter's sweet spot follows the machine: a hobby router at an industrial chip load chatters or stalls
     let (kc, _) = class_factor(doc.material.machine.as_ref().map_or("", |m| m.class.as_str()));
     cr.lo *= kc;
@@ -228,10 +228,19 @@ pub fn regenerate_some(doc: &Document, want: &dyn Fn(usize) -> bool) -> Generate
             }
             cam::CamResult { paths, warnings: Vec::new() }
         } else if op.kind == OpType::Relief {
-            match doc.find_relief(op.relief) {
-                Some(rl) if !rl.height.is_empty() => {
+            match crate::relief::model_for(doc, op.relief) {
+                Some(rl) => {
                     let boundary = doc.contours_of(&doc.op_shape_ids(op));
-                    generate_relief(op, &tool, if op.rough { clear.as_ref() } else { None }, rl, &doc.material, (!boundary.is_empty()).then_some(boundary.as_slice()))
+                    // rest machining: the 3D finishing toolpaths above this one on the same model, with their areas
+                    let all = crate::relief::ALL_MODELS;
+                    let earlier: Vec<crate::relief::Earlier> = doc.ops[..i]
+                        .iter()
+                        .filter(|o| o.kind == OpType::Relief && (o.relief == op.relief || o.relief == all || op.relief == all))
+                        .filter(|o| (o.sheet_scope < 0 || o.sheet_scope == doc.active_sheet) && o.tool >= 0 && (o.tool as usize) < doc.tools.len())
+                        .map(|o| crate::relief::Earlier { tool: tool_for_cut(doc, o.tool as usize), boundary: doc.contours_of(&doc.op_shape_ids(o)) })
+                        .collect();
+                    let rest = op.rest.then_some(earlier.as_slice());
+                    generate_relief_rest(op, &tool, if op.rough { clear.as_ref() } else { None }, &rl, &doc.material, (!boundary.is_empty()).then_some(boundary.as_slice()), rest)
                 }
                 _ => cam::CamResult { paths: Vec::new(), warnings: vec![format!("{}: 3D model not loaded", op.name)] },
             }
@@ -251,8 +260,8 @@ pub fn regenerate_some(doc: &Document, want: &dyn Fn(usize) -> bool) -> Generate
             }
         };
         cam::array_copies(op, &mut r.paths);
-        if let Some(rl) = (op.project_on > 0 && op.kind != OpType::Relief).then(|| doc.find_relief(op.project_on)).flatten().filter(|rl| !rl.height.is_empty()) {
-            crate::relief::project_paths(&mut r.paths, rl);
+        if let Some(rl) = (op.project_on > 0 && op.kind != OpType::Relief).then(|| crate::relief::model_for(doc, op.project_on)).flatten() {
+            crate::relief::project_paths(&mut r.paths, &rl);
         }
         g.minutes.push(r.paths.iter().map(|tp| crate::order::estimate_minutes_with(tp, tp.feed_xy, tp.feed_z, mo)).sum());
         g.paths.push(r.paths);

@@ -65,7 +65,7 @@ impl ShapesDialog {
         crate::widgets::Dialog::new(i18n::t("Shapes library")).open(&mut open).close_footer().width(620.0).show(ctx, |ui| {
             ui.horizontal(|ui| {
                 for (i, c) in CATEGORIES.iter().chain(std::iter::once(&"My shapes")).enumerate() {
-                    if ui.add(egui::Button::selectable(self.tab == i, *c)).clicked() {
+                    if ui.add(egui::Button::selectable(self.tab == i, crate::i18n::t(c))).clicked() {
                         self.tab = i;
                     }
                 }
@@ -96,7 +96,7 @@ impl ShapesDialog {
                     ui.spacing_mut().item_spacing = egui::vec2(8.0, 8.0);
                     if self.tab < CATEGORIES.len() {
                         for (i, s) in self.builtin.iter().enumerate().filter(|(_, s)| s.category == CATEGORIES[self.tab]) {
-                            if crate::widgets::shape_tile(ui, &s.contours, s.name, &format!("Add a {} {}", crate::units::text(doc, width.unwrap_or(6.0)), s.name.to_lowercase())).clicked() {
+                            if crate::widgets::shape_tile(ui, &s.contours, s.name, &crate::i18n::tf("Add a {size} {name}", &[("size", &crate::units::text(doc, width.unwrap_or(6.0))), ("name", &crate::i18n::tr(s.name).to_lowercase())])).clicked() {
                                 add_builtin = Some(i);
                             }
                         }
@@ -135,7 +135,7 @@ impl ShapesDialog {
                 }
                 ids.insert(id);
             }
-            *host.message = format!("Added {}", s.name);
+            *host.message = crate::i18n::tf("Added {name}", &[("name", &crate::i18n::tr(s.name))]);
             host.canvas.sel = ids;
             host.canvas.mutated();
         }
@@ -156,7 +156,7 @@ impl ShapesDialog {
                     s.c = transformed(&s.c, &m);
                 }
             }
-            *host.message = format!("Added {}", self.saved[i].name);
+            *host.message = crate::i18n::tf("Added {name}", &[("name", &self.saved[i].name)]);
             host.canvas.sel = ids;
             host.canvas.mutated();
         }

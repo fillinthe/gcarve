@@ -117,6 +117,7 @@ pub fn tool_to_json(t: &Tool) -> Value {
         ToolType::VBit => "vbit",
         ToolType::BallNose => "ball",
         ToolType::RoundOver => "roundover",
+        ToolType::TaperedBall => "taperball",
         ToolType::EndMill => "endmill",
     };
     let mut o = json!({"name": t.name, "type": kind, "diameter": t.diameter, "angle": t.angle, "stepdown": t.stepdown, "feedXY": t.feed_xy,
@@ -157,6 +158,7 @@ pub fn tool_from_json(o: &Value) -> Tool {
         Some("vbit") => ToolType::VBit,
         Some("ball") => ToolType::BallNose,
         Some("roundover") => ToolType::RoundOver,
+        Some("taperball") => ToolType::TaperedBall,
         _ => ToolType::EndMill,
     };
     let mut t = Tool {
@@ -354,6 +356,9 @@ pub(crate) fn op_json(op: &Op, tools: &[Tool]) -> Value {
     if op.skin > 0.0 {
         m.insert("skin".into(), json!(op.skin));
     }
+    if op.rest {
+        m.insert("rest".into(), json!(true));
+    }
     if op.countersink > 0.0 {
         m.insert("countersink".into(), json!(op.countersink));
     }
@@ -469,6 +474,7 @@ pub(crate) fn op_from(o: &Value, tool_count: i32) -> Op {
         thread_pitch: num(o, "threadPitch", 0.0).max(0.0),
         countersink: num(o, "countersink", 0.0).max(0.0),
         skin: num(o, "skin", 0.0).max(0.0),
+        rest: flag(o, "rest", false),
         fit_holes: flag(o, "fitHoles", false),
         start_first: flag(o, "startFirst", false),
         corner_relief: int(o, "cornerRelief", 0).clamp(0, 2) as u8,
@@ -610,6 +616,24 @@ pub fn save_project(d: &Document) -> String {
         .map(|r| {
             let mut o = json!({"id": r.id, "name": r.name, "source": r.source, "x": r.x, "y": r.y, "w": r.w, "h": r.h, "depth": r.depth,
                    "mirror": r.mirror});
+            let ob = o.as_object_mut().unwrap();
+            // component settings, only when set (Rust only)
+            if r.combine != 0 {
+                ob.insert("combine".into(), json!(r.combine));
+            }
+            if r.lift != 0.0 {
+                ob.insert("lift".into(), json!(r.lift));
+            }
+            if r.clip_lo != 0.0 || r.clip_hi != 1.0 {
+                ob.insert("slice".into(), json!([r.clip_lo, r.clip_hi]));
+            }
+            if r.smooth != 0 {
+                ob.insert("smooth".into(), json!(r.smooth));
+            }
+            if r.pic.is_empty() && !r.height.is_empty() {
+                // a 3D model's height map travels with the project (opens on any computer and on the web)
+                ob.insert("heights".into(), json!({"nx": r.nx, "ny": r.ny, "data": crate::relief::pack_heights(&r.height)}));
+            }
             if !r.pic.is_empty() {
                 // a relief made from a picture carries it (Rust only; Qt ignores the key and loads no height)
                 o.as_object_mut().unwrap().insert("picture".into(), json!({"w": r.pic_w, "h": r.pic_h, "gray": r.pic, "invert": r.pic_invert, "smooth": r.pic_smooth, "levels": r.pic_levels}));
@@ -721,10 +745,26 @@ pub fn load_project(text: &str) -> Result<Document, String> {
             pic_invert: flag(get(o, "picture"), "invert", false),
             pic_smooth: int(get(o, "picture"), "smooth", 1).clamp(0, 20) as u32,
             pic_levels: flag(get(o, "picture"), "levels", true),
+            combine: int(o, "combine", 0).clamp(0, 3) as u8,
+            lift: num(o, "lift", 0.0),
+            clip_lo: arr(get(o, "slice")).first().map_or(0.0, |v| to_f64(v, 0.0)).clamp(0.0, 1.0),
+            clip_hi: arr(get(o, "slice")).get(1).map_or(1.0, |v| to_f64(v, 1.0)).clamp(0.0, 1.0),
+            smooth: int(o, "smooth", 0).clamp(0, 50) as u32,
             ..Default::default()
         })
-        .map(|mut r| {
-            crate::relief::rasterize_picture(&mut r); // a picture's height field is rebuilt on every load, on every device
+        .zip(arr(get(&root, "reliefs")))
+        .map(|(mut r, o)| {
+            if r.pic.is_empty() {
+                // a saved 3D model's height map (older projects have only the file path: the app re-reads it)
+                let hm = get(o, "heights");
+                let (nx, ny) = (int(hm, "nx", 0), int(hm, "ny", 0));
+                let h = crate::relief::unpack_heights(&s(hm, "data", ""), (nx.max(0) * ny.max(0)) as usize);
+                if nx >= 2 && ny >= 2 && !h.is_empty() {
+                    (r.nx, r.ny, r.height) = (nx, ny, h);
+                }
+            } else {
+                crate::relief::rasterize_picture(&mut r); // a picture's height field is rebuilt on every load, on every device
+            }
             r
         })
         .collect();

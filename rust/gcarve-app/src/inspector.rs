@@ -89,9 +89,9 @@ fn measure_panel(ui: &mut egui::Ui, canvas: &Canvas) {
         row("ΔX", format!("{}{}", if dx < -1e-9 { "−" } else { "" }, f(dx.abs())), false);
         row("ΔY", format!("{}{}", if dy < -1e-9 { "−" } else { "" }, f(dy.abs())), false);
         row("Angle", format!("{ang:.2}° from +X"), false);
-        row("Start", format!("X {}  Y {}", f(a.x), f(a.y)), false);
+        row(crate::i18n::t("Start"), format!("X {}  Y {}", f(a.x), f(a.y)), false);
         row(if done { i18n::t("End") } else { i18n::t("Pointer") }, format!("X {}  Y {}", f(b.x), f(b.y)), false);
-        row("Midpoint", format!("X {}  Y {}", f((a.x + b.x) / 2.0), f((a.y + b.y) / 2.0)), false);
+        row(crate::i18n::t("Midpoint"), format!("X {}  Y {}", f((a.x + b.x) / 2.0), f((a.y + b.y) / 2.0)), false);
     });
     ui.add(egui::Label::new(RichText::new(if done { i18n::t("Click again to start a new measurement · Esc clears it") } else { i18n::t("Click the second point") }).small().color(theme::TEXT_DIM)).wrap());
 }
@@ -230,12 +230,18 @@ fn properties(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas) {
     if !binds.is_empty() {
         ui.add(egui::Label::new(RichText::new(binds).size(11.0).italics().color(theme::ACCENT)).wrap());
     }
-    ui.add(egui::Label::new(RichText::new(shell::feeds_summary(&canvas.doc)).size(11.0).color(theme::TEXT.gamma_multiply(0.65))).wrap());
+    let feeds = shell::feeds_summary(&canvas.doc);
+    if !feeds.is_empty() {
+        ui.add(egui::Label::new(RichText::new(feeds).size(11.0).color(theme::TEXT.gamma_multiply(0.65))).wrap());
+    }
 }
 
 /// Nothing selected: what to do next for this job, with the buttons for it
 fn next_step(ui: &mut egui::Ui, sh: &mut Shell, canvas: &Canvas) {
     let doc = &canvas.doc;
+    if sh.start_card {
+        return; // the start card in the middle already offers all of it
+    }
     if sh.tour.active(doc) {
         tour_card(ui, sh, doc);
         return;
@@ -686,7 +692,8 @@ fn toolpaths(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, gen: Option
                     });
                 });
             }
-        } else {
+        } else if !(names.is_empty() && matches!(head, Head::Folder(n) if n.is_empty())) {
+            // (no folders at all: the list needs no "Not in a folder" heading)
             ui.add_space(6.0);
             // heading: open / shut, name, count, eye for all; folders: export just these, rename, drop rows on it
             let key = match head {

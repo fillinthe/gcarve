@@ -358,6 +358,7 @@ impl Canvas {
     pub fn add_shape(&mut self, c: Contour) -> i32 {
         self.doc.checkpoint();
         let id = self.doc.add(c, None);
+        self.drew = true; // the app counts a first drawn shape (web, anonymous)
         self.sel = BTreeSet::from([id]);
         self.mutated();
         id
@@ -1067,7 +1068,7 @@ impl Canvas {
                         if self.measure.len() == 2 {
                             let (a, b) = (self.measure[0], self.measure[1]);
                             let d = &self.doc;
-                            self.measure_text = format!("Distance {}, ΔX {}, ΔY {}", units::fmt(d, dist(a, b)), units::fmt(d, (b.x - a.x).abs()), units::fmt(d, (b.y - a.y).abs()));
+                            self.measure_text = crate::i18n::tf("Distance {d}, ΔX {dx}, ΔY {dy}", &[("d", &units::fmt(d, dist(a, b))), ("dx", &units::fmt(d, (b.x - a.x).abs())), ("dy", &units::fmt(d, (b.y - a.y).abs()))]);
                         }
                     }
                 }

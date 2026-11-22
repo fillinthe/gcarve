@@ -47,7 +47,7 @@ impl Account {
         let gate = self.gate; // desktop licence only: the web app is open
         let mut open = true;
         let app = crate::store::app();
-        let title = if cloud.signed_in() { format!("{app} account") } else if self.reason.starts_with("You were signed out") { crate::i18n::t("Sign in again").into() } else { format!("Sign in to {app}") };
+        let title = if cloud.signed_in() { crate::i18n::tf("{app} account", &[("app", &app)]) } else if self.reason.starts_with("You were signed out") { crate::i18n::t("Sign in again").into() } else { crate::i18n::tf("Sign in to {app}", &[("app", &app)]) };
         let reason = self.reason.clone();
         let body = |ui: &mut egui::Ui| {
             if !reason.is_empty() && !cloud.signed_in() {
@@ -56,7 +56,7 @@ impl Account {
             }
             if let Some(u) = cloud.user.clone() {
                 self.fields[1].clear(); // signed in: forget the typed password
-                ui.label(RichText::new(format!("Signed in as {}", u.email)).family(widgets::bold_family()));
+                ui.label(RichText::new(crate::i18n::tf("Signed in as {email}", &[("email", &u.email)])).family(widgets::bold_family()));
                 let plan = if cloud.ent.plan == "pro" { format!("{app} Pro") } else { i18n::tf("Free plan · {max_projects} cloud projects", &[("max_projects", &cloud.ent.max_projects)]) };
                 let desk = if !Cloud::web() && !cloud.ent.desktop { format!(" · the desktop app is part of {app} Pro") } else { String::new() };
                 let role = match u.role.as_str() { "superadmin" => crate::i18n::t(" · super admin"), "admin" => crate::i18n::t(" · admin"), _ => "" };

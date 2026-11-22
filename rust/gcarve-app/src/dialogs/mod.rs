@@ -178,6 +178,7 @@ impl Dialogs {
         }
         // side files picked for a dialog
         for (tag, name, bytes) in host.files.aux_rx.try_iter() {
+            let bytes = crate::files::without_bom(bytes);
             match tag {
                 "tools" => tools::import_file(ctx, &name, &bytes, host),
                 "photo" => match (self.op.as_mut(), trace::load_gray(&name, &bytes, 600)) {
@@ -209,7 +210,7 @@ impl Dialogs {
                 "sheetlogo" => match crate::setupsheet::logo_uri(&name, &bytes) {
                     Ok(uri) => {
                         crate::store::save(crate::setupsheet::LOGO_KEY, &uri);
-                        *host.message = format!("Setup sheets now carry {name} as your logo.");
+                        *host.message = crate::i18n::tf("Setup sheets now carry {name} as your logo.", &[("name", &name)]);
                     }
                     Err(e) => *host.message = e,
                 },
@@ -575,7 +576,7 @@ pub fn feed_meter(ui: &mut egui::Ui, a: &FeedAssessment, width: f32) {
         p.text(lr.right_center(), egui::Align2::RIGHT_CENTER, i18n::t("breaks bit / tears"), f, dim);
         if !a.message.is_empty() {
             let color = match a.level { 2 => crate::theme::DANGER, 1 => Color32::from_rgb(0xd7, 0xa3, 0x34), _ => crate::theme::TEXT };
-            ui.add(egui::Label::new(RichText::new(&a.message).size(11.0).color(color)).wrap());
+            ui.add(egui::Label::new(RichText::new(i18n::msg_sentences(&a.message)).size(11.0).color(color)).wrap());
         }
     });
 }
@@ -592,13 +593,24 @@ pub fn tool_advice(doc: &Document, i: usize) -> Option<(Tool, &'static str, Feed
 /// Tool line + meter as shown under the tool combo of every toolpath dialog.
 pub fn tool_advice_ui(ui: &mut egui::Ui, doc: &Document, i: usize, width: f32) {
     let Some((e, src, a)) = tool_advice(doc, i) else { return };
-    let note = match src { "preset" => i18n::t(" (saved preset)"), "auto" => i18n::t(" (auto from chip load, edit in Tool Library)"), _ => i18n::t(" (bit defaults)") };
+    let note = match src { "preset" => i18n::t(" (saved preset)"), "auto" => i18n::t(" (suggested)"), _ => i18n::t(" (bit defaults)") };
     ui.add(egui::Label::new(RichText::new(i18n::tf("In {kind}: F {feed_xy} / plunge {feed_z} in/min · {rpm} rpm · pass {stepdown} in{note}", &[("kind", &doc.material.kind), ("feed_xy", &format!("{:.0}", e.feed_xy)), ("feed_z", &format!("{:.0}", e.feed_z)), ("rpm", &e.rpm), ("stepdown", &(fmt_len(e.stepdown))), ("note", &note)])).small().color(crate::theme::TEXT_DIM)).wrap());
     if src == "auto" && doc.material.machine.is_none() {
-        // no machine = full industrial chip loads: far too fast for a hobby or desktop router
-        ui.add(egui::Label::new(RichText::new(i18n::t("No machine chosen: these feeds suit a heavy industrial router. Pick yours (Toolpaths › Machine, Board and Bits › Choose Machine…) and they are scaled to it.")).size(11.0).color(Color32::from_rgb(0xd7, 0xa3, 0x34))).wrap());
+        no_machine_note(ui);
     }
     feed_meter(ui, &a, width);
+}
+
+/// One line wherever feeds are suggested without a machine (full industrial chip loads: far too fast for a hobby or
+/// desktop router), with the way out next to it.
+pub fn no_machine_note(ui: &mut egui::Ui) {
+    ui.horizontal_wrapped(|ui| {
+        ui.label(RichText::new(i18n::t("No machine chosen: feeds assume a large router.")).small().color(crate::theme::WARNING));
+        ui.spacing_mut().item_spacing.x = 4.0;
+        if ui.link(RichText::new(i18n::t("Choose machine…")).small()).clicked() {
+            crate::shell::request(ui.ctx(), "machine");
+        }
+    });
 }
 
 pub fn combo<T: PartialEq + Copy>(ui: &mut egui::Ui, id: &str, cur: &mut T, items: &[(T, &str)], width: f32) -> bool {

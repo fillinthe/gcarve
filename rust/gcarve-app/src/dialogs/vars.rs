@@ -170,7 +170,7 @@ fn badge(ui: &mut egui::Ui, uses: &[String]) {
     let (r, resp) = ui.allocate_exact_size(egui::vec2(g.size().x + 10.0, 18.0), egui::Sense::hover());
     ui.painter().rect_filled(r, 9.0, theme::ACCENT);
     ui.painter().galley(r.center() - g.size() / 2.0, g, egui::Color32::WHITE);
-    resp.tip(format!("Used by:\n{}", uses.join("\n")));
+    resp.tip(crate::i18n::tf("Used by:\n{list}", &[("list", &uses.join("\n"))]));
 }
 
 /// Vectors ▸ Constrain Two Shapes… (Link): anchor stays, target follows.
@@ -197,14 +197,14 @@ impl ConstraintDialog {
             egui::Grid::new("con").num_columns(2).spacing([14.0, 8.0]).show(ui, |ui| {
                 ui.label(i18n::t("Anchor (stays)"));
                 ui.horizontal(|ui| {
-                    ui.label(RichText::new(format!("Shape {}", self.anchor)).family(crate::widgets::bold_family()));
+                    ui.label(RichText::new(crate::i18n::tf("Shape {n}", &[("n", &self.anchor)])).family(crate::widgets::bold_family()));
                     if ui.add(crate::widgets::Button::new(i18n::t("Swap")).icon("swap", false)).clicked() {
                         std::mem::swap(&mut self.anchor, &mut self.target);
                     }
                 });
                 ui.end_row();
                 ui.label(i18n::t("Target (moves)"));
-                ui.label(RichText::new(format!("Shape {}", self.target)).family(crate::widgets::bold_family()));
+                ui.label(RichText::new(crate::i18n::tf("Shape {n}", &[("n", &self.target)])).family(crate::widgets::bold_family()));
                 ui.end_row();
                 ui.label(i18n::t("Relation"));
                 let label = Document::constraint_types().iter().find(|(t, _)| *t == self.kind).map(|(_, l)| *l).unwrap_or("");

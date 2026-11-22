@@ -367,11 +367,11 @@ impl Help {
                         Upd::Downloading => {
                             ui.horizontal(|ui| {
                                 ui.spinner();
-                                ui.label(format!("Downloading {app} {v}…"));
+                                ui.label(crate::i18n::tf("Downloading {app} {v}…", &[("app", &app), ("v", &v)]));
                             });
                         }
                         Upd::Done(path) => {
-                            ui.label(RichText::new(format!("Downloaded to {path}")).small().color(theme::TEXT_DIM));
+                            ui.label(RichText::new(crate::i18n::tf("Downloaded to {path}", &[("path", &path)])).small().color(theme::TEXT_DIM));
                             let how = if cfg!(target_os = "macos") {
                                 i18n::tf("Quit {app}, then drag {app} from the window that opened onto Applications and choose Replace.", &[("app", &app)])
                             } else if cfg!(windows) {

@@ -101,7 +101,7 @@ impl CabinetDialog {
                 crate::widgets::radio_value(ui, &mut self.inside, true, i18n::t("Inside")).tip(i18n::t("The space in the box measures this: what has to fit in"));
             });
             egui::Grid::new("cabinet").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                let labels = ["Width", "Height", "Depth", "Board thickness (measure it)", "Back thickness", "Toe kick height", "Toe kick depth", "Dado wider than the board by", "Sheet width", "Sheet height"];
+                let labels = ["Width", "Height", "Depth", "Board thickness (measure it)", "Back thickness", "Toe kick height", "Toe kick depth", "Dado wider than the board by", "Sheet width", "Sheet height"]; // i18n
                 for (i, label) in labels.iter().enumerate() {
                     if (!self.base && (i == 5 || i == 6)) || (!self.dados && i == 7) {
                         continue;

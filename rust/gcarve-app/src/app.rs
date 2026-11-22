@@ -116,7 +116,8 @@ pub struct App {
     opening: Vec<Picked>,
     open_wait: bool,
     /// toolpaths of a big drawing are about to be rebuilt: this frame shows "Generating toolpaths" first
-    gen_wait: bool,
+    /// toolpaths being worked out one per frame behind the progress card
+    gen_step: Option<GenStep>,
     /// a SpaceMouse allowed earlier was looked for
     puck_tried: bool,
     puck_filter: crate::spacemouse::Filter,
@@ -159,6 +160,11 @@ pub struct App {
     /// usage counts: op count while the toolpath dialog was open; "toolpath" already sent this session
     ops_before: Option<usize>,
     counted_toolpath: bool,
+    /// Quit was asked for (⌘Q, app menu): on macOS the window's close button only hides the app
+    quitting: bool,
+    quit_frame: u64,
+    /// usage steps already sent this visit (`step`)
+    steps: std::collections::BTreeSet<&'static str>,
     counted_open: bool,
     /// signed in as an admin: usage isn't counted
     staff: bool,
@@ -216,15 +222,16 @@ impl App {
         let prefs = if shot { dialogs::prefs::Prefs::default() } else { dialogs::prefs::Prefs::load() }; // screenshots: stock settings (Qt: temp settings)
         gcarve_ui::help::init("fillinthe/gcarve", env!("CARGO_PKG_VERSION"));
         gcarve_ui::help::offer_crash_reports(); // "it stopped last time: tell us?" (crash.txt from the panic hooks)
+        gcarve_ui::cloud::set_reports(crate::store::load("reports-off").as_deref() != Some("1")); // Preferences › Send problem reports
         gcarve_ui::help::set_download_page("https://gcarve.app/download/");
         let mut app = App { mcp: Default::default(), files, mode, canvas: new_canvas(&prefs), left_open: ui_state.tool_rail, right_open: ui_state.side_panel, status: String::new(), message: i18n::t("Open a VCarve project (.crv), an SVG, DXF or PDF, or draw with R / E / P.").into(), name: i18n::t("Untitled").into(), shell: Shell::new(), frame: 0, gen: None, gen_rev: 0, gen_cov: Vec::new(), edit_seen: (0, None), edit_at: 0.0, show_paths: shot || crate::store::load("show-paths").as_deref() != Some("0"), all_paths: std::env::var("GCARVE_ALL_PATHS").map_or(shot || crate::store::load("design-all-paths").as_deref() == Some("1"), |v| v == "1"), lib_ready: false, lib_pushed: 0, shares: Vec::new(), shares_open: false,
             share_project: None, gen_draft: None, export: None, cloud: Cloud::new(), cloud_id: String::new(), account: Default::default(), help: Default::default(), movie: std::env::var("GCARVE_MOVIE").ok().map(|d| (d.into(), 0, std::env::var("GCARVE_MOVIE_FRAMES").ok().and_then(|n| n.parse().ok()).unwrap_or(600), false)), projects: Default::default(), dialogs: Dialogs::default(), select_all_on_load: false, prev_tool: Tool::Select, dev_measure: false,
             prefs_seen: prefs.synced.clone(), prefs_push_at: None, prefs_from_server: false,
-            cam: CamDialogs { prefs, ..Default::default() }, posts: UserPosts::load(), templates: Default::default(), player: Player::default(), view3d: View3d::load(shot), sim_wait: false, export_group: None, all_sheets: !shot && crate::store::load("all-sheets").as_deref() == Some("1") || std::env::var("GCARVE_ALL_SHEETS").is_ok(), opening: Vec::new(), open_wait: false, gen_wait: false, puck_tried: shot, puck_filter: Default::default(), puck_trace: Default::default(), view_3d: false, watch_pending: false, show_sim: false, shot, pending_dialog: String::new(), recover: if shot { None } else { crate::recover::load() }, recover_at: None, recover_rev: 0, last_dirty: false, last_open: false,
+            cam: CamDialogs { prefs, ..Default::default() }, posts: UserPosts::load(), templates: Default::default(), player: Player::default(), view3d: View3d::load(shot), sim_wait: false, export_group: None, all_sheets: !shot && crate::store::load("all-sheets").as_deref() == Some("1") || std::env::var("GCARVE_ALL_SHEETS").is_ok(), opening: Vec::new(), open_wait: false, gen_step: None, puck_tried: shot, puck_filter: Default::default(), puck_trace: Default::default(), view_3d: false, watch_pending: false, show_sim: false, shot, pending_dialog: String::new(), recover: if shot { None } else { crate::recover::load() }, recover_at: None, recover_rev: 0, last_dirty: false, last_open: false,
             project_path: None,
             #[cfg(not(target_arch = "wasm32"))]
             jobs: crate::jobs::Jobs::load(),
-            doc_id: 1, cloud_saving: None, next_doc_id: 2, tabs: vec![None], cur: 0, recent: if cfg!(target_arch = "wasm32") { Vec::new() } else { files::recent() }, confirm: None, after_save: None, palette: Palette::default(), open_at_start: None, share_start: 0, title: String::new(), about_open: false, ops_before: None, counted_toolpath: false, counted_open: false, staff: false, smoke_step: 0, smoke_note: String::new(), guide: Default::default(), ui_state,
+            doc_id: 1, cloud_saving: None, next_doc_id: 2, tabs: vec![None], cur: 0, recent: if cfg!(target_arch = "wasm32") { Vec::new() } else { files::recent() }, confirm: None, after_save: None, palette: Palette::default(), open_at_start: None, share_start: 0, title: String::new(), about_open: false, ops_before: None, counted_toolpath: false, quitting: false, quit_frame: 0, steps: Default::default(), counted_open: false, staff: false, smoke_step: 0, smoke_note: String::new(), guide: Default::default(), ui_state,
             #[cfg(all(target_os = "macos", not(test)))]
             mac_menu: Default::default(),
         };
@@ -507,6 +514,7 @@ impl App {
                 }
             }
             Pending::Quit => {
+                self.quit_frame = self.frame; // still quitting: the Close below lands next frame
                 self.canvas.dirty = false;
                 ctx.send_viewport_cmd(egui::ViewportCommand::Close); // asks again for the next dirty tab
             }
@@ -525,7 +533,7 @@ impl App {
                 Ok(()) => {
                     self.canvas.dirty = false;
                     self.recent = files::add_recent(&p);
-                    self.message = format!("Saved {}", p.display());
+                    self.message = crate::i18n::tf("Saved {name}", &[("name", &p.display())]);
                     return true;
                 }
                 Err(e) => {
@@ -553,7 +561,7 @@ impl App {
         {
             self.recent = files::add_recent(&path);
         }
-        self.message = format!("Saved {}", path.display());
+        self.message = crate::i18n::tf("Saved {name}", &[("name", &path.display())]);
         match self.tab_index(doc) {
             Some(i) if i == self.cur => {
                 self.canvas.dirty = false;
@@ -576,10 +584,20 @@ impl App {
         }
     }
 
-    /// A picked / dropped / recent file: .tlp opens (in a tab), .svg / .dxf open or import, .stl / .3mf join the current one.
+    /// A picked / dropped / recent file: .tlp opens (in a tab), .svg / .dxf open or import, .stl / .3mf / .obj join the current one.
+    /// One usage step per visit (web only, never for staff): the admin page shows how far first visits get.
+    fn step(&mut self, name: &'static str) {
+        if !self.staff && self.steps.insert(name) {
+            self.cloud.event(name);
+        }
+    }
+
     fn open_picked(&mut self, f: Picked) {
+        if f.name != i18n::t("GCarve demo.tlp") {
+            self.step("import"); // a file of their own (the demo counts as "demo")
+        }
         let Picked { name, bytes, path, import } = f;
-        if [".stl", ".3mf"].iter().any(|e| name.to_ascii_lowercase().ends_with(e)) {
+        if [".stl", ".3mf", ".obj"].iter().any(|e| name.to_ascii_lowercase().ends_with(e)) {
             self.import_stl(&name, &bytes);
             return;
         }
@@ -1026,7 +1044,7 @@ impl App {
                 self.cam.job = Some(d);
             }
             ("reliefs" | "relief", _) => self.cam.relief = Some(dialogs::relief::ReliefDialog::default()),
-            ("importstl", _) => self.files.pick_into(ctx, "3D models (.stl .3mf)", &["stl", "3mf"], "stl"),
+            ("importstl", _) => self.files.pick_into(ctx, i18n::t("3D models (.stl .3mf .obj)"), &["stl", "3mf", "obj"], "stl"),
             ("importgcode", _) => self.files.pick_into(ctx, "G-code", files::GCODE_EXTS, "gcode"),
             ("shapes", _) => self.cam.shapes = Some(dialogs::shapes::ShapesDialog::new(&self.canvas.doc)),
             ("boardphoto", "toggle") => {
@@ -1035,11 +1053,11 @@ impl App {
                 }
             }
             ("boardphoto", "remove") => self.canvas.board_photo = None,
-            ("halftone", _) => self.files.pick_into(ctx, "Picture for the halftone (PNG, JPEG, WebP)", files::IMAGE_EXTS, "halftone"),
-            ("boardphoto", _) => self.files.pick_into(ctx, "Photo of the board (PNG, JPEG, WebP)", files::IMAGE_EXTS, "boardphoto"),
+            ("halftone", _) => self.files.pick_into(ctx, crate::i18n::t("Picture for the halftone (PNG, JPEG, WebP)"), files::IMAGE_EXTS, "halftone"),
+            ("boardphoto", _) => self.files.pick_into(ctx, crate::i18n::t("Photo of the board (PNG, JPEG, WebP)"), files::IMAGE_EXTS, "boardphoto"),
             ("picture", "edit") => self.cam.picture = dialogs::picture::PictureDialog::for_sheet(&self.canvas.doc),
             ("picture", _) => self.files.pick_into(ctx, i18n::t("Picture to draw over (PNG, JPEG, WebP)"), files::IMAGE_EXTS, "picture"),
-            ("trace", _) => self.files.pick_into(ctx, "Images (.png, .jpg, .webp)", files::IMAGE_EXTS, "image"),
+            ("trace", _) => self.files.pick_into(ctx, crate::i18n::t("Images (.png, .jpg, .webp)"), files::IMAGE_EXTS, "image"),
             ("prefs", _) => self.cam.prefs_open = true,
             ("vars", _) => self.cam.vars = Some(Default::default()),
             ("var", "add") => {
@@ -1088,6 +1106,11 @@ impl App {
             }
             ("donate", _) => ctx.open_url(egui::OpenUrl::new_tab("https://gcarve.app/donate/")),
             ("website", _) => ctx.open_url(egui::OpenUrl::new_tab("https://gcarve.app/")),
+            ("manual", _) => {
+                let l = gcarve_ui::i18n::current();
+                let at = if l == "en" { String::new() } else { format!("/{l}") }; // the manual is in every app language
+                ctx.open_url(egui::OpenUrl::new_tab(format!("https://gcarve.app{at}/docs/")))
+            }
             ("download", _) => ctx.open_url(egui::OpenUrl::new_tab("https://gcarve.app/download/")),
             ("support", _) => ctx.open_url(egui::OpenUrl::new_tab("https://gcarve.app/support/?from=app")),
             ("request", _) => self.help.open_report(&self.cloud, "suggestion"),
@@ -1106,7 +1129,10 @@ impl App {
                     self.canvas.touch();
                 }
             }
-            ("quit", _) => ctx.send_viewport_cmd(egui::ViewportCommand::Close), // macOS app menu › Quit: unsaved tabs are asked about
+            ("quit", _) => {
+                (self.quitting, self.quit_frame) = (true, self.frame); // macOS: a real quit, not the close button
+                ctx.send_viewport_cmd(egui::ViewportCommand::Close); // macOS app menu › Quit: unsaved tabs are asked about
+            }
             ("fold", "right") => self.right_open = false,
             ("rail", "fold") => self.left_open = false,
             ("rail", wide @ ("wide" | "narrow")) => {
@@ -1373,6 +1399,7 @@ impl eframe::App for App {
         end_process_on_mac();
     }
     fn ui(&mut self, ui: &mut egui::Ui, _frame: &mut eframe::Frame) {
+        self.shell.take_requests(ui.ctx());
         crate::units::take_suggest_keys(ui.ctx()); // before any text box sees Tab / ↓ / ↑ (variable suggestions)
         let ctx = ui.ctx().clone();
         self.frame += 1;
@@ -1409,6 +1436,20 @@ impl eframe::App for App {
             self.left_open &= ctx.content_rect().width() >= 600.0; // phones: the tool column folds too
             self.canvas.view = None; // fit the board into the wider canvas
         }
+        // where first visits stop (web, anonymous counts; owner 2026-11-14): each step once per visit
+        if std::mem::take(&mut self.canvas.drew) {
+            self.step("draw");
+        }
+        if self.cam.op.is_some() {
+            self.step("opdialog");
+        }
+        // after a toolpath of their own (the demo opens in Simulate and has its own count)
+        if self.counted_toolpath && self.simulating() {
+            self.step("simulate");
+        }
+        if self.counted_toolpath && self.export.is_some() {
+            self.step("exportdialog");
+        }
         let n_ops = self.canvas.doc.ops.len();
         if self.cam.op.is_some() {
             self.ops_before = Some(n_ops);
@@ -1443,27 +1484,29 @@ impl eframe::App for App {
         self.canvas.all_paths = self.all_paths;
         self.canvas.paths_old = !fresh;
         self.canvas.paths_only = (!(urgent || self.all_paths)).then(|| want.clone());
-        // a big drawing can take seconds (and the web build has no second thread): draw a card for one frame first
-        let heavy = self.canvas.doc.shapes.len() > 150 && !self.canvas.doc.ops.is_empty();
+        // a big drawing or a 3D toolpath can take seconds (and the web build has no second thread): work them out one
+        // toolpath per frame behind a card that names it and fills a bar, so it never looks stuck (2026-11-19: a
+        // Firefox user's 3D job froze the page with nothing on screen)
+        let heavy = !self.shot && ((urgent && want.iter().filter(|w| **w).count() > 1) || self.canvas.doc.shapes.len() > 150 || self.canvas.doc.ops.iter().zip(&want).any(|(o, w)| *w && o.kind == gcarve_core::document::OpType::Relief));
+        if self.gen_step.as_ref().is_some_and(|g| g.rev != self.canvas.rev || g.draft != draft || g.want != want) {
+            self.gen_step = None; // changed while it was working: start again
+        }
         if gen_due && !urgent && pause > 0.0 {
             ctx.request_repaint_after(std::time::Duration::from_secs_f64(pause));
-        } else if gen_due && heavy && !self.gen_wait {
-            self.gen_wait = true;
+        } else if gen_due && heavy && self.gen_step.as_ref().is_none_or(|g| g.next < g.want.len()) {
+            let step = self.gen_step.get_or_insert_with(|| GenStep::new(&self.canvas.doc, draft.clone(), want.clone(), self.canvas.rev));
+            if step.started {
+                step.work_one();
+            }
+            step.started = true; // the first frame only shows the card
             ctx.request_repaint();
         } else if gen_due {
-            self.gen_wait = false;
+            let done = self.gen_step.take().map(|g| g.acc);
             // while a toolpath dialog is open its unsaved settings show on the canvas
-            self.gen = Some(match &draft {
-                Some((i, op)) => {
-                    let mut doc = self.canvas.doc.clone();
-                    match i.filter(|&i| i < doc.ops.len()) {
-                        Some(i) => doc.ops[i] = op.clone(),
-                        None => doc.ops.push(op.clone()),
-                    }
-                    pipeline::regenerate_some(&doc, &|i| want[i])
-                }
+            self.gen = Some(done.unwrap_or_else(|| match &draft {
+                Some((i, op)) => pipeline::regenerate_some(&with_draft(&self.canvas.doc, *i, op), &|i| want[i]),
                 None => pipeline::regenerate_some(&self.canvas.doc, &|i| want[i]),
-            });
+            }));
             self.gen_cov = want;
             self.canvas.paths_old = false;
             if let (Some(g), Some((None, op))) = (self.gen.as_mut(), &draft) {
@@ -1473,12 +1516,10 @@ impl eframe::App for App {
             self.gen_draft = draft;
             self.canvas.gen_seq += 1;
         }
-        if self.gen_wait {
-            let layer = egui::LayerId::new(egui::Order::Foreground, egui::Id::new("gen-wait"));
-            let p = ctx.layer_painter(layer);
-            let card = egui::Rect::from_center_size(ctx.content_rect().center(), egui::vec2(280.0, 56.0));
-            p.rect_filled(card, 8.0, theme::PANEL);
-            p.text(card.center(), egui::Align2::CENTER_CENTER, i18n::t("Generating toolpaths…"), theme::font(14.0), theme::TEXT);
+        if let Some(g) = &self.gen_step {
+            let p = ctx.layer_painter(egui::LayerId::new(egui::Order::Foreground, egui::Id::new("gen-wait")));
+            let title = g.now_on().map_or_else(|| i18n::t("Generating toolpaths…").to_string(), |name| i18n::tf("Working out “{name}”…", &[("name", &name)]));
+            busy_card(&p, ctx.content_rect(), &title, Some(g.progress()));
         }
         // /app/?share=1: 1 = start, 2 = sign-in box shown, 3 = project list shown (waiting for a project to open)
         if self.share_start > 0 && self.cloud.checked {
@@ -1686,7 +1727,7 @@ impl eframe::App for App {
         }
         if self.open_wait {
             let name = self.opening.first().map_or(String::new(), |f| f.name.clone());
-            busy_card(&ctx.layer_painter(egui::LayerId::new(egui::Order::Foreground, egui::Id::new("opening"))), ctx.content_rect(), &format!("Opening {name}…"), None);
+            busy_card(&ctx.layer_painter(egui::LayerId::new(egui::Order::Foreground, egui::Id::new("opening"))), ctx.content_rect(), &crate::i18n::tf("Opening {name}…", &[("name", &name)]), None);
         }
         for (doc, path) in self.files.saved_rx.try_iter().collect::<Vec<_>>() {
             self.saved_as(doc, path, &ctx);
@@ -1755,8 +1796,19 @@ impl eframe::App for App {
                 self.cam.open_named(if d == "prefs-newdoc" { "prefs" } else { &d }, &self.canvas);
             }
         }
+        // macOS: the window's close button hides GCarve and it keeps running (the Dock icon brings it back, its open
+        // tabs as they were); only Quit (⌘Q, the app menu, the Dock menu) ends it (owner 2026-11-14)
+        #[cfg(all(target_os = "macos", not(test)))]
+        if ctx.input(|i| i.viewport().close_requested()) && !self.quitting && !self.shot {
+            ctx.send_viewport_cmd(egui::ViewportCommand::CancelClose);
+            crate::macmenu::hide_app();
+        }
         // quitting with unsaved tabs: ask for each (Qt onClosing)
-        if ctx.input(|i| i.viewport().close_requested()) && !self.shot {
+        let closing = ctx.input(|i| i.viewport().close_requested());
+        if self.quitting && !closing && self.confirm.is_none() && self.after_save.is_none() && self.frame > self.quit_frame + 2 {
+            self.quitting = false; // the unsaved-work question was cancelled: the close button hides again
+        }
+        if closing && !self.shot && (self.quitting || !cfg!(all(target_os = "macos", not(test)))) {
             if let Some(i) = (0..self.tabs.len()).find(|&i| if i == self.cur { self.canvas.dirty } else { self.tabs[i].as_ref().is_some_and(|d| d.canvas.dirty) }) {
                 ctx.send_viewport_cmd(egui::ViewportCommand::CancelClose);
                 self.switch_tab(i);
@@ -1771,7 +1823,7 @@ impl eframe::App for App {
 
         let has_ops = !self.canvas.doc.ops.is_empty();
         let menu = shell::MenuInfo {
-            account: if self.cloud.signed_in() { format!("Account ({})…", self.cloud.user.as_ref().map(|u| u.email.as_str()).unwrap_or("")) } else { i18n::t("Sign In…").to_string() },
+            account: if self.cloud.signed_in() { crate::i18n::tf("Account ({email})…", &[("email", &self.cloud.user.as_ref().map(|u| u.email.as_str()).unwrap_or(""))]) } else { i18n::t("Sign In…").to_string() },
             signed_in: self.cloud.signed_in(),
             admin: self.cloud.user.as_ref().is_some_and(|u| u.role == "admin" || u.role == "superadmin"),
             recent: self.recent.iter().map(|p| p.rsplit(['/', '\\']).next().unwrap_or(p).to_string()).collect(),
@@ -1990,6 +2042,7 @@ impl eframe::App for App {
         for id in std::mem::take(&mut self.shell.cmds) {
             self.run(&ctx, &id);
         }
+        crate::widgets::select_on_tab(&ctx);
         crate::widgets::focus_in_tree(&ctx);
     }
 }
@@ -2147,7 +2200,7 @@ impl App {
         let mut open = true;
         crate::widgets::Dialog::new(i18n::t("About GCarve")).open(&mut open).close_footer().width(340.0).show(ctx, |ui| {
             ui.label(RichText::new(i18n::t("GCarve")).font(crate::widgets::bold(20.0)));
-            ui.label(format!("Version {} · {}", env!("CARGO_PKG_VERSION"), if Cloud::web() { "web" } else { std::env::consts::OS }));
+            ui.label(crate::i18n::tf("Version {v} · {os}", &[("v", &env!("CARGO_PKG_VERSION")), ("os", &if Cloud::web() { "web" } else { std::env::consts::OS })]));
             ui.add_space(6.0);
             ui.label(i18n::tf("CAM for CNC routers: design, toolpaths, simulation and G-code for {post_library} machine posts.", &[("post_library", &(gcarve_core::postdef::post_library().len()))]));
             ui.add_space(6.0);
@@ -2428,7 +2481,7 @@ impl App {
             if d.air {
                 ui.add(egui::Label::new(i18n::t("Writes the job with every Z raised so the machine runs the whole program in the air. Zero Z on the material as usual. Files end in _AIRCUT and say AIR CUT TEST in the header.")).wrap());
                 ui.horizontal(|ui| {
-                    ui.label(format!("Raise Z by ({})", units::name(&self.canvas.doc)));
+                    ui.label(crate::i18n::tf("Raise Z by ({unit})", &[("unit", &units::name(&self.canvas.doc))]));
                     replan = units::num_field(ui, "raise", &mut d.raise, &self.canvas.doc, true, 110.0).is_some();
                 });
             }
@@ -2483,17 +2536,16 @@ impl App {
                     replan |= crate::widgets::combo_box("tile-axis").selected_text(if d.tile_y { i18n::t("along Y") } else { i18n::t("along X") }).width(84.0).show_ui(ui, |ui| ui.selectable_value(&mut d.tile_y, false, i18n::t("along X")).changed() | ui.selectable_value(&mut d.tile_y, true, i18n::t("along Y")).changed()).inner.unwrap_or(false);
                 }
             });
-            crate::widgets::checkbox(ui, &mut d.sheet, i18n::tf("Setup sheet ({name}_setup.html: printable job sheet for the operator)", &[("name", &self.name)]));
-            if !d.air && crate::widgets::checkbox(ui, &mut d.ghost, i18n::tf("Ghost run of every file too (_GHOST: spindle off, bit {material} above the board) to watch the moves first", &[("material", &(units::text(&self.canvas.doc, gcarve_core::cam::air_cut_raise(&self.canvas.doc.material))))])).changed() {
+            crate::widgets::checkbox(ui, &mut d.sheet, i18n::t("Setup sheet for the operator")).tip(i18n::tf("{name}_setup.html: a printable page per sheet with the bits, depths and zero", &[("name", &self.name)]));
+            if !d.air && crate::widgets::checkbox(ui, &mut d.ghost, i18n::t("Ghost run of each file too")).tip(i18n::tf("A _GHOST copy of each file: spindle off, bit {material} above the board, to watch the moves first", &[("material", &(units::text(&self.canvas.doc, gcarve_core::cam::air_cut_raise(&self.canvas.doc.material))))])).changed() {
                 crate::store::save("export-ghost", if d.ghost { "1" } else { "0" });
             }
             ui.horizontal_wrapped(|ui| {
-                ui.label(RichText::new(i18n::t("Check every file before you cut: watch the simulation and run an air cut on new jobs. GCarve comes without warranty;")).small().color(theme::TEXT_DIM));
+                ui.label(RichText::new(i18n::t("Simulate and air-cut new jobs first. No warranty;")).small().color(theme::TEXT_DIM));
                 ui.hyperlink_to(RichText::new("terms").small(), "https://gcarve.app/terms/#gcode");
             });
             if self.canvas.doc.material.machine.is_none() && self.canvas.doc.material.auto_feeds {
-                // same notice as the toolpath dialogs: suggested feeds assume a rigid industrial machine
-                ui.add(egui::Label::new(RichText::new(i18n::t("No machine chosen: the suggested feeds suit a heavy industrial router. On a hobby or desktop machine pick yours first (Toolpaths › Machine, Board and Bits › Choose Machine…) and export again.")).size(12.0).color(theme::WARNING)).wrap());
+                dialogs::no_machine_note(ui); // same as the toolpath dialogs
             }
             if !d.issues.is_empty() {
                 ui.add(egui::Label::new(RichText::new(i18n::t("The safety check found problems in this job. Fix them, or export anyway if you are sure:")).color(theme::WARNING).font(crate::widgets::bold(theme::FONT_SIZE))).wrap());
@@ -2583,7 +2635,7 @@ impl App {
         }
         crate::store::save(EXPORT_FOLDER_KEY, &dir.to_string_lossy());
         self.jobs.refresh();
-        self.message = format!("Exported {} to {}", names.join(", "), dir.display());
+        self.message = crate::i18n::tf("Exported {names} to {dir}", &[("names", &names.join(", ")), ("dir", &dir.display())]);
     }
 }
 
@@ -2714,6 +2766,69 @@ impl App {
 
 /// The showcase sign as the demo: the lettering's clearance bit doesn't fit its narrow flats (a warning in the
 /// showcase, which the goldens keep), so the demo leaves the V-bit to clear them and opens without warnings.
+/// `doc` with the open toolpath dialog's unsaved settings in place (`i` None = a new toolpath at the end)
+fn with_draft(doc: &gcarve_core::document::Document, i: Option<usize>, op: &gcarve_core::document::Op) -> gcarve_core::document::Document {
+    let mut doc = doc.clone();
+    match i.filter(|&i| i < doc.ops.len()) {
+        Some(i) => doc.ops[i] = op.clone(),
+        None => doc.ops.push(op.clone()),
+    }
+    doc
+}
+
+/// Toolpaths worked out one per frame (each op is independent of the others' results), so the progress card can say
+/// which one it is on between them
+struct GenStep {
+    doc: gcarve_core::document::Document,
+    draft: Option<(Option<usize>, gcarve_core::document::Op)>,
+    want: Vec<bool>,
+    rev: u64,
+    next: usize,
+    started: bool,
+    acc: pipeline::Generated,
+}
+
+impl GenStep {
+    fn new(doc: &gcarve_core::document::Document, draft: Option<(Option<usize>, gcarve_core::document::Op)>, want: Vec<bool>, rev: u64) -> Self {
+        let doc = match &draft {
+            Some((i, op)) => with_draft(doc, *i, op),
+            None => doc.clone(),
+        };
+        let mut g = GenStep { doc, draft, want, rev, next: 0, started: false, acc: pipeline::Generated { paths: Vec::new(), warnings: Vec::new(), minutes: Vec::new(), draft_tool: -1 } };
+        g.skip();
+        g
+    }
+    /// past the toolpaths not wanted (they stay empty, as regenerate_some leaves them)
+    fn skip(&mut self) {
+        while self.next < self.want.len() && !self.want[self.next] {
+            self.acc.paths.push(Vec::new());
+            self.acc.minutes.push(0.0);
+            self.next += 1;
+        }
+    }
+    fn work_one(&mut self) {
+        if self.next >= self.want.len() {
+            return;
+        }
+        let i = self.next;
+        let one = pipeline::regenerate_some(&self.doc, &|j| j == i);
+        self.acc.paths.push(one.paths.into_iter().nth(i).unwrap_or_default());
+        self.acc.minutes.push(one.minutes.get(i).copied().unwrap_or(0.0));
+        self.acc.warnings.extend(one.warnings);
+        self.next += 1;
+        self.skip();
+    }
+    /// the name of the toolpath it works on next
+    fn now_on(&self) -> Option<String> {
+        self.doc.ops.get(self.next).map(|o| o.name.clone())
+    }
+    fn progress(&self) -> f32 {
+        let total = self.want.iter().filter(|w| **w).count().max(1);
+        let done = self.want[..self.next.min(self.want.len())].iter().filter(|w| **w).count();
+        done as f32 / total as f32
+    }
+}
+
 /// The "please wait" card over `rect`: a title and a bar (`progress` 0..1, None = no number, the bar half full).
 fn busy_card(p: &egui::Painter, rect: egui::Rect, title: &str, progress: Option<f32>) {
     p.rect_filled(rect, 0.0, theme::canvas_bg().gamma_multiply(0.85));
@@ -3026,3 +3141,26 @@ impl App {
 }
 
 
+
+#[cfg(test)]
+mod gen_step_tests {
+    /// one toolpath per frame behind the progress card gives exactly what working them all out at once gives
+    #[test]
+    fn toolpaths_worked_out_one_per_frame_match_all_at_once() {
+        let doc = gcarve_core::project::load_project(std::str::from_utf8(&super::demo_project()).unwrap()).unwrap();
+        let n = doc.ops.len();
+        let want: Vec<bool> = (0..n).map(|i| i != 1).collect(); // one left out, as while drawing
+        let mut g = super::GenStep::new(&doc, None, want.clone(), 0);
+        let mut seen = Vec::new();
+        while g.next < n {
+            seen.push((g.now_on(), g.progress()));
+            g.work_one();
+        }
+        assert_eq!(g.progress(), 1.0);
+        assert!(seen.windows(2).all(|w| w[0].1 < w[1].1), "the bar only grows: {seen:?}");
+        let all = gcarve_core::pipeline::regenerate_some(&doc, &|i| want[i]);
+        assert_eq!(g.acc.paths, all.paths);
+        assert_eq!(g.acc.minutes, all.minutes);
+        assert_eq!(g.acc.warnings, all.warnings);
+    }
+}

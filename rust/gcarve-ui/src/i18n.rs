@@ -11,15 +11,19 @@ use std::collections::HashMap;
 use std::sync::RwLock;
 
 /// (code, name in its own language, the embedded pack)
-pub const LANGS: [(&str, &str, &str); 8] = [
+pub const LANGS: [(&str, &str, &str); 12] = [
     ("en", "English", ""),
     ("es", "Español", include_str!("../lang/es.json")),
     ("de", "Deutsch", include_str!("../lang/de.json")),
     ("fr", "Français", include_str!("../lang/fr.json")),
     ("it", "Italiano", include_str!("../lang/it.json")),
     ("pt", "Português", include_str!("../lang/pt.json")),
+    ("nl", "Nederlands", include_str!("../lang/nl.json")),
+    ("pl", "Polski", include_str!("../lang/pl.json")),
+    ("tr", "Türkçe", include_str!("../lang/tr.json")),
     ("ja", "日本語", include_str!("../lang/ja.json")),
     ("zh", "中文", include_str!("../lang/zh.json")),
+    ("ko", "한국어", include_str!("../lang/ko.json")),
 ];
 
 struct Pack {
@@ -81,10 +85,22 @@ pub fn msg(s: &str) -> String {
     }
     for (k, v) in &p.patterns {
         if let Some(caps) = match_pattern(k, s) {
-            return fill(v, |n| caps.iter().find(|(c, _)| *c == n).map(|(_, v)| *v));
+            // a captured word that is itself a translated term (the material class in the feed advice) is translated too
+            return fill(v, |n| caps.iter().find(|(c, _)| *c == n).map(|(_, v)| p.map.get(*v).copied().unwrap_or(*v)));
         }
     }
     s.into()
+}
+
+/// Engine text made of several sentences ("Rubbing: … for plywood. Burn marks and a dull bit. Raise feed …"):
+/// each sentence through `msg`, so a pattern per sentence covers every combination the engine strings together.
+pub fn msg_sentences(s: &str) -> String {
+    s.split_inclusive(". ")
+        .map(|part| {
+            let t = msg(part.trim_end());
+            if part.ends_with(' ') { t + " " } else { t }
+        })
+        .collect()
 }
 
 /// `{name}` placeholders of a key with the text between them: [("", "lit"), ("name", "lit after it"), …]
@@ -161,6 +177,14 @@ pub fn current() -> &'static str {
 
 /// Switch the UI language (unknown codes = English) and remember it
 pub fn set(code: &str) {
+    let code = apply(code);
+    if !cfg!(test) {
+        crate::store::save("language", code);
+    }
+}
+
+/// Switch the UI language without remembering it; the code used
+fn apply(code: &str) -> &'static str {
     let code = code.get(..2).unwrap_or("en");
     let (code, _, json) = LANGS.iter().copied().find(|(c, _, _)| *c == code).unwrap_or(LANGS[0]);
     let map: HashMap<&'static str, &'static str> = if json.is_empty() {
@@ -174,9 +198,7 @@ pub fn set(code: &str) {
     if let Ok(mut p) = PACK.write() {
         *p = Some(Pack { code, map, patterns });
     }
-    if !cfg!(test) {
-        crate::store::save("language", code);
-    }
+    code
 }
 
 /// At start: `?lang=xx` in the page address (the website's language hint links here), else the stored choice, else
@@ -185,7 +207,12 @@ pub fn init() {
     #[cfg(target_arch = "wasm32")]
     let asked = web_sys::window().and_then(|w| w.location().search().ok()).and_then(|q| q.trim_start_matches('?').split('&').find_map(|kv| kv.strip_prefix("lang=").map(str::to_string)));
     #[cfg(not(target_arch = "wasm32"))]
-    let asked: Option<String> = std::env::var("GCARVE_LANG").ok();
+    if let Ok(dev) = std::env::var("GCARVE_LANG") {
+        apply(&dev); // dev screenshots: this run only, the computer's own choice stays
+        return;
+    }
+    #[cfg(not(target_arch = "wasm32"))]
+    let asked: Option<String> = None;
     let code = asked.or_else(|| crate::store::load("language")).unwrap_or_else(system_language);
     if code != "en" {
         set(&code);
@@ -232,6 +259,12 @@ mod tests {
                 assert!(want.iter().all(|n| got.contains(n) || n.starts_with('s') && n.len() <= 2), "{code}: {v:?} lost a placeholder of {k:?}");
             }
         }
+        // engine advice made of several sentences: each translated, the material class inside it too
+        set("de");
+        assert_eq!(
+            msg_sentences("Good: 0.0120 in/tooth is in the 0.011–0.013 range for plywood. Deep pass: keep the feed modest."),
+            "Gut: 0.0120 in/Zahn liegt im Bereich 0.011–0.013 für Sperrholz. Tiefe Zustellung: Vorschub maßvoll halten."
+        );
         set("es");
         assert_eq!(t("not a string of the app"), "not a string of the app");
         assert_eq!(tf("{n} of {m}", &[("n", &1), ("m", &"two")]), "1 of two");

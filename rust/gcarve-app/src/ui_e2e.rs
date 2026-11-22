@@ -618,3 +618,33 @@ fn the_tasks_the_app_offers_end_in_clean_g_code() {
     assert!(bad.is_empty(), "{} problems:\n{}", bad.len(), bad.join("\n"));
 }
 
+
+/// ticket #43: Tab into a number field selects it, so typing replaces the value; a click still just places the cursor
+#[test]
+fn tab_into_a_field_selects_its_text() {
+    let mut texts = vec!["0.750".to_string(), "0.125".to_string()];
+    let mut h = Harness::builder().with_size(egui::vec2(300.0, 120.0)).build_ui_state(
+        |ui, t: &mut Vec<String>| {
+            for (i, s) in t.iter_mut().enumerate() {
+                ui.add(egui::TextEdit::singleline(s).id(egui::Id::new(("f", i))));
+            }
+            crate::widgets::select_on_tab(ui.ctx());
+        },
+        std::mem::take(&mut texts),
+    );
+    h.ctx.memory_mut(|m| m.request_focus(egui::Id::new(("f", 0))));
+    h.run();
+    h.key_press(egui::Key::Tab);
+    h.run();
+    h.event(egui::Event::Text("0.5".into())); // typed into the field Tab went to
+    h.run();
+    assert_eq!(h.state()[1], "0.5", "typing after Tab replaces the value");
+    assert_eq!(h.state()[0], "0.750");
+    // focus that didn't come from Tab (a click) leaves the text alone
+    h.ctx.memory_mut(|m| m.request_focus(egui::Id::new(("f", 0))));
+    h.run();
+    h.run();
+    h.event(egui::Event::Text("1".into()));
+    h.run();
+    assert_ne!(h.state()[0], "1", "no select-all without Tab");
+}

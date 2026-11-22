@@ -39,7 +39,7 @@ impl HalftoneDialog {
         crate::widgets::Dialog::new(i18n::t("Halftone from Picture")).open(&mut open).width(400.0).show(ctx, |ui| {
             ui.label(egui::RichText::new(&self.name).strong());
             egui::Grid::new("halftone").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                for (i, label) in ["Width", "Dot spacing"].iter().enumerate() {
+                for (i, label) in [crate::i18n::t("Width"), crate::i18n::t("Dot spacing")].iter().enumerate() {
                     ui.label(unit_label(label, doc));
                     crate::units::num_field(ui, label, &mut self.size[i], doc, true, 110.0);
                     ui.end_row();

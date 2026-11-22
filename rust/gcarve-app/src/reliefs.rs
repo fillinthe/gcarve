@@ -1,5 +1,5 @@
 //! 3D models on the board (Qt canvas_view.cpp reliefImages_ + canvas_input.cpp Drag::ReliefMove): a shaded top-down
-//! preview in each model's rectangle (cached per model), a dashed outline, and Select-tool dragging to place it.
+//! preview of the models combined (cached), a dashed outline per model, and Select-tool dragging to place one.
 
 #[allow(unused_imports)] // a file may only use it under one cfg
 use gcarve_ui::i18n;
@@ -11,9 +11,9 @@ use gcarve_core::sim::{shade, HeightField};
 use std::collections::BTreeSet;
 use std::hash::{Hash, Hasher};
 
-/// Preview textures by relief id, with the key of the height data they were shaded from.
+/// The preview of the combined models (key 0): the key it was shaded from, the texture, its board rectangle.
 #[derive(Default)]
-pub struct ReliefTextures(std::collections::HashMap<i32, (u64, TextureHandle)>);
+pub struct ReliefTextures(std::collections::HashMap<i32, (u64, TextureHandle, egui::Rect)>);
 
 /// ponytail: sampled hash (every 61st height + size + depth), not the whole field; a re-import that changes only
 /// unsampled cells keeps the old preview until the next size/depth change
@@ -36,21 +36,28 @@ pub fn preview(r: &Relief, m: &gcarve_core::document::Material) -> Vec<u8> {
 
 impl Canvas {
     pub(crate) fn paint_reliefs(&mut self, ctx: &egui::Context, painter: &egui::Painter) {
-        let live: BTreeSet<i32> = self.doc.reliefs.iter().map(|r| r.id).collect();
-        self.relief_tex.0.retain(|id, _| live.contains(id));
-        for r in self.doc.reliefs.iter().filter(|r| r.nx > 0 && r.ny > 0 && r.height.len() == (r.nx * r.ny) as usize) {
-            let k = key(r);
-            if self.relief_tex.0.get(&r.id).is_none_or(|(old, _)| *old != k) {
-                let img = ColorImage::from_rgba_unmultiplied([r.nx as usize, r.ny as usize], &preview(r, &self.doc.material));
-                self.relief_tex.0.insert(r.id, (k, ctx.load_texture(format!("relief-{}", r.id), img, TextureOptions::LINEAR)));
+        // one picture of all the models combined (subtract, lift, slice show as they will cut), rebuilt only when a
+        // model or its placement changes. ponytail: a drag rebuilds it every frame; fine for a few models
+        let mut h = std::collections::hash_map::DefaultHasher::new();
+        for r in &self.doc.reliefs {
+            (key(r), r.x.to_bits(), r.y.to_bits(), r.w.to_bits(), r.h.to_bits(), r.combine, r.lift.to_bits(), r.clip_lo.to_bits(), r.clip_hi.to_bits(), r.smooth).hash(&mut h);
+        }
+        let k = h.finish();
+        if self.relief_tex.0.get(&0).is_none_or(|(old, _, _)| *old != k) {
+            self.relief_tex.0.clear();
+            if let Some(m) = gcarve_core::relief::composite(&self.doc.reliefs.iter().collect::<Vec<_>>()) {
+                let img = ColorImage::from_rgba_unmultiplied([m.nx as usize, m.ny as usize], &preview(&m, &self.doc.material));
+                let at = egui::Rect::from_min_max(Pos2::new(m.x as f32, m.y as f32), Pos2::new((m.x + m.w) as f32, (m.y + m.h) as f32));
+                self.relief_tex.0.insert(0, (k, ctx.load_texture("reliefs", img, TextureOptions::LINEAR), at));
             }
         }
         let Some(view) = self.view.as_ref() else { return };
+        if let Some((_, tex, at)) = self.relief_tex.0.get(&0) {
+            let rect = Rect::from_two_pos(view.to_screen(pt(at.min.x as f64, at.max.y as f64)), view.to_screen(pt(at.max.x as f64, at.min.y as f64)));
+            painter.image(tex.id(), rect, Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)), Color32::WHITE.gamma_multiply(0.9));
+        }
         for r in &self.doc.reliefs {
             let rect = Rect::from_two_pos(view.to_screen(pt(r.x, r.y + r.h)), view.to_screen(pt(r.x + r.w, r.y)));
-            if let Some((_, tex)) = self.relief_tex.0.get(&r.id) {
-                painter.image(tex.id(), rect, Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)), Color32::WHITE.gamma_multiply(0.9));
-            }
             let c = [rect.left_top(), rect.right_top(), rect.right_bottom(), rect.left_bottom(), rect.left_top()];
             painter.extend(egui::Shape::dashed_line(&c, Stroke::new(1.0, Color32::from_rgb(0xc9, 0xa9, 0xff)), 4.0, 2.0));
         }

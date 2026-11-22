@@ -54,6 +54,9 @@ impl ToolsDialog {
         self.slot = t.slot.to_string();
         self.f.set_fine("diameter", t.diameter);
         self.f.set_raw("angle", t.angle);
+        if t.kind == ToolType::TaperedBall {
+            self.f.map.insert("angle".into(), super::fmt_len(t.angle)); // a taper like 5.12° keeps its decimals
+        }
         self.f.set_fine("radius", t.radius);
         self.f.set_fine("cutLength", t.cut_length);
         self.f.set_fine("stickOut", t.stick_out);
@@ -90,7 +93,9 @@ impl ToolsDialog {
     }
 
     fn spec(&self, doc: &Document) -> gcarve_core::feeds::Cutter {
-        gcarve_core::feeds::Cutter { vbit: self.kind == ToolType::VBit, diameter: self.f.get_or("diameter", doc, 0.25), flutes: self.flutes.trim().parse().unwrap_or(2) }
+        // a tapered ball nose cuts with its tip: chip loads by the tip ball (Tool::cut_diameter)
+        let t = Tool { kind: self.kind, diameter: self.f.get_or("diameter", doc, 0.25), radius: self.f.get_or("radius", doc, 0.0), angle: self.f.raw_or("angle", 5.0), ..Default::default() };
+        gcarve_core::feeds::Cutter { vbit: self.kind == ToolType::VBit, diameter: t.cut_diameter(), flutes: self.flutes.trim().parse().unwrap_or(2) }
     }
     fn advice(&self, doc: &Document, material: &str, fxy: &str, fz: &str, rpm: &str, step: &str) -> (FeedSuggestion, FeedAssessment) {
         let c = self.spec(doc);
@@ -230,7 +235,7 @@ impl ToolsDialog {
                         }
                         self.share_all.ui(ui, host.cloud, "all bits", "bits", &format!("{} bits", doc.tools.len()), || crate::library::bits_json(&doc.tools));
                     });
-                    hint(ui, i18n::t("Changes save as you type, to this project and to your library for new projects."));
+                    hint(ui, i18n::t("Changes save as you type."));
                 });
                 ui.separator();
                 // ---- the selected bit
@@ -268,8 +273,18 @@ impl ToolsDialog {
                         card(ui, i18n::t("Shape"), 270.0, |ui| {
                             ui.horizontal_wrapped(|ui| {
                                 ui.spacing_mut().item_spacing.x = 2.0;
-                                for (k, label) in [(ToolType::EndMill, i18n::t("End mill")), (ToolType::VBit, i18n::t("V-bit")), (ToolType::BallNose, i18n::t("Ball nose")), (ToolType::RoundOver, i18n::t("Round-over"))] {
+                                let was = self.kind;
+                                for (k, label) in [(ToolType::EndMill, i18n::t("End mill")), (ToolType::VBit, i18n::t("V-bit")), (ToolType::BallNose, i18n::t("Ball nose")), (ToolType::TaperedBall, i18n::t("Tapered ball")), (ToolType::RoundOver, i18n::t("Round-over"))] {
                                     ui.selectable_value(&mut self.kind, k, label);
+                                }
+                                // a V-bit's 90° or no tip size makes no tapered ball nose: start from a common one
+                                if self.kind == ToolType::TaperedBall && was != self.kind {
+                                    if !(0.25..30.0).contains(&self.f.raw_or("angle", 90.0)) {
+                                        self.f.map.insert("angle".into(), "5".into());
+                                    }
+                                    if self.f.get_or("radius", doc, 0.0) <= 0.0 {
+                                        self.f.set_fine("radius", 0.25 / 25.4);
+                                    }
                                 }
                             });
                             // custom form cutter: the selected open vector, drawn as the bit's side view from the tip
@@ -288,12 +303,24 @@ impl ToolsDialog {
                             });
                             ui.add_space(4.0);
                             egui::Grid::new("tool-shape").num_columns(2).spacing([10.0, 6.0]).show(ui, |ui| {
-                                ui.label(unit_label(i18n::t("Diameter"), doc));
+                                if self.kind == ToolType::TaperedBall {
+                                    ui.label(unit_label(i18n::t("Shank diameter"), doc)).on_hover_text(i18n::t("Where the taper ends, usually the shank (1/4 in or 6 mm)."));
+                                } else {
+                                    ui.label(unit_label(i18n::t("Diameter"), doc));
+                                }
                                 self.f.ui_sized(ui, "diameter", doc, 100.0, true);
                                 ui.end_row();
                                 match self.kind {
                                     ToolType::VBit => {
                                         ui.label(i18n::t("V angle (deg)"));
+                                        self.f.ui_sized(ui, "angle", doc, 100.0, false);
+                                        ui.end_row();
+                                    }
+                                    ToolType::TaperedBall => {
+                                        ui.label(unit_label(i18n::t("Tip radius"), doc)).on_hover_text(i18n::t("Half the tip ball's diameter: a 0.5 mm tip is 0.25 mm."));
+                                        self.f.ui_sized(ui, "radius", doc, 100.0, true);
+                                        ui.end_row();
+                                        ui.label(i18n::t("Taper per side (deg)")).on_hover_text(i18n::t("The angle of each side from the bit's axis, as makers list it (SpeTool 5.12°). Half the included angle."));
                                         self.f.ui_sized(ui, "angle", doc, 100.0, false);
                                         ui.end_row();
                                     }
@@ -323,7 +350,7 @@ impl ToolsDialog {
                                 ui.end_row();
                             });
                         });
-                        card(ui, &format!("Cutting in {board}"), 270.0, |ui| {
+                        card(ui, &crate::i18n::tf("Cutting in {board}", &[("board", &board)]), 270.0, |ui| {
                             egui::Grid::new("tool-cut").num_columns(2).spacing([10.0, 6.0]).show(ui, |ui| {
                                 ui.label(rate_label(i18n::t("Feed XY"), doc));
                                 self.f.ui_sized(ui, "feedXY", doc, 100.0, false);
@@ -352,7 +379,7 @@ impl ToolsDialog {
                     ui.add_space(8.0);
                     // ---- feeds that depend on the board material
                     card(ui, i18n::t("Feeds by material"), 550.0, |ui| {
-                        hint(ui, &i18n::tf("Toolpaths use the preset that matches the board material ({board}); otherwise the numbers above.", &[("board", &board)]));
+                        hint(ui, &i18n::tf("A preset for {board} wins over the numbers above.", &[("board", &board)]));
                         let presets = doc.tools.get(self.cur).map(|t| t.presets.clone()).unwrap_or_default();
                         ui.horizontal_top(|ui| {
                             ui.vertical(|ui| {
@@ -360,7 +387,7 @@ impl ToolsDialog {
                                 egui::ScrollArea::vertical().max_height(150.0).id_salt("presets").show(ui, |ui| {
                                     ui.set_width(250.0);
                                     if presets.is_empty() {
-                                        hint(ui, i18n::t("No presets yet: pick a material, set the numbers, Save preset."));
+                                        hint(ui, i18n::t("No presets yet."));
                                     }
                                     for p in &presets {
                                         let on = p.material.eq_ignore_ascii_case(&self.p_material);
@@ -553,7 +580,7 @@ pub fn import_file(ctx: &egui::Context, name: &str, bytes: &[u8], host: &mut Hos
         }
         #[cfg(target_arch = "wasm32")]
         {
-            *host.message = format!("Reading {name}…");
+            *host.message = crate::i18n::tf("Reading {name}…", &[("name", &name)]);
             crate::vtdb::start(bytes.to_vec(), ctx.clone());
         }
         return;
@@ -599,6 +626,7 @@ fn bit_name(t: &Tool, fmt: &str, doc: &Document) -> String {
         ToolType::VBit => i18n::t("V-Bit"),
         ToolType::BallNose => i18n::t("Ball Nose"),
         ToolType::RoundOver => i18n::t("Round-over"),
+        ToolType::TaperedBall => i18n::t("Tapered Ball Nose"),
     };
     let len = |v: f64| crate::units::fmt(doc, v);
     let out = fmt.replace("{type}", kind).replace("{diameter}", &len(t.diameter)).replace("{angle}", &format!("{}°", super::fmt_len(t.angle))).replace("{flutes}", &t.flutes.to_string()).replace("{radius}", &len(if t.radius > 0.0 { t.radius } else { t.diameter / 2.0 }));
@@ -611,6 +639,7 @@ fn kind_label(t: &Tool) -> String {
         ToolType::VBit => format!("V-bit {}°", super::fmt_len(t.angle)),
         ToolType::BallNose => i18n::t("Ball nose").into(),
         ToolType::RoundOver => i18n::t("Round-over").into(),
+        ToolType::TaperedBall => i18n::tf("Tapered ball {angle}°", &[("angle", &super::fmt_len(t.angle))]),
     }
 }
 

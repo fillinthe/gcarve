@@ -114,8 +114,8 @@ impl GcodeImportDialog {
                         ui.horizontal(|ui| {
                             ui.label(i18n::t("Bit"));
                             let mut items: Vec<(Bit, String)> = vec![(Bit::New, i18n::tf("New bit from the file: {name}", &[("name", &(gcarve_core::gimport::tool_from_section(s, "").name))]))];
-                            items.extend(doc.tools.iter().enumerate().map(|(i, t)| (Bit::Doc(i), format!("Project: {}", t.name))));
-                            items.extend(self.library.iter().enumerate().map(|(i, t)| (Bit::Lib(i), format!("Library: {}", t.name))));
+                            items.extend(doc.tools.iter().enumerate().map(|(i, t)| (Bit::Doc(i), crate::i18n::tf("Project: {name}", &[("name", &t.name)]))));
+                            items.extend(self.library.iter().enumerate().map(|(i, t)| (Bit::Lib(i), crate::i18n::tf("Library: {name}", &[("name", &t.name)]))));
                             let refs: Vec<(Bit, &str)> = items.iter().map(|(b, t)| (*b, t.as_str())).collect();
                             combo(ui, &format!("bit{k}"), &mut self.bits[k], &refs, 480.0);
                         });

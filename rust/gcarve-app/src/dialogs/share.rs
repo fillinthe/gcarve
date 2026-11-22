@@ -30,7 +30,7 @@ impl ShareBox {
             return;
         }
         if !self.open {
-            if ui.button(format!("Share {what}…")).on_hover_text(i18n::tf("Send {what} to another GCarve user by email", &[("what", &what)])).clicked() {
+            if ui.button(crate::i18n::tf("Share {what}…", &[("what", &what)])).on_hover_text(i18n::tf("Send {what} to another GCarve user by email", &[("what", &what)])).clicked() {
                 self.open = true;
             }
             return;

@@ -93,6 +93,48 @@ fn main() -> eframe::Result {
     eframe::run_native(i18n::t("GCarve"), options, Box::new(|cc| Ok(Box::new(app::App::new(cc)))))
 }
 
+/// The browser build's allocator: the system one, except that running out of memory panics with the size, so the
+/// panic hook shows the "stopped, Reload" banner and the error log says what ran out (2026-11-21: a bare
+/// "RuntimeError: unreachable" with nothing on screen). wasm32 panics abort, so this never unwinds through an allocator.
+#[cfg(target_arch = "wasm32")]
+struct ReportOom;
+
+#[cfg(target_arch = "wasm32")]
+#[global_allocator]
+static ALLOC: ReportOom = ReportOom;
+
+#[cfg(target_arch = "wasm32")]
+fn out_of_memory(bytes: usize) -> ! {
+    static ONCE: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+    if ONCE.swap(true, std::sync::atomic::Ordering::Relaxed) {
+        std::process::abort(); // the report itself could not get memory
+    }
+    let in_use = core::arch::wasm32::memory_size(0) * 65536 >> 20;
+    panic!("out of memory: {} MB more needed, {in_use} MB in use", (bytes >> 20).max(1));
+}
+
+#[cfg(target_arch = "wasm32")]
+unsafe impl std::alloc::GlobalAlloc for ReportOom {
+    unsafe fn alloc(&self, l: std::alloc::Layout) -> *mut u8 {
+        let p = unsafe { std::alloc::System.alloc(l) };
+        if p.is_null() { out_of_memory(l.size()) }
+        p
+    }
+    unsafe fn alloc_zeroed(&self, l: std::alloc::Layout) -> *mut u8 {
+        let p = unsafe { std::alloc::System.alloc_zeroed(l) };
+        if p.is_null() { out_of_memory(l.size()) }
+        p
+    }
+    unsafe fn dealloc(&self, p: *mut u8, l: std::alloc::Layout) {
+        unsafe { std::alloc::System.dealloc(p, l) }
+    }
+    unsafe fn realloc(&self, p: *mut u8, l: std::alloc::Layout, new: usize) -> *mut u8 {
+        let q = unsafe { std::alloc::System.realloc(p, l, new) };
+        if q.is_null() { out_of_memory(new) }
+        q
+    }
+}
+
 #[cfg(target_arch = "wasm32")]
 fn main() {
     use eframe::wasm_bindgen::JsCast;

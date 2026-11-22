@@ -84,7 +84,7 @@ impl DoorDialog {
             ui.label(i18n::tf("Doors, one size a line: width x height (x how many), in {doc}", &[("doc", &(crate::units::name(doc)))]));
             ui.add(egui::TextEdit::multiline(&mut self.list).desired_rows(5).desired_width(f32::INFINITY).font(egui::TextStyle::Monospace));
             egui::Grid::new("doors").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                for (i, label) in ["Frame width", i18n::t("Panel depth"), i18n::t("Sheet width"), i18n::t("Sheet height"), i18n::t("Sheet thickness"), "Space between doors"].iter().enumerate() {
+                for (i, label) in [i18n::t("Frame width"), i18n::t("Panel depth"), i18n::t("Sheet width"), i18n::t("Sheet height"), i18n::t("Sheet thickness"), i18n::t("Space between doors")].iter().enumerate() {
                     if i < 2 && !self.shaker {
                         continue;
                     }

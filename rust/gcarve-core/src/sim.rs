@@ -93,7 +93,7 @@ fn stamp(hf: &mut HeightField, t: &Tool, cx: f64, cy: f64, d: f64) {
             }
             let cut = match t.kind {
                 ToolType::VBit => d - dist / tan_half,
-                ToolType::BallNose => d - t.ball_rise(dist),
+                ToolType::BallNose | ToolType::TaperedBall => d - t.ball_rise(dist),
                 // the wood keeps a quarter round: vertical at the tip, level with the surface at the rim
                 ToolType::RoundOver => {
                     let rr = if t.radius > 0.0 { t.radius.min(r) } else { r };
@@ -351,6 +351,22 @@ mod tests {
         stamp(&mut hf, &Tool { radius: 0.25, ..t }, 1.0, 1.0, 0.5);
         let at = |dist: f64| hf.depth[100 * 200 + (100.0 + dist / 0.01) as usize] as f64;
         assert!(at(0.0) == 0.5 && at(0.2) == 0.5 && at(0.4) < 0.3 && at(0.4) > 0.25, "{} {}", at(0.2), at(0.4));
+    }
+
+    #[test]
+    fn a_tapered_ball_nose_leaves_its_ball_then_its_cone() {
+        // 0.5 mm tip (r 0.00984), 5.12° per side, 1/4 in shank, plunged 0.3 deep in 0.002 in cells
+        let mut hf = HeightField { nx: 300, ny: 300, res: 0.002, x0: 0.0, y0: 0.0, depth: vec![0.0; 90_000] };
+        let t = Tool { kind: ToolType::TaperedBall, diameter: 0.25, radius: 0.25 / 25.4, angle: 5.12, ..Default::default() };
+        stamp(&mut hf, &t, 0.3, 0.3, 0.3);
+        let at = |cells: usize| hf.depth[150 * 300 + 150 + cells] as f64;
+        let x = |cells: usize| (cells as f64 * 0.002 + 0.001).hypot(0.001); // cell centre's distance from the tip
+        assert!((at(0) - (0.3 - t.ball_rise(x(0)))).abs() < 1e-6 && at(0) > 0.299, "full depth at the tip");
+        for c in [2, 10, 15] {
+            assert!((at(c) - (0.3 - t.ball_rise(x(c)))).abs() < 1e-6, "{c}: {} vs {}", at(c), 0.3 - t.ball_rise(x(c)));
+        }
+        // the cone: a hole 2 × (r cos a + (0.3 − r (1 − sin a)) tan a) ≈ 0.072 in across at the top, far narrower than the shank
+        assert!(at(16) > 0.0 && at(19) == 0.0, "{} {}", at(16), at(19));
     }
 
     #[test]

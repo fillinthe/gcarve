@@ -10,7 +10,7 @@ use gcarve_core::catalog::Bit;
 use gcarve_core::document::{Tool, ToolType};
 
 /// Type filter chips: label, icon family, families it covers
-const TYPES: &[(&str, &str, &[&str])] = &[
+const TYPES: &[(&str, &str, &[&str])] = &[ // i18n
     ("Up-cut", "end-mill-up", &["end-mill-up"]),
     ("Down-cut", "end-mill-down", &["end-mill-down"]),
     ("Compression", "compression", &["compression", "mortise-compression"]),
@@ -30,7 +30,7 @@ const TYPES: &[(&str, &str, &[&str])] = &[
 ];
 
 /// Diameter filter (inches): label, min, max
-const SIZES: &[(&str, f64, f64)] = &[("Any size", 0.0, 1e9), ("Under 1/8\"", 0.0, 0.124), ("1/8\" – 1/4\"", 0.124, 0.251), ("1/4\" – 1/2\"", 0.251, 0.501), ("Over 1/2\"", 0.501, 1e9)];
+const SIZES: &[(&str, f64, f64)] = &[("Any size", 0.0, 1e9), ("Under 1/8\"", 0.0, 0.124), ("1/8\" – 1/4\"", 0.124, 0.251), ("1/4\" – 1/2\"", 0.251, 0.501), ("Over 1/2\"", 0.501, 1e9)]; // i18n
 
 #[derive(Clone, PartialEq, Default)]
 struct Filter {
@@ -87,6 +87,7 @@ pub fn tool_family(t: &Tool) -> &'static str {
         ToolType::VBit => "v-bit",
         ToolType::BallNose => "ball-nose",
         ToolType::RoundOver => "roundover",
+        ToolType::TaperedBall => "tapered-ball",
         _ => "end-mill-up",
     }
 }
@@ -164,9 +165,9 @@ impl BitBrowser {
                         ui.selectable_value(&mut self.filter.maker, m.clone(), format!("{m}  ({n})"));
                     }
                 });
-                crate::widgets::combo_box("bb-size").selected_text(SIZES[self.filter.size].0).width(110.0).show_ui(ui, |ui| {
+                crate::widgets::combo_box("bb-size").selected_text(crate::i18n::t(SIZES[self.filter.size].0)).width(110.0).show_ui(ui, |ui| {
                     for (i, s) in SIZES.iter().enumerate() {
-                        ui.selectable_value(&mut self.filter.size, i, s.0);
+                        ui.selectable_value(&mut self.filter.size, i, crate::i18n::t(s.0));
                     }
                 });
                 crate::widgets::checkbox(ui, &mut self.filter.feeds_only, i18n::t("With maker feeds"));
@@ -176,6 +177,7 @@ impl BitBrowser {
             ui.horizontal_wrapped(|ui| {
                 ui.spacing_mut().item_spacing = vec2(4.0, 4.0);
                 for (k, (label, fam, _)) in TYPES.iter().enumerate() {
+                    let label = &crate::i18n::t(label);
                     let on = self.filter.kind == Some(k);
                     let tw = ui.painter().layout_no_wrap(label.to_string(), theme::font(11.0), theme::TEXT).size().x;
                     let (r, resp) = ui.allocate_exact_size(vec2(tw + 30.0, 30.0), egui::Sense::click());
@@ -240,7 +242,7 @@ impl BitBrowser {
                         ui.vertical(|ui| {
                             ui.label(RichText::new(format!("{} {}", b.maker, b.part_number)).size(15.0).family(crate::widgets::bold_family()).color(Color32::WHITE));
                             ui.add(egui::Label::new(RichText::new(&b.name).color(theme::TEXT)).wrap());
-                            ui.label(RichText::new(TYPES.iter().find(|t| t.2.contains(&b.family.as_str())).map_or(b.family.as_str(), |t| t.0)).small().color(theme::TEXT_DIM));
+                            ui.label(RichText::new(TYPES.iter().find(|t| t.2.contains(&b.family.as_str())).map_or(b.family.as_str(), |t| crate::i18n::t(t.0))).small().color(theme::TEXT_DIM));
                         });
                     });
                     ui.add_space(6.0);

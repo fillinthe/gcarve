@@ -117,7 +117,7 @@ pub fn send(doc: &Document, gen: Option<&Generated>, project: &str) -> String {
         for f in &r.files {
             let p = dir.join(&f.filename);
             if let Err(e) = std::fs::write(&p, &f.text) {
-                return format!("Cannot write {}: {e}", p.display());
+                return crate::i18n::tf("Cannot write {p}: {e}", &[("p", &p.display()), ("e", &e)]);
             }
             first.get_or_insert(p);
         }

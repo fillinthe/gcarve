@@ -604,30 +604,36 @@ impl TextDialog {
                     crate::widgets::checkbox(ui, &mut self.item.weld, i18n::t("Weld letters")).on_hover_text(i18n::t("Merge letters that overlap (script fonts) into one outline, so a V-carve doesn't cut through the joins"));
                 });
                 ui.end_row();
+                // the curve rows only when there is a curve to follow (select one before opening the dialog)
                 let path_ok = self.path_choice > 0 && canvas.doc.find(self.path_choice).is_some();
-                ui.label(i18n::t("Along curve"));
-                ui.add_enabled(path_ok, crate::widgets::CheckBox::new(&mut self.on_path, if path_ok { i18n::t("Place letters along the selected curve") } else { i18n::t("Select one curve first to enable") }));
-                ui.end_row();
+                if path_ok {
+                    ui.label(i18n::t("Along curve"));
+                    crate::widgets::checkbox(ui, &mut self.on_path, i18n::t("Place letters along the selected curve"));
+                    ui.end_row();
+                }
                 let on = self.on_path && path_ok;
-                ui.add_enabled(on, egui::Label::new(i18n::tf("Start offset ({u})", &[("u", &u)])));
-                ui.add_enabled_ui(on, |ui| {
+                if on {
+                    ui.label(i18n::tf("Start offset ({u})", &[("u", &u)]));
                     ui.horizontal(|ui| {
                         units::num_field(ui, "st", &mut self.start, &canvas.doc, true, 110.0);
                         ui.label(dim(i18n::t("distance along the curve")));
-                    })
-                });
-                ui.end_row();
+                    });
+                    ui.end_row();
+                    ui.label(i18n::t("Side"));
+                    crate::widgets::checkbox(ui, &mut self.item.above, i18n::t("Letters stand on the curve (else hang below)"));
+                    ui.end_row();
+                }
                 ui.label(i18n::tf("Letter spacing ({u})", &[("u", &u)]));
                 units::num_field(ui, "sp", &mut self.spacing, &canvas.doc, true, 110.0);
                 ui.end_row();
-                ui.add_enabled(!self.on_path, egui::Label::new(i18n::tf("Arch radius ({u})", &[("u", &u)])));
-                ui.add_enabled_ui(!self.on_path, |ui| {
+                if !on {
+                    ui.label(i18n::tf("Arch radius ({u})", &[("u", &u)]));
                     ui.horizontal(|ui| {
                         units::num_field(ui, "arch", &mut self.arch, &canvas.doc, true, 110.0);
                         ui.label(dim(i18n::t("0 = straight; negative bows it down")));
-                    })
-                });
-                ui.end_row();
+                    });
+                    ui.end_row();
+                }
                 // kerning by hand: the gap after each letter, nudged one by one (inches, + = wider)
                 ui.label(i18n::t("Letter gaps")).on_hover_text(i18n::t("Drag a number to open or close the gap after that letter (in inches). Most fonts space well already: this is for the few pairs that look off at sign size, like AV or To."));
                 let chars: Vec<char> = self.item.text.chars().collect();
@@ -651,14 +657,13 @@ impl TextDialog {
                     }
                 });
                 ui.end_row();
-                ui.add_enabled(!self.on_path, egui::Label::new(i18n::t("Line spacing")));
-                ui.add_enabled(!self.on_path, egui::DragValue::new(&mut self.item.line_spacing).range(0.3..=10.0).speed(0.02).fixed_decimals(2).suffix(i18n::t(" × normal")));
-                ui.end_row();
-                ui.add_enabled(on, egui::Label::new(i18n::t("Side")));
-                ui.add_enabled(on, crate::widgets::CheckBox::new(&mut self.item.above, i18n::t("Letters stand on the curve (else hang below)")));
-                ui.end_row();
+                if !on && self.item.text.trim_end().contains('\n') {
+                    ui.label(i18n::t("Line spacing"));
+                    ui.add(egui::DragValue::new(&mut self.item.line_spacing).range(0.3..=10.0).speed(0.02).fixed_decimals(2).suffix(i18n::t(" × normal")));
+                    ui.end_row();
+                }
                 ui.label("");
-                ui.allocate_ui(egui::vec2(320.0, 20.0), |ui| ui.add(egui::Label::new(dim(i18n::t("Text stays editable: double-click it later to change the wording or font. Toolpaths follow."))).wrap()));
+                ui.label(dim(i18n::t("Double-click the text later to change it.")));
                 ui.end_row();
             });
             let (o, c) = crate::widgets::ok_cancel(ui);

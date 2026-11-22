@@ -116,12 +116,12 @@ pub fn import(bytes: &[u8]) -> Result<(Vec<Tool>, usize), String> {
     // ponytail: SQLite needs a file; a copy in the temp folder (Qt copies too: read-only shares). A live -wal sibling
     // is not copied (bytes only): Vectric checkpoints it on close, so close VCarve before importing.
     let tmp = std::env::temp_dir().join(format!("gcarve-import-{}.vtdb", std::process::id()));
-    std::fs::write(&tmp, bytes).map_err(|e| format!("Cannot write {}: {e}", tmp.display()))?;
+    std::fs::write(&tmp, bytes).map_err(|e| crate::i18n::tf("Cannot write {p}: {e}", &[("p", &tmp.display()), ("e", &e)]))?;
     let r = read(&tmp);
     for ext in ["", "-wal", "-shm"] {
         let _ = std::fs::remove_file(format!("{}{ext}", tmp.display()));
     }
-    r.map(|rows| tools_from(&rows)).map_err(|e| format!("Cannot read the Vectric database ({e})"))
+    r.map(|rows| tools_from(&rows)).map_err(|e| crate::i18n::tf("Cannot read the Vectric database ({e})", &[("e", &e)]))
 }
 
 #[cfg(not(target_arch = "wasm32"))]
@@ -189,7 +189,7 @@ export async function gc_vtdb_rows(bytes, q1, q2, q3) {
                 Ok(v) => serde_json::from_str::<super::Rows>(&v.as_string().unwrap_or_default()).map(|rows| super::tools_from(&rows)).map_err(|e| e.to_string()),
                 Err(e) => Err(e.as_string().or_else(|| js_sys::Error::from(e).message().as_string()).unwrap_or_else(|| gcarve_ui::i18n::t("not a Vectric tool database").into())),
             };
-            *RESULT.lock().unwrap() = Some(r.map_err(|e| format!("Cannot read the Vectric database ({e})")));
+            *RESULT.lock().unwrap() = Some(r.map_err(|e| crate::i18n::tf("Cannot read the Vectric database ({e})", &[("e", &e)])));
             ctx.request_repaint();
         });
     }

@@ -112,8 +112,8 @@ impl JobsDialog {
                             if IconButton::new("open").tip(if cfg!(target_os = "macos") { i18n::t("Show the job folder in Finder") } else { i18n::t("Show the job folder in the file manager") }).show(ui).clicked() {
                                 act = Some(Act::Reveal(j.path.clone()));
                             }
-                            let items: Vec<(&str, &str)> = STATUSES.iter().map(|s| (*s, *s)).collect();
-                            let mut cur = STATUSES.iter().find(|s| **s == j.status).copied().unwrap_or(i18n::t("Planned"));
+                            let items: Vec<(&str, &str)> = STATUSES.iter().map(|s| (*s, crate::i18n::t(s))).collect();
+                            let mut cur = STATUSES.iter().find(|s| **s == j.status).copied().unwrap_or("Planned");
                             if combo(ui, "status", &mut cur, &items, 130.0) {
                                 act = Some(Act::Status(j.path.clone(), cur.to_string()));
                             }
@@ -167,7 +167,7 @@ impl JobsDialog {
                                         }
                                     });
                                 });
-                                let line = format!("Saved {}{}", p.modified, if p.exported.is_empty() { i18n::t("  ·  not exported yet").to_string() } else { format!("  ·  G-code {} ({} file{})", p.exported, p.files, if p.files == 1 { "" } else { "s" }) });
+                                let line = i18n::tf("Saved {when}", &[("when", &p.modified)]) + &if p.exported.is_empty() { i18n::t("  ·  not exported yet").to_string() } else { i18n::tf("  ·  G-code {when} ({n} file(s))", &[("when", &p.exported), ("n", &p.files)]) };
                                 ui.add(egui::Label::new(RichText::new(line).size(11.0).color(theme::TEXT.gamma_multiply(0.7))).truncate());
                                 if p.revision > 1 {
                                     let on = self.history_open.as_ref() == Some(&p.path);

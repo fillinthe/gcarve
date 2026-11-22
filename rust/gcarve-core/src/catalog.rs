@@ -150,6 +150,7 @@ pub struct Bit {
     pub flutes: i32,
     pub angle_deg: Option<f64>,
     pub corner_radius: Option<f64>,
+    pub tip_radius: Option<f64>,
     pub max_rpm: Option<f64>,
     pub rpm: Option<Vec<f64>>,
     pub chip_load: Option<BTreeMap<String, [f64; 2]>>,
@@ -287,6 +288,19 @@ impl Catalog {
 
     /// A library tool for this bit (inches), carrying the maker chip loads.
     pub fn bit_tool(&self, b: &Bit) -> Tool {
+        // tapered ball nose: the tip ball, the taper per side (the catalog has the included angle), up to the shank
+        if b.family == "tapered-ball" {
+            if let (Some(tr), Some(a), Some(sh)) = (b.tip_radius, b.angle_deg, b.shank) {
+                let mut t = Tool { kind: ToolType::TaperedBall, ..self.bit_tool_plain(b) };
+                (t.radius, t.angle, t.diameter) = (b.inch(tr), a / 2.0, b.inch(sh));
+                t.stepdown = (t.cut_diameter() * 0.5).max(0.01);
+                return t;
+            }
+        }
+        self.bit_tool_plain(b)
+    }
+
+    fn bit_tool_plain(&self, b: &Bit) -> Tool {
         let kind = match b.gcarve_tool.get("kind").and_then(Value::as_str) {
             Some("VBit") => ToolType::VBit,
             Some("BallNose") => ToolType::BallNose,

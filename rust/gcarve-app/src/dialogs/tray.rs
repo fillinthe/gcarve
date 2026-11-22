@@ -57,7 +57,7 @@ impl TrayDialog {
                 ui.selectable_value(&mut self.board, true, i18n::t("Cutting board"));
             });
             egui::Grid::new("tray").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                let labels = ["Board width", i18n::t("Board height"), i18n::t("Board thickness"), if self.board { i18n::t("Groove depth") } else { i18n::t("Tray depth") }, if self.board { i18n::t("Groove in from the edge") } else { i18n::t("Rim width") }];
+                let labels = [i18n::t("Board width"), i18n::t("Board height"), i18n::t("Board thickness"), if self.board { i18n::t("Groove depth") } else { i18n::t("Tray depth") }, if self.board { i18n::t("Groove in from the edge") } else { i18n::t("Rim width") }];
                 for (i, label) in labels.iter().enumerate() {
                     ui.label(unit_label(label, doc));
                     crate::units::num_field(ui, label, &mut self.size[i], doc, true, 110.0);

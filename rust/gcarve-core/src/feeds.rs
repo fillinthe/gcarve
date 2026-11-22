@@ -31,15 +31,15 @@ fn has(s: &str, words: &[&str]) -> bool {
 /// The board picker's names (gcarve-app `dialogs::MATERIALS`, same order) in every UI language; the app checks this
 /// table against its language packs
 pub const MATERIAL_NAMES: [&[&str]; 9] = [
-    &["Plywood", "Contrachapado", "Sperrholz", "Contreplaqué", "Compensato", "Compensado", "合板", "胶合板"],
-    &["Baltic birch", "Abedul báltico", "Birke Multiplex", "Bouleau balte", "Betulla baltica", "Bétula báltica", "バルチックバーチ合板", "波罗的海桦木胶合板"],
+    &["Plywood", "Contrachapado", "Sperrholz", "Contreplaqué", "Compensato", "Compensado", "合板", "胶合板", "Multiplex", "Sklejka", "Kontrplak", "합판"],
+    &["Baltic birch", "Abedul báltico", "Birke Multiplex", "Bouleau balte", "Betulla baltica", "Bétula báltica", "バルチックバーチ合板", "波罗的海桦木胶合板", "Berken multiplex", "Sklejka brzozowa", "Baltık huşu", "자작나무 합판"],
     &["MDF"],
-    &["Hardwood", "Madera dura", "Hartholz", "Bois dur", "Legno duro", "Madeira de lei", "広葉樹材", "硬木"],
-    &["Softwood", "Madera blanda", "Weichholz", "Bois tendre", "Legno tenero", "Madeira macia", "針葉樹材", "软木"],
-    &["Acrylic", "Acrílico", "Acrylglas", "Acrylique", "Acrilico", "アクリル", "亚克力"],
+    &["Hardwood", "Madera dura", "Hartholz", "Bois dur", "Legno duro", "Madeira de lei", "広葉樹材", "硬木", "Hardhout", "Drewno twarde", "Sert ağaç", "활엽수"],
+    &["Softwood", "Madera blanda", "Weichholz", "Bois tendre", "Legno tenero", "Madeira macia", "針葉樹材", "软木", "Zachthout", "Drewno miękkie", "Yumuşak ağaç", "침엽수"],
+    &["Acrylic", "Acrílico", "Acrylglas", "Acrylique", "Acrilico", "アクリル", "亚克力", "Acryl", "Akryl", "Akrilik", "아크릴"],
     &["HDPE"],
-    &["Aluminium", "Aluminum", "Aluminio", "Alluminio", "Alumínio", "アルミニウム", "铝"],
-    &["Foam", "Espuma", "Schaumstoff", "Mousse", "Schiuma", "フォーム", "泡沫"],
+    &["Aluminium", "Aluminum", "Aluminio", "Alluminio", "Alumínio", "アルミニウム", "铝", "Alüminyum", "알루미늄"],
+    &["Foam", "Espuma", "Schaumstoff", "Mousse", "Schiuma", "フォーム", "泡沫", "Schuim", "Pianka", "Köpük", "폼"],
 ];
 
 /// Two material names for the same picker entry, whatever language each was typed in (case ignored)
@@ -53,19 +53,19 @@ pub fn classify_material(name: &str) -> MaterialClass {
     if has(&s, &["mdf", "fiberboard", "hdf", "particle"]) {
         return MaterialClass::Mdf;
     }
-    if has(&s, &["ply", "birch", "osb", "laminate", "melamine", "sperrholz", "multiplex", "contreplaqu", "contrachapad", "compensad", "compensat", "birke", "bouleau", "betulla", "abedul", "bétula", "合板", "胶合板", "バーチ", "桦"]) {
+    if has(&s, &["ply", "birch", "osb", "laminate", "melamine", "sperrholz", "multiplex", "contreplaqu", "contrachapad", "compensad", "compensat", "birke", "bouleau", "betulla", "abedul", "bétula", "合板", "胶合板", "バーチ", "桦", "sklejk", "kontrplak", "huş", "합판", "자작"]) {
         return MaterialClass::Plywood;
     }
-    if has(&s, &["alumin", "brass", "copper", "metal", "allumin", "alumín", "アルミ", "铝"]) {
+    if has(&s, &["alumin", "brass", "copper", "metal", "allumin", "alumín", "アルミ", "铝", "alümin", "알루미늄"]) {
         return MaterialClass::Aluminum;
     }
-    if has(&s, &["acrylic", "acryl", "acríl", "acril", "アクリル", "亚克力", "plexi", "hdpe", "pvc", "plastic", "polycarb", "lexan", "delrin", "acetal", "abs", "uhmw", "nylon", "corian", "solid surface"]) {
+    if has(&s, &["acrylic", "acryl", "acríl", "acril", "アクリル", "亚克力", "akryl", "akril", "아크릴", "plexi", "hdpe", "pvc", "plastic", "polycarb", "lexan", "delrin", "acetal", "abs", "uhmw", "nylon", "corian", "solid surface"]) {
         return MaterialClass::Plastic;
     }
-    if has(&s, &["foam", "schaum", "mousse", "schiuma", "espuma", "フォーム", "発泡", "泡沫", "eps", "xps", "styro", "renshape", "tooling board", "sign foam", "hdu", "precision board"]) {
+    if has(&s, &["foam", "schaum", "mousse", "schiuma", "espuma", "フォーム", "発泡", "泡沫", "schuim", "pian", "köpük", "폼", "eps", "xps", "styro", "renshape", "tooling board", "sign foam", "hdu", "precision board"]) {
         return MaterialClass::Foam;
     }
-    if has(&s, &["pine", "cedar", "fir", "spruce", "poplar", "basswood", "redwood", "softwood", "alder", "cypress", "hemlock", "weichholz", "bois tendre", "legno tenero", "madera blanda", "madeira macia", "kiefer", "fichte", "sapin", "pino", "pinho", "針葉樹", "软木", "松"]) {
+    if has(&s, &["pine", "cedar", "fir", "spruce", "poplar", "basswood", "redwood", "softwood", "alder", "cypress", "hemlock", "weichholz", "bois tendre", "legno tenero", "madera blanda", "madeira macia", "kiefer", "fichte", "sapin", "pino", "pinho", "針葉樹", "软木", "松", "zachthout", "miękk", "yumuşak", "침엽수"]) {
         return MaterialClass::Softwood;
     }
     MaterialClass::Hardwood // oak, maple, walnut, cherry, hardwoods, unknown
@@ -243,4 +243,20 @@ pub fn assess_feeds_range(t: &Cutter, cr: ChipRange, material: &str, feed_xy: f6
         message += " Plunge is fast; straight bits plunge poorly.";
     }
     FeedAssessment { chip_load: chip, meter: m.clamp(0.0, 1.0), level, message }
+}
+
+#[cfg(test)]
+mod material_name_tests {
+    use super::*;
+
+    /// A board material typed in any of the app's languages gets the same chip loads as its English name.
+    #[test]
+    fn every_translated_material_name_sorts_like_the_english_one() {
+        for row in MATERIAL_NAMES {
+            let want = classify_material(row[0]);
+            for n in row.iter() {
+                assert_eq!(classify_material(n), want, "{n:?} sorts unlike {:?}", row[0]);
+            }
+        }
+    }
 }

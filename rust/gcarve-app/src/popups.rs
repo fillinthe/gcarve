@@ -229,7 +229,7 @@ impl Canvas {
             let mut ok = false;
             let Some(d) = self.doc.dimensions.get(p.index).cloned() else { return };
             popup_window("dim", p.at).show(&ctx, |ui| {
-                ui.label(RichText::new(format!("Dimension: {}", self.dimension_text(&d))).font(W::bold(crate::theme::FONT_SIZE)));
+                ui.label(RichText::new(i18n::tf("Dimension: {d}", &[("d", &self.dimension_text(&d))])).font(W::bold(crate::theme::FONT_SIZE)));
                 let anchored = d.shape_a >= 0 && d.shape_b >= 0 && d.axis != 3;
                 egui::Grid::new("dim").num_columns(2).spacing([10.0, 6.0]).show(ui, |ui| {
                     ui.label(i18n::t("Length"));
@@ -614,7 +614,7 @@ impl Dialogs {
             let mut ok = false;
             W::Dialog::new(i18n::t("Offset Vectors")).show(ctx, |ui| {
                 egui::Grid::new("offset").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                    ui.label(format!("Distance ({doc_unit})"));
+                    ui.label(i18n::tf("Distance ({doc_unit})", &[("doc_unit", &doc_unit)]));
                     units::num_field(ui, "d", &mut f[0], &canvas.doc, true, 110.0);
                     ui.end_row();
                     ui.label(i18n::t("Direction"));
@@ -656,7 +656,7 @@ impl Dialogs {
             let (mut keep, mut ok) = (true, false);
             W::Dialog::new(i18n::t("Shelf-Pin Holes")).show(ctx, |ui| {
                 egui::Grid::new("pins").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                    for (i, label) in ["Hole diameter", i18n::t("Hole spacing"), i18n::t("In from the front and back edges"), "Clear of the ends"].iter().enumerate() {
+                    for (i, label) in [i18n::t("Hole diameter"), i18n::t("Hole spacing"), i18n::t("In from the front and back edges"), i18n::t("Clear of the ends")].iter().enumerate() {
                         ui.label(format!("{label} ({doc_unit})"));
                         units::num_field(ui, label, &mut f[i], &canvas.doc, true, 110.0);
                         ui.end_row();
@@ -687,7 +687,7 @@ impl Dialogs {
             let (mut keep, mut ok) = (true, false);
             W::Dialog::new(i18n::t("Rotary Layout")).show(ctx, |ui| {
                 egui::Grid::new("rlayout").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                    for (i, label) in ["Starts (lines round the blank)", i18n::t("Pitch: length per turn, 0 = straight"), i18n::t("From X"), "To X"].iter().enumerate() {
+                    for (i, label) in [i18n::t("Starts (lines round the blank)"), i18n::t("Pitch: length per turn, 0 = straight"), i18n::t("From X"), i18n::t("To X")].iter().enumerate() {
                         ui.label(if i == 0 { label.to_string() } else { format!("{label} ({doc_unit})") });
                         units::num_field(ui, label, &mut f[i], &canvas.doc, i > 0, 110.0);
                         ui.end_row();
@@ -720,7 +720,7 @@ impl Dialogs {
                 ui.label(i18n::t("Text or web address"));
                 ui.add(crate::widgets::field(&mut text).desired_width(320.0));
                 ui.horizontal(|ui| {
-                    ui.label(format!("Size ({doc_unit})"));
+                    ui.label(i18n::tf("Size ({doc_unit})", &[("doc_unit", &doc_unit)]));
                     units::num_field(ui, "qr-size", &mut size, &canvas.doc, true, 110.0);
                 });
                 W::checkbox(ui, &mut invert, i18n::t("Light squares instead (pocket them: the dark squares stand up)"));
@@ -751,7 +751,7 @@ impl Dialogs {
                     ui.selectable_value(&mut flat, true, i18n::t("Flat (end mill) inlay"));
                 });
                 egui::Grid::new("inlay").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                    let labels = if flat { ["Pocket depth", i18n::t("Fit gap (per side)"), ""] } else { ["Pocket depth", i18n::t("Glue gap"), "Plug margin"] };
+                    let labels = if flat { [i18n::t("Pocket depth"), i18n::t("Fit gap (per side)"), ""] } else { [i18n::t("Pocket depth"), i18n::t("Glue gap"), i18n::t("Plug margin")] };
                     for (i, label) in labels.iter().enumerate().filter(|(_, l)| !l.is_empty()) {
                         ui.label(format!("{label} ({doc_unit})"));
                         units::num_field(ui, label, &mut f[i], &canvas.doc, true, 110.0);
@@ -824,7 +824,7 @@ impl Dialogs {
                         ui.selectable_value(&mut test, false, i18n::t("Slots"));
                     });
                     ui.end_row();
-                    let rows: &[(usize, &str)] = if test { &[(0, "Board thickness (measure it)"), (3, "Tightest slot: wider than the board by"), (4, "Loosest slot: wider than the board by")] } else { &[(0, "Board thickness (measure it)"), (1, "Fit: slot wider than the board by"), (2, "Slot length")] };
+                    let rows: &[(usize, &str)] = if test { &[(0, i18n::t("Board thickness (measure it)")), (3, i18n::t("Tightest slot: wider than the board by")), (4, i18n::t("Loosest slot: wider than the board by"))] } else { &[(0, i18n::t("Board thickness (measure it)")), (1, i18n::t("Fit: slot wider than the board by")), (2, i18n::t("Slot length"))] };
                     for (i, label) in rows {
                         ui.label(format!("{} ({doc_unit})", i18n::tr(label)));
                         units::num_field(ui, label, &mut f[*i], &canvas.doc, true, 110.0);
@@ -863,7 +863,7 @@ impl Dialogs {
             let (mut keep, mut ok) = (true, false);
             W::Dialog::new(i18n::t("Living Hinge")).show(ctx, |ui| {
                 egui::Grid::new("hinge").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                    for (i, label) in ["Space between rows of slots", i18n::t("Slot length"), "Wood between slots"].iter().enumerate() {
+                    for (i, label) in [i18n::t("Space between rows of slots"), i18n::t("Slot length"), i18n::t("Wood between slots")].iter().enumerate() {
                         ui.label(format!("{label} ({doc_unit})"));
                         units::num_field(ui, label, &mut f[i], &canvas.doc, true, 110.0);
                         ui.end_row();
@@ -900,7 +900,7 @@ impl Dialogs {
             let (mut keep, mut ok) = (true, false);
             W::Dialog::new(i18n::t("Jigsaw Puzzle")).show(ctx, |ui| {
                 egui::Grid::new("puzzle").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                    for (i, label) in ["Width", i18n::t("Height"), i18n::t("Pieces across"), "Pieces down"].iter().enumerate() {
+                    for (i, label) in [i18n::t("Width"), i18n::t("Height"), i18n::t("Pieces across"), i18n::t("Pieces down")].iter().enumerate() {
                         ui.label(if i < 2 { format!("{label} ({doc_unit})") } else { label.to_string() });
                         units::num_field(ui, label, &mut f[i], &canvas.doc, i < 2, 110.0);
                         ui.end_row();
@@ -1033,7 +1033,7 @@ impl Dialogs {
             let (mut keep, mut ok) = (true, false);
             W::Dialog::new(i18n::t("Vector Texture")).show(ctx, |ui| {
                 egui::Grid::new("vtexture").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                    for (i, label) in ["Line spacing", i18n::t("Wave height"), "Wave length"].iter().enumerate() {
+                    for (i, label) in [i18n::t("Line spacing"), i18n::t("Wave height"), i18n::t("Wave length")].iter().enumerate() {
                         ui.label(format!("{label} ({doc_unit})"));
                         units::num_field(ui, label, &mut f[i], &canvas.doc, true, 110.0);
                         ui.end_row();
@@ -1126,7 +1126,7 @@ impl Dialogs {
                         W::radio_value(ui, &mut self.corner_style, 2, i18n::t("Fillet (round)"));
                     });
                     ui.end_row();
-                    ui.label(if fillet { format!("Radius ({doc_unit})") } else { i18n::tf("Bit diameter ({doc_unit})", &[("doc_unit", &doc_unit)]) });
+                    ui.label(if fillet { i18n::tf("Radius ({doc_unit})", &[("doc_unit", &doc_unit)]) } else { i18n::tf("Bit diameter ({doc_unit})", &[("doc_unit", &doc_unit)]) });
                     units::num_field(ui, "d", &mut f[0], &canvas.doc, true, 110.0);
                     ui.end_row();
                     if fillet {
@@ -1193,10 +1193,10 @@ impl Dialogs {
                         ui.label(i18n::t("Rows (Y)"));
                         ui.add(W::SpinBox::new(&mut self.array_rows, 1..=200));
                         ui.end_row();
-                        ui.label(format!("Gap X ({doc_unit})"));
+                        ui.label(i18n::tf("Gap X ({doc_unit})", &[("doc_unit", &doc_unit)]));
                         units::num_field(ui, "gx", &mut f[0], &canvas.doc, true, 110.0);
                         ui.end_row();
-                        ui.label(format!("Gap Y ({doc_unit})"));
+                        ui.label(i18n::tf("Gap Y ({doc_unit})", &[("doc_unit", &doc_unit)]));
                         units::num_field(ui, "gy", &mut f[1], &canvas.doc, true, 110.0);
                         ui.end_row();
                     } else {

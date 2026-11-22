@@ -231,7 +231,7 @@ impl JobDialog {
                         self.post = post;
                     }
                     self.commit(host);
-                    *host.message = format!("Machine: {}", self.machine.as_ref().map(|m| m.name.as_str()).unwrap_or_default());
+                    *host.message = crate::i18n::tf("Machine: {m}", &[("m", &self.machine.as_ref().map(|m| m.name.as_str()).unwrap_or_default())]);
                     // an empty drawing whose board can't fit on this machine: start with the machine's table size
                     let doc = &mut host.canvas.doc;
                     if let Some((tx, ty)) = doc.material.machine.as_ref().map(|m| (m.travel_x, m.travel_y)).filter(|t| t.0 > 0.0 && t.1 > 0.0) {
@@ -399,7 +399,7 @@ impl JobDialog {
                             ui.label(RichText::new(&m.name).family(crate::widgets::bold_family()));
                             ui.label(RichText::new(format!("{}{}", if m.spindle.is_empty() { String::new() } else { format!("{} · ", m.spindle) }, limits_line(m))).color(crate::theme::TEXT_DIM).small());
                         }
-                        None => hint(ui, i18n::t("No machine chosen: generic limits (18,000 RPM, 600 in/min). Pick yours so suggested feeds stay inside its spindle and feed limits and export warns about anything beyond them.")),
+                        None => hint(ui, i18n::t("No machine chosen: generic limits (18,000 RPM, 600 in/min).")),
                     }
                     ui.horizontal(|ui| {
                         if ui.button(if self.machine.is_some() { i18n::t("Change machine…") } else { i18n::t("Choose machine…") }).clicked() {
@@ -422,13 +422,6 @@ impl JobDialog {
                     if ui.button(i18n::t("Choose…")).clicked() {
                         next = Next::Posts;
                     }
-                });
-                ui.end_row();
-                ui.label("");
-                ui.vertical(|ui| {
-                    ui.set_width(380.0);
-                    hint(ui, i18n::t("60+ built-in machines and controllers; upload Vectric .pp or JSON posts in the chooser."));
-                    hint(ui, i18n::t("Any length field accepts math and units: 4ft, 48in, 1200mm, 2*gap + 1in."));
                 });
                 ui.end_row();
             });
@@ -502,7 +495,7 @@ pub fn origin_picker(ui: &mut egui::Ui, value: &mut i32, aspect: f64) -> bool {
     let mut changed = false;
     for (i, (fx, fy)) in [(0.0, 1.0), (1.0, 1.0), (0.0, 0.0), (1.0, 0.0), (0.5, 0.5)].into_iter().enumerate() {
         let c = egui::pos2(rect.left() + 8.0 + fx * (w - 16.0), rect.top() + 8.0 + fy * (h - 16.0));
-        let r = ui.interact(egui::Rect::from_center_size(c, egui::vec2(16.0, 16.0)), ui.id().with(("origin", i)), Sense::click()).tip(format!("XY zero at {}", ORIGIN_NAMES[i].to_lowercase()));
+        let r = ui.interact(egui::Rect::from_center_size(c, egui::vec2(16.0, 16.0)), ui.id().with(("origin", i)), Sense::click()).tip(crate::i18n::tf("XY zero at {c}", &[("c", &crate::i18n::tr(ORIGIN_NAMES[i]).to_lowercase())]));
         let on = *value == i as i32;
         // OriginPicker.qml: the datum is Theme.highlightText (the canvas marker's yellow)
         let hl = crate::theme::c(0xffd34d);

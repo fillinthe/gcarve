@@ -43,3 +43,56 @@ fn big_job_times() {
         println!("{what:20} {:>8} moves  {:?}  {}", r.paths.iter().map(|p| p.moves.len()).sum::<usize>(), t.elapsed(), r.warnings.first().cloned().unwrap_or_default());
     }
 }
+
+use gcarve_core::document::{Document, ToolType};
+use gcarve_core::relief::Relief;
+
+/// Rest machining with a tapered ball nose on a 10 × 10 in model: `cargo test -p gcarve-core --release --test perf_probe rest_timing -- --ignored --nocapture`
+#[test]
+#[ignore]
+fn rest_timing() {
+    let (nx, ny) = (1000, 1000);
+    let height: Vec<f32> = (0..nx * ny).map(|i| {
+        let (x, y) = ((i % nx) as f64 / 100.0, (i / nx) as f64 / 100.0);
+        (0.5 + 0.25 * (x * 2.0).sin() * (y * 1.7).cos() + if (x * 7.0).sin().abs() < 0.08 { -0.4 } else { 0.0 }).clamp(0.0, 1.0) as f32
+    }).collect();
+    let mut d = Document::default();
+    d.material.w = 12.0;
+    d.material.h = 12.0;
+    d.reliefs.push(Relief { id: 1, x: 1.0, y: 1.0, w: 10.0, h: 10.0, depth: 0.3, nx, ny, height, ..Default::default() });
+    d.next_relief_id = 2;
+    d.tools.clear();
+    d.tools.push(Tool { kind: ToolType::BallNose, diameter: 0.125, stepdown: 0.1, feed_xy: 100.0, feed_z: 30.0, ..Default::default() });
+    d.tools.push(Tool { kind: ToolType::TaperedBall, diameter: 0.25, radius: 0.25 / 25.4, angle: 5.12, stepdown: 0.1, feed_xy: 60.0, feed_z: 20.0, ..Default::default() });
+    d.ops.push(Op { kind: OpType::Relief, name: "Finish".into(), relief: 1, tool: 0, stepover: 0.1, ..Default::default() });
+    d.ops.push(Op { kind: OpType::Relief, name: "Details".into(), relief: 1, tool: 1, stepover: 0.2, rest: true, ..Default::default() });
+    let t0 = std::time::Instant::now();
+    let g = gcarve_core::pipeline::regenerate_some(&d, &|i| i == 1);
+    let cut = |paths: &[gcarve_core::job::Toolpath]| -> f64 {
+        let mut n = 0.0;
+        for p in paths {
+            let (mut x, mut y) = (f64::NAN, f64::NAN);
+            for m in &p.moves {
+                let (nx, ny) = (m.x.unwrap_or(x), m.y.unwrap_or(y));
+                if m.kind == gcarve_core::job::MoveType::Linear && x.is_finite() {
+                    n += (nx - x).hypot(ny - y);
+                }
+                (x, y) = (nx, ny);
+            }
+        }
+        n
+    };
+    println!("rest pass on 10 x 10 in: {:.2} s to work out, {} moves, {:.0} in of moves, {:.0} min to cut", t0.elapsed().as_secs_f64(), g.paths[1].iter().map(|p| p.moves.len()).sum::<usize>(), cut(&g.paths[1]), g.minutes[1]);
+    let (mut rapids, mut zonly, mut zdist) = (0, 0, 0.0);
+    let mut z = 0.0_f64;
+    for m in g.paths[1].iter().flat_map(|p| p.moves.iter()) {
+        if m.kind == gcarve_core::job::MoveType::Rapid { rapids += 1; }
+        if m.x.is_none() && m.y.is_none() { zonly += 1; }
+        if let Some(nz) = m.z { zdist += (nz - z).abs(); z = nz; }
+    }
+    println!("  rapids {rapids}, z-only {zonly}, z travel {zdist:.0} in, paths {}", g.paths[1].len());
+    d.ops[1].rest = false;
+    let t0 = std::time::Instant::now();
+    let g = gcarve_core::pipeline::regenerate_some(&d, &|i| i == 1);
+    println!("the same bit over everything: {:.2} s to work out, {} moves, {:.0} in of moves, {:.0} min to cut", t0.elapsed().as_secs_f64(), g.paths[1].iter().map(|p| p.moves.len()).sum::<usize>(), cut(&g.paths[1]), g.minutes[1]);
+}

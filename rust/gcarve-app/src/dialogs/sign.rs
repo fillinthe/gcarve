@@ -59,7 +59,7 @@ impl SignDialog {
             ui.label(if self.batch { i18n::t("Names (one sign per line)") } else { i18n::t("Words (one line each)") });
             ui.add(egui::TextEdit::multiline(&mut self.words).desired_rows(2).desired_width(f32::INFINITY));
             egui::Grid::new("sign").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                for (i, label) in ["Board width", i18n::t("Board height"), "Board thickness"].iter().enumerate() {
+                for (i, label) in [i18n::t("Board width"), i18n::t("Board height"), i18n::t("Board thickness")].iter().enumerate() {
                     ui.label(unit_label(label, doc));
                     crate::units::num_field(ui, label, &mut self.size[i], doc, true, 110.0);
                     ui.end_row();
@@ -171,7 +171,7 @@ pub fn build(c: &mut Canvas, s: &SignSpec) -> String {
         return i18n::tf("New sign: {texts} letters V-carved, {extra}a cut-out with tabs. Check it in Simulate, then Export.", &[("texts", &(c.doc.texts.last().map_or(0, |t| t.text.chars().filter(|ch| !ch.is_whitespace()).count()))), ("extra", &(if s.border { i18n::t("a border groove, ") } else { "" }))]);
     };
     // a batch: signs in a grid, 1/2 in apart (the cut-out bit runs in the gap), as many sheets as it takes
-    let layers = ["Sign letters", i18n::t("Sign borders"), "Sign outlines"].map(|n| Some(c.doc.layer_named(n)));
+    let layers = [i18n::t("Sign letters"), i18n::t("Sign borders"), i18n::t("Sign outlines")].map(|n| Some(c.doc.layer_named(n)));
     let gap = 0.5;
     let (cols, rows) = (((bw - gap) / (s.w + gap)).floor().max(1.0) as usize, ((bh - gap) / (s.h + gap)).floor().max(1.0) as usize);
     let names: Vec<&str> = s.words.lines().map(str::trim).filter(|l| !l.is_empty()).collect();

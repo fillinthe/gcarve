@@ -103,13 +103,13 @@ pub fn open_page(name: &str, html: &str, what: &str) -> String {
                 crate::files::open_with_os(&path);
                 i18n::tf("{what} opened in your browser", &[("what", &what)])
             }
-            Err(e) => format!("Cannot write {}: {e}", path.display()),
+            Err(e) => crate::i18n::tf("Cannot write {p}: {e}", &[("p", &path.display()), ("e", &e)]),
         }
     }
     #[cfg(target_arch = "wasm32")]
     match crate::files::open_html_tab(name, html) {
         Ok(true) => i18n::tf("{what} opened in a new tab", &[("what", &what)]),
-        Ok(false) => format!("Downloaded {name}"),
+        Ok(false) => crate::i18n::tf("Downloaded {name}", &[("name", &name)]),
         Err(e) => e,
     }
 }

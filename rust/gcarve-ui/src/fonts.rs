@@ -39,17 +39,20 @@ fn system_symbols() -> Option<Vec<u8>> {
     ["/System/Library/Fonts/Apple Symbols.ttf", "C:\\Windows\\Fonts\\seguisym.ttf", "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", "/usr/share/fonts/TTF/DejaVuSans.ttf"].iter().find_map(|p| std::fs::read(p).ok())
 }
 
-/// A system font with Japanese / Chinese glyphs, for the ja and zh packs (the UI font has none); the web has no
-/// system fonts, so there the packs show boxes until a web font is added. (collection index 0 everywhere)
+/// A system font with Japanese / Chinese / Korean glyphs, for the ja, zh and ko packs (the UI font has none); the web
+/// has no system fonts and fetches its own (`fetch_cjk`). (collection index 0 everywhere; Noto Sans CJK and the
+/// Hiragino / YaHei fallbacks also hold Hangul)
 #[cfg(not(target_arch = "wasm32"))]
 fn system_cjk(lang: &str) -> Option<Vec<u8>> {
     let (ja, zh): (&[&str], &[&str]) = (
         &["/System/Library/Fonts/ヒラギノ角ゴシック W3.ttc", "C:\\Windows\\Fonts\\meiryo.ttc", "C:\\Windows\\Fonts\\YuGothM.ttc", "C:\\Windows\\Fonts\\msgothic.ttc", "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc", "/usr/share/fonts/noto-cjk/NotoSansCJK-Regular.ttc", "/usr/share/fonts/truetype/wqy/wqy-microhei.ttc"],
         &["/System/Library/Fonts/Hiragino Sans GB.ttc", "/System/Library/Fonts/PingFang.ttc", "C:\\Windows\\Fonts\\msyh.ttc", "C:\\Windows\\Fonts\\simhei.ttf", "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc", "/usr/share/fonts/noto-cjk/NotoSansCJK-Regular.ttc", "/usr/share/fonts/truetype/wqy/wqy-microhei.ttc"],
     );
+    let ko: &[&str] = &["/System/Library/Fonts/AppleSDGothicNeo.ttc", "C:\\Windows\\Fonts\\malgun.ttf", "C:\\Windows\\Fonts\\gulim.ttc", "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc", "/usr/share/fonts/noto-cjk/NotoSansCJK-Regular.ttc", "/usr/share/fonts/truetype/nanum/NanumGothic.ttf"];
     let list = match lang {
         "ja" => ja,
         "zh" => zh,
+        "ko" => ko,
         _ => return None,
     };
     list.iter().chain(if lang == "ja" { zh } else { ja }).find_map(|p| std::fs::read(p).ok())
@@ -65,7 +68,7 @@ pub fn fetch_cjk(ctx: &egui::Context) {
     #[cfg(target_arch = "wasm32")]
     {
         let lang = crate::i18n::current();
-        if !matches!(lang, "ja" | "zh") || WEB_CJK.lock().map(|g| g.as_ref().is_some_and(|(l, _)| *l == lang)).unwrap_or(true) {
+        if !matches!(lang, "ja" | "zh" | "ko") || WEB_CJK.lock().map(|g| g.as_ref().is_some_and(|(l, _)| *l == lang)).unwrap_or(true) {
             return;
         }
         // next to the app's own files (/app/fonts/…), whatever the host

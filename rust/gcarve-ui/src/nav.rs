@@ -21,7 +21,7 @@ pub enum Act {
 
 impl Nav {
     /// (style, store name, label, hint line)
-    pub const ALL: [(Nav, &'static str, &'static str, &'static str); 4] = [
+    pub const ALL: [(Nav, &'static str, &'static str, &'static str); 4] = [ // i18n
         (Nav::Fusion, "fusion", "Fusion 360", "Middle-drag pans (Shift: orbit) · left-drag orbits · right-drag pans · wheel zooms"),
         (Nav::Blender, "blender", "Blender", "Middle-drag orbits (Shift: pan, Ctrl: zoom) · left-drag orbits · wheel zooms"),
         (Nav::VCarve, "vcarve", "VCarve / Aspire", "Left-drag orbits · right-drag zooms · middle-drag or Ctrl+left-drag pans · wheel zooms"),
@@ -115,7 +115,7 @@ impl MouseMap {
     }
     pub fn hint(&self) -> String {
         if let Some(n) = self.base.filter(|_| self.label() != "Custom") {
-            return n.row().3.to_string();
+            return crate::i18n::t(n.row().3).to_string();
         }
         let name = |a: Act| ACTS.iter().find(|x| x.0 == a).map_or("", |x| x.1).to_lowercase();
         BUTTONS.iter().enumerate().map(|(i, (_, b))| format!("{}-drag {}s", b.to_lowercase(), name(self.drags[i][0]))).collect::<Vec<_>>().join(" · ") + " · wheel zooms"

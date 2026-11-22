@@ -9,7 +9,7 @@ use gcarve_core::{pipeline, project};
 use std::path::{Path, PathBuf};
 
 const GCODE_EXTS: [&str; 9] = ["nc", "tap", "gcode", "ngc", "txt", "cnc", "gc", "mmg", "sbp"];
-pub const STATUSES: [&str; 4] = ["Planned", "In progress", "Cut", "Delivered"];
+pub const STATUSES: [&str; 4] = ["Planned", "In progress", "Cut", "Delivered"]; // i18n
 
 #[derive(Clone, Debug, Default)]
 pub struct ProjectInfo {
@@ -211,7 +211,7 @@ impl Jobs {
             self.status = i18n::tf("Cannot copy {src}", &[("src", &(src.display()))]);
             return None;
         }
-        self.status = format!("Added {}", dst.file_name().unwrap_or_default().to_string_lossy());
+        self.status = crate::i18n::tf("Added {name}", &[("name", &dst.file_name().unwrap_or_default().to_string_lossy())]);
         self.refresh();
         Some(dst)
     }
@@ -264,7 +264,7 @@ pub fn export_to_dir(doc: &gcarve_core::document::Document, stem: &str, dir: &Pa
         std::fs::write(&p, &f.text).map_err(|e| i18n::tf("Cannot write {p}: {e}", &[("p", &(p.display())), ("e", &e)]))?;
         names.push(format!("{} (r{rev})", f.filename));
     }
-    let mut msg = format!("Exported {}", names.join(", "));
+    let mut msg = crate::i18n::tf("Exported {names}", &[("names", &names.join(", "))]);
     if !r.safety.is_empty() {
         msg += &format!(" ⚠ {}", r.safety.iter().map(|w| i18n::msg(w)).collect::<Vec<_>>().join("; "));
     }

@@ -7,7 +7,7 @@ impl Canvas {
     pub fn add_layer(&mut self) {
         self.doc.checkpoint();
         let n = self.doc.layers.len() + 1;
-        self.doc.active_layer = self.doc.layer_named(&format!("Layer {n}"));
+        self.doc.active_layer = self.doc.layer_named(&crate::i18n::tf("Layer {n}", &[("n", &n)]));
         self.mutated();
     }
 

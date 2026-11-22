@@ -65,7 +65,7 @@ pub fn new_op(doc: &Document, kind: OpType, selected: &[i32]) -> Op {
             op.rough_stepdown = 0.2;
             op.rough_stepover = 0.5;
             op.allowance = 0.02;
-            op.relief = doc.reliefs.last().map(|r| r.id).unwrap_or(-1);
+            op.relief = if doc.reliefs.len() > 1 { gcarve_core::relief::ALL_MODELS } else { doc.reliefs.last().map(|r| r.id).unwrap_or(-1) };
             op.tool = find(ToolType::BallNose).unwrap_or(0);
             op.clear_tool = find(ToolType::EndMill).unwrap_or(0);
         }
@@ -164,7 +164,7 @@ impl OpDialog {
         f.set_bound("glueGap", b, op.glue_gap);
         f.set_bound("inlayMargin", b, op.inlay_margin);
         f.set_bound("rampIn", b, op.ramp_in);
-        f.set("dragKnife", if op.drag_knife > 0.0 { op.drag_knife } else { 0.25 });
+        f.set("dragKnife", if op.drag_knife > 0.0 { op.drag_knife } else { 0.01 }); // 0.25 mm, a common blade
         f.set("rounding", if op.rounding > 0.0 { op.rounding } else { doc.material.rotary.unwrap_or(3.0) });
         f.set_bound("rampOut", b, op.ramp_out);
         f.set_bound("rampLength", b, op.ramp_length);
@@ -241,6 +241,7 @@ impl OpDialog {
         }
         op.ramp_out = f.get_or("rampOut", doc, op.ramp_out).max(0.0);
         op.rough = k == OpType::Relief && op.rough;
+        op.rest = k == OpType::Relief && op.rest;
         op.rough_stepdown = super::eval_len(&self.rough_step, doc).unwrap_or(op.rough_stepdown).max(0.0);
         op.rough_stepover = (self.rough_pct as f64 / 100.0).clamp(0.05, 1.0);
         op.raster_angle = if matches!(k, OpType::Texture | OpType::Photo) || (k == OpType::Pocket && op.raster) { op.raster_angle.rem_euclid(180) } else if op.raster_angle == 90 { 90 } else { 0 };
@@ -369,7 +370,8 @@ impl OpDialog {
         let (is_chamfer, is_prism) = (k == OpType::Chamfer, k == OpType::Prism);
         let fixed = k == OpType::Imported;
         let needs_v = v_like || is_chamfer || is_prism;
-        let title = format!("{} {} Toolpath", if self.index.is_some() { i18n::t("Edit") } else { i18n::t("New") }, kind_name(k));
+        let kind = kind_name(k);
+        let title = if self.index.is_some() { i18n::tf("Edit {kind} toolpath", &[("kind", &kind)]) } else { i18n::tf("New {kind} toolpath", &[("kind", &kind)]) };
         let selected: Vec<i32> = host.canvas.sel.iter().copied().collect();
         let have_sel = !selected.is_empty();
         // the dialog floats at the right, the canvas stays live: a new toolpath follows the canvas selection
@@ -399,8 +401,9 @@ impl OpDialog {
         dialog.show(ctx, |ui| {
             // the fields scroll, OK / Cancel stay in view: the dialog starts 70 px down and its frame, title and
             // button row take about 160 px more
-            // (sideways too: on a phone the rows are wider than the dialog)
-            egui::ScrollArea::new([dock.is_none(), true]).max_height(fields_h).min_scrolled_height(if dock.is_some() { fields_h } else { 0.0 }).show(ui, |ui| {
+            // (sideways only on a phone, where the rows are wider than the dialog; elsewhere long hints wrap: ticket #43
+            // saw a sideways scroll bar on a Mac)
+            egui::ScrollArea::new([dock.is_none() && ctx.content_rect().width() < 760.0, true]).max_height(fields_h).min_scrolled_height(if dock.is_some() { fields_h } else { 0.0 }).show(ui, |ui| {
                 egui::Grid::new("op").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
                     ui.label(i18n::t("Name"));
                     ui.add(crate::widgets::field(&mut self.op.name).desired_width(col));
@@ -421,14 +424,14 @@ impl OpDialog {
                             ui.label(i18n::t("Layer"));
                             let layers: Vec<(i32, String)> = doc.layers.iter().enumerate().filter(|(_, l)| !l.keep_out).map(|(i, l)| (i as i32, l.name.clone())).collect();
                             let refs: Vec<(i32, &str)> = layers.iter().map(|(i, n)| (*i, n.as_str())).collect();
-                            combo(ui, "scope-layer", &mut self.scope_layer, &refs, 260.0);
+                            combo(ui, "scope-layer", &mut self.scope_layer, &refs, wide.min(260.0));
                             ui.end_row();
                         }
                         if doc.sheets.len() > 1 {
                             ui.label(i18n::t("Sheets")).tip(i18n::t("Which sheets it cuts on. All sheets: the same toolpath cuts its shapes on every sheet they're on (one setup, every sheet's file)."));
                             let sheets: Vec<(i32, String)> = std::iter::once((-1, i18n::t("All sheets").to_string())).chain((0..doc.sheets.len()).map(|j| (j as i32, i18n::tf("{sheet} only", &[("sheet", &crate::shell::sheet_name(doc, j))])))).collect();
                             let refs: Vec<(i32, &str)> = sheets.iter().map(|(i, n)| (*i, n.as_str())).collect();
-                            combo(ui, "scope-sheet", &mut self.op.sheet_scope, &refs, 200.0);
+                            combo(ui, "scope-sheet", &mut self.op.sheet_scope, &refs, wide.min(200.0));
                             ui.end_row();
                         }
                         ui.label(i18n::t("Shapes"));
@@ -455,7 +458,7 @@ impl OpDialog {
                     }
                     ui.label(i18n::t("Tool"));
                     ui.horizontal(|ui| {
-                        tool_combo(ui, "tool", &mut self.op.tool, &doc.tools, None, 280.0);
+                        tool_combo(ui, "tool", &mut self.op.tool, &doc.tools, None, (wide - 70.0).min(280.0)); // room for Bits… beside it
                         if ui.button(i18n::t("Bits…")).on_hover_text(i18n::t("Open the Tool Library: add a bit from the database or a new one")).clicked() {
                             self.open_bits = true;
                         }
@@ -477,8 +480,8 @@ impl OpDialog {
                     // project onto a 3D model: only when the drawing has one, and not for the 3D toolpath itself
                     if !doc.reliefs.is_empty() && self.op.kind != OpType::Relief {
                         ui.label(i18n::t("Follow 3D model")).on_hover_text(i18n::t("Project the toolpath onto the model: every cut is measured down from the model's surface instead of the flat board top (engraving or V-carving on a carved sign)"));
-                        let name = |id: i32| if id <= 0 { i18n::t("No (flat board)").to_string() } else { doc.find_relief(id).map_or(format!("Model #{id} (gone)"), |r| r.name.clone()) };
-                        crate::widgets::combo_box("project-on").selected_text(name(self.op.project_on)).width(280.0).show_ui(ui, |ui| {
+                        let name = |id: i32| if id <= 0 { i18n::t("No (flat board)").to_string() } else { doc.find_relief(id).map_or(crate::i18n::tf("Model #{id} (gone)", &[("id", &id)]), |r| r.name.clone()) };
+                        crate::widgets::combo_box("project-on").selected_text(name(self.op.project_on)).width(wide.min(280.0)).show_ui(ui, |ui| {
                             ui.selectable_value(&mut self.op.project_on, 0, name(0));
                             for r in &doc.reliefs {
                                 ui.selectable_value(&mut self.op.project_on, r.id, &r.name);
@@ -585,7 +588,10 @@ impl OpDialog {
                     }
                     if is_relief {
                         ui.label(i18n::t("3D model"));
-                        let names: Vec<(i32, String)> = doc.reliefs.iter().map(|r| (r.id, r.name.clone())).collect();
+                        let mut names: Vec<(i32, String)> = doc.reliefs.iter().map(|r| (r.id, r.name.clone())).collect();
+                        if names.len() > 1 {
+                            names.insert(0, (gcarve_core::relief::ALL_MODELS, i18n::t("All models combined").to_string()));
+                        }
                         let refs: Vec<(i32, &str)> = names.iter().map(|(i, s)| (*i, s.as_str())).collect();
                         if refs.is_empty() {
                             ui.label(RichText::new(i18n::t("No 3D models: import an STL in Toolpaths > 3D Models")).color(crate::theme::ORANGE));
@@ -642,7 +648,7 @@ impl OpDialog {
                         ui.vertical(|ui| {
                             let closed = self.op.shape_ids.iter().filter(|id| doc.find(**id).is_some_and(|s| s.c.closed)).count();
                             ui.horizontal(|ui| {
-                                ui.label(if closed > 0 { format!("{closed} closed vector(s): only the area inside is machined") } else { i18n::t("Whole model").into() });
+                                ui.label(if closed > 0 { i18n::tf("{closed} closed vector(s): only the area inside is machined", &[("closed", &closed)]) } else { i18n::t("Whole model").into() });
                                 if ui.add_enabled(have_sel, egui::Button::new(i18n::t("Use selection"))).clicked() {
                                     self.op.shape_ids = selected.clone();
                                 }
@@ -653,6 +659,14 @@ impl OpDialog {
                             if closed == 0 {
                                 hint(ui, i18n::t("Select closed vectors (and press Use selection) to machine only inside them."));
                             }
+                        });
+                        ui.end_row();
+                        // rest machining: only what the 3D toolpaths above this one (same model) couldn't reach
+                        ui.label("");
+                        ui.vertical(|ui| {
+                            ui.set_width(col);
+                            crate::widgets::checkbox(ui, &mut self.op.rest, i18n::t("Only where an earlier 3D toolpath couldn't reach (rest machining)"));
+                            hint(ui, i18n::t("For a smaller finishing bit after a bigger one: the 3D toolpaths above this one in the list (same model) are worked out, and this one cuts only where they left material it can reach."));
                         });
                         ui.end_row();
                     }
@@ -698,15 +712,19 @@ impl OpDialog {
                         });
                         ui.end_row();
                     }
+                    // V-carve: one row, the depth box only once it is asked for
                     if is_vcarve {
-                        ui.label(i18n::t("Flat depth"));
-                        crate::widgets::checkbox(ui, &mut self.flat, i18n::t("Limit depth, flat bottom"));
+                        ui.label(unit_label(i18n::t("Flat depth"), doc));
+                        ui.horizontal(|ui| {
+                            crate::widgets::checkbox(ui, &mut self.flat, i18n::t("Limit depth, flat bottom"));
+                            if self.flat {
+                                self.f.ui(ui, "flatDepth", doc);
+                            }
+                        });
                         ui.end_row();
-                    }
-                    if v_like {
-                        let on = self.flat || is_inlay;
-                        ui.add_enabled(on, egui::Label::new(unit_label(if is_inlay { i18n::t("Pocket depth") } else { i18n::t("Flat depth") }, doc)));
-                        ui.add_enabled_ui(on, |ui| self.f.ui(ui, "flatDepth", doc));
+                    } else if is_inlay {
+                        ui.label(unit_label(i18n::t("Pocket depth"), doc));
+                        self.f.ui(ui, "flatDepth", doc);
                         ui.end_row();
                     }
                     if is_vcarve || is_chamfer {
@@ -728,23 +746,16 @@ impl OpDialog {
                         self.f.ui(ui, "inlayMargin", doc);
                         ui.end_row();
                     }
-                    if v_like {
-                        let on = self.flat || is_inlay;
-                        ui.add_enabled(on, egui::Label::new(i18n::t("Clearance tool")));
-                        ui.add_enabled_ui(on, |ui| tool_combo(ui, "clear", &mut self.op.clear_tool, &doc.tools, Some(i18n::t("None (V-bit clears the floor)")), col));
-                        ui.end_row();
-                        ui.label("");
-                        ui.vertical(|ui| {
-                            ui.set_width(col);
-                            hint(ui, if is_inlay { i18n::t("Makes two sets of paths: the female pocket of the design, and the male plug carved from the inverted, mirrored design starting at the glue gap. Cut the male from a second board, flip it and glue it in.") } else { i18n::t("Carves with the selected V-bit; the floor depth follows the stroke width.") });
-                        });
+                    if v_like && (self.flat || is_inlay) {
+                        ui.label(i18n::t("Clearance tool"));
+                        tool_combo(ui, "clear", &mut self.op.clear_tool, &doc.tools, Some(i18n::t("None (V-bit clears the floor)")), col);
                         ui.end_row();
                     }
-                    if !is_relief {
+                    if is_inlay {
                         ui.label("");
                         ui.vertical(|ui| {
                             ui.set_width(col);
-                            hint(ui, i18n::t("Tip: type a variable (e.g. thickness + 0.02) in any size to keep it linked."));
+                            hint(ui, i18n::t("Makes two sets of paths: the female pocket of the design, and the male plug carved from the inverted, mirrored design starting at the glue gap. Cut the male from a second board, flip it and glue it in."));
                         });
                         ui.end_row();
                     }
@@ -779,9 +790,9 @@ impl OpDialog {
                         ui.label(i18n::t("Cross-section")).on_hover_text(i18n::t("Moulding: draw the profile as an open vector (its width across the rail, lower = deeper below the top), pick it here, and select the rails. The bit carves that shape along every rail; a ball nose gives the smoothest result."));
                         let open: Vec<(i32, String)> = doc.shapes.iter().filter(|s| !s.c.closed && s.sheet == doc.active_sheet).map(|s| {
                             let b = gcarve_core::geom::bounds(&s.c);
-                            (s.id, format!("Vector #{} ({} × {})", s.id, crate::units::text(doc, b.w()), crate::units::text(doc, b.h())))
+                            (s.id, crate::i18n::tf("Vector #{id} ({w} × {h})", &[("id", &s.id), ("w", &crate::units::text(doc, b.w())), ("h", &crate::units::text(doc, b.h()))]))
                         }).collect();
-                        let name = |id: i32| if id <= 0 { i18n::t("None (plain flute)").to_string() } else { open.iter().find(|(i, _)| *i == id).map_or(format!("Vector #{id} (missing)"), |(_, n)| n.clone()) };
+                        let name = |id: i32| if id <= 0 { i18n::t("None (plain flute)").to_string() } else { open.iter().find(|(i, _)| *i == id).map_or(crate::i18n::tf("Vector #{id} (missing)", &[("id", &id)]), |(_, n)| n.clone()) };
                         crate::widgets::combo_box("section").selected_text(name(self.op.section)).width(col).show_ui(ui, |ui| {
                             ui.selectable_value(&mut self.op.section, 0, name(0));
                             for (id, n) in &open {
@@ -899,8 +910,8 @@ impl OpDialog {
                         let mut knife = self.op.drag_knife > 0.0;
                         ui.label(i18n::t("Drag knife"));
                         ui.horizontal(|ui| {
-                            if crate::widgets::checkbox(ui, &mut knife, i18n::t("Blade offset")).tip(i18n::t("For a drag knife in the spindle: one pass on the line, the holder swings round each sharp corner so the blade turns in place. Set the knife's RPM to 0 in the Tool Library: the G-code then never turns the spindle on.")).changed() {
-                                self.op.drag_knife = if knife { self.f.get_or("dragKnife", doc, 0.25).max(0.001) } else { 0.0 };
+                            if crate::widgets::checkbox(ui, &mut knife, i18n::t("Blade offset")).tip(i18n::t("For a drag knife in the spindle: cuts on the line (in passes when the pass depth is smaller than the cut depth), the holder swings round each sharp corner so the blade turns in place. Set the knife's RPM to 0 in the Tool Library: the G-code then never turns the spindle on.")).changed() {
+                                self.op.drag_knife = if knife { self.f.get_or("dragKnife", doc, 0.01).max(0.001) } else { 0.0 };
                             }
                             ui.add_enabled_ui(knife, |ui| self.f.ui(ui, "dragKnife", doc));
                         });
@@ -946,7 +957,7 @@ impl OpDialog {
                     }
                     if (is_profile && self.op.side != Side::On) || is_pocket {
                         ui.label(i18n::t("Inside corners")).tip(i18n::t("A round bit leaves every inside corner rounded, so a square part won't fit. A dogbone or T-bone lets the bit cut just past the corner. Sized to this toolpath's bit; your drawing is not changed."));
-                        combo(ui, "corner-relief", &mut self.op.corner_relief, &[(0, i18n::t("As drawn")), (1, i18n::t("Dogbone (for tight joints)")), (2, i18n::t("T-bone"))], 220.0);
+                        combo(ui, "corner-relief", &mut self.op.corner_relief, &[(0, i18n::t("As drawn")), (1, i18n::t("Dogbone (for tight joints)")), (2, i18n::t("T-bone"))], wide.min(220.0));
                         ui.end_row();
                     }
                     // VCarve's Array Copy Toolpath: the same cut repeated across a grid, no extra vectors
@@ -994,7 +1005,7 @@ impl OpDialog {
                                 if ui.add_enabled(tabs, crate::widgets::Button::new(label).primary(self.place_tabs)).tip(i18n::t("The evenly spaced tabs show as hollow squares. Click a part's outline to add a tab, click a tab to delete it, drag one to move it: that part's tabs are then yours to place. Parts you don't touch keep the evenly spaced ones.")).clicked() {
                                     self.place_tabs = !self.place_tabs;
                                 }
-                                if tabs && !self.op.tab_points.is_empty() && ui.small_button(format!("Clear {}", self.op.tab_points.len())).tip(i18n::t("Forget the tabs placed or moved by hand: every part goes back to evenly spaced tabs")).clicked() {
+                                if tabs && !self.op.tab_points.is_empty() && ui.small_button(crate::i18n::tf("Clear {n}", &[("n", &self.op.tab_points.len())])).tip(i18n::t("Forget the tabs placed or moved by hand: every part goes back to evenly spaced tabs")).clicked() {
                                     self.op.tab_points.clear();
                                 }
                             });

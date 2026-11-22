@@ -205,7 +205,9 @@ pub fn feeds_summary(doc: &Document) -> String {
     let mat = &doc.material.kind;
     let n = doc.tools.iter().filter(|t| t.presets.iter().any(|p| p.material.eq_ignore_ascii_case(mat))).count();
     let rest = if doc.material.auto_feeds { i18n::t("suggested feeds") } else { i18n::t("their default feeds") };
-    if n == 0 {
+    if n == 0 && doc.material.auto_feeds {
+        String::new() // the usual case: nothing worth a line
+    } else if n == 0 {
         i18n::tf("No feed presets for {mat}: bits use {rest}", &[("mat", &mat), ("rest", &rest)])
     } else if n == doc.tools.len() {
         i18n::tf("All {n} bits have feeds for {mat}", &[("n", &n), ("mat", &mat)])
@@ -235,7 +237,7 @@ pub fn op_summary(doc: &Document, op: &Op) -> (String, String) {
         OpType::Relief => info.push(i18n::t("3D model").into()),
         OpType::Imported => info.push(i18n::t("from G-code").into()),
         OpType::Chamfer => {
-            info.push(if op.chamfer_width > 0.0 { format!("width {}", num(op.chamfer_width)) } else { format!("V depth {}", num(op.depth)) });
+            info.push(if op.chamfer_width > 0.0 { crate::i18n::tf("width {w}", &[("w", &num(op.chamfer_width))]) } else { crate::i18n::tf("V depth {d}", &[("d", &num(op.depth))]) });
             info.push(["outside", "inside", "on"][op.side as usize].into());
         }
         OpType::Prism => info.push(format!("max depth {}", num(op.depth))),
@@ -311,6 +313,18 @@ impl Shell {
     pub fn push(&mut self, id: impl Into<String>) {
         self.cmds.push(id.into());
     }
+    /// commands asked for by `request` since the last frame
+    pub fn take_requests(&mut self, ctx: &egui::Context) {
+        let ids: Vec<String> = ctx.data_mut(|d| std::mem::take(d.get_temp_mut_or_default::<Vec<String>>(egui::Id::new(REQUESTS))));
+        self.cmds.extend(ids);
+    }
+}
+
+const REQUESTS: &str = "gc-command-requests";
+/// Run a menu command from code that has no `Shell` (a link button inside a dialog): it runs on the next frame.
+pub fn request(ctx: &egui::Context, id: &str) {
+    ctx.data_mut(|d| d.get_temp_mut_or_default::<Vec<String>>(egui::Id::new(REQUESTS)).push(id.into()));
+    ctx.request_repaint();
 }
 
 fn icon_btn(ui: &mut egui::Ui, sh: &mut Shell, id: &str, on: bool) {
@@ -349,8 +363,17 @@ pub fn mode_bar(ui: &mut egui::Ui, sh: &mut Shell, mode: Mode, title: &str, canv
                     sh.push("export");
                 }
                 ui.add_space(6.0);
-                if !phone && IconButton::new("heart").tint(theme::ORANGE).tip(i18n::t("Support GCarve: donate (opens gcarve.app)")).show(ui).clicked() {
-                    sh.push("donate");
+                if !phone && donate_shown() {
+                    let r = IconButton::new("heart").tint(theme::ORANGE).tip(i18n::t("Support GCarve: donate (opens gcarve.app). Right-click to hide this button.")).show(ui);
+                    if r.clicked() {
+                        sh.push("donate");
+                    }
+                    r.context_menu(|ui| {
+                        if ui.button(i18n::t("Hide the Donate button")).clicked() {
+                            set_donate_shown(false);
+                            ui.close();
+                        }
+                    });
                 }
                 if search {
                     ui.add_space(6.0);
@@ -627,7 +650,7 @@ pub fn status_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &mut Canvas, synced
                     let opts = [(i18n::t("All"), "all", canvas.all_paths, i18n::t("Every toolpath, worked out again a moment after each edit")), (i18n::t("Picked"), "picked", !canvas.all_paths, i18n::t("Only the toolpath you click in the Toolpaths list, or the one open in its dialog"))];
                     for (label, cmd, on, tip) in opts {
                         let r = ui.add_enabled(canvas.show_paths, egui::Button::selectable(canvas.show_paths && on, RichText::new(label).size(12.0)));
-                        if r.on_hover_text(tip).on_disabled_hover_text("Paths are off: nothing is drawn or worked out while you edit").clicked() {
+                        if r.on_hover_text(tip).on_disabled_hover_text(crate::i18n::t("Paths are off: nothing is drawn or worked out while you edit")).clicked() {
                             sh.push(format!("paths:{cmd}"));
                         }
                     }
@@ -679,9 +702,9 @@ pub fn empty_state(ui: &mut egui::Ui, sh: &mut Shell, rect: egui::Rect, doc: &Do
         c.add(egui::Label::new(RichText::new({
             let size = format!("{:.d$} × {:.d$} × {:.3} {uname}", m.w * u, m.h * u, m.t * u);
             if m.machine.is_some() {
-                i18n::tf("Draw with the tools on the left or bring vectors in. Set the board size first if it isn't {size}.", &[("size", &size)])
+                i18n::tf("Draw on the board or bring a drawing in. Board: {size}.", &[("size", &size)])
             } else {
-                i18n::tf("Choose your machine, then draw with the tools on the left or bring vectors in. Set the board size first if it isn't {size}.", &[("size", &size)])
+                i18n::tf("Pick your machine, then draw or bring a drawing in. Board: {size}.", &[("size", &size)])
             }
         }).color(theme::TEXT.gamma_multiply(0.65))).wrap());
         c.add_space(6.0);
@@ -1011,6 +1034,7 @@ pub fn menus(top: &mut MenuTop, canvas: &Canvas, m: &MenuInfo, rail_open: bool, 
             }
             s.item(i18n::t("Getting Started Guide"), "", true, "tour:show");
             s.item(i18n::t("How Do I…?"), "", true, "guide");
+            s.item(i18n::t("User Manual"), "", true, "manual");
             s.item(i18n::t("Keyboard Shortcuts"), "", true, "shortcuts");
             s.item(i18n::t("Open the Demo Project"), "", true, "demo");
             s.item(i18n::t("Request a Change…"), "", true, "request");
@@ -1094,3 +1118,19 @@ pub fn menu_bar(ui: &mut egui::Ui, sh: &mut Shell, canvas: &Canvas, m: &MenuInfo
     }
 }
 
+
+/// The Donate heart in the mode bar: people can hide it (right-click, or Preferences); store key `donate-hidden`.
+static DONATE: std::sync::atomic::AtomicU8 = std::sync::atomic::AtomicU8::new(0); // 0 = not read yet, 1 shown, 2 hidden
+
+pub fn donate_shown() -> bool {
+    use std::sync::atomic::Ordering::Relaxed;
+    if DONATE.load(Relaxed) == 0 {
+        DONATE.store(if crate::store::load("donate-hidden").as_deref() == Some("1") { 2 } else { 1 }, Relaxed);
+    }
+    DONATE.load(Relaxed) == 1
+}
+
+pub fn set_donate_shown(on: bool) {
+    DONATE.store(if on { 1 } else { 2 }, std::sync::atomic::Ordering::Relaxed);
+    if on { crate::store::remove("donate-hidden") } else { crate::store::save("donate-hidden", "1") }
+}

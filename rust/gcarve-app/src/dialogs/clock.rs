@@ -46,7 +46,7 @@ impl ClockDialog {
         let doc = &host.canvas.doc;
         crate::widgets::Dialog::new(i18n::t("New Clock")).open(&mut open).width(400.0).show(ctx, |ui| {
             egui::Grid::new("clock").num_columns(2).spacing([14.0, 6.0]).show(ui, |ui| {
-                for (i, label) in ["Face size", i18n::t("Board thickness"), "Hole for the movement"].iter().enumerate() {
+                for (i, label) in [i18n::t("Face size"), i18n::t("Board thickness"), i18n::t("Hole for the movement")].iter().enumerate() {
                     ui.label(unit_label(label, doc));
                     crate::units::num_field(ui, label, &mut self.size[i], doc, true, 110.0);
                     ui.end_row();

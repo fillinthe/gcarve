@@ -9,10 +9,10 @@ use eframe::egui::{self, pos2, vec2, Color32, RichText};
 use gcarve_core::catalog::Machine;
 use gcarve_core::document::MachineLimits;
 
-const CLASSES: &[(&str, &str)] = &[("desktop", "Desktop"), ("hobby", "Hobby"), ("prosumer", "Prosumer"), ("industrial", "Industrial")];
+const CLASSES: &[(&str, &str)] = &[("desktop", "Desktop"), ("hobby", "Hobby"), ("prosumer", "Prosumer"), ("industrial", "Industrial")]; // i18n
 
 /// Work area filter: label, smallest short side, smallest long side (inches)
-const SIZES: &[(&str, f64, f64)] = &[("Any size", 0.0, 0.0), ("Up to 2 × 2 ft", -1.0, -1.0), ("2 × 2 ft+", 22.0, 22.0), ("4 × 4 ft+", 46.0, 46.0), ("4 × 8 ft+", 46.0, 94.0), ("5 × 10 ft+", 58.0, 118.0)];
+const SIZES: &[(&str, f64, f64)] = &[("Any size", 0.0, 0.0), ("Up to 2 × 2 ft", -1.0, -1.0), ("2 × 2 ft+", 22.0, 22.0), ("4 × 4 ft+", 46.0, 46.0), ("4 × 8 ft+", 46.0, 94.0), ("5 × 10 ft+", 58.0, 118.0)]; // i18n
 
 #[derive(Clone, PartialEq, Default)]
 struct Filter {
@@ -161,9 +161,9 @@ impl MachineBrowser {
                         ui.selectable_value(&mut self.filter.maker, m.clone(), format!("{m}  ({n})"));
                     }
                 });
-                crate::widgets::combo_box("mb-size").selected_text(SIZES[self.filter.size].0).width(120.0).show_ui(ui, |ui| {
+                crate::widgets::combo_box("mb-size").selected_text(crate::i18n::t(SIZES[self.filter.size].0)).width(120.0).show_ui(ui, |ui| {
                     for (i, s) in SIZES.iter().enumerate() {
-                        ui.selectable_value(&mut self.filter.size, i, s.0);
+                        ui.selectable_value(&mut self.filter.size, i, crate::i18n::t(s.0));
                     }
                 });
                 crate::widgets::checkbox(ui, &mut self.filter.atc, i18n::t("Tool changer"));
@@ -171,7 +171,7 @@ impl MachineBrowser {
             ui.horizontal(|ui| {
                 for (i, (_, label)) in CLASSES.iter().enumerate() {
                     let on = self.filter.class == Some(i);
-                    if ui.selectable_label(on, *label).clicked() {
+                    if ui.selectable_label(on, crate::i18n::t(label)).clicked() {
                         self.filter.class = if on { None } else { Some(i) };
                     }
                 }
@@ -199,7 +199,7 @@ impl MachineBrowser {
                             let ctl = m.controllers.iter().find(|c| c.default == Some(true)).or(m.controllers.first()).map(|c| c.name.clone()).unwrap_or_default();
                             let sub = [size_text(m), sp, ctl].into_iter().filter(|s| !s.is_empty()).collect::<Vec<_>>().join(" · ");
                             pc.text(pos2(r.left() + 10.0, r.top() + 24.0), egui::Align2::LEFT_TOP, sub, theme::font(11.0), theme::TEXT_DIM);
-                            let cls = CLASSES.iter().find(|c| c.0 == m.class).map_or("", |c| c.1);
+                            let cls = CLASSES.iter().find(|c| c.0 == m.class).map_or("", |c| crate::i18n::t(c.1));
                             p.text(pos2(r.right() - 10.0, r.top() + 8.0), egui::Align2::RIGHT_TOP, cls, theme::font(11.0), theme::TEXT);
                             if m.tool_change.kind.starts_with("atc") {
                                 let slots = m.tool_change.slots.map(|n| format!("ATC · {n}")).unwrap_or_else(|| "ATC".into());
@@ -227,7 +227,7 @@ impl MachineBrowser {
                         return;
                     };
                     ui.label(RichText::new(m.title()).size(15.0).family(crate::widgets::bold_family()).color(Color32::WHITE));
-                    ui.label(RichText::new(CLASSES.iter().find(|c| c.0 == m.class).map_or(m.class.as_str(), |c| c.1)).small().color(theme::TEXT_DIM));
+                    ui.label(RichText::new(CLASSES.iter().find(|c| c.0 == m.class).map_or(m.class.as_str(), |c| crate::i18n::t(c.1))).small().color(theme::TEXT_DIM));
                     ui.add_space(6.0);
                     egui::Grid::new("mb-spec").num_columns(2).spacing(vec2(14.0, 4.0)).show(ui, |ui| {
                         ui.label(RichText::new(i18n::t("Work area")).color(theme::TEXT_DIM));
@@ -251,7 +251,7 @@ impl MachineBrowser {
                         }
                     } else if let Some(s) = m.spindles.first() {
                         ui.add_space(4.0);
-                        ui.label(format!("Spindle: {}", spindle_text(s)));
+                        ui.label(crate::i18n::tf("Spindle: {s}", &[("s", &spindle_text(s))]));
                     }
                     ui.add_space(6.0);
                     ui.label(RichText::new(i18n::t("Controller")).family(crate::widgets::bold_family()));

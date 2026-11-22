@@ -403,7 +403,7 @@ impl Prefs {
                         }
                     }
                 });
-                note(ui, i18n::t("Menus, dialogs and tips. Messages and the guide are still in English for now."));
+                note(ui, i18n::t("Menus, dialogs, messages and tips."));
             });
             ui.horizontal(|ui| {
                 ui.label(i18n::t("Background color"));
@@ -417,6 +417,19 @@ impl Prefs {
                 if ui.color_edit_button_srgb((&mut rgb[..3]).try_into().unwrap()).on_hover_text(i18n::t("Any color")).changed() {
                     self.canvas_color = (rgb[0] as u32) << 16 | (rgb[1] as u32) << 8 | rgb[2] as u32;
                 }
+            });
+            let mut donate = crate::shell::donate_shown();
+            if crate::widgets::switch(ui, &mut donate, i18n::t("Show the Donate button")).changed() {
+                crate::shell::set_donate_shown(donate);
+            }
+            // the owner's fair-play rule (2026-11-20): on by default, says what goes and lets people stop it
+            let mut reports = gcarve_ui::cloud::reports_on();
+            ui.horizontal(|ui| {
+                if crate::widgets::switch(ui, &mut reports, i18n::t("Send problem reports")).changed() {
+                    gcarve_ui::cloud::set_reports(reports);
+                    if reports { crate::store::remove("reports-off") } else { crate::store::save("reports-off", "1") }
+                }
+                note(ui, i18n::t("When something goes wrong, what the app said goes to us, without file names. Signed in, with your account, so we can help."));
             });
             section(ui, i18n::t("Accessibility"));
             for (flag, label, h) in [(&mut self.large_text, i18n::t("Larger text"), i18n::t("15 px labels and taller controls")), (&mut self.high_contrast, i18n::t("High contrast"), i18n::t("White text, black borders, brighter blue (WCAG AA+)")), (&mut self.large_handles, i18n::t("Larger handles"), i18n::t("Nodes, grips and snap targets are 1.7× easier to hit"))] {

@@ -19,7 +19,7 @@ use crate::theme;
 const OK_GREEN: Color32 = Color32::from_rgb(0x3f, 0xbf, 0x7f);
 const STOP_RED: Color32 = Color32::from_rgb(0xd2, 0x3c, 0x22);
 const AXIS: [Color32; 3] = [Color32::from_rgb(0xff, 0x7a, 0x7a), Color32::from_rgb(0x7b, 0xd8, 0x8f), Color32::from_rgb(0x6c, 0xb6, 0xff)];
-const TRANSPORTS: [&str; 3] = ["Simulator", "Network (grblHAL)", "USB (serial)"];
+const TRANSPORTS: [&str; 3] = ["Simulator", "Network (grblHAL)", "USB (serial)"]; // i18n
 
 #[derive(Default)]
 struct StartDialog {
@@ -108,7 +108,7 @@ impl ControlApp {
                     let name = std::path::Path::new(f).file_name().map(|n| n.to_string_lossy().into_owned()).unwrap_or_default();
                     link.load_program(&name, &t);
                 }
-                Err(e) => link.last_error = format!("Cannot read {f}: {e}"),
+                Err(e) => link.last_error = crate::i18n::tf("Cannot read {f}: {e}", &[("f", &f), ("e", &e)]),
             }
         }
         #[cfg(target_arch = "wasm32")]
@@ -166,7 +166,7 @@ impl ControlApp {
                 let name = key.rsplit(['/', '\\']).next().unwrap_or(key).to_string();
                 self.link.load_program(&name, &t);
             }
-            None => self.link.last_error = format!("Cannot read {key}"),
+            None => self.link.last_error = crate::i18n::tf("Cannot read {f}", &[("f", &key)]),
         }
     }
 
@@ -247,9 +247,9 @@ impl ControlApp {
             theme::vsep(ui, 24.0);
             let n = if Link::has_serial() { 3 } else { 2 };
             ui.add_enabled_ui(!connected, |ui| {
-                crate::widgets::combo_box("transport").width(170.0).selected_text(TRANSPORTS[self.cfg.transport.min(n - 1)]).show_ui(ui, |ui| {
+                crate::widgets::combo_box("transport").width(170.0).selected_text(crate::i18n::t(TRANSPORTS[self.cfg.transport.min(n - 1)])).show_ui(ui, |ui| {
                     for (i, t) in TRANSPORTS.iter().enumerate().take(n) {
-                        if ui.selectable_value(&mut self.cfg.transport, i, *t).clicked() && i == 2 {
+                        if ui.selectable_value(&mut self.cfg.transport, i, crate::i18n::t(t)).clicked() && i == 2 {
                             self.serial_ports = Link::serial_ports();
                         }
                     }
@@ -391,7 +391,7 @@ impl ControlApp {
         });
         small_wrap(ui, i18n::t("Keys: arrows = X/Y, Page Up/Down = Z · Space = hold/resume · Esc = stop"));
         theme::hline(ui);
-        section(ui, "TOUCH PLATE");
+        section(ui, crate::i18n::t("TOUCH PLATE"));
         small_wrap(ui, i18n::t("Put the plate under the bit, clip the lead on the bit, then probe. Z zero = the plate's underside (board top or spoilboard)."));
         ui.horizontal(|ui| {
             if button(ui, idle && free && !l.probing, if l.probing { i18n::t("Probing…") } else { i18n::t("Probe Z") }).clicked() {
@@ -400,7 +400,7 @@ impl ControlApp {
             dim(ui, format!("plate {:.3} in", self.cfg.plate));
         });
         theme::hline(ui);
-        section(ui, "FOLLOW THE SURFACE");
+        section(ui, crate::i18n::t("FOLLOW THE SURFACE"));
         small_wrap(ui, i18n::t("For engraving and V-carving on a board that isn't flat: probe a grid over the job's cuts, and the program follows the surface so the depth stays even. Set Z zero on the surface first; the board must be probe-able (a touch probe, or foil and a clip)."));
         ui.horizontal(|ui| {
             ui.add(crate::widgets::SpinBox::new(&mut self.level_n[0], 2..=15).width(70.0)).tip(i18n::t("Probe points across (X)"));
@@ -482,7 +482,7 @@ impl ControlApp {
             let r = |a: f64, b: f64| if has { format!("{a:.3} … {b:.3}") } else { "0.000 … 0.000".into() };
             let row_h = std::mem::replace(&mut ui.spacing_mut().interact_size.y, 16.0); // label rows, like the Qt GridLayout
             egui::Grid::new("info").spacing([10.0, 2.0]).show(ui, |ui| {
-                for (k, v) in [("Lines", p.lines.len().to_string()), ("Est. time", format!("{:.1} min", p.minutes)), ("X range", r(p.min.x, p.max.x)), ("Y range", r(p.min.y, p.max.y)), ("Z range", r(p.min.z, p.max.z))] {
+                for (k, v) in [(crate::i18n::t("Lines"), p.lines.len().to_string()), (crate::i18n::t("Est. time"), format!("{:.1} min", p.minutes)), (crate::i18n::t("X range"), r(p.min.x, p.max.x)), (crate::i18n::t("Y range"), r(p.min.y, p.max.y)), (crate::i18n::t("Z range"), r(p.min.z, p.max.z))] {
                     dim(ui, k);
                     ui.label(v);
                     ui.end_row();
@@ -501,14 +501,14 @@ impl ControlApp {
         }
         if self.link.streaming {
             let secs = (now - self.started_at.unwrap_or(now)).max(0.0) as u64;
-            dim(ui, format!("Line {} of {} · about {} min left · {}:{:02} elapsed", self.link.progress_line(), p.lines.len(), self.link.minutes_left().ceil(), secs / 60, secs % 60));
+            dim(ui, crate::i18n::tf("Line {line} of {lines} · about {left} min left · {elapsed} elapsed", &[("line", &self.link.progress_line()), ("lines", &p.lines.len()), ("left", &self.link.minutes_left().ceil()), ("elapsed", &format!("{}:{:02}", secs / 60, secs % 60))]));
         }
         // a program waiting at a tool change (M6): what to put in, then carry on
         if let Some(bit) = self.link.tool_wait() {
             egui::Frame::new().fill(theme::WARNING.gamma_multiply(0.18)).stroke(egui::Stroke::new(1.0, theme::WARNING)).corner_radius(6).inner_margin(10).show(ui, |ui| {
                 ui.set_width(ui.available_width());
                 ui.label(RichText::new(i18n::t("Tool change")).family(crate::widgets::bold_family()).color(theme::WARNING));
-                ui.add(egui::Label::new(RichText::new(format!("Put in {bit}.")).size(14.0)).wrap());
+                ui.add(egui::Label::new(RichText::new(crate::i18n::tf("Put in {bit}.", &[("bit", &bit)])).size(14.0)).wrap());
                 small_wrap(ui, i18n::t("The spindle is off. Change the bit, touch off Z again (Probe Z or zero Z by hand: the new bit is a different length), then Continue."));
                 ui.horizontal(|ui| {
                     if filled(ui, self.link.idle(), i18n::t("Continue"), OK_GREEN, 110.0).clicked() {
@@ -533,7 +533,7 @@ impl ControlApp {
         if ui.add_enabled(c && free && !self.link.program.motions.is_empty(), egui::Button::new(i18n::t("Outline the job"))).on_hover_text(i18n::t("Traces the cut's outer box above the board, bit up and spindle off: check it fits before you start")).clicked() {
             self.link.outline();
         }
-        section(ui, &format!("FEED {}% · RAPID {}% · SPINDLE {}%", self.link.st.feed_ov, self.link.st.rapid_ov, self.link.st.spindle_ov));
+        section(ui, &crate::i18n::tf("FEED {f}% · RAPID {r}% · SPINDLE {s}%", &[("f", &self.link.st.feed_ov), ("r", &self.link.st.rapid_ov), ("s", &self.link.st.spindle_ov)]));
         let row = |ui: &mut egui::Ui, name: &str| {
             ui.add_sized([56.0, 20.0], egui::Label::new(RichText::new(name).size(11.0).color(theme::TEXT_DIM)));
         };
@@ -561,7 +561,7 @@ impl ControlApp {
                 }
             }
         });
-        dim(ui, format!("Feed {:.0} in/min · Spindle {:.0} RPM", self.link.st.feed, self.link.st.rpm));
+        dim(ui, crate::i18n::tf("Feed {f} in/min · Spindle {s} RPM", &[("f", &format!("{:.0}", self.link.st.feed)), ("s", &format!("{:.0}", self.link.st.rpm))]));
     }
 
     fn console(&mut self, ui: &mut egui::Ui) {

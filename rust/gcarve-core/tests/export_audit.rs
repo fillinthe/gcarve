@@ -29,6 +29,21 @@ fn showcase() -> Document {
     doc.ops.push(Op { kind: OpType::Profile, name: "Onion skin".into(), shape_ids: vec![id], tool: em, depth: t, side: gcarve_core::document::Side::Outside, skin: 0.02, climb: true, ..Default::default() });
     doc.ops.push(Op { kind: OpType::Drill, name: "Fitted V holes".into(), shape_ids: vec![id], tool: vbit, depth: 0.1, fit_holes: true, ..Default::default() });
     doc.ops.push(Op { kind: OpType::Photo, name: "Photo".into(), shape_ids: vec![id], tool: vbit, depth: 0.06, photo: gcarve_core::photo::b64_encode(&px), photo_w: 64, photo_h: 48, ..Default::default() });
+    // a small 3D model: a dome with a groove, finished with the ball nose, then a tapered ball nose rest pass
+    let n = 60;
+    let height: Vec<f32> = (0..n * n)
+        .map(|i| {
+            let (x, y) = ((i % n) as f64 / (n - 1) as f64 - 0.5, (i / n) as f64 / (n - 1) as f64 - 0.5);
+            if x.abs() < 0.02 { 0.2 } else { (1.0 - 2.0 * x.hypot(y)).max(0.0) as f32 as f64 }
+        } as f32)
+        .collect();
+    doc.reliefs.push(gcarve_core::relief::Relief { id: doc.next_relief_id.max(1), name: "dome".into(), x: 0.5, y: 0.5, w: 1.5, h: 1.5, depth: 0.15, nx: n, ny: n, height, ..Default::default() });
+    let rid = doc.next_relief_id.max(1);
+    doc.next_relief_id = rid + 1;
+    doc.tools.push(gcarve_core::document::Tool { name: "Tapered Ball 0.5 mm 5.12 deg".into(), kind: gcarve_core::document::ToolType::TaperedBall, diameter: 0.25, radius: 0.25 / 25.4, angle: 5.12, stepdown: 0.05, feed_xy: 60.0, feed_z: 20.0, rpm: 18000, flutes: 2, ..Default::default() });
+    let taper = doc.tools.len() as i32 - 1;
+    doc.ops.push(Op { kind: OpType::Relief, name: "3D finish".into(), relief: rid, tool: ball, stepover: 0.2, ..Default::default() });
+    doc.ops.push(Op { kind: OpType::Relief, name: "3D details".into(), relief: rid, tool: taper, stepover: 0.3, rest: true, ..Default::default() });
     doc
 }
 

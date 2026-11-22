@@ -1,5 +1,7 @@
 //! 3D Models (Qt ReliefDialog.qml): import STL, place / size / depth / mirror, remove, and start a 3D Model toolpath.
-//! Modeless. Reliefs are saved as source path + placement; on the desktop they are re-rasterized on load.
+//! Modeless. Each model is a component: combined in list order (add / subtract / higher / lower), with a lift, a
+//! height band and smoothing; a 3D toolpath cuts one or all of them combined (`relief::composite`). Height maps are
+//! saved in the project; older projects with only the file path are re-read on the desktop.
 
 #[allow(unused_imports)] // a file may only use it under one cfg
 use gcarve_ui::i18n;
@@ -10,6 +12,8 @@ use gcarve_core::document::{Document, Relief};
 use gcarve_core::relief::{load_stl, rasterize_relief};
 
 const CELLS: usize = 400_000;
+/// `Relief::combine`: how a component goes onto the ones above it in the list (VCarve's combine modes)
+const COMBINE: [&str; 4] = ["Add", "Subtract", "Keep the higher", "Keep the lower"]; // i18n
 
 pub enum Next {
     Keep,
@@ -38,6 +42,7 @@ impl ReliefDialog {
         self.f.set("w", r.w);
         self.f.set("h", r.h);
         self.f.set("depth", r.depth);
+        self.f.set("lift", r.lift);
         self.keep_aspect = true;
     }
 
@@ -50,6 +55,10 @@ impl ReliefDialog {
         let mut mirror: Option<bool> = None;
         let mut picture = false;
         let mut pic_edit: Option<(bool, u32, bool)> = None;
+        // component settings: (combine, slice low %, slice high %, smoothing)
+        let mut comp_edit: Option<(u8, f64, f64, u32)> = None;
+        let mut swap: Option<usize> = None;
+        let mut outline = false;
         let doc = &host.canvas.doc;
         if !doc.reliefs.is_empty() {
             self.cur = self.cur.min(doc.reliefs.len() - 1);
@@ -69,11 +78,23 @@ impl ReliefDialog {
                         }
                         for (i, r) in doc.reliefs.iter().enumerate() {
                             let label = if r.height.is_empty() { format!("{}  (file missing)", r.name) } else { r.name.clone() };
+                            // after the first: how it goes onto the ones above it
+                            let label = if i > 0 { format!("{}  {label}", ["+", "−", "▲", "▼"][r.combine.min(3) as usize]) } else { label };
                             if ui.selectable_label(i == self.cur, label).clicked() {
                                 self.cur = i;
                             }
                         }
                     });
+                    if doc.reliefs.len() > 1 {
+                        ui.horizontal(|ui| {
+                            if ui.add_enabled(self.cur > 0, egui::Button::new(i18n::t("Up"))).tip(i18n::t("Components combine from the top of the list down")).clicked() {
+                                swap = Some(self.cur - 1);
+                            }
+                            if ui.add_enabled(self.cur + 1 < doc.reliefs.len(), egui::Button::new(i18n::t("Down"))).clicked() {
+                                swap = Some(self.cur);
+                            }
+                        });
+                    }
                 });
                 ui.add_enabled_ui(have, |ui| {
                     egui::Grid::new("relief").num_columns(2).spacing([12.0, 6.0]).show(ui, |ui| {
@@ -103,6 +124,37 @@ impl ReliefDialog {
                             mirror = Some(m);
                         }
                         ui.end_row();
+                        if let Some(r) = doc.reliefs.get(self.cur) {
+                            let (mut comb, mut lo, mut hi, mut sm) = (r.combine, r.clip_lo * 100.0, r.clip_hi * 100.0, r.smooth);
+                            let mut changed = false;
+                            let several = doc.reliefs.len() > 1;
+                            if several {
+                            ui.label(i18n::t("Combine")).tip(i18n::t("How this component goes onto the ones above it in the list when a 3D toolpath cuts all models combined"));
+                            let names: Vec<(u8, String)> = COMBINE.iter().enumerate().map(|(i, n)| (i as u8, i18n::tr(n))).collect();
+                            let refs: Vec<(u8, &str)> = names.iter().map(|(i, n)| (*i, n.as_str())).collect();
+                            changed |= super::combo(ui, "relief-combine", &mut comb, &refs, 200.0);
+                            ui.end_row();
+                            ui.label(unit_label(i18n::t("Lift"), doc)).tip(i18n::t("Raises this component's base above the board's base, so it stands on top of the others"));
+                            if self.f.ui(ui, "lift", doc) {
+                                apply = true;
+                            }
+                            ui.end_row();
+                            }
+                            ui.label(i18n::t("Keep height (%)")).tip(i18n::t("Keep only this band of the model's height, stretched over its depth. Raise the bottom to cut away a base or background (a zero plane); lower the top to flatten it"));
+                            ui.horizontal(|ui| {
+                                changed |= ui.add(egui::DragValue::new(&mut lo).range(0.0..=99.0).speed(0.5).prefix(i18n::t("from "))).changed();
+                                changed |= ui.add(egui::DragValue::new(&mut hi).range(1.0..=100.0).speed(0.5).prefix(i18n::t("to "))).changed();
+                            });
+                            ui.end_row();
+                            if r.pic.is_empty() {
+                                ui.label(i18n::t("Smoothing"));
+                                changed |= ui.add(egui::DragValue::new(&mut sm).range(0..=50).suffix(i18n::t(" cells"))).on_hover_text(i18n::t("Softens facets and steps in the model's surface")).changed();
+                                ui.end_row();
+                            }
+                            if changed {
+                                comp_edit = Some((comb, lo / 100.0, hi.max(lo + 1.0) / 100.0, sm));
+                            }
+                        }
                         // a relief made from a picture: how its brightness becomes height
                         if let Some(r) = doc.reliefs.get(self.cur).filter(|r| !r.pic.is_empty()) {
                             let (mut inv, mut smooth, mut levels) = (r.pic_invert, r.pic_smooth, r.pic_levels);
@@ -122,8 +174,8 @@ impl ReliefDialog {
                     });
                 });
             });
-            ui.horizontal(|ui| {
-                if ui.button(i18n::t("Import STL…")).clicked() {
+            ui.horizontal_wrapped(|ui| {
+                if ui.button(i18n::t("Import model…")).clicked() {
                     import = true;
                 }
                 if ui.button(i18n::t("From a picture…")).on_hover_text(i18n::t("A photo or logo becomes the height: light parts stay high, dark parts are carved deep (or the other way round for a lithophane)")).clicked() {
@@ -132,16 +184,20 @@ impl ReliefDialog {
                 if ui.add_enabled(have, egui::Button::new(i18n::t("Remove"))).clicked() {
                     remove = true;
                 }
-                ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                    if ui.add_enabled(have, crate::widgets::Button::new(i18n::t("Add 3D toolpath")).primary(true)).clicked() {
-                        next = Next::Toolpath;
-                    }
-                });
+                if ui.add_enabled(have, egui::Button::new(i18n::t("Outline as vectors"))).tip(i18n::t("Draws closed vectors round where the models stand above their base (all of them combined): to cut them out, or to keep a 3D toolpath inside")).clicked() {
+                    outline = true;
+                }
+            });
+            // one row high (a bare right-to-left layout takes all the height left)
+            ui.allocate_ui_with_layout(egui::vec2(ui.available_width(), 30.0), egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                if ui.add_enabled(have, crate::widgets::Button::new(i18n::t("Add 3D toolpath")).primary(true)).clicked() {
+                    next = Next::Toolpath;
+                }
             });
             hint(ui, i18n::t("The model's (or picture's) footprint is stretched to the width and height; its height range maps to the depth. Use a ball-nose bit for finishing and an end mill for roughing. A lithophane: tick Dark parts stand high, cut it from white acrylic or Corian and keep the thinnest part about 1 / 16 in thick (board thickness minus depth)."));
         });
         if import {
-            host.files.pick_into(ctx, i18n::t("3D models (.stl .3mf)"), &["stl", "3mf"], "stl");
+            host.files.pick_into(ctx, i18n::t("3D models (.stl .3mf .obj)"), &["stl", "3mf", "obj"], "stl");
         }
         if picture {
             host.files.pick_into(ctx, i18n::t("Pictures (.png .jpg .webp)"), &["png", "jpg", "jpeg", "webp"], "relief-picture");
@@ -154,9 +210,37 @@ impl ReliefDialog {
             gcarve_core::relief::rasterize_picture(r);
             host.canvas.touch();
         }
+        if let Some(j) = swap.filter(|_| have) {
+            let doc = &mut host.canvas.doc;
+            doc.checkpoint();
+            doc.reliefs.swap(j, j + 1);
+            self.cur = if self.cur == j { j + 1 } else { j };
+            host.canvas.touch();
+        }
+        if let Some((comb, lo, hi, sm)) = comp_edit.filter(|_| have) {
+            let doc = &mut host.canvas.doc;
+            doc.checkpoint();
+            let r = &mut doc.reliefs[self.cur];
+            (r.combine, r.clip_lo, r.clip_hi, r.smooth) = (comb, lo, hi, sm);
+            host.canvas.touch();
+        }
+        if outline && have {
+            let doc = &mut host.canvas.doc;
+            let lines = gcarve_core::relief::composite(&doc.reliefs.iter().collect::<Vec<_>>()).map(|m| gcarve_core::relief::outline(&m)).unwrap_or_default();
+            if lines.is_empty() {
+                *host.message = i18n::t("Nothing stands above the base to outline").into();
+            } else {
+                doc.checkpoint();
+                let layer = doc.layer_named("3D outline");
+                let ids: std::collections::BTreeSet<i32> = lines.into_iter().map(|c| doc.add(c, Some(layer))).collect();
+                *host.message = i18n::tf("Drew {n} outlines round the 3D models", &[("n", &ids.len().to_string())]);
+                host.canvas.sel = ids;
+                host.canvas.mutated();
+            }
+        }
         if (apply || mirror.is_some()) && have {
             let doc = &mut host.canvas.doc;
-            let vals = ["x", "y", "w", "h", "depth"].map(|k| self.f.get(k, doc));
+            let vals = ["x", "y", "w", "h", "depth", "lift"].map(|k| self.f.get(k, doc));
             let keep = self.keep_aspect;
             let name = self.name.clone();
             doc.checkpoint();
@@ -183,6 +267,9 @@ impl ReliefDialog {
             }
             if vals[4].is_finite() && vals[4] > 0.0 {
                 r.depth = vals[4];
+            }
+            if vals[5].is_finite() {
+                r.lift = vals[5];
             }
             if let Some(m) = mirror {
                 r.mirror = m;

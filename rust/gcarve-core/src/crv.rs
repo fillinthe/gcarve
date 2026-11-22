@@ -382,7 +382,10 @@ fn from_streams(s: &HashMap<String, Vec<u8>>) -> Result<(Document, String), Stri
         n += 1;
     }
     if n == 0 {
-        return Err("No vectors found in this VCarve file.".into());
+        // the counts reach the error log (2026-11-19: 10 opens failed, no file to look at): an empty drawing has a
+        // small 2dDataV2 and no outlines; a new VCarve layout has a big one with outlines read 0 of many candidates
+        let cands = find_all(vec, &[7, 0, 0, 0]).count();
+        return Err(format!("No vectors found in this VCarve file. [{} KB, {} layers, {} outlines of {cands}]", vec.len() / 1024, layers.len(), outlines.len()));
     }
     // VCarve's first layer is usually "Layer 1": keep GCarve's default layer only when something is on it
     if doc.layers.len() > 1 && !doc.shapes.iter().any(|s| s.layer == 0) {
@@ -623,6 +626,7 @@ fn tool_at(d: &[u8], i: usize, scale: f64) -> Option<(Tool, f64)> {
     let mut t = Tool { diameter: dia * scale, stepdown: stepdown * scale, feed_xy: feed * scale, feed_z: plunge * scale, rpm: rpm as i32, ..Tool::default() };
     match u(i - 57)? {
         3 if height > 0.0 => (t.kind, t.angle) = (ToolType::VBit, (2.0 * (rad / height).atan().to_degrees()).round()),
+        _ if lower.contains("ball") && lower.contains("taper") => t.kind = ToolType::TaperedBall,
         _ if lower.contains("ball") => t.kind = ToolType::BallNose,
         8 if lower.contains("round") => t.kind = ToolType::RoundOver,
         _ => {}

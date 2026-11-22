@@ -75,7 +75,7 @@ impl Files {
         }
         #[cfg_attr(target_arch = "wasm32", allow(unreachable_code))]
         let dialog = if import {
-            rfd::AsyncFileDialog::new().set_title(i18n::t("Import into this document")).add_filter(i18n::t("All supported"), IMPORT_EXTS).add_filter(i18n::t("Vector files"), VECTOR_EXTS).add_filter(i18n::t("LightBurn project"), &["lbrn2"]).add_filter(i18n::t("GSketch model"), &["gsk"]).add_filter(i18n::t("G-code"), GCODE_EXTS).add_filter(i18n::t("Images to trace"), IMAGE_EXTS).add_filter(i18n::t("3D models"), &["stl", "3mf"])
+            rfd::AsyncFileDialog::new().set_title(i18n::t("Import into this document")).add_filter(i18n::t("All supported"), IMPORT_EXTS).add_filter(i18n::t("Vector files"), VECTOR_EXTS).add_filter(i18n::t("LightBurn project"), &["lbrn2"]).add_filter(i18n::t("GSketch model"), &["gsk"]).add_filter(i18n::t("G-code"), GCODE_EXTS).add_filter(i18n::t("Images to trace"), IMAGE_EXTS).add_filter(i18n::t("3D models"), &["stl", "3mf", "obj"])
         } else {
             rfd::AsyncFileDialog::new().add_filter(i18n::t("All supported"), OPEN_EXTS).add_filter(i18n::t("GCarve project"), &["tlp"]).add_filter(i18n::t("Job template"), &["tlpt"]).add_filter(i18n::t("VCarve project"), &["crv"]).add_filter(i18n::t("Carbide Create project"), &["c2d"]).add_filter(i18n::t("GSketch model"), &["gsk"]).add_filter(i18n::t("Vector files"), VECTOR_EXTS).add_filter(i18n::t("LightBurn project"), &["lbrn2"]).add_filter(i18n::t("G-code"), GCODE_EXTS)
         };
@@ -183,7 +183,10 @@ impl Files {
                 });
             }
         }
-        out.extend(self.rx.try_iter());
+        out.extend(self.rx.try_iter().map(|mut f| {
+            f.bytes = without_bom(f.bytes);
+            f
+        }));
         out
     }
 
@@ -196,7 +199,7 @@ impl Files {
                 let _ = self.tx.send(Picked { name, bytes, path: Some(path.to_path_buf()), import: false });
             }
             Err(e) => {
-                let _ = self.msg_tx.send(format!("Cannot open {}: {e}", path.display()));
+                let _ = self.msg_tx.send(crate::i18n::tf("Cannot open {p}: {e}", &[("p", &path.display()), ("e", &e)]));
             }
         }
     }
@@ -220,7 +223,7 @@ impl Files {
                     let _ = done.send((doc, p));
                 }
                 Err(e) => {
-                    let _ = msg.send(format!("Cannot save {}: {e}", p.display()));
+                    let _ = msg.send(crate::i18n::tf("Cannot save {p}: {e}", &[("p", &p.display()), ("e", &e)]));
                 }
             }
         });
@@ -239,6 +242,16 @@ pub fn scrub(msg: &str, name: &str) -> String {
         }
     }
     s
+}
+
+/// Windows editors (Notepad, Excel's CSV / JSON exports) put a byte-order mark before UTF-8 text; JSON, SVG and DXF
+/// readers then fail on the first character (2026-11-21 error log: a bit library "expected value at line 1 column 1").
+/// Every picked, dropped or opened file comes through here or `dialogs::mod`'s side-file loop.
+pub fn without_bom(mut bytes: Vec<u8>) -> Vec<u8> {
+    if bytes.starts_with(&[0xEF, 0xBB, 0xBF]) {
+        bytes.drain(..3);
+    }
+    bytes
 }
 
 /// the largest file the importers are given
@@ -366,7 +379,7 @@ fn pollster_block_on<F: std::future::Future>(f: F) -> F::Output {
 pub fn save(name: &str, bytes: Vec<u8>, done: Sender<String>) {
     #[cfg(target_arch = "wasm32")]
     {
-        let _ = done.send(match download(name, &bytes) { Ok(()) => format!("Downloaded {name}"), Err(e) => e });
+        let _ = done.send(match download(name, &bytes) { Ok(()) => crate::i18n::tf("Downloaded {name}", &[("name", &name)]), Err(e) => e });
     }
     #[cfg(not(target_arch = "wasm32"))]
     if !gcarve_ui::store::frozen() {
@@ -376,8 +389,8 @@ pub fn save(name: &str, bytes: Vec<u8>, done: Sender<String>) {
             let r = pollster_block_on(dialog.save_file());
             let msg = match r {
                 Some(f) => match std::fs::write(f.path(), &bytes) {
-                    Ok(()) => format!("Saved {}", f.path().display()),
-                    Err(e) => format!("Cannot save {name}: {e}"),
+                    Ok(()) => crate::i18n::tf("Saved {name}", &[("name", &f.path().display())]),
+                    Err(e) => crate::i18n::tf("Cannot save {p}: {e}", &[("p", &name), ("e", &e)]),
                 },
                 None => String::new(),
             };
@@ -418,7 +431,7 @@ pub fn save_many(files: Vec<(String, Vec<u8>)>, done: Sender<String>) {
         }
         names.push(n.clone());
     }
-    let _ = done.send(format!("Downloaded {}", names.join(", ")));
+    let _ = done.send(crate::i18n::tf("Downloaded {name}", &[("name", &names.join(", "))]));
 }
 
 /// G-code file extensions File ▸ Open / Import read (dialogs/gimport.rs).
@@ -426,8 +439,8 @@ pub const GCODE_EXTS: &[&str] = &["tap", "nc", "gcode", "ngc", "cnc"];
 /// drawings read as vectors (the "Vector files" filter)
 pub const VECTOR_EXTS: &[&str] = &["svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl"];
 /// what Import takes (everything Open does but whole projects), and Open
-pub const IMPORT_EXTS: &[&str] = &["svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl", "lbrn2", "gsk", "stl", "3mf", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg", "webp", "tif", "tiff", "csv"];
-pub const OPEN_EXTS: &[&str] = &["tlp", "tlpt", "crv", "c2d", "csv", "svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl", "lbrn2", "gsk", "stl", "3mf", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg", "webp", "tif", "tiff", "txt"];
+pub const IMPORT_EXTS: &[&str] = &["svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl", "lbrn2", "gsk", "stl", "3mf", "obj", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg", "webp", "tif", "tiff", "csv"];
+pub const OPEN_EXTS: &[&str] = &["tlp", "tlpt", "crv", "c2d", "csv", "svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl", "lbrn2", "gsk", "stl", "3mf", "obj", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg", "webp", "tif", "tiff", "txt"];
 /// Pictures File ▸ Open / Import send to Trace Image (dialogs/trace.rs).
 pub const IMAGE_EXTS: &[&str] = &["png", "jpg", "jpeg", "webp", "tif", "tiff"];
 
@@ -519,7 +532,7 @@ fn helper_exe() -> Option<PathBuf> {
 pub(crate) fn dwg_to_dxf_inproc(bytes: &[u8]) -> Result<String, String> {
     let read = std::panic::catch_unwind(|| acadrust::DwgReader::from_stream_with_options(std::io::Cursor::new(bytes), acadrust::DwgReadOptions::failsafe()).read_with_stats())
         .map_err(|_| i18n::t("This DWG file could not be read. Save it as DXF from the program that made it and open that.").to_string())?
-        .map_err(|e| format!("This DWG file could not be read ({e}). Save it as DXF and open that."))?;
+        .map_err(|e| crate::i18n::tf("This DWG file could not be read ({e}). Save it as DXF and open that.", &[("e", &e)]))?;
     if !read.stats.record_stream_read {
         return Err(i18n::t("This DWG file looks damaged or isn't a drawing. Save it as DXF and open that.").into());
     }
@@ -543,7 +556,7 @@ pub fn dxf_to_dwg(dxf: &str) -> Result<Vec<u8>, String> {
 }
 
 /// Start of the message for a refused archive (the app doesn't send that one to the problem log: it is not a fault).
-pub const NO_ARCHIVES: &str = "Zip and other archive files are not accepted.";
+pub const NO_ARCHIVES: &str = "Zip and other archive files are not accepted."; // i18n
 
 /// What a file is when it is an archive (by its ending, or by its first bytes whatever it is called): .zip and
 /// friends are refused outright. A .3mf is a zip inside by design and is the one container let through (a 3D model).
@@ -618,7 +631,7 @@ fn tiff_fallback(bytes: &[u8]) -> Option<image::DynamicImage> {
 pub fn load(doc: &mut Document, name: &str, bytes: &[u8]) -> Loaded {
     // a browser tab has a few GB at most, and the importers copy the text: refuse the absurd before reading it
     if bytes.len() > MAX_IMPORT_BYTES {
-        return Loaded::Error(format!("That file is {} MB; GCarve opens files up to {} MB. A drawing this big is usually full of pictures or far too many points: simplify it in the program that made it.", bytes.len() >> 20, MAX_IMPORT_BYTES >> 20));
+        return Loaded::Error(crate::i18n::tf("That file is {mb} MB; GCarve opens files up to {max} MB. A drawing this big is usually full of pictures or far too many points: simplify it in the program that made it.", &[("mb", &(bytes.len() >> 20)), ("max", &(MAX_IMPORT_BYTES >> 20))]));
     }
     let mut ext = name.rsplit('.').next().unwrap_or("").to_ascii_lowercase();
     if let Some(kind) = archive_kind(&ext, bytes) {
@@ -647,7 +660,7 @@ pub fn load(doc: &mut Document, name: &str, bytes: &[u8]) -> Loaded {
                 let n = crate::cutlist::add(doc, &parts).len();
                 Loaded::Imported(n, format!("cut list: {} parts", parts.iter().map(|p| p.qty).sum::<usize>()))
             }
-            Err(e) => Loaded::Error(format!("Cut list: {e}")),
+            Err(e) => Loaded::Error(crate::i18n::tf("Cut list: {e}", &[("e", &e)])),
         },
         "tlpt" => match project::load_project(&text) {
             Ok(d) => Loaded::Project(Box::new(d), i18n::t("a job template, opened as a new project (Save asks where it goes)").into()),
@@ -677,7 +690,7 @@ pub fn load(doc: &mut Document, name: &str, bytes: &[u8]) -> Loaded {
                 r.note = r.note.replacen("DXF", "DWG", 1); // read through its DXF form
             }
             if r.contours.is_empty() && r.texts.is_empty() {
-                return Loaded::Error(format!("Nothing to import. {}", r.note));
+                return Loaded::Error(crate::i18n::tf("Nothing to import. {note}", &[("note", &r.note)]));
             }
             doc.checkpoint();
             let n = r.contours.len();
@@ -698,12 +711,12 @@ pub fn load(doc: &mut Document, name: &str, bytes: &[u8]) -> Loaded {
         e if GCODE_EXTS.contains(&e) => Loaded::Gcode(text.into_owned()),
         // controllers and forum posts save G-code as .txt too
         "txt" if gcode_like(&text) => Loaded::Gcode(text.into_owned()),
-        "txt" => Loaded::Error("This text file isn't G-code. GCarve opens G-code saved as .txt, and cut lists as .csv (name, width, height, count).".into()),
+        "txt" => Loaded::Error(crate::i18n::t("This text file isn't G-code. GCarve opens G-code saved as .txt, and cut lists as .csv (name, width, height, count).").into()),
         e if IMAGE_EXTS.contains(&e) => Loaded::Image,
         "step" | "stp" | "sldprt" | "sldasm" | "iges" | "igs" | "f3d" | "ipt" | "3dm" => Loaded::Error(format!(
             "GCarve can't read .{ext} (3D CAD) files. In your CAD program export the outline you want to cut as DXF, DWG or SVG (or the shape as STL) and open that."
         )),
-        _ => Loaded::Error(format!("GCarve can't open .{ext} files. It opens GCarve projects (.tlp) and job templates (.tlpt), VCarve projects (.crv), Carbide Create projects (.c2d), SVG, DXF, AutoCAD DWG, PDF, Illustrator (.ai) and EPS, HPGL plot files (.plt), LightBurn (.lbrn2), 3D models (.stl .3mf), G-code (.tap .nc .gcode) and pictures (PNG, JPEG, WebP, TIFF) to trace.")),
+        _ => Loaded::Error(crate::i18n::tf("GCarve can't open .{ext} files. It opens GCarve projects (.tlp) and job templates (.tlpt), VCarve projects (.crv), Carbide Create projects (.c2d), SVG, DXF, AutoCAD DWG, PDF, Illustrator (.ai) and EPS, HPGL plot files (.plt), LightBurn (.lbrn2), 3D models (.stl .3mf .obj), G-code (.tap .nc .gcode) and pictures (PNG, JPEG, WebP, TIFF) to trace.", &[("ext", &ext)])),
     }
 }
 
@@ -1024,5 +1037,19 @@ mod archive_tests {
             }
         }
         assert_eq!(archive_kind("3mf", b"PK\x03\x04"), None);
+    }
+}
+
+#[cfg(test)]
+mod bom_tests {
+    /// a bit library saved by a Windows editor (byte-order mark first) imports like any other
+    #[test]
+    fn a_byte_order_mark_is_dropped_before_reading() {
+        let lib = br#"{"tools":[{"name":"1/4 End Mill","type":"endmill","diameter":0.25}]}"#;
+        let with_bom = [&[0xEF, 0xBB, 0xBF][..], lib].concat();
+        assert!(crate::toollib::import(&String::from_utf8_lossy(&with_bom)).is_err(), "the reader alone trips on it");
+        let tools = crate::toollib::import(&String::from_utf8_lossy(&super::without_bom(with_bom))).unwrap();
+        assert_eq!(tools.len(), 1);
+        assert_eq!(super::without_bom(lib.to_vec()), lib.to_vec(), "files without one are untouched");
     }
 }

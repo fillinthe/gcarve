@@ -21,6 +21,9 @@ pub enum ToolType {
     /// Point-cutting round-over: quarter-circle flanks of radius diameter / 2 meeting at the tip (Rust only; Qt
     /// loads it as an end mill)
     RoundOver,
+    /// Tapered ball nose: a ball of `Tool::radius` at the tip running into a cone of `Tool::angle` degrees per side,
+    /// up to `diameter` (JSON "taperball", Rust only; older loaders read an end mill)
+    TaperedBall,
 }
 
 /// Feeds & speeds for one material. Matched to Material::kind, case-insensitive.
@@ -47,7 +50,7 @@ pub struct Tool {
     pub name: String,
     pub kind: ToolType,
     pub diameter: f64,
-    /// V-bit included angle, degrees
+    /// V-bit included angle, degrees; tapered ball nose: the taper per side
     pub angle: f64,
     pub stepdown: f64,
     /// inches/min (defaults when no preset matches the material)
@@ -85,10 +88,37 @@ impl Tool {
     /// Ball nose / bowl bit: how far above its lowest point the bit's edge is, `dist` from its axis (flat across the
     /// middle of a bowl bit, then the corner round).
     pub fn ball_rise(&self, dist: f64) -> f64 {
+        if self.kind == ToolType::TaperedBall {
+            let (r, a) = self.taper();
+            let d = dist.abs();
+            return if d <= r * a.cos() { r - (r * r - d * d).max(0.0).sqrt() } else { r * (1.0 - a.sin()) + (d - r * a.cos()) / a.tan() };
+        }
         let r = self.diameter / 2.0;
         let rr = if self.radius > 0.0 { self.radius.min(r) } else { r };
         let x = (dist.abs() - (r - rr)).min(rr).max(0.0);
         rr - (rr * rr - x * x).max(0.0).sqrt()
+    }
+
+    /// Tapered ball nose: (tip radius, taper per side in radians); no tip radius = 1/64 in
+    fn taper(&self) -> (f64, f64) {
+        (if self.radius > 0.0 { self.radius } else { 1.0 / 64.0 }.min(self.diameter / 2.0), self.angle.clamp(0.25, 45.0).to_radians())
+    }
+
+    /// How far from the axis the cutting edge is `h` above the tip (the bit's diameter at most); only a tapered ball
+    /// nose is narrower than its diameter that low. Bounds the area a 3D finishing pass has to look at.
+    pub fn reach(&self, h: f64) -> f64 {
+        let half = self.diameter / 2.0;
+        if self.kind != ToolType::TaperedBall {
+            return half;
+        }
+        let (r, a) = self.taper();
+        let d = if h <= r * (1.0 - a.sin()) { (r * r - (r - h).powi(2)).max(0.0).sqrt() } else { r * a.cos() + (h - r * (1.0 - a.sin())) * a.tan() };
+        d.min(half)
+    }
+
+    /// The width that sets stepovers and chip loads: a tapered ball nose's tip ball, else the diameter
+    pub fn cut_diameter(&self) -> f64 {
+        if self.kind == ToolType::TaperedBall { 2.0 * self.taper().0 } else { self.diameter }
     }
 
     /// Height of the drawn form's cutting edge above the tip at `r` from the axis (straight between points);
@@ -388,6 +418,9 @@ pub struct Op {
     /// profile: onion skin: every pass stops this far above the full depth, then one last lap per part (after all the
     /// parts of this toolpath) cuts the skin, so small parts stay held without tabs (JSON "skin" when set, Rust only)
     pub skin: f64,
+    /// 3D finishing: only where the 3D toolpaths above it in the list (same model) left material this bit can reach
+    /// (rest machining; JSON "rest" when set, Rust only)
+    pub rest: bool,
     /// profile: each cut starts at the point of the ring nearest the vector's first node (Node tool ▸ right-click a
     /// node ▸ Make Start Point) instead of the lowest point
     pub start_first: bool,
@@ -502,6 +535,7 @@ impl Default for Op {
             thread_pitch: 0.0,
             countersink: 0.0,
             skin: 0.0,
+            rest: false,
             fit_holes: false,
             start_first: false,
             corner_relief: 0,
@@ -560,6 +594,17 @@ pub struct Relief {
     pub pic_smooth: u32,
     /// stretch the picture's own light / dark range over the whole depth (2nd to 98th percentile)
     pub pic_levels: bool,
+    /// Component settings (Rust only, JSON only when set): how it goes into the combined model with the components
+    /// before it (0 add, 1 subtract, 2 keep the higher, 3 keep the lower)
+    pub combine: u8,
+    /// its base stands this far above the combined model's base, inches
+    pub lift: f64,
+    /// slice: only the part of its height between these fractions (0 = its base, 1 = its top) is kept, stretched over
+    /// `depth` (raise `clip_lo` = VCarve's zero plane, lower `clip_hi` = a flat top)
+    pub clip_lo: f64,
+    pub clip_hi: f64,
+    /// smoothing radius in its own height-map cells (0 = none)
+    pub smooth: u32,
 }
 
 impl Default for Relief {
@@ -583,6 +628,11 @@ impl Default for Relief {
             pic_invert: false,
             pic_smooth: 1,
             pic_levels: true,
+            combine: 0,
+            lift: 0.0,
+            clip_lo: 0.0,
+            clip_hi: 1.0,
+            smooth: 0,
         }
     }
 }

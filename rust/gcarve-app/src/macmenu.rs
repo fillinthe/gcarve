@@ -229,3 +229,13 @@ impl MacMenu {
         self.rx.as_ref()?.try_recv().ok()
     }
 }
+
+/// Hide GCarve like ⌘H: the window goes, the app stays in the Dock and comes back with its tabs on a Dock click or
+/// ⌘Tab (the close button does this, as Mac apps do; Quit ends the app).
+pub fn hide_app() {
+    // SAFETY: NSApplication's shared instance and its hide: method, on the main thread (the frame runs there)
+    unsafe {
+        let app: *mut objc2::runtime::AnyObject = objc2::msg_send![objc2::class!(NSApplication), sharedApplication];
+        let _: () = objc2::msg_send![app, hide: std::ptr::null_mut::<objc2::runtime::AnyObject>()];
+    }
+}
