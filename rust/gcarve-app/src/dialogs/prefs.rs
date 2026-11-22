@@ -422,14 +422,16 @@ impl Prefs {
             if crate::widgets::switch(ui, &mut donate, i18n::t("Show the Donate button")).changed() {
                 crate::shell::set_donate_shown(donate);
             }
-            // the owner's fair-play rule (2026-11-20): on by default, says what goes and lets people stop it
+            // owner 2026-11-20 / 22: on by default, one switch for usage and problem reports, with delete + privacy links
             let mut reports = gcarve_ui::cloud::reports_on();
+            if crate::widgets::switch(ui, &mut reports, &i18n::t("Help improve {app}: send usage and problem reports").replace("{app}", "GCarve")).changed() {
+                crate::app::set_help_improve(reports);
+            }
             ui.horizontal(|ui| {
-                if crate::widgets::switch(ui, &mut reports, i18n::t("Send problem reports")).changed() {
-                    gcarve_ui::cloud::set_reports(reports);
-                    if reports { crate::store::remove("reports-off") } else { crate::store::save("reports-off", "1") }
-                }
-                note(ui, i18n::t("When something goes wrong, what the app said goes to us, without file names. Signed in, with your account, so we can help."));
+                ui.add_space(44.0);
+                ui.hyperlink_to(i18n::t("Delete my data"), gcarve_ui::cloud::DELETE_DATA_URL);
+                ui.label("·");
+                ui.hyperlink_to(i18n::t("Privacy policy"), "https://gworkshop.app/privacy/");
             });
             section(ui, i18n::t("Accessibility"));
             for (flag, label, h) in [(&mut self.large_text, i18n::t("Larger text"), i18n::t("15 px labels and taller controls")), (&mut self.high_contrast, i18n::t("High contrast"), i18n::t("White text, black borders, brighter blue (WCAG AA+)")), (&mut self.large_handles, i18n::t("Larger handles"), i18n::t("Nodes, grips and snap targets are 1.7× easier to hit"))] {

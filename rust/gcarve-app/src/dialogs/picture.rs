@@ -173,6 +173,39 @@ mod tests {
         assert!(c.dirty);
     }
 
+    /// error log 2026-11-22 (0.1.35, macOS): the Dimension tool's first click landing on an existing dimension
+    /// crashed the app ("index out of bounds: the len is 0")
+    #[test]
+    fn clicking_an_existing_dimension_with_the_dimension_tool_does_not_crash() {
+        use crate::canvas::{Canvas, Tool};
+        use gcarve_core::document::Dimension;
+        use gcarve_core::geom::pt;
+        let mut c = Canvas::default();
+        c.doc.dimensions.push(Dimension { a: pt(4.0, 4.0), b: pt(16.0, 4.0), offset: 1.0, ..Default::default() });
+        c.tool = Tool::Dimension;
+        let ctx = egui::Context::default();
+        let screen = egui::Rect::from_min_size(egui::Pos2::ZERO, egui::vec2(1000.0, 700.0));
+        let frame = |c: &mut Canvas, events: Vec<egui::Event>| {
+            let mut out = ctx.run_ui(egui::RawInput { screen_rect: Some(screen), events, ..Default::default() }, |ui| {
+                egui::CentralPanel::default().show(ui, |ui| {
+                    c.ui(ui, None, None);
+                });
+            });
+            out.textures_delta.clear();
+        };
+        frame(&mut c, vec![]);
+        frame(&mut c, vec![]);
+        let btn = |pos, pressed| egui::Event::PointerButton { pos, button: egui::PointerButton::Primary, pressed, modifiers: Default::default() };
+        // along the dimension line and its ends: wherever the hit test takes it, nothing is read from empty picks
+        for (x, y) in [(10.0, 5.0), (10.0, 4.0), (4.0, 5.0), (16.0, 5.0), (10.0, 4.5)] {
+            let s = c.view.as_ref().unwrap().to_screen(pt(x, y));
+            frame(&mut c, vec![egui::Event::PointerMoved(s), btn(s, true)]);
+            frame(&mut c, vec![btn(s, false)]);
+            frame(&mut c, vec![]);
+        }
+        assert_eq!(c.doc.dimensions.len(), 1, "no dimension was added from nothing");
+    }
+
     #[test]
     fn a_picture_fits_inside_its_area_centred_and_keeps_its_shape() {
         let area = Rect { x0: 0.0, y0: 0.0, x1: 48.0, y1: 24.0 };

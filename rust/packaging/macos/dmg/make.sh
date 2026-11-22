@@ -12,6 +12,11 @@ cp "$HERE/background.tiff" "$WORK/stage/.background/"
 hdiutil create -quiet -volname GCarve -srcfolder "$WORK/stage" -format UDRW -fs HFS+ "$WORK/rw.dmg"
 MNT=$(hdiutil attach -readwrite -noverify -noautoopen "$WORK/rw.dmg" | awk -F'\t' '/\/Volumes\//{print $NF}')
 sleep 2
+# GCARVE_DMG_DSSTORE=<.DS_Store taken from an earlier GCarve dmg>: the same layout without asking Finder (2026-11-22:
+# Finder stopped answering Apple Events and the release build stopped here)
+if [ -n "$GCARVE_DMG_DSSTORE" ]; then
+  cp "$GCARVE_DMG_DSSTORE" "$MNT/.DS_Store"
+else
 osascript <<OSA
 with timeout of 120 seconds
 tell application "Finder"
@@ -37,6 +42,7 @@ tell application "Finder"
 end tell
 end timeout
 OSA
+fi
 SetFile -a V "$MNT/.background" 2>/dev/null || true
 sync
 hdiutil detach -quiet "$MNT"

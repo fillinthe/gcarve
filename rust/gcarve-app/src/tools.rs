@@ -1127,7 +1127,8 @@ impl Canvas {
                             }
                         }
                     }
-                } else if clicked {
+                } else if clicked && self.dim_pts.len() >= 2 {
+                    // (a first click on an existing dimension picks nothing: 0.1.35 crashed here reading two points)
                     if let Some(w) = hover_w {
                         let (a, b) = (self.dim_pts[0], self.dim_pts[1]);
                         self.doc.checkpoint();

@@ -2814,6 +2814,11 @@
 "{name}: rest machining needs an earlier 3D toolpath on this model; cutting everything": "{name}: a usinagem de restos precisa de um percurso 3D anterior neste modelo; cortando tudo",
 "User Manual": "Manual do usuário",
 "Working out “{name}”…": "Calculando “{name}”…",
-"Send problem reports": "Enviar relatórios de problemas",
-"When something goes wrong, what the app said goes to us, without file names. Signed in, with your account, so we can help.": "Quando algo dá errado, o que o app disse chega até nós, sem nomes de arquivos. Com login, com sua conta, para podermos ajudar."
+"Usage and problem reports": "Relatórios de uso e de problemas",
+"To make {app} better, it sends which features get used and a short report when something goes wrong: the error message, the app's version and your platform, and your account if you're signed in.": "Para melhorar o {app}, ele envia quais recursos são usados e um relatório curto quando algo dá errado: a mensagem de erro, a versão do app e sua plataforma, e sua conta se você estiver conectado.",
+"Never your designs, file names or paths. Problem reports are kept for 30 days.": "Nunca seus projetos, nomes de arquivos ou caminhos. Os relatórios de problemas ficam guardados por 30 dias.",
+"Help improve {app}: send usage and problem reports": "Ajude a melhorar o {app}: enviar relatórios de uso e de problemas",
+"Delete my data": "Excluir meus dados",
+"Privacy policy": "Política de privacidade",
+"Got it": "Entendi"
 }

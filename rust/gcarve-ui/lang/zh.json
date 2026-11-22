@@ -2814,6 +2814,11 @@
 "{name}: rest machining needs an earlier 3D toolpath on this model; cutting everything": "{name}：残料加工需要此模型上有之前的 3D 刀路；将全部加工",
 "User Manual": "用户手册",
 "Working out “{name}”…": "正在计算“{name}”…",
-"Send problem reports": "发送问题报告",
-"When something goes wrong, what the app said goes to us, without file names. Signed in, with your account, so we can help.": "出现问题时,应用显示的内容会发给我们,不含文件名。登录时附带您的账户,方便我们帮助您。"
+"Usage and problem reports": "使用情况和问题报告",
+"To make {app} better, it sends which features get used and a short report when something goes wrong: the error message, the app's version and your platform, and your account if you're signed in.": "为了改进 {app},应用会发送使用了哪些功能,并在出错时发送一份简短报告:错误信息、应用版本和您的平台,以及登录时的账户。",
+"Never your designs, file names or paths. Problem reports are kept for 30 days.": "绝不发送您的设计、文件名或路径。问题报告保留 30 天。",
+"Help improve {app}: send usage and problem reports": "帮助改进 {app}:发送使用情况和问题报告",
+"Delete my data": "删除我的数据",
+"Privacy policy": "隐私政策",
+"Got it": "知道了"
 }

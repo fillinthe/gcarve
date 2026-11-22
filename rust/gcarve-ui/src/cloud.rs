@@ -275,6 +275,9 @@ impl Cloud {
             req.headers.insert("Authorization", format!("Bearer {}", self.token));
             req.headers.insert("X-App", crate::store::app()); // desktop apps share one server address: say which app this is
         }
+        if !reports_on() {
+            req.headers.insert("X-Usage", "off"); // the app's Help improve switch is off: the server keeps no activity for it
+        }
         #[cfg(target_arch = "wasm32")]
         {
             req.mode = ehttp::Mode::SameOrigin; // the session cookie travels with same-origin requests
@@ -544,7 +547,7 @@ impl Cloud {
     /// The same with a short detail ("Pocket", "3 files"). The server keeps the detail only for signed-in accounts
     /// (admin activity log); it never gets drawings, file names or anything typed.
     pub fn event_detail(&self, name: &str, detail: &str) {
-        if !Self::web() {
+        if !Self::web() || !reports_on() {
             return;
         }
         let mut req = ehttp::Request::post(format!("{}/api/event", self.base), serde_json::to_vec(&serde_json::json!({ "name": name, "detail": detail })).unwrap_or_default());
@@ -778,7 +781,46 @@ static REPORTS: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::n
 /// The app's "Send problem reports" setting (on by default): off = nothing goes to the error log (the status bar's
 /// Report button still works, it opens the support form)
 pub fn set_reports(on: bool) {
+    // the web page's own early error reports (before the app loads) read this: `<app>.reports` = "0" when off
+    #[cfg(target_arch = "wasm32")]
+    if REPORTS.load(std::sync::atomic::Ordering::Relaxed) != on {
+        if let Some(st) = web_sys::window().and_then(|w| w.local_storage().ok().flatten()) {
+            let _ = st.set_item(&format!("{}.reports", crate::store::app().to_lowercase()), if on { "1" } else { "0" });
+        }
+    }
     REPORTS.store(on, std::sync::atomic::Ordering::Relaxed);
+}
+
+/// Where people delete what the apps sent while they were signed in: activity history and problem reports (the
+/// gworkshop.app account page; the server's DELETE /api/account/data)
+pub const DELETE_DATA_URL: &str = "https://gworkshop.app/account/#data";
+
+/// The one-time card every app shows (owner 2026-11-22: tell people what is sent, let them opt out and delete it).
+/// `on` is the app's one switch (usage counts + signed-in activity + problem reports: `set_reports` / `reports_on`),
+/// `tr` the app's translation. True once dismissed: the app keeps that and shows the same switch and links in its
+/// settings. The same card in every G Workshop app: GCarve, GSketch, GBurn.
+pub fn data_notice(ctx: &egui::Context, on: &mut bool, tr: &dyn Fn(&'static str) -> &'static str) -> bool {
+    let mut open = true;
+    let mut done = false;
+    let app = crate::store::app();
+    crate::widgets::Dialog::new(tr("Usage and problem reports")).open(&mut open).width(460.0).show(ctx, |ui| {
+        ui.label(tr("To make {app} better, it sends which features get used and a short report when something goes wrong: the error message, the app's version and your platform, and your account if you're signed in.").replace("{app}", app));
+        ui.add_space(4.0);
+        ui.label(egui::RichText::new(tr("Never your designs, file names or paths. Problem reports are kept for 30 days.")).color(crate::theme::TEXT_DIM));
+        ui.add_space(8.0);
+        crate::widgets::checkbox(ui, on, tr("Help improve {app}: send usage and problem reports").replace("{app}", app));
+        ui.add_space(4.0);
+        ui.horizontal_wrapped(|ui| {
+            ui.hyperlink_to(tr("Delete my data"), DELETE_DATA_URL);
+            ui.label("·");
+            ui.hyperlink_to(tr("Privacy policy"), "https://gworkshop.app/privacy/");
+        });
+        ui.add_space(8.0);
+        if ui.add(crate::widgets::Button::new(tr("Got it")).primary(true)).clicked() {
+            done = true;
+        }
+    });
+    done || !open
 }
 
 pub fn reports_on() -> bool {
@@ -923,6 +965,70 @@ mod live {
         c.sign_out(&ctx);
         pump(&mut c, &ctx, |c| !c.signed_in());
         assert!(c.load_token().is_empty(), "token must be forgotten on sign-out");
+    }
+
+    /// owner 2026-11-22, end to end against a real server (GCARVE_TEST_INVITE4 + GCARVE_TEST_ADMIN="email:password"
+    /// of an admin there): with Help improve off nothing the app does is kept or reported; on, a save is kept and a
+    /// problem report names the account without the path; Delete my data empties the history and unnames the
+    /// report; deleting the account leaves nothing under its name
+    #[test]
+    #[ignore]
+    fn privacy_switch_delete_my_data_and_delete_account() {
+        let (Ok(invite), Ok(admin)) = (std::env::var("GCARVE_TEST_INVITE4"), std::env::var("GCARVE_TEST_ADMIN")) else { return };
+        let base = std::env::var("GCARVE_CLOUD_URL").unwrap();
+        let call = |method: &str, path: &str, token: &str, body: Option<serde_json::Value>| {
+            let mut r = ehttp::Request::post(format!("{base}{path}"), body.map(|b| b.to_string().into_bytes()).unwrap_or_default());
+            r.method = method.into();
+            r.headers.insert("Content-Type", "application/json");
+            r.headers.insert("Origin", base.clone());
+            r.headers.insert("Authorization", format!("Bearer {token}"));
+            let resp = ehttp::fetch_blocking(&r).expect("server");
+            (resp.status, serde_json::from_str::<serde_json::Value>(resp.text().unwrap_or("")).unwrap_or_default())
+        };
+        let (ae, ap) = admin.split_once(':').unwrap();
+        let (st, login) = call("POST", "/api/auth/login", "", Some(serde_json::json!({"email": ae, "password": ap, "client": "desktop"})));
+        assert_eq!(st, 200, "admin sign-in: {login}");
+        let atok = login["token"].as_str().unwrap().to_string();
+        let me = "privacy@example.com";
+        let saves = || call("GET", &format!("/api/admin/activity?email={me}"), &atok, None).1["activity"].as_array().map_or(0, |a| a.iter().filter(|r| r["name"] == "project_save").count());
+        let history = || call("GET", &format!("/api/admin/activity?email={me}"), &atok, None).1["activity"].as_array().map_or(0, |a| a.len());
+        let reports = |needle: &str| call("GET", "/api/admin/errors", &atok, None).1["errors"].as_array().cloned().unwrap_or_default().into_iter().filter(|e| e["message"].as_str().unwrap_or("").contains(needle)).collect::<Vec<_>>();
+
+        let ctx = egui::Context::default();
+        let mut c = Cloud::new();
+        c.token.clear();
+        c.register(&ctx, me, "correct-horse-battery", &invite);
+        pump(&mut c, &ctx, |c| c.signed_in());
+        // switch off: a cloud save is not kept with the account, a problem is not reported
+        set_reports(false);
+        c.save_project(&ctx, "", "Off", None, r#"{"app":"GCarve","version":3}"#);
+        pump(&mut c, &ctx, |c| c.projects.iter().any(|p| p.name == "Off"));
+        c.report("open", "e2e switched off");
+        std::thread::sleep(Duration::from_millis(800));
+        assert_eq!(saves(), 0, "a save with the switch off went into the history");
+        assert!(reports("e2e switched off").is_empty(), "a problem was reported with the switch off");
+        // switch on: kept, and the report names the account but not the path
+        set_reports(true);
+        c.save_project(&ctx, "", "On", None, r#"{"app":"GCarve","version":3}"#);
+        pump(&mut c, &ctx, |c| c.projects.iter().any(|p| p.name == "On"));
+        c.report("open", "e2e switched on /Users/ann/Jobs/sign.crv");
+        std::thread::sleep(Duration::from_millis(800));
+        assert_eq!(saves(), 1);
+        let r = reports("e2e switched on");
+        assert!(r.len() == 1 && r[0]["email"] == me && !r[0]["message"].as_str().unwrap().contains("/Users"), "{r:?}");
+        // Account › Delete my usage and problem data
+        let (st, out) = call("DELETE", "/api/account/data", &c.token.clone(), None);
+        assert_eq!(st, 200, "{out}");
+        assert_eq!(history(), 0, "the history is still there");
+        let r = reports("e2e switched on");
+        assert!(r.len() == 1 && r[0].get("email").is_none_or(|e| e == ""), "the report still names the account: {r:?}");
+        // the account itself, after one more save
+        c.save_project(&ctx, "", "Last", None, r#"{"app":"GCarve","version":3}"#);
+        pump(&mut c, &ctx, |c| c.projects.iter().any(|p| p.name == "Last"));
+        assert_eq!(saves(), 1);
+        let (st, out) = call("POST", "/api/account/delete", &c.token.clone(), Some(serde_json::json!({"password": "correct-horse-battery"})));
+        assert_eq!(st, 200, "{out}");
+        assert_eq!(history(), 0);
     }
 
     /// the desktop signs in through the browser (an account with any sign-in), then lists and opens its models

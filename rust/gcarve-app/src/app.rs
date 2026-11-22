@@ -2042,6 +2042,18 @@ impl eframe::App for App {
         for id in std::mem::take(&mut self.shell.cmds) {
             self.run(&ctx, &id);
         }
+        // owner 2026-11-22: say once what is sent, with the switch and the delete / privacy links (the same card in
+        // every G app: gcarve_ui::cloud::data_notice); not in screenshots and UI tests
+        if !self.shot && !crate::store::frozen() && crate::store::load("data-notice-seen").is_none() && self.recover.is_none() {
+            let mut on = gcarve_ui::cloud::reports_on();
+            let done = gcarve_ui::cloud::data_notice(&ctx, &mut on, &|s| i18n::t(s));
+            if on != gcarve_ui::cloud::reports_on() {
+                set_help_improve(on);
+            }
+            if done {
+                crate::store::save("data-notice-seen", "1");
+            }
+        }
         crate::widgets::select_on_tab(&ctx);
         crate::widgets::focus_in_tree(&ctx);
     }
@@ -2766,6 +2778,17 @@ impl App {
 
 /// The showcase sign as the demo: the lettering's clearance bit doesn't fit its narrow flats (a warning in the
 /// showcase, which the goldens keep), so the demo leaves the V-bit to clear them and opens without warnings.
+/// Help improve GCarve (Preferences and the one-time card): usage counts, activity and problem reports, kept per device
+pub(crate) fn set_help_improve(on: bool) {
+    gcarve_ui::cloud::set_reports(on);
+    if on { crate::store::remove("reports-off") } else { crate::store::save("reports-off", "1") }
+}
+
+/// the shared card's words (gcarve_ui::cloud::data_notice translates them with `i18n::t`): listed here so the language
+/// packs carry them
+#[allow(dead_code)]
+const DATA_NOTICE_TEXT: [&str; 7] = ["Usage and problem reports", "To make {app} better, it sends which features get used and a short report when something goes wrong: the error message, the app's version and your platform, and your account if you're signed in.", "Never your designs, file names or paths. Problem reports are kept for 30 days.", "Help improve {app}: send usage and problem reports", "Delete my data", "Privacy policy", "Got it"]; // i18n
+
 /// `doc` with the open toolpath dialog's unsaved settings in place (`i` None = a new toolpath at the end)
 fn with_draft(doc: &gcarve_core::document::Document, i: Option<usize>, op: &gcarve_core::document::Op) -> gcarve_core::document::Document {
     let mut doc = doc.clone();

@@ -2814,6 +2814,11 @@
 "{name}: rest machining needs an earlier 3D toolpath on this model; cutting everything": "{name}: artık işleme bu modelde önceki bir 3D takım yolu gerektirir; her yer kesiliyor",
 "User Manual": "Kullanım Kılavuzu",
 "Working out “{name}”…": "“{name}” hesaplanıyor…",
-"Send problem reports": "Sorun raporları gönder",
-"When something goes wrong, what the app said goes to us, without file names. Signed in, with your account, so we can help.": "Bir şey ters gittiğinde uygulamanın söylediği, dosya adları olmadan bize gelir. Oturum açıksa, yardım edebilmemiz için hesabınızla birlikte."
+"Usage and problem reports": "Kullanım ve sorun raporları",
+"To make {app} better, it sends which features get used and a short report when something goes wrong: the error message, the app's version and your platform, and your account if you're signed in.": "{app} daha iyi olsun diye hangi özelliklerin kullanıldığını ve bir şey ters gittiğinde kısa bir rapor gönderir: hata mesajı, uygulama sürümü ve platformunuz, oturum açtıysanız hesabınız.",
+"Never your designs, file names or paths. Problem reports are kept for 30 days.": "Tasarımlarınız, dosya adları veya yollar asla gönderilmez. Sorun raporları 30 gün saklanır.",
+"Help improve {app}: send usage and problem reports": "{app} uygulamasını geliştirmeye yardım et: kullanım ve sorun raporları gönder",
+"Delete my data": "Verilerimi sil",
+"Privacy policy": "Gizlilik politikası",
+"Got it": "Anladım"
 }

@@ -2814,6 +2814,11 @@
 "{name}: rest machining needs an earlier 3D toolpath on this model; cutting everything": "{name}: restbewerking heeft een eerdere 3D-freesbaan op dit model nodig; alles wordt gesneden",
 "User Manual": "Handleiding",
 "Working out “{name}”…": "Bezig met “{name}”…",
-"Send problem reports": "Probleemmeldingen versturen",
-"When something goes wrong, what the app said goes to us, without file names. Signed in, with your account, so we can help.": "Als er iets misgaat, krijgen wij wat de app meldde, zonder bestandsnamen. Ingelogd met je account, zodat we kunnen helpen."
+"Usage and problem reports": "Gebruiks- en probleemmeldingen",
+"To make {app} better, it sends which features get used and a short report when something goes wrong: the error message, the app's version and your platform, and your account if you're signed in.": "Om {app} beter te maken, stuurt het welke functies worden gebruikt en een korte melding als er iets misgaat: de foutmelding, de app-versie en je platform, en je account als je bent ingelogd.",
+"Never your designs, file names or paths. Problem reports are kept for 30 days.": "Nooit je ontwerpen, bestandsnamen of paden. Probleemmeldingen worden 30 dagen bewaard.",
+"Help improve {app}: send usage and problem reports": "Help {app} verbeteren: gebruiks- en probleemmeldingen versturen",
+"Delete my data": "Mijn gegevens verwijderen",
+"Privacy policy": "Privacybeleid",
+"Got it": "Begrepen"
 }

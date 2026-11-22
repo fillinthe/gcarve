@@ -2814,6 +2814,11 @@
 "{name}: rest machining needs an earlier 3D toolpath on this model; cutting everything": "{name}: 잔삭 가공에는 이 모델에 이전 3D 툴패스가 필요합니다. 전체를 깎습니다",
 "User Manual": "사용 설명서",
 "Working out “{name}”…": "“{name}” 계산 중…",
-"Send problem reports": "문제 보고 보내기",
-"When something goes wrong, what the app said goes to us, without file names. Signed in, with your account, so we can help.": "문제가 생기면 앱에 표시된 내용이 파일 이름 없이 저희에게 전달됩니다. 로그인한 경우 도움을 드릴 수 있도록 계정도 함께 보냅니다."
+"Usage and problem reports": "사용 및 문제 보고",
+"To make {app} better, it sends which features get used and a short report when something goes wrong: the error message, the app's version and your platform, and your account if you're signed in.": "{app}을(를) 개선하기 위해, 어떤 기능이 쓰였는지와 문제가 생겼을 때의 짧은 보고(오류 메시지, 앱 버전과 플랫폼, 로그인한 경우 계정)를 보냅니다.",
+"Never your designs, file names or paths. Problem reports are kept for 30 days.": "디자인, 파일 이름, 경로는 절대 보내지 않습니다. 문제 보고는 30일 동안 보관됩니다.",
+"Help improve {app}: send usage and problem reports": "{app} 개선 돕기: 사용 및 문제 보고 보내기",
+"Delete my data": "내 데이터 삭제",
+"Privacy policy": "개인정보 처리방침",
+"Got it": "확인"
 }
