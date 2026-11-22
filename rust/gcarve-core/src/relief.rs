@@ -32,27 +32,35 @@ pub fn load_stl(data: &[u8]) -> Result<Vec<Triangle>, String> {
     let mut out = Vec::new();
     // binary: 80-byte header + uint32 count + 50 bytes per triangle; ASCII starts with "solid" and has "facet" words
     let ascii = data.starts_with(b"solid") && data.windows(5).any(|w| w == b"facet");
-    if !ascii && data.len() >= 84 {
-        let n = u32::from_le_bytes(data[80..84].try_into().unwrap()) as usize;
-        // checked: on 32-bit (web, Windows 7 x86) a made-up count wrapped the sum and passed, then reserve() panicked
-        if n.checked_mul(50).and_then(|b| b.checked_add(84)) == Some(data.len()) {
-            out.reserve(n);
-            for i in 0..n {
+    let binary = |n: usize| -> Vec<Triangle> {
+        (0..n)
+            .map(|i| {
                 let f = |k: usize| {
                     let o = 84 + i * 50 + 12 + k * 4;
                     f32::from_le_bytes(data[o..o + 4].try_into().unwrap()) as f64
                 };
                 let p = |k: usize| Pt3 { x: f(k), y: f(k + 1), z: f(k + 2) };
-                out.push(Triangle { a: p(0), b: p(3), c: p(6) });
-            }
-            return Ok(out);
-        }
+                Triangle { a: p(0), b: p(3), c: p(6) }
+            })
+            .collect()
+    };
+    // the triangles a binary file can hold: its own count, cut to what is really there (some exporters pad the end
+    // or write a wrong count; error log 2026-11-22: "no triangles in the STL file" twice)
+    let fits = if data.len() >= 84 {
+        let n = u32::from_le_bytes(data[80..84].try_into().unwrap()) as usize;
+        n.min((data.len() - 84) / 50)
+    } else {
+        0
+    };
+    // checked: on 32-bit (web, Windows 7 x86) a made-up count wrapped the sum and passed, then reserve() panicked
+    if !ascii && fits > 0 && fits.checked_mul(50).and_then(|b| b.checked_add(84)) == Some(data.len()) {
+        return Ok(binary(fits));
     }
     let text = String::from_utf8_lossy(data);
     let mut tok = text.split_ascii_whitespace();
     let mut verts: Vec<Pt3> = Vec::new();
     'parse: while let Some(t) = tok.next() {
-        if t == "vertex" {
+        if t.eq_ignore_ascii_case("vertex") {
             let mut v = [0.0; 3];
             for c in &mut v {
                 match tok.next().and_then(|s| s.parse::<f64>().ok()) {
@@ -66,6 +74,9 @@ pub fn load_stl(data: &[u8]) -> Result<Vec<Triangle>, String> {
                 verts.clear();
             }
         }
+    }
+    if out.is_empty() && fits > 0 {
+        out = binary(fits);
     }
     if out.is_empty() {
         return Err("no triangles in the STL file".into());
@@ -812,6 +823,24 @@ mod obj_tests {
         assert!(peak > 0.9 && r.at(0, 0) < 0.2, "the tip stands up in the middle");
         assert!(load_stl(b"v 0 0 0\nv 1 0 0\n").is_err() && load_stl(b"v 0 0 x\nf 1 1 1\n").is_err());
     }
+    #[test]
+    fn binary_stl_with_padding_or_a_wrong_count_still_loads() {
+        let mut b = vec![0u8; 80];
+        b.extend(9u32.to_le_bytes()); // says 9, holds 2
+        for k in 0..2 {
+            b.extend([0u8; 12]);
+            for v in [0.0f32, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, k as f32] {
+                b.extend(v.to_le_bytes());
+            }
+            b.extend([0u8; 2]);
+        }
+        assert_eq!(load_stl(&b).unwrap().len(), 2);
+        b[80..84].copy_from_slice(&2u32.to_le_bytes());
+        b.extend([0u8; 7]); // padding after the last triangle
+        assert_eq!(load_stl(&b).unwrap().len(), 2);
+        assert_eq!(load_stl(b"SOLID x\nFACET NORMAL 0 0 1\nVERTEX 0 0 0\nVERTEX 1 0 0\nVERTEX 0 1 0\n").unwrap().len(), 1);
+    }
+
 }
 
 #[cfg(test)]
