@@ -85,4 +85,4 @@ cargo run -p gcarve-app --release      # run it
 cargo test --workspace                 # tests
 ```
 
-Packaging scripts for macOS, Windows and Linux are in `rust/packaging/`. The source is published to read and to build for your own use; see [LICENSE.md](LICENSE.md). The website and account server are not part of this repository.
+Packaging scripts for macOS, Windows and Linux are in `rust/packaging/`. The source is published to read and to build for your own use; see [LICENSE](LICENSE). The website and account server are not part of this repository.
