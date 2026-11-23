@@ -1,0 +1,17 @@
+# branches 0.3.0 (MIT, github.com/fereidani/branches), unchanged except that its build script is gone: it switched
+# on compiler intrinsics whenever the toolchain was a nightly, and the nightly the Windows 7 builds need no longer
+# has them (core::intrinsics::abort). Without the script the crate takes its stable code on every toolchain.
+[package]
+name = "branches"
+version = "0.3.0"
+edition = "2021"
+license = "MIT"
+description = "Branch hinting prediction and control functions for stable Rust (vendored: see the note above)"
+
+[features]
+default = ["std"]
+std = []
+
+[lints.rust.unexpected_cfgs]
+level = "allow"
+check-cfg = ["cfg(unstable)"]

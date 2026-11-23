@@ -88,7 +88,7 @@ fn air_cut_note_in_header() {
 #[test]
 fn spindle_safety_every_post_every_file() {
     let jobs = fixture_jobs();
-    for pd in post_library() {
+    for pd in post_library().iter().filter(|d| d.plasma.is_empty()) {
         for po in post_jobs(&jobs, pd) {
             assert!(spindle_off_at_end(&po.text), "post {}: no spindle off at the end", pd.id);
         }

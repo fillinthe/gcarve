@@ -439,8 +439,8 @@ pub const GCODE_EXTS: &[&str] = &["tap", "nc", "gcode", "ngc", "cnc"];
 /// drawings read as vectors (the "Vector files" filter)
 pub const VECTOR_EXTS: &[&str] = &["svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl"];
 /// what Import takes (everything Open does but whole projects), and Open
-pub const IMPORT_EXTS: &[&str] = &["svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl", "lbrn2", "gsk", "stl", "3mf", "obj", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg", "webp", "tif", "tiff", "csv"];
-pub const OPEN_EXTS: &[&str] = &["tlp", "tlpt", "crv", "c2d", "csv", "svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl", "lbrn2", "gsk", "stl", "3mf", "obj", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg", "webp", "tif", "tiff", "txt"];
+pub const IMPORT_EXTS: &[&str] = &["svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl", "lbrn2", "gsk", "stl", "3mf", "obj", "step", "stp", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg", "webp", "tif", "tiff", "csv"];
+pub const OPEN_EXTS: &[&str] = &["tlp", "tlpt", "crv", "c2d", "csv", "svg", "dxf", "dwg", "pdf", "ai", "eps", "plt", "hpgl", "lbrn2", "gsk", "stl", "3mf", "obj", "step", "stp", "tap", "nc", "gcode", "ngc", "cnc", "png", "jpg", "jpeg", "webp", "tif", "tiff", "txt"];
 /// Pictures File ▸ Open / Import send to Trace Image (dialogs/trace.rs).
 pub const IMAGE_EXTS: &[&str] = &["png", "jpg", "jpeg", "webp", "tif", "tiff"];
 
@@ -498,24 +498,54 @@ fn c2d_texts(d: &mut Document, texts: &[gcarve_core::c2d::C2dText]) {
 /// copy of this program (`--dwg-to-dxf`, bytes in on stdin, DXF out on stdout), so the worst case is an error message.
 fn dwg_to_dxf(bytes: &[u8]) -> Result<String, String> {
     #[cfg(not(target_arch = "wasm32"))]
-    if let Some(exe) = helper_exe() {
-        use std::io::{Read, Write};
-        let child = std::process::Command::new(exe).arg("--dwg-to-dxf").stdin(std::process::Stdio::piped()).stdout(std::process::Stdio::piped()).stderr(std::process::Stdio::null()).spawn();
-        if let Ok(mut child) = child {
-            let (mut input, mut out_pipe) = (child.stdin.take(), child.stdout.take());
-            let data = bytes.to_vec();
-            let writer = std::thread::spawn(move || input.as_mut().map(|i| i.write_all(&data)));
-            let mut out = Vec::new();
-            let _ = out_pipe.as_mut().map(|o| o.read_to_end(&mut out));
-            let _ = writer.join();
-            return match child.wait() {
-                Ok(st) if st.success() => String::from_utf8(out).map_err(|_| i18n::t("This DWG file could not be converted. Save it as DXF and open that.").to_string()),
-                Ok(_) if !out.is_empty() => Err(String::from_utf8_lossy(&out).into_owned()), // the helper's own message
-                _ => Err(i18n::t("This DWG file looks damaged: reading it failed. Save it as DXF from the program that made it and open that.").into()),
-            };
-        }
+    if let Some((ok, out)) = run_helper("--dwg-to-dxf", bytes) {
+        return match ok {
+            true => String::from_utf8(out).map_err(|_| i18n::t("This DWG file could not be converted. Save it as DXF and open that.").to_string()),
+            false if !out.is_empty() => Err(String::from_utf8_lossy(&out).into_owned()), // the helper's own message
+            false => Err(i18n::t("This DWG file looks damaged: reading it failed. Save it as DXF from the program that made it and open that.").into()),
+        };
     }
     dwg_to_dxf_inproc(bytes)
+}
+
+#[cfg(not(target_arch = "wasm32"))]
+const HELPER_DEADLINE: std::time::Duration = std::time::Duration::from_secs(120);
+
+/// A risky file read done in a copy of this program started with `flag` (bytes in on stdin, the answer on stdout):
+/// (it ended well, what it wrote). None = no helper could be started, read in place.
+#[cfg(not(target_arch = "wasm32"))]
+pub(crate) fn run_helper(flag: &str, bytes: &[u8]) -> Option<(bool, Vec<u8>)> {
+    use std::io::{Read, Write};
+    let mut child = std::process::Command::new(helper_exe()?).arg(flag).stdin(std::process::Stdio::piped()).stdout(std::process::Stdio::piped()).stderr(std::process::Stdio::null()).spawn().ok()?;
+    let (mut input, mut out_pipe) = (child.stdin.take(), child.stdout.take());
+    let data = bytes.to_vec();
+    let writer = std::thread::spawn(move || input.as_mut().map(|i| i.write_all(&data)));
+    // a file the reader never finishes with is given up on: the helper is stopped and the read counts as failed
+    let (tx, rx) = std::sync::mpsc::channel();
+    let reader = std::thread::spawn(move || {
+        let mut out = Vec::new();
+        let _ = out_pipe.as_mut().map(|o| o.read_to_end(&mut out));
+        let _ = tx.send(out);
+    });
+    let out = rx.recv_timeout(HELPER_DEADLINE);
+    if out.is_err() {
+        let _ = child.kill();
+    }
+    let ok = child.wait().is_ok_and(|st| st.success());
+    let (_, _) = (writer.join(), reader.join());
+    Some((ok && out.is_ok(), out.unwrap_or_default()))
+}
+
+/// File types that come in as a 3D model
+pub const MODEL_EXTS: &[&str] = &["stl", "3mf", "obj", "step", "stp"];
+
+/// A 3D model file's triangles: STL / 3MF / OBJ by the engine, STEP through `stepfile`
+pub fn model_tris(name: &str, bytes: &[u8]) -> Result<Vec<gcarve_core::relief::Triangle>, String> {
+    if crate::stepfile::is_step(name, bytes) {
+        crate::stepfile::load(bytes)
+    } else {
+        gcarve_core::relief::load_stl(bytes)
+    }
 }
 
 /// The program to run the DWG read in: this one (in tests only when GCARVE_EXE names the built program).

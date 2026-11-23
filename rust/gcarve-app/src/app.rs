@@ -118,6 +118,12 @@ pub struct App {
     /// toolpaths of a big drawing are about to be rebuilt: this frame shows "Generating toolpaths" first
     /// toolpaths being worked out one per frame behind the progress card
     gen_step: Option<GenStep>,
+    /// desktop: previews are worked out on a second thread while drawing, so an edit never waits for them
+    gen_job: Option<GenJob>,
+    /// that thread stopped without an answer once: work on this one from then on (its failure then shows as usual)
+    gen_bg_off: bool,
+    /// tests run frozen and work in the frame; this one switches the second thread on for them
+    gen_bg_test: bool,
     /// a SpaceMouse allowed earlier was looked for
     puck_tried: bool,
     puck_filter: crate::spacemouse::Filter,
@@ -227,7 +233,7 @@ impl App {
         let mut app = App { mcp: Default::default(), files, mode, canvas: new_canvas(&prefs), left_open: ui_state.tool_rail, right_open: ui_state.side_panel, status: String::new(), message: i18n::t("Open a VCarve project (.crv), an SVG, DXF or PDF, or draw with R / E / P.").into(), name: i18n::t("Untitled").into(), shell: Shell::new(), frame: 0, gen: None, gen_rev: 0, gen_cov: Vec::new(), edit_seen: (0, None), edit_at: 0.0, show_paths: shot || crate::store::load("show-paths").as_deref() != Some("0"), all_paths: std::env::var("GCARVE_ALL_PATHS").map_or(shot || crate::store::load("design-all-paths").as_deref() == Some("1"), |v| v == "1"), lib_ready: false, lib_pushed: 0, shares: Vec::new(), shares_open: false,
             share_project: None, gen_draft: None, export: None, cloud: Cloud::new(), cloud_id: String::new(), account: Default::default(), help: Default::default(), movie: std::env::var("GCARVE_MOVIE").ok().map(|d| (d.into(), 0, std::env::var("GCARVE_MOVIE_FRAMES").ok().and_then(|n| n.parse().ok()).unwrap_or(600), false)), projects: Default::default(), dialogs: Dialogs::default(), select_all_on_load: false, prev_tool: Tool::Select, dev_measure: false,
             prefs_seen: prefs.synced.clone(), prefs_push_at: None, prefs_from_server: false,
-            cam: CamDialogs { prefs, ..Default::default() }, posts: UserPosts::load(), templates: Default::default(), player: Player::default(), view3d: View3d::load(shot), sim_wait: false, export_group: None, all_sheets: !shot && crate::store::load("all-sheets").as_deref() == Some("1") || std::env::var("GCARVE_ALL_SHEETS").is_ok(), opening: Vec::new(), open_wait: false, gen_step: None, puck_tried: shot, puck_filter: Default::default(), puck_trace: Default::default(), view_3d: false, watch_pending: false, show_sim: false, shot, pending_dialog: String::new(), recover: if shot { None } else { crate::recover::load() }, recover_at: None, recover_rev: 0, last_dirty: false, last_open: false,
+            cam: CamDialogs { prefs, ..Default::default() }, posts: UserPosts::load(), templates: Default::default(), player: Player::default(), view3d: View3d::load(shot), sim_wait: false, export_group: None, all_sheets: !shot && crate::store::load("all-sheets").as_deref() == Some("1") || std::env::var("GCARVE_ALL_SHEETS").is_ok(), opening: Vec::new(), open_wait: false, gen_step: None, gen_job: None, gen_bg_off: false, gen_bg_test: false, puck_tried: shot, puck_filter: Default::default(), puck_trace: Default::default(), view_3d: false, watch_pending: false, show_sim: false, shot, pending_dialog: String::new(), recover: if shot { None } else { crate::recover::load() }, recover_at: None, recover_rev: 0, last_dirty: false, last_open: false,
             project_path: None,
             #[cfg(not(target_arch = "wasm32"))]
             jobs: crate::jobs::Jobs::load(),
@@ -317,7 +323,7 @@ impl App {
                     app.canvas.tool = *tool;
                 }
             }
-            let req = match dialog.as_str() { "text" => Some(Request::Text(false)), "offset" => Some(Request::Offset), "dogbone" => Some(Request::Dogbone), "array" => Some(Request::Array), "align" => Some(Request::Align), "nest" => Some(Request::Nest), "selector" => Some(Request::Selector), "vtexture" => Some(Request::Texture), "plates" => Some(Request::Plates), "shelfpins" => Some(Request::Pins), "rotarylayout" => Some(Request::RotaryLayout), "boxmaker" => Some(Request::BoxMaker), "puzzle" => Some(Request::Puzzle), "inlay" => Some(Request::Inlay), "hinge" => Some(Request::Hinge), "joinery" => Some(Request::Joinery), "stencil" => Some(Request::Stencil), "qr" => Some(Request::Qr), _ => None };
+            let req = match dialog.as_str() { "text" => Some(Request::Text(false)), "offset" => Some(Request::Offset), "dogbone" => Some(Request::Dogbone), "array" => Some(Request::Array), "align" => Some(Request::Align), "nest" => Some(Request::Nest), "selector" => Some(Request::Selector), "vtexture" => Some(Request::Texture), "plates" => Some(Request::Plates), "shelfpins" => Some(Request::Pins), "rotarylayout" => Some(Request::RotaryLayout), "boxmaker" => Some(Request::BoxMaker), "puzzle" => Some(Request::Puzzle), "inlay" => Some(Request::Inlay), "hinge" => Some(Request::Hinge), "joinery" => Some(Request::Joinery), "stencil" => Some(Request::Stencil), "suggest" => Some(Request::Suggest), "qr" => Some(Request::Qr), _ => None };
             app.canvas.requests.extend(req);
             if dialog == "shapemenu" || dialog == "sizepopup" {
                 app.canvas.shot_hook = dialog.clone();
@@ -428,6 +434,7 @@ impl App {
         self.project_path = d.path;
         self.gen = d.gen;
         self.gen_rev = d.gen_rev;
+        self.gen_job = None; // the other drawing's answer is not this one's
         self.gen_cov = d.gen_cov;
         // per-document chrome
         self.shell.op_sel = None;
@@ -597,7 +604,7 @@ impl App {
             self.step("import"); // a file of their own (the demo counts as "demo")
         }
         let Picked { name, bytes, path, import } = f;
-        if [".stl", ".3mf", ".obj"].iter().any(|e| name.to_ascii_lowercase().ends_with(e)) {
+        if crate::files::MODEL_EXTS.iter().any(|e| name.to_ascii_lowercase().ends_with(&format!(".{e}"))) {
             self.import_stl(&name, &bytes);
             return;
         }
@@ -774,6 +781,21 @@ impl App {
             .filter(|s| doc.shape_visible(s) && (picked.is_empty() || picked.contains(&s.id)))
             .map(|s| (&s.c, doc.layers.get(s.layer as usize).map_or("", |l| l.name.as_str())))
             .collect()
+    }
+
+    /// tests: every toolpath wanted while drawing, worked out on the second thread
+    #[cfg(test)]
+    pub fn test_bg_gen(&mut self) {
+        self.gen_bg_test = true;
+        self.all_paths = true;
+        self.show_paths = true;
+        self.canvas.rev += 1; // as after an edit
+    }
+    /// tests: None while the previews are behind the drawing, else whether they equal a fresh full run
+    #[cfg(test)]
+    pub fn test_gen_matches(&self) -> Option<bool> {
+        let g = self.gen.as_ref().filter(|_| self.gen_rev == self.canvas.rev && self.gen_cov.iter().all(|c| *c))?;
+        Some(g.paths == pipeline::regenerate(&self.canvas.doc).paths)
     }
 
     fn full_gen(&mut self) {
@@ -1044,7 +1066,7 @@ impl App {
                 self.cam.job = Some(d);
             }
             ("reliefs" | "relief", _) => self.cam.relief = Some(dialogs::relief::ReliefDialog::default()),
-            ("importstl", _) => self.files.pick_into(ctx, i18n::t("3D models (.stl .3mf .obj)"), &["stl", "3mf", "obj"], "stl"),
+            ("importstl", _) => self.files.pick_into(ctx, i18n::t("3D models (.stl .3mf .obj .step)"), crate::files::MODEL_EXTS, "stl"),
             ("importgcode", _) => self.files.pick_into(ctx, "G-code", files::GCODE_EXTS, "gcode"),
             ("shapes", _) => self.cam.shapes = Some(dialogs::shapes::ShapesDialog::new(&self.canvas.doc)),
             ("boardphoto", "toggle") => {
@@ -1200,6 +1222,7 @@ impl App {
             ("boxmaker", _) => self.dialogs.request(Request::BoxMaker, &self.canvas),
             ("puzzle", _) => self.dialogs.request(Request::Puzzle, &self.canvas),
             ("inlay", _) => self.dialogs.request(Request::Inlay, &self.canvas),
+            ("suggest", _) => self.dialogs.request(Request::Suggest, &self.canvas),
             ("hinge", _) => self.dialogs.request(Request::Hinge, &self.canvas),
             ("joinery", _) => self.dialogs.request(Request::Joinery, &self.canvas),
             ("stencil", _) => self.dialogs.request(Request::Stencil, &self.canvas),
@@ -1479,7 +1502,7 @@ impl eframe::App for App {
                 *w |= *c; // keep what is already worked out
             }
         }
-        let gen_due = want.iter().enumerate().any(|(i, &w)| w && !(fresh && self.gen_cov.get(i).copied().unwrap_or(false)));
+        let mut gen_due = want.iter().enumerate().any(|(i, &w)| w && !(fresh && self.gen_cov.get(i).copied().unwrap_or(false)));
         let pause = if self.shot { 0.0 } else { GEN_PAUSE - (now - self.edit_at) };
         self.canvas.all_paths = self.all_paths;
         self.canvas.paths_old = !fresh;
@@ -1491,8 +1514,42 @@ impl eframe::App for App {
         if self.gen_step.as_ref().is_some_and(|g| g.rev != self.canvas.rev || g.draft != draft || g.want != want) {
             self.gen_step = None; // changed while it was working: start again
         }
+        // the second thread's answer: used when the drawing is still as it was sent, dropped when not (a new one starts
+        // only after the old one ended, so a run of edits never piles up threads)
+        let bg = cfg!(not(target_arch = "wasm32")) && !self.shot && !urgent && !self.gen_bg_off && (!crate::store::frozen() || self.gen_bg_test);
+        if let Some(j) = &self.gen_job {
+            let same = j.rev == self.canvas.rev && j.draft == draft && j.want == want;
+            match j.rx.try_recv() {
+                Ok(mut g) => {
+                    self.gen_job = None;
+                    if same {
+                        if let Some((None, op)) = &draft {
+                            g.draft_tool = op.tool;
+                        }
+                        self.gen = Some(g);
+                        self.gen_cov = want.clone();
+                        self.canvas.paths_old = false;
+                        self.gen_rev = self.canvas.rev;
+                        self.gen_draft = draft.clone();
+                        self.canvas.gen_seq += 1;
+                        gen_due = false;
+                    }
+                }
+                Err(std::sync::mpsc::TryRecvError::Disconnected) => {
+                    self.gen_job = None;
+                    self.gen_bg_off = true;
+                }
+                Err(_) => {}
+            }
+        }
         if gen_due && !urgent && pause > 0.0 {
             ctx.request_repaint_after(std::time::Duration::from_secs_f64(pause));
+        } else if gen_due && bg && !self.gen_bg_off {
+            self.gen_step = None; // the card's own run is not carried on beside the thread
+            if self.gen_job.is_none() {
+                self.gen_job = GenJob::start(ctx.clone(), &self.canvas.doc, draft.clone(), want.clone(), self.canvas.rev);
+                self.gen_bg_off = self.gen_job.is_none();
+            }
         } else if gen_due && heavy && self.gen_step.as_ref().is_none_or(|g| g.next < g.want.len()) {
             let step = self.gen_step.get_or_insert_with(|| GenStep::new(&self.canvas.doc, draft.clone(), want.clone(), self.canvas.rev));
             if step.started {
@@ -1515,6 +1572,16 @@ impl eframe::App for App {
             self.gen_rev = self.canvas.rev;
             self.gen_draft = draft;
             self.canvas.gen_seq += 1;
+        }
+        if self.gen_job.is_some() && gen_due {
+            egui::Area::new(egui::Id::new("gen-bg")).anchor(egui::Align2::CENTER_BOTTOM, [0.0, -44.0]).interactable(false).show(&ctx, |ui| {
+                egui::Frame::popup(ui.style()).show(ui, |ui| {
+                    ui.horizontal(|ui| {
+                        ui.spinner();
+                        ui.label(i18n::t("Generating toolpaths…"));
+                    });
+                });
+            });
         }
         if let Some(g) = &self.gen_step {
             let p = ctx.layer_painter(egui::LayerId::new(egui::Order::Foreground, egui::Id::new("gen-wait")));
@@ -2799,6 +2866,36 @@ fn with_draft(doc: &gcarve_core::document::Document, i: Option<usize>, op: &gcar
     doc
 }
 
+/// Toolpaths being worked out on a second thread from a copy of the drawing (desktop; the browser has no second
+/// thread). The answer comes back over the channel and wakes the window.
+struct GenJob {
+    draft: Option<(Option<usize>, gcarve_core::document::Op)>,
+    want: Vec<bool>,
+    rev: u64,
+    rx: std::sync::mpsc::Receiver<pipeline::Generated>,
+}
+
+impl GenJob {
+    fn start(ctx: egui::Context, doc: &gcarve_core::document::Document, draft: Option<(Option<usize>, gcarve_core::document::Op)>, want: Vec<bool>, rev: u64) -> Option<Self> {
+        let doc = match &draft {
+            Some((i, op)) => with_draft(doc, *i, op),
+            None => doc.clone(),
+        };
+        let (tx, rx) = std::sync::mpsc::channel();
+        let w = want.clone();
+        // the main thread's stack size: the V-carve walk goes deep on busy drawings
+        std::thread::Builder::new()
+            .name("gcarve-toolpaths".into())
+            .stack_size(16 << 20)
+            .spawn(move || {
+                let _ = tx.send(pipeline::regenerate_some(&doc, &|i| w[i]));
+                ctx.request_repaint();
+            })
+            .ok()?;
+        Some(GenJob { draft, want, rev, rx })
+    }
+}
+
 /// Toolpaths worked out one per frame (each op is independent of the others' results), so the progress card can say
 /// which one it is on between them
 struct GenStep {
@@ -3185,5 +3282,17 @@ mod gen_step_tests {
         assert_eq!(g.acc.paths, all.paths);
         assert_eq!(g.acc.minutes, all.minutes);
         assert_eq!(g.acc.warnings, all.warnings);
+    }
+
+    /// the second thread hands back exactly what working them out in the frame gives
+    #[cfg(not(target_arch = "wasm32"))]
+    #[test]
+    fn toolpaths_from_the_second_thread_match_the_ones_worked_out_in_place() {
+        let doc = gcarve_core::project::load_project(std::str::from_utf8(&super::demo_project()).unwrap()).unwrap();
+        let want = vec![true; doc.ops.len()];
+        let job = super::GenJob::start(eframe::egui::Context::default(), &doc, None, want.clone(), 7).unwrap();
+        let got = job.rx.recv_timeout(std::time::Duration::from_secs(120)).unwrap();
+        let all = gcarve_core::pipeline::regenerate(&doc);
+        assert_eq!((got.paths, got.minutes, got.warnings), (all.paths, all.minutes, all.warnings));
     }
 }

@@ -955,6 +955,7 @@ pub fn menus(top: &mut MenuTop, canvas: &Canvas, m: &MenuInfo, rail_open: bool, 
                     s.item(&i18n::tf("New {kind}…", &[("kind", &i18n::t(KINDS[i].0))]), "", sel > 0, &format!("kind:{i}"));
                 }
             });
+            s.item(i18n::t("Suggest Toolpaths…"), "", !canvas.doc.shapes.is_empty(), "suggest");
             s.item(i18n::t("Surface the Board…"), "", true, "surface");
             s.item(i18n::t("Inlay Wizard…"), "", true, "inlay");
             s.item(i18n::t("3D Models…"), "", true, "reliefs");

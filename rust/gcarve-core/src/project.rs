@@ -118,6 +118,7 @@ pub fn tool_to_json(t: &Tool) -> Value {
         ToolType::BallNose => "ball",
         ToolType::RoundOver => "roundover",
         ToolType::TaperedBall => "taperball",
+        ToolType::Plasma => "plasma",
         ToolType::EndMill => "endmill",
     };
     let mut o = json!({"name": t.name, "type": kind, "diameter": t.diameter, "angle": t.angle, "stepdown": t.stepdown, "feedXY": t.feed_xy,
@@ -147,6 +148,11 @@ pub fn tool_to_json(t: &Tool) -> Value {
     if t.holder_dia > 0.0 {
         o.as_object_mut().unwrap().insert("holderDia".into(), json!(t.holder_dia));
     }
+    if t.kind == ToolType::Plasma {
+        for (k, v) in [("pierceHeight", t.pierce_height), ("pierceDelay", t.pierce_delay), ("cutHeight", t.cut_height)] {
+            o.as_object_mut().unwrap().insert(k.into(), json!(v));
+        }
+    }
     if t.cut_length > 0.0 {
         o.as_object_mut().unwrap().insert("cutLength".into(), json!(t.cut_length));
     }
@@ -159,6 +165,7 @@ pub fn tool_from_json(o: &Value) -> Tool {
         Some("ball") => ToolType::BallNose,
         Some("roundover") => ToolType::RoundOver,
         Some("taperball") => ToolType::TaperedBall,
+        Some("plasma") => ToolType::Plasma,
         _ => ToolType::EndMill,
     };
     let mut t = Tool {
@@ -177,6 +184,11 @@ pub fn tool_from_json(o: &Value) -> Tool {
     t.slot = int(o, "slot", 0).max(0);
     t.radius = num(o, "radius", 0.0).max(0.0);
     t.cut_length = num(o, "cutLength", 0.0).max(0.0);
+    if t.kind == ToolType::Plasma {
+        t.pierce_height = num(o, "pierceHeight", t.pierce_height).max(0.0);
+        t.pierce_delay = num(o, "pierceDelay", t.pierce_delay).max(0.0);
+        t.cut_height = num(o, "cutHeight", t.cut_height).max(0.0);
+    }
     t.stick_out = num(o, "stickOut", 0.0).max(0.0);
     t.holder_dia = num(o, "holderDia", 0.0).max(0.0);
     t.group = s(o, "group", "").trim().to_string();
@@ -359,6 +371,15 @@ pub(crate) fn op_json(op: &Op, tools: &[Tool]) -> Value {
     if op.rest {
         m.insert("rest".into(), json!(true));
     }
+    if op.turn {
+        m.insert("turn".into(), json!(true));
+    }
+    if op.waterline {
+        m.insert("waterline".into(), json!(true));
+        if op.steep_angle > 0.0 {
+            m.insert("steepAngle".into(), json!(op.steep_angle));
+        }
+    }
     if op.countersink > 0.0 {
         m.insert("countersink".into(), json!(op.countersink));
     }
@@ -475,6 +496,9 @@ pub(crate) fn op_from(o: &Value, tool_count: i32) -> Op {
         countersink: num(o, "countersink", 0.0).max(0.0),
         skin: num(o, "skin", 0.0).max(0.0),
         rest: flag(o, "rest", false),
+        turn: flag(o, "turn", false),
+        waterline: flag(o, "waterline", false),
+        steep_angle: num(o, "steepAngle", 0.0).clamp(0.0, 85.0),
         fit_holes: flag(o, "fitHoles", false),
         start_first: flag(o, "startFirst", false),
         corner_relief: int(o, "cornerRelief", 0).clamp(0, 2) as u8,
@@ -526,6 +550,11 @@ fn material_json(m: &Material) -> Value {
         if m.rotary_y {
             o.as_object_mut().unwrap().insert("rotaryAlongY".into(), json!(true));
         }
+        for (k, v) in [("rotaryChuck", m.chuck), ("rotaryTail", m.tail)] {
+            if v > 0.0 {
+                o.as_object_mut().unwrap().insert(k.into(), json!(v));
+            }
+        }
     }
     if let Some((sheet, lr)) = m.back_of {
         o.as_object_mut().unwrap().insert("backOf".into(), json!({"sheet": sheet, "lr": lr}));
@@ -561,6 +590,8 @@ fn material_from(o: &Value) -> Material {
         merge: flag(o, "merge", false),
         rotary: get(o, "rotary").as_f64().filter(|d| *d > 0.0),
         rotary_y: get(o, "rotaryAlongY").as_bool().unwrap_or(false),
+        chuck: num(o, "rotaryChuck", 0.0).max(0.0),
+        tail: num(o, "rotaryTail", 0.0).max(0.0),
         back_of: get(o, "backOf").as_object().map(|_| (int(get(o, "backOf"), "sheet", 0), flag(get(o, "backOf"), "lr", true))),
         price: num(o, "price", 0.0).max(0.0),
         rate: num(o, "rate", 0.0).max(0.0),

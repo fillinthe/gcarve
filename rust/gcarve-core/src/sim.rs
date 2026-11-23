@@ -100,7 +100,7 @@ fn stamp(hf: &mut HeightField, t: &Tool, cx: f64, cy: f64, d: f64) {
                     let x = (dist - (r - rr)).max(0.0); // 0 across the flat tip
                     d - (rr * rr - (rr - x) * (rr - x)).max(0.0).sqrt()
                 }
-                ToolType::EndMill => d,
+                ToolType::EndMill | ToolType::Plasma => d,
             };
             let cell = &mut hf.depth[row + ix as usize];
             if cut > *cell as f64 {

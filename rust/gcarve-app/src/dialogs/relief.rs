@@ -9,7 +9,7 @@ use super::{hint, unit_label, Fields, Host};
 use crate::widgets::TipExt;
 use eframe::egui;
 use gcarve_core::document::{Document, Relief};
-use gcarve_core::relief::{load_stl, rasterize_relief};
+use gcarve_core::relief::rasterize_relief;
 
 const CELLS: usize = 400_000;
 /// `Relief::combine`: how a component goes onto the ones above it in the list (VCarve's combine modes)
@@ -197,7 +197,7 @@ impl ReliefDialog {
             hint(ui, i18n::t("The model's (or picture's) footprint is stretched to the width and height; its height range maps to the depth. Use a ball-nose bit for finishing and an end mill for roughing. A lithophane: tick Dark parts stand high, cut it from white acrylic or Corian and keep the thinnest part about 1 / 16 in thick (board thickness minus depth)."));
         });
         if import {
-            host.files.pick_into(ctx, i18n::t("3D models (.stl .3mf .obj)"), &["stl", "3mf", "obj"], "stl");
+            host.files.pick_into(ctx, i18n::t("3D models (.stl .3mf .obj .step)"), crate::files::MODEL_EXTS, "stl");
         }
         if picture {
             host.files.pick_into(ctx, i18n::t("Pictures (.png .jpg .webp)"), &["png", "jpg", "jpeg", "webp"], "relief-picture");
@@ -298,7 +298,7 @@ impl ReliefDialog {
 /// Qt Canvas::importRelief: fit into half the board, keep the model's proportions, centre it.
 pub fn import_file(name: &str, bytes: &[u8], host: &mut Host) {
     let doc = &mut host.canvas.doc;
-    let tris = match load_stl(bytes) {
+    let tris = match crate::files::model_tris(name, bytes) {
         Ok(t) => t,
         Err(e) => {
             host.cloud.report("stl", &crate::files::scrub(&e, name));
@@ -367,7 +367,7 @@ pub fn import_picture(name: &str, bytes: &[u8], host: &mut Host) {
 pub fn rehydrate(doc: &mut Document) {
     for r in &mut doc.reliefs {
         if r.height.is_empty() && r.pic.is_empty() && !r.source.is_empty() {
-            if let Ok(tris) = std::fs::read(&r.source).map_err(|e| e.to_string()).and_then(|b| load_stl(&b)) {
+            if let Ok(tris) = std::fs::read(&r.source).map_err(|e| e.to_string()).and_then(|b| crate::files::model_tris(&r.source, &b)) {
                 rasterize_relief(&tris, r, CELLS);
             }
         }

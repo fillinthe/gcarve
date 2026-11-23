@@ -75,6 +75,13 @@ pub struct Job {
     pub board: [f64; 3],
     /// Job Setup's park position (X / Y from the XY zero, inches): the posts' {XH} {YH} unless the post sets its own
     pub home: Option<[f64; 2]>,
+    /// a plasma torch's job: [pierce height, pierce delay (s), cut height]; such a job is only ever written by
+    /// `plasma::post`
+    pub plasma: Option<[f64; 3]>,
+    /// the torch's kerf width, inches
+    pub kerf: f64,
+    /// plasma air-cut / ghost run: the file traces the cuts with the torch never switched on
+    pub torch_off: bool,
 }
 
 impl Default for Job {
@@ -94,6 +101,9 @@ impl Default for Job {
             safe_z: 0.8,
             board: [0.0; 3],
             home: None,
+            plasma: None,
+            kerf: 0.0,
+            torch_off: false,
         }
     }
 }

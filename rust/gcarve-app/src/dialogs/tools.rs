@@ -61,6 +61,9 @@ impl ToolsDialog {
         self.f.set_fine("cutLength", t.cut_length);
         self.f.set_fine("stickOut", t.stick_out);
         self.f.set_fine("holderDia", t.holder_dia);
+        self.f.set_fine("pierceHeight", t.pierce_height);
+        self.f.set_raw("pierceDelay", t.pierce_delay);
+        self.f.set_fine("cutHeight", t.cut_height);
         self.f.set("stepdown", t.stepdown);
         self.f.set_raw("feedXY", t.feed_xy);
         self.f.set_raw("feedZ", t.feed_z);
@@ -88,7 +91,7 @@ impl ToolsDialog {
 
     /// everything the bit form edits, as one string (not the material preset fields)
     fn edit_key(&self) -> String {
-        let f: String = ["diameter", "angle", "radius", "cutLength", "stickOut", "holderDia", "stepdown", "feedXY", "feedZ"].iter().map(|k| format!("{}|", self.f.text(k))).collect();
+        let f: String = ["diameter", "angle", "radius", "cutLength", "stickOut", "holderDia", "pierceHeight", "pierceDelay", "cutHeight", "stepdown", "feedXY", "feedZ"].iter().map(|k| format!("{}|", self.f.text(k))).collect();
         format!("{f}{}|{}|{:?}|{}|{}|{}", self.name, self.group, self.kind, self.flutes, self.rpm, self.slot)
     }
 
@@ -118,6 +121,9 @@ impl ToolsDialog {
             cut_length: self.f.get_or("cutLength", doc, base.cut_length).max(0.0),
             stick_out: self.f.get_or("stickOut", doc, base.stick_out).max(0.0),
             holder_dia: self.f.get_or("holderDia", doc, base.holder_dia).max(0.0),
+            pierce_height: self.f.get_or("pierceHeight", doc, base.pierce_height).max(0.0),
+            pierce_delay: self.f.raw_or("pierceDelay", base.pierce_delay).max(0.0),
+            cut_height: self.f.get_or("cutHeight", doc, base.cut_height).max(0.0),
             stepdown: self.f.get_or("stepdown", doc, base.stepdown).max(0.0),
             feed_xy: self.f.raw_or("feedXY", base.feed_xy).max(0.0),
             feed_z: self.f.raw_or("feedZ", base.feed_z).max(0.0),
@@ -274,7 +280,7 @@ impl ToolsDialog {
                             ui.horizontal_wrapped(|ui| {
                                 ui.spacing_mut().item_spacing.x = 2.0;
                                 let was = self.kind;
-                                for (k, label) in [(ToolType::EndMill, i18n::t("End mill")), (ToolType::VBit, i18n::t("V-bit")), (ToolType::BallNose, i18n::t("Ball nose")), (ToolType::TaperedBall, i18n::t("Tapered ball")), (ToolType::RoundOver, i18n::t("Round-over"))] {
+                                for (k, label) in [(ToolType::EndMill, i18n::t("End mill")), (ToolType::VBit, i18n::t("V-bit")), (ToolType::BallNose, i18n::t("Ball nose")), (ToolType::TaperedBall, i18n::t("Tapered ball")), (ToolType::RoundOver, i18n::t("Round-over")), (ToolType::Plasma, i18n::t("Plasma torch"))] {
                                     ui.selectable_value(&mut self.kind, k, label);
                                 }
                                 // a V-bit's 90° or no tip size makes no tapered ball nose: start from a common one
@@ -303,6 +309,22 @@ impl ToolsDialog {
                             });
                             ui.add_space(4.0);
                             egui::Grid::new("tool-shape").num_columns(2).spacing([10.0, 6.0]).show(ui, |ui| {
+                                if self.kind == ToolType::Plasma {
+                                    // a torch: the kerf and its heights; none of a router bit's sizes apply
+                                    ui.label(unit_label(i18n::t("Kerf width"), doc)).on_hover_text(i18n::t("How wide the cut is. The toolpath runs half of it off the line. From the torch's cut chart, then check with a test cut."));
+                                    self.f.ui_sized(ui, "diameter", doc, 100.0, true);
+                                    ui.end_row();
+                                    ui.label(unit_label(i18n::t("Pierce height"), doc)).on_hover_text(i18n::t("How high above the sheet the torch fires."));
+                                    self.f.ui_sized(ui, "pierceHeight", doc, 100.0, true);
+                                    ui.end_row();
+                                    ui.label(i18n::t("Pierce delay (s)")).on_hover_text(i18n::t("How long it waits there for the arc to go through before moving."));
+                                    self.f.ui_sized(ui, "pierceDelay", doc, 100.0, false);
+                                    ui.end_row();
+                                    ui.label(unit_label(i18n::t("Cut height"), doc)).on_hover_text(i18n::t("How high above the sheet it cuts."));
+                                    self.f.ui_sized(ui, "cutHeight", doc, 100.0, true);
+                                    ui.end_row();
+                                    return;
+                                }
                                 if self.kind == ToolType::TaperedBall {
                                     ui.label(unit_label(i18n::t("Shank diameter"), doc)).on_hover_text(i18n::t("Where the taper ends, usually the shank (1/4 in or 6 mm)."));
                                 } else {
@@ -352,6 +374,12 @@ impl ToolsDialog {
                         });
                         card(ui, &crate::i18n::tf("Cutting in {board}", &[("board", &board)]), 270.0, |ui| {
                             egui::Grid::new("tool-cut").num_columns(2).spacing([10.0, 6.0]).show(ui, |ui| {
+                                if self.kind == ToolType::Plasma {
+                                    ui.label(rate_label(i18n::t("Cut speed"), doc));
+                                    self.f.ui_sized(ui, "feedXY", doc, 100.0, false);
+                                    ui.end_row();
+                                    return;
+                                }
                                 ui.label(rate_label(i18n::t("Feed XY"), doc));
                                 self.f.ui_sized(ui, "feedXY", doc, 100.0, false);
                                 ui.end_row();
@@ -365,6 +393,10 @@ impl ToolsDialog {
                                 ui.add(crate::widgets::field(&mut self.rpm).desired_width(100.0));
                                 ui.end_row();
                             });
+                            if self.kind == ToolType::Plasma {
+                                hint(ui, i18n::t("Take the numbers for this metal and thickness from the torch maker's cut chart, save them as a preset below, and make a test cut. A plasma torch only cuts Profile toolpaths, and the job needs a plasma G-code style (Job Setup)."));
+                                return;
+                            }
                             ui.add_space(4.0);
                             if ui.button(i18n::tf("Suggest for {board}", &[("board", &board)])).tip(i18n::t("Fill feed, plunge, pass depth and RPM from chip-load tables for this bit in the board material")).clicked() {
                                 self.f.set_raw("feedXY", base_s.feed_xy);
@@ -375,7 +407,9 @@ impl ToolsDialog {
                         });
                     });
                     ui.add_space(4.0);
-                    feed_meter(ui, &base_a, 550.0);
+                    if self.kind != ToolType::Plasma {
+                        feed_meter(ui, &base_a, 550.0);
+                    }
                     ui.add_space(8.0);
                     // ---- feeds that depend on the board material
                     card(ui, i18n::t("Feeds by material"), 550.0, |ui| {
@@ -627,6 +661,7 @@ fn bit_name(t: &Tool, fmt: &str, doc: &Document) -> String {
         ToolType::BallNose => i18n::t("Ball Nose"),
         ToolType::RoundOver => i18n::t("Round-over"),
         ToolType::TaperedBall => i18n::t("Tapered Ball Nose"),
+        ToolType::Plasma => i18n::t("Plasma Torch"),
     };
     let len = |v: f64| crate::units::fmt(doc, v);
     let out = fmt.replace("{type}", kind).replace("{diameter}", &len(t.diameter)).replace("{angle}", &format!("{}°", super::fmt_len(t.angle))).replace("{flutes}", &t.flutes.to_string()).replace("{radius}", &len(if t.radius > 0.0 { t.radius } else { t.diameter / 2.0 }));
@@ -640,6 +675,7 @@ fn kind_label(t: &Tool) -> String {
         ToolType::BallNose => i18n::t("Ball nose").into(),
         ToolType::RoundOver => i18n::t("Round-over").into(),
         ToolType::TaperedBall => i18n::tf("Tapered ball {angle}°", &[("angle", &super::fmt_len(t.angle))]),
+        ToolType::Plasma => i18n::t("Plasma torch").into(),
     }
 }
 

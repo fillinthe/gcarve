@@ -103,6 +103,10 @@ fn web_queue() -> Vec<(String, String)> {
 /// the export guard's "Export anyway" dialog; Control's own start check is the gate before anything moves.
 pub fn send(doc: &Document, gen: Option<&Generated>, project: &str) -> String {
     let Some(gen) = gen.filter(|g| g.paths.iter().any(|p| !p.is_empty())) else { return i18n::t("Nothing to send: add a toolpath first.").into() };
+    // Control knows spindles, not torches (no arc-OK or height control): a plasma job is never sent to it
+    if doc.ops.iter().any(|o| usize::try_from(o.tool).ok().and_then(|i| doc.tools.get(i)).is_some_and(|t| t.kind == gcarve_core::document::ToolType::Plasma)) {
+        return i18n::t("GCarve Control doesn't run plasma tables. Export the G-code and run it in the table's own software.").into();
+    }
     let ts = chrono::Local::now().format("%I:%M %p, %A %B %-d %Y").to_string();
     let mut post = gcarve_core::find_post("grbl-in").expect("grbl-in post").clone();
     // one file for the whole job: Control stops at each M6 for a manual bit change (grbl itself refuses M6)

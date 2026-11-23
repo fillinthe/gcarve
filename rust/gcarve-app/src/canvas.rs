@@ -85,6 +85,8 @@ pub enum Request {
     Joinery,
     Stencil,
     Qr,
+    /// Toolpaths › Suggest Toolpaths…
+    Suggest,
     /// new text; true = along the selected curve
     Text(bool),
     EditText(i32),

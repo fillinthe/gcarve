@@ -22,6 +22,8 @@ mod control;
 mod cutlist; // GCarve Control (machine screen): `gcarve --control [file]`, `?control` on the web
 mod edit_ops;
 mod files;
+mod stepfile;
+mod turnview;
 mod guides;
 mod palette;
 mod params;
@@ -71,6 +73,18 @@ fn main() -> eframe::Result {
             Err(e) => (e, 1),
         };
         let _ = std::io::stdout().write_all(text.as_bytes());
+        std::process::exit(code);
+    }
+    if std::env::args().nth(1).as_deref() == Some("--step-to-stl") {
+        // helper for stepfile::load: success = a binary STL on stdout, failure = exit 1 with the message on stdout
+        use std::io::{Read, Write};
+        let mut bytes = Vec::new();
+        let _ = std::io::stdin().read_to_end(&mut bytes);
+        let (out, code) = match stepfile::load_inproc(&bytes) {
+            Ok(t) => (stepfile::to_stl(&t), 0),
+            Err(e) => (e.into_bytes(), 1),
+        };
+        let _ = std::io::stdout().write_all(&out);
         std::process::exit(code);
     }
     if std::env::args().any(|a| a == "--control") {

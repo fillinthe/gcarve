@@ -37,6 +37,8 @@ ttf-parser = { version = "0.25", default-features = false, features = ["std", "o
 acadrust = "0.6.4"   # AutoCAD .dwg import, converted to DXF text (MPL-2.0, used unmodified: CADCraft does the same)
 egui_extras = { version = "0.36", default-features = false, features = ["svg"] }   # the Qt app's monochrome icons (app/icons/*.svg), tinted
 qrcodegen = "1"
+truck-stepio = "0.3"   # STEP (.step / .stp) reader (Apache-2.0)
+truck-meshalgo = { version = "0.4", default-features = false, features = ["tessellation"] }   # STEP import: B-rep faces to triangles (Apache-2.0)
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 serialport = { version = "4.7", default-features = false, optional = true }   # GCarve Control over USB (no libudev: port names only on Linux)
@@ -55,3 +57,4 @@ getrandom = { version = "0.3", features = ["wasm_js"] }   # see .cargo/config.to
 
 [target.'cfg(not(target_arch = "wasm32"))'.dev-dependencies]
 egui_kittest = { version = "0.36", features = ["eframe"] }   # tests only: drives the real UI through AccessKit (tests/ui_e2e.rs)
+truck-modeling = "0.6"   # tests only: makes a STEP solid for stepfile's test

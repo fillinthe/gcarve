@@ -191,6 +191,8 @@ impl JobDialog {
         f.set("homeX", home[0]);
         f.set("homeY", home[1]);
         f.set("rotDia", m.rotary.unwrap_or(3.0));
+        f.set("chuck", m.chuck);
+        f.set("tail", m.tail);
         JobDialog { home_on: m.home.is_some(), merge: m.merge, rotary_on: m.rotary.is_some(), rotary_y: m.rotary_y, price: money(m.price), rate: money(m.rate), kind: m.kind.clone(), f, origin: m.origin, z_bottom: m.z_bottom, auto_feeds: m.auto_feeds, machine: m.machine.clone(), post: None, browser: Default::default(), machine_only: false, mine: crate::library::machines(), editing: None, share: Default::default() }
     }
 
@@ -208,6 +210,8 @@ impl JobDialog {
         m.merge = self.merge;
         m.rotary = self.rotary_on.then(|| self.f.get_or("rotDia", doc, 3.0).max(0.05));
         m.rotary_y = self.rotary_on && self.rotary_y;
+        m.chuck = if self.rotary_on { self.f.get_or("chuck", doc, 0.0).max(0.0) } else { 0.0 };
+        m.tail = if self.rotary_on { self.f.get_or("tail", doc, 0.0).max(0.0) } else { 0.0 };
         if let Some(dia) = m.rotary {
             m.h = std::f64::consts::PI * dia; // the unrolled surface: once round the blank
         }
@@ -358,6 +362,14 @@ impl JobDialog {
                 if self.rotary_on {
                     ui.label("");
                     crate::widgets::checkbox(ui, &mut self.rotary_y, i18n::t("The axis lies along the machine's Y")).tip(i18n::t("Draw the same way (the length left to right); the G-code writes the length as Y and the turn as A."));
+                    ui.end_row();
+                    ui.label(i18n::t("Held by")).on_hover_text(i18n::t("How much of the blank's length the chuck holds (from the left end) and the tailstock covers (from the right end). Turning toolpaths stay clear of both, and any other toolpath that comes down there is listed before export. 0 = not held there."));
+                    ui.horizontal(|ui| {
+                        ui.label(i18n::t("Chuck"));
+                        self.f.ui(ui, "chuck", doc);
+                        ui.label(i18n::t("Tailstock"));
+                        self.f.ui(ui, "tail", doc);
+                    });
                     ui.end_row();
                 }
                 ui.label(i18n::t("Cut order")).on_hover_text(i18n::t("Merged toolpaths: per bit, every toolpath in one shortest tour instead of toolpath by toolpath; anything cut right through the board still comes last"));

@@ -24,6 +24,9 @@ pub enum ToolType {
     /// Tapered ball nose: a ball of `Tool::radius` at the tip running into a cone of `Tool::angle` degrees per side,
     /// up to `diameter` (JSON "taperball", Rust only; older loaders read an end mill)
     TaperedBall,
+    /// Plasma torch (`plasma.rs`; JSON "plasma", Rust only): `diameter` = the kerf, `feed_xy` = the cut speed, with
+    /// `pierce_height`, `pierce_delay` and `cut_height`; no spindle
+    Plasma,
 }
 
 /// Feeds & speeds for one material. Matched to Material::kind, case-insensitive.
@@ -82,6 +85,11 @@ pub struct Tool {
     /// custom form cutter (VCarve "Custom Form Cutters"): the cutting edge in side view as [radius, height above the
     /// tip] points by radius, from a drawn profile; empty = the shape of `kind` (JSON "form" when set, Rust only)
     pub form: Vec<[f64; 2]>,
+    /// plasma torch: height above the sheet it fires at, seconds it waits there, and the height it cuts at (JSON
+    /// "pierceHeight" / "pierceDelay" / "cutHeight", written for torches only)
+    pub pierce_height: f64,
+    pub pierce_delay: f64,
+    pub cut_height: f64,
 }
 
 impl Tool {
@@ -171,6 +179,9 @@ impl Default for Tool {
             holder_dia: 0.0,
             group: String::new(),
             form: Vec::new(),
+            pierce_height: 0.15,
+            pierce_delay: 0.5,
+            cut_height: 0.06,
         }
     }
 }
@@ -215,6 +226,10 @@ pub struct Material {
     /// rotary axis along the machine's Y instead of X: the drawing is the same (length left to right), only the
     /// G-code letters change (X words → Y, Y → A). JSON "rotaryAlongY" when set, Rust only
     pub rotary_y: bool,
+    /// rotary: how much of the blank's length the chuck (from X 0) and the tailstock (from the far end) hold; turning
+    /// stays clear and other toolpaths coming down there are flagged. JSON "rotaryChuck" / "rotaryTail" when set
+    pub chuck: f64,
+    pub tail: f64,
     /// what the board costs and the shop's rate per hour of machine time (JSON "price" / "rate" when set, Rust
     /// only): the setup sheet and the toolpath list show the job's cost when either is set
     pub price: f64,
@@ -276,6 +291,8 @@ impl Default for Material {
             back_of: None,
             rotary: None,
             rotary_y: false,
+            chuck: 0.0,
+            tail: 0.0,
             price: 0.0,
             rate: 0.0,
             spoil: 0.0625,
@@ -421,6 +438,13 @@ pub struct Op {
     /// 3D finishing: only where the 3D toolpaths above it in the list (same model) left material this bit can reach
     /// (rest machining; JSON "rest" when set, Rust only)
     pub rest: bool,
+    /// pocket on a rotary job: turn the blank to the picked side profile (`turning::generate_turning`; JSON "turn")
+    pub turn: bool,
+    /// relief: finish with laps at constant height (waterline) instead of rows; `stepover` × the bit = the step down
+    /// between laps (JSON "waterline" when set, Rust only)
+    pub waterline: bool,
+    /// waterline: only where the surface is steeper than this, degrees (0 = whole laps; JSON "steepAngle")
+    pub steep_angle: f64,
     /// profile: each cut starts at the point of the ring nearest the vector's first node (Node tool ▸ right-click a
     /// node ▸ Make Start Point) instead of the lowest point
     pub start_first: bool,
@@ -536,6 +560,9 @@ impl Default for Op {
             countersink: 0.0,
             skin: 0.0,
             rest: false,
+            turn: false,
+            waterline: false,
+            steep_angle: 0.0,
             fit_holes: false,
             start_first: false,
             corner_relief: 0,

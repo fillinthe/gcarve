@@ -239,6 +239,7 @@ pub fn setup_sheet_html(s: &SetupSheet) -> String {
                     ToolType::BallNose => "Ball nose",
                     ToolType::RoundOver => "Round-over",
                     ToolType::TaperedBall => "Tapered ball nose",
+                    ToolType::Plasma => "Plasma torch, kerf",
                 };
                 let mut d = format!("{kind} &middot; &Oslash; {}", f.len(t.diameter));
                 if t.kind == ToolType::VBit {

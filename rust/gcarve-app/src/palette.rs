@@ -9,7 +9,7 @@ pub use gcarve_ui::palette::{Command, Palette};
 /// Main.qml tbDefs order
 const TB: [&str; 40] = ["new", "open", "jobs", "save", "undo", "redo", "copy", "paste", "clone", "group", "delete", "fliph", "flipv", "rotate", "align", "array", "nest", "link", "weld", "subtract", "intersect", "offset", "dogbone", "join", "close", "paths", "width", "sim", "watch", "vars", "tools", "posts", "board", "export", "edittext", "tocurves", "opedit", "opdelete", "restart", "view3d"];
 const TOOLS: [(&str, &str, &str); 15] = [("Select", "V", "tool:select"), ("Nodes", "N", "tool:nodes"), ("Rect", "R", "tool:rect"), ("Ellipse", "E", "tool:ellipse"), ("Polygon", "G", "tool:polygon"), ("Star", "S", "tool:star"), ("Polyline", "P", "tool:polyline"), ("Curve", "B", "tool:curve"), ("Arc", "A", "tool:arc"), ("Freehand", "H", "tool:freehand"), ("Measure", "M", "tool:measure"), ("Dimension", "D", "tool:dimension"), ("Angle", "L", "tool:angle"), ("Text", "T", "tool:text"), ("Corners", "C", "tool:corner")]; // i18n
-const VIEWS: [(&str, &str, &str); 68] = [ // i18n
+const VIEWS: [(&str, &str, &str); 69] = [ // i18n
     ("Getting started guide (checklist)", "", "tour:show"),
     ("How do I…? (help)", "", "guide"),
     ("Check vectors (open, duplicate, tiny)", "", "validate"),
@@ -34,6 +34,7 @@ const VIEWS: [(&str, &str, &str); 68] = [ // i18n
     ("Stencil bridges: keep the middles of O, A, R…", "", "stencil"),
     ("Halftone from a picture: V-carved dots…", "", "halftone"),
     ("Inlay wizard: V-bit or flat inlay, plug on its own sheet…", "", "inlay"),
+    ("Suggest toolpaths: a set of cuts proposed for this drawing…", "", "suggest"),
     ("QR code: a scannable code to carve…", "", "qr"),
     ("Share project with someone (by email)…", "", "shareproject"),
     ("New sign: carved words, border, cut out…", "", "sign"),

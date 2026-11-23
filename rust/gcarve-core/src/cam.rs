@@ -2768,7 +2768,7 @@ pub fn generate(op: &Op, tool: &Tool, contours: &[Contour], m: &Material, clear_
     let eased;
     let flat_bit = !matches!(tool.kind, ToolType::VBit);
     let relief = op.corner_relief > 0 && flat_bit && match op.kind {
-        OpType::Pocket => op.rounding <= 0.0,
+        OpType::Pocket => op.rounding <= 0.0 && !op.turn,
         OpType::Profile => op.side != Side::On && !op.keyhole && op.drag_knife <= 0.0,
         _ => false,
     };
@@ -2779,6 +2779,9 @@ pub fn generate(op: &Op, tool: &Tool, contours: &[Contour], m: &Material, clear_
         contours
     };
     let mut r = match op.kind {
+        OpType::Profile if tool.kind == ToolType::Plasma => crate::plasma::generate_cut(op, tool, contours, m),
+        _ if tool.kind == ToolType::Plasma => CamResult { paths: Vec::new(), warnings: vec![format!("{}: a plasma torch only cuts Profile toolpaths", op.name)] },
+        OpType::Pocket if op.turn => crate::turning::generate_turning(op, tool, contours, m),
         OpType::Pocket if op.rounding > 0.0 => generate_rounding(op, tool, contours, m),
         OpType::Pocket => generate_pocket_two(op, tool, contours, m, clear_tool),
         OpType::Drill => generate_drill(op, tool, contours, m),
@@ -2904,6 +2907,8 @@ pub fn build_jobs(ops: &[Op], tools: &[Tool], generated: &[Vec<Toolpath>], m: &M
                         tool: t.name.clone(),
                         rpm: t.rpm,
                         slot: t.slot,
+                        plasma: (t.kind == ToolType::Plasma).then_some([t.pierce_height, t.pierce_delay, t.cut_height]),
+                        kerf: t.diameter,
                         ..Default::default()
                     });
                     job_tool.push(tool_idx);
@@ -2985,7 +2990,7 @@ pub fn safety_issues(ops: &[Op], tools: &[Tool], generated: &[Vec<Toolpath>], m:
             if tp.feed_xy <= 0.0 || tp.feed_z <= 0.0 {
                 add(format!("{who}: feed rate is zero."));
             }
-            if t.rpm <= 0 && op.drag_knife <= 0.0 {
+            if t.rpm <= 0 && op.drag_knife <= 0.0 && t.kind != ToolType::Plasma {
                 add(format!("{who}: spindle speed is zero."));
             }
             let margin = t.diameter / 2.0 + 0.01;
@@ -3123,6 +3128,7 @@ pub fn make_air_cut(jobs: &mut [Job], dz: f64) {
             }
         }
         j.filename += "_AIRCUT";
+        j.torch_off = true; // a plasma torch has no "above the board": its test run is with the torch off (plasma::post)
         j.notes.push("AIR CUT TEST - NOT FOR CUTTING".into());
         let zero = if j.z_zero == "Table" { "table (spoilboard)" } else { "material" };
         j.notes.push(format!("Every Z is raised {dz:.3} in. Zero Z on the {zero} as usual: the bit stays above the board."));
@@ -3134,6 +3140,24 @@ pub fn make_air_cut(jobs: &mut [Job], dz: f64) {
 /// cutting inside it, shifted so the tile starts at zero: slide the board by (tile_len − overlap) between tiles.
 /// Where a cut crosses a tile edge the bit lifts there and comes back down at the same spot in the next tile (the
 /// overlap makes the two cuts meet). XY zero must be the bottom-left corner. Tiles with no cutting are left out.
+/// A toolpath's moves with every arc as short straight moves (the export fits arcs; cutting a move at a tile edge is
+/// only right for a straight one, and a piece of an arc has another centre offset).
+fn straight(tp: &Toolpath) -> Vec<Move> {
+    let (mut x, mut y) = (0.0, 0.0);
+    let mut out = Vec::with_capacity(tp.moves.len());
+    for m in &tp.moves {
+        if matches!(m.kind, MoveType::ArcCw | MoveType::ArcCcw) {
+            // pieces that stay within 0.0005 in of the arc, whatever its size
+            let step = (2.0 * (1.0 - 0.0005 / m.i.hypot(m.j).max(0.001)).clamp(-1.0, 1.0).acos()).to_degrees();
+            out.extend(crate::postdef::linearize_step(m, pt(x, y), 90.0, false, step));
+        } else {
+            out.push(*m);
+        }
+        (x, y) = (m.x.unwrap_or(x), m.y.unwrap_or(y));
+    }
+    out
+}
+
 pub fn tile_jobs(jobs: &[Job], along_x: bool, tile_len: f64, overlap: f64, board_len: f64) -> Vec<Job> {
     let stride = tile_len - overlap;
     if stride <= 0.0 || tile_len <= 0.0 || board_len <= tile_len {
@@ -3151,7 +3175,7 @@ pub fn tile_jobs(jobs: &[Job], along_x: bool, tile_len: f64, overlap: f64, board
                 let mut t = Toolpath { moves: Vec::new(), ..tp.clone() };
                 let (mut cur, mut have) = ((0.0, 0.0, lift), false); // where the bit is in the full program
                 let mut at: Option<(f64, f64, f64)> = None; // where it is in this tile's program (None: lifted outside)
-                for m in &tp.moves {
+                for m in &straight(tp) {
                     let to = (m.x.unwrap_or(cur.0), m.y.unwrap_or(cur.1), m.z.unwrap_or(cur.2));
                     let from = if have { cur } else { (to.0, to.1, lift) };
                     (cur, have) = (to, true);
@@ -3278,6 +3302,24 @@ mod last_pass_tests {
         assert!(cut_len[1] < full_small * 0.2, "small bit cuts {:.1} in vs {:.1} for the whole pocket", cut_len[1], full_small);
         // no larger bit chosen: the plain pocket
         assert_eq!(generate_pocket_two(&op, &big, &shapes, &m, Some(&small)).paths.len(), 1);
+    }
+
+    #[test]
+    fn a_tile_edge_cuts_an_arc_along_the_arc_not_along_its_chord() {
+        // a half circle of radius 2 round (5, 0) from (3, 0) over the top to (7, 0), tiles 4 long: the piece in the
+        // first tile must end on the circle at x = 4, not on the chord (y = 0)
+        let mut tp = Toolpath { name: "arc".into(), tool: -1, feed_xy: 50.0, feed_z: 20.0, moves: Vec::new(), comp: 0 };
+        rapid_to(&mut tp, pt(3.0, 0.0), Some(0.5));
+        cut_to(&mut tp, pt(3.0, 0.0), Some(-0.1));
+        tp.moves.push(Move { kind: MoveType::ArcCw, x: Some(7.0), y: Some(0.0), z: None, i: 2.0, j: 0.0 });
+        rapid_to(&mut tp, pt(7.0, 0.0), Some(0.5));
+        let job = Job { toolpaths: vec![tp], ..Default::default() };
+        let tiles = tile_jobs(&[job], true, 4.0, 0.0, 8.0);
+        let cuts: Vec<&Move> = tiles[0].toolpaths[0].moves.iter().filter(|m| m.kind != MoveType::Rapid && m.x.is_some()).collect();
+        assert!(cuts.iter().all(|m| m.kind == MoveType::Linear), "no arc keeps a lost centre");
+        let last = cuts.last().unwrap();
+        assert!((last.x.unwrap() - 4.0).abs() < 1e-6 && (last.y.unwrap() - 3f64.sqrt()).abs() < 0.02, "{last:?}");
+        assert!(cuts.len() > 5 && cuts.iter().all(|m| ((m.x.unwrap() - 5.0).hypot(m.y.unwrap()) - 2.0).abs() < 0.02 || m.y.unwrap().abs() < 1e-9));
     }
 
     #[test]
@@ -3594,7 +3636,7 @@ mod tab_tests {
         let ys: Vec<f64> = jobs[0].toolpaths[0].moves.iter().filter_map(|m| m.y).collect();
         assert!(ys.iter().any(|y| (y - 90.0).abs() < 1e-9), "{ys:?}");
         assert!(jobs[0].toolpaths[0].moves.iter().all(|m| !matches!(m.kind, crate::job::MoveType::ArcCw | crate::job::MoveType::ArcCcw)));
-        for def in crate::postdef::post_library().iter().filter(|d| d.linear.contains("{Y}")) {
+        for def in crate::postdef::post_library().iter().filter(|d| d.linear.contains("{Y}") && d.plasma.is_empty()) {
             for o in crate::postdef::post_jobs(&jobs, def) {
                 let moves: Vec<&str> = o.text.lines().filter(|l| l.contains('X') && !l.contains('(') && !l.contains('[') && !l.contains(';')).collect();
                 assert!(moves.iter().all(|l| !l.split_whitespace().any(|w| w.starts_with('Y') && w[1..].starts_with(|c: char| c.is_ascii_digit() || c == '-'))), "{}: a Y word left", def.id);

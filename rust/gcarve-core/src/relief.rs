@@ -256,7 +256,7 @@ pub fn tip_height(r: &Relief, t: &Tool, x: f64, y: f64, allowance: f64) -> f64 {
 }
 
 /// Drop points that stay on a straight line (within tol) so raster passes don't export every sample.
-fn add_simplified(out: &mut Vec<Move>, pts: &[[f64; 3]], tol: f64) {
+pub(crate) fn add_simplified(out: &mut Vec<Move>, pts: &[[f64; 3]], tol: f64) {
     if pts.is_empty() {
         return;
     }
@@ -586,7 +586,7 @@ pub fn generate_relief_rest(op: &Op, finish_tool: &Tool, rough_tool: Option<&Too
         }
     }
     let mut fin = Toolpath { name: op.name.clone(), tool: -1, feed_xy: finish_tool.feed_xy, feed_z: finish_tool.feed_z, moves: Vec::new(), comp: 0 };
-    match rest {
+    match rest.filter(|_| !op.waterline) {
         Some([]) => {
             res.warnings.push(format!("{}: rest machining needs an earlier 3D toolpath on this model; cutting everything", op.name));
             raster(r, m, along_x, sample, &inside_clip, finish_tool, op.stepover, &mut fin, 0.0, 0.0, false, None);
@@ -605,6 +605,7 @@ pub fn generate_relief_rest(op: &Op, finish_tool: &Tool, rough_tool: Option<&Too
                 here = mid(&b);
             }
         }
+        None if op.waterline => crate::waterline::waterline(r, m, finish_tool, op.stepover, op.steep_angle, &inside_clip, &mut fin),
         None => raster(r, m, along_x, sample, &inside_clip, finish_tool, op.stepover, &mut fin, 0.0, 0.0, false, None),
     }
     res.paths.push(fin);

@@ -885,6 +885,54 @@ impl Canvas {
         self.mutated();
     }
 
+    /// Toolpaths › Suggest Toolpaths…: the ticked proposals (core `suggest`) become ordinary toolpaths, one undo step;
+    /// each takes the new-toolpath defaults of its kind and the library's closest bit (added when missing).
+    pub fn apply_suggestions(&mut self, list: &[gcarve_core::suggest::Suggestion]) {
+        use gcarve_core::document::{OpType, ToolType};
+        let picked: Vec<_> = list.iter().filter(|s| s.on && !s.shape_ids.is_empty()).collect();
+        if picked.is_empty() {
+            self.status = i18n::t("Suggest Toolpaths: nothing was ticked.").into();
+            return;
+        }
+        self.doc.checkpoint();
+        for s in &picked {
+            let mut op = crate::dialogs::op::new_op(&self.doc, s.kind, &s.shape_ids);
+            let label = match s.bit {
+                ToolType::VBit => format!("90° V-Bit ({} inch)", s.bit_dia),
+                _ => format!("End Mill ({} inch)", s.bit_dia),
+            };
+            // a hole is only as good as its bit: drilling takes a bit of the hole's own size, boring one that fits in
+            // the hole with room to spare; the library's nearest bit of another size won't do (it is added instead)
+            let hole = s.shape_ids.first().and_then(|id| self.doc.find(*id)).map_or(s.bit_dia, |sh| { let b = gcarve_core::geom::bounds(&sh.c); b.x1 - b.x0 });
+            let fits = |t: &gcarve_core::document::Tool| match s.kind {
+                OpType::Drill => (t.diameter - s.bit_dia).abs() <= 0.005,
+                OpType::Bore => t.diameter <= hole - 0.03,
+                _ => true,
+            };
+            op.tool = match self.doc.tools.iter().enumerate().filter(|(_, t)| t.kind == s.bit && fits(t)).min_by(|a, b| (a.1.diameter - s.bit_dia).abs().total_cmp(&(b.1.diameter - s.bit_dia).abs())) {
+                Some((i, _)) if matches!(s.kind, OpType::Drill | OpType::Bore) => i as i32,
+                None if matches!(s.kind, OpType::Drill | OpType::Bore) => {
+                    let dia = if s.kind == OpType::Bore { s.bit_dia.min(hole / 2.0) } else { s.bit_dia };
+                    self.doc.tools.push(gcarve_core::document::Tool { name: format!("End Mill ({dia} inch)"), kind: s.bit, diameter: dia, stepdown: dia / 2.0, feed_xy: 60.0, feed_z: 20.0, rpm: 18000, ..Default::default() });
+                    self.doc.tools.len() as i32 - 1
+                }
+                _ => crate::dialogs::sign::bit(self, s.bit, s.bit_dia, &label),
+            };
+            op.name = i18n::tr(&s.name).to_string();
+            op.shape_ids = s.shape_ids.clone();
+            (op.side, op.depth, op.flat_depth) = (s.side, s.depth, s.flat_depth);
+            if s.tabs {
+                (op.tabs, op.tab_count, op.tab_corners) = (true, 4, true);
+            }
+            if s.kind == OpType::Bore {
+                op.side = gcarve_core::document::Side::Inside;
+            }
+            self.doc.ops.push(op);
+        }
+        self.mutated();
+        self.status = i18n::tf("Suggest Toolpaths: {n} toolpath(s) added. Check them in Simulate, then Export.", &[("n", &picked.len())]);
+    }
+
     /// Toolpaths › Inlay Wizard…: the selected closed shapes become an inlay. This sheet gets the female toolpath; a new
     /// sheet "Inlay plug" (a board just big enough) gets the plug, mirrored because it goes in face down.
     /// V-bit (`flat` false): female V-carve to a flat floor `depth`; plug = V-carve of the margin box minus the design
@@ -2027,6 +2075,41 @@ mod vector_tool_tests {
         let gen = gcarve_core::pipeline::regenerate(&c.doc);
         assert!(gen.warnings.is_empty(), "{:?}", gen.warnings);
         assert!(!gen.paths[0].is_empty());
+    }
+
+    #[test]
+    fn suggested_toolpaths_cut_cleanly_end_with_the_cut_out_and_come_off_with_one_undo() {
+        let mut c = Canvas::default();
+        let poly = |p: &[(f64, f64)], closed| gcarve_core::geom::make_polyline(&p.iter().map(|q| pt(q.0, q.1)).collect::<Vec<_>>(), closed);
+        let ring = |cx: f64, cy: f64, d: f64| poly(&(0..48).map(|k| (k as f64 / 48.0 * std::f64::consts::TAU).sin_cos()).map(|(s, co)| (cx + co * d / 2.0, cy + s * d / 2.0)).collect::<Vec<_>>(), true);
+        c.doc.add(poly(&[(2.0, 2.0), (14.0, 2.0), (14.0, 10.0), (2.0, 10.0)], true), None); // a plate
+        c.doc.add(poly(&[(4.0, 4.0), (8.0, 4.0), (8.0, 7.0), (4.0, 7.0)], true), None); // a window in it
+        c.doc.add(ring(3.0, 3.0, 0.25), None);
+        c.doc.add(ring(11.0, 8.0, 0.5), None);
+        c.doc.add(poly(&[(9.0, 3.0), (13.0, 3.5)], false), None); // a line to engrave
+        let before = c.doc.ops.len();
+        let list = gcarve_core::suggest::suggest(&c.doc);
+        c.apply_suggestions(&list);
+        let names: Vec<&str> = c.doc.ops[before..].iter().map(|o| o.name.as_str()).collect();
+        assert_eq!(names, ["Drill holes", "Bore holes", "Engrave the lines", "Cut out the inside shapes", "Cut out the parts"], "{}", c.status);
+        let gen = gcarve_core::pipeline::regenerate(&c.doc);
+        assert!(gen.warnings.is_empty(), "{:?}", gen.warnings);
+        for (i, op) in c.doc.ops.iter().enumerate().skip(before) {
+            assert!(gen.paths[i].iter().map(|p| p.moves.len()).sum::<usize>() > 0, "{} cuts", op.name);
+        }
+        assert!(gcarve_core::pipeline::order_issues(&c.doc).is_empty(), "{:?}", gcarve_core::pipeline::order_issues(&c.doc));
+        // the library only had a 1/4 in end mill... the 1/4 in holes are drilled with it, and a hole of another size
+        // gets a bit of its own size, never the nearest one
+        let bit = |name: &str| c.doc.tools[c.doc.ops.iter().find(|o| o.name == name).unwrap().tool as usize].diameter;
+        assert_eq!(bit("Drill holes"), 0.25);
+        c.doc.undo();
+        let small = c.doc.add(ring(12.0, 4.0, 0.125), None);
+        let list = gcarve_core::suggest::suggest(&c.doc);
+        c.apply_suggestions(&list);
+        let drill = c.doc.ops.iter().find(|o| o.shape_ids == [small]).expect("a toolpath for the 1/8 in hole");
+        assert_eq!(c.doc.tools[drill.tool as usize].diameter, 0.125);
+        c.doc.undo();
+        assert_eq!(c.doc.ops.len(), before);
     }
 
     #[test]

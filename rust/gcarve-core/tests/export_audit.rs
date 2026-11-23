@@ -110,7 +110,7 @@ fn every_post_exports_safe_readable_gcode() {
     let deepest_generated = gen.paths.iter().flatten().flat_map(|t| &t.moves).filter_map(|mv| mv.z).fold(0.0_f64, f64::min);
     let mut problems: Vec<String> = Vec::new();
     let mut table = String::new();
-    for post in post_library() {
+    for post in post_library().iter().filter(|d| d.plasma.is_empty()) {
         let res = pipeline::export(&doc, &gen, "audit", "2026-10-10", 0.0, post);
         let mut unread = 0;
         let mut deepest_read = 0.0_f64;

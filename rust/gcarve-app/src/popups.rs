@@ -51,6 +51,10 @@ fn popup_window<'a>(title: &'a str, at: egui::Pos2) -> egui::Window<'a> {
     egui::Window::new(title).collapsible(false).resizable(false).title_bar(false).fixed_pos(at + egui::vec2(8.0, 8.0)).frame(W::popup_frame())
 }
 
+
+/// the names `gcarve_core::suggest` gives its proposals (translated with `i18n::tr` where they are shown and used)
+#[allow(dead_code)]
+const SUGGESTION_NAMES: [&str; 7] = ["Drill holes", "Bore holes", "V-carve the letters", "Engrave the lines", "Cut out the inside shapes", "Pocket the inside shapes", "Cut out the parts"]; // i18n
 impl Canvas {
     pub(crate) fn open_dim_popup(&mut self, i: usize, at: egui::Pos2) {
         let d = &self.doc.dimensions[i];
@@ -520,6 +524,8 @@ pub struct Dialogs {
     joinery: Option<([String; 5], i32, bool)>,
     /// Stencil Bridges: width text + bridges run up and down
     stencil: Option<(String, bool)>,
+    /// Suggest Toolpaths: the proposals with their ticks
+    suggest: Option<Vec<gcarve_core::suggest::Suggestion>>,
     /// QR Code: text, size text, invert
     qr: Option<(String, String, bool)>,
     /// Plate Production: the list (one plate per line), first line = headings, gap text
@@ -575,6 +581,7 @@ impl Dialogs {
             Request::RotaryLayout => self.rlayout = Some([String::from("1"), units::text(doc, 4.0), units::text(doc, 0.0), units::text(doc, doc.material.w)]),
             Request::Inlay => self.inlay = Some(([0.2, 0.1, 0.25].map(|v| units::text(doc, v)), false)),
             Request::Stencil => self.stencil = Some((units::text(doc, 0.125), true)),
+            Request::Suggest => self.suggest = Some(gcarve_core::suggest::suggest(doc)),
             Request::Hinge => self.hinge = Some(([0.25, 1.5, 0.25].map(|v| units::text(doc, v)), true)),
             Request::Joinery => self.joinery = Some(([doc.material.t, 0.005, 2.0, 0.0, 0.02].map(|v| units::text(doc, v)), 5, true)),
             Request::Qr => self.qr = Some(("https://".into(), units::text(doc, 4.0), false)),
@@ -811,6 +818,33 @@ impl Dialogs {
             }
             if keep {
                 self.stencil = Some((f, along_y));
+            }
+        }
+
+        if let Some(mut list) = self.suggest.take() {
+            let (mut keep, mut ok) = (true, false);
+            W::Dialog::new(i18n::t("Suggest Toolpaths")).show(ctx, |ui| {
+                if list.is_empty() {
+                    ui.label(i18n::t("Nothing to suggest yet: draw or import vectors on this sheet first."));
+                    keep &= !W::close_button(ui);
+                    return;
+                }
+                ui.label(i18n::t("From the vectors on this sheet. Untick what you don't want; every toolpath can be edited afterwards."));
+                ui.add_space(6.0);
+                for (k, s) in list.iter_mut().enumerate() {
+                    W::checkbox(ui, &mut s.on, i18n::tr(&s.name));
+                    ui.indent(("why", k), |ui| ui.label(egui::RichText::new(&s.why).small().color(crate::theme::TEXT_DIM)));
+                }
+                ui.add_space(4.0);
+                ui.label(egui::RichText::new(i18n::t("Bits come from your library (added when missing) with feeds for this board. Check depths against your board, then Simulate before cutting.")).small().color(crate::theme::TEXT_DIM));
+                let (o, c) = W::ok_cancel_text(ui, i18n::t("Add these toolpaths"));
+                ok |= o;
+                keep &= !c;
+            });
+            if ok {
+                canvas.apply_suggestions(&list);
+            } else if keep {
+                self.suggest = Some(list);
             }
         }
 

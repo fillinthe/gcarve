@@ -241,7 +241,9 @@ impl OpDialog {
         }
         op.ramp_out = f.get_or("rampOut", doc, op.ramp_out).max(0.0);
         op.rough = k == OpType::Relief && op.rough;
-        op.rest = k == OpType::Relief && op.rest;
+        op.rest = k == OpType::Relief && op.rest && !op.waterline;
+        op.turn = k == OpType::Pocket && op.turn && doc.material.rotary.is_some();
+        op.waterline = k == OpType::Relief && op.waterline;
         op.rough_stepdown = super::eval_len(&self.rough_step, doc).unwrap_or(op.rough_stepdown).max(0.0);
         op.rough_stepover = (self.rough_pct as f64 / 100.0).clamp(0.05, 1.0);
         op.raster_angle = if matches!(k, OpType::Texture | OpType::Photo) || (k == OpType::Pocket && op.raster) { op.raster_angle.rem_euclid(180) } else if op.raster_angle == 90 { 90 } else { 0 };
@@ -609,7 +611,24 @@ impl OpDialog {
                         });
                         ui.end_row();
                         ui.label(i18n::t("Direction"));
-                        combo(ui, "angle", &mut self.op.raster_angle, &[(0, i18n::t("Along X")), (90, i18n::t("Along Y"))], 160.0);
+                        ui.add_enabled_ui(!self.op.waterline, |ui| combo(ui, "angle", &mut self.op.raster_angle, &[(0, i18n::t("Along X")), (90, i18n::t("Along Y"))], 160.0));
+                        ui.end_row();
+                        // waterline: laps at constant height instead of rows (core: waterline.rs)
+                        ui.label(i18n::t("Steep sides"));
+                        ui.vertical(|ui| {
+                            ui.set_width(col);
+                            if crate::widgets::checkbox(ui, &mut self.op.waterline, i18n::t("Laps at constant height (waterline)")).changed() && self.op.waterline && self.op.steep_angle == 0.0 {
+                                self.op.steep_angle = 30.0;
+                            }
+                            if self.op.waterline {
+                                ui.horizontal(|ui| {
+                                    ui.label(i18n::t("Only sides steeper than"));
+                                    ui.add(egui::DragValue::new(&mut self.op.steep_angle).range(0.0..=85.0).suffix("°"));
+                                    hint(ui, i18n::t("0 = whole laps"));
+                                });
+                            }
+                            hint(ui, i18n::t("Rows leave steep sides stepped. Add a second 3D toolpath with this on: it goes round the model one lap per step down (the stepover above), and cuts only the steep sides the rows left rough."));
+                        });
                         ui.end_row();
                         ui.label(i18n::t("Roughing"));
                         crate::widgets::checkbox(ui, &mut self.op.rough, i18n::t("Rough out in layers first"));
@@ -665,7 +684,7 @@ impl OpDialog {
                         ui.label("");
                         ui.vertical(|ui| {
                             ui.set_width(col);
-                            crate::widgets::checkbox(ui, &mut self.op.rest, i18n::t("Only where an earlier 3D toolpath couldn't reach (rest machining)"));
+                            ui.add_enabled_ui(!self.op.waterline, |ui| crate::widgets::checkbox(ui, &mut self.op.rest, i18n::t("Only where an earlier 3D toolpath couldn't reach (rest machining)")));
                             hint(ui, i18n::t("For a smaller finishing bit after a bigger one: the 3D toolpaths above this one in the list (same model) are worked out, and this one cuts only where they left material it can reach."));
                         });
                         ui.end_row();
@@ -848,6 +867,19 @@ impl OpDialog {
                                 self.op.rounding = if on { self.f.get_or("rounding", doc, 3.0).max(0.01) } else { 0.0 };
                             }
                             ui.add_enabled_ui(on, |ui| self.f.ui(ui, "rounding", doc));
+                        });
+                        ui.end_row();
+                        ui.label(i18n::t("Turning"));
+                        ui.vertical(|ui| {
+                            ui.set_width(col);
+                            if crate::widgets::checkbox(ui, &mut self.op.turn, i18n::t("Turn the blank to a side profile")).changed() && self.op.turn {
+                                self.op.rounding = 0.0;
+                            }
+                            hint(ui, i18n::t("Like a lathe: draw the outline of one side of the part as an open line along the blank, at true size, and pick it. Its highest point is the blank's surface; where it dips, the blank is turned that much smaller. A ball nose with a small stepover leaves the smoothest surface. The chuck and tailstock lengths in Job Setup are left alone."));
+                            if self.op.turn {
+                                let profile = doc.contours_of(&doc.op_shape_ids(&self.apply(doc)));
+                                crate::turnview::paint(ui, egui::vec2(col, 90.0), &profile, &doc.material);
+                            }
                         });
                         ui.end_row();
                     }

@@ -90,6 +90,9 @@ pub fn tool_for_cut(doc: &Document, i: usize) -> Tool {
     if preset_for(t, &doc.material.kind).is_some() || !doc.material.auto_feeds {
         return effective_tool(t, &doc.material.kind);
     }
+    if t.kind == crate::document::ToolType::Plasma {
+        return effective_tool(t, &doc.material.kind); // a torch's speed comes from its cut chart, never the chip-load advice
+    }
     let s = suggest(doc, t);
     let mut e = t.clone();
     e.feed_xy = s.feed_xy;
@@ -396,7 +399,11 @@ pub fn keep_out_issues(doc: &Document, tools: &[Tool], paths: &[Vec<Toolpath>]) 
             (p, r, name, top)
         })
         .collect();
-    let mut out: Vec<String> = Vec::new();
+    // a rotary blank's chuck and tailstock are in the way like clamps
+    let names: Vec<&str> = doc.ops.iter().map(|o| o.name.as_str()).collect();
+    let radius = |i: i32| usize::try_from(i).ok().and_then(|i| tools.get(i)).map_or(0.0, |t| t.diameter / 2.0);
+    let radii: Vec<f64> = doc.ops.iter().zip(paths).map(|(o, g)| g.iter().map(|tp| radius(if tp.tool >= 0 { tp.tool } else { o.tool })).fold(radius(o.tool), f64::max)).collect();
+    let mut out: Vec<String> = crate::turning::holding_issues(&doc.material, &names, &radii, paths);
     if zones.is_empty() {
         return out;
     }
@@ -461,6 +468,7 @@ pub fn export_tiled_with(doc: &Document, gen: &Generated, project: &str, timesta
     safety.extend(order_issues(doc));
     safety.extend(keep_out_issues(doc, &eff, &gen.paths));
     let mut jobs = all_jobs(doc, gen, project, timestamp);
+    safety.extend(crate::plasma::post_issues(&jobs, post));
     if doc.material.merge {
         cam::merge_jobs(&mut jobs, doc.material.t);
     }

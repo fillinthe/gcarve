@@ -90,6 +90,9 @@ pub fn fixture_jobs() -> Vec<Job> {
         safe_z: 0.8,
         board: [0.0; 3],
         home: None,
+        plasma: None,
+        kerf: 0.0,
+        torch_off: false,
     };
     vec![a, b]
 }

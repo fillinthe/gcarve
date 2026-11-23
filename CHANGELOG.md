@@ -2,6 +2,23 @@
 
 What changed in each GCarve desktop release, newest first. Downloads are on the [releases page](https://github.com/fillinthe/gcarve/releases).
 
+## 0.1.38 (2026-11-23)
+
+New
+- Waterline 3D finishing: a 3D toolpath can go round the model in laps at constant height and cut only the steep sides that rows leave stepped (3D toolpath › Steep sides).
+- STEP files (.step / .stp) from Fusion and other CAD programs open as 3D models, like STL. A part modeled standing up is laid flat.
+- Suggest Toolpaths (Toolpaths menu): GCarve reads the drawing and proposes the cuts (holes, text, lines, inside shapes, cut-outs last with tabs). Untick what you don't want and add the rest.
+- Turning on a rotary axis: a Pocket on a rotary job can turn the blank to a side profile you draw, with a preview of the part. Job Setup takes the lengths the chuck and the tailstock hold; toolpaths stay clear of them.
+- Plasma cutting, first version: a Plasma torch tool (kerf, pierce height, pierce delay, cut height, cut speed), single-pass Profile cuts that pierce in the waste, and G-code styles for Langmuir FireControl, LinuxCNC QtPlasmaC, Mach3 / Mach4 and grblHAL. The torch is switched off before every move between cuts and at the end of every file. These files have not been run on a table by us yet: run Export Air-Cut Test first (it never fires the torch) and tell us how it goes.
+- Toolpath previews are worked out in the background while you draw, so editing no longer waits for them.
+- AI assistants (Help › AI Assistants) can ask for suggested toolpaths.
+
+Fixes
+- Tiled exports (long boards cut in sections) wrote curves as a few straight lines. Curves now stay true. If you tiled a job with circles or arcs in 0.1.37 or earlier, export it again.
+- Binary STL files with padding or a wrong triangle count in their header open.
+
+All of it is in the 12 languages.
+
 ## 0.1.37 (2026-11-22)
 
 Privacy

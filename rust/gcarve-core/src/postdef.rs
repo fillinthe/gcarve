@@ -34,6 +34,10 @@ pub struct PostDef {
     pub extension: String,
     /// output units (jobs are always inches internally; mm posts convert)
     pub inches: bool,
+    /// a plasma table's style: firecontrol | qtplasmac | mach | grblhal (written by `plasma::post`, where the torch
+    /// rule lives); empty = a router post. JSON "plasma" only on plasma posts
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub plasma: String,
     pub decimals: i32,
     /// false: arcs are written as short lines
     pub arcs: bool,
@@ -112,6 +116,7 @@ impl Default for PostDef {
             machines: String::new(),
             extension: "nc".into(),
             inches: true,
+            plasma: String::new(),
             decimals: 4,
             arcs: true,
             max_arc_sweep_deg: 180.0,
@@ -263,6 +268,12 @@ impl Ctx<'_> {
 
 /// arcs -> lines when the post can't take them, or arcs split when the sweep is too large
 pub(crate) fn linearize(m: &Move, from: Pt, max_sweep_deg: f64, allow_arcs: bool) -> Vec<Move> {
+    linearize_step(m, from, max_sweep_deg, allow_arcs, 5.0)
+}
+
+/// `linearize` with the angle of each straight piece given (5° for posts without arcs; finer for big arcs that must
+/// stay true, as when a tiled export cuts them at a tile edge)
+pub(crate) fn linearize_step(m: &Move, from: Pt, max_sweep_deg: f64, allow_arcs: bool, step_deg: f64) -> Vec<Move> {
     let ctr = from + pt(m.i, m.j);
     let to = pt(m.x.unwrap_or(from.x), m.y.unwrap_or(from.y));
     let r = dist(ctr, from);
@@ -297,7 +308,7 @@ pub(crate) fn linearize(m: &Move, from: Pt, max_sweep_deg: f64, allow_arcs: bool
         }
         return out;
     }
-    let n = ((sweep.abs() / (5.0 * PI / 180.0)).ceil() as i32).max(2);
+    let n = ((sweep.abs() / (step_deg.clamp(0.05, 5.0) * PI / 180.0)).ceil() as i32).max(2);
     for k in 1..=n {
         let a = a0 + sweep * f64::from(k) / f64::from(n);
         let mut mm = Move { kind: MoveType::Linear, x: Some(ctr.x + r * a.cos()), y: Some(ctr.y + r * a.sin()), z: m.z, ..Default::default() };
@@ -557,6 +568,24 @@ fn safe_tool_change(block: &str, mc: bool) -> String {
 
 /// Renders one or more files. With `tool_change` empty: one file per job (tool). Otherwise a single combined file.
 pub fn post_jobs(jobs: &[Job], def: &PostDef) -> Vec<PostOutput> {
+    // plasma: a torch's job is never written by the router templates (they hold the spindle on across rapids), and
+    // a plasma style never writes a router bit's job
+    if !def.plasma.is_empty() {
+        return crate::plasma::post(jobs, def);
+    }
+    if jobs.iter().any(|j| j.plasma.is_some()) {
+        // a router post with a torch among the bits: the bits' jobs as usual, the torch's in the plain plasma style
+        let (torch, bits): (Vec<Job>, Vec<Job>) = jobs.iter().cloned().partition(|j| j.plasma.is_some());
+        let bit_files = if bits.is_empty() { Vec::new() } else { post_jobs(&bits, def) };
+        let torch_files = crate::plasma::post(&torch, def);
+        if bit_files.len() != bits.len() {
+            // a tool-change post put the bits in one file: the torch's files follow it
+            return bit_files.into_iter().chain(torch_files).collect();
+        }
+        // a file per job, in the jobs' own order (the export plan and the setup sheet pair them by position)
+        let (mut b, mut t) = (bit_files.into_iter(), torch_files.into_iter());
+        return jobs.iter().filter_map(|j| if j.plasma.is_some() { t.next() } else { b.next() }).collect();
+    }
     let mut outs = render_jobs(jobs, def);
     // a bit at 0 RPM (drag knife) never turns the spindle on: its file loses every spindle-on line (the spindle-off
     // at the end stays). A combined tool-change file only when every job in it is at 0 RPM.
@@ -1100,6 +1129,19 @@ fn build_library() -> Vec<PostDef> {
         ..base("winpc-mm", "WinPC-NC (mm, .nc)", "WinPC-NC", "Stepcraft (WinPC-NC), CNC-Step High-Z S, Haase, Lewetz", "nc")
     });
     iso(&mut v, "format4-mm", "Felder Format-4 F4Integrate (ISO import, mm, .iso)", "F4Integrate", "Felder Format-4 profit", false, "iso", &osai);
+    // ---- plasma tables (plasma.rs writes these files: only id, names, units and style matter here)
+    for (id, name, controller, machines, style, inch, ext) in [
+        ("plasma-firecontrol", "Langmuir FireControl plasma (inch, .nc)", "FireControl", "Langmuir CrossFire, CrossFire PRO, XR", "firecontrol", true, "nc"),
+        ("plasma-firecontrol-mm", "Langmuir FireControl plasma (mm, .nc)", "FireControl", "Langmuir CrossFire, CrossFire PRO, XR", "firecontrol", false, "nc"),
+        ("plasma-qtplasmac", "LinuxCNC QtPlasmaC plasma (inch, .ngc)", "LinuxCNC QtPlasmaC", "LinuxCNC plasma tables, Mesa THCAD", "qtplasmac", true, "ngc"),
+        ("plasma-qtplasmac-mm", "LinuxCNC QtPlasmaC plasma (mm, .ngc)", "LinuxCNC QtPlasmaC", "LinuxCNC plasma tables, Mesa THCAD", "qtplasmac", false, "ngc"),
+        ("plasma-mach", "Mach3 / Mach4 plasma (inch, .tap)", "Mach3, Mach4", "Plasma tables on Mach3 / Mach4 with the controller's own height control", "mach", true, "tap"),
+        ("plasma-grblhal", "grblHAL plasma (mm, .nc)", "grblHAL", "grblHAL plasma tables (torch on M3)", "grblhal", false, "nc"),
+    ] {
+        let mut d = base(id, name, controller, machines, ext);
+        (d.inches, d.decimals, d.plasma) = (inch, if inch { 4 } else { 3 }, style.into());
+        v.push(d);
+    }
     v
 }
 
@@ -1386,7 +1428,7 @@ mod tests {
         use crate::job::{Job, Move, Toolpath};
         let tp = Toolpath { name: "K".into(), feed_xy: 100.0, feed_z: 30.0, moves: vec![Move::rapid(Some(1.0), Some(1.0), Some(0.5)), Move::linear(None, None, Some(-0.05)), Move::linear(Some(2.0), None, None), Move::rapid(None, None, Some(0.5))], ..Default::default() };
         let job = |rpm| Job { filename: "k".into(), tool: "Knife".into(), rpm, toolpaths: vec![tp.clone()], z_zero: "Material Surface".into(), ..Default::default() };
-        for def in post_library() {
+        for def in post_library().iter().filter(|d| d.plasma.is_empty()) {
             // MultiCam's own words: M12 on, M22 off
             let mc = multicam(def);
             let on = |l: &str| spindle_on(l) || (mc && has_word(l, &["M12"], true, true));

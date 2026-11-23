@@ -94,6 +94,7 @@ fn tools() -> Vec<Value> {
         tool("show_drawing", "A picture of the active sheet's vectors on the board (selected ones in blue), to see what was drawn before there are toolpaths.", json!({}), &[]),
         tool("preview", "A picture of the board as the toolpaths would carve it (simulated).", json!({}), &[]),
         tool("export_gcode", "The G-code files for the project with the board's post (text returned, nothing written to disk) and the safety findings.", json!({"max_chars": {"type": "integer", "description": "per file, default 20000"}}), &[]),
+        tool("suggest_toolpaths", "GCarve's own proposal of cuts for the active sheet's vectors (holes drilled or bored, text V-carved, open lines engraved, inside shapes cut through or pocketed, parts cut out last with tabs): each with its number, what it would do and whether it is on by default. `apply`: the numbers to add as toolpaths (true = every one that is on by default); left out = only list them. Check afterwards.", json!({"apply": {"description": "true, or an array of proposal numbers"}}), &[]),
         tool("undo", "Undo the last change.", json!({}), &[]),
         tool("list_commands", "Every menu command (id and what it does), for run_command.", json!({"filter": {"type": "string"}}), &[]),
         tool("set_machine", "Choose the CNC machine for the job from GCarve's database by name words (e.g. \"Shapeoko 4 XXL\", \"Onefinity Woodworker\"): its work area, feed limits, spindle and G-code post go on every sheet. Several matches = their names come back to pick from.", json!({"name": {"type": "string"}}), &["name"]),
@@ -492,6 +493,21 @@ fn call(app: &mut dyn McpApp, name: &str, a: &Value) -> Result<Vec<Value>, Strin
             Ok(vec![json!({"type": "image", "data": gcarve_core::photo::b64_encode(&png), "mimeType": "image/png"}), json!({"type": "text", "text": "the board as the toolpaths would carve it (simulated)"})])
         }
         "show_drawing" => Ok(vec![json!({"type": "image", "data": gcarve_core::photo::b64_encode(&drawing_png(c)), "mimeType": "image/png"}), json!({"type": "text", "text": "the board (tan) and its vectors, up = +Y"})]),
+        "suggest_toolpaths" => {
+            let mut list = gcarve_core::suggest::suggest(&c.doc);
+            if let Some(picked) = a["apply"].as_array() {
+                let picked: Vec<usize> = picked.iter().filter_map(|v| v.as_u64().map(|v| v as usize)).collect();
+                for (i, s) in list.iter_mut().enumerate() {
+                    s.on = picked.contains(&i);
+                }
+            }
+            let listing: Vec<Value> = list.iter().enumerate().map(|(i, s)| json!({"number": i, "name": s.name, "what": s.why, "on": s.on, "shape_ids": s.shape_ids})).collect();
+            if a["apply"].is_null() || a["apply"] == json!(false) {
+                return Ok(text(serde_json::to_string_pretty(&listing).unwrap_or_default()));
+            }
+            c.apply_suggestions(&list);
+            Ok(text(c.status.clone()))
+        }
         "undo" => {
             c.undo();
             Ok(text("undone"))
@@ -861,6 +877,22 @@ mod tests {
     fn call_tool(app: &mut T, name: &str, args: Value) -> Value {
         let r = handle(app, &json!({"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": name, "arguments": args}})).unwrap();
         r["result"].clone()
+    }
+
+    #[test]
+    fn an_assistant_asks_for_suggested_toolpaths_and_adds_them() {
+        let mut app = T(Canvas::default(), vec![]);
+        call_tool(&mut app, "set_board", json!({"width": 12, "height": 8, "thickness": 0.75, "material": "Plywood"}));
+        call_tool(&mut app, "add_shapes", json!({"shapes": [{"type": "rect", "x": 1, "y": 1, "w": 10, "h": 6}]}));
+        call_tool(&mut app, "add_text", json!({"text": "HI", "x": 6, "y": 4, "height": 2}));
+        let r = call_tool(&mut app, "suggest_toolpaths", json!({}));
+        let listed = r["content"][0]["text"].as_str().unwrap();
+        assert!(listed.contains("V-carve the letters") && listed.contains("Cut out the parts") && app.0.doc.ops.is_empty(), "{listed}");
+        let r = call_tool(&mut app, "suggest_toolpaths", json!({"apply": true}));
+        assert!(r["isError"].is_null() && app.0.doc.ops.len() == 2, "{r}");
+        call_tool(&mut app, "undo", json!({}));
+        call_tool(&mut app, "suggest_toolpaths", json!({"apply": [1]}));
+        assert_eq!(app.0.doc.ops.iter().map(|o| o.name.as_str()).collect::<Vec<_>>(), ["Cut out the parts"]);
     }
 
     #[test]

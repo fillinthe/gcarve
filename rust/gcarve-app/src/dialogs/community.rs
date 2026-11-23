@@ -35,6 +35,7 @@ fn kind_word(k: ToolType) -> &'static str {
         ToolType::BallNose => "ballnose",
         ToolType::RoundOver => "roundover",
         ToolType::TaperedBall => "taperball",
+        ToolType::Plasma => "plasma",
     }
 }
 
@@ -46,6 +47,7 @@ fn bit_text(doc: &Document, t: &Tool) -> String {
             ToolType::BallNose => i18n::t("ball nose"),
             ToolType::RoundOver => "round-over",
             ToolType::TaperedBall => i18n::t("tapered ball nose"),
+            ToolType::Plasma => i18n::t("plasma torch"),
             _ => i18n::t("end mill"),
         }, size),
     }

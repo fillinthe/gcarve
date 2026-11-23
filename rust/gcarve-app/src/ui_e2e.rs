@@ -293,6 +293,26 @@ fn every_menu_command_opens_and_its_fields_take_typing() {
 }
 
 /// the side panel with the demo selected: Properties (X / Y / W / H: user report #16), Layers, Toolpaths
+/// while drawing on the desktop the previews come from the second thread: frames keep running meanwhile, and what
+/// arrives is what a full run gives
+#[test]
+fn previews_arrive_from_the_second_thread_while_frames_keep_running() {
+    let mut h = harness(true);
+    h.state_mut().test_bg_gen();
+    h.run_steps(1);
+    assert_eq!(h.state().test_gen_matches(), None, "the frame did not wait for the toolpaths");
+    let mut got = None;
+    for _ in 0..600 {
+        std::thread::sleep(std::time::Duration::from_millis(50));
+        h.run_steps(1);
+        got = h.state().test_gen_matches();
+        if got.is_some() {
+            break;
+        }
+    }
+    assert_eq!(got, Some(true));
+}
+
 #[test]
 fn the_side_panel_fields_take_typing() {
     let mut bad = Vec::new();

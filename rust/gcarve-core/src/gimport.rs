@@ -704,7 +704,7 @@ pub fn tool_from_section(s: &ImportSection, material: &str) -> Tool {
             ToolType::BallNose => format!("Ball Nose ({}\")", fmt(d)),
             ToolType::RoundOver => format!("Round Over ({}\")", fmt(d)),
             ToolType::TaperedBall => format!("Tapered Ball Nose ({} deg {}\")", fmt(angle), fmt(d)),
-            ToolType::EndMill => format!("End Mill ({}\")", fmt(d)),
+            ToolType::EndMill | ToolType::Plasma => format!("End Mill ({}\")", fmt(d)),
         }
     };
     let rpm = if s.rpm > 0.0 { s.rpm.round() as i32 } else { 18000 };
@@ -724,6 +724,7 @@ pub fn guess_text(g: &ToolGuess) -> String {
         Some(ToolType::RoundOver) => "Round-over",
         Some(ToolType::TaperedBall) => "Tapered ball nose",
         Some(ToolType::EndMill) => "End mill",
+        Some(ToolType::Plasma) => "Plasma torch",
         None if g.form => "Shaped bit",
         None => "Unknown bit",
     };
