@@ -2,6 +2,14 @@
 
 What changed in each GCarve desktop release, newest first. Downloads are on the [releases page](https://github.com/fillinthe/gcarve/releases).
 
+## 0.1.39 (2026-11-23)
+
+Fixes
+- In a millimeter project the feed and plunge of a bit (Tool Library, and the feeds saved per material) are now typed and shown in mm/min. The fields were labeled mm/min but took the number as in/min, so 28 came out as F711 in the G-code. **If you set up bits in a mm project, open the Tool Library and check their feeds:** a number you typed as mm/min was saved 25.4 times too fast.
+- The feed line under the bit in every toolpath dialog and the chip load on the feeds meter follow the project unit too (mm/min, mm/tooth).
+
+Inch projects are unchanged.
+
 ## 0.1.38 (2026-11-23)
 
 New

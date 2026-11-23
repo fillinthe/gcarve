@@ -451,6 +451,20 @@ impl Fields {
     pub fn set_raw(&mut self, key: &str, v: f64) {
         self.map.insert(key.into(), format!("{v:.1}"));
     }
+    /// in/min per number of a feed field: feeds are typed in mm/min in a mm project (ticket #55: the label said
+    /// mm/min while the field took in/min)
+    fn rate_unit(&self) -> f64 {
+        if self.unit > 0.0 && self.unit < 0.5 { 1.0 / 25.4 } else { 1.0 }
+    }
+    /// in/min -> feed field text in the project's feed unit
+    pub fn set_rate(&mut self, key: &str, v: f64) {
+        self.set_raw(key, v / self.rate_unit());
+    }
+    /// feed field -> in/min
+    pub fn rate_or(&self, key: &str, fallback: f64) -> f64 {
+        let v = self.raw(key);
+        if v.is_finite() { v * self.rate_unit() } else { fallback }
+    }
     /// the bound expression when one exists, else the value
     pub fn set_bound(&mut self, key: &str, bind: &Bind, v: f64) {
         match bind.get(key) {
@@ -522,7 +536,7 @@ pub fn unit_label(name: &str, _doc: &Document) -> String {
 }
 /// "Feed XY (in/min)"
 pub fn rate_label(name: &str, doc: &Document) -> String {
-    format!("{name} ({}/min)", crate::units::name(doc))
+    format!("{name} ({})", crate::units::rate_name(doc))
 }
 
 pub fn fmt_len(v: f64) -> String {
@@ -542,7 +556,35 @@ pub fn eval_len(text: &str, doc: &Document) -> Result<f64, String> {
 // ---- FeedMeter --------------------------------------------------------------------------------------------------
 
 /// Feeds & speeds meter: green sweet spot in the middle, rubbing on the left, overload on the right.
-pub fn feed_meter(ui: &mut egui::Ui, a: &FeedAssessment, width: f32) {
+/// The engine's chip-load sentence (in/tooth) with its numbers in mm, for mm projects. Only the first sentence
+/// holds chip loads; the unit word is swapped after translation (every pack keeps "in/" there).
+fn chip_in_mm(msg: &str) -> String {
+    let Some(end) = msg.find(" in/tooth").and_then(|_| msg.find(". ").or(Some(msg.len()))) else { return msg.to_string() };
+    let (first, rest) = msg.split_at(end);
+    let mut out = String::new();
+    let mut num = String::new();
+    for c in first.chars().chain(std::iter::once('\0')) {
+        if c.is_ascii_digit() || (c == '.' && !num.is_empty()) {
+            num.push(c);
+            continue;
+        }
+        let dot = num.ends_with('.'); // the full stop of a sentence, not part of the number
+        match num.trim_end_matches('.').parse::<f64>() {
+            Ok(v) if num.contains('.') => out += &format!("{:.3}", v * 25.4),
+            _ => out += num.trim_end_matches('.'),
+        }
+        if dot {
+            out.push('.');
+        }
+        num.clear();
+        if c != '\0' {
+            out.push(c);
+        }
+    }
+    out + rest
+}
+
+pub fn feed_meter(ui: &mut egui::Ui, a: &FeedAssessment, width: f32, metric: bool) {
     ui.scope(|ui| {
         ui.spacing_mut().item_spacing.y = 3.0; // FeedMeter.qml spacing
         let (rect, _) = ui.allocate_exact_size(egui::vec2(width, 14.0), egui::Sense::hover());
@@ -576,7 +618,8 @@ pub fn feed_meter(ui: &mut egui::Ui, a: &FeedAssessment, width: f32) {
         p.text(lr.right_center(), egui::Align2::RIGHT_CENTER, i18n::t("breaks bit / tears"), f, dim);
         if !a.message.is_empty() {
             let color = match a.level { 2 => crate::theme::DANGER, 1 => Color32::from_rgb(0xd7, 0xa3, 0x34), _ => crate::theme::TEXT };
-            ui.add(egui::Label::new(RichText::new(i18n::msg_sentences(&a.message)).size(11.0).color(color)).wrap());
+            let text = if metric { i18n::msg_sentences(&chip_in_mm(&a.message)).replacen(" in/", " mm/", 1) } else { i18n::msg_sentences(&a.message) };
+            ui.add(egui::Label::new(RichText::new(text).size(11.0).color(color)).wrap());
         }
     });
 }
@@ -594,11 +637,18 @@ pub fn tool_advice(doc: &Document, i: usize) -> Option<(Tool, &'static str, Feed
 pub fn tool_advice_ui(ui: &mut egui::Ui, doc: &Document, i: usize, width: f32) {
     let Some((e, src, a)) = tool_advice(doc, i) else { return };
     let note = match src { "preset" => i18n::t(" (saved preset)"), "auto" => i18n::t(" (suggested)"), _ => i18n::t(" (bit defaults)") };
-    ui.add(egui::Label::new(RichText::new(i18n::tf("In {kind}: F {feed_xy} / plunge {feed_z} in/min · {rpm} rpm · pass {stepdown} in{note}", &[("kind", &doc.material.kind), ("feed_xy", &format!("{:.0}", e.feed_xy)), ("feed_z", &format!("{:.0}", e.feed_z)), ("rpm", &e.rpm), ("stepdown", &(fmt_len(e.stepdown))), ("note", &note)])).small().color(crate::theme::TEXT_DIM)).wrap());
+    let sd = fmt_len(e.stepdown);
+    let mut line = i18n::tf("In {kind}: F {feed_xy} / plunge {feed_z} in/min · {rpm} rpm · pass {stepdown} in{note}", &[("kind", &doc.material.kind), ("feed_xy", &format!("{:.0}", crate::units::rate(doc, e.feed_xy))), ("feed_z", &format!("{:.0}", crate::units::rate(doc, e.feed_z))), ("rpm", &e.rpm), ("stepdown", &sd), ("note", &note)]);
+    if crate::units::index(doc) == 2 {
+        // ponytail: the units are swapped in the translated sentence (one key in 11 packs); give the units their own
+        // placeholders if a third unit ever comes
+        line = line.replace("in/min", "mm/min").replace(&format!("{sd} in"), &format!("{} mm", fmt_len((e.stepdown * 25.4 * 100.0).round() / 100.0)));
+    }
+    ui.add(egui::Label::new(RichText::new(line).small().color(crate::theme::TEXT_DIM)).wrap());
     if src == "auto" && doc.material.machine.is_none() {
         no_machine_note(ui);
     }
-    feed_meter(ui, &a, width);
+    feed_meter(ui, &a, width, crate::units::index(doc) == 2);
 }
 
 /// One line wherever feeds are suggested without a machine (full industrial chip loads: far too fast for a hobby or

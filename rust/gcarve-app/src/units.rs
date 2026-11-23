@@ -22,6 +22,14 @@ pub fn index(doc: &Document) -> usize {
 pub fn name(doc: &Document) -> &'static str {
     NAMES[index(doc)]
 }
+/// Feeds are shown in mm/min in a mm project, else in/min (the document keeps in/min).
+pub fn rate_name(doc: &Document) -> &'static str {
+    if index(doc) == 2 { "mm/min" } else { "in/min" }
+}
+/// in/min -> the project's feed unit
+pub fn rate(doc: &Document, ipm: f64) -> f64 {
+    if index(doc) == 2 { ipm * 25.4 } else { ipm }
+}
 pub fn decimals(doc: &Document) -> usize {
     [3, 4, 2][index(doc)]
 }

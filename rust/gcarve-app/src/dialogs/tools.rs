@@ -65,11 +65,11 @@ impl ToolsDialog {
         self.f.set_raw("pierceDelay", t.pierce_delay);
         self.f.set_fine("cutHeight", t.cut_height);
         self.f.set("stepdown", t.stepdown);
-        self.f.set_raw("feedXY", t.feed_xy);
-        self.f.set_raw("feedZ", t.feed_z);
+        self.f.set_rate("feedXY", t.feed_xy);
+        self.f.set_rate("feedZ", t.feed_z);
         let hit = t.presets.iter().find(|p| p.material.eq_ignore_ascii_case(&self.p_material));
-        self.f.set_raw("pFeedXY", hit.map(|p| p.feed_xy).unwrap_or(t.feed_xy));
-        self.f.set_raw("pFeedZ", hit.map(|p| p.feed_z).unwrap_or(t.feed_z));
+        self.f.set_rate("pFeedXY", hit.map(|p| p.feed_xy).unwrap_or(t.feed_xy));
+        self.f.set_rate("pFeedZ", hit.map(|p| p.feed_z).unwrap_or(t.feed_z));
         self.f.set("pStepdown", hit.map(|p| p.stepdown).unwrap_or(t.stepdown));
         self.p_rpm = hit.map(|p| p.rpm).unwrap_or(t.rpm).to_string();
         self.loaded_key = self.edit_key();
@@ -106,7 +106,7 @@ impl ToolsDialog {
         let mut d = doc.clone();
         d.material.kind = material.to_string(); // presets are per material name
         let s = pipeline::suggest(&d, &t);
-        let a = pipeline::assess(&d, &t, self.f.raw_or(fxy, 0.0), self.f.raw_or(fz, 0.0), rpm.trim().parse().unwrap_or(0), self.f.get_or(step, doc, 0.0));
+        let a = pipeline::assess(&d, &t, self.f.rate_or(fxy, 0.0), self.f.rate_or(fz, 0.0), rpm.trim().parse().unwrap_or(0), self.f.get_or(step, doc, 0.0));
         (s, a)
     }
 
@@ -125,8 +125,8 @@ impl ToolsDialog {
             pierce_delay: self.f.raw_or("pierceDelay", base.pierce_delay).max(0.0),
             cut_height: self.f.get_or("cutHeight", doc, base.cut_height).max(0.0),
             stepdown: self.f.get_or("stepdown", doc, base.stepdown).max(0.0),
-            feed_xy: self.f.raw_or("feedXY", base.feed_xy).max(0.0),
-            feed_z: self.f.raw_or("feedZ", base.feed_z).max(0.0),
+            feed_xy: self.f.rate_or("feedXY", base.feed_xy).max(0.0),
+            feed_z: self.f.rate_or("feedZ", base.feed_z).max(0.0),
             rpm: self.rpm.trim().parse().unwrap_or(base.rpm),
             flutes: self.flutes.trim().parse::<i32>().unwrap_or(2).max(1),
             slot: self.slot.trim().parse::<i32>().unwrap_or(base.slot).max(0),
@@ -399,8 +399,8 @@ impl ToolsDialog {
                             }
                             ui.add_space(4.0);
                             if ui.button(i18n::tf("Suggest for {board}", &[("board", &board)])).tip(i18n::t("Fill feed, plunge, pass depth and RPM from chip-load tables for this bit in the board material")).clicked() {
-                                self.f.set_raw("feedXY", base_s.feed_xy);
-                                self.f.set_raw("feedZ", base_s.feed_z);
+                                self.f.set_rate("feedXY", base_s.feed_xy);
+                                self.f.set_rate("feedZ", base_s.feed_z);
                                 self.f.set("stepdown", base_s.stepdown);
                                 self.rpm = base_s.rpm.to_string();
                             }
@@ -408,7 +408,7 @@ impl ToolsDialog {
                     });
                     ui.add_space(4.0);
                     if self.kind != ToolType::Plasma {
-                        feed_meter(ui, &base_a, 550.0);
+                        feed_meter(ui, &base_a, 550.0, crate::units::index(doc) == 2);
                     }
                     ui.add_space(8.0);
                     // ---- feeds that depend on the board material
@@ -425,10 +425,10 @@ impl ToolsDialog {
                                     }
                                     for p in &presets {
                                         let on = p.material.eq_ignore_ascii_case(&self.p_material);
-                                        if ui.selectable_label(on, format!("{}  ·  F {:.0} / {:.0}  ·  {} rpm", p.material, p.feed_xy, p.feed_z, p.rpm)).clicked() {
+                                        if ui.selectable_label(on, format!("{}  ·  F {:.0} / {:.0}  ·  {} rpm", p.material, crate::units::rate(doc, p.feed_xy), crate::units::rate(doc, p.feed_z), p.rpm)).clicked() {
                                             self.p_material = p.material.clone();
-                                            self.f.set_raw("pFeedXY", p.feed_xy);
-                                            self.f.set_raw("pFeedZ", p.feed_z);
+                                            self.f.set_rate("pFeedXY", p.feed_xy);
+                                            self.f.set_rate("pFeedZ", p.feed_z);
                                             self.f.set("pStepdown", p.stepdown);
                                             self.p_rpm = p.rpm.to_string();
                                         }
@@ -458,8 +458,8 @@ impl ToolsDialog {
                                         act = Some(Act::SavePreset);
                                     }
                                     if ui.button(i18n::t("Suggest")).tip(i18n::tf("Fill from chip-load tables for this bit in {p_material}", &[("p_material", &self.p_material)])).clicked() {
-                                        self.f.set_raw("pFeedXY", pre_s.feed_xy);
-                                        self.f.set_raw("pFeedZ", pre_s.feed_z);
+                                        self.f.set_rate("pFeedXY", pre_s.feed_xy);
+                                        self.f.set_rate("pFeedZ", pre_s.feed_z);
                                         self.f.set("pStepdown", pre_s.stepdown);
                                         self.p_rpm = pre_s.rpm.to_string();
                                     }
@@ -467,7 +467,7 @@ impl ToolsDialog {
                                         act = Some(Act::RemovePreset);
                                     }
                                 });
-                                feed_meter(ui, &pre_a, 270.0);
+                                feed_meter(ui, &pre_a, 270.0, crate::units::index(doc) == 2);
                             });
                         });
                     });
@@ -537,7 +537,7 @@ impl ToolsDialog {
                 saved = true;
             }
             Some(Act::SavePreset) => {
-                let p = FeedPreset { material: self.p_material.trim().to_string(), feed_xy: self.f.raw_or("pFeedXY", 100.0), feed_z: self.f.raw_or("pFeedZ", 50.0), stepdown: self.f.get_or("pStepdown", doc, 0.25), rpm: self.p_rpm.trim().parse().unwrap_or(18000) };
+                let p = FeedPreset { material: self.p_material.trim().to_string(), feed_xy: self.f.rate_or("pFeedXY", 100.0), feed_z: self.f.rate_or("pFeedZ", 50.0), stepdown: self.f.get_or("pStepdown", doc, 0.25), rpm: self.p_rpm.trim().parse().unwrap_or(18000) };
                 if !p.material.is_empty() {
                     doc.checkpoint();
                     let t = &mut doc.tools[self.cur];
@@ -708,16 +708,34 @@ mod tests {
         doc.tools = vec![Tool { name: "A".into(), diameter: 0.25, ..Default::default() }];
         let mut d = ToolsDialog::new(&doc, 0);
         assert_eq!(d.edit_key(), d.loaded_key, "a freshly loaded form is not an edit");
-        d.f.set_raw("feedXY", 55.0);
+        d.f.set_rate("feedXY", 55.0);
         d.name = "Renamed".into();
         assert_ne!(d.edit_key(), d.loaded_key);
         assert!(d.apply_edit(&mut doc));
         assert_eq!((doc.tools[0].feed_xy, doc.tools[0].name.as_str(), doc.tools[0].diameter), (55.0, "Renamed", 0.25));
         // more typing in the same bit stays one undo step: a single undo gives the original back
-        d.f.set_raw("feedZ", 11.0);
+        d.f.set_rate("feedZ", 11.0);
         assert!(d.apply_edit(&mut doc));
         assert_eq!(doc.tools[0].feed_z, 11.0);
         assert!(doc.undo());
         assert_eq!((doc.tools[0].feed_xy, doc.tools[0].feed_z, doc.tools[0].name.as_str()), (100.0, 50.0, "A"));
+    }
+
+    /// Ticket #55: in a mm project the feed fields said mm/min and took in/min (28 typed came out as F711).
+    #[test]
+    fn feeds_are_typed_in_mm_per_minute_in_a_mm_project() {
+        let mut doc = Document::default();
+        doc.bare_unit_in = 1.0 / 25.4;
+        doc.tools = vec![Tool { name: "A".into(), diameter: 0.25, feed_xy: 100.0, ..Default::default() }];
+        let mut d = ToolsDialog::new(&doc, 0);
+        assert_eq!(d.f.text("feedXY"), "2540.0");
+        assert_eq!(rate_label("Feed XY", &doc), "Feed XY (mm/min)");
+        d.f.map.insert("feedXY".into(), "28".into());
+        assert!(d.apply_edit(&mut doc));
+        assert!((doc.tools[0].feed_xy * 25.4 - 28.0).abs() < 1e-9);
+        assert_eq!(super::super::chip_in_mm("Good: 0.0120 in/tooth is in the 0.011–0.013 range for plywood. Deep pass 2 of 0.5."), "Good: 0.305 in/tooth is in the 0.279–0.330 range for plywood. Deep pass 2 of 0.5.");
+        assert_eq!(super::super::chip_in_mm("A bit slow: 0.0020 in/tooth, MDF likes 0.004–0.006."), "A bit slow: 0.051 in/tooth, MDF likes 0.102–0.152.");
+        doc.bare_unit_in = 12.0; // feet: still in/min, and the label says so
+        assert_eq!(rate_label("Feed XY", &doc), "Feed XY (in/min)");
     }
 }
