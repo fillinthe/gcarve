@@ -135,7 +135,7 @@
    "controllers": [
     {
      "name": "3.5-inch touchscreen offline controller (firmware not stated)",
-     "gcarve_post": null,
+     "gcarve_post": "twotrees-mm",
      "default": true
     }
    ],
@@ -316,7 +316,7 @@
    "controllers": [
     {
      "name": "3.5-inch touchscreen offline controller (firmware not stated)",
-     "gcarve_post": null,
+     "gcarve_post": "twotrees-mm",
      "default": true
     }
    ],
@@ -437,7 +437,7 @@
    "controllers": [
     {
      "name": "3.5-inch touchscreen offline controller (firmware not stated)",
-     "gcarve_post": null,
+     "gcarve_post": "twotrees-mm",
      "default": true
     }
    ],
@@ -521,7 +521,7 @@
    "controllers": [
     {
      "name": "built-in touchscreen controller",
-     "gcarve_post": null,
+     "gcarve_post": "twotrees-ed1-mm",
      "default": true
     }
    ],

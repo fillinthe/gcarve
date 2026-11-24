@@ -46,7 +46,7 @@
    "controllers": [
     {
      "name": "Zero3 / Zero4 controller + KinetiC-NC",
-     "gcarve_post": null,
+     "gcarve_post": "kinetic-mm",
      "default": true
     },
     {
@@ -135,7 +135,7 @@
    "controllers": [
     {
      "name": "Zero3 / Zero4 controller + KinetiC-NC",
-     "gcarve_post": null,
+     "gcarve_post": "kinetic-mm",
      "default": true
     },
     {
@@ -224,7 +224,7 @@
    "controllers": [
     {
      "name": "Zero3 / Zero4 controller + KinetiC-NC",
-     "gcarve_post": null,
+     "gcarve_post": "kinetic-mm",
      "default": true
     },
     {
@@ -313,7 +313,7 @@
    "controllers": [
     {
      "name": "Zero3 / Zero4 controller + KinetiC-NC",
-     "gcarve_post": null,
+     "gcarve_post": "kinetic-mm",
      "default": true
     },
     {
@@ -404,7 +404,7 @@
    "controllers": [
     {
      "name": "Zero3 / Zero4 controller + KinetiC-NC",
-     "gcarve_post": null,
+     "gcarve_post": "kinetic-mm",
      "default": true
     },
     {
@@ -495,7 +495,7 @@
    "controllers": [
     {
      "name": "Zero3 / Zero4 controller + KinetiC-NC",
-     "gcarve_post": null,
+     "gcarve_post": "kinetic-mm",
      "default": true
     },
     {
@@ -586,7 +586,7 @@
    "controllers": [
     {
      "name": "Zero3 / Zero4 controller + KinetiC-NC",
-     "gcarve_post": null,
+     "gcarve_post": "kinetic-mm",
      "default": true
     },
     {
@@ -677,7 +677,7 @@
    "controllers": [
     {
      "name": "Zero3 / Zero4 controller + KinetiC-NC",
-     "gcarve_post": null,
+     "gcarve_post": "kinetic-mm",
      "default": true
     },
     {
@@ -768,7 +768,7 @@
    "controllers": [
     {
      "name": "Zero3 / Zero4 controller + KinetiC-NC",
-     "gcarve_post": null,
+     "gcarve_post": "kinetic-mm",
      "default": true
     },
     {

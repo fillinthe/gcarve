@@ -59,7 +59,7 @@
    "controllers": [
     {
      "name": "CNC Factory mobile controller, 21 in touch screen + wireless MPG (brand not published)",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": true
     }
    ],
@@ -153,7 +153,7 @@
    "controllers": [
     {
      "name": "CNC Factory mobile controller, 21 in touch screen + wireless MPG (brand not published)",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": true
     }
    ],
@@ -247,7 +247,7 @@
    "controllers": [
     {
      "name": "CNC Factory mobile controller, 21 in touch screen + wireless MPG (brand not published)",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": true
     }
    ],
@@ -341,7 +341,7 @@
    "controllers": [
     {
      "name": "CNC Factory mobile controller, 21 in touch screen + wireless MPG (brand not published)",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": true
     }
    ],
@@ -435,7 +435,7 @@
    "controllers": [
     {
      "name": "CNC Factory mobile controller, 21 in touch screen + wireless MPG (brand not published)",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": true
     }
    ],
@@ -529,7 +529,7 @@
    "controllers": [
     {
      "name": "CNC Factory mobile controller, 21 in touch screen + wireless MPG (brand not published)",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": true
     }
    ],
@@ -623,7 +623,7 @@
    "controllers": [
     {
      "name": "CNC Factory mobile controller, 21 in touch screen + wireless MPG (brand not published)",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": true
     }
    ],
@@ -717,7 +717,7 @@
    "controllers": [
     {
      "name": "CNC Factory mobile controller, 21 in touch screen + wireless MPG (brand not published)",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": true
     }
    ],
@@ -811,7 +811,7 @@
    "controllers": [
     {
      "name": "CNC Factory mobile controller, 21 in touch screen + wireless MPG (brand not published)",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": true
     }
    ],
@@ -905,7 +905,7 @@
    "controllers": [
     {
      "name": "CNC Factory mobile controller, 21 in touch screen + wireless MPG (brand not published)",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": true
     }
    ],
@@ -999,7 +999,7 @@
    "controllers": [
     {
      "name": "CNC Factory mobile controller, 21 in touch screen + wireless MPG (brand not published)",
-     "gcarve_post": null,
+     "gcarve_post": "syntec-mm",
      "default": true
     }
    ],

@@ -921,7 +921,7 @@
    "controllers": [
     {
      "name": "Hammer 4-axis controller (USB) with touchscreen software",
-     "gcarve_post": null,
+     "gcarve_post": "hammer-mm",
      "default": true
     }
    ],
@@ -1024,7 +1024,7 @@
    "controllers": [
     {
      "name": "Hammer 4-axis controller (USB) with touchscreen software",
-     "gcarve_post": null,
+     "gcarve_post": "hammer-mm",
      "default": true
     }
    ],

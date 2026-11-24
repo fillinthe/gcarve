@@ -388,7 +388,7 @@
    "controllers": [
     {
      "name": "Techno hand-held controller",
-     "gcarve_post": null,
+     "gcarve_post": "techno-in",
      "default": true
     },
     {
@@ -1039,7 +1039,7 @@
    "controllers": [
     {
      "name": "Industrial PC-based control system",
-     "gcarve_post": null,
+     "gcarve_post": "techno-lcplus-in",
      "default": true
     }
    ],

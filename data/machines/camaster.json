@@ -1917,7 +1917,7 @@
    "controllers": [
     {
      "name": "High speed multi-axis CNC motion controller, PC front end",
-     "gcarve_post": null,
+     "gcarve_post": "wincnc-single",
      "default": true
     }
    ],
@@ -2003,7 +2003,7 @@
    "controllers": [
     {
      "name": "High speed multi-axis CNC motion controller, PC front end",
-     "gcarve_post": null,
+     "gcarve_post": "wincnc-single",
      "default": true
     }
    ],
@@ -2089,7 +2089,7 @@
    "controllers": [
     {
      "name": "High speed multi-axis CNC motion controller, PC front end",
-     "gcarve_post": null,
+     "gcarve_post": "wincnc-single",
      "default": true
     }
    ],
@@ -4291,7 +4291,7 @@
    "controllers": [
     {
      "name": "CAMaster multi-axis CNC motion controller (Windows 10 PC)",
-     "gcarve_post": null,
+     "gcarve_post": "wincnc-single",
      "default": true
     }
    ],
@@ -4379,7 +4379,7 @@
    "controllers": [
     {
      "name": "CAMaster multi-axis CNC motion controller (Windows 10 PC)",
-     "gcarve_post": null,
+     "gcarve_post": "wincnc-single",
      "default": true
     }
    ],
@@ -4467,7 +4467,7 @@
    "controllers": [
     {
      "name": "PLC-based CNC motion controller with Ethernet",
-     "gcarve_post": null,
+     "gcarve_post": "centroid-in",
      "default": true
     }
    ],
@@ -4558,7 +4558,7 @@
    "controllers": [
     {
      "name": "PLC-based CNC motion controller with Ethernet",
-     "gcarve_post": null,
+     "gcarve_post": "centroid-in",
      "default": true
     }
    ],
@@ -4649,7 +4649,7 @@
    "controllers": [
     {
      "name": "PLC-based CNC motion controller with Ethernet",
-     "gcarve_post": null,
+     "gcarve_post": "centroid-in",
      "default": true
     }
    ],
@@ -5124,7 +5124,7 @@
    "controllers": [
     {
      "name": "PC-based controller",
-     "gcarve_post": null,
+     "gcarve_post": "wincnc-single",
      "default": true
     }
    ],
@@ -5218,7 +5218,7 @@
    "controllers": [
     {
      "name": "PC-based controller",
-     "gcarve_post": null,
+     "gcarve_post": "wincnc-single",
      "default": true
     }
    ],
@@ -5312,7 +5312,7 @@
    "controllers": [
     {
      "name": "PC-based controller",
-     "gcarve_post": null,
+     "gcarve_post": "wincnc-single",
      "default": true
     }
    ],
@@ -5388,7 +5388,7 @@
    "controllers": [
     {
      "name": "PC-based 3-axis servo motion control",
-     "gcarve_post": null,
+     "gcarve_post": "wincnc-atc",
      "default": true
     }
    ],

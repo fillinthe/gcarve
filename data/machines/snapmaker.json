@@ -47,7 +47,7 @@
    "controllers": [
     {
      "name": "Snapmaker integrated 7-inch controller (Luban or third-party G-code)",
-     "gcarve_post": null,
+     "gcarve_post": "snapmaker-mm",
      "default": true
     }
    ],
@@ -570,7 +570,7 @@
    "controllers": [
     {
      "name": "Snapmaker Original controller",
-     "gcarve_post": null,
+     "gcarve_post": "snapmaker-mm",
      "default": true
     }
    ],

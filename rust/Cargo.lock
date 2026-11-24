@@ -1508,7 +1508,7 @@ dependencies = [
 
 [[package]]
 name = "gcarve-app"
-version = "0.1.39"
+version = "0.1.40"
 dependencies = [
  "acadrust",
  "chrono",
@@ -1543,7 +1543,7 @@ dependencies = [
 
 [[package]]
 name = "gcarve-core"
-version = "0.1.39"
+version = "0.1.40"
 dependencies = [
  "boostvoronoi",
  "clipper2-rust",
@@ -1554,7 +1554,7 @@ dependencies = [
 
 [[package]]
 name = "gcarve-ui"
-version = "0.1.39"
+version = "0.1.40"
 dependencies = [
  "chrono",
  "eframe",

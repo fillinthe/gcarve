@@ -2,6 +2,18 @@
 
 What changed in each GCarve desktop release, newest first. Downloads are on the [releases page](https://github.com/fillinthe/gcarve/releases).
 
+## 0.1.40 (2026-11-24)
+
+New
+- A G-code style for the Onefinity Redline (RealTime CNC) controller, in inch and mm: the units and plane are stated at the top (G17 G20 G90, or G21), the spindle starts with its speed on one line (M3 S…) before the first plunge, and the file ends with M5. Choosing an Onefinity with the Redline controller in Job Setup selects it.
+- G-code styles for CNC-STEP KinetiC-NC, Felder Hammer (Eding CNC), Snapmaker, Two Trees ED1 and Techno LC Plus.
+- 46 more machines in the machine list choose their G-code style by themselves.
+
+Fixes
+- A Vectric post (.pp) without "end" lines, which is how Vectric writes its own posts, was read wrong when uploaded: its move lines went into the file header once and the cuts used GCarve's defaults. **If you uploaded such a post, upload it again.**
+
+These new styles were built from the makers' published posts and have not been run on those machines by us yet: run File › Export Air-Cut Test first and tell us how it goes.
+
 ## 0.1.39 (2026-11-23)
 
 Fixes

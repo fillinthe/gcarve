@@ -812,6 +812,27 @@ fn build_library() -> Vec<PostDef> {
     mach_like(&mut v, "centroid-mm", "Centroid Acorn / Oak (mm, .nc)", "Centroid CNC12", "Acorn, Oak", false, true, "nc", G53);
     mach_like(&mut v, "masso-in", "Masso G3 / Touch (inch, .nc)", "Masso", "Masso G3, Touch, Onefinity Elite", true, true, "nc", G53);
     mach_like(&mut v, "masso-mm", "Masso G3 / Touch (mm, .nc)", "Masso", "Masso G3, Touch, Onefinity Elite", false, true, "nc", G53);
+    // Onefinity Redline controller (RealTime CNC, ticket #61): Vectric's "Onefinity Realtime RTSX" v2 dialect. One
+    // file with T / M6 on their own lines, M3 with its S on one line, units in the first line (it starts in mm),
+    // CRLF, .ngc, M2 at the end. Arcs are never helical here and at most 180 degrees (the defaults).
+    for inch in [true, false] {
+        v.push(PostDef {
+            inches: inch,
+            decimals: if inch { 4 } else { 3 },
+            crlf: true,
+            header: format!("%\n({{FILENAME}})\nG17 {} G90\nG53 G0 Z0\n", if inch { "G20" } else { "G21" }),
+            tool_change: "({TOOLNAME})\nM5\nT{TOOLNUM}\nM6\nG0 Z{SAFEZ}\nM3 S{RPM}\n".into(),
+            path_start: "({PATHNAME})\n".into(),
+            footer: "M5\nG0 Z{ZH}\nM2\n%\n".into(),
+            ..base(
+                if inch { "redline-in" } else { "redline-mm" },
+                if inch { "Onefinity Redline / RealTime CNC (inch, .ngc)" } else { "Onefinity Redline / RealTime CNC (mm, .ngc)" },
+                "RealTime CNC (Redline)",
+                "Onefinity Gen 2 Elite, Apprentice, Elite with the Redline controller",
+                "ngc",
+            )
+        });
+    }
     mach_like(&mut v, "acorn-laguna-in", "Laguna IQ / Swift (Centroid, inch)", "Centroid", "Laguna IQ, Swift", true, true, "nc", G53);
     mach_like(&mut v, "eding-mm", "Eding CNC (mm, .nc)", "Eding CNC", "generic", false, true, "nc", G53);
     mach_like(&mut v, "planetcnc-mm", "PlanetCNC (mm, .gcode)", "PlanetCNC", "Mekanika, generic", false, false, "gcode", G53);
@@ -1129,6 +1150,8 @@ fn build_library() -> Vec<PostDef> {
         ..base("winpc-mm", "WinPC-NC (mm, .nc)", "WinPC-NC", "Stepcraft (WinPC-NC), CNC-Step High-Z S, Haase, Lewetz", "nc")
     });
     iso(&mut v, "format4-mm", "Felder Format-4 F4Integrate (ISO import, mm, .iso)", "F4Integrate", "Felder Format-4 profit", false, "iso", &osai);
+    // ---- makers' own dialects, translated from their Vectric posts by `pp_export` (tests) and cleaned by hand
+    v.extend(serde_json::from_str::<Vec<PostDef>>(include_str!("posts_extra.json")).expect("posts_extra.json"));
     // ---- plasma tables (plasma.rs writes these files: only id, names, units and style matter here)
     for (id, name, controller, machines, style, inch, ext) in [
         ("plasma-firecontrol", "Langmuir FireControl plasma (inch, .nc)", "FireControl", "Langmuir CrossFire, CrossFire PRO, XR", "firecontrol", true, "nc"),
@@ -1210,10 +1233,14 @@ pub fn post_from_vectric_pp(text: &str) -> Result<PostDef, String> {
         if !cur.is_empty() {
             if ut == "END" {
                 cur.clear();
+                continue;
             } else if t.starts_with('"') {
                 blocks.entry(cur.clone()).or_default().push(unquote(t));
+                continue;
+            } else if !ut.starts_with("BEGIN ") {
+                continue;
             }
-            continue;
+            // Vectric's own posts have no "end" lines: the next "begin" closes the block
         }
         if let Some(rest) = ut.strip_prefix("BEGIN ") {
             cur = rtrim(rest);
@@ -1331,7 +1358,7 @@ pub fn post_from_vectric_pp(text: &str) -> Result<PostDef, String> {
             ("[FC]", "{F}"),
             ("[FP]", "{F}"),
             ("[S]", "S{RPM}"),
-            ("[T]", "T{TOOLNUM}"),
+            ("[T]", "{TOOLNUM}") /* no VAR line: Vectric writes the bare number ("T[T]" in its own posts) */,
             ("[N]", ""),
             ("[SAFEZ]", "Z{SAFEZ}"),
             ("[ZH]", "Z{SAFEZ}"),
@@ -1469,6 +1496,24 @@ mod tests {
     /// Every Vectric .pp under a folder (reference/pp: posts published on GitHub, see its manifest.json) through
     /// the translator and a small job: `GCARVE_PP_DIR=../reference/pp cargo test -p gcarve-core --lib pp_survey --
     /// --ignored --nocapture`. Prints what fails to translate, writes nothing, or cuts without a move.
+    /// Writes  (built-in posts whose dialect comes from a maker's Vectric post) from a list
+    /// [{pp, id, name, controller, machines}]: .
+    #[test]
+    #[ignore]
+    fn pp_export() {
+        let Ok(list) = std::env::var("GCARVE_PP_LIST") else { return };
+        let list: Vec<BTreeMap<String, String>> = serde_json::from_str(&std::fs::read_to_string(list).unwrap()).unwrap();
+        let mut out = Vec::new();
+        for e in &list {
+            let text = String::from_utf8_lossy(&std::fs::read(&e["pp"]).unwrap()).to_string();
+            let mut d = post_from_vectric_pp(&text).unwrap();
+            (d.id, d.name, d.controller, d.machines) = (e["id"].clone(), e["name"].clone(), e["controller"].clone(), e["machines"].clone());
+            out.push(d);
+        }
+        std::fs::write(concat!(env!("CARGO_MANIFEST_DIR"), "/src/posts_extra.json"), serde_json::to_string_pretty(&out).unwrap() + "
+").unwrap();
+    }
+
     #[test]
     #[ignore]
     fn pp_survey() {
@@ -1570,4 +1615,47 @@ mod tests {
         assert_eq!(atoi("-3x"), -3);
         assert_eq!(atoi("x"), 0);
     }
+    /// Ticket #61: the Onefinity Redline controller starts in mm and wants M3 with its speed on one line.
+    #[test]
+    fn the_redline_post_states_units_starts_the_spindle_with_its_speed_and_ends_with_it_off() {
+        let tp = crate::job::Toolpath { name: "Cut".into(), feed_xy: 100.0, feed_z: 30.0, moves: vec![Move::rapid(Some(1.0), Some(0.0), Some(0.5)), Move::linear(None, None, Some(-0.1)), Move { kind: MoveType::ArcCcw, x: Some(1.0), y: Some(0.0), z: None, i: -1.0, j: 0.0 }, Move::rapid(None, None, Some(0.5))], ..Default::default() };
+        let job = Job { filename: "k".into(), tool: "End mill".into(), rpm: 16000, slot: 2, toolpaths: vec![tp], ..Default::default() };
+        for (id, unit) in [("redline-in", "G20"), ("redline-mm", "G21")] {
+            let out = post_jobs(std::slice::from_ref(&job), find_post(id).unwrap());
+            assert_eq!(out.len(), 1, "one file with tool changes");
+            assert!(out[0].filename.ends_with(".ngc"));
+            let text = out[0].text.replace("\r\n", "\n");
+            let lines: Vec<&str> = text.lines().collect();
+            assert!(lines.contains(&format!("G17 {unit} G90").as_str()), "{text}");
+            let m3 = lines.iter().position(|l| *l == "M3 S16000").expect("M3 with S on one line");
+            let plunge = lines.iter().position(|l| l.starts_with("G1") && l.contains('Z')).unwrap();
+            assert!(m3 < plunge && lines[..m3].contains(&"T2") && lines[..m3].contains(&"M6"), "{text}");
+            // the full circle goes out as two half circles with incremental centers
+            assert_eq!(lines.iter().filter(|l| l.starts_with("G3") && l.contains('I') && l.contains('J')).count(), 2, "{text}");
+            let m5 = lines.iter().rposition(|l| *l == "M5").unwrap();
+            assert!(m5 > plunge && lines[m5..].contains(&"M2"), "{text}");
+        }
+    }
+
+    /// Vectric's own posts have no "end" lines (800 of the 824 it ships): every block went into the header, so an
+    /// uploaded post wrote its move templates once at the top and moved with our defaults. And a tool number
+    /// without a VAR line is the bare number ("T[T]" is how those posts write T1).
+    #[test]
+    fn a_vectric_post_without_end_lines_keeps_its_blocks_apart() {
+        let pp = "POST_NAME = \"r\"\nFILE_EXTENSION = \"ngc\"\nUNITS = \"INCHES\"\nVAR X_POSITION = [X|C|X|1.5]\nVAR Y_POSITION = [Y|C|Y|1.5]\nVAR Z_POSITION = [Z|C|Z|1.5]\nVAR SPINDLE_SPEED = [S|A| S|1.0]\n\nbegin HEADER\n\n\"G17 G20 G90\"\n\"T[T]\"\n\"M6\"\n\nbegin SPINDLE_ON\n\n\"M3[S]\"\n\nbegin RAPID_MOVE\n\n\"G0[X][Y][Z]\"\n\nbegin FEED_MOVE\n\n\"G1[X][Y][Z]\"\n\nbegin FOOTER\n\n\"M5\"\n\"M2\"\n";
+        let d = post_from_vectric_pp(pp).unwrap();
+        assert!(d.header.contains("G17 G20 G90\nT{TOOLNUM}\nM6") && !d.header.contains("G0") && !d.header.contains("M2"), "{:?}", d.header);
+        assert_eq!((d.rapid.as_str(), d.linear.as_str(), d.footer.as_str()), ("G0{X}{Y}{Z}", "G1{X}{Y}{Z}", "M5\nM2\n"));
+    }
+
+    #[test]
+    fn the_makers_own_dialects_load_with_unique_ids() {
+        let lib = post_library();
+        for id in ["kinetic-mm", "hammer-mm", "snapmaker-mm", "twotrees-ed1-mm", "techno-lcplus-in", "redline-in", "redline-mm"] {
+            assert_eq!(lib.iter().filter(|d| d.id == id).count(), 1, "{id}");
+        }
+        assert_eq!(lib[0].id, "wincnc-single");
+        assert!(lib.last().unwrap().id.starts_with("plasma-"), "plasma posts stay last");
+    }
+
 }
