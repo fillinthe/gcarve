@@ -157,7 +157,10 @@ fn place(all: &HashMap<String, HashMap<String, Object>>, file: &str, id: &str, m
 /// The triangles of every build item of a 3MF file, placed as the file places them.
 pub fn load_3mf(zip: &[u8]) -> Result<Vec<Triangle>, String> {
     let files = model_entries(zip)?;
-    let main = files.keys().find(|k| k.eq_ignore_ascii_case("/3D/3dmodel.model")).or_else(|| files.keys().next()).ok_or("no model in the 3MF file")?.clone();
+    let main = files.keys().find(|k| k.eq_ignore_ascii_case("/3D/3dmodel.model")).or_else(|| files.keys().next());
+    // a slicer's "sliced" 3MF (.gcode.3mf) holds the printer's G-code and no model (error log 2026-11-26, six tries)
+    let sliced = zip.windows(6).any(|w| w == b".gcode");
+    let main = main.ok_or(if sliced { "this 3MF holds a sliced print, not a 3D model: export the model itself from the slicer (3MF or STL)" } else { "no model in the 3MF file" })?.clone();
     let all: HashMap<String, HashMap<String, Object>> = files.iter().map(|(name, data)| (name.clone(), objects(name, &String::from_utf8_lossy(data)))).collect();
     let xml = String::from_utf8_lossy(&files[&main]);
     let build = &xml[xml.find("<build").unwrap_or(xml.len())..];
@@ -211,6 +214,13 @@ mod tests {
         out.extend(at.to_le_bytes());
         out.extend([0u8; 2]);
         out
+    }
+
+    #[test]
+    fn a_sliced_3mf_says_it_holds_no_model() {
+        let e = load_3mf(&zip(&[("Metadata/plate_1.gcode", "G1 X1")])).unwrap_err();
+        assert!(e.contains("sliced print"), "{e}");
+        assert_eq!(load_3mf(&zip(&[("readme.txt", "x")])).unwrap_err(), "no model in the 3MF file");
     }
 
     #[test]

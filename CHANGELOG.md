@@ -2,6 +2,14 @@
 
 What changed in each GCarve desktop release, newest first. Downloads are on the [releases page](https://github.com/fillinthe/gcarve/releases).
 
+## 0.1.41 (2026-11-27)
+
+Fixes
+- A toolpath warning that every shape earns (for example "open shapes can't be v-carved") is listed once, not once per shape: 40 open lines no longer fill the side panel.
+- Uploaded posts are read by what is in the file, not by its name: a Vectric post saved under another ending loads.
+- Tool Library › Import reads a Fusion 360 .tools file directly (no unzipping first), and a file that is not a bit library says so in plain words.
+- A 3MF from a slicer that holds only the printer's G-code says so, and asks for the model itself, instead of "no model in the 3MF file".
+
 ## 0.1.40 (2026-11-24)
 
 New

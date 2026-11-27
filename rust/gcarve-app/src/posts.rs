@@ -23,10 +23,11 @@ impl UserPosts {
     pub fn find(&self, id: &str) -> Option<PostDef> {
         self.posts.iter().find(|p| p.id == id).cloned()
     }
-    /// Upload: `.pp` is translated, `.json` parsed; the id gets a `user-` prefix (unique against the built-ins) and
+    /// Upload: a Vectric post is translated, JSON parsed; the id gets a `user-` prefix (unique against the built-ins) and
     /// replaces an earlier upload with the same id. Returns the new id.
     pub fn add(&mut self, name: &str, text: &str) -> Result<String, String> {
-        let mut p = if name.to_ascii_lowercase().ends_with(".pp") { post_from_vectric_pp(text)? } else { post_from_json(text)? };
+        // by what is in the file, not its name (error log 2026-11-26: a Vectric post saved under another ending was read as JSON)
+        let mut p = if text.trim_start().starts_with('{') { post_from_json(text)? } else { post_from_vectric_pp(text)? };
         if p.id.is_empty() || p.id == "custom" || post_library().iter().any(|b| b.id == p.id) {
             p.id = name.rsplit_once('.').map(|(a, _)| a).unwrap_or(name).to_ascii_lowercase().replace(|c: char| !c.is_ascii_alphanumeric(), "-");
         }
@@ -85,6 +86,15 @@ pub fn score(p: &PostDef, q: &str) -> Option<u32> {
 mod tests {
     use super::score;
     use gcarve_core::postdef::{find_post, post_library};
+
+    #[test]
+    fn an_uploaded_post_is_read_by_its_content_whatever_its_name() {
+        crate::store::freeze();
+        let pp = "POST_NAME = \"r\"\nFILE_EXTENSION = \"txt\"\nUNITS = \"MM\"\nbegin FEED_MOVE\n\"G1 [X] [Y] [Z]\"\nbegin FOOTER\n\"M5\"\n";
+        let mut u = super::UserPosts::default();
+        assert!(u.add("Mach2-3 (mm) (*.txt)", pp).is_ok(), "a Vectric post under another ending");
+        assert!(u.add("mine.pp", r#"{"id":"mine","footer":"M5\n"}"#).is_ok(), "JSON under .pp");
+    }
 
     #[test]
     fn post_search_takes_words_in_any_order_and_puts_the_best_first() {

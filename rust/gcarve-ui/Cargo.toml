@@ -26,6 +26,7 @@ chrono = "0.4"   # licence grace period, recovery copy times (wasm: the browser 
 png = "0.17"   # shot::png_bytes: dev screenshots and GSketch's Export Image (web too)
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+flate2 = "1"   # unpacking a release zip for the self-update (help.rs)
 hidapi = { version = "2", default-features = false, features = ["linux-native-basic-udev", "windows-native"], optional = true }
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]

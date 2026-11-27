@@ -268,7 +268,12 @@ pub fn regenerate_some(doc: &Document, want: &dyn Fn(usize) -> bool) -> Generate
         }
         g.minutes.push(r.paths.iter().map(|tp| crate::order::estimate_minutes_with(tp, tp.feed_xy, tp.feed_z, mo)).sum());
         g.paths.push(r.paths);
-        g.warnings.extend(r.warnings);
+        // one line per problem, not one per shape (ticket #83: 40 open lines filled the side panel)
+        for w in r.warnings {
+            if !g.warnings.contains(&w) {
+                g.warnings.push(w);
+            }
+        }
     }
     g
 }

@@ -563,7 +563,7 @@ impl ToolsDialog {
                 self.load(doc, n);
                 saved = true;
             }
-            Some(Act::Import) => host.files.pick_into(ctx, i18n::t("Bit library (tools.json, .vtdb)"), &["json", "vtdb"], "tools"),
+            Some(Act::Import) => host.files.pick_into(ctx, i18n::t("Bit library (tools.json, .vtdb)"), &["json", "tools", "vtdb"], "tools"),
             Some(Act::Export) => crate::files::save("tools.json", gcarve_core::project::tool_library_to_json(&doc.tools).into_bytes(), host.files.msg_tx.clone()),
             _ => {}
         }
@@ -604,9 +604,24 @@ pub fn vtdb_done(r: Result<(Vec<Tool>, usize), String>, host: &mut Host) {
     }
 }
 
+/// The JSON of a picked bit library: the file itself, or the tools.json inside a Fusion 360 .tools file (a zip);
+/// anything else is refused in plain words.
+fn library_text(bytes: &[u8]) -> Result<String, String> {
+    if bytes.starts_with(b"PK") {
+        let files = gcarve_core::threemf::zip_entries(bytes, &[".json"])?;
+        return files.into_values().next().map(|b| String::from_utf8_lossy(&b).into_owned()).ok_or_else(|| i18n::t("No tools found (for a .tools file, unzip it and pick tools.json)").into());
+    }
+    let text = String::from_utf8_lossy(bytes).into_owned();
+    if !text.trim_start_matches('\u{feff}').trim_start().starts_with(['{', '[']) {
+        return Err(i18n::t("This is not a bit library GCarve can read. It reads its own library (.json), Fusion 360 libraries (.tools or tools.json) and Vectric tool databases (.vtdb).").into());
+    }
+    Ok(text)
+}
+
 /// A picked tools.json (GCarve or Fusion): merged into the document's tools and the saved library.
 pub fn import_file(ctx: &egui::Context, name: &str, bytes: &[u8], host: &mut Host) {
-    if name.to_ascii_lowercase().ends_with(".vtdb") {
+    // by what is in the file, not its name (error log 2026-11-26: "expected value at line 1 column 1")
+    if name.to_ascii_lowercase().ends_with(".vtdb") || bytes.starts_with(b"SQLite format 3") {
         #[cfg(not(target_arch = "wasm32"))]
         {
             let _ = ctx;
@@ -619,7 +634,7 @@ pub fn import_file(ctx: &egui::Context, name: &str, bytes: &[u8], host: &mut Hos
         }
         return;
     }
-    match toollib::import(&String::from_utf8_lossy(bytes)) {
+    match library_text(bytes).and_then(|t| toollib::import(&t)) {
         Ok(tools) => {
             let (added, updated) = merge_into(host, tools);
             *host.message = format!("{name}: {added} tools added, {updated} updated");
@@ -693,6 +708,13 @@ fn card(ui: &mut egui::Ui, title: &str, width: f32, add: impl FnOnce(&mut egui::
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn a_bit_library_is_read_by_its_content_and_other_files_are_refused_in_plain_words() {
+        assert!(super::library_text(b"  {\"tools\":[]}").is_ok());
+        assert!(super::library_text(b"name,diameter\n1/4,0.25").unwrap_err().contains("not a bit library"));
+        assert!(super::library_text(b"PK\x05\x06\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0").unwrap_err().contains("No tools found"), "an empty .tools zip");
+    }
+
     #[test]
     fn a_bit_is_named_from_the_pattern() {
         let doc = Document::default();

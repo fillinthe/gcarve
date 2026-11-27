@@ -51,8 +51,42 @@ enum Upd {
     Downloading,
     /// saved here and opened
     Done(String),
+    /// put in place of this program (`set_self_install`); the app restarts
+    Installed,
     /// the download page was opened instead (bool = already sent)
     Failed(String, bool),
+}
+
+/// Apps that restart themselves after an update call this once: "Update now" then checks the download, puts it in
+/// place of the running program and asks for a restart (`restart_wanted`, `relaunch`). Anything that fails falls back
+/// to opening the downloaded file. Off by default.
+pub fn set_self_install(on: bool) {
+    SELF_INSTALL.store(on, std::sync::atomic::Ordering::Relaxed);
+    #[cfg(not(target_arch = "wasm32"))]
+    if on {
+        selfupdate::tidy();
+    }
+}
+static SELF_INSTALL: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+static RESTART: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+/// what to start when the app quits after an update
+static RELAUNCH: Mutex<Option<std::path::PathBuf>> = Mutex::new(None);
+/// the newest release's SHA256SUMS.txt
+static SUMS: Mutex<Option<String>> = Mutex::new(None);
+
+/// true once after an update was put in place: the app should quit now (asking about unsaved work as usual) and call
+/// `relaunch` as it goes.
+pub fn restart_wanted() -> bool {
+    RESTART.swap(false, std::sync::atomic::Ordering::Relaxed)
+}
+
+/// Call right before the app quits: starts the updated program when an update was installed in this run.
+/// ponytail: a quit cancelled after the update still restarts the app at its next quit; a timestamp if that annoys
+pub fn relaunch() {
+    #[cfg(not(target_arch = "wasm32"))]
+    if let Some(p) = RELAUNCH.lock().ok().and_then(|mut r| r.take()) {
+        let _ = if cfg!(target_os = "macos") { std::process::Command::new("open").arg("-n").arg(&p).spawn() } else { std::process::Command::new(&p).spawn() };
+    }
 }
 
 /// The site's download page: "Update now" falls back to it when the direct download doesn't work.
@@ -123,6 +157,7 @@ pub fn check(ctx: &egui::Context) {
             if let (Some(t), Some(u)) = (tag, j.as_ref().and_then(|j| j["html_url"].as_str()).filter(|u| u.starts_with("https://github.com/"))) {
                 *NEWEST.lock().unwrap() = Some((t.trim_start_matches('v').to_string(), u.to_string()));
                 *ASSET.lock().unwrap() = j.as_ref().and_then(|j| pick_asset(j, asset_suffix()));
+                *SUMS.lock().unwrap() = j.as_ref().and_then(|j| pick_asset(j, "SHA256SUMS.txt"));
             } else {
                 *FAILED.lock().unwrap() = true;
             }
@@ -154,13 +189,26 @@ fn update_now(ctx: &egui::Context) {
             let home = std::env::var_os(if cfg!(windows) { "USERPROFILE" } else { "HOME" }).map(std::path::PathBuf::from);
             let dir = home.map(|h| h.join(crate::i18n::t("Downloads"))).filter(|d| d.is_dir()).unwrap_or_else(std::env::temp_dir);
             let path = dir.join(&name);
-            std::fs::write(&path, bytes).map_err(|e| e.to_string())?;
+            std::fs::write(&path, &bytes).map_err(|e| e.to_string())?;
+            if SELF_INSTALL.load(std::sync::atomic::Ordering::Relaxed) {
+                // checked against the release's checksums, then put in place of this program; any failure = the old way
+                let sums = SUMS.lock().ok().and_then(|s| s.clone());
+                match selfupdate::checked(&bytes, &name, sums.as_deref()).and_then(|()| selfupdate::install(&path, &bytes)) {
+                    Ok(start) => {
+                        *RELAUNCH.lock().unwrap() = Some(start);
+                        RESTART.store(true, std::sync::atomic::Ordering::Relaxed);
+                        return Ok(String::new());
+                    }
+                    Err(e) => eprintln!("self-update: {e}"),
+                }
+            }
             let target = if cfg!(target_os = "linux") { dir.clone() } else { path.clone() };
             let opener = if cfg!(target_os = "macos") { "open" } else if cfg!(windows) { "explorer" } else { "xdg-open" };
             std::process::Command::new(opener).arg(&target).spawn().map_err(|e| e.to_string())?;
             Ok(path.display().to_string())
         });
         *UPDATE.lock().unwrap() = match res {
+            Ok(p) if p.is_empty() => Upd::Installed,
             Ok(p) => Upd::Done(p),
             Err(e) => Upd::Failed(e, false),
         };
@@ -353,7 +401,12 @@ impl Help {
                             update_now(ctx);
                         }
                         Upd::Idle => {
-                            ui.label(RichText::new(crate::i18n::t("Update now downloads it and opens it; then quit this one and install it over it. Your projects and settings stay.")).small().color(theme::TEXT_DIM));
+                            let how = if SELF_INSTALL.load(std::sync::atomic::Ordering::Relaxed) {
+                                i18n::tf("Update now downloads it, installs it and restarts {app}. Your projects and settings stay.", &[("app", &app)])
+                            } else {
+                                crate::i18n::t("Update now downloads it and opens it; then quit this one and install it over it. Your projects and settings stay.").to_string()
+                            };
+                            ui.label(RichText::new(how).small().color(theme::TEXT_DIM));
                             ui.horizontal(|ui| {
                                 #[cfg(not(target_arch = "wasm32"))]
                                 if ui.add(widgets::Button::new(i18n::tf("Update now to {v}", &[("v", &v)])).primary(true)).clicked() {
@@ -369,6 +422,9 @@ impl Help {
                                 ui.spinner();
                                 ui.label(crate::i18n::tf("Downloading {app} {v}…", &[("app", &app), ("v", &v)]));
                             });
+                        }
+                        Upd::Installed => {
+                            ui.label(RichText::new(i18n::tf("{app} {v} is installed. It starts when {app} restarts.", &[("app", &app), ("v", &v)])).color(theme::MODE_SIMULATE));
                         }
                         Upd::Done(path) => {
                             ui.label(RichText::new(crate::i18n::tf("Downloaded to {path}", &[("path", &path)])).small().color(theme::TEXT_DIM));
@@ -451,5 +507,264 @@ mod tests {
         assert!(super::parse("v0.10.0") > super::parse("0.9.3"));
         assert!(super::parse("0.1.1") > super::parse("0.1.0"));
         assert!(super::parse("0.1.0") <= super::parse("0.1.0"));
+    }
+}
+
+/// Putting a downloaded release in place of the running program (desktop).
+#[cfg(not(target_arch = "wasm32"))]
+mod selfupdate {
+    use std::path::{Path, PathBuf};
+
+    /// The download matches its line in the release's SHA256SUMS.txt. No checksum file: fine on a Mac (the app's
+    /// signature is checked instead), refused elsewhere.
+    pub fn checked(bytes: &[u8], name: &str, sums_url: Option<&str>) -> Result<(), String> {
+        let Some(url) = sums_url else { return if cfg!(target_os = "macos") { Ok(()) } else { Err("the release has no checksums".into()) } };
+        let mut req = ehttp::Request::get(url);
+        req.headers.insert("User-Agent", "GCarve");
+        let sums = ehttp::fetch_blocking(&req).ok().filter(|r| r.ok).map(|r| String::from_utf8_lossy(&r.bytes).to_string()).ok_or("couldn't read the checksums")?;
+        check_sum(bytes, name, &sums)
+    }
+
+    pub fn check_sum(bytes: &[u8], name: &str, sums: &str) -> Result<(), String> {
+        use sha2::Digest;
+        let have: String = sha2::Sha256::digest(bytes).iter().map(|b| format!("{b:02x}")).collect();
+        let want = sums.lines().filter_map(|l| l.split_once(char::is_whitespace)).find(|(_, n)| n.trim().trim_start_matches('*') == name).map(|(h, _)| h.trim().to_lowercase());
+        match want {
+            Some(w) if w == have => Ok(()),
+            Some(_) => Err("the download doesn't match its checksum".into()),
+            None => Err("no checksum for this file".into()),
+        }
+    }
+
+    fn run(cmd: &str, args: &[&std::ffi::OsStr]) -> Result<String, String> {
+        let o = std::process::Command::new(cmd).args(args).output().map_err(|e| format!("{cmd}: {e}"))?;
+        // codesign -dv writes to stderr
+        let text = format!("{}{}", String::from_utf8_lossy(&o.stdout), String::from_utf8_lossy(&o.stderr));
+        if o.status.success() { Ok(text) } else { Err(format!("{cmd} failed: {}", text.trim())) }
+    }
+
+    /// macOS: the .app in the disk image, signed by the same team as this one, swapped in for this bundle.
+    #[cfg(target_os = "macos")]
+    pub fn install(file: &Path, _bytes: &[u8]) -> Result<PathBuf, String> {
+        let exe = std::env::current_exe().map_err(|e| e.to_string())?;
+        let bundle = exe.ancestors().nth(3).filter(|b| b.extension().is_some_and(|e| e == "app")).ok_or("not running from an app bundle")?.to_path_buf();
+        let team = |p: &Path| run("codesign", &["-dv".as_ref(), "--verbose=2".as_ref(), p.as_os_str()]).ok()?.lines().find_map(|l| l.strip_prefix("TeamIdentifier=").map(str::to_string)).filter(|t| t != "not set");
+        let mine = team(&bundle).ok_or("this copy isn't signed by its developer")?;
+        let mnt = std::env::temp_dir().join(format!("app-update-{}", std::process::id()));
+        std::fs::create_dir_all(&mnt).map_err(|e| e.to_string())?;
+        run("hdiutil", &["attach".as_ref(), "-nobrowse".as_ref(), "-readonly".as_ref(), "-noautoopen".as_ref(), "-mountpoint".as_ref(), mnt.as_os_str(), file.as_os_str()])?;
+        let swap = || -> Result<PathBuf, String> {
+            let new = mnt.join(bundle.file_name().ok_or("no bundle name")?);
+            if !new.is_dir() {
+                return Err("the disk image doesn't hold this app".into());
+            }
+            run("codesign", &["--verify".as_ref(), "--deep".as_ref(), "--strict".as_ref(), new.as_os_str()])?;
+            if team(&new).as_deref() != Some(mine.as_str()) {
+                return Err("the update is signed by someone else".into());
+            }
+            let (stage, old) = (bundle.with_extension("app.update-new"), bundle.with_extension("app.update-old"));
+            let _ = std::fs::remove_dir_all(&stage);
+            let _ = std::fs::remove_dir_all(&old);
+            run("ditto", &[new.as_os_str(), stage.as_os_str()])?;
+            std::fs::rename(&bundle, &old).map_err(|e| format!("couldn't move the old app: {e}"))?;
+            if let Err(e) = std::fs::rename(&stage, &bundle) {
+                let _ = std::fs::rename(&old, &bundle);
+                return Err(format!("couldn't put the new app in place: {e}"));
+            }
+            let _ = std::fs::remove_dir_all(&old);
+            Ok(bundle.clone())
+        };
+        let res = swap();
+        let _ = run("hdiutil", &["detach".as_ref(), mnt.as_os_str(), "-force".as_ref()]);
+        let _ = std::fs::remove_dir(&mnt);
+        if res.is_err() {
+            let _ = std::fs::remove_dir_all(bundle.with_extension("app.update-new"));
+        }
+        res
+    }
+
+    /// Windows / Linux: the package's files over the ones beside this program. A file in use can't be overwritten but
+    /// can be renamed, so each old file steps aside as `name.old` (removed here on Linux, at the next start on Windows).
+    #[cfg(not(target_os = "macos"))]
+    pub fn install(file: &Path, bytes: &[u8]) -> Result<PathBuf, String> {
+        let exe = std::env::current_exe().map_err(|e| e.to_string())?;
+        let dir = exe.parent().ok_or("no program folder")?.to_path_buf();
+        if exe.to_string_lossy().contains("software-gl") {
+            return Err("running the software-rendering copy".into()); // its real folder is elsewhere
+        }
+        let files = if cfg!(windows) { unzip(bytes)? } else { untar(file)? };
+        let me = exe.file_name().and_then(|n| n.to_str()).ok_or("no program name")?;
+        if !files.iter().any(|(n, _)| n == me) {
+            return Err("the package doesn't hold this program".into());
+        }
+        let mut done: Vec<(PathBuf, Option<PathBuf>)> = Vec::new();
+        let put = |done: &mut Vec<(PathBuf, Option<PathBuf>)>| -> Result<(), String> {
+            for (rel, data) in &files {
+                let dest = dir.join(rel);
+                // Windows: the folder is the app. Linux: only what is already installed here (~/.local/bin holds just the program)
+                if !cfg!(windows) && !dest.exists() {
+                    continue;
+                }
+                if let Some(p) = dest.parent() {
+                    std::fs::create_dir_all(p).map_err(|e| e.to_string())?;
+                }
+                let mut aside = None;
+                #[allow(unused_mut)]
+                let mut perms = None;
+                if dest.exists() {
+                    perms = std::fs::metadata(&dest).ok().map(|m| m.permissions());
+                    let old = PathBuf::from(format!("{}.old", dest.display()));
+                    let _ = std::fs::remove_file(&old);
+                    std::fs::rename(&dest, &old).map_err(|e| format!("couldn't replace {rel}: {e}"))?;
+                    aside = Some(old);
+                }
+                done.push((dest.clone(), aside));
+                std::fs::write(&dest, data).map_err(|e| format!("couldn't write {rel}: {e}"))?;
+                if let Some(p) = perms {
+                    let _ = std::fs::set_permissions(&dest, p);
+                }
+            }
+            Ok(())
+        };
+        if let Err(e) = put(&mut done) {
+            // back to how it was
+            for (dest, aside) in done.iter().rev() {
+                let _ = std::fs::remove_file(dest);
+                if let Some(a) = aside {
+                    let _ = std::fs::rename(a, dest);
+                }
+            }
+            return Err(e);
+        }
+        if !cfg!(windows) {
+            for a in done.iter().filter_map(|d| d.1.as_ref()) {
+                let _ = std::fs::remove_file(a);
+            }
+        }
+        Ok(exe)
+    }
+
+    /// The `.old` files an update left beside the program (Windows keeps them while the old program runs).
+    pub fn tidy() {
+        let Some(dir) = std::env::current_exe().ok().and_then(|e| e.parent().map(Path::to_path_buf)) else { return };
+        for d in [dir.clone(), dir.join("software")] {
+            for f in std::fs::read_dir(&d).into_iter().flatten().flatten() {
+                let p = f.path();
+                if p.extension().is_some_and(|e| e == "old") && p.with_extension("").exists() {
+                    let _ = std::fs::remove_file(&p);
+                }
+            }
+        }
+    }
+
+    /// a package path without its top folder, or None for anything that could leave the folder
+    fn inner(name: &str) -> Option<String> {
+        let rel = name.split_once('/')?.1;
+        (!rel.is_empty() && !rel.ends_with('/') && !rel.contains('\\') && !rel.contains(':') && rel.split('/').all(|c| !c.is_empty() && c != "." && c != "..")).then(|| rel.to_string())
+    }
+
+    /// The files of a zip (stored or deflated; our own release zips), top folder dropped.
+    #[cfg_attr(target_os = "macos", allow(dead_code))]
+    pub fn unzip(z: &[u8]) -> Result<Vec<(String, Vec<u8>)>, String> {
+        use std::io::Read;
+        let bad = || "not a zip this can read".to_string();
+        let u16at = |i: usize| z.get(i..i + 2).map(|b| u16::from_le_bytes([b[0], b[1]]) as usize).ok_or_else(bad);
+        let u32at = |i: usize| z.get(i..i + 4).map(|b| u32::from_le_bytes([b[0], b[1], b[2], b[3]]) as usize).ok_or_else(bad);
+        let end = (0..=z.len().saturating_sub(22)).rev().take(70_000).find(|&i| z[i..i + 4] == [0x50, 0x4b, 5, 6]).ok_or_else(bad)?;
+        let (count, mut at) = (u16at(end + 10)?, u32at(end + 16)?);
+        let mut out = Vec::new();
+        for _ in 0..count {
+            if u32at(at)? != 0x0201_4b50 {
+                return Err(bad());
+            }
+            let (method, csize, usize_, nlen, xlen, clen, local) = (u16at(at + 10)?, u32at(at + 20)?, u32at(at + 24)?, u16at(at + 28)?, u16at(at + 30)?, u16at(at + 32)?, u32at(at + 42)?);
+            let name = std::str::from_utf8(z.get(at + 46..at + 46 + nlen).ok_or_else(bad)?).map_err(|_| bad())?;
+            at += 46 + nlen + xlen + clen;
+            let Some(rel) = inner(name) else { continue };
+            if usize_ > 400 << 20 {
+                return Err(bad());
+            }
+            let start = local + 30 + u16at(local + 26)? + u16at(local + 28)?;
+            let raw = z.get(start..start + csize).ok_or_else(bad)?;
+            let data = match method {
+                0 => raw.to_vec(),
+                8 => {
+                    let mut v = Vec::with_capacity(usize_);
+                    flate2::read::DeflateDecoder::new(raw).take(usize_ as u64 + 1).read_to_end(&mut v).map_err(|e| e.to_string())?;
+                    v
+                }
+                _ => return Err(bad()),
+            };
+            if data.len() != usize_ {
+                return Err(bad());
+            }
+            out.push((rel, data));
+        }
+        Ok(out)
+    }
+
+    /// The files of a .tar.gz, top folder dropped (through the system's tar, into a scratch folder).
+    #[cfg(all(not(target_os = "macos"), not(windows)))]
+    fn untar(file: &Path) -> Result<Vec<(String, Vec<u8>)>, String> {
+        let tmp = std::env::temp_dir().join(format!("app-update-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&tmp);
+        std::fs::create_dir_all(&tmp).map_err(|e| e.to_string())?;
+        let res = run("tar", &["-xzf".as_ref(), file.as_os_str(), "-C".as_ref(), tmp.as_os_str()]).and_then(|_| {
+            let top = std::fs::read_dir(&tmp).map_err(|e| e.to_string())?.flatten().map(|e| e.path()).find(|p| p.is_dir()).ok_or("an empty package")?;
+            let mut out = Vec::new();
+            for f in std::fs::read_dir(&top).map_err(|e| e.to_string())?.flatten() {
+                if f.path().is_file() {
+                    out.push((f.file_name().to_string_lossy().to_string(), std::fs::read(f.path()).map_err(|e| e.to_string())?));
+                }
+            }
+            Ok(out)
+        });
+        let _ = std::fs::remove_dir_all(&tmp);
+        res
+    }
+    #[cfg(windows)]
+    fn untar(_: &Path) -> Result<Vec<(String, Vec<u8>)>, String> {
+        Err("not used on Windows".into())
+    }
+
+    #[cfg(test)]
+    mod tests {
+        #[test]
+        fn a_checksum_line_must_match_and_zip_paths_stay_inside() {
+            // sha256("abc")
+            let sums = "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad  App-1.0-macOS.dmg\n00  other.zip\n";
+            assert!(super::check_sum(b"abc", "App-1.0-macOS.dmg", sums).is_ok());
+            assert!(super::check_sum(b"abd", "App-1.0-macOS.dmg", sums).is_err());
+            assert!(super::check_sum(b"abc", "missing.zip", sums).is_err());
+            assert_eq!(super::inner("App-1.0/software/a.dll").as_deref(), Some("software/a.dll"));
+            for bad in ["App/../x", "App/", "top-only", "App/a\\b", "App/c:/x", "App//x"] {
+                assert!(super::inner(bad).is_none(), "{bad}");
+            }
+            // a stored zip of one file in a top folder (local header, central directory, end record)
+            let (name, data) = (b"App-1.0/app.exe", b"hello");
+            let mut z = vec![0x50, 0x4b, 3, 4];
+            z.extend([0u8; 14]);
+            z.extend((data.len() as u32).to_le_bytes());
+            z.extend((data.len() as u32).to_le_bytes());
+            z.extend((name.len() as u16).to_le_bytes());
+            z.extend([0u8; 2]);
+            z.extend(name);
+            z.extend(data);
+            let cd = z.len();
+            z.extend([0x50, 0x4b, 1, 2]);
+            z.extend([0u8; 16]);
+            z.extend((data.len() as u32).to_le_bytes());
+            z.extend((data.len() as u32).to_le_bytes());
+            z.extend((name.len() as u16).to_le_bytes());
+            z.extend([0u8; 12]);
+            z.extend(0u32.to_le_bytes());
+            z.extend(name);
+            let cd_len = z.len() - cd;
+            z.extend([0x50, 0x4b, 5, 6, 0, 0, 0, 0, 1, 0, 1, 0]);
+            z.extend((cd_len as u32).to_le_bytes());
+            z.extend((cd as u32).to_le_bytes());
+            z.extend([0u8; 2]);
+            assert_eq!(super::unzip(&z).unwrap(), vec![("app.exe".to_string(), b"hello".to_vec())]);
+        }
     }
 }
